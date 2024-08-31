@@ -1,0 +1,23 @@
+<!-- Specification file for a Minitrix decoder -->
+<decoderseries description_de="Minitrix" description_en="Minitrix" manufacturerid="131" decspecversion="1">
+        
+        <!-- Supported decoders -->
+        <decoder decoderid="141"/>
+
+        <!-- Supported RCN225 features -->
+        <RCN225_BASEADDRESS_CV1 support="yes"/>
+        <RCN225_MINIMALSPEED_CV2 support="yes"/>
+        <RCN225_MANUFACTUERID_CV8 support="yes"/>
+        <RCN225_DECODERVERSION_CV7 support="yes"/>
+        <RCN225_FUNCTIONKEYMAPPING_CV3346 support="yes"/>
+        <RCN225_ABC_CV27_X support="yes"/>
+
+        <!-- Supported Döhler and Haass features -->
+        <DOEHLERANDHAAS_DECODERTYPE_CV261 support="yes"/>
+        <DOEHLERANDHAAS_FIRMWAREVERSION_CV262x support="yes"/>
+        <DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 support="yes"/>
+        <DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 support="yes"/>
+        <DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 support="yes"/>
+
+ </decoderseries>
+    

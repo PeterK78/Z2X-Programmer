@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.SettingsSearchPage"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:SettingsSearchViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,40,40"
+             Title="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+    </ContentPage.Resources>
+
+
+    <!-- According to various internet reports a ListView within a ScrollView can led to an unhadled exception "Layout cycle detected. Layout could not complete".
+        Due to this we will currently not use a ScrollView on the SettingsSearchPage -->
+    
+    <!--<ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">-->
+
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_search_24_regular.png, Dark=ic_fluent_settings_24_dark}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Page sheet content --> 
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" Margin="20,40,20,0">
+                <SearchBar x:Name="searchBar" Style="{StaticResource Z2XProgrammerSearchBar}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" Placeholder="{x:Static strings:AppResources.FrameSearchPlaceHolder}">
+                    <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                                    EventName="TextChanged"
+                                    Command="{Binding SearchTextChangedCommand}"
+                                    CommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <Frame Margin="0,20,0,0" >
+                <ListView ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedSearchResult}" VerticalScrollBarVisibility="Default" SeparatorVisibility="Default">
+                        <ListView.ItemTemplate >
+                            <DataTemplate x:DataType="{x:Type x:String}">
+                                <ViewCell>
+                                    <HorizontalStackLayout Margin="0,10,0,10">
+                                        <Image Source="{AppThemeBinding Light=ic_fluent_search_24_regular.png, Dark=ic_fluent_settings_24_dark}" Margin="5,0,5,0" ></Image>
+                                        <Label Text="{Binding .}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"></Label>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                            EventName="ItemTapped"
+                            Command="{Binding SearchResultSelectedCommand}"/>
+                        </ListView.Behaviors>
+                    </ListView>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+        
+    <!--</ScrollView>-->
+
+
+
+
+</ContentPage>

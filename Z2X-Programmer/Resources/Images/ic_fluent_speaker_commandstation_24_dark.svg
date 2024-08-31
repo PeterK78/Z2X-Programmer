@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="ic_fluent_speaker_commandstation_24_dark.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="33.175093"
+     inkscape:cx="12.132596"
+     inkscape:cy="15.915554"
+     inkscape:window-width="2560"
+     inkscape:window-height="1351"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <rect
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.426;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:14.4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     id="rect1"
+     width="21.660519"
+     height="6.9109635"
+     x="1.1697407"
+     y="8.5445185"
+     rx="2.5584755"
+     ry="2.5841646" />
+  <circle
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.74732;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:14.4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     id="path2"
+     cx="4.8916516"
+     cy="12"
+     r="0.64628029" />
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:4.83425px;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Bold';fill:none;fill-opacity:1;stroke:#212121;stroke-width:0.362568;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:14.4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     x="7.6582174"
+     y="14.95513"
+     id="text2"
+     transform="scale(0.97331965,1.0274117)"><tspan
+       sodipodi:role="line"
+       id="tspan2"
+       x="7.6582174"
+       y="14.95513"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.83425px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';stroke-width:0.362568;stroke-dasharray:none" /></text>
+  <rect
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.813423;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:14.4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     id="rect2"
+     width="2.2441089"
+     height="1.8950253"
+     x="13.203452"
+     y="11.052487"
+     rx="0.38262486"
+     ry="0.44882143" />
+  <rect
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.813423;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:14.4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+     id="rect2-0"
+     width="2.2441089"
+     height="1.8950253"
+     x="16.751295"
+     y="11.052487"
+     rx="0.38262486"
+     ry="0.44882143" />
+</svg>

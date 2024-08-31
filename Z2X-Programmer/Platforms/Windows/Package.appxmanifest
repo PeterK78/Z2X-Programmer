@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <Identity
+    Name="PeterK78.Z2X-Programmer"
+    Publisher="CN=21930C88-5A04-49EC-84BA-826D48E5DB21"
+    Version="0.1.2.0"
+    />
+
+  <mp:PhoneIdentity PhoneProductId="E1F0CC70-029E-4FFB-BCE3-E121A1892E58" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Z2X-Programmer</DisplayName>
+    <PublisherDisplayName>PeterK78</PublisherDisplayName>
+    <Logo>$placeholder$.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-US"/>
+    <Resource Language="de-DE"/>    
+  </Resources>
+
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="Z2X-Programmer"
+        Description="$placeholder$"
+        Square150x150Logo="$placeholder$.png"
+        Square44x44Logo="$placeholder$.png"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
+        <uap:SplashScreen Image="$placeholder$.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="z2x-programmer">
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="z2xprogrammerfile/programmerfile">.z2x</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Z2X-Programmer File</uap:DisplayName>
+            <uap:Logo>appiconLogo.png</uap:Logo>
+            <uap:InfoTip>A Z2X Programmer file</uap:InfoTip>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+</Package>

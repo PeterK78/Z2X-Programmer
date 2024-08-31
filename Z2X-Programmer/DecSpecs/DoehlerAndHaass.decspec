@@ -1,0 +1,30 @@
+<!-- Specification file for a Döhler and Haas decoder -->
+ <decoderseries description_de="Doehler &amp; Haass" description_en="Doehler &amp; Haass" manufacturerid="97" decspecversion="1">
+
+    <!-- Supported decoders -->
+
+    <!-- Supported RCN225 features -->
+	<RCN225_BASEADDRESS_CV1 support="yes"/>
+    <RCN225_MINIMALSPEED_CV2 support="yes"/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support="yes"/>
+    <RCN225_DECELERATIONFACTOR_CV4 support="yes"/>
+    <RCN225_MAXIMALSPEED_CV5 support="yes"/>
+    <RCN225_DECODERVERSION_CV7 support="yes"/>
+    <RCN225_MANUFACTUERID_CV8 support="yes"/>
+    <RCN225_DIRECTION_CV29_0 support="yes"/>
+    <RCN225_SPEEDSTEPS_CV29_1 support="yes"/>
+    <RCN225_RAILCOMENABLED_CV29_3 support="yes"/>
+    <RCN225_SPEEDTABLE_CV29_4 support="yes"/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support="yes"/>
+    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support="yes"/>
+    <RCN225_ANALOGMODE_CV29 support="yes"/>
+    <RCN225_DECODERRESET_CV8 support="yes"/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support="yes"/>
+    <RCN225_CONSISTADDRESS_CV19 support="yes"/>
+    <RCN225_ABC_CV27_X support="yes"/>
+
+    <!-- Supported Döhler and Haass features -->                
+    <DOEHLERANDHAAS_DECODERTYPE_CV261 support="yes"/>
+
+ </decoderseries>
+    

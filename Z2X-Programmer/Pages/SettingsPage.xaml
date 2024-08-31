@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.SettingsPage"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             x:DataType="viewmodel:SettingsPageViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,40,40"
+             Shell.PresentationMode="ModalAnimated"
+             Title="{x:Static strings:AppResources.ButtonMainMenuSettingsText}">
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_settings_24_regular.png, Dark=ic_fluent_settings_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.ButtonMainMenuSettingsText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Z21 Settings-->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FameSettingsZ21Title}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsZ21IPAddressDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FarmeSettingsZ21IPAddress}" HorizontalOptions="Start" />
+                        <Entry  Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsZ21IPAddressPlaceholder}" Text="{Binding Z21IPAddress}" ClearButtonVisibility="WhileEditing">
+                            <Entry.Behaviors>
+                                <toolkit:TextValidationBehavior 
+                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                    ValidStyle="{StaticResource Z2XValidEntry}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumLength="5"
+                                    MaximumLength="15" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Button Grid.Row="2" Grid.Column="1" WidthRequest="200" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonConnectLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ConnectCommand}" HorizontalOptions="End" ></Button>
+
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Automatic decoder detection -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionTitel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AutomaticDecoderDetection}" HorizontalOptions="End"></Switch>
+                </Grid>
+            </Frame>
+
+            <!-- Application language -->
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Picker Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End" Margin="20,0,0,0"></Picker>
+                </Grid>
+            </Frame>
+
+            <!-- Path to the decoder specification files -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsDecSpecFolderTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDecSpecFolderDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Entry Text="{Binding DecSpecFolder}" IsReadOnly="True" IsEnabled="True" Margin="0,10,0,0" ></Entry>
+                    <Button WidthRequest="200" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=CheckDecoderSpecificationsCommand}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecTooltip}"  ></Button>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Logging -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsLoggingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsLoggingEnableDisable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
+                </Grid>
+            </Frame>
+
+            <!-- Reset Z2X-Programmer Settings -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsResetTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsResetLabel}"  HorizontalOptions="Start" />
+                    <Button Grid.Row="2" Grid.Column="1" WidthRequest="200"  VerticalOptions="Center"  Text="{x:Static strings:AppResources.FrameSettingsResetButtonLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ResetZ2XProgrammerCommand}" HorizontalOptions="End" ></Button>
+                </Grid>
+            </Frame>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

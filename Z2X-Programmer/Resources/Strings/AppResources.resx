@@ -1,0 +1,1220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlertAttention" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="AlertDecoderDonwloadSuccessfull" xml:space="preserve">
+    <value>The decoder settings have been successfully written to the decoder.</value>
+  </data>
+  <data name="AlertDecoderDownloadError" xml:space="preserve">
+    <value>The decoder settings could not be written to the decoder. Check the following settings:
+
+• Address
+• Network connection to your digital central unit
+• Programming method (POM or programming track)</value>
+  </data>
+  <data name="AlertDecoderUploadError" xml:space="preserve">
+    <value>The decoder could not be read out. Check the following settings:
+
+• Address
+• Network connection to your digital central unit
+• Programming method (POM or programming track)</value>
+  </data>
+  <data name="AlertDecoderUploadSuccess" xml:space="preserve">
+    <value>The data was successfully read from the decoder.</value>
+  </data>
+  <data name="AlertDecSpecFilesOK" xml:space="preserve">
+    <value>The decoder specifications are OK. No problems were found.</value>
+  </data>
+  <data name="AlertDeqSpecFileNotRead" xml:space="preserve">
+    <value>The following error was found in a decoder specification:</value>
+  </data>
+  <data name="AlertError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="AlertInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="AlertLocomotiveAddressNotZero" xml:space="preserve">
+    <value>The locomotive address must not be 0. Change the locomotive address and restart the upload.</value>
+  </data>
+  <data name="AlertNewFile" xml:space="preserve">
+    <value>Do you want to start with a new configuration? The current configuration will be deleted.</value>
+  </data>
+  <data name="AlertNoConnectionCentralStationError" xml:space="preserve">
+    <value>No connection to your digital command station could be established.</value>
+  </data>
+  <data name="AlertNoConnectionCentralStationOK" xml:space="preserve">
+    <value>The connection to your digital command station  has been successfully established.</value>
+  </data>
+  <data name="AlertNoFeatureSupported" xml:space="preserve">
+    <value>This decoder does not support any functions on this tab.</value>
+  </data>
+  <data name="AlertNoInformationAvailable" xml:space="preserve">
+    <value>No data has been loaded yet. Open a Z2X file or read out a decoder.</value>
+  </data>
+  <data name="AlertNoReadAccessToFilesAndFolders" xml:space="preserve">
+    <value>The file could not be read because access was denied. Make sure that Z2X-Programmer has the required access authorizations.</value>
+  </data>
+  <data name="AlertNoZ2XFileType" xml:space="preserve">
+    <value>The file type of the selected file is unknown or is not Z2X. The file will not be opened.</value>
+  </data>
+  <data name="AlertResetSettings" xml:space="preserve">
+    <value>Do you want to reset the settings? Z2X-Programmer will be closed automatically.</value>
+  </data>
+  <data name="AlertWrongIPAddressFormat" xml:space="preserve">
+    <value>The format of the IP address is not correct. Please check your IP address.</value>
+  </data>
+  <data name="AlertZ2XFileNotRead" xml:space="preserve">
+    <value>The Z2X file could not be opened.
+
+The following error has occurred:</value>
+  </data>
+  <data name="AlertZ2XFileNotSaved" xml:space="preserve">
+    <value>The decoder settings could not be saved.</value>
+  </data>
+  <data name="ButtonCommandStationState" xml:space="preserve">
+    <value>Shows the current operating mode of the digital command station.</value>
+  </data>
+  <data name="ButtonMainMenuNewFileTooltip" xml:space="preserve">
+    <value>New decoder configuration</value>
+  </data>
+  <data name="ButtonMainMenuOpenFileText" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ButtonMainMenuOpenFileTooltip" xml:space="preserve">
+    <value>Open Z2X file</value>
+  </data>
+  <data name="ButtonMainMenuReadDecoderText" xml:space="preserve">
+    <value>Read decoder</value>
+  </data>
+  <data name="ButtonMainMenuSaveFileText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ButtonMainMenuSettingsText" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ButtonMainMenuWriteDecoderText" xml:space="preserve">
+    <value>Write decoder</value>
+  </data>
+  <data name="ButtonResetZIMOErrorMemory" xml:space="preserve">
+    <value>Reset error memory</value>
+  </data>
+  <data name="ButtonStartZIMOSelftTest" xml:space="preserve">
+    <value>Start self-test</value>
+  </data>
+  <data name="CommandStationStateNormalMode" xml:space="preserve">
+    <value>Normal mode</value>
+  </data>
+  <data name="CommandStationStateNotConnected" xml:space="preserve">
+    <value>Not connected</value>
+  </data>
+  <data name="CommandStationStateProgrammingMode" xml:space="preserve">
+    <value>Programming mode</value>
+  </data>
+  <data name="CommandStationStateShortCircuitMode" xml:space="preserve">
+    <value>Short circuit</value>
+  </data>
+  <data name="CommandStationStateStopMode" xml:space="preserve">
+    <value>STOP</value>
+  </data>
+  <data name="DCCABCBreakModeLeftTrack" xml:space="preserve">
+    <value>Stop at higher voltage on left-hand track</value>
+  </data>
+  <data name="DCCABCBreakModeOff" xml:space="preserve">
+    <value>Switched off</value>
+  </data>
+  <data name="DCCABCBreakModeRightTrack" xml:space="preserve">
+    <value>Stop at higher voltage on right-hand track</value>
+  </data>
+  <data name="DCCAddressModeLong" xml:space="preserve">
+    <value>Short locomotive addresses (1 - 237)</value>
+  </data>
+  <data name="DCCAddressModeShort" xml:space="preserve">
+    <value>Long locomotive addresses (128 - 10239)</value>
+  </data>
+  <data name="DCCProgrammingModePOM" xml:space="preserve">
+    <value>Main track</value>
+  </data>
+  <data name="DCCProgrammngModeProgramTrack" xml:space="preserve">
+    <value>Program track</value>
+  </data>
+  <data name="DCCSpeedStepMode14" xml:space="preserve">
+    <value>14 speed steps</value>
+  </data>
+  <data name="DCCSpeedStepMode28128" xml:space="preserve">
+    <value>28/128 speed steps</value>
+  </data>
+  <data name="DoehlerHaassMappingTypeExtended" xml:space="preserve">
+    <value>Extended</value>
+  </data>
+  <data name="DoehlerHaassMappingTypeRCN225" xml:space="preserve">
+    <value>Standard (RCN225 compatible)</value>
+  </data>
+  <data name="DownloadNewSettingsYesNo" xml:space="preserve">
+    <value>Wollen Sie die neuen Einstellungen nun auf ihren Decoder übertragen?
+
+Die folgenden Konfigurationsvariablen werden geändert:
+</value>
+  </data>
+  <data name="DownloadNoCVsModified" xml:space="preserve">
+    <value>No settings have been changed. No download is performed.</value>
+  </data>
+  <data name="FameSettingsZ21Title" xml:space="preserve">
+    <value>Digital command station Z21</value>
+  </data>
+  <data name="FarmeSettingsZ21IPAddress" xml:space="preserve">
+    <value>IP address</value>
+  </data>
+  <data name="FarmeSettingsZ21TimeOut" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="FilePickerOpenZ2XFileTitle" xml:space="preserve">
+    <value>Select the z2x file</value>
+  </data>
+  <data name="FlyoutItemAddressText" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="FlyoutItemDecoderInformationText" xml:space="preserve">
+    <value>Decoder information</value>
+  </data>
+  <data name="FlyoutItemDriveCharacteristicsText" xml:space="preserve">
+    <value>Drive characteristics</value>
+  </data>
+  <data name="FlyoutItemExpertTitle" xml:space="preserve">
+    <value>Expert functions</value>
+  </data>
+  <data name="FlyoutItemFunctionKeysTitle" xml:space="preserve">
+    <value>Function keys</value>
+  </data>
+  <data name="FlyoutItemInfoText" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="FlyoutItemLightText" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="FlyoutItemMaintenanceText" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="FlyoutItemProtocolTitle" xml:space="preserve">
+    <value>Protocols</value>
+  </data>
+  <data name="FlyoutItemSecurityTitle" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="FlyoutItemSettingsSearchTitle" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="FlyoutItemSoundText" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="FrameAddressModeDescription" xml:space="preserve">
+    <value>The address mode determines whether vehicle addresses in the range from 0 to 127 or from 128 to 10239 are used. The standard range is 0 to 127.</value>
+  </data>
+  <data name="FrameAddressSecondAddressDescription" xml:space="preserve">
+    <value>Use the second address to link the function decoder to the functions of a traction unit. This means that the lights, for example, can be activated at the touch of a button.</value>
+  </data>
+  <data name="FrameAddressSecondAddressLabel" xml:space="preserve">
+    <value>Secondary address (CV64, CV67, CV68)</value>
+  </data>
+  <data name="FrameAddressSecondAddressModeLabel" xml:space="preserve">
+    <value>Address mode of the second address (CV112.5)</value>
+  </data>
+  <data name="FrameAddressSecondAddressTitle" xml:space="preserve">
+    <value>Secondary address</value>
+  </data>
+  <data name="FrameAddressVehicleAddressLabel" xml:space="preserve">
+    <value>Vehicle address (CV1, CV17, CV18)</value>
+  </data>
+  <data name="FrameAddressVehicleAddressModeLabel" xml:space="preserve">
+    <value>Address mode (CV29.5)</value>
+  </data>
+  <data name="FrameAddressVehicleAddressModeTitle" xml:space="preserve">
+    <value>Address mode</value>
+  </data>
+  <data name="FrameDecoderDescriptionDescription" xml:space="preserve">
+    <value>Add user-specific information such as a short description, any notes or an image here.</value>
+  </data>
+  <data name="FrameDecoderDescriptionLabel" xml:space="preserve">
+    <value>Short description</value>
+  </data>
+  <data name="FrameDecoderDescriptionPlaceholder" xml:space="preserve">
+    <value>e. g. ÖBB1044 or ZIMO MX618</value>
+  </data>
+  <data name="FrameDecoderDescriptionTitle" xml:space="preserve">
+    <value>User-specific</value>
+  </data>
+  <data name="FrameDecoderDoehlerAndHaasInfoDecoderType" xml:space="preserve">
+    <value>Decoder type (CV261)</value>
+  </data>
+  <data name="FrameDecoderDoehlerAndHaasInfoTitle" xml:space="preserve">
+    <value>Variant</value>
+  </data>
+  <data name="FrameDecoderDoehlerAndHaassInfoSWVersion" xml:space="preserve">
+    <value>Software-Version (CV262 + CV264)</value>
+  </data>
+  <data name="FrameDecoderInfoPictureButton" xml:space="preserve">
+    <value>Select image</value>
+  </data>
+  <data name="FrameDecoderInfoPictureTitle" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="FrameDecoderPersonalNotesTitle" xml:space="preserve">
+    <value>Personal notes</value>
+  </data>
+  <data name="FrameDecoderZIMOCopyClipboard" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoBootloaderVersion" xml:space="preserve">
+    <value>Bootloader version (CV248, CV249)</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoDecoderID" xml:space="preserve">
+    <value>Decoder ID (CV250, CV251, CV252, CV253)</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoDecoderType" xml:space="preserve">
+    <value>Decoder type (CV250)</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoSWVersion" xml:space="preserve">
+    <value>Software version (CV7 + CV65)</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoTitle" xml:space="preserve">
+    <value>Variant</value>
+  </data>
+  <data name="FrameDriveCharacteristicsAccDecAccTimeDescription" xml:space="preserve">
+    <value>Time from standstill to maximum speed</value>
+  </data>
+  <data name="FrameDriveCharacteristicsAccDecAccTimeEnabledDisabled" xml:space="preserve">
+    <value>Activate acceleration time (CV3)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsAccDecDecTimeDescription" xml:space="preserve">
+    <value>Time from maximum speed to standstill</value>
+  </data>
+  <data name="FrameDriveCharacteristicsAccDecTitle" xml:space="preserve">
+    <value>Acceleration and deceleration</value>
+  </data>
+  <data name="FrameDriveCharacteristicsAccTimeEnabled" xml:space="preserve">
+    <value>Use acceleration time</value>
+  </data>
+  <data name="FrameDriveCharacteristicsBrakingTrackABCLabel" xml:space="preserve">
+    <value>Stop with asymmetric track signal (CV27.0, CV27.1)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsBrakingTrackDescription" xml:space="preserve">
+    <value>Configure the functions here for which the decoder automatically stops the vehicle.</value>
+  </data>
+  <data name="FrameDriveCharacteristicsBrakingTrackHLULabel" xml:space="preserve">
+    <value>Activate ZIMO (HLU) braking distance (CV27.2)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsBrakingTrackTitle" xml:space="preserve">
+    <value>Braking tracks</value>
+  </data>
+  <data name="FrameDriveCharacteristicsConsistDirectionLabel" xml:space="preserve">
+    <value>Direction in consist mode inverted (CV19.7)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDecTimeEnabled" xml:space="preserve">
+    <value>Use breaking time</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDecTimeLabel" xml:space="preserve">
+    <value>Braking time (CV4)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDecTimeSliderToolTip" xml:space="preserve">
+    <value>Set the braking time (CV value * 0.9 = braking time in seconds)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDecTimeSwitchToolTip" xml:space="preserve">
+    <value>Activate this switch if you want to use a braking time</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDirectionDescription" xml:space="preserve">
+    <value>Use these options to reverse the direction of travel. These functions are used, for example, with incorrectly installed decoders.</value>
+  </data>
+  <data name="FrameDriveCharacteristicsDirectionLabel" xml:space="preserve">
+    <value>Direction of travel inverted (CV29.0)</value>
+  </data>
+  <data name="FrameDriveCharacteristicsTitle" xml:space="preserve">
+    <value>DirectionDirection of travel</value>
+  </data>
+  <data name="FrameExpertCVListTitle" xml:space="preserve">
+    <value>All configuration variables</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteButtonReadCV" xml:space="preserve">
+    <value>Read CV</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteButtonWriteCV" xml:space="preserve">
+    <value>Write CV</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteCVBits" xml:space="preserve">
+    <value>Bits [7 ... 0]</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteCVLabel" xml:space="preserve">
+    <value>CV number (1 - 1024)</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteCVValue" xml:space="preserve">
+    <value>Value (0 - 255)</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadWriteTitle" xml:space="preserve">
+    <value>Read and write a CV</value>
+  </data>
+  <data name="FrameFunctionKeysCurveSquealLabel" xml:space="preserve">
+    <value>Function key for switching the curve squeal on and off (CV308)</value>
+  </data>
+  <data name="FrameFunctionKeysDeactivateAccDecTimeDescription" xml:space="preserve">
+    <value>Braking and acceleration times can be deactivated by pressing a function button.</value>
+  </data>
+  <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
+    <value>Function key for deactivating the braking and acceleration time (CV156)</value>
+  </data>
+  <data name="FrameFunctionKeysDeactivateAccDecTimeTitle" xml:space="preserve">
+    <value>Deactivate braking and acceleration time</value>
+  </data>
+  <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
+    <value>Function button for deactivating the braking and acceleration time (CV133)</value>
+  </data>
+  <data name="FrameFunctionKeysMappingBackward" xml:space="preserve">
+    <value>Backward</value>
+  </data>
+  <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
+    <value>Digital decoders have up to 12 function outputs. Configure here which function button switches which function output on and off.</value>
+  </data>
+  <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="FrameFunctionKeysMappingHeadeOutput" xml:space="preserve">
+    <value>Function output</value>
+  </data>
+  <data name="FrameFunctionKeysMappingHeaderCV" xml:space="preserve">
+    <value>CV</value>
+  </data>
+  <data name="FrameFunctionKeysMappingHeaderDirection" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="FrameFunctionKeysMappingHeaderFunctionkey" xml:space="preserve">
+    <value>Function key</value>
+  </data>
+  <data name="FrameFunctionKeysMappingHeadeValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="FrameFunctionKeysMappingStandardTitle" xml:space="preserve">
+    <value>Standard function mapping</value>
+  </data>
+  <data name="FrameFunctionKeysMappingTitle" xml:space="preserve">
+    <value>Assignment according to RCN-225</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingKey" xml:space="preserve">
+    <value>Shunting key</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingKeyDescription" xml:space="preserve">
+    <value>If the shunting key is pressed, the shunting gear is activated</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingKeyLabel" xml:space="preserve">
+    <value>Function key for activating the shunting gear (CV132)</value>
+  </data>
+  <data name="FrameFunctionKeysSoundControlDescription" xml:space="preserve">
+    <value>Here you define the function buttons with which you can switch the various sounds on and off.</value>
+  </data>
+  <data name="FrameFunctionKeysSoundControlTitle" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="FrameFunctionKeysSoundMuteLabel" xml:space="preserve">
+    <value>Function button to fade the sound in and out (CV313)</value>
+  </data>
+  <data name="FrameFunctionKeysSoundVolumeControlDescription" xml:space="preserve">
+    <value>Select the function buttons with which you want to turn the volume up or down.</value>
+  </data>
+  <data name="FrameFunctionKeysSoundVolumeControlTitle" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="FrameFunctionKeysSoundVolumeLouderLabel" xml:space="preserve">
+    <value>Function button for increasing the volume (CV397)</value>
+  </data>
+  <data name="FrameFunctionKeysSoundVolumeOnOffLabel" xml:space="preserve">
+    <value>Function button for switching the driving and random sounds on and off (CV310)</value>
+  </data>
+  <data name="FrameFunctionKeysSoundVolumeQuieterLabel" xml:space="preserve">
+    <value>Function button to reduce the volume (CV396)</value>
+  </data>
+  <data name="FrameFunctionsKeysDoehlerAndHaassMappingType" xml:space="preserve">
+    <value>Activate extended function mapping (CV137.4)</value>
+  </data>
+  <data name="FrameFunctionsKeysDoehlerAndHaassMappingTypeDescription" xml:space="preserve">
+    <value>In addition to the function assignmIn addition to the function assignment according to RCN-225, Döhler &amp; Haass decoders also offer an extended version of the function assignment.ent according to RCN-225, Döhler &amp; Haass decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
+  </data>
+  <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
+    <value>Currently selected variant of the function assignment (CV61)</value>
+  </data>
+  <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
+    <value>In addition to the function assignment according to RCN-225, ZIMO decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
+  </data>
+  <data name="FrameGenericDecoderInformationManufacturer" xml:space="preserve">
+    <value>Manufacturer (CV8)</value>
+  </data>
+  <data name="FrameGenericDecoderInformationTitle" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="FrameGenericDecoderInformationVersionNumber" xml:space="preserve">
+    <value>Version number (CV7)</value>
+  </data>
+  <data name="FrameInfoApplicationInformationTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="FrameInfoOpenSourceLibsTitle" xml:space="preserve">
+    <value>Open source libraries</value>
+  </data>
+  <data name="FrameLicenseButtonLicenseText" xml:space="preserve">
+    <value>Open license ...</value>
+  </data>
+  <data name="FrameLicenseButtonOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FrameLicenseButtonQuit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FrameLicenseCheckbox" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="FrameLicenseTitle" xml:space="preserve">
+    <value>Copyright, disclaimer of warranty and liability</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA0r" xml:space="preserve">
+    <value>Output 0 rear, dimming (CV114.1)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA0v" xml:space="preserve">
+    <value>Output 0 front, dimming (CV114.0)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA1" xml:space="preserve">
+    <value>Dimming output 1 (CV114.2)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA10" xml:space="preserve">
+    <value>Dimming output 10 (CV152.3)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA11" xml:space="preserve">
+    <value>Dimming output 11 (CV152.4)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA12" xml:space="preserve">
+    <value>Dimming output 12 (CV152.5)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA2" xml:space="preserve">
+    <value>Dimming output 2 (CV114.3)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA3" xml:space="preserve">
+    <value>Dimming output 3 (CV114.4)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA4" xml:space="preserve">
+    <value>Dimming output 4 (CV114.5)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA5" xml:space="preserve">
+    <value>Dimming output 5 (CV114.6)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA6" xml:space="preserve">
+    <value>Dimming output 6 (CV114.7)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA7" xml:space="preserve">
+    <value>Dimming output 7 (CV152.0)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA8" xml:space="preserve">
+    <value>Dimming output 8 (CV152.1)</value>
+  </data>
+  <data name="FrameLightBrigthnessOutputFA9" xml:space="preserve">
+    <value>Dimming output 9 (CV152.2)</value>
+  </data>
+  <data name="FrameLightDimmingDescription" xml:space="preserve">
+    <value>The dimming function can be used to reduce the voltage of individual function outputs. This function is used, for example, to reduce the brightness of LEDs.</value>
+  </data>
+  <data name="FrameLightDimmingEnabled" xml:space="preserve">
+    <value>Activate dimming (CV60)</value>
+  </data>
+  <data name="FrameLightDimmingMasterValue" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA0r" xml:space="preserve">
+    <value>Effect, output 0 rear (CV126)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA0v" xml:space="preserve">
+    <value>Effect, output 0 front (CV125)</value>
+  </data>
+  <data name="FrameLightDimmingTitle" xml:space="preserve">
+    <value>Dimming</value>
+  </data>
+  <data name="FrameLightEffectsDescription" xml:space="preserve">
+    <value>Any effect can be assigned to each function output. This allows you, for example, to gently fade the headlights up and down.</value>
+  </data>
+  <data name="FrameLightEffectsTitle" xml:space="preserve">
+    <value>Effects</value>
+  </data>
+  <data name="FrameLocomotiveAddressConsistAdrDescription" xml:space="preserve">
+    <value>Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address.</value>
+  </data>
+  <data name="FrameLocomotiveAddressConsistAdrLabel" xml:space="preserve">
+    <value>Consist address (CV19)</value>
+  </data>
+  <data name="FrameLocomotiveAddressConsistAdrTitle" xml:space="preserve">
+    <value>Consist address</value>
+  </data>
+  <data name="FrameLocomotiveAddressDescription" xml:space="preserve">
+    <value>Each decoder requires a unique vehicle address for identification. Address 3 is used as standard.</value>
+  </data>
+  <data name="FrameLocomotiveAddressPlaceholder" xml:space="preserve">
+    <value>Vehicle address</value>
+  </data>
+  <data name="FrameLocomotiveAddressTitle" xml:space="preserve">
+    <value>Vehicle address</value>
+  </data>
+  <data name="FrameLocomotiveAddressUseConsistAddressLabel" xml:space="preserve">
+    <value>Use consist address</value>
+  </data>
+  <data name="FrameMaintenanceSelfTestDescription" xml:space="preserve">
+    <value>Perform a simple decoder self-test.</value>
+  </data>
+  <data name="FrameMaintenanceSelfTestLabel" xml:space="preserve">
+    <value>Current error (CV30)</value>
+  </data>
+  <data name="FrameMaintenanceSelfTestTitle" xml:space="preserve">
+    <value>Decoder self-test</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip" xml:space="preserve">
+    <value>Sets the maximum speed (values from 2 - 255).</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled" xml:space="preserve">
+    <value>Use the decoder's default value for the maximum speed</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel" xml:space="preserve">
+    <value>Maximum speed</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" xml:space="preserve">
+    <value>Maximum speed (CV5)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip" xml:space="preserve">
+    <value>Activate this switch to use the standard maximum speed of the decoder.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" xml:space="preserve">
+    <value>Medium speed (CV6)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" xml:space="preserve">
+    <value>Minimum speed (CV2)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsBasicCurveTitle" xml:space="preserve">
+    <value>Standard speed characteristic curve</value>
+  </data>
+  <data name="FrameMotorCharacteristicsCharacteristicCurveTypeDescription" xml:space="preserve">
+    <value>A distinction is made between the standard and the extended speed characteristic curve. The standard speed characteristic curve contains 3 characteristic curve points. The extended speed characteristic curve provides additional characteristic curve points. This allows finer control of the speed curve.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsCharacteristicCurveTypeLabel" xml:space="preserve">
+    <value>Use extended speed characteristic (CV29.4)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsCharacteristicCurveTypeTitle" xml:space="preserve">
+    <value>Type of speed characteristic curve</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDHImpulswidth" xml:space="preserve">
+    <value>Impuls width (CV49)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsEMKGap" xml:space="preserve">
+    <value>EMK measurement gap (CV9)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsEMKRate" xml:space="preserve">
+    <value>EMK sampling rate (CV9)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurve" xml:space="preserve">
+    <value>Extended speed characteristic curve</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep10CV76" xml:space="preserve">
+    <value>Curve point 10 (CV76)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep11CV77" xml:space="preserve">
+    <value>Curve point 11 (CV77)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep12CV78" xml:space="preserve">
+    <value>Curve point 12 (CV78)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep13CV79" xml:space="preserve">
+    <value>Curve point 13 (CV79)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep14CV80" xml:space="preserve">
+    <value>Curve point 14 (CV80)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep15CV81" xml:space="preserve">
+    <value>Curve point 15 (CV81)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep16CV82" xml:space="preserve">
+    <value>Curve point 16 (CV82)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep17CV83" xml:space="preserve">
+    <value>Curve point 17 (CV83)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84" xml:space="preserve">
+    <value>Curve point 18 (CV84)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep19CV85" xml:space="preserve">
+    <value>Curve point 19 (CV85)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67" xml:space="preserve">
+    <value>Curve point 1 (CV67)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep20CV86" xml:space="preserve">
+    <value>Curve point 20 (CV86)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep21CV87" xml:space="preserve">
+    <value>Curve point 21 (CV87)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep22CV88" xml:space="preserve">
+    <value>Curve point 22 (CV88)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep23CV89" xml:space="preserve">
+    <value>Curve point 23 (CV89)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep24CV90" xml:space="preserve">
+    <value>Curve point 23 (CV90)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep25CV91" xml:space="preserve">
+    <value>Curve point 24 (CV91)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep26CV92" xml:space="preserve">
+    <value>Curve point 25 (CV92)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep27CV93" xml:space="preserve">
+    <value>Curve point 26 (CV93)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep28CV94" xml:space="preserve">
+    <value>Curve point  27 (CV94)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68" xml:space="preserve">
+    <value>Curve point 2 (CV68)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69" xml:space="preserve">
+    <value>Curve point 3 (CV69)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep4CV70" xml:space="preserve">
+    <value>Curve point 4 (CV70)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep5CV71" xml:space="preserve">
+    <value>Curve point 5 (CV71)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep6CV72" xml:space="preserve">
+    <value>Curve point 6 (CV72)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep7CV73" xml:space="preserve">
+    <value>Curve point 7 (CV73)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep8CV74" xml:space="preserve">
+    <value>Curve point 8 (CV74)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveStep9CV75" xml:space="preserve">
+    <value>Curve point  9 (CV75)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsFrequency" xml:space="preserve">
+    <value>Frequency (CV9)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFreqType" xml:space="preserve">
+    <value>Frequency type (CV9)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyDefault" xml:space="preserve">
+    <value>Use default setting (CV9)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyDescription" xml:space="preserve">
+    <value>Both the motor control frequency and the EMF sampling rate can be configured. This allows the driving behavior and noise development to be influenced.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip" xml:space="preserve">
+    <value>Higher values may be necessary for round motors, lower values reduce drive noise and increase the performance of Faulhaber and Maxxon motors.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip" xml:space="preserve">
+    <value>Higher values prevent jerking, lower values reduce drive noise.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyHelp" xml:space="preserve">
+    <value>Here you will find recommendations if the standard setting does not work satisfactorily.
+
+Settings for new motors:
+
+Frequency type = high frequency
+Sampling rate = 9, measuring gap = 5 : Modern Roco or typical N-gauge locomotive
+Sampling rate = 8, measuring gap = 9 : Fleischmann locomotive with “round motor”
+Sampling rate = 5, measuring gap = 1 : Small Faulhaber motor (e.g. Maxxon etc.)
+Sampling rate = 1, measuring gap = 1 : Large Faulhaber motor (H0 and 0)
+
+Settings for old motors:
+Frequency type = Low frequency</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyTitle" xml:space="preserve">
+    <value>Motor control frequency and EMK sampling rate</value>
+  </data>
+  <data name="FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip" xml:space="preserve">
+    <value>Select high frequency for new motors and low frequency for old motors.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDDescription" xml:space="preserve">
+    <value>By weighting the proportional and integral components of the engine control, the control behavior can be adapted to the engine type and vehicle weight.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDIValueLabel" xml:space="preserve">
+    <value>Integral value (CV56)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDMotorType" xml:space="preserve">
+    <value>Type of motor (CV56)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDMotorTypeBellAnchor" xml:space="preserve">
+    <value>Bell anchor</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDMotorTypeNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDPValueLabel" xml:space="preserve">
+    <value>Proportional value (CV56)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIDTitle" xml:space="preserve">
+    <value>P and I value of the EMF load balancing control (CV56)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsReferenceVoltage" xml:space="preserve">
+    <value>Fixed reference voltage (CV57)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsReferenceVoltageAutoMode" xml:space="preserve">
+    <value>Automatic adjustment to the rail voltage (CV57)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsReferenceVoltageDescription" xml:space="preserve">
+    <value>The reference voltage defines the voltage that the decoder interprets as Vmax. Either the track voltage or a fixed defined value can be used. By using a fixed voltage value, the control behavior can be decoupled from the track voltage.</value>
+  </data>
+  <data name="FrameMotorCharacteristicsReferenceVoltageTitle" xml:space="preserve">
+    <value>Reference voltage of the motor control</value>
+  </data>
+  <data name="FrameProtocolAnalogModeDescription" xml:space="preserve">
+    <value>Activate this option if the decoder should also support analog operation.</value>
+  </data>
+  <data name="FrameProtocolAnalogModeLabel" xml:space="preserve">
+    <value>Analog mode activated (CV29.2)</value>
+  </data>
+  <data name="FrameProtocolAnalogModeTitle" xml:space="preserve">
+    <value>Analog mode</value>
+  </data>
+  <data name="FrameProtocolDCCADescription" xml:space="preserve">
+    <value>Activate automatic registration via RCN-218 or RailComPlus®.</value>
+  </data>
+  <data name="FrameProtocolDCCALabel" xml:space="preserve">
+    <value>Automatic registration activated (CV28.7)</value>
+  </data>
+  <data name="FrameProtocolDCCATitle" xml:space="preserve">
+    <value>Automatic registration</value>
+  </data>
+  <data name="FrameRailComConfigurationAddressBroadCast" xml:space="preserve">
+    <value>Send address via broadcast on channel 1 (CV28.0)</value>
+  </data>
+  <data name="FrameRailComConfigurationDataChannel2" xml:space="preserve">
+    <value>Activate data transmission on channel 2 (CV28.1)</value>
+  </data>
+  <data name="FrameRailComConfigurationDataChannel2Desc" xml:space="preserve">
+    <value>If this function is activated, the decoder can be read out and written to directly on the main track in POM programming mode.</value>
+  </data>
+  <data name="FrameRailComConfigurationTitle" xml:space="preserve">
+    <value>RailCom configuration</value>
+  </data>
+  <data name="FrameRailComEnableDisableRailCom" xml:space="preserve">
+    <value>Enable RailCom bidirectional communication (CV29.3)</value>
+  </data>
+  <data name="FrameRailComEnableDisableTitle" xml:space="preserve">
+    <value>RailCom</value>
+  </data>
+  <data name="FrameSearchNothingFound" xml:space="preserve">
+    <value>No settings were found</value>
+  </data>
+  <data name="FrameSearchPlaceHolder" xml:space="preserve">
+    <value>Enter search term (at least 3 characters) ...</value>
+  </data>
+  <data name="FrameSecurityDecoderLockActivated" xml:space="preserve">
+    <value>The decoder lock is active (CV15 &lt;&gt; CV16). The decoder cannot be programmed.</value>
+  </data>
+  <data name="FrameSecurityDecoderLockDescription" xml:space="preserve">
+    <value>The decoder lock is used for several decoders with identical vehicle addresses in a vehicle. This means that CVs can only be changed in one specific decoder.  If the decoder lock is active, the decoder can neither be read nor written to. The lock is activated by entering different values in CV15 and CV16.  CV15 can always be written to.</value>
+  </data>
+  <data name="FrameSecurityDecoderLockLabelCV15" xml:space="preserve">
+    <value>Decoder lock (CV15)</value>
+  </data>
+  <data name="FrameSecurityDecoderLockLabelCV16" xml:space="preserve">
+    <value>Decoder lock (CV16)</value>
+  </data>
+  <data name="FrameSecurityDecoderLockNotActivated" xml:space="preserve">
+    <value>The decoder lock is not active (CV15 = CV16). The decoder can be programmed.</value>
+  </data>
+  <data name="FrameSecurityDecoderLockTitle" xml:space="preserve">
+    <value>Decoder lock</value>
+  </data>
+  <data name="FrameSecurityDecoderResetButtonLabel" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="FrameSecurityDecoderResetButtonMessage" xml:space="preserve">
+    <value>Do you really want to reset the decoder? All user-specific settings will be lost.</value>
+  </data>
+  <data name="FrameSecurityDecoderResetLabel" xml:space="preserve">
+    <value>This function resets the decoder to the manufacturer's default values. All user-specific settings are lost (CV8 = 8).</value>
+  </data>
+  <data name="FrameSecurityDecoderResetNoPOMMode" xml:space="preserve">
+    <value>A decoder reset can only be done on the programming track.</value>
+  </data>
+  <data name="FrameSecurityDecoderResetResetPerformed" xml:space="preserve">
+    <value>The decoder reset has been carried out. Wait some minutes to initialize the decoder. Afterwards reload the settings from the decoder.</value>
+  </data>
+  <data name="FrameSecurityDecoderResetTitle" xml:space="preserve">
+    <value>Decoder reset</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockFirmwareUpdate" xml:space="preserve">
+    <value>Disable updating of the decoder firmware (CV144, bit 7)</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockJingleSound" xml:space="preserve">
+    <value>Playing a sound when writing a CV (CV144, bit 4)</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockProgramCVMainTrack" xml:space="preserve">
+    <value>Disable writing of CVs on the main track (CV144, bit 3)</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockProgramCVServiceMode" xml:space="preserve">
+    <value>Disable writing of CVs on the programming track (CV144, bit 6)</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockReadCVServiceMode" xml:space="preserve">
+    <value>Disable reading of CVs on the programming track (CV144, bit 5)</value>
+  </data>
+  <data name="FrameSecurityZIMOUpdateLockTitle" xml:space="preserve">
+    <value>Programming and update locks</value>
+  </data>
+  <data name="FrameSettingsAppLanguageDescription" xml:space="preserve">
+    <value>Display language</value>
+  </data>
+  <data name="FrameSettingsAppLanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="FrameSettingsAppLanguageGerman" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="FrameSettingsAppLanguageLabel" xml:space="preserve">
+    <value>Buttons, menus and other control elements are displayed in this language (restart is required).</value>
+  </data>
+  <data name="FrameSettingsAppLanguageTitle" xml:space="preserve">
+    <value>Display language</value>
+  </data>
+  <data name="FrameSettingsButtonCheckDeqSpecLabel" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="FrameSettingsButtonCheckDeqSpecTooltip" xml:space="preserve">
+    <value>Checks the structure and layout of the decoder specifications.</value>
+  </data>
+  <data name="FrameSettingsButtonConnectLabel" xml:space="preserve">
+    <value>Test connection</value>
+  </data>
+  <data name="FrameSettingsClose" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="FrameSettingsDecoderDetectionDescription" xml:space="preserve">
+    <value>If this option is activated, the decoder specification is automatically selected when a decoder is read out.</value>
+  </data>
+  <data name="FrameSettingsDecoderDetectionLabel" xml:space="preserve">
+    <value>Automatic decoder detection</value>
+  </data>
+  <data name="FrameSettingsDecoderDetectionTitel" xml:space="preserve">
+    <value>Automatic decoder detection</value>
+  </data>
+  <data name="FrameSettingsDecSpecFolderDescription" xml:space="preserve">
+    <value>This folder contains the specifications of the supported decoders.</value>
+  </data>
+  <data name="FrameSettingsDecSpecFolderTitle" xml:space="preserve">
+    <value>Decoder specifications</value>
+  </data>
+  <data name="FrameSettingsLoggingEnableDisable" xml:space="preserve">
+    <value>Enable logging</value>
+  </data>
+  <data name="FrameSettingsLoggingFolder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="FrameSettingsLoggingTitle" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="FrameSettingsResetButtonLabel" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="FrameSettingsResetLabel" xml:space="preserve">
+    <value>Reset the settings to the program's default settings.</value>
+  </data>
+  <data name="FrameSettingsResetTitle" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="FrameSettingsZ21IPAddressDescription" xml:space="preserve">
+    <value>Enter the current IP address of your Z21 digital central unit here. The factory setting is 192.168.0.111.</value>
+  </data>
+  <data name="FrameSettingsZ21IPAddressPlaceholder" xml:space="preserve">
+    <value>Z21 ip address</value>
+  </data>
+  <data name="FrameSettingsZ21TimeoutDescription" xml:space="preserve">
+    <value>Specify here how long you want to wait for a response from your Z21 digital center.</value>
+  </data>
+  <data name="FrameSoundBreakSquealLevelLabel" xml:space="preserve">
+    <value>Threshold for brake squeal (CV287)</value>
+  </data>
+  <data name="FrameSoundBreakSquealLevelTitel" xml:space="preserve">
+    <value>The brake squeal should start when the speed falls below a certain level during deceleration.</value>
+  </data>
+  <data name="FrameSoundBreakSquealTitle" xml:space="preserve">
+    <value>Brake squeal</value>
+  </data>
+  <data name="FrameSoundDurationNoiseReduction" xml:space="preserve">
+    <value>Duration of noise reduction during deceleration (CV285)</value>
+  </data>
+  <data name="FrameSoundMaxVolumeFuncKeysLabel" xml:space="preserve">
+    <value>Maximum volume for a volume change using the volume up button (CV395)</value>
+  </data>
+  <data name="FrameSoundMaxVolumeFuncKeysTooltip" xml:space="preserve">
+    <value>The value 64 corresponds to 100 % volume. Be careful if you use higher values.</value>
+  </data>
+  <data name="FrameSoundOverallVolumeTitle" xml:space="preserve">
+    <value>Total volume (CV266)</value>
+  </data>
+  <data name="FrameSoundStartUpDelayLabel" xml:space="preserve">
+    <value>Start-up delay (CV273)</value>
+  </data>
+  <data name="FrameSoundTimesTitle" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="FrameSoundVolumeAccelerationLabel" xml:space="preserve">
+    <value>Volume during acceleration (CV283)</value>
+  </data>
+  <data name="FrameSoundVolumeDecelerationLabel" xml:space="preserve">
+    <value>Volume during deceleration (CV286)</value>
+  </data>
+  <data name="FrameSoundVolumeEandDieselLocomotiveTitle" xml:space="preserve">
+    <value>Electric and diesel locomotives</value>
+  </data>
+  <data name="FrameSoundVolumeElectroDieselLocomotiveTitle" xml:space="preserve">
+    <value>Volume settings for diesel and electric locomotives</value>
+  </data>
+  <data name="FrameSoundVolumeElectroLocoDependedSpeedLabel" xml:space="preserve">
+    <value>Volume depending on the speed (CV298)</value>
+  </data>
+  <data name="FrameSoundVolumeElectroLocomotiveLabel" xml:space="preserve">
+    <value>Volume of an electric motor (CV296)</value>
+  </data>
+  <data name="FrameSoundVolumeFastSpeedNoLoadLabel" xml:space="preserve">
+    <value>Fast speed without load (CV276)</value>
+  </data>
+  <data name="FrameSoundVolumeLabel" xml:space="preserve">
+    <value>Configure general volume settings which are independent of the drive type.</value>
+  </data>
+  <data name="FrameSoundVolumeLowSpeedNoLoadLabel" xml:space="preserve">
+    <value>Volume at slow speed without load (CV275)</value>
+  </data>
+  <data name="FrameSoundVolumeSteamLocomotiveTitle" xml:space="preserve">
+    <value>Volume settings for steam locomotives</value>
+  </data>
+  <data name="FrameSoundVolumeTitle" xml:space="preserve">
+    <value>General volume settings</value>
+  </data>
+  <data name="FrameSoundVolumeTooltip" xml:space="preserve">
+    <value>The value 64 corresponds to 100 % volume. Be careful if you use higher values.</value>
+  </data>
+  <data name="FrameSpeedStepsSystemDescription" xml:space="preserve">
+    <value>The higher the number of speed steps, the more sensitively a locomotive can be controlled. Make sure that your control center and the decoder use the same number of speed steps.</value>
+  </data>
+  <data name="FrameSpeedStepsSystemLabel" xml:space="preserve">
+    <value>Speed step system (CV29.1)</value>
+  </data>
+  <data name="FrameSpeedStepsSystemTitle" xml:space="preserve">
+    <value>Speed steps system</value>
+  </data>
+  <data name="FunctionKeysNotDefined" xml:space="preserve">
+    <value>No key selected</value>
+  </data>
+  <data name="FyoutItemMotorCharacteristicsText" xml:space="preserve">
+    <value>Motor characteristics</value>
+  </data>
+  <data name="LightEffectToolip" xml:space="preserve">
+    <value>No effect = 0
+Dimmung up and down = 88
+</value>
+  </data>
+  <data name="LightEffectTypeDimmingUpAndDown" xml:space="preserve">
+    <value>Dimming up and down</value>
+  </data>
+  <data name="LightEffectTypeNoEffect" xml:space="preserve">
+    <value>No effect</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PopupButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="PopUpMessageDownloadDecoder" xml:space="preserve">
+    <value>Data is written to the decoder</value>
+  </data>
+  <data name="PopUpMessageUploadDecoder" xml:space="preserve">
+    <value>Data is read from the decoder</value>
+  </data>
+  <data name="UserDefinedNotesPlaceholder" xml:space="preserve">
+    <value>Here you can insert your personal notes</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ZIMOErrorCode0" xml:space="preserve">
+    <value>No error (CV30 = 0)</value>
+  </data>
+  <data name="ZIMOErrorCode1" xml:space="preserve">
+    <value>DC voltage outside the expected range (CV30 = 1)</value>
+  </data>
+  <data name="ZIMOErrorCode17" xml:space="preserve">
+    <value>Audio output stage does not respond (only MS990, CV30 = 17)</value>
+  </data>
+  <data name="ZIMOErrorCode2" xml:space="preserve">
+    <value>3.3 V supply outside the expected range (CV30 = 2)</value>
+  </data>
+  <data name="ZIMOErrorCode3" xml:space="preserve">
+    <value>Temperature outside the expected range (CV30 = 3)</value>
+  </data>
+  <data name="ZIMOErrorCode36" xml:space="preserve">
+    <value>Motor output stage defective / no motor (CV30 = 36)</value>
+  </data>
+  <data name="ZIMOErrorCode4" xml:space="preserve">
+    <value>Left rail voltage outside the expected range (CV30 = 4)</value>
+  </data>
+  <data name="ZIMOErrorCode49" xml:space="preserve">
+    <value>Overtemperature during operation (can also occur without starting the self-test, CV30 = 49)</value>
+  </data>
+  <data name="ZIMOErrorCode5" xml:space="preserve">
+    <value>Right rail voltage outside the expected range (CV30 = 5)</value>
+  </data>
+  <data name="ZIMOErrorCode50" xml:space="preserve">
+    <value>FA overcurrent during operation (can also occur without starting the self-test, CV30 = 50)</value>
+  </data>
+  <data name="ZIMOErrorCode51" xml:space="preserve">
+    <value>Motor overcurrent during operation (can also occur without starting the self-test, CV30 = 51)</value>
+  </data>
+  <data name="ZIMOErrorCode6" xml:space="preserve">
+    <value>Rail voltages outside the expected range (CV30 = 6)</value>
+  </data>
+  <data name="ZIMOErrorCodeUnknown" xml:space="preserve">
+    <value>(unknown error)</value>
+  </data>
+  <data name="ZIMOMappingTypeExtended" xml:space="preserve">
+    <value>Extended</value>
+  </data>
+  <data name="ZIMOMappingTypeRCN225" xml:space="preserve">
+    <value>Standard (RCN225 compatible)</value>
+  </data>
+  <data name="ZIMOMappingTypeUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="ZimoMotorControlFreqTypeHigh" xml:space="preserve">
+    <value>High frequency</value>
+  </data>
+  <data name="ZimoMotorControlFreqTypeLow" xml:space="preserve">
+    <value>Low frequency</value>
+  </data>
+  <data name="DownloadNewSettingsYesNoSimple" xml:space="preserve">
+    <value>Do you want to transfer the settings to your decoder now?</value>
+  </data>
+</root>

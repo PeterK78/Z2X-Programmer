@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             x:Class="Z2XProgrammer.Pages.InfoPage"
+             x:DataType="viewmodel:InfoPageViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,40,40"
+             Shell.PresentationMode="ModalAnimated"
+             Title="{x:Static strings:AppResources.FlyoutItemInfoText}">
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemInfoText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- About -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoApplicationInformationTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" Source="badgeicon.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" ></Image>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{Binding ApplicationName}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,10,0,10" />
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Version"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ApplicationVersion}"></Label>
+                        <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Homepage"></Label>
+                        <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="https://github.com/PeterK78/Z2X-Programmer">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- License text -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Editor Text="{Binding LicenseText}" IsReadOnly="True" FontSize="12" BackgroundColor="White"></Editor>
+            <Button Margin="0,20,0,0"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file" WidthRequest="150"  IsVisible="True" Text="{x:Static strings:AppResources.FrameLicenseButtonLicenseText}" HorizontalOptions="End" VerticalOptions="End"></Button>
+
+
+            <!-- Frame: Open Source Libraries  -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoOpenSourceLibsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+            <!-- .NET MAUI Community Toolkit -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text=".NET MAUI Community Toolkit" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/Maui" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT/" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- .NET MAUI Community MVVM -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text=".NET MVVM Community Toolkit" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/dotnet" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- MetroLog.Maui -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="MetroLog.Maui" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/roubachof/MetroLog" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Matt Baxter-Reynolds, Claire Novotny, Jean-Marie Alfonsi"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Microsoft.Extensions.Logging.Debug -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Extensions.Logging.Debug" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Microsoft.Maui.Controls -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Maui.Controls" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Microsoft.Maui.Controls.Compatibility -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Maui.Controls.Compatibility" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Microsoft.NET.ILLink.Tasks -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.NET.ILLink.Tasks" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://licenses.nuget.org/MIT" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Microsoft Fluent Icon -->
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Fluent UI System Icons" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/microsoft/fluentui-system-icons" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/microsoft/fluentui-system-icons?tab=MIT-1-ov-file" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

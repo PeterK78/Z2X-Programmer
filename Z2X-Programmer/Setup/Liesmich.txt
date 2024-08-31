@@ -1,0 +1,22 @@
+------------------------------------------------------------------
+Datei:         Liesmich.txt
+Version:       0.1.2.0-beta.1
+Datum:         24.05.2024
+Beschreibung:  Z2X-Programmer
+------------------------------------------------------------------
+
+Nachfolgend finden Sie eine kurze Beschreibung und Versions-
+information zur gelieferten Software.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.1 / 24.05.2024 
+------------------------------------------------------------------
+
+* Erster Release (Beta Version 1, V0.1.2.0)
+
+------------------------------------------------------------------
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+https://github.com/PeterK78/Z2X-Programmer
+------------------------------------------------------------------

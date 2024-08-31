@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.LightPage"
+              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             x:DataType="viewmodel:LightViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Padding="40,40,40,40"
+             Title="{x:Static strings:AppResources.FlyoutItemLightText}">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_lightbulb_24_regular.png, Dark=ic_fluent_lightbulb_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemLightText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- The selected decoder does not support any of the settings provided on this page  -->
+            <HorizontalStackLayout IsVisible="{Binding Path=AnyDecoderFeatureAvailable,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoFeatureSupported}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Page sheet content -->
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+                <!-- Brightness  -->
+            <Label IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                         
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,100,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingMasterValue}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" />
+                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" >
+                            <Slider Value="{Binding Brightness}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" IsVisible="{Binding DimmingEnabled}" Style="{StaticResource Z2XSlider}"></Slider>
+                        <Label  Text="{Binding BrightnessLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                    </HorizontalStackLayout>
+
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}"/>
+                    <Switch Grid.Row="3" Grid.Column="1" IsToggled="{Binding DimmingOutput0frontEnabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="4" Grid.Column="1" IsToggled="{Binding DimmingOutput0rearEnabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA1}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="5" Grid.Column="1" IsToggled="{Binding DimmingOutput1Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA2}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="6" Grid.Column="1" IsToggled="{Binding DimmingOutput2Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA3}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="7" Grid.Column="1" IsToggled="{Binding DimmingOutput3Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA4}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="8" Grid.Column="1" IsToggled="{Binding DimmingOutput4Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="9" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA5}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="9" Grid.Column="1" IsToggled="{Binding DimmingOutput5Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA6}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="10" Grid.Column="1" IsToggled="{Binding DimmingOutput6Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA7}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="11" Grid.Column="1" IsToggled="{Binding DimmingOutput7Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="12" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA8}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="12" Grid.Column="1" IsToggled="{Binding DimmingOutput8Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA9}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="13" Grid.Column="1" IsToggled="{Binding DimmingOutput9Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="14" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA10}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="14" Grid.Column="1" IsToggled="{Binding DimmingOutput10Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="15" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA11}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="15" Grid.Column="1" IsToggled="{Binding DimmingOutput11Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+                    <Label Grid.Row="16" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA12}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                    <Switch Grid.Row="16" Grid.Column="1" IsToggled="{Binding DimmingOutput12Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+
+
+                </Grid>
+            </Frame>
+
+            <!-- Effects  -->
+            <Label IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightEffectsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,100,0" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Picker Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectToolip}"  ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffect0v}" HorizontalTextAlignment="End" MinimumWidthRequest="350" WidthRequest="350"  HorizontalOptions="End" VerticalOptions="Center"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                    <Picker Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectToolip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffect0r}" HorizontalTextAlignment="End" MinimumWidthRequest="350" WidthRequest="350" HorizontalOptions="End" VerticalOptions="Center"/>
+
+                    
+                </Grid>
+            </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

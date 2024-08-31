@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.DecoderInformationPage"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             x:DataType="viewmodel:DecoderInformationViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,40,40"
+             Title="{x:Static strings:AppResources.FlyoutItemDecoderInformationText}">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemDecoderInformationText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Page sheet content -->
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+                <!-- Generic decoder information like manufacturer and version -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!-- ZIMO -->
+                            <Label x:Name="FrameGenericDecoderInformationManufacturer" Grid.Row="0" Grid.Column="0" Margin="0,10,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" Text="{Binding Manufacturer}" ToolTipProperties.Text="{Binding ManufacturerID }" VerticalOptions="Center"  HorizontalOptions="End" />
+
+                            <Label x:Name="FrameGenericDecoderInformationVersionNumber" Grid.Row="1" Grid.Column="0" Margin="0,10,30,0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationVersionNumber}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"  Text="{Binding Version}" VerticalOptions="Center"  HorizontalOptions="End" />
+
+                            <Label x:Name="FrameDecoderZIMOInfoDecoderType" Grid.Row="2" Grid.Column="0" Margin="0,10,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}" />
+                            <Label Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding ZimoDecoderType}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}" />
+
+                            <Label x:Name="FrameDecoderZIMOInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,10,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" />
+                            <Label Grid.Row="3" Grid.Column="1" Margin="0,10,0,0"  Text="{Binding ZimoSWVersion}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" />
+
+                            <Label x:Name="FrameDecoderZIMOInfoDecoderID" Grid.Row="4" Grid.Column="0" Margin="0,10,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERID_CV25X}" />
+                            <Label Grid.Row="4" Grid.Column="1" Margin="0,10,0,0"  Text="{Binding ZimoDecoderID}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_DECODERID_CV25X}" />
+
+                            <Label x:Name="FrameDecoderZIMOInfoBootloaderVersion"  Grid.Row="5" Grid.Column="0" Margin="0,10,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" />
+                            <Label Grid.Row="5" Grid.Column="1" Margin="0,10,0,0"  Text="{Binding ZimoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" />
+
+                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="6" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static strings:AppResources.FrameDecoderZIMOCopyClipboard}" HorizontalOptions="End" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=CopyClipboardCommand}" MinimumWidthRequest="200" WidthRequest="200"></Button>
+
+                            <!-- Doehler & Haass -->
+                            <Label x:Name="FrameDecoderDoehlerAndHaasInfoDecoderType" Grid.Row="2" Grid.Column="0" Margin="0,10,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaasInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}" />
+                            <Label Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding DoehlerAndHaasDecoderType}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}" />
+
+                            <Label x:Name="FrameDecoderDoehlerAndHaassInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,10,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaassInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" />
+                            <Label Grid.Row="3" Grid.Column="1" Margin="0,10,0,0"  Text="{Binding DoehlerAndHaasFirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" />
+
+
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- User defined decoder description and notes -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                            <!-- User defined short note -->
+                            <Label x:Name="FrameDecoderDescriptionLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Entry Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="StartAndExpand" Placeholder="{x:Static strings:AppResources.FrameDecoderDescriptionPlaceholder}" Text="{Binding UserDefindedDecoderDescription}"/>
+
+                            <!-- User defined image -->
+                            <Label x:Name="FrameDecoderInfoPictureTitle" Grid.Row="2" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Image Source="{Binding LocomotiveImageSource}"  Aspect="AspectFit" HeightRequest="200" MaximumHeightRequest="200" ></Image>
+                            </Border>
+                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="4" Grid.Column="1" Margin="0,10,0,0" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=SelectImageCommand}" HorizontalOptions="End" WidthRequest="200"></Button>
+
+                            <!-- User defined notes -->
+                            <Label x:Name="FrameDecoderPersonalNotesTitle" Grid.Row="5" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPersonalNotesTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Editor HorizontalOptions="FillAndExpand"  Text="{Binding UserDefindedNotes}" HeightRequest="200" Placeholder="{x:Static strings:AppResources.UserDefinedNotesPlaceholder}" ></Editor>
+                            </Border>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

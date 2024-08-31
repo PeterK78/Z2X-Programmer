@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.MaintenancePage"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             x:DataType="viewmodel:MaintenanceViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,40,40"
+             Title="{x:Static strings:AppResources.FlyoutItemMaintenanceText}">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+        <VerticalStackLayout >
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_wrench_screwdriver_24_regular.png, Dark=ic_fluent_wrench_screwdriver_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemMaintenanceText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Page sheet content -->
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+                <!-- Decoder reset in CV8 RCN225_DECODERRESET_CV8 -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetTitle}" VerticalOptions="Center" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_DECODERRESET_CV8}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="FrameSecurityDecoderResetLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetLabel}" VerticalOptions="Center" />
+                        <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0"  Grid.Column="1" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetButtonLabel}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=ResetDecoderCommand}"  WidthRequest="200" VerticalOptions="End" ></Button>
+                    </Grid>
+                </Frame>
+
+
+                <!-- ZIMO self test of MS function decoders  -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SELFTEST_CV30}" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SELFTEST_CV30}">
+                    <VerticalStackLayout>
+                        <!-- Function key mapping type -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                            
+
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
+                            <Entry IsReadOnly="True" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" WidthRequest="600" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ZIMODecoderErrorState}" VerticalOptions="Center"  HorizontalOptions="End" Margin="0,20,0,0" />
+
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,20,0,0">
+                                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,0,0,0" Text="{x:Static strings:AppResources.ButtonStartZIMOSelftTest}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=StartZIMOSelfTestCommand}"  WidthRequest="250" VerticalOptions="Center" HorizontalOptions="End" ></Button>
+                                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,0,0,0" Text="{x:Static strings:AppResources.ButtonResetZIMOErrorMemory}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=ResetErrorMemoryCommand}"  WidthRequest="250" VerticalOptions="Center" HorizontalOptions="End" ></Button>
+                            </HorizontalStackLayout>
+
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+                
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
