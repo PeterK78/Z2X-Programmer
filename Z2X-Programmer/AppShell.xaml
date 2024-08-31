@@ -163,7 +163,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     </FlyoutItem>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}" Icon="{AppThemeBinding Light=ic_fluent_search_24_regular.png, Dark=ic_fluent_settings_24_dark}">
+        <Tab Title="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}" Icon="{AppThemeBinding Light=ic_fluent_search_24_regular.png, Dark=ic_fluent_search_24_dark.png}">
             <ShellContent Title="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}" ContentTemplate="{DataTemplate pages:SettingsSearchPage}" />
         </Tab>
     </FlyoutItem>
