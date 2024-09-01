@@ -549,6 +549,8 @@ namespace Z2XProgrammer.ViewModel
 
                     Logger.PrintDevConsole("AppShellViewModel:OnCommandStationStatusChanged - TrackPower.OFF");
                     CommandStationState = AppResources.CommandStationStateStopMode;
+                    CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);   // BLUE
+                    StartBlinkingCommandStateLabel();
                     break;
 
                 case Z21Lib.Enums.TrackPower.Programing:
