@@ -93,50 +93,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV33ValueBit0;
         partial void OnCV33ValueBit0Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV33ValueBit1;
         partial void OnCV33ValueBit1Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 1, value);
         }
         [ObservableProperty]
         bool cV33ValueBit2;
         partial void OnCV33ValueBit2Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 2, value);
         }
         [ObservableProperty]
         bool cV33ValueBit3;
         partial void OnCV33ValueBit3Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 3, value);
         }
         [ObservableProperty]
         bool cV33ValueBit4;
         partial void OnCV33ValueBit4Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 4, value);
         }
         [ObservableProperty]
         bool cV33ValueBit5;
         partial void OnCV33ValueBit5Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 5, value);
         }
         [ObservableProperty]
         bool cV33ValueBit6;
         partial void OnCV33ValueBit6Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 6, value);
         }
         [ObservableProperty]
         bool cV33ValueBit7;
         partial void OnCV33ValueBit7Changed(bool value)
         {
-            SetCV33Value();
+            CV33Value = Bit.Set((byte)CV33Value, 7, value);
         }
         #endregion
 
@@ -148,50 +148,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV34ValueBit0;
         partial void OnCV34ValueBit0Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV34ValueBit1;
         partial void OnCV34ValueBit1Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 1, value);
         }
         [ObservableProperty]
         bool cV34ValueBit2;
         partial void OnCV34ValueBit2Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 2, value);
         }
         [ObservableProperty]
         bool cV34ValueBit3;
         partial void OnCV34ValueBit3Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 3, value);
         }
         [ObservableProperty]
         bool cV34ValueBit4;
         partial void OnCV34ValueBit4Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 4, value);
         }
         [ObservableProperty]
         bool cV34ValueBit5;
         partial void OnCV34ValueBit5Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 5, value);
         }
         [ObservableProperty]
         bool cV34ValueBit6;
         partial void OnCV34ValueBit6Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 6, value);
         }
         [ObservableProperty]
         bool cV34ValueBit7;
         partial void OnCV34ValueBit7Changed(bool value)
         {
-            SetCV34Value();
+            CV34Value = Bit.Set((byte)CV34Value, 7, value);
         }
         #endregion
 
@@ -203,50 +203,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV35ValueBit0;
         partial void OnCV35ValueBit0Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV35ValueBit1;
         partial void OnCV35ValueBit1Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 1, value);
         }
         [ObservableProperty]
         bool cV35ValueBit2;
         partial void OnCV35ValueBit2Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 2, value);
         }
         [ObservableProperty]
         bool cV35ValueBit3;
         partial void OnCV35ValueBit3Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 3, value);
         }
         [ObservableProperty]
         bool cV35ValueBit4;
         partial void OnCV35ValueBit4Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 4, value);
         }
         [ObservableProperty]
         bool cV35ValueBit5;
         partial void OnCV35ValueBit5Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 5, value);
         }
         [ObservableProperty]
         bool cV35ValueBit6;
         partial void OnCV35ValueBit6Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 6, value);
         }
         [ObservableProperty]
         bool cV35ValueBit7;
         partial void OnCV35ValueBit7Changed(bool value)
         {
-            SetCV35Value();
+            CV35Value = Bit.Set((byte)CV35Value, 7, value);
         }
         #endregion
 
@@ -258,50 +258,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV36ValueBit0;
         partial void OnCV36ValueBit0Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV36ValueBit1;
         partial void OnCV36ValueBit1Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 1, value);
         }
         [ObservableProperty]
         bool cV36ValueBit2;
         partial void OnCV36ValueBit2Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 2, value);
         }
         [ObservableProperty]
         bool cV36ValueBit3;
         partial void OnCV36ValueBit3Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 3, value);
         }
         [ObservableProperty]
         bool cV36ValueBit4;
         partial void OnCV36ValueBit4Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 4, value);
         }
         [ObservableProperty]
         bool cV36ValueBit5;
         partial void OnCV36ValueBit5Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 5, value);
         }
         [ObservableProperty]
         bool cV36ValueBit6;
         partial void OnCV36ValueBit6Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 6, value);
         }
         [ObservableProperty]
         bool cV36ValueBit7;
         partial void OnCV36ValueBit7Changed(bool value)
         {
-            SetCV36Value();
+            CV36Value = Bit.Set((byte)CV36Value, 7, value);
         }
         #endregion
 
@@ -313,50 +313,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV37ValueBit0;
         partial void OnCV37ValueBit0Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV37ValueBit1;
         partial void OnCV37ValueBit1Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 1, value);
         }
         [ObservableProperty]
         bool cV37ValueBit2;
         partial void OnCV37ValueBit2Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 2, value);
         }
         [ObservableProperty]
         bool cV37ValueBit3;
         partial void OnCV37ValueBit3Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 3, value);
         }
         [ObservableProperty]
         bool cV37ValueBit4;
         partial void OnCV37ValueBit4Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 4, value);
         }
         [ObservableProperty]
         bool cV37ValueBit5;
         partial void OnCV37ValueBit5Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 5, value);
         }
         [ObservableProperty]
         bool cV37ValueBit6;
         partial void OnCV37ValueBit6Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 6, value);
         }
         [ObservableProperty]
         bool cV37ValueBit7;
         partial void OnCV37ValueBit7Changed(bool value)
         {
-            SetCV37Value();
+            CV37Value = Bit.Set((byte)CV37Value, 7, value);
         }
         #endregion
 
@@ -368,50 +368,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV38ValueBit0;
         partial void OnCV38ValueBit0Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV38ValueBit1;
         partial void OnCV38ValueBit1Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 1, value);
         }
         [ObservableProperty]
         bool cV38ValueBit2;
         partial void OnCV38ValueBit2Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 2, value);
         }
         [ObservableProperty]
         bool cV38ValueBit3;
         partial void OnCV38ValueBit3Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 3, value);
         }
         [ObservableProperty]
         bool cV38ValueBit4;
         partial void OnCV38ValueBit4Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 4, value);
         }
         [ObservableProperty]
         bool cV38ValueBit5;
         partial void OnCV38ValueBit5Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 5, value);
         }
         [ObservableProperty]
         bool cV38ValueBit6;
         partial void OnCV38ValueBit6Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 6, value);
         }
         [ObservableProperty]
         bool cV38ValueBit7;
         partial void OnCV38ValueBit7Changed(bool value)
         {
-            SetCV38Value();
+            CV38Value = Bit.Set((byte)CV38Value, 7, value);
         }
         #endregion
 
@@ -423,50 +423,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV39ValueBit0;
         partial void OnCV39ValueBit0Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV39ValueBit1;
         partial void OnCV39ValueBit1Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 1, value);
         }
         [ObservableProperty]
         bool cV39ValueBit2;
         partial void OnCV39ValueBit2Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 2, value);
         }
         [ObservableProperty]
         bool cV39ValueBit3;
         partial void OnCV39ValueBit3Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 3, value);
         }
         [ObservableProperty]
         bool cV39ValueBit4;
         partial void OnCV39ValueBit4Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 4, value);
         }
         [ObservableProperty]
         bool cV39ValueBit5;
         partial void OnCV39ValueBit5Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 5, value);
         }
         [ObservableProperty]
         bool cV39ValueBit6;
         partial void OnCV39ValueBit6Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 6, value);
         }
         [ObservableProperty]
         bool cV39ValueBit7;
         partial void OnCV39ValueBit7Changed(bool value)
         {
-            SetCV39Value();
+            CV39Value = Bit.Set((byte)CV39Value, 7, value);
         }
         #endregion
 
@@ -478,50 +478,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV40ValueBit0;
         partial void OnCV40ValueBit0Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV40ValueBit1;
         partial void OnCV40ValueBit1Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 1, value);
         }
         [ObservableProperty]
         bool cV40ValueBit2;
         partial void OnCV40ValueBit2Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 2, value);
         }
         [ObservableProperty]
         bool cV40ValueBit3;
         partial void OnCV40ValueBit3Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 3, value);
         }
         [ObservableProperty]
         bool cV40ValueBit4;
         partial void OnCV40ValueBit4Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 4, value);
         }
         [ObservableProperty]
         bool cV40ValueBit5;
         partial void OnCV40ValueBit5Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 5, value);
         }
         [ObservableProperty]
         bool cV40ValueBit6;
         partial void OnCV40ValueBit6Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 6, value);
         }
         [ObservableProperty]
         bool cV40ValueBit7;
         partial void OnCV40ValueBit7Changed(bool value)
         {
-            SetCV40Value();
+            CV40Value = Bit.Set((byte)CV40Value, 7, value);
         }
         #endregion
 
@@ -533,50 +533,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV41ValueBit0;
         partial void OnCV41ValueBit0Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV41ValueBit1;
         partial void OnCV41ValueBit1Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 1, value);
         }
         [ObservableProperty]
         bool cV41ValueBit2;
         partial void OnCV41ValueBit2Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 2, value);
         }
         [ObservableProperty]
         bool cV41ValueBit3;
         partial void OnCV41ValueBit3Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 3, value);
         }
         [ObservableProperty]
         bool cV41ValueBit4;
         partial void OnCV41ValueBit4Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 4, value);
         }
         [ObservableProperty]
         bool cV41ValueBit5;
         partial void OnCV41ValueBit5Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 5, value);
         }
         [ObservableProperty]
         bool cV41ValueBit6;
         partial void OnCV41ValueBit6Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 6, value);
         }
         [ObservableProperty]
         bool cV41ValueBit7;
         partial void OnCV41ValueBit7Changed(bool value)
         {
-            SetCV41Value();
+            CV41Value = Bit.Set((byte)CV41Value, 7, value);
         }
         #endregion
 
@@ -588,50 +588,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV42ValueBit0;
         partial void OnCV42ValueBit0Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV42ValueBit1;
         partial void OnCV42ValueBit1Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 1, value);
         }
         [ObservableProperty]
         bool cV42ValueBit2;
         partial void OnCV42ValueBit2Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 2, value);
         }
         [ObservableProperty]
         bool cV42ValueBit3;
         partial void OnCV42ValueBit3Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 3, value);
         }
         [ObservableProperty]
         bool cV42ValueBit4;
         partial void OnCV42ValueBit4Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 3, value);
         }
         [ObservableProperty]
         bool cV42ValueBit5;
         partial void OnCV42ValueBit5Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 5, value);
         }
         [ObservableProperty]
         bool cV42ValueBit6;
         partial void OnCV42ValueBit6Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 6, value);
         }
         [ObservableProperty]
         bool cV42ValueBit7;
         partial void OnCV42ValueBit7Changed(bool value)
         {
-            SetCV42Value();
+            CV42Value = Bit.Set((byte)CV42Value, 7, value);
         }
         #endregion
 
@@ -643,50 +643,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV43ValueBit0;
         partial void OnCV43ValueBit0Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV43ValueBit1;
         partial void OnCV43ValueBit1Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 1, value);
         }
         [ObservableProperty]
         bool cV43ValueBit2;
         partial void OnCV43ValueBit2Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 2, value);
         }
         [ObservableProperty]
         bool cV43ValueBit3;
         partial void OnCV43ValueBit3Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 3, value);
         }
         [ObservableProperty]
         bool cV43ValueBit4;
         partial void OnCV43ValueBit4Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 4, value);
         }
         [ObservableProperty]
         bool cV43ValueBit5;
         partial void OnCV43ValueBit5Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 5, value);
         }
         [ObservableProperty]
         bool cV43ValueBit6;
         partial void OnCV43ValueBit6Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 6, value);
         }
         [ObservableProperty]
         bool cV43ValueBit7;
         partial void OnCV43ValueBit7Changed(bool value)
         {
-            SetCV43Value();
+            CV43Value = Bit.Set((byte)CV43Value, 7, value);
         }
         #endregion
 
@@ -698,50 +698,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV44ValueBit0;
         partial void OnCV44ValueBit0Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV44ValueBit1;
         partial void OnCV44ValueBit1Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 1, value);
         }
         [ObservableProperty]
         bool cV44ValueBit2;
         partial void OnCV44ValueBit2Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 2, value);
         }
         [ObservableProperty]
         bool cV44ValueBit3;
         partial void OnCV44ValueBit3Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 3, value);
         }
         [ObservableProperty]
         bool cV44ValueBit4;
         partial void OnCV44ValueBit4Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 4, value);
         }
         [ObservableProperty]
         bool cV44ValueBit5;
         partial void OnCV44ValueBit5Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 5, value);
         }
         [ObservableProperty]
         bool cV44ValueBit6;
         partial void OnCV44ValueBit6Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 6, value);
         }
         [ObservableProperty]
         bool cV44ValueBit7;
         partial void OnCV44ValueBit7Changed(bool value)
         {
-            SetCV44Value();
+            CV44Value = Bit.Set((byte)CV44Value, 7, value);
         }
         #endregion
 
@@ -753,50 +753,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV45ValueBit0;
         partial void OnCV45ValueBit0Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV45ValueBit1;
         partial void OnCV45ValueBit1Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 1, value);
         }
         [ObservableProperty]
         bool cV45ValueBit2;
         partial void OnCV45ValueBit2Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 2, value);
         }
         [ObservableProperty]
         bool cV45ValueBit3;
         partial void OnCV45ValueBit3Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 3, value);
         }
         [ObservableProperty]
         bool cV45ValueBit4;
         partial void OnCV45ValueBit4Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 4, value);
         }
         [ObservableProperty]
         bool cV45ValueBit5;
         partial void OnCV45ValueBit5Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 5, value);
         }
         [ObservableProperty]
         bool cV45ValueBit6;
         partial void OnCV45ValueBit6Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 6, value);
         }
         [ObservableProperty]
         bool cV45ValueBit7;
         partial void OnCV45ValueBit7Changed(bool value)
         {
-            SetCV45Value();
+            CV45Value = Bit.Set((byte)CV45Value, 7, value);
         }
         #endregion
 
@@ -808,50 +808,50 @@ namespace Z2XProgrammer.ViewModel
         bool cV46ValueBit0;
         partial void OnCV46ValueBit0Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 0, value);
         }
 
         [ObservableProperty]
         bool cV46ValueBit1;
         partial void OnCV46ValueBit1Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 1, value);
         }
         [ObservableProperty]
         bool cV46ValueBit2;
         partial void OnCV46ValueBit2Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 2, value);
         }
         [ObservableProperty]
         bool cV46ValueBit3;
         partial void OnCV46ValueBit3Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 3, value);
         }
         [ObservableProperty]
         bool cV46ValueBit4;
         partial void OnCV46ValueBit4Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 4, value);
         }
         [ObservableProperty]
         bool cV46ValueBit5;
         partial void OnCV46ValueBit5Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 5, value);
         }
         [ObservableProperty]
         bool cV46ValueBit6;
         partial void OnCV46ValueBit6Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 6, value);
         }
         [ObservableProperty]
         bool cV46ValueBit7;
         partial void OnCV46ValueBit7Changed(bool value)
         {
-            SetCV46Value();
+            CV46Value = Bit.Set((byte)CV46Value, 7, value);
         }
         #endregion
 
@@ -1126,33 +1126,7 @@ namespace Z2XProgrammer.ViewModel
             CV33ValueBit6 = Bit.IsSet(CV33Value, 6);
             CV33ValueBit7 = Bit.IsSet(CV33Value, 7);
         }
-
-        private void SetCV33Value()
-        {
-            CV33Value = 0;
-            if (CV33ValueBit0 == true) CV33Value = (ushort)(CV33Value + 1);
-            if (CV33ValueBit1 == true) CV33Value = (ushort)(CV33Value + 2);
-            if (CV33ValueBit2 == true) CV33Value = (ushort)(CV33Value + 4);
-            if (CV33ValueBit3 == true) CV33Value = (ushort)(CV33Value + 8);
-            if (CV33ValueBit4 == true) CV33Value = (ushort)(CV33Value + 16);
-            if (CV33ValueBit5 == true) CV33Value = (ushort)(CV33Value + 32);
-            if (CV33ValueBit6 == true) CV33Value = (ushort)(CV33Value + 64);
-            if (CV33ValueBit7 == true) CV33Value = (ushort)(CV33Value + 128);
-        }
-
-        private void SetCV34Value()
-        {
-            CV34Value = 0;
-            if (CV34ValueBit0 == true) CV34Value = (ushort)(CV34Value + 1);
-            if (CV34ValueBit1 == true) CV34Value = (ushort)(CV34Value + 2);
-            if (CV34ValueBit2 == true) CV34Value = (ushort)(CV34Value + 4);
-            if (CV34ValueBit3 == true) CV34Value = (ushort)(CV34Value + 8);
-            if (CV34ValueBit4 == true) CV34Value = (ushort)(CV34Value + 16);
-            if (CV34ValueBit5 == true) CV34Value = (ushort)(CV34Value + 32);
-            if (CV34ValueBit6 == true) CV34Value = (ushort)(CV34Value + 64);
-            if (CV34ValueBit7 == true) CV34Value = (ushort)(CV34Value + 128);
-        }
-
+      
         private void GetCV34Bits()
         {
             CV34ValueBit0 = Bit.IsSet(CV34Value, 0);
@@ -1163,19 +1137,6 @@ namespace Z2XProgrammer.ViewModel
             CV34ValueBit5 = Bit.IsSet(CV34Value, 5);
             CV34ValueBit6 = Bit.IsSet(CV34Value, 6);
             CV34ValueBit7 = Bit.IsSet(CV34Value, 7);
-        }
-
-        private void SetCV35Value()
-        {
-            CV35Value = 0;
-            if (CV35ValueBit0 == true) CV35Value = (ushort)(CV35Value + 1);
-            if (CV35ValueBit1 == true) CV35Value = (ushort)(CV35Value + 2);
-            if (CV35ValueBit2 == true) CV35Value = (ushort)(CV35Value + 4);
-            if (CV35ValueBit3 == true) CV35Value = (ushort)(CV35Value + 8);
-            if (CV35ValueBit4 == true) CV35Value = (ushort)(CV35Value + 16);
-            if (CV35ValueBit5 == true) CV35Value = (ushort)(CV35Value + 32);
-            if (CV35ValueBit6 == true) CV35Value = (ushort)(CV35Value + 64);
-            if (CV35ValueBit7 == true) CV35Value = (ushort)(CV35Value + 128);
         }
 
         private void GetCV35Bits()
@@ -1190,19 +1151,6 @@ namespace Z2XProgrammer.ViewModel
             CV35ValueBit7 = Bit.IsSet(CV35Value, 7);
         }
 
-        private void SetCV36Value()
-        {
-            CV36Value = 0;
-            if (CV36ValueBit0 == true) CV36Value = (ushort)(CV36Value + 1);
-            if (CV36ValueBit1 == true) CV36Value = (ushort)(CV36Value + 2);
-            if (CV36ValueBit2 == true) CV36Value = (ushort)(CV36Value + 4);
-            if (CV36ValueBit3 == true) CV36Value = (ushort)(CV36Value + 8);
-            if (CV36ValueBit4 == true) CV36Value = (ushort)(CV36Value + 16);
-            if (CV36ValueBit5 == true) CV36Value = (ushort)(CV36Value + 32);
-            if (CV36ValueBit6 == true) CV36Value = (ushort)(CV36Value + 64);
-            if (CV36ValueBit7 == true) CV36Value = (ushort)(CV36Value + 128);
-        }
-
         private void GetCV36Bits()
         {
             CV36ValueBit0 = Bit.IsSet(CV36Value, 0);
@@ -1213,19 +1161,6 @@ namespace Z2XProgrammer.ViewModel
             CV36ValueBit5 = Bit.IsSet(CV36Value, 5);
             CV36ValueBit6 = Bit.IsSet(CV36Value, 6);
             CV36ValueBit7 = Bit.IsSet(CV36Value, 7);
-        }
-
-        private void SetCV37Value()
-        {
-            CV37Value = 0;
-            if (CV37ValueBit0 == true) CV37Value = (ushort)(CV37Value + 1);
-            if (CV37ValueBit1 == true) CV37Value = (ushort)(CV37Value + 2);
-            if (CV37ValueBit2 == true) CV37Value = (ushort)(CV37Value + 4);
-            if (CV37ValueBit3 == true) CV37Value = (ushort)(CV37Value + 8);
-            if (CV37ValueBit4 == true) CV37Value = (ushort)(CV37Value + 16);
-            if (CV37ValueBit5 == true) CV37Value = (ushort)(CV37Value + 32);
-            if (CV37ValueBit6 == true) CV37Value = (ushort)(CV37Value + 64);
-            if (CV37ValueBit7 == true) CV37Value = (ushort)(CV37Value + 128);
         }
 
         private void GetCV37Bits()
@@ -1240,19 +1175,6 @@ namespace Z2XProgrammer.ViewModel
             CV37ValueBit7 = Bit.IsSet(CV37Value, 7);
         }
 
-        private void SetCV38Value()
-        {
-            CV38Value = 0;
-            if (CV38ValueBit0 == true) CV38Value = (ushort)(CV38Value + 1);
-            if (CV38ValueBit1 == true) CV38Value = (ushort)(CV38Value + 2);
-            if (CV38ValueBit2 == true) CV38Value = (ushort)(CV38Value + 4);
-            if (CV38ValueBit3 == true) CV38Value = (ushort)(CV38Value + 8);
-            if (CV38ValueBit4 == true) CV38Value = (ushort)(CV38Value + 16);
-            if (CV38ValueBit5 == true) CV38Value = (ushort)(CV38Value + 32);
-            if (CV38ValueBit6 == true) CV38Value = (ushort)(CV38Value + 64);
-            if (CV38ValueBit7 == true) CV38Value = (ushort)(CV38Value + 128);
-        }
-
         private void GetCV38Bits()
         {
             CV38ValueBit0 = Bit.IsSet(CV38Value, 0);
@@ -1263,19 +1185,6 @@ namespace Z2XProgrammer.ViewModel
             CV38ValueBit5 = Bit.IsSet(CV38Value, 5);
             CV38ValueBit6 = Bit.IsSet(CV38Value, 6);
             CV38ValueBit7 = Bit.IsSet(CV38Value, 7);
-        }
-
-        private void SetCV39Value()
-        {
-            CV39Value = 0;
-            if (CV39ValueBit0 == true) CV39Value = (ushort)(CV39Value + 1);
-            if (CV39ValueBit1 == true) CV39Value = (ushort)(CV39Value + 2);
-            if (CV39ValueBit2 == true) CV39Value = (ushort)(CV39Value + 4);
-            if (CV39ValueBit3 == true) CV39Value = (ushort)(CV39Value + 8);
-            if (CV39ValueBit4 == true) CV39Value = (ushort)(CV39Value + 16);
-            if (CV39ValueBit5 == true) CV39Value = (ushort)(CV39Value + 32);
-            if (CV39ValueBit6 == true) CV39Value = (ushort)(CV39Value + 64);
-            if (CV39ValueBit7 == true) CV39Value = (ushort)(CV39Value + 128);
         }
 
         private void GetCV39Bits()
@@ -1290,19 +1199,6 @@ namespace Z2XProgrammer.ViewModel
             CV39ValueBit7 = Bit.IsSet(CV39Value, 7);
         }
 
-        private void SetCV40Value()
-        {
-            CV40Value = 0;
-            if (CV40ValueBit0 == true) CV40Value = (ushort)(CV40Value + 1);
-            if (CV40ValueBit1 == true) CV40Value = (ushort)(CV40Value + 2);
-            if (CV40ValueBit2 == true) CV40Value = (ushort)(CV40Value + 4);
-            if (CV40ValueBit3 == true) CV40Value = (ushort)(CV40Value + 8);
-            if (CV40ValueBit4 == true) CV40Value = (ushort)(CV40Value + 16);
-            if (CV40ValueBit5 == true) CV40Value = (ushort)(CV40Value + 32);
-            if (CV40ValueBit6 == true) CV40Value = (ushort)(CV40Value + 64);
-            if (CV40ValueBit7 == true) CV40Value = (ushort)(CV40Value + 128);
-        }
-
         private void GetCV40Bits()
         {
             CV40ValueBit0 = Bit.IsSet(CV40Value, 0);
@@ -1313,19 +1209,6 @@ namespace Z2XProgrammer.ViewModel
             CV40ValueBit5 = Bit.IsSet(CV40Value, 5);
             CV40ValueBit6 = Bit.IsSet(CV40Value, 6);
             CV40ValueBit7 = Bit.IsSet(CV40Value, 7);
-        }
-
-        private void SetCV41Value()
-        {
-            CV41Value = 0;
-            if (CV41ValueBit0 == true) CV41Value = (ushort)(CV41Value + 1);
-            if (CV41ValueBit1 == true) CV41Value = (ushort)(CV41Value + 2);
-            if (CV41ValueBit2 == true) CV41Value = (ushort)(CV41Value + 4);
-            if (CV41ValueBit3 == true) CV41Value = (ushort)(CV41Value + 8);
-            if (CV41ValueBit4 == true) CV41Value = (ushort)(CV41Value + 16);
-            if (CV41ValueBit5 == true) CV41Value = (ushort)(CV41Value + 32);
-            if (CV41ValueBit6 == true) CV41Value = (ushort)(CV41Value + 64);
-            if (CV41ValueBit7 == true) CV41Value = (ushort)(CV41Value + 128);
         }
 
         private void GetCV41Bits()
@@ -1340,19 +1223,6 @@ namespace Z2XProgrammer.ViewModel
             CV41ValueBit7 = Bit.IsSet(CV41Value, 7);
         }
 
-        private void SetCV42Value()
-        {
-            CV42Value = 0;
-            if (CV42ValueBit0 == true) CV42Value = (ushort)(CV42Value + 1);
-            if (CV42ValueBit1 == true) CV42Value = (ushort)(CV42Value + 2);
-            if (CV42ValueBit2 == true) CV42Value = (ushort)(CV42Value + 4);
-            if (CV42ValueBit3 == true) CV42Value = (ushort)(CV42Value + 8);
-            if (CV42ValueBit4 == true) CV42Value = (ushort)(CV42Value + 16);
-            if (CV42ValueBit5 == true) CV42Value = (ushort)(CV42Value + 32);
-            if (CV42ValueBit6 == true) CV42Value = (ushort)(CV42Value + 64);
-            if (CV42ValueBit7 == true) CV42Value = (ushort)(CV42Value + 128);
-        }
-
         private void GetCV42Bits()
         {
             CV42ValueBit0 = Bit.IsSet(CV42Value, 0);
@@ -1363,19 +1233,6 @@ namespace Z2XProgrammer.ViewModel
             CV42ValueBit5 = Bit.IsSet(CV42Value, 5);
             CV42ValueBit6 = Bit.IsSet(CV42Value, 6);
             CV42ValueBit7 = Bit.IsSet(CV42Value, 7);
-        }
-
-        private void SetCV43Value()
-        {
-            CV43Value = 0;
-            if (CV43ValueBit0 == true) CV43Value = (ushort)(CV43Value + 1);
-            if (CV43ValueBit1 == true) CV43Value = (ushort)(CV43Value + 2);
-            if (CV43ValueBit2 == true) CV43Value = (ushort)(CV43Value + 4);
-            if (CV43ValueBit3 == true) CV43Value = (ushort)(CV43Value + 8);
-            if (CV43ValueBit4 == true) CV43Value = (ushort)(CV43Value + 16);
-            if (CV43ValueBit5 == true) CV43Value = (ushort)(CV43Value + 32);
-            if (CV43ValueBit6 == true) CV43Value = (ushort)(CV43Value + 64);
-            if (CV43ValueBit7 == true) CV43Value = (ushort)(CV43Value + 128);
         }
 
         private void GetCV43Bits()
@@ -1391,19 +1248,6 @@ namespace Z2XProgrammer.ViewModel
         }
 
 
-        private void SetCV44Value()
-        {
-            CV44Value = 0;
-            if (CV44ValueBit0 == true) CV44Value = (ushort)(CV44Value + 1);
-            if (CV44ValueBit1 == true) CV44Value = (ushort)(CV44Value + 2);
-            if (CV44ValueBit2 == true) CV44Value = (ushort)(CV44Value + 4);
-            if (CV44ValueBit3 == true) CV44Value = (ushort)(CV44Value + 8);
-            if (CV44ValueBit4 == true) CV44Value = (ushort)(CV44Value + 16);
-            if (CV44ValueBit5 == true) CV44Value = (ushort)(CV44Value + 32);
-            if (CV44ValueBit6 == true) CV44Value = (ushort)(CV44Value + 64);
-            if (CV44ValueBit7 == true) CV44Value = (ushort)(CV44Value + 128);
-        }
-
         private void GetCV44Bits()
         {
             CV44ValueBit0 = Bit.IsSet(CV44Value, 0);
@@ -1416,19 +1260,6 @@ namespace Z2XProgrammer.ViewModel
             CV44ValueBit7 = Bit.IsSet(CV44Value, 7);
         }
 
-        private void SetCV45Value()
-        {
-            CV45Value = 0;
-            if (CV45ValueBit0 == true) CV45Value = (ushort)(CV45Value + 1);
-            if (CV45ValueBit1 == true) CV45Value = (ushort)(CV45Value + 2);
-            if (CV45ValueBit2 == true) CV45Value = (ushort)(CV45Value + 4);
-            if (CV45ValueBit3 == true) CV45Value = (ushort)(CV45Value + 8);
-            if (CV45ValueBit4 == true) CV45Value = (ushort)(CV45Value + 16);
-            if (CV45ValueBit5 == true) CV45Value = (ushort)(CV45Value + 32);
-            if (CV45ValueBit6 == true) CV45Value = (ushort)(CV45Value + 64);
-            if (CV45ValueBit7 == true) CV45Value = (ushort)(CV45Value + 128);
-        }
-
         private void GetCV45Bits()
         {
             CV45ValueBit0 = Bit.IsSet(CV45Value, 0);
@@ -1439,19 +1270,6 @@ namespace Z2XProgrammer.ViewModel
             CV45ValueBit5 = Bit.IsSet(CV45Value, 5);
             CV45ValueBit6 = Bit.IsSet(CV45Value, 6);
             CV45ValueBit7 = Bit.IsSet(CV45Value, 7);
-        }
-
-        private void SetCV46Value()
-        {
-            CV46Value = 0;
-            if (CV46ValueBit0 == true) CV46Value = (ushort)(CV46Value + 1);
-            if (CV46ValueBit1 == true) CV46Value = (ushort)(CV46Value + 2);
-            if (CV46ValueBit2 == true) CV46Value = (ushort)(CV46Value + 4);
-            if (CV46ValueBit3 == true) CV46Value = (ushort)(CV46Value + 8);
-            if (CV46ValueBit4 == true) CV46Value = (ushort)(CV46Value + 16);
-            if (CV46ValueBit5 == true) CV46Value = (ushort)(CV46Value + 32);
-            if (CV46ValueBit6 == true) CV46Value = (ushort)(CV46Value + 64);
-            if (CV46ValueBit7 == true) CV46Value = (ushort)(CV46Value + 128);
         }
 
         private void GetCV46Bits()
