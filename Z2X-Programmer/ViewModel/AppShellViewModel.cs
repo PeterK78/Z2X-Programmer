@@ -40,6 +40,7 @@ using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
+using Colors = Z2XProgrammer.Helper.Colors;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -63,7 +64,7 @@ namespace Z2XProgrammer.ViewModel
         string applicationTitle = "Z2X-Programmer";
 
         [ObservableProperty]
-        Color commandStationConnectionStateColor = Color.FromRgb(0, 0, 0);
+        Color commandStationConnectionStateColor = Colors.GetColor("ButtonText_Light", "ButtonText_Dark");
 
         [ObservableProperty]
         string commandStationState;
@@ -494,7 +495,7 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
-        /// Starts the blinking of the command station status label.
+        /// Starts the blue blinking of the command station status label.
         /// </summary>
         private async void StartBlinkingCommandStateLabel()
         {
@@ -504,9 +505,9 @@ namespace Z2XProgrammer.ViewModel
             while (_commandStationStatusBlinking)
             {
                 await Task.Delay(100);
-                CommandStationConnectionStateColor = Color.FromRgb(255, 255, 255);
+                CommandStationConnectionStateColor = Colors.GetColor("ButtonText_Light", "ButtonText_Dark");
                 await Task.Delay(100);
-                CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);
+                CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206); // BLUE
             }
         }
 
