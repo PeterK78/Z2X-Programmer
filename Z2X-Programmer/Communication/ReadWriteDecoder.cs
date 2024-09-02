@@ -190,7 +190,11 @@ namespace Z2XProgrammer.Communication
             for (int i = 0; i <= ConfigVariablesToWrite.Count - 1; i++)
             {
 
-                if (WriteCV((ushort)ConfigVariablesToWrite[i], locomotiveAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken, false) == false) return Task.FromResult(false);
+                if (WriteCV((ushort)ConfigVariablesToWrite[i], locomotiveAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken, false) == false)
+                {
+                    CommandStation.Z21.SetTrackPowerOn();
+                    return Task.FromResult(false);
+                }
 
                 DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
 
@@ -198,7 +202,11 @@ namespace Z2XProgrammer.Communication
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
                 progres.Report(percent);
 
-                if (cancelToken.IsCancellationRequested == true) return Task.FromResult(false);
+                if (cancelToken.IsCancellationRequested == true)
+                {
+                    CommandStation.Z21.SetTrackPowerOn();
+                    return Task.FromResult(false);
+                }
 
             }
             progres.Report(100);
@@ -350,6 +358,7 @@ namespace Z2XProgrammer.Communication
             if (cancelToken.IsCancellationRequested == true)
             {
                 Logger.PrintDevConsole("ReadWriteDecoder: The user has cancelled the operation ... returning");
+                CommandStation.Z21.SetTrackPowerOn();
                 return Task.FromResult(false);
             }
 
@@ -433,14 +442,22 @@ namespace Z2XProgrammer.Communication
             for (int i = 0; i<= ConfigVariablesToRead.Count -1; i++)
             {
 
-                if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode,cancelToken) == false) return Task.FromResult(false);
+                if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
+                {
+                    CommandStation.Z21.SetTrackPowerOn();
+                    return Task.FromResult(false);
+                }
 
                 int percent = (int)(((double)100 / (double)ConfigVariablesToRead.Count) * (double)i);
                 Logger.PrintDevConsole("UploadDecoderData: Percentage:" + percent);
                 progress.Report(percent);
 
                 //  Check if the cancel token has been set  
-                if (cancelToken.IsCancellationRequested == true) { return Task.FromResult(false); }
+                if (cancelToken.IsCancellationRequested == true)
+                {
+                    CommandStation.Z21.SetTrackPowerOn();
+                    return Task.FromResult(false);
+                }
             }
             progress.Report(100);
 
