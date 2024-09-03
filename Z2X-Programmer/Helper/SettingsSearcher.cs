@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase_DE = new string[69, 3] {
+        static readonly string[,] SearchDatabase = new string[69, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19" },
@@ -117,10 +117,10 @@ namespace Z2XProgrammer.Helper
             if (keyword == "") return results;
             if (keyword.Length < 3) return results;
 
-            for (int i = 0; i < SearchDatabase_DE.GetLength(0); i++)
+            for (int i = 0; i < SearchDatabase.GetLength(0); i++)
             {
                 if (AppResources.ResourceManager == null) continue;
-                string SearchTerm  = AppResources.ResourceManager.GetString(SearchDatabase_DE[i, 1])!;
+                string SearchTerm  = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!;
                 if ((SearchTerm == null) || (SearchTerm == "")) continue;
 
                 if (SearchTerm.ToUpper().Contains(keyword.ToUpper()))
@@ -141,11 +141,11 @@ namespace Z2XProgrammer.Helper
 
         /// <summary>
         /// Returns the target page and the target GUI control for the transferred search text. If a valid target has
-        /// been found, the return value will be TRUE
+        /// been found, the return value will be TRUE.
         /// </summary>
-        /// <param name="searchResult"></param>
-        /// <param name="pageName"></param>
-        /// <param name="labelName"></param>
+        /// <param name="searchResult">A result of a GetResult call.</param>
+        /// <param name="pageName">The target page.</param>
+        /// <param name="labelName">The target label.</param>
         /// <returns></returns>
         internal static bool GetNavigationTarget(string searchResult, out string pageName, out string labelName)
         {
@@ -155,14 +155,15 @@ namespace Z2XProgrammer.Helper
 
             if (searchResult == null) return false;
 
-            for (int i = 0; i < SearchDatabase_DE.GetLength(0); i++)
+            for (int i = 0; i < SearchDatabase.GetLength(0); i++)
             {
-                if (SearchDatabase_DE[i, 0].ToUpper() == searchResult.ToUpper())
+                string SearchTerm = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!.ToUpper();
+                if (SearchTerm.ToUpper() == searchResult.ToUpper())
                 {
-                    pageName = SearchDatabase_DE[i, 1];
-                    labelName = SearchDatabase_DE[i, 2];
+                    pageName = SearchDatabase[i, 0];
+                    labelName = SearchDatabase[i, 1];
 
-                    string DecoderConfigurationProperty = SearchDatabase_DE[i, 3].ToUpper();
+                    string DecoderConfigurationProperty = SearchDatabase[i, 2].ToUpper();
 
                     if (DecoderConfigurationProperty == "") return true;
                     
