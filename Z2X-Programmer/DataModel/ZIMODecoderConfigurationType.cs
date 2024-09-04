@@ -534,7 +534,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// The number of the function key (F1-F28) to mute the sound in CV313
+        /// The number of the function key (F1-F28) to mute the sound in CV313.
         /// </summary>
         public byte FuncKeyNrMute
         {

@@ -913,7 +913,7 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        //ZIMO_FUNCKEY_MUTE_CV313
+        //  ZIMO_FUNCKEY_MUTE_CV313
         [ObservableProperty]
         int zIMOFuncKeysMute;
         partial void OnZIMOFuncKeysMuteChanged(int value)
@@ -925,10 +925,32 @@ namespace Z2XProgrammer.ViewModel
             }
             else
             {
-                DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)value;
+                if (ZIMOFuncKeysMuteInverted == false)
+                {
+                    DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)value;
+                }
+                else
+                {
+                    DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)(value + 100);
+                }
 
             }
         }
+        [ObservableProperty]
+        bool zIMOFuncKeysMuteInverted;
+        partial void OnZIMOFuncKeysMuteInvertedChanged(bool value)
+        {
+            if(value == true)            
+            {
+                DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)(ZIMOFuncKeysMute + 100);
+            }
+            else
+            {
+                DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)ZIMOFuncKeysMute;
+            }
+
+        }
+
 
         [ObservableProperty]
         int zIMOFuncKeysSoundOnOff;
@@ -1111,7 +1133,18 @@ namespace Z2XProgrammer.ViewModel
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
             ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
-            ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
+            
+            if(DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
+            {
+                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
+                ZIMOFuncKeysMuteInverted = true;
+            }
+            else
+            {
+                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
+                ZIMOFuncKeysMuteInverted = false;
+            }
+
 
         }
 

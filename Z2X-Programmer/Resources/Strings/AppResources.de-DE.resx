@@ -1217,4 +1217,7 @@ Auf- und Abblenden = 88</value>
   <data name="DownloadNewSettingsYesNoSimple" xml:space="preserve">
     <value>Wollen Sie die neuen Einstellungen nun auf ihren Decoder übertragen?</value>
   </data>
+  <data name="FrameFunctionKeysSoundMuteInvertLabel" xml:space="preserve">
+    <value>Die Funktionsweise der Funktionstaste zum Ein- und Ausblenden wird invertiert (CV313)</value>
+  </data>
 </root>

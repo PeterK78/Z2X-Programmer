@@ -1217,4 +1217,7 @@ Dimmung up and down = 88
   <data name="DownloadNewSettingsYesNoSimple" xml:space="preserve">
     <value>Do you want to transfer the settings to your decoder now?</value>
   </data>
+  <data name="FrameFunctionKeysSoundMuteInvertLabel" xml:space="preserve">
+    <value>The function of the function button for fading in and out is inverted (CV313)</value>
+  </data>
 </root>

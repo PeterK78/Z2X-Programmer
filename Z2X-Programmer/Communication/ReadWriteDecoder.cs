@@ -308,6 +308,8 @@ namespace Z2XProgrammer.Communication
             {
 
                 //  Check if this CV values has been changed, otherwise skip
+                byte currentValue = DecoderConfiguration.ConfigurationVariables[SupportConfigVariables[i]].Value;
+                byte backupValue = DecoderConfiguration.BackupCVs[SupportConfigVariables[i]].Value;
                 if (DecoderConfiguration.ConfigurationVariables[SupportConfigVariables[i]].Value != DecoderConfiguration.BackupCVs[SupportConfigVariables[i]].Value)
                 {
                     ModifiedConfigVariables.Add(SupportConfigVariables[i]);

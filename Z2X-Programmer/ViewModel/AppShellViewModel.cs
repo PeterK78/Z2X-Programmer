@@ -426,7 +426,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                     ModifiedCVValues = ModifiedCVValues.Remove(ModifiedCVValues.Length - 2, 2);
 
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNo + ModifiedCVValues, AppResources.YES, AppResources.NO) == false)
+                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNo + "\n" + ModifiedCVValues, AppResources.YES, AppResources.NO) == false)
                     {
                         return;
                     }

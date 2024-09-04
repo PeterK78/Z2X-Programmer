@@ -1280,6 +1280,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The function of the function button for fading in and out is inverted (CV313).
+        /// </summary>
+        public static string FrameFunctionKeysSoundMuteInvertLabel {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundMuteInvertLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function button to fade the sound in and out (CV313).
         /// </summary>
         public static string FrameFunctionKeysSoundMuteLabel {
