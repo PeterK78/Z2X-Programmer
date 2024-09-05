@@ -131,6 +131,7 @@ namespace Z2XProgrammer.ViewModel
             DataValid = true;
             CvNumber = 1;
             ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(DecoderConfiguration.ConfigurationVariables);
+            ConfigurationVariables.Remove(ConfigurationVariables[0]);
         }
         #endregion
 

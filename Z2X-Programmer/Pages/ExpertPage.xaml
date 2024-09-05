@@ -149,8 +149,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="datamodel:ConfigurationVariableType">
                             <Grid ColumnDefinitions="*,*">
-                                <Label Grid.Column="0" TextColor="Black" Text="{Binding Number}"/>
-                                <Label Grid.Column="1" TextColor="Black" Text="{Binding Value}"/>
+                                <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}"/>
+                                <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Value}"/>
                             </Grid>
                         </DataTemplate>
                             
