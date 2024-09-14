@@ -185,6 +185,9 @@
 	  <Compile Update="Pages\ProtocolPage.xaml.cs">
 	    <DependentUpon>ProtocolPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\PopUpLocoList.xaml.cs">
+	    <DependentUpon>PopUpLocoList.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Strings\AppResources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -240,6 +243,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SoundPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\PopUpLocoList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\PopUpActivityIndicator.xaml">

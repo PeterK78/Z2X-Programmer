@@ -2668,6 +2668,105 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File system.
+        /// </summary>
+        public static string FrameSettingsAppLocoListFileSystem {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListFileSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string FrameSettingsAppLocoListFileSystemFolderLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListFileSystemFolderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Z2X files folder.
+        /// </summary>
+        public static string FrameSettingsAppLocoListFileSystemFolderPlaceHolder {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListFileSystemFolderPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locomotive list system.
+        /// </summary>
+        public static string FrameSettingsAppLocoListLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        public static string FrameSettingsAppLocoListNoTrainControllerNotAvailable {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListNoTrainControllerNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocrail.
+        /// </summary>
+        public static string FrameSettingsAppLocoListRocrail {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListRocrail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP address.
+        /// </summary>
+        public static string FrameSettingsAppLocoListRocrailAddrLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListRocrailAddrLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocrail IP address.
+        /// </summary>
+        public static string FrameSettingsAppLocoListRocrailAddrPlaceHolder {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListRocrailAddrPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string FrameSettingsAppLocoListRocrailPortLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListRocrailPortLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocrail port number.
+        /// </summary>
+        public static string FrameSettingsAppLocoListRocrailPortPlaceHolder {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListRocrailPortPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locomotive list.
+        /// </summary>
+        public static string FrameSettingsAppLocoListTitle {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check.
         /// </summary>
         public static string FrameSettingsButtonCheckDeqSpecLabel {
@@ -3089,6 +3188,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string LightEffectTypeNoEffect {
             get {
                 return ResourceManager.GetString("LightEffectTypeNoEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locomotive list.
+        /// </summary>
+        public static string LocoListTitle {
+            get {
+                return ResourceManager.GetString("LocoListTitle", resourceCulture);
             }
         }
         

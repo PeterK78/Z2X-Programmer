@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Popups.PopUpLocoList"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             CanBeDismissedByTappingOutsideOfPopup="True"
+             Color="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             >
+    <VerticalStackLayout  Padding="10,0,10,10" >
+
+            <Label Text="{x:Static strings:AppResources.LocoListTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
+
+                <CollectionView Style="{StaticResource Z2XTable}" x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="400" BackgroundColor="White" >
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Name" Grid.Column="0"/>
+                        <Label BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Adresse" Grid.Column="1"/>
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="datamodel:LocoListType">
+                        <Grid ColumnDefinitions="*,*" >
+                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}" TextColor="Black"/>
+                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}" TextColor="Black"/>
+                        </Grid>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        
+    </VerticalStackLayout>
+    
+</mct:Popup>

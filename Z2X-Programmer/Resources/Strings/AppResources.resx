@@ -1220,4 +1220,40 @@ Dimmung up and down = 88
   <data name="FrameFunctionKeysSoundMuteInvertLabel" xml:space="preserve">
     <value>The function of the function button for fading in and out is inverted (CV313)</value>
   </data>
+  <data name="LocoListTitle" xml:space="preserve">
+    <value>Locomotive list</value>
+  </data>
+  <data name="FrameSettingsAppLocoListTitle" xml:space="preserve">
+    <value>Locomotive list</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystem" xml:space="preserve">
+    <value>File system</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrail" xml:space="preserve">
+    <value>Rocrail</value>
+  </data>
+  <data name="FrameSettingsAppLocoListLabel" xml:space="preserve">
+    <value>Locomotive list system</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailAddrLabel" xml:space="preserve">
+    <value>IP address</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailPortLabel" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailAddrPlaceHolder" xml:space="preserve">
+    <value>Rocrail IP address</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailPortPlaceHolder" xml:space="preserve">
+    <value>Rocrail port number</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystemFolderLabel" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystemFolderPlaceHolder" xml:space="preserve">
+    <value>The Z2X files folder</value>
+  </data>
+  <data name="FrameSettingsAppLocoListNoTrainControllerNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
 </root>

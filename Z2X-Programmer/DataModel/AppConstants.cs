@@ -46,7 +46,14 @@ namespace Z2XProgrammer.DataModel
         //  Note: .NET MAUI is critical on using file types. Do not use ZIP - it will break the call OpenAppPackageFileAsync
         internal const string DecSpecsZIPArchiveFileName = "decspecs.bin";
 
-        //  The time span between sending and receiving a Z21 commando and answer.
+        internal const string PREFERENCES_LOCOLIST_FOLDER_KEY = "LOCOLIST_FOLDER";
+        internal const string PREFERENCES_LOCOLIST_FOLDER_VALUE = "";
+        internal const string PREFERENCES_LOCOLIST_PORTNR_KEY = "LOCOLIST_PORTNR";
+        internal const string PREFERENCES_LOCOLIST_PORTNR_VALUE = "8080";
+        internal const string PREFERENCES_LOCOLIST_IPADDRESS_KEY = "LOCOLIST_IPADRESS";
+        internal const string PREFERENCES_LOCOLIST_IPADDRESS_VALUE = "192.168.0.0";
+        internal const string PREFERNECES_LOCOLIST_SYSTEM_KEY = "LOCOLIST_SYSTEM";
+        internal const string PREFERNECES_LOCOLIST_SYSTEM_VALUE = "";
         internal const string PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_KEY = "LANGUAGE_AUTOCONFIGURE_DONE";
         internal const string PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_VALUE = "0";
         internal const string PREFERENCES_COMMANDSTATIONIP_KEY = "COMMAND_STATION_IP_KEY";

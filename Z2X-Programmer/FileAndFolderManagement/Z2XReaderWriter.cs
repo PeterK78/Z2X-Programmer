@@ -79,9 +79,9 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
 
         /// <summary>
-        /// Reads the fiven file stream and updates the data store
+        /// Reads the given file stream from a Z2X file and updates the data store.
         /// </summary>
-        /// <param name="z2xFileStream"></param>
+        /// <param name="z2xFileStream">A file stream of a Z2X file.</param>
         /// <returns></returns>
         public static bool ReadFile(Stream z2xFileStream)
         {

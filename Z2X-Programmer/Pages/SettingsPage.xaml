@@ -95,6 +95,58 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Grid>
             </Frame>
 
+            <!-- Locomotive List -->
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Grid.Row="0" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemFolderLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemFolderPlaceHolder}" Text="{Binding LocoListSystemFolder}" ClearButtonVisibility="WhileEditing"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Margin="0,20,0,0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Picker Grid.Row="2" Grid.Column="1"  Margin="0,20,0,0" ItemsSource="{Binding AvailableLocoListSystems}" SelectedItem="{Binding SelectedLocoListSystem}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End"></Picker>
+
+
+                    <Label IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailAddrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Entry IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="3" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailAddrPlaceHolder}" Text="{Binding LocoListSystemIPAddress}" ClearButtonVisibility="WhileEditing">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior 
+                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                    ValidStyle="{StaticResource Z2XValidEntry}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumLength="5"
+                                    MaximumLength="15" />
+                    </Entry.Behaviors>
+                    </Entry>
+
+                    <Label IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="4" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailPortLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Entry IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="4" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailPortPlaceHolder}" Text="{Binding LocoListSystemPort}" ClearButtonVisibility="WhileEditing">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior 
+                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                ValidStyle="{StaticResource Z2XValidEntry}"
+                                Flags="ValidateOnValueChanged"
+                                MinimumLength="4"
+                                MaximumLength="4" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+             
+                </Grid>
+            </Frame>
+
             <!-- Application language -->
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}">

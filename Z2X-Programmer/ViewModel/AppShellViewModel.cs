@@ -41,6 +41,8 @@ using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
+using Z2XProgrammer.Traincontroller;
+using System.Net;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -149,11 +151,50 @@ namespace Z2XProgrammer.ViewModel
                     OnGetDataFromDecoderSpecification();
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<LocoSelectedMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnLocoSelectedMessage(m.Value);
+                });
+            });
+
         }
 
         #endregion
 
         #region REGION: COMMANDS
+
+        /// <summary>
+        /// Reads the locomotive list from the train controller software.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task GetLocomotiveList()
+        {
+
+            try
+            {
+
+                List<LocoListType> locoList = new List<LocoListType>();
+                locoList = await Task.Run(() => LocoList.GetLocomotiveList());
+
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList);
+
+                Shell.Current.CurrentPage.ShowPopup(pop);
+
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
+                }
+            }
+        }
 
         /// <summary>
         /// Create a blank new decoder configuration
@@ -173,7 +214,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
 
-                DecoderConfiguration.Init();
+                DecoderConfiguration.Init(NMRA.StandardLocomotiveAddress,"");
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
                 DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
@@ -291,6 +332,10 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
+        /// <summary>
+        /// Opens a FilePicker dialog and saves the data to a Z2X file.
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         async Task SaveZ2XFile()
         {
@@ -319,7 +364,6 @@ namespace Z2XProgrammer.ViewModel
 
             }
         }
-
 
         /// <summary>
         /// This commando uploads the configuration from the locomitive decoder into the data store
@@ -614,6 +658,57 @@ namespace Z2XProgrammer.ViewModel
             {
                 LocomotiveDescription = "Z2X-Programmer";
                 LocomotiveAddress = "-";
+            }
+
+        }
+
+        /// <summary>
+        /// The OnLocoSelectedMessage message handler is called when the LocoSelectedMessage message has been received.
+        /// </summary>
+        /// <param name="value"></param>
+        internal void OnLocoSelectedMessage(LocoListType value)
+        {
+            try
+            {
+                //  Check if we have a matching Z2X file   
+                string[] fileEntries = Directory.GetFiles(LocoList.Folder);
+                foreach (string fileEntry in fileEntries)
+                {
+                    Stream fs = File.OpenRead(fileEntry);
+                    Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
+                    var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
+
+                    // Call the Deserialize method and cast to the object type.
+                    myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+
+                    if (myFile.LocomotiveAddress == value.LocomotiveAddress)
+                    {
+                        value.FilePath = fileEntry;
+                        break;
+                    }
+                }
+
+                if (File.Exists(value.FilePath))
+                {
+                    Stream fs = File.OpenRead(value.FilePath);
+                    Z2XReaderWriter.ReadFile(fs);
+                    DecoderConfiguration.IsValid = true;
+                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                    WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                }
+                else
+                {
+                    DecoderConfiguration.Init(value.LocomotiveAddress, value.UserDefindedDecoderDescription);
+                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                    DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
+                    WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                }
+
+            }
+            catch (System.ObjectDisposedException)
+            {
+                //  Somtimes the message ProgressUpdateMessage is delayed. So it can happen,
+                //  that this popup is already disposed. So this exception can be thrown.
             }
 
         }

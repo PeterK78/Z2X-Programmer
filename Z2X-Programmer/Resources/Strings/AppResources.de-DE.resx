@@ -1220,4 +1220,40 @@ Auf- und Abblenden = 88</value>
   <data name="FrameFunctionKeysSoundMuteInvertLabel" xml:space="preserve">
     <value>Die Funktionsweise der Funktionstaste zum Ein- und Ausblenden wird invertiert (CV313)</value>
   </data>
+  <data name="LocoListTitle" xml:space="preserve">
+    <value>Lokomotiven Liste</value>
+  </data>
+  <data name="FrameSettingsAppLocoListTitle" xml:space="preserve">
+    <value>Lokomotiven-Liste</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystem" xml:space="preserve">
+    <value>Dateisystem</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrail" xml:space="preserve">
+    <value>Rocrail</value>
+  </data>
+  <data name="FrameSettingsAppLocoListLabel" xml:space="preserve">
+    <value>System der Lokomotiven-Liste</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailAddrLabel" xml:space="preserve">
+    <value>IP-Adresse</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailPortLabel" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailAddrPlaceHolder" xml:space="preserve">
+    <value>Rocrail IP-Adresse</value>
+  </data>
+  <data name="FrameSettingsAppLocoListRocrailPortPlaceHolder" xml:space="preserve">
+    <value>Rocrail Portnummer</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystemFolderLabel" xml:space="preserve">
+    <value>Verzeichnis</value>
+  </data>
+  <data name="FrameSettingsAppLocoListFileSystemFolderPlaceHolder" xml:space="preserve">
+    <value>Das Verzeichnis ihrer Z2X-Dateien</value>
+  </data>
+  <data name="FrameSettingsAppLocoListNoTrainControllerNotAvailable" xml:space="preserve">
+    <value>Nicht verfügbar</value>
+  </data>
 </root>

@@ -38,6 +38,45 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PUBLIC PROPERTIES
 
         [ObservableProperty]
+        internal ObservableCollection<string>? availableLocoListSystems;
+
+        [ObservableProperty]
+        internal string selectedLocoListSystem;
+        partial void OnSelectedLocoListSystemChanged(string value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, value);
+            LocoListSystemFileSystemSelected = LocoList.IsFileSystem(value);
+            LocoListSystemRocrailSelected = LocoList.IsRocrail(value);
+        }
+
+        [ObservableProperty]
+        internal bool locoListSystemFileSystemSelected;
+
+        [ObservableProperty]
+        internal bool locoListSystemRocrailSelected;
+
+        [ObservableProperty]
+        internal string locoListSystemIPAddress;
+        partial void OnLocoListSystemIPAddressChanged(string value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOLIST_IPADDRESS_KEY, value);
+        }
+
+        [ObservableProperty]
+        internal string locoListSystemPort;
+        partial void OnLocoListSystemPortChanged(string value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOLIST_PORTNR_KEY, value);
+        }
+
+        [ObservableProperty]
+        internal string locoListSystemFolder;
+        partial void OnLocoListSystemFolderChanged(string value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOLIST_FOLDER_KEY, value);
+        }
+
+        [ObservableProperty]
         bool enableLogging;
         partial void OnEnableLoggingChanged(bool value)
         {
@@ -100,10 +139,22 @@ namespace Z2XProgrammer.ViewModel
             //
             Z21IPAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
             DecSpecFolder = FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath;
+            LocoListSystemIPAddress = LocoList.IPAddress.ToString();
+            LocoListSystemPort = LocoList.PortNumber.ToString();
+            LocoListSystemFolder = LocoList.Folder.ToString();
 
 
             AvailableLanguages = new ObservableCollection<string>(AppCulture.GetAvailableLanguagesDescriptions());
             SelectedLanguage = AppCulture.GetLanguageDescription(Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
+            AvailableLocoListSystems = new ObservableCollection<string>(LocoList.GetAvailableSystems());
+            if (Preferences.Default.Get(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERNECES_LOCOLIST_SYSTEM_VALUE) == "")
+            {
+                SelectedLocoListSystem = LocoList.GetSystemNotAvailable();
+            }
+            else
+            {
+                SelectedLocoListSystem = Preferences.Default.Get(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERNECES_LOCOLIST_SYSTEM_VALUE);
+            }
 
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LOGGING_KEY, AppConstants.PREFERENCES_LOGGING_DEFAULT) == "1")
             {

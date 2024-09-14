@@ -2,18 +2,18 @@
 ## Overview
 | Identifier  | Case   | Example |
 |---|---|---|
-| Fields   | lowerCamelCase <br>(with leading underscore)  |  `private RectF _dirtyRect;` |
-| Read-only static fields  | PascalCase  | RedValue  |
-| Class | Pascal  |  AppDomain |
-| Enumeration type  |  Pascal | ErrorLevel	  |
-| Enumeration values | Pascal  |  FatalError |
-| Event |  	 Pascal  |  ValueChanged |
-| Exception class | Pascal | WebException|
-| Interface | Pascal | IDisposable |
-| Method | Pascal | ToString |
-| Namespace | Pascal |System.Drawing |
-| Parameter | Camel | typeName |
-|Property | Pascal |BackColor |
+| Fields   | lowerCamelCase <br>(with leading underscore)  |  `_dirtyRect` |
+| Read-only static fields  | PascalCase  | `RedValue`  |
+| Class | Pascal  |  `AppDomain` |
+| Enumeration type  |  Pascal | `ErrorLevel`	  |
+| Enumeration values | Pascal  |  `FatalError` |
+| Event |  	 Pascal  |  `ValueChanged` |
+| Exception class | Pascal | `WebException`|
+| Interface | Pascal | `IDisposable` |
+| Method | Pascal | `ToString` |
+| Namespace | Pascal |`System.Drawing` |
+| Parameter | Camel | `typeName` |
+|Property | Pascal | `BackColor` |
 
 
 ## Regions

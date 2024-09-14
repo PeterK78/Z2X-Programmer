@@ -81,7 +81,7 @@ namespace Z2XProgrammer.DataStore
         public static DoehlerHaassDecoderConfigurationType DoehlerHaasBackup = new DoehlerHaassDecoderConfigurationType(ref BackupCVs);
 
         /// <summary>
-        /// Stores the use defined decoder description.
+        /// Stores the user defined decoder description.
         /// </summary>
         public static string UserDefindedDecoderDescription { get; set; }
 
@@ -110,13 +110,13 @@ namespace Z2XProgrammer.DataStore
             UserDefindedImage = string.Empty;
             UserDefindedDecoderDescription = string.Empty;
 
-            Init();
+            Init(NMRA.StandardLocomotiveAddress, "");
         }
 
         /// <summary>
         /// Initializes the data store.
         /// </summary>
-        public static void Init()
+        public static void Init(ushort locomotiveAddress, string description)
         {
             BackupCVs.Clear();
             ConfigurationVariables.Clear();
@@ -131,10 +131,10 @@ namespace Z2XProgrammer.DataStore
             //  Reset the user defined settings
             UserDefindedNotes = string.Empty;
             UserDefindedImage = string.Empty;
-            UserDefindedDecoderDescription = string.Empty;
+            UserDefindedDecoderDescription = description;
 
             //  Set the NMRA default addresses
-            RCN225.LocomotiveAddress = NMRA.StandardLocomotiveAddress;
+            RCN225.LocomotiveAddress = locomotiveAddress;
             RCN225Backup.LocomotiveAddress = NMRA.StandardLocomotiveAddress;
 
             //  The current data in the data store is not valid
