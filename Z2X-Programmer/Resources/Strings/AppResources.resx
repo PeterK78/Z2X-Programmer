@@ -988,7 +988,7 @@ Frequency type = Low frequency</value>
     <value>English</value>
   </data>
   <data name="FrameSettingsAppLanguageGerman" xml:space="preserve">
-    <value>German</value>
+    <value>Deutsch</value>
   </data>
   <data name="FrameSettingsAppLanguageLabel" xml:space="preserve">
     <value>Buttons, menus and other control elements are displayed in this language (restart is required).</value>

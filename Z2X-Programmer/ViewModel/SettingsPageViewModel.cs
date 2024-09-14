@@ -98,7 +98,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSelectedLanguageChanged(string value)
         {
             AppCulture.SetApplicationLanguageByDescription(value);
-            Preferences.Default.Set(AppConstants.PREFERENCES_LANGUAGE_KEY, value.ToUpper());
+            Preferences.Default.Set(AppConstants.PREFERENCES_LANGUAGE_KEY, AppCulture.GetLanguageKey(value).ToUpper());
         }
 
         [ObservableProperty]

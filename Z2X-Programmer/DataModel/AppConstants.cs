@@ -68,8 +68,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_LOGGING_DEFAULT = "0";
         internal const string PREFERENCES_LICENSE_KEY = "PREFERENCES_LICENSE_KEY";
         internal const string PREFERENCES_LICENSE_DEFAULT = "0";
-        internal const string PREFERENCES_LANGUAGE_KEY_GERMAN = "DEUTSCH";
-        internal const string PREFERENCES_LANGUAGE_KEY_ENGLISH = "ENGLISH";
         internal const string PREFERENCES_WINDOWWIDTH_KEY = "WINDOWWIDTH";
         internal const string PREFERENCES_WINDOWWIDTH_DEFAULT = "1024";
         internal const string PREFERENCES_WINDOWHEIGHT_KEY = "WINDOWHEIGHT";
@@ -80,5 +78,8 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_WINDOWPOSY_DEFAULT = "-1";
         internal const string PREFERENCES_LANGUAGE_KEY = "PREFERENCES_LANGUAGE_KEY";
         internal const string PREFERENCES_LANGUAGE_KEY_DEFAULT = PREFERENCES_LANGUAGE_KEY_GERMAN;
+        internal const string PREFERENCES_LANGUAGE_KEY_GERMAN = "GERMAN";
+        internal const string PREFERENCES_LANGUAGE_KEY_ENGLISH = "ENGLISH";
+
     }
 }

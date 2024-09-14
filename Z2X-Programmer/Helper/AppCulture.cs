@@ -81,7 +81,17 @@ namespace Z2XProgrammer.Helper
             return languages;
         }
 
-
+        /// <summary>
+        /// Returns a language key for the given language description.
+        /// </summary>
+        /// <param name="languageDescription">Language key.</param>
+        /// <returns></returns>
+        public static string GetLanguageKey(string languageDescription)
+        {
+            if (string.Compare(languageDescription, AppResources.FrameSettingsAppLanguageGerman, StringComparison.OrdinalIgnoreCase) == 0) return AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN;
+            return AppConstants.PREFERENCES_LANGUAGE_KEY_ENGLISH;
+        }
+        
         /// <summary>
         /// Returns the description for the given language key.
         /// </summary>
@@ -89,9 +99,9 @@ namespace Z2XProgrammer.Helper
         /// <returns></returns>
         public static string GetLanguageDescription (string languageKey)
         {
-            if (string.Compare(languageKey, AppResources.FrameSettingsAppLanguageEnglish, StringComparison.OrdinalIgnoreCase) == 0) return AppResources.FrameSettingsAppLanguageEnglish;
-            if (string.Compare(languageKey, AppResources.FrameSettingsAppLanguageGerman, StringComparison.OrdinalIgnoreCase) == 0) return AppResources.FrameSettingsAppLanguageGerman;
-            return AppResources.FrameSettingsAppLanguageEnglish;
+            if (string.Compare(languageKey, AppConstants.PREFERENCES_LANGUAGE_KEY_ENGLISH, StringComparison.OrdinalIgnoreCase) == 0) return AppResources.FrameSettingsAppLanguageEnglish;
+            if (string.Compare(languageKey, AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN, StringComparison.OrdinalIgnoreCase) == 0) return AppResources.FrameSettingsAppLanguageGerman;
+            return AppConstants.PREFERENCES_LANGUAGE_KEY_ENGLISH;
         }
 
         private static void SetCultureInfo(CultureInfo cultureInfo)

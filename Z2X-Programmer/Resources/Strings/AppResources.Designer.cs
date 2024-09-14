@@ -2641,7 +2641,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to German.
+        ///   Looks up a localized string similar to Deutsch.
         /// </summary>
         public static string FrameSettingsAppLanguageGerman {
             get {
