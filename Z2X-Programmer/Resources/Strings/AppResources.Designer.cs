@@ -2695,6 +2695,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select folder.
+        /// </summary>
+        public static string FrameSettingsAppLocoListFileSystemSelectFolder {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListFileSystemSelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locomotive list system.
         /// </summary>
         public static string FrameSettingsAppLocoListLabel {

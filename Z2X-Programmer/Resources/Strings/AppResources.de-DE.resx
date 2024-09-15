@@ -1256,4 +1256,7 @@ Auf- und Abblenden = 88</value>
   <data name="FrameSettingsAppLocoListNoTrainControllerNotAvailable" xml:space="preserve">
     <value>Nicht verfügbar</value>
   </data>
+  <data name="FrameSettingsAppLocoListFileSystemSelectFolder" xml:space="preserve">
+    <value>Verzeichnis auswählen</value>
+  </data>
 </root>

@@ -89,16 +89,14 @@ namespace Z2XProgrammer.Helper
             return languages;
         }
 
-        
-        public static bool IsFileSystem (string locoListSystemDescription)
+        /// <summary>
+        /// Returns TRUE if the description describes the Rocrail train controller software.
+        /// </summary>
+        /// <param name="trainControllerSoftware">The train controller system description.</param>
+        /// <returns></returns>
+        public static bool IsRocrail(string trainControllerSoftware)
         {
-            if (locoListSystemDescription == AppResources.FrameSettingsAppLocoListFileSystem) return true;
-            return false;
-        }
-
-        public static bool IsRocrail(string locoListSystemDescription)
-        {
-            if (locoListSystemDescription == AppResources.FrameSettingsAppLocoListRocrail) return true;
+            if (trainControllerSoftware == AppResources.FrameSettingsAppLocoListRocrail) return true;
             return false;
         }
         

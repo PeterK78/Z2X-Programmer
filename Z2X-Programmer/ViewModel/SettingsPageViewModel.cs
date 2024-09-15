@@ -21,6 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -45,13 +46,9 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSelectedLocoListSystemChanged(string value)
         {
             Preferences.Default.Set(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, value);
-            LocoListSystemFileSystemSelected = LocoList.IsFileSystem(value);
             LocoListSystemRocrailSelected = LocoList.IsRocrail(value);
         }
-
-        [ObservableProperty]
-        internal bool locoListSystemFileSystemSelected;
-
+        
         [ObservableProperty]
         internal bool locoListSystemRocrailSelected;
 
@@ -179,6 +176,30 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS        
+
+        /// <summary>
+        /// Opens an FolderPicker dialog so that the user can select his Z2X directory.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task SelectZ2XFolder()
+        {
+            try
+            {
+                FolderPickerResult result = await FolderPicker.Default.PickAsync();
+                if (result.IsSuccessful)
+                {
+                    LocoListSystemFolder = result.Folder.Path.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
+                }
+            }
+        }
 
         /// <summary>
         /// Resets the application preferences (the settings) and quits the application.

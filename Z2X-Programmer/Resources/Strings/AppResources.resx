@@ -1256,4 +1256,7 @@ Dimmung up and down = 88
   <data name="FrameSettingsAppLocoListNoTrainControllerNotAvailable" xml:space="preserve">
     <value>Not available</value>
   </data>
+  <data name="FrameSettingsAppLocoListFileSystemSelectFolder" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
 </root>

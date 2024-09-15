@@ -178,6 +178,7 @@ namespace Z2XProgrammer.ViewModel
             {
 
                 List<LocoListType> locoList = new List<LocoListType>();
+
                 locoList = await Task.Run(() => LocoList.GetLocomotiveList());
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
