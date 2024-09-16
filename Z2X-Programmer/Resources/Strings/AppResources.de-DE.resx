@@ -1233,7 +1233,7 @@ Auf- und Abblenden = 88</value>
     <value>Rocrail</value>
   </data>
   <data name="FrameSettingsAppLocoListLabel" xml:space="preserve">
-    <value>System der Lokomotiven-Liste</value>
+    <value>Modellbahn-Steuerungssoftware</value>
   </data>
   <data name="FrameSettingsAppLocoListRocrailAddrLabel" xml:space="preserve">
     <value>IP-Adresse</value>
@@ -1258,5 +1258,12 @@ Auf- und Abblenden = 88</value>
   </data>
   <data name="FrameSettingsAppLocoListFileSystemSelectFolder" xml:space="preserve">
     <value>Verzeichnis auswählen</value>
+  </data>
+  <data name="AlertLocoListEmpty" xml:space="preserve">
+    <value>Die Lokomotive-Liste ist leer. Prüfen Sie folgende Einstellungen:
+
+• Ist Ihre Steuerungssoftware erreichbar?
+• Ist das Z2X-Verzeichnis korrekt konfiguriert?
+</value>
   </data>
 </root>

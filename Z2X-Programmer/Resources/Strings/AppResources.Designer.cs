@@ -150,6 +150,18 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The locomotive list is empty. Check the following settings:
+        ///
+        ///• Is your control software accessible?
+        ///• Is the Z2X directory configured correctly?.
+        /// </summary>
+        public static string AlertLocoListEmpty {
+            get {
+                return ResourceManager.GetString("AlertLocoListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The locomotive address must not be 0. Change the locomotive address and restart the upload..
         /// </summary>
         public static string AlertLocomotiveAddressNotZero {
@@ -2704,7 +2716,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locomotive list system.
+        ///   Looks up a localized string similar to Train controller software.
         /// </summary>
         public static string FrameSettingsAppLocoListLabel {
             get {

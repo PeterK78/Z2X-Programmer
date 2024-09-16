@@ -48,7 +48,10 @@ namespace Z2XProgrammer.Traincontroller
         {
             try
             {
-                List<LocoListType> LocoList = new List<LocoListType>();
+                List<LocoListType> LocoList = [];
+
+                //  We ping the rocrail server. If we do not receive a pong we quit                    
+                if(await PingAsync(ipAdress) == false) return LocoList;
 
                 IPEndPoint ipEndPoint = new(ipAdress, port);
 
@@ -112,22 +115,23 @@ namespace Z2XProgrammer.Traincontroller
             catch (Exception ex) 
             {
                 string msg = ex.Message;
-                return null;
+                return []; 
             }   
         }
 
         /// <summary>
-        /// Process the Rocrail locomotive list.
+        /// Process the Rocrail locomotive list XML element lclist.
         /// </summary>
         /// <param name="lclist">The lclist XML element of Rocrail.</param>
         internal static List<LocoListType> ProcessLclist(XElement lclist)
         {
 
-            List<LocoListType> locoList = new List<LocoListType>();
+            List<LocoListType> locoList = [];
 
             foreach (XElement element in lclist.Elements())
             {
                 LocoListType entry = new LocoListType();
+
                 if (element.Attribute("addr") != null) entry.LocomotiveAddress = ushort.Parse(element.Attribute("addr")!.Value);
                 if(element.Attribute("id") != null) entry.UserDefindedDecoderDescription = element.Attribute("id")!.Value;
 
@@ -135,6 +139,17 @@ namespace Z2XProgrammer.Traincontroller
             }
             return locoList;
 
+        }
+
+        /// <summary>
+        /// Sends a ping to the Rocrail server. If we receive a pong, the function returns true. 
+        /// </summary>
+        /// <returns>Returns true if the client is reachable. False if an error occurs. </returns>
+        internal static async Task<bool> PingAsync(IPAddress ipAdress)
+        {
+            var ping = new System.Net.NetworkInformation.Ping();
+            var result = await ping.SendPingAsync(ipAdress);
+            return result.Status == System.Net.NetworkInformation.IPStatus.Success;
         }
 
         /// <summary>

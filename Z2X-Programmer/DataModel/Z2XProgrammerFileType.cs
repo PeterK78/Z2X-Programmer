@@ -58,37 +58,37 @@ namespace Z2XProgrammer.Model
         }
 
         /// <summary>
-        /// The main DCC address of the decoder
+        /// The main DCC address of the decoder (long and short addresses).
         /// </summary>
         [XmlElement(ElementName = "LocomotiveAddress", Order = 2)]
         public ushort LocomotiveAddress { get; set; }
 
         /// <summary>
-        /// The name of the decoder specification
+        /// The name of the decoder specification.
         /// </summary>
         [XmlElement(ElementName = "DeqSpecName", Order = 3)]
         public string DeqSpecName { get; set; }
 
         /// <summary>
-        /// The user defined locomotive name
+        /// The user defined locomotive name.
         /// </summary>
         [XmlElement(ElementName = "LocomotiveName", Order = 4)]
         public string UserDefindedDecoderDescription { get; set; }
 
         /// <summary>
-        /// The user defined notes
+        /// The user defined notes.
         /// </summary>
         [XmlElement(ElementName = "Notes", Order = 5)]
         public string UserDefinedNotes { get; set; }
 
         /// <summary>
-        /// The content of the configuration variables
+        /// The content of the configuration variables.
         /// </summary>
         [XmlElement(ElementName = "CVs", Order = 6)]
         public  List<ConfigurationVariableType> CVs = new List<ConfigurationVariableType>();
 
         /// <summary>
-        /// The user defined locomotive image
+        /// The user defined locomotive image.
         /// </summary>
         [XmlElement(ElementName = "Image", Order = 7)]
         public string UserDefinedImage { get; set; }

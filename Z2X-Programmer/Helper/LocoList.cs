@@ -70,12 +70,10 @@ namespace Z2XProgrammer.Helper
             {
                 return Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_FOLDER_KEY, AppConstants.PREFERENCES_LOCOLIST_FOLDER_VALUE);
             }
-        } 
+        }
         #endregion
 
-
-        
-
+        #region REGION: PUBLIC FUNCTIONS
 
         /// <summary>
         /// Returns a list with descriptions of available languages.
@@ -130,8 +128,14 @@ namespace Z2XProgrammer.Helper
             return locomotiveList;  
         }
 
+        #endregion
+
+        #region REGION: PRIVATE FUNCTIONS
+
+        
+
         /// <summary>
-        /// Returns the Rocrail locomotive list.
+        /// Returns the locomotive list from the train controller software Rocrail.
         /// </summary>
         /// <returns></returns>
         private async static Task<List<LocoListType>> GetLocomotiveListRocrail()
@@ -195,9 +199,10 @@ namespace Z2XProgrammer.Helper
                 locomotiveList.Add(entry);
             }
             return locomotiveList;
-
-
+         
         }
+
+        #endregion
 
     }
 }

@@ -181,6 +181,15 @@ namespace Z2XProgrammer.ViewModel
 
                 locoList = await Task.Run(() => LocoList.GetLocomotiveList());
 
+                if (locoList.Count == 0)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
+                    }
+                    return;
+                }
+
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
                 PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList);

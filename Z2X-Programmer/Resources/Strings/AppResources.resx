@@ -1233,7 +1233,7 @@ Dimmung up and down = 88
     <value>Rocrail</value>
   </data>
   <data name="FrameSettingsAppLocoListLabel" xml:space="preserve">
-    <value>Locomotive list system</value>
+    <value>Train controller software</value>
   </data>
   <data name="FrameSettingsAppLocoListRocrailAddrLabel" xml:space="preserve">
     <value>IP address</value>
@@ -1258,5 +1258,11 @@ Dimmung up and down = 88
   </data>
   <data name="FrameSettingsAppLocoListFileSystemSelectFolder" xml:space="preserve">
     <value>Select folder</value>
+  </data>
+  <data name="AlertLocoListEmpty" xml:space="preserve">
+    <value>The locomotive list is empty. Check the following settings:
+
+• Is your control software accessible?
+• Is the Z2X directory configured correctly?</value>
   </data>
 </root>
