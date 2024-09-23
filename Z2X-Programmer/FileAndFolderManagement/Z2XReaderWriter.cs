@@ -49,7 +49,12 @@ namespace Z2XProgrammer.FileAndFolderManagement
             {
                 fileName = "Settings Adr=" + DecoderConfiguration.RCN225.LocomotiveAddress.ToString();
             }
-            if (fileName.Length > 25) fileName = fileName.Substring(0, 25);
+
+            if (fileName.Length > 40)
+            {
+                fileName = fileName.Substring(0, 40);
+            }
+
             fileName = fileName.Trim();
             fileName = fileName + ".z2x";
             
