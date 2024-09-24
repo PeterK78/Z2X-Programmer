@@ -133,9 +133,10 @@
   <data name="AlertDecoderUploadError" xml:space="preserve">
     <value>The decoder could not be read out. Check the following settings:
 
-• Address
-• Network connection to your digital central unit
-• Programming method (POM or programming track)</value>
+•  Vehicle address correct?
+•  Is there a network connection to your digital central unit?
+•  Programming method correctly selected?
+•  Is the locomotive at a standstill?</value>
   </data>
   <data name="AlertDecoderUploadSuccess" xml:space="preserve">
     <value>The data was successfully read from the decoder.</value>

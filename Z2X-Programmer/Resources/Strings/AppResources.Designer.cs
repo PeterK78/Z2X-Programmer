@@ -94,9 +94,10 @@ namespace Z2XProgrammer.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to The decoder could not be read out. Check the following settings:
         ///
-        ///• Address
-        ///• Network connection to your digital central unit
-        ///• Programming method (POM or programming track).
+        ///•  Vehicle address correct?
+        ///•  Is there a network connection to your digital central unit?
+        ///•  Programming method correctly selected?
+        ///•  Is the locomotive at a standstill?.
         /// </summary>
         public static string AlertDecoderUploadError {
             get {

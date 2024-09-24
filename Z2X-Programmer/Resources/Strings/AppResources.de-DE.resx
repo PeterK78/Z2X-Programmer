@@ -133,9 +133,10 @@
   <data name="AlertDecoderUploadError" xml:space="preserve">
     <value>Der Decoder konnte nicht ausgelesen werden. Prüfen Sie folgende Einstellungen:
 
-• Adresse
-• Netzwerkverbindung zu Ihrer Digitalzentrale
-• Programmiermethode (POM oder Programmiergleis)</value>
+• Fahrzeugadresse korrekt?
+• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
+• Programmiermethode korrekt ausgewählt?
+• Die Lokomotive befindet sich im Stillstand?</value>
   </data>
   <data name="AlertDecoderUploadSuccess" xml:space="preserve">
     <value>Die Daten wurden erfolgreich aus dem Decoder ausgelesen.</value>
