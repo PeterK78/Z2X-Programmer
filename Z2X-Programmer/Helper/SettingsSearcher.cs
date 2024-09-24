@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[69, 3] {
+        static readonly string[,] SearchDatabase = new string[75, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19" },
@@ -102,7 +102,13 @@ namespace Z2XProgrammer.Helper
                                                                         { "FunctionKeysPage","FrameFunctionKeysCurveSquealLabel", "ZIMO_FUNCKEY_CURVESQUEAL_CV308" },
                                                                         { "LightPage","FrameLightDimmingEnabled", "ZIMO_LIGHT_DIM_CV60" },
                                                                         { "SoundPage","FrameSoundBreakSquealLevelLabel", "ZIMO_BRAKESQUEAL_CV287" },
-                                                                        { "MotorCharacteristicsPage","FrameMotorCharacteristicsCharacteristicCurveTypeLabel", "RCN225_SPEEDTABLE_CV29_4" }
+                                                                        { "MotorCharacteristicsPage","FrameMotorCharacteristicsCharacteristicCurveTypeLabel", "RCN225_SPEEDTABLE_CV29_4" },
+                                                                        { "RailComPage","FrameProtocolAnalogModeLabel", "RCN225_ANALOGMODE_CV29_2" },
+                                                                        { "RailComPage","FrameProtocolAnalogDCLabel", "ZIMO_MSOPERATINGMODES_CV12" },
+                                                                        { "RailComPage","FrameProtocolAnalogACLabel", "ZIMO_MSOPERATINGMODES_CV12" },
+                                                                        { "RailComPage","FrameProtocolDCCModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
+                                                                        { "RailComPage","FrameProtocolMMModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
+                                                                        { "RailComPage","FrameProtocolMFXModeLabel", "ZIMO_MSOPERATINGMODES_CV12" }
                                                                     };
 
         /// <summary>

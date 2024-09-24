@@ -74,7 +74,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
 
                         <Label Margin="0,20,0,20" x:Name="FrameProtocolOperatingModesDescription" Grid.Row="0"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolOperatingModesDescription}" VerticalOptions="Center" />
-                      
+
                         <Label x:Name="FrameProtocolDCCModeLabel" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCModeLabel}" VerticalOptions="Center" />
                         <Switch Grid.Row="1" Grid.Column="1" IsEnabled="False"  ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
 
@@ -136,14 +136,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             
                             <Label Margin="0,20,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeDescription}" VerticalOptions="Center" />
-                            
-                            <Label  Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeLabel}" VerticalOptions="Center" />
+
+                            <Label  x:Name="FrameProtocolAnalogModeLabel" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeLabel}" VerticalOptions="Center" />
                             <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
 
-                            <Label  Grid.Row="2"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  x:Name="FrameProtocolAnalogDCLabel"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogDCLabel}" VerticalOptions="Center" />
-                            <Switch Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"    IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            <Label  x:Name="FrameProtocolAnalogDCLabel" Grid.Row="2"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogDCLabel}" VerticalOptions="Center" />
+                            <Switch Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
 
-                            <Label  Grid.Row="3"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" x:Name="FrameProtocolAnalogACLabel"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogACLabel}" VerticalOptions="Center" />
+                            <Label  x:Name="FrameProtocolAnalogACLabel" Grid.Row="3"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogACLabel}" VerticalOptions="Center" />
                             <Switch Grid.Row="3" Grid.Column="1"  IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
 
                         </Grid>
