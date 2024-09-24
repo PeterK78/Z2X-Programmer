@@ -40,6 +40,12 @@ namespace Z2XProgrammer.ViewModel
         bool dataStoreDataValid;
 
         [ObservableProperty]
+        bool zIMO_MSOPERATINGMODES_CV12;
+
+        [ObservableProperty]
+        bool rCN225_OPERATINGMODES_CV12;
+
+        [ObservableProperty]
         bool rCN225_RAILCOMENABLED_CV29_3;
 
         [ObservableProperty]
@@ -57,6 +63,50 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        //  RCN225_OPERATINGMODES_CV12 Bit 0
+        [ObservableProperty]
+        bool analogOperationDCEnabled;
+        partial void OnAnalogOperationDCEnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled = value;
+        }
+
+        //  RCN225_OPERATINGMODES_CV12 Bit 2
+        [ObservableProperty]
+        bool dccOperationEnabled;
+        partial void OnDccOperationEnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.OperatingModeDCCEnabled = value;
+        }
+
+        //  RCN225_OPERATINGMODES_CV12 Bit 4
+        [ObservableProperty]
+        bool analogOperationACEnabled;
+        partial void OnAnalogOperationACEnabledChanged(bool value)
+        
+        {
+            DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled = value;
+        }
+
+        //  RCN225_OPERATINGMODES_CV12 Bit 5
+        [ObservableProperty]
+        bool mMOperationEnabled;
+        partial void OnMMOperationEnabledChanged(bool value)
+        
+        {
+            DecoderConfiguration.RCN225.OperatingModeMMEnabled = value;
+        }
+
+        //  RCN225_OPERATINGMODES_CV12 Bit 6
+        [ObservableProperty]
+        bool mFXOperationEnabled;
+        partial void OnMFXOperationEnabledChanged(bool value)
+        
+        {
+            DecoderConfiguration.RCN225.OperatingModeMFXEnabled = value;
+        }
+    
         [ObservableProperty]
         bool railComEnabled;
         partial void OnRailComEnabledChanged(bool value)
@@ -133,7 +183,11 @@ namespace Z2XProgrammer.ViewModel
             RailComChannel2Enabled = DecoderConfiguration.RCN225.RailComChannel2Enabled;
             AcModeEnabled = DecoderConfiguration.RCN225.ACModeEnabled;
             AutomaticRegistrationEnabled = DecoderConfiguration.RCN225.AutomaticRegistrationEnabled;
-            
+            AnalogOperationDCEnabled = DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled;
+            AnalogOperationACEnabled = DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled;
+            DccOperationEnabled = DecoderConfiguration.RCN225.OperatingModeDCCEnabled;
+            MMOperationEnabled = DecoderConfiguration.RCN225.OperatingModeMMEnabled;
+            MFXOperationEnabled = DecoderConfiguration.RCN225.OperatingModeMFXEnabled;
         }
 
         /// <summary>
@@ -148,6 +202,8 @@ namespace Z2XProgrammer.ViewModel
             RCN225_RAILCOMCHANNEL2DATA_CV28_1 = DecoderSpecification.RCN225_RAILCOMCHANNEL2DATA_CV28_1;
             RCN225_ANALOGMODE_CV29_2 = DecoderSpecification.RCN225_ANALOGMODE_CV29_2;
             RCN225_AUTOMATICREGISTRATION_CV28_7 = DecoderSpecification.RCN225_AUTOMATICREGISTRATION_CV28_7;
+            RCN225_OPERATINGMODES_CV12 = DecoderSpecification.RCN225_OPERATINGMODES_CV12;
+            ZIMO_MSOPERATINGMODES_CV12 = DecoderSpecification.ZIMO_MSOPERATINGMODES_CV12;
         }
         #endregion
 

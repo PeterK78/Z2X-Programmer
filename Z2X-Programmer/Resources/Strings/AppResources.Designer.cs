@@ -2347,7 +2347,25 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate this option if the decoder should also support analog operation..
+        ///   Looks up a localized string similar to AC alternating current operating mode activated (CV12.4).
+        /// </summary>
+        public static string FrameProtocolAnalogACLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolAnalogACLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DC direct current operating mode activated (CV12.0).
+        /// </summary>
+        public static string FrameProtocolAnalogDCLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolAnalogDCLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use these options to configure the analog operation of the decoder..
         /// </summary>
         public static string FrameProtocolAnalogModeDescription {
             get {
@@ -2397,6 +2415,60 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameProtocolDCCATitle {
             get {
                 return ResourceManager.GetString("FrameProtocolDCCATitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DCC (CV12.2).
+        /// </summary>
+        public static string FrameProtocolDCCModeLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolDCCModeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DCC cannot be switched off with ZIMO decoders.
+        /// </summary>
+        public static string FrameProtocolDCCModeZIMOTooltip {
+            get {
+                return ResourceManager.GetString("FrameProtocolDCCModeZIMOTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MFX (CV12.6).
+        /// </summary>
+        public static string FrameProtocolMFXModeLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolMFXModeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Märklin Motorola MM (CV12.5).
+        /// </summary>
+        public static string FrameProtocolMMModeLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolMMModeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can switch the available digtial operating modes of the decoder on and off. Please note that DCC is always activated for ZIMO decoders..
+        /// </summary>
+        public static string FrameProtocolOperatingModesDescription {
+            get {
+                return ResourceManager.GetString("FrameProtocolOperatingModesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital operating Modes.
+        /// </summary>
+        public static string FrameProtocolOperatingModesTitle {
+            get {
+                return ResourceManager.GetString("FrameProtocolOperatingModesTitle", resourceCulture);
             }
         }
         

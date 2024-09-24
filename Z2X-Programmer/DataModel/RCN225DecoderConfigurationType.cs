@@ -626,6 +626,81 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
+        /// Returns TRUE if the analog DC operation is enabled in CV12 bit 0.
+        /// </summary>
+        public bool OperatingModeAnalogDCEnabled
+        {
+            get
+            {
+                return Bit.IsSet(configurationVariables[12].Value, 0);
+            }
+            set
+            {
+                configurationVariables[12].Value = Bit.Set(configurationVariables[12].Value, 0, value);
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the DCC operation is enabled in CV12 bit 2.
+        /// </summary>
+        public bool OperatingModeDCCEnabled
+        {
+            get
+            {
+                return Bit.IsSet(configurationVariables[12].Value, 2);
+            }
+            set
+            {
+                configurationVariables[12].Value = Bit.Set(configurationVariables[12].Value, 2, value);
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the analog AC operation is enabled in CV12 bit 4.
+        /// </summary>
+        public bool OperatingModeAnalogACEnabled
+        {
+            get
+            {
+                return Bit.IsSet(configurationVariables[12].Value, 4);
+            }
+            set
+            {
+                configurationVariables[12].Value = Bit.Set(configurationVariables[12].Value, 4, value);
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the Märklin Motorola operation mode is enabled in CV12 bit 5.
+        /// </summary>
+        public bool OperatingModeMMEnabled
+        {
+            get
+            {
+                return Bit.IsSet(configurationVariables[12].Value, 5);
+            }
+            set
+            {
+                configurationVariables[12].Value = Bit.Set(configurationVariables[12].Value, 5, value);
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the Märklin MFX operation mode is enabled in CV12 bit 6.
+        /// </summary>
+        public bool OperatingModeMFXEnabled
+        {
+            get
+            {
+                return Bit.IsSet(configurationVariables[12].Value, 6);
+            }
+            set
+            {
+                configurationVariables[12].Value = Bit.Set(configurationVariables[12].Value, 6, value);
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if RailCom is activated in CV29 bit 3. Or
         /// false if not.
         /// </summary>

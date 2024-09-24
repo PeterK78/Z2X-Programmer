@@ -64,6 +64,8 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string RCN225_AUTOMATICREGISTRATION_CV28_7 = "RCN225_AUTOMATICREGISTRATION_CV28_7";
         public const string RCN225_HLU_CV27_2 = "RCN225_HLU_CV27_2";
         public const string RCN225_ABC_CV27_X = "RCN225_ABC_CV27_X";
+        public const string RCN225_OPERATINGMODES_CV12 = "RCN225_OPERATINGMODES_CV12";
+
 
         //
         //  ZIMO specific features    
@@ -94,6 +96,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_FUNCKEY_MUTE_CV313 = "ZIMO_FUNCKEY_MUTE_CV313";
         public const string ZIMO_SOUND_STARTUPDELAY_CV273 = "ZIMO_SOUND_STARTUPDELAY_CV273";
         public const string ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = "ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285";
+        public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";
         
 
         //  Döhler & Haass specific features
@@ -537,6 +540,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
     <RCN225_DECODERLOCK_CV15X support=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
     <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes""/>
+    <RCN225_OPERATINGMODES_CV12 support=""yes""/>
 
 </decoderseries>
 ";
@@ -648,6 +652,8 @@ namespace Z2XProgrammer.FileAndFolderManagement
     <ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 support=""yes""/>
     <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes""/>
     <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes""/>
+    <ZIMO_MSOPERATINGMODES_CV12 support=""yes""/>
+
 </decoderseries>";
 
         public static string ZimoMXLocomotiveSpec = @"<!-- Specification file for ZIMO MX sound decoders -->

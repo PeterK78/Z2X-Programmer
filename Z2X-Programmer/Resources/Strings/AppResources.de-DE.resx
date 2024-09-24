@@ -887,7 +887,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Referenzspannung der Motorregelung</value>
   </data>
   <data name="FrameProtocolAnalogModeDescription" xml:space="preserve">
-    <value>Aktivieren Sie diese Option, falls der Decoder auch den Analogbetrieb unterstützen soll.</value>
+    <value>Mit diesen Optionen können Sie den Analogbetrieb des Decoders konfigurieren.</value>
   </data>
   <data name="FrameProtocolAnalogModeLabel" xml:space="preserve">
     <value>Analogbetrieb aktiviert (CV29.2)</value>
@@ -1265,5 +1265,29 @@ Auf- und Abblenden = 88</value>
 • Ist Ihre Steuerungssoftware erreichbar?
 • Ist das Z2X-Verzeichnis korrekt konfiguriert?
 </value>
+  </data>
+  <data name="FrameProtocolOperatingModesTitle" xml:space="preserve">
+    <value>Digitale Betriebsmodi</value>
+  </data>
+  <data name="FrameProtocolAnalogDCLabel" xml:space="preserve">
+    <value>Betriebsmodus DC-Gleichstrom aktiviert (CV12.0)</value>
+  </data>
+  <data name="FrameProtocolAnalogACLabel" xml:space="preserve">
+    <value>Betriebsmodus AC-Wechselstrom aktiviert (CV12.4)</value>
+  </data>
+  <data name="FrameProtocolDCCModeLabel" xml:space="preserve">
+    <value>DCC (CV12.2)</value>
+  </data>
+  <data name="FrameProtocolMMModeLabel" xml:space="preserve">
+    <value>Märklin Motorola MM (CV12.5)</value>
+  </data>
+  <data name="FrameProtocolMFXModeLabel" xml:space="preserve">
+    <value>MFX (CV12.6)</value>
+  </data>
+  <data name="FrameProtocolDCCModeZIMOTooltip" xml:space="preserve">
+    <value>Bei ZIMO Decoder kann DCC nicht ausgeschaltet werden</value>
+  </data>
+  <data name="FrameProtocolOperatingModesDescription" xml:space="preserve">
+    <value>Hier können Sie die verfügbaren digitalen Betriebsmodi des Decoders ein- und ausschalten. Beachten Sie bitte, DCC ist bei ZIMO Decoder immer aktiviert.</value>
   </data>
 </root>

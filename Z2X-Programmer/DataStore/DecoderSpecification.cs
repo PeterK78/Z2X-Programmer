@@ -100,6 +100,8 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_FUNCKEY_MUTE_CV313 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_MUTE_CV313, decSpecFolder);
                 RCN225_ABC_CV27_X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_ABC_CV27_X, decSpecFolder);
                 RCN225_SPEEDTABLE_CV29_4 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_SPEEDTABLE_CV29_4, decSpecFolder);
+                RCN225_OPERATINGMODES_CV12 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_OPERATINGMODES_CV12, decSpecFolder);
+                ZIMO_MSOPERATINGMODES_CV12= DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MSOPERATINGMODES_CV12, decSpecFolder);
 
                 //  Inform the app that we have just read a new decoder specification file
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
@@ -153,6 +155,8 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_FUNCKEY_MUTE_CV313 { get; set; }
         internal static bool RCN225_ABC_CV27_X { get; set; }
         internal static bool RCN225_SPEEDTABLE_CV29_4 { get; set; }
+        internal static bool RCN225_OPERATINGMODES_CV12 { get ; set; }
+        internal static bool ZIMO_MSOPERATINGMODES_CV12 { get; set; }
 
     }
 }

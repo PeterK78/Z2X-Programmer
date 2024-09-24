@@ -56,6 +56,39 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+                
+                
+                <!-- Digital operating modes CV 12-->
+                <Label  IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolOperatingModesTitle}" VerticalOptions="Center" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Margin="0,20,0,20" x:Name="FrameProtocolOperatingModesDescription" Grid.Row="0"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolOperatingModesDescription}" VerticalOptions="Center" />
+                      
+                        <Label x:Name="FrameProtocolDCCModeLabel" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCModeLabel}" VerticalOptions="Center" />
+                        <Switch Grid.Row="1" Grid.Column="1" IsEnabled="False"  ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                      
+                        <Label x:Name="FrameProtocolMMModeLabel" Grid.Row="2"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolMMModeLabel}" VerticalOptions="Center" />
+                        <Switch Grid.Row="2" Grid.Column="1"  IsToggled="{Binding MMOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                        <Label x:Name="FrameProtocolMFXModeLabel" Grid.Row="3"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolMFXModeLabel}" VerticalOptions="Center" />
+                        <Switch Grid.Row="3" Grid.Column="1"  IsToggled="{Binding MFXOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                    </Grid>
+                </Frame>
+
+
 
                 <!-- Frame RailCom -->
                 <Label  IsVisible="{Binding RCN225_RAILCOMENABLED_CV29_3}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComEnableDisableTitle}" VerticalOptions="Center" />
@@ -85,6 +118,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid>
                 </Frame>
 
+                
                 <!-- Frame Analog mode -->
                 <Label IsVisible="{Binding RCN225_ANALOGMODE_CV29_2}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeTitle}" VerticalOptions="Center" />
                 <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_ANALOGMODE_CV29_2}">
@@ -97,10 +131,21 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeDescription}" VerticalOptions="Center" />
+                            
+                            <Label Margin="0,20,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeDescription}" VerticalOptions="Center" />
+                            
                             <Label  Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeLabel}" VerticalOptions="Center" />
                             <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                            <Label  Grid.Row="2"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  x:Name="FrameProtocolAnalogDCLabel"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogDCLabel}" VerticalOptions="Center" />
+                            <Switch Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"    IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                            <Label  Grid.Row="3"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" x:Name="FrameProtocolAnalogACLabel"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogACLabel}" VerticalOptions="Center" />
+                            <Switch Grid.Row="3" Grid.Column="1"  IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
                         </Grid>
                     </VerticalStackLayout>
                 </Frame>
