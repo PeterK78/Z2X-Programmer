@@ -98,7 +98,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,100,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
                         </Grid>
                     </VerticalStackLayout>
                 </Frame>
@@ -118,7 +118,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,100,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
                         </Grid>
                     </VerticalStackLayout>
                 </Frame>
