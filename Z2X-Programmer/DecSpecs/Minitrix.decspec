@@ -7,6 +7,7 @@
         <!-- Supported RCN225 features -->
         <RCN225_BASEADDRESS_CV1 support="yes"/>
         <RCN225_MINIMALSPEED_CV2 support="yes"/>
+        <RCN225_MAXIMALSPEED_CV5 support="yes"/>
         <RCN225_MANUFACTUERID_CV8 support="yes"/>
         <RCN225_DECODERVERSION_CV7 support="yes"/>
         <RCN225_FUNCTIONKEYMAPPING_CV3346 support="yes"/>
