@@ -27,6 +27,6 @@ Start the Z2X-Programmer.exe file.
 ### Step 5: Installing the .NET Desktop Runtime
 If the .NET Desktop Runtime is missing on your system, it must be installed. The following dialog appears:
 
-![.NET Runtime installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-InstallNetDesktopRunTime.png)
+![.NET Runtime installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-InstallNetDesktopRunTime.png)
 
 Download the .NET Desktop Runtime from Microsoft and install it on your system.
