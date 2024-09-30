@@ -1,6 +1,6 @@
 @ECHO OFF
 
-SET SETUP_VERSION=V0.1.2.0pre
+SET SETUP_VERSION=V0.1.2.0beta1
 SET SETUP_RELEASE_FOLDER=Release\
 
 SET SETUP_FILENAME_WINDOWS=Z2X-Programmer-Win11-%SETUP_VERSION%.zip
@@ -36,13 +36,13 @@ IF NOT EXIST %SETUP_RELEASE_FOLDER% MKDIR %SETUP_RELEASE_FOLDER%
 ECHO Step 2/5: Create the Windows ZIP archive ...
 powershell -command Compress-Archive %SOURCE_PATH_WINDOWS% %SETUP_PATH_WINDOWS% -Force
 
-ECHO Step 3/5: Add the Liesmich.txt ...
-powershell -command Compress-Archive Liesmich.txt %SETUP_PATH_WINDOWS% -Update
+ECHO Step 3/5: Add the Readme.txt ...
+powershell -command Compress-Archive Readme.txt %SETUP_PATH_WINDOWS% -Update
 
 ECHO Step 4/5: Create the Android ZIP archive...
 powershell -command Compress-Archive %SOURCE_PATH_ANDROID% %SETUP_PATH_ANDROID% -Force
 
-ECHO Step 5/5: Add the Liesmich.txt ...
-powershell -command Compress-Archive Liesmich.txt %SETUP_PATH_ANDROID% -Update
+ECHO Step 5/5: Add the Readme.txt ...
+powershell -command Compress-Archive Readme.txt %SETUP_PATH_ANDROID% -Update
 
 ECHO Finish
