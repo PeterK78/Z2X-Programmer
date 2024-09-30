@@ -177,11 +177,11 @@ namespace Z2XProgrammer.Helper
                     Type myDecoderSpecificationType = typeof(DecoderSpecification);
                     if (myDecoderSpecificationType != null)
                     {
-                        PropertyInfo myPropInfo = myDecoderSpecificationType.GetProperty(DecoderConfigurationProperty, BindingFlags.Static | BindingFlags.NonPublic);
+                        PropertyInfo myPropInfo = myDecoderSpecificationType.GetProperty(DecoderConfigurationProperty, BindingFlags.Static | BindingFlags.NonPublic)!;
                         if (myPropInfo != null)
                         {
                             {
-                                if((bool)myPropInfo.GetValue(null, null) == true)
+                                if((bool)myPropInfo.GetValue(null, null)! == true)
                                 {
                                     return true;
                                 }
