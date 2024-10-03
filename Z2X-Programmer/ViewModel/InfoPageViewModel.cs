@@ -32,10 +32,7 @@ namespace Z2XProgrammer.ViewModel
     {
 
         #region REGION: PUBLIC PROPERTIES
-
-        [ObservableProperty]
-        string licenseText;
-
+    
         [ObservableProperty]
         string applicationName;
 
@@ -54,7 +51,6 @@ namespace Z2XProgrammer.ViewModel
             ApplicationName = AppInfo.Current.Name;
             PackageName = AppInfo.Current.PackageName;
             ApplicationVersion = AppInfo.Current.VersionString;
-            LicenseText = License.TextGerman;
         }
 
         #endregion

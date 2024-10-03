@@ -41,8 +41,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseTitle}" HorizontalOptions="Start" Margin="0,20,0,0"/>
             <Border Margin="0,20,0,0">
-                <ScrollView x:Name="LicenseScrollView" HeightRequest="280">
-                    <Editor x:Name="LicenseLabel" FontSize="12" IsReadOnly="True"></Editor>
+                <ScrollView x:Name="LicenseScrollView" HeightRequest="280" VerticalOptions="FillAndExpand">
+                    <Label x:Name="LicenseLabel" Text="{x:Static strings:AppResources.LicenseText}" FontSize="12" FontFamily="monospace" ></Label>
                 </ScrollView>
             </Border>
             <HorizontalStackLayout HorizontalOptions="End">

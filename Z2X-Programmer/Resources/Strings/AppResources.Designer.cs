@@ -3257,6 +3257,20 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Z2X Programmer is an application for configuring locomotive and function decoders with the aid of a Roco / Fleischmann Z21 compatible digital central unit.
+        ///The application is aimed at beginners who want to configure the most important functions of their decoders in a simple and intuitive way.
+        ///
+        ///1) Z2X-Programmer is open source software licensed under the GNU General Public License v3.
+        ///
+        ///2) The release of Z2X-Programmer is made WITHOUT ANY WARRANTY - even without theimplied warranty of MERCHANTABILITY or  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string LicenseText {
+            get {
+                return ResourceManager.GetString("LicenseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No effect = 0
         ///Dimmung up and down = 88
         ///.

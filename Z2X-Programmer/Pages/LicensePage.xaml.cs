@@ -35,7 +35,7 @@ public partial class LicensePage : ContentPage
     public LicensePage()
     {
         InitializeComponent();
-        LicenseLabel.Text = License.TextGerman;
+       // LicenseLabel.Text = License.Text;    
     }
 
     /// <summary>
@@ -66,6 +66,7 @@ public partial class LicensePage : ContentPage
     /// <param name="e"></param>
     async void LicenseButton_Clicked(object sender, EventArgs e)
     {
+        
         await Browser.OpenAsync("https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file");
     }
 
@@ -75,7 +76,7 @@ public partial class LicensePage : ContentPage
     /// <param name="sender"></param>
     /// <param name="e"></param>
     void OnCheckboxCheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
+    {             
         OKButton.IsVisible = e.Value;
     }
 

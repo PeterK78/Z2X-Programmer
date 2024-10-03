@@ -1290,4 +1290,20 @@ Dimmung up and down = 88
   <data name="FrameProtocolOperatingModesDescription" xml:space="preserve">
     <value>Here you can switch the available digtial operating modes of the decoder on and off. Please note that DCC is always activated for ZIMO decoders.</value>
   </data>
+  <data name="LicenseText" xml:space="preserve">
+    <value>Z2X Programmer is an application for configuring locomotive and function decoders with the aid of a Roco / Fleischmann Z21 compatible digital central unit.
+The application is aimed at beginners who want to configure the most important functions of their decoders in a simple and intuitive way.
+
+1) Z2X-Programmer is open source software licensed under the GNU General Public License v3.
+
+2) The release of Z2X-Programmer is made WITHOUT ANY WARRANTY - even without theimplied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   
+
+3) Use of Z2X-Programmer is at your own risk and peril.
+
+4) Disclaimer: The author of the software cannot be held responsible for any damage damage caused by the use of this program on computers, model railroads or elsewhere.
+
+5) Disclaimer of warranty: There is no warranty for the program.
+
+6) Click on the button ""Open license ..."" to open the GNU General Public License v3.</value>
+  </data>
 </root>
