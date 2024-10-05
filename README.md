@@ -25,7 +25,7 @@ The application provides the following features:
 
 
 
-> A detailed list of all supported functions can be found on the following page: [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md).
+> A detailed list of all supported functions can be found on the following page: [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md).
 
 
 
@@ -56,7 +56,7 @@ You can create your own decoder specification file at any time.
 ## Documentation
 
 * [Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
-* [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md)
+* [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md)
 
 ## Notes
 
