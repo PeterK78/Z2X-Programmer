@@ -1,5 +1,3 @@
-[![de](https://img.shields.io/badge/Sprache-Deutsch-blue)](https://github.com/PeterK78/Z2X-Programmer/blob/master/README.de.md)
-
 ![Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-AppIcon.png "Z2X-Programmer")
 
 # Z2X-Programmer
@@ -27,7 +25,7 @@ The application provides the following features:
 
 
 
-> A detailed list of all supported functions can be found on the following page: [Auflistung der unterstützten Decoderfunktionen](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md).
+> A detailed list of all supported functions can be found on the following page: [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md).
 
 
 
@@ -58,7 +56,7 @@ You can create your own decoder specification file at any time.
 ## Documentation
 
 * [Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
-* [List of supported decoder functions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md)
+* [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/SupportedDecoderFeatures.md)
 
 ## Notes
 
