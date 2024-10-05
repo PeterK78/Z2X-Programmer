@@ -163,6 +163,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The locomotive list could not be opened. Please check the configuration..
+        /// </summary>
+        public static string AlertLocoListNotReachable {
+            get {
+                return ResourceManager.GetString("AlertLocoListNotReachable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The locomotive address must not be 0. Change the locomotive address and restart the upload..
         /// </summary>
         public static string AlertLocomotiveAddressNotZero {

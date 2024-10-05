@@ -109,6 +109,39 @@
         <Setter Property="Margin" Value="5,1,5,1"></Setter>
     </Style>
 
+    <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="1.0" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonHighlight_Light}, Dark={StaticResource ButtonHighlight_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.95" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+
+
+    </Style>
+
     <Style x:Key="Z2XProgrammerToolBarButtonStyle"  TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource ButtonText_Light}, Dark={StaticResource ButtonText_Dark}}"></Setter>
         <Setter Property="BorderWidth" Value="0"></Setter>

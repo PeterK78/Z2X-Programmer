@@ -201,7 +201,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNotReachable, AppResources.OK);
                 }
             }
         }
