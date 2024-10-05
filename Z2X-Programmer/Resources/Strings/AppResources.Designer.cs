@@ -172,6 +172,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Z2X files directory has not yet been configured. Open the settings and select your Z2X files directory..
+        /// </summary>
+        public static string AlertLocoListZ2XFolderEmpty {
+            get {
+                return ResourceManager.GetString("AlertLocoListZ2XFolderEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory of your Z2X files does not exist: .
+        /// </summary>
+        public static string AlertLocoListZ2XFolderNotExist {
+            get {
+                return ResourceManager.GetString("AlertLocoListZ2XFolderNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The locomotive address must not be 0. Change the locomotive address and restart the upload..
         /// </summary>
         public static string AlertLocomotiveAddressNotZero {
@@ -2771,7 +2789,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder.
+        ///   Looks up a localized string similar to Directory of your Z2X files.
         /// </summary>
         public static string FrameSettingsAppLocoListFileSystemFolderLabel {
             get {

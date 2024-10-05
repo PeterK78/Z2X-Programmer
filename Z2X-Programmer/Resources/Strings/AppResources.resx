@@ -1249,7 +1249,7 @@ Dimmung up and down = 88
     <value>Rocrail port number</value>
   </data>
   <data name="FrameSettingsAppLocoListFileSystemFolderLabel" xml:space="preserve">
-    <value>Folder</value>
+    <value>Directory of your Z2X files</value>
   </data>
   <data name="FrameSettingsAppLocoListFileSystemFolderPlaceHolder" xml:space="preserve">
     <value>The Z2X files folder</value>
@@ -1308,5 +1308,11 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertLocoListNotReachable" xml:space="preserve">
     <value>The locomotive list could not be opened. Please check the configuration.</value>
+  </data>
+  <data name="AlertLocoListZ2XFolderEmpty" xml:space="preserve">
+    <value>The Z2X files directory has not yet been configured. Open the settings and select your Z2X files directory.</value>
+  </data>
+  <data name="AlertLocoListZ2XFolderNotExist" xml:space="preserve">
+    <value>The directory of your Z2X files does not exist: </value>
   </data>
 </root>

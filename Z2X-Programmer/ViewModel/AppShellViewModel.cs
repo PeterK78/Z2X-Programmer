@@ -179,6 +179,25 @@ namespace Z2XProgrammer.ViewModel
 
                 List<LocoListType> locoList = new List<LocoListType>();
 
+                //  Check if the Z2X files folder is available
+                if(LocoList.Folder == "")
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
+                    }
+                    return;
+                }
+
+                if(Directory.Exists(LocoList.Folder) == false)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
+                    }
+                    return;
+                }
+
                 locoList = await Task.Run(() => LocoList.GetLocomotiveList());
 
                 if (locoList.Count == 0)

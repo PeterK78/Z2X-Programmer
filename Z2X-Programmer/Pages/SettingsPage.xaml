@@ -162,8 +162,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Picker Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End" Margin="20,0,0,0"></Picker>
+                    <Label Margin="0,20,0,0" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Picker Margin="0,20,0,0" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End"></Picker>
                 </Grid>
             </Frame>
 
