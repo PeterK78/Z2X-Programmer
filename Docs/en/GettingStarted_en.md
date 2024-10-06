@@ -4,9 +4,9 @@ Documentation on the first steps with Z2X-Programmer.
 This guide is divided into three sections:
 
 1. [Connecting the Z21 digital command station](#1-connecting-the-z21-digital-command-station)
-2. [Auslesen eines Decoders](#2-auslesen-eines-decoders)
-3. [Suchen und Finden der benötigten Einstellung](#3-suchen-und-finden-der-benötigten-einstellung)
-4. [Übertragen einer neuen Konfiguration](#4-übertragen-einer-neuen-konfiguration)
+2. [Reading out a decoder](#2-reading-out-a-decoder)
+3. [Search and find the required setting](#3-search-and-find-the-required-setting)
+4. [Transfering a new configuration](#4-transferring-a-new-configuration)
 
 ## 1. Connecting the Z21 digital command station
 
@@ -25,7 +25,7 @@ This guide is divided into three sections:
 
 * If no connection can be established, you will receive the following message:
 
-![No connection with Z21 command station](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Z2X-Programmer-GettingStartedConnectionFailed.png "No connection with Z21 command station")
+![No connection with Z21 command station](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedConnectionFailed.png "No connection with Z21 command station")
 
 In this case, check whether you have entered the correct IP address and whether the Z21 command station can be reached.
 
