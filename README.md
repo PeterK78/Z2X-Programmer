@@ -47,11 +47,15 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 You can create your own decoder specification file at any time.
 
 ## Screenshots
-![Changing addresses](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Address_de.png "Changing addresses")
+![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics.png "Changing the motor characteristics")
 
-![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics_de.png "Changing the motor characteristics")
+![Changing the drive characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-DriveCharacteristics.png "Changing the drive characteristics")
 
-![Changing the drive characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-DriveCharacteristics_de.png "Changing the drive characteristics")
+![Configuring function keys](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-FunctionKeys.png "Configuring function keys")
+
+![Search](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Search.png "Search")
+
+
 
 ## Documentation
 
