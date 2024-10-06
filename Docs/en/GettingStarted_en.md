@@ -59,39 +59,45 @@ In this case, check whether you have entered the correct IP address and whether 
 
 ![The decoder was successfully read out](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedUploadComplete.png "The decoder was successfully read out")
 
-* Z2X-Programmer tries to recognize the decoder during readout. :
+* Z2X-Programmer tries to recognize the decoder during readout:
 
 ![The type of decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedTypeOfDecoder.png "The type of decoder")
 
-## 3. Suchen und Finden der benötigten Einstellung
+* The decoder has been successfully read out and can now be configured.
 
-* Z2X-Programmer organisiert alle Einstellungen in logische Gruppen. Diese Gruppen können über das Flyout-Menü aufgerufen werden:
-![Das Flyout-Menü](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedFlyoutMenu.png "Das Flyout-Menü")
+## 3. Search and find the required setting
 
-* Trotzdem ist es manchmal schwierig, die gewünschte Funktion auf den unterschiedlichen Registerkarten zu finden. In diesem Fall verwenden Sie die Funktion `Suche`.
-* Öffnen Sie dazu die Registerkarte `Suche` über das Flyout-Menü und suchen Sie den Begriff "Fahrrichtung":
-![Suche nach Fahrtrichtung](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSearchDriveDirection.png "Suche nach Fahrtrichtung")
+* Z2X-Programmer organizes all settings into tabs. These tabs can be called up via the flyout menu:
 
-* Wählen Sie das Ergebnis "Fahrtrichung invertiert (CV29.0)" aus.
-* Z2X-Programmer wechselt nun direkt zur gewünschten Funktion.
+![Das Flyout-Menü](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedFlyoutMenu.png "Das Flyout-Menü")
 
-## 4. Übertragen einer neuen Konfiguration
+* Nevertheless, it is sometimes difficult to find the desired function on the various tabs. In this case, use the `Search` function.
+* To do this, open the `Search` tab via the flyout menu and search for the term “Driving direction”.
+* Select the result “Direction of travel inverted (CV29.0)”.
 
-* Ändern Sie eine beliebige Einstellung. z. B. kehren Sie Fahrtrichtung um:
+![Search by direction of travel](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedSearchDriveDirection.png "Search by direction of travel")
 
-![Fahrtrichtung umkehren]( https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedInvertDriveDirection.png "Fahrtrichtung umkehren")
+* Z2X-Programmer now switches directly to the desired function.
 
-* Anschließend können Sie die neuen Einstellungen mit der Funktion `Decoder beschreiben` auf den Decoder übertragen:
+![The required function](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-DriveDirectionFound.png "The required function")
+  
+## 4. Transferring a new configuration
 
-![Decoder beschreiben](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedDownloadData.png "Decoder beschreiben")
+* Change any setting, e.g. reverse the direction of travel:
 
-* Vor dem Download informiert Sie Z2X-Programmer welche Konfigurationsvariablen geändert werden. Klicken Sie auf `Ja` um das Übertragen der Daten zu starten.
+![Reverse direction of travel]( https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedInvertDriveDirection.png "Reverse direction of travel")
 
-![Decoder beschreiben](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSummary.png "Decoder beschreiben")
+* You can then transfer the new settings to the decoder using the `Write decoder` function:
 
-* Wurde der Download erfolgreich durchgeführt, so erscheint folgende Meldung:
+![Describe decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedDownloadData.png "Describe decoder")
 
-![Decoder erfolgreich](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedDownloadSuccess.png "Decoder erfolgreich")
+* Before the download, Z2X-Programmer informs you which configuration variables will be changed. Click on `Yes` to start transferring the settings.
+
+![The decoder will be configured](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSummary.png "The decoder will be configured")
+
+* If the download was successful, the following message appears:
+
+![The decoder has been successfully configured](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedDownloadSuccess.png "The decoder has been successfully configured")
 
   
 
