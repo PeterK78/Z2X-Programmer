@@ -37,28 +37,31 @@ In this case, check whether you have entered the correct IP address and whether 
 
 ![Connection successfully established](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedOperatingMode.png "Connection successfully established")
 
-## 2. Auslesen eines Decoders
+## 2. Reading out a decoder
 
-* Wählen Sie die gewünschte Programmiermethode aus: `Hauptgleis` oder `Programmiergleis`.
-![Auswählen der Programmiermethode](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSelectProgramMethod.png "Auswählen der Programmiermethode")
+* Select the desired programming method: `Main track` or `Programming track`.
 
-* Falls Sie die Programmiermethode `Hauptgleis` ausgewählt haben, so müssen Sie nun die Fahrzeugadresse des Decoders bzw. der Lokomotive eingeben. Haben Sie die Programmiermethode `Programmiergleis` gewählt, so wird die Adresse für das Auslesen nicht benötigt.
-![Eingeben der Adresse](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSetAddress.png "Eingeben der Adresse")
+![Reading out a decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedSelectProgramMethod.png "Reading out a decoder")
 
-* Klicken Sie nun auf die Schaltfläche `Decoder auslesen`:
-![Decoder auslesen](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedUploadData.png "Decoder auslesen")
+* If you have selected the `Main track` programming method, you must now enter the vehicle address of the decoder or locomotive. If you have selected the programming method `Programming track`, the vehicle address is not required for the readout.
 
-* Warten Sie bis alle Daten aus dem Decoder gelesen wurden:
-![Warten bis der Decoder ausgelesen wurde](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedWaitForUploadComplete.png "Warten bis der Decoder ausgelesen wurde")
+![Enter the address](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedSetAddress.png "Enter the address")
 
-* Der Decoder wurde erfolgreich ausgelesen:
-![Der Decoder wurde erfolgreich ausgelesen](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedUploadComplete.png "Der Decoder wurde erfolgreich ausgelesen")
+* Now click on the `Read decoder` button:
 
-* Der Typ des Decoders wird während des Auslesens erkannt:
-![Der Typ des Decoders](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedTypeOfDecoder.png "Der Typ des Decoders")
+![Read decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedUploadData.png "Read decoder")
 
-* Die vom Decoder unterstützten Funktionen stehen nun im Z2X-Programmer zur Verfügung:
-![Funktionen stehen zur Verfügung](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedFunctionsAvailable.png "Funktionen stehen zur Verfügung")
+* Wait until all data has been read from the decoder:
+
+![Wait until the decoder has been read out](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedWaitForUploadComplete.png "Wait until the decoder has been read out")
+
+* The decoder has been successfully read out:
+
+![The decoder was successfully read out](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedUploadComplete.png "The decoder was successfully read out")
+
+* Z2X-Programmer tries to recognize the decoder during readout. :
+
+![The type of decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedTypeOfDecoder.png "The type of decoder")
 
 ## 3. Suchen und Finden der benötigten Einstellung
 
