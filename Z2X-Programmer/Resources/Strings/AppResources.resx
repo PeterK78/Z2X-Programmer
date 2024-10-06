@@ -121,10 +121,10 @@
     <value>Attention!</value>
   </data>
   <data name="AlertDecoderDonwloadSuccessfull" xml:space="preserve">
-    <value>The decoder settings have been successfully written to the decoder.</value>
+    <value>The settings have been successfully written to the decoder.</value>
   </data>
   <data name="AlertDecoderDownloadError" xml:space="preserve">
-    <value>The decoder settings could not be written to the decoder. Check the following settings:
+    <value>The settings could not be written to the decoder. Check the following settings:
 
 • Address
 • Network connection to your digital central unit
@@ -163,7 +163,7 @@
     <value>No connection to your digital command station could be established.</value>
   </data>
   <data name="AlertNoConnectionCentralStationOK" xml:space="preserve">
-    <value>The connection to your digital command station  has been successfully established.</value>
+    <value>The connection to your digital command station has been successfully established.</value>
   </data>
   <data name="AlertNoFeatureSupported" xml:space="preserve">
     <value>This decoder does not support any functions on this tab.</value>
@@ -255,7 +255,7 @@ The following error has occurred:</value>
     <value>Main track</value>
   </data>
   <data name="DCCProgrammngModeProgramTrack" xml:space="preserve">
-    <value>Program track</value>
+    <value>Programming track</value>
   </data>
   <data name="DCCSpeedStepMode14" xml:space="preserve">
     <value>14 speed steps</value>
@@ -270,10 +270,9 @@ The following error has occurred:</value>
     <value>Standard (RCN225 compatible)</value>
   </data>
   <data name="DownloadNewSettingsYesNo" xml:space="preserve">
-    <value>Wollen Sie die neuen Einstellungen nun auf ihren Decoder übertragen?
+    <value>Do you now want to transfer the new settings to your decoder?
 
-Die folgenden Konfigurationsvariablen werden geändert:
-</value>
+The following configuration variables will be changed:</value>
   </data>
   <data name="DownloadNoCVsModified" xml:space="preserve">
     <value>No settings have been changed. No download is performed.</value>
@@ -447,7 +446,7 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Direction of travel inverted (CV29.0)</value>
   </data>
   <data name="FrameDriveCharacteristicsTitle" xml:space="preserve">
-    <value>DirectionDirection of travel</value>
+    <value>Direction of travel</value>
   </data>
   <data name="FrameExpertCVListTitle" xml:space="preserve">
     <value>All configuration variables</value>
@@ -1043,7 +1042,7 @@ Frequency type = Low frequency</value>
     <value>Reset</value>
   </data>
   <data name="FrameSettingsZ21IPAddressDescription" xml:space="preserve">
-    <value>Enter the current IP address of your Z21 digital central unit here. The factory setting is 192.168.0.111.</value>
+    <value>Enter the current IP address of your Z21 digital command station. The factory setting is 192.168.0.111.</value>
   </data>
   <data name="FrameSettingsZ21IPAddressPlaceholder" xml:space="preserve">
     <value>Z21 ip address</value>

@@ -70,7 +70,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The decoder settings have been successfully written to the decoder..
+        ///   Looks up a localized string similar to The settings have been successfully written to the decoder..
         /// </summary>
         public static string AlertDecoderDonwloadSuccessfull {
             get {
@@ -79,7 +79,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The decoder settings could not be written to the decoder. Check the following settings:
+        ///   Looks up a localized string similar to The settings could not be written to the decoder. Check the following settings:
         ///
         ///• Address
         ///• Network connection to your digital central unit
@@ -217,7 +217,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The connection to your digital command station  has been successfully established..
+        ///   Looks up a localized string similar to The connection to your digital command station has been successfully established..
         /// </summary>
         public static string AlertNoConnectionCentralStationOK {
             get {
@@ -489,7 +489,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Program track.
+        ///   Looks up a localized string similar to Programming track.
         /// </summary>
         public static string DCCProgrammngModeProgramTrack {
             get {
@@ -534,10 +534,9 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wollen Sie die neuen Einstellungen nun auf ihren Decoder übertragen?
+        ///   Looks up a localized string similar to Do you now want to transfer the new settings to your decoder?
         ///
-        ///Die folgenden Konfigurationsvariablen werden geändert:
-        ///.
+        ///The following configuration variables will be changed:.
         /// </summary>
         public static string DownloadNewSettingsYesNo {
             get {
@@ -1068,7 +1067,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DirectionDirection of travel.
+        ///   Looks up a localized string similar to Direction of travel.
         /// </summary>
         public static string FrameDriveCharacteristicsTitle {
             get {
@@ -3023,7 +3022,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the current IP address of your Z21 digital central unit here. The factory setting is 192.168.0.111..
+        ///   Looks up a localized string similar to Enter the current IP address of your Z21 digital command station. The factory setting is 192.168.0.111..
         /// </summary>
         public static string FrameSettingsZ21IPAddressDescription {
             get {

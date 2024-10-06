@@ -121,10 +121,10 @@
     <value>Achtung!</value>
   </data>
   <data name="AlertDecoderDonwloadSuccessfull" xml:space="preserve">
-    <value>Die Decoder-Einstellungen wurden erfolgreich auf den Decoder geschrieben.</value>
+    <value>Die Einstellungen wurden erfolgreich auf den Decoder geschrieben.</value>
   </data>
   <data name="AlertDecoderDownloadError" xml:space="preserve">
-    <value>Die Decoder-Einstellungen konnten nicht auf den Decoder geschrieben werden. Prüfen Sie folgende Einstellungen:
+    <value>Die Einstellungen konnten nicht auf den Decoder geschrieben werden. Prüfen Sie folgende Einstellungen:
 
 • Adresse
 • Netzwerkverbindung zu Ihrer Digitalzentrale
