@@ -2,7 +2,7 @@
 
 # Z2X-Programmer
 
-Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco/Fleischmann Z21 compatible digital command station. 
+Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco / Fleischmann Z21 compatible digital command station. 
 The application is aimed at beginner level users who want to configure the most essential functions of their decoders in a simple and intuitive way. 
 
 The application is currently in a beta state and therefore only available in German language.
@@ -47,16 +47,22 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 You can create your own decoder specification file at any time.
 
 ## Screenshots
-![Changing addresses](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Address_de.png "Changing addresses")
+![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics.png "Changing the motor characteristics")
 
-![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics_de.png "Changing the motor characteristics")
+![Changing the drive characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-DriveCharacteristics.png "Changing the drive characteristics")
 
-![Changing the drive characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-DriveCharacteristics_de.png "Changing the drive characteristics")
+![Configuring function keys](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-FunctionKeys.png "Configuring function keys")
+
+![Search](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Search.png "Search")
+
+
 
 ## Documentation
 
 * [Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
+* [Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
 * [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md)
+  
 
 ## Notes
 
