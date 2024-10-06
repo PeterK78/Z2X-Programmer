@@ -2,7 +2,7 @@
 
 # Z2X-Programmer
 
-Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco/Fleischmann Z21 compatible digital command station. 
+Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco / Fleischmann Z21 compatible digital command station. 
 The application is aimed at beginner level users who want to configure the most essential functions of their decoders in a simple and intuitive way. 
 
 The application is currently in a beta state and therefore only available in German language.
