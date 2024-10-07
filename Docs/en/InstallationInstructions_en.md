@@ -1,9 +1,9 @@
 # Installation instructions
 
-The following operating systems are supported
+The following operating systems are supported:
 
-1. [Windows](#1-connecting-the-z21-digital-command-station)
-2. [Android](#2-reading-out-a-decoder)
+1. [Windows](#windows)
+2. [Android](#android)
 
 ## Windows
 
