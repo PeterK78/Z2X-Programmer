@@ -1,5 +1,10 @@
 # Installation instructions
 
+The following operating systems are supported
+
+1. [Windows](#1-connecting-the-z21-digital-command-station)
+2. [Android](#2-reading-out-a-decoder)
+
 ## Windows
 
 >[!NOTE]
@@ -40,6 +45,34 @@ Run the Z2X-Programmer.exe file again
 ![Accept the license agreemen](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-LicenseAgreement.png)
 
 The installation is now complete.
+
+## Android
+
+> [!IMPORTANT]
+> Only landscape format is currently supported.
+
+### Step 1: Enable the installation of unknown apps on your Android device
+
+### Step 2: Download the ZIP archive
+The ZIP archive can be downloaded directly from the Z2X Programmer GitHub page.
+To do this, open the address [https://github.com/PeterK78/Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer) in your web browser.
+
+### Step 3: Extract the APK file
+
+### Step 4: Run the APK file
+
+### Step 5: Start the application
+![Start the application](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidIcon.png)
+
+### Step 6: Accept the license agreement
+![Accept the license agreement](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidAcceptLicense.png)
+
+The installation is now complete
+
+
+
+
+
 
 
 
