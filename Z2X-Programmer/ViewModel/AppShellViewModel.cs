@@ -216,7 +216,7 @@ namespace Z2XProgrammer.ViewModel
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
