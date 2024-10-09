@@ -76,11 +76,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
            
             <!-- License text -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <ScrollView  HeightRequest="280" VerticalOptions="FillAndExpand">
-                <Editor IsReadOnly="True" Text="{x:Static strings:AppResources.LicenseText}" FontSize="12" BackgroundColor="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
-            </ScrollView>
+            <Border>
+                <ScrollView  HeightRequest="280" VerticalOptions="FillAndExpand">
+                    <Label Text="{x:Static strings:AppResources.LicenseText}" FontSize="12" BackgroundColor="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
+                </ScrollView>
+            </Border>
             <Button Margin="0,20,0,0"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file" WidthRequest="150"  IsVisible="True" Text="{x:Static strings:AppResources.FrameLicenseButtonLicenseText}" HorizontalOptions="End" VerticalOptions="End"></Button>
-
+            
             <!-- Frame: Open Source Libraries  -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoOpenSourceLibsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
 

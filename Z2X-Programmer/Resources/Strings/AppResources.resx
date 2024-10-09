@@ -1303,7 +1303,7 @@ The application is aimed at beginners who want to configure the most important f
 
 5) Disclaimer of warranty: There is no warranty for the program.
 
-6) Click on the button ""Open license ..."" to open the GNU General Public License v3.</value>
+6) Click on the button "Open license ..." to open the GNU General Public License v3.</value>
   </data>
   <data name="AlertLocoListNotReachable" xml:space="preserve">
     <value>The locomotive list could not be opened. Please check the configuration.</value>
