@@ -9,7 +9,7 @@ SET SETUP_FILENAME_ANDROID=Z2X-Programmer-Android-%SETUP_VERSION%.zip
 SET SETUP_PATH_WINDOWS=%SETUP_RELEASE_FOLDER%%SETUP_FILENAME_WINDOWS%
 SET SETUP_PATH_ANDROID=%SETUP_RELEASE_FOLDER%%SETUP_FILENAME_ANDROID%
 
-SET SOURCE_PATH_ANDROID=..\bin\Release\net8.0-android\*.apk
+SET SOURCE_PATH_ANDROID=..\bin\Release\net8.0-android34.0\com.peterk78.z2xprogrammer-Signed.apk
 SET SOURCE_PATH_WINDOWS=..\bin\Release\net8.0-windows10.0.19041.0\win10-x64\*
 
 CLS
@@ -29,6 +29,14 @@ ECHO ***********************************************************
 ECHO:
 ECHO Version: %SETUP_VERSION%
 ECHO:
+
+if not exist %SOURCE_PATH_ANDROID% (
+
+		ECHO  ERROR: Android APK file is missing.
+		ECHO  Missing file: %SOURCE_PATH_ANDROID%
+		ECHO  Please run a Release build to create the APK file.
+		exit  /b;
+) 
 
 ECHO Step 1/5: Setup the release folder ...                       
 IF NOT EXIST %SETUP_RELEASE_FOLDER% MKDIR %SETUP_RELEASE_FOLDER%
