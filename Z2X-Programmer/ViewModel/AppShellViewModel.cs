@@ -216,11 +216,11 @@ namespace Z2XProgrammer.ViewModel
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNotReachable, AppResources.OK);
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNotReachable + ex.Message, AppResources.OK);
                 }
             }
         }

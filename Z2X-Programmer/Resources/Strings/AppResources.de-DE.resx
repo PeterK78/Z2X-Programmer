@@ -1310,7 +1310,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
 6) Klicken Sie auf den Button "Lizenz öffnen ...", um die GNU General Public License v3 zu öffnen.</value>
   </data>
   <data name="AlertLocoListNotReachable" xml:space="preserve">
-    <value>Die Lokomotiven-Liste konnte nicht geöffnet werden. Bitte prüfen Sie die Konfiguration.</value>
+    <value>Die Lokomotiven-Liste konnte nicht geöffnet werden. Bitte prüfen Sie die Konfiguration. Fehlermeldung: </value>
   </data>
   <data name="AlertLocoListZ2XFolderEmpty" xml:space="preserve">
     <value>Das Verzeichnis der Z2X-Dateien ist noch nicht konfiguriert. Öffnen Sie die Einstellungen und wählen Sie Ihr Z2X-Dateiverzeichnis aus.</value>

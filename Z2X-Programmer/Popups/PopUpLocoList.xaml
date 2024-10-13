@@ -35,7 +35,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <Label Text="{x:Static strings:AppResources.LocoListTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
 
-                <CollectionView Style="{StaticResource Z2XTable}" x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="400" BackgroundColor="White" >
+                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="400" BackgroundColor="White" >
                 <CollectionView.Header>
                     <Grid ColumnDefinitions="*,*">
                         <Label BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Name" Grid.Column="0"/>

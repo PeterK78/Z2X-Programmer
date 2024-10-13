@@ -165,7 +165,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The locomotive list could not be opened. Please check the configuration..
+        ///   Looks up a localized string similar to The locomotive list could not be opened. Please check the configuration. Error message: .
         /// </summary>
         public static string AlertLocoListNotReachable {
             get {
