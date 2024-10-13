@@ -49,7 +49,8 @@ namespace Z2XProgrammer.Helper
             SetupDeqSpecFolder();
 
             //  Copy the decoder specification files
-            DeqSpecReader.WriteDeqSpecFile("Generic.decspec", DeqSpecReader.RCN225Spec);
+            DeqSpecReader.WriteDeqSpecFile("Generic.decspec", DeqSpecReader.UnknownDecoderSpec);
+            DeqSpecReader.WriteDeqSpecFile("RCN225.decspec", DeqSpecReader.RCN225Spec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-loc.decspec", DeqSpecReader.ZimoMXLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MS-loc.decspec", DeqSpecReader.ZimoMSLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-fx.decspec", DeqSpecReader.ZimoFXFunctionSpec);

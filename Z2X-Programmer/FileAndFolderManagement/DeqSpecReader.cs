@@ -509,8 +509,33 @@ namespace Z2XProgrammer.FileAndFolderManagement
         }
 
         
-    public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatible standard decoder -->
+    public static string UnknownDecoderSpec =@"<!-- Specification file for an unknown, basic decoder -->
 <decoderseries description_de=""" + UNKNOWN_DECDODER_DE + @""" description_en=""" + UNKNOWN_DECDODER_EN + @""" manufacturerid=""0"" decspecversion=""1"">
+
+    <!-- Supported decoders -->
+
+     <!-- Supported RCN225 features -->
+    <RCN225_BASEADDRESS_CV1 support=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes""/>
+    <RCN225_ANALOGMODE_CV29 support=""yes""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes""/>
+
+</decoderseries>
+";
+
+public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatible standard decoder -->
+<decoderseries description_en=""RCN225 compatible decoder"" description_de=""RCN225 kompatibler Decoder"" manufacturerid=""0"" decspecversion=""1"">
 
     <!-- Supported decoders -->
 
