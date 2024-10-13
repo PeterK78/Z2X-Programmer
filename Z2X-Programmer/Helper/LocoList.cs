@@ -118,7 +118,6 @@ namespace Z2XProgrammer.Helper
             List<LocoListType> locomotiveList = new List<LocoListType>();
             if (IsRocrail(ActiveSystem) == true)
             {
-                IPAddress address = IPAddress.Parse("192.168.178.49");
                 locomotiveList =  await Task.Run(() => GetLocomotiveListRocrail());
             }
             else

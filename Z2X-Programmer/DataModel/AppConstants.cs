@@ -49,7 +49,7 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_LOCOLIST_FOLDER_KEY = "LOCOLIST_FOLDER";
         internal const string PREFERENCES_LOCOLIST_FOLDER_VALUE = "";
         internal const string PREFERENCES_LOCOLIST_PORTNR_KEY = "LOCOLIST_PORTNR";
-        internal const string PREFERENCES_LOCOLIST_PORTNR_VALUE = "8080";
+        internal const string PREFERENCES_LOCOLIST_PORTNR_VALUE = "8051";
         internal const string PREFERENCES_LOCOLIST_IPADDRESS_KEY = "LOCOLIST_IPADRESS";
         internal const string PREFERENCES_LOCOLIST_IPADDRESS_VALUE = "192.168.0.0";
         internal const string PREFERNECES_LOCOLIST_SYSTEM_KEY = "LOCOLIST_SYSTEM";
