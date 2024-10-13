@@ -79,8 +79,8 @@ namespace Z2XProgrammer
 
                 _window.Destroying += (s, e) =>
                 {
-                    //  Disconnect the Z21
-                    CommandStation.Z21.Disconnect();
+                    //  Disconnect the digital command station.
+                    CommandStation.Disconnect();
 
                     int width = (int)_window.Width;
                     int height = (int)_window.Height;

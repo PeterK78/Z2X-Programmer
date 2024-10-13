@@ -100,6 +100,13 @@ namespace Z2XProgrammer.Communication
             }
         }
 
+        /// <summary>
+        /// Disconnects from the digital command station.
+        /// </summary>
+        internal static void Disconnect()
+        {
+            Z21.Disconnect();
+        }
 
         /// <summary>
         /// Returns a list of supported programming modes for the selected command station
@@ -136,12 +143,15 @@ namespace Z2XProgrammer.Communication
                 IPAddress address = IPAddress.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
                 CommandStation.Z21.Connect(address);
 
-                //  We wait approx. 5 seconds for a response of the Z21
-                while ((CommandStation.Z21.IsReachable == false) && (ElapsedTime < 5000))
+                //  We wait for a response of the Z21
+                while ((CommandStation.Z21.IsReachable == false) && (ElapsedTime < 1000))
                 {
                     Thread.Sleep(1);
                     ElapsedTime++;
-                    if (CommandStation.Z21.IsReachable == true) return true;
+                    if (CommandStation.Z21.IsReachable == true)
+                    {
+                        return true;
+                    }
                 }
 
                 //  The Z21 is not reachable

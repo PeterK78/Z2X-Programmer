@@ -153,7 +153,7 @@ namespace Z21Lib
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error while receiving data (" + ex.Message + ")");
+                 Logger.PrintDevConsole("Z21Lib:Error while receiving data (" + ex.Message + ")");
             }
         }
 
@@ -169,7 +169,7 @@ namespace Z21Lib
         /// </summary>
         public void LogOff()
         {
-            Logger.PrintDevConsole("LogOff (LAN_LOGOFF)");
+            Logger.PrintDevConsole("Z21Lib:LogOff (LAN_LOGOFF)");
 
             byte[] bytes = new byte[4];
             bytes[0] = 0x04;
@@ -187,7 +187,7 @@ namespace Z21Lib
         /// </summary>
         public void GetOperatingMode()
         {
-            Logger.PrintDevConsole("GetStatus (LAN_X_GET_STATUS)");
+            Logger.PrintDevConsole("Z21Lib:GetOperatingMode (LAN_X_GET_STATUS)");
 
             byte[] bytes = new byte[7];
             bytes[0] = 0x07;
@@ -210,7 +210,7 @@ namespace Z21Lib
         /// </summary>
         public void ConfigureBroadCast()
         {
-            Logger.PrintDevConsole("ConfigureBroadCast (LAN_SET_BROADCASTFLAGS)");
+            Logger.PrintDevConsole("Z21Lib:ConfigureBroadCast (LAN_SET_BROADCASTFLAGS)");
 
             //  
             // We are setting only the first bit to 1 (0x00000001). So we are able to receive
@@ -276,7 +276,7 @@ namespace Z21Lib
         /// <param name="force">If force = false write operations to the following configuration variables will be blocked: CV8 </param>
         public bool WriteCVProgramTrack(ushort cvNumber, byte value, bool force)
         {
-            Logger.PrintDevConsole("WriteCVProgramTrack (LAN_X_CV_WRITE) cv:" + cvNumber + " value:" + value);
+            Logger.PrintDevConsole("Z21Lib:WriteCVProgramTrack (LAN_X_CV_WRITE) cv:" + cvNumber + " value:" + value);
 
             if (force == false)
             {
@@ -318,7 +318,7 @@ namespace Z21Lib
         /// </summary>
         public bool ReadCVPOM(ushort cvNumber, ushort locomotiveAddress)
         {
-            Logger.PrintDevConsole("ReadCV in POM mode (LAN_X_CV_POM_READ_BYTE) locomotiveAddress:" + locomotiveAddress.ToString() + " cv:" + cvNumber.ToString());
+            Logger.PrintDevConsole("Z21Lib:ReadCV in POM mode (LAN_X_CV_POM_READ_BYTE) locomotiveAddress:" + locomotiveAddress.ToString() + " cv:" + cvNumber.ToString());
 
             cvNumber--;
 
@@ -342,11 +342,7 @@ namespace Z21Lib
 
         }
 
-        public void Disconnect()
-        {
-            LogOff();
-            _udpClient.Close();
-        }
+        
 
         /// <summary>
         /// This command is used to switch on the track voltage or to end the emergency stop or programming mode.
@@ -358,7 +354,7 @@ namespace Z21Lib
         public void SetTrackPowerOn()
         {
 
-            Logger.PrintDevConsole("ReadCV (LAN_X_SET_TRACK_POWER_ON)");
+            Logger.PrintDevConsole("Z21Lib:ReadCV (LAN_X_SET_TRACK_POWER_ON)");
 
             byte[] bytes = new byte[7];
             bytes[0] = 0x07;
@@ -381,26 +377,34 @@ namespace Z21Lib
         public void Connect(IPAddress Z21IpAddress)
         {
             //  Check if the target ip address is not null                
-            if (Z21IpAddress is null) throw new NullReferenceException($"Z21IPAddress must not be null");
+            if (Z21IpAddress is null) throw new NullReferenceException($"Z21Lib:Z21IPAddress must not be null");
+
+            //  Check if the UDP client has been closed before
+            if (_udpClient.Client == null)
+            {
+                _udpClient = new(_udpPort);
+            }
 
             if (OperatingSystem.IsWindows())
             {
-                Logger.PrintDevConsole("Z21 Client: Allowing NAT traversal");
+                Logger.PrintDevConsole("Z21Lib:Z21 Client: Allowing NAT traversal");
                 _udpClient.AllowNatTraversal(true);
             }
             IPAddress = Z21IpAddress;
 
             _udpClient.Connect(IPAddress, _udpPort);
 
-            Logger.PrintDevConsole($"UPD connection to {IPAddress}:{_udpPort} established.");
+            Logger.PrintDevConsole($"Z21Lib:UPD connection to {IPAddress}:{_udpPort} established.");
 
             //  Start receiving data from the UDP socket. Use the function ReceivingRawZ21Data
             //  for parsing the incoming data
             _udpClient.BeginReceive(new AsyncCallback(ReceivingRawZ21Data), null);
 
             //  According to the Z21 protocol specification, each client has to communicate at
-            //  least each minute with the command station. So we are requesting the status
-            //  of the command station each
+            //  least each minute with the command station.
+            //
+            //  INFO: This timer will be enabled if IsReachable will be set to TRUE.
+            //
             _renewZ21SubscriptionTimer.Elapsed += (a, b) => GetOperatingMode();
 
             //  Send a PING to the Z21 and check if it's reachable
@@ -413,6 +417,30 @@ namespace Z21Lib
         }
 
         /// <summary>
+        /// Disconnects from the Z21 command station.
+        /// </summary>
+        public void Disconnect()
+        {
+            
+            //  We stop the cyclic ping timer and remove the event handler.
+            _pingZ21Timer.Enabled = false;
+            _pingZ21Timer.Elapsed -= Z21PingTimerEllapsed;
+
+            //  We stop the heart beat subscription timer and remove the event handler.
+            _renewZ21SubscriptionTimer.Enabled = false;
+            _renewZ21SubscriptionTimer.Elapsed -= (a, b) => GetOperatingMode();
+
+            // We are properly logging out of the Z2X network.
+            LogOff();
+
+            // We are closing the UDP socket.
+            _udpClient.Close();
+            
+            IsReachable = false;
+            
+        }
+
+        /// <summary>
         /// Write a byte to a CV in POM mode.
         /// </summary>
         /// <param name="cvNumber">The number of the configuration variable</param>
@@ -420,7 +448,7 @@ namespace Z21Lib
         /// <param name="value">The new value</param>
         public bool WriteCVBytePOM(ushort cvNumber, ushort locomotiveAddress, byte value, bool force)
         {
-            Logger.PrintDevConsole("WriteCVBytePOM (LAN_X_CV_POM_WRITE_BYTE) locomotiveAddress:" + locomotiveAddress.ToString() + " cv nr.:" + cvNumber + " value:" + value);
+            Logger.PrintDevConsole("Z21Lib:WriteCVBytePOM (LAN_X_CV_POM_WRITE_BYTE) locomotiveAddress:" + locomotiveAddress.ToString() + " cv nr.:" + cvNumber + " value:" + value);
 
             if (locomotiveAddress == 0) return false;
 
@@ -474,14 +502,30 @@ namespace Z21Lib
         {
             var ping = new System.Net.NetworkInformation.Ping();
             var result = await ping.SendPingAsync(IPAddress);
-            return result.Status == System.Net.NetworkInformation.IPStatus.Success;
+
+            bool ReturnValue = result.Status == System.Net.NetworkInformation.IPStatus.Success;
+
+            Logger.PrintDevConsole($"Z21Lib:PingAsync to " + IPAddress.ToString() + " was successfull = " + ReturnValue.ToString());
+
+            return ReturnValue;
+
         }
 
+        /// <summary>
+        /// Returns the MSB of a cv number
+        /// </summary>
+        /// <param name="cvNumber"></param>
+        /// <returns></returns>
         private byte MSB(ushort cvNumber)
         {
             return Convert.ToByte(cvNumber >> 8);
         }
 
+        /// <summary>
+        /// Returns the LSB of a cv number
+        /// </summary>
+        /// <param name="cvNumber"></param>
+        /// <returns></returns>
         private byte LSB(ushort cvNumber)
         {
             //  We set the highest 8 bits to 0 and convert to byte
@@ -489,12 +533,15 @@ namespace Z21Lib
         }
 
        
-
+        /// <summary>
+        /// Sends the given bytes to the UDP client.
+        /// </summary>
+        /// <param name="bytes"></param>
         private async void Sending(byte[] bytes)
         {
             try
             {
-                Logger.PrintDevConsole($"Sending {BitConverter.ToString(bytes)}");
+                Logger.PrintDevConsole($"Z21Lib:Sending {BitConverter.ToString(bytes)}");
                 await _udpClient.SendAsync(bytes, bytes?.GetLength(0) ?? 0);
             }
             catch
@@ -520,7 +567,7 @@ namespace Z21Lib
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex, "Error while pinging client.");
+                Logger.PrintDevConsole("Z21Lib:Error while pinging client (" + ex.Message + ")");
             }
             finally
             {
@@ -552,7 +599,7 @@ namespace Z21Lib
                 else
                 {
                     z = max;
-                    Debug.WriteLine($"Bad telegram", bytes);
+                    Logger.PrintDevConsole($"Z21Lib:Bad telegram " + bytes.ToString());
                 }
             }
         }
@@ -630,7 +677,7 @@ namespace Z21Lib
 
                         //  LAN_X_STATUS_CHANGED
                         case 0x62:
-                            Logger. PrintDevConsole("Evaluation - LAN_X_STATUS_CHANGED");
+                            Logger. PrintDevConsole("Z21Lib:Evaluation - LAN_X_STATUS_CHANGED");
                             OnStatusChanged?.Invoke(this, new StateEventArgs(GetCentralStateData(receivedBytes)));
                             break;
 
@@ -642,7 +689,7 @@ namespace Z21Lib
                             {
                                 // LAN_X_CV_RESULT
                                 case 0x14:
-                                    Logger.PrintDevConsole($"Evaluation - LAN_X_CV_RESULT (value={receivedBytes[8].ToString()})");
+                                    Logger.PrintDevConsole($"Z21Lib:Evaluation - LAN_X_CV_RESULT (value={receivedBytes[8].ToString()})");
                                     OnProgramResultReceived?.Invoke(this, new ProgramEventArgs(new DCCConfigurationVariable(ConvertAdress(receivedBytes[6], receivedBytes[7]), receivedBytes[8]), true));
                                     break;
 
@@ -668,15 +715,21 @@ namespace Z21Lib
                     break;
 
                 default:
-                    Debug.WriteLine($"Unknown telegram", receivedBytes);
+                    Logger.PrintDevConsole($"Z21Lib:Unknown telegram " + receivedBytes.ToString());
                     break;
             }
         }
 
-        private ushort ConvertAdress(byte msB, byte lsB)
+        /// <summary>
+        /// Converts the CVAdr_MSB and CVAdr_LSB of the Z2X protocol to a valid configuration variable number.
+        /// </summary>
+        /// <param name="cvAdr_MSB">CVAdr_MSB</param>
+        /// <param name="cvAdr_LSB">CVAdr_LSB</param>
+        /// <returns></returns>
+        private ushort ConvertAdress(byte cvAdr_MSB, byte cvAdr_LSB)
         {
-            int MSB = (int)msB << 8;
-            return (ushort)(MSB + (ushort)+lsB + 1);
+            int MSB = (int)cvAdr_MSB << 8;
+            return (ushort)(MSB + (ushort)+cvAdr_LSB + 1);
         }
 
 
@@ -687,7 +740,7 @@ namespace Z21Lib
         /// <returns></returns>
         private TrackPower GetCentralStateData(byte[] received)
         {
-            Logger.PrintDevConsole($"GetCentralStateData - data received: {BitConverter.ToString(received)}");
+            Logger.PrintDevConsole($"Z21Lib:GetCentralStateData - data received: {BitConverter.ToString(received)}");
 
             TrackPower state = TrackPower.ON;
 
@@ -699,17 +752,17 @@ namespace Z21Lib
             if (isEmergencyStop || isTrackVoltageOff)
             {
                 state = TrackPower.OFF;
-                Logger.PrintDevConsole("GetCentralStateData - Track power = OFF");
+                Logger.PrintDevConsole("Z21Lib:GetCentralStateData - Track power = OFF");
             }
             else if (isShortCircuit)
             {
                 state = TrackPower.Short;
-                Logger.PrintDevConsole("GetCentralStateData - Track power = Short");
+                Logger.PrintDevConsole("Z21Lib:GetCentralStateData - Track power = Short");
             }
             else if (isProgrammingModeActive)
             {
                 state = TrackPower.Programing;
-                Logger.PrintDevConsole("GetCentralStateData - Track power = Programming");
+                Logger.PrintDevConsole("Z21Lib:GetCentralStateData - Track power = Programming");
             }
             return state;
         

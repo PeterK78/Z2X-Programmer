@@ -272,6 +272,9 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
+
+                CommandStation.Disconnect();                    
+
                 if (CommandStation.Connect() == false)
                 {
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
