@@ -1262,8 +1262,10 @@ Dimmung up and down = 88
   <data name="AlertLocoListEmpty" xml:space="preserve">
     <value>The locomotive list is empty. Check the following settings:
 
+• Is the Z2X directory configured correctly?
+• Is a Z2X file available?
 • Is your control software accessible?
-• Is the Z2X directory configured correctly?</value>
+</value>
   </data>
   <data name="FrameProtocolOperatingModesTitle" xml:space="preserve">
     <value>Digital operating Modes</value>

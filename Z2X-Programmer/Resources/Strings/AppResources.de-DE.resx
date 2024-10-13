@@ -1263,8 +1263,10 @@ Auf- und Abblenden = 88</value>
   <data name="AlertLocoListEmpty" xml:space="preserve">
     <value>Die Lokomotive-Liste ist leer. Prüfen Sie folgende Einstellungen:
 
-• Ist Ihre Steuerungssoftware erreichbar?
 • Ist das Z2X-Verzeichnis korrekt konfiguriert?
+• Ist ein Z2X-File vorhanden?
+• Ist Ihre Steuerungssoftware erreichbar?
+
 </value>
   </data>
   <data name="FrameProtocolOperatingModesTitle" xml:space="preserve">

@@ -178,6 +178,7 @@ namespace Z2XProgrammer.Helper
         {
 
             List<LocoListType> locomotiveList = new List<LocoListType>();
+
             string[] fileEntries = Directory.GetFiles(Folder);
 
             foreach (string fileName in fileEntries)
@@ -188,15 +189,24 @@ namespace Z2XProgrammer.Helper
 
                 var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
 
-                // Call the Deserialize method and cast to the object type.
-                myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+                try
+                {
 
-                LocoListType entry = new LocoListType();
-                entry.LocomotiveAddress = myFile.CVs[1].Value;
-                entry.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
-                entry.FilePath = fileName;
+                    // Call the Deserialize method and cast to the object type.
+                    myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
 
-                locomotiveList.Add(entry);
+                    LocoListType entry = new LocoListType();
+                    entry.LocomotiveAddress = myFile.CVs[1].Value;
+                    entry.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
+                    entry.FilePath = fileName;
+
+                    locomotiveList.Add(entry);
+                }
+                catch (InvalidOperationException )
+                {
+                    //  If we try to deserialize a wrong file format we receive a InvalidOperationException.
+                    //  Do nothing - just skip this file.
+                }
             }
             return Task.FromResult(locomotiveList);
          

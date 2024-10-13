@@ -153,8 +153,10 @@ namespace Z2XProgrammer.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to The locomotive list is empty. Check the following settings:
         ///
+        ///• Is the Z2X directory configured correctly?
+        ///• Is a Z2X file available?
         ///• Is your control software accessible?
-        ///• Is the Z2X directory configured correctly?.
+        ///.
         /// </summary>
         public static string AlertLocoListEmpty {
             get {
