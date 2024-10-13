@@ -136,13 +136,16 @@ namespace Z2XProgrammer.Communication
                 IPAddress address = IPAddress.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
                 CommandStation.Z21.Connect(address);
 
-                while ((CommandStation.Z21.IsReachable == false) && (ElapsedTime < 50))
+                //  We wait approx. 5 seconds for a response of the Z21
+                while ((CommandStation.Z21.IsReachable == false) && (ElapsedTime < 5000))
                 {
                     Thread.Sleep(1);
                     ElapsedTime++;
+                    if (CommandStation.Z21.IsReachable == true) return true;
                 }
 
-                if (CommandStation.Z21.IsReachable == false) return false;
+                //  The Z21 is not reachable
+                return false;
                 
             }
 
