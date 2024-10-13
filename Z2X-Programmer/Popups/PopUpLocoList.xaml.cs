@@ -50,8 +50,9 @@ public partial class PopUpLocoList : Popup
         _cancelTokenSource?.Cancel();
     }
 
-    private void LocoListCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void LocoListCollectionView_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
+    
         if (LocoListCollectionView.SelectedItem != null)
         {
             WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)e.CurrentSelection[0]));

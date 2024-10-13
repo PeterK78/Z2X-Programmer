@@ -174,7 +174,7 @@ namespace Z2XProgrammer.Helper
         /// Returns the locomotive list from Z2X files.
         /// </summary>
         /// <returns></returns>
-        private async static Task<List<LocoListType>> GetLocomotiveFileSystem()
+        private  static Task<List<LocoListType>> GetLocomotiveFileSystem()
         {
 
             List<LocoListType> locomotiveList = new List<LocoListType>();
@@ -198,7 +198,7 @@ namespace Z2XProgrammer.Helper
 
                 locomotiveList.Add(entry);
             }
-            return locomotiveList;
+            return Task.FromResult(locomotiveList);
          
         }
 
