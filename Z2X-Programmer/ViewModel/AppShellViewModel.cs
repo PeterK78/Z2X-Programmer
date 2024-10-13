@@ -732,6 +732,9 @@ namespace Z2XProgrammer.ViewModel
                     DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
                     WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
                 }
+                 
+                 Shell.Current.GoToAsync("//AddressPage");
+
 
             }
             catch (System.ObjectDisposedException)

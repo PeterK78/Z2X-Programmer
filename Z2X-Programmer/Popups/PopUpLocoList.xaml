@@ -46,8 +46,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="datamodel:LocoListType">
                         <Grid ColumnDefinitions="*,*" >
-                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}" TextColor="Black"/>
-                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}" TextColor="Black"/>
+                            <Label HeightRequest="40" VerticalTextAlignment="Center"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}" TextColor="Black"/>
+                            <Label HeightRequest="40" VerticalTextAlignment="Center" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}" TextColor="Black"/>
                         </Grid>
                     </DataTemplate>
 
