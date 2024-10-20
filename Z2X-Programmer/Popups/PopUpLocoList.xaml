@@ -31,30 +31,43 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              CanBeDismissedByTappingOutsideOfPopup="True"
              Color="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              >
-    <VerticalStackLayout  Padding="10,0,10,10" >
+    <VerticalStackLayout  Padding="10,0,10,10">
 
             <Label Text="{x:Static strings:AppResources.LocoListTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
 
-                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="400" BackgroundColor="White" >
-                <CollectionView.Header>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Name" Grid.Column="0"/>
-                        <Label BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Adresse" Grid.Column="1"/>
-                    </Grid>
-                </CollectionView.Header>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="datamodel:LocoListType">
-                        <Grid ColumnDefinitions="*,*" >
-                            <Label HeightRequest="40" VerticalTextAlignment="Center"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}" TextColor="Black"/>
-                            <Label HeightRequest="40" VerticalTextAlignment="Center" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}" TextColor="Black"/>
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="500">
+                    <CollectionView.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="400" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Name" Grid.Column="0"/>
+                            <Label HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Adresse" Grid.Column="1"/>
                         </Grid>
-                    </DataTemplate>
+                    </CollectionView.Header>
 
-                </CollectionView.ItemTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="datamodel:LocoListType">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="400" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
 
-            </CollectionView>
-        
+            <HorizontalStackLayout HorizontalOptions="End">
+                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            </HorizontalStackLayout>
+            
     </VerticalStackLayout>
     
 </mct:Popup>

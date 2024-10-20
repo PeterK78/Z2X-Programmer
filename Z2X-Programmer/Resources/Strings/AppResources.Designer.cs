@@ -165,6 +165,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No locomotive selected..
+        /// </summary>
+        public static string AlertLocoListNoLocoSelected {
+            get {
+                return ResourceManager.GetString("AlertLocoListNoLocoSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The locomotive list could not be opened. Please check the configuration. Error message: .
         /// </summary>
         public static string AlertLocoListNotReachable {
@@ -3324,6 +3333,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string LightEffectTypeNoEffect {
             get {
                 return ResourceManager.GetString("LightEffectTypeNoEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string LocolistButtonOK {
+            get {
+                return ResourceManager.GetString("LocolistButtonOK", resourceCulture);
             }
         }
         

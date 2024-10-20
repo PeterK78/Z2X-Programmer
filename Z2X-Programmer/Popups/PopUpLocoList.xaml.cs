@@ -26,6 +26,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Messages;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.Popups;
 
@@ -39,27 +40,40 @@ public partial class PopUpLocoList : Popup
 		InitializeComponent();
 
         LocoListCollectionView.ItemsSource = locoList;
-        LocoListCollectionView.SelectionChanged += LocoListCollectionView_SelectionChanged;
 
         _cancelTokenSource = tokenSource;
      
     }
 
+    /// <summary>
+    /// Handles the button clicked event of the cancel button
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     void CancelButton_Clicked(object sender, EventArgs e)
     {
-        _cancelTokenSource?.Cancel();
+        this.Close();
     }
 
-    private void LocoListCollectionView_SelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
     
+    /// <summary>
+    /// Handles the button clicked event of the OK button
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void OKButton_Clicked(object sender, EventArgs e)
+    {
         if (LocoListCollectionView.SelectedItem != null)
         {
-            WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)e.CurrentSelection[0]));
+            WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem));
             this.Close();
         }
-
-    }
-
-
+        else
+        {
+            if ((Application.Current != null) && (Application.Current.MainPage != null))
+            {
+                await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNoLocoSelected, AppResources.OK);
+            }
+        }
+    }   
 }
