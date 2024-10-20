@@ -42,8 +42,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <!-- According to various internet reports a ListView within a ScrollView can led to an unhadled exception "Layout cycle detected. Layout could not complete".
         Due to this we will currently not use a ScrollView on the SettingsSearchPage -->
-    
-    <!--<ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">-->
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
 
         <VerticalStackLayout>
 
@@ -59,7 +59,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
 
-            <!-- Page sheet content --> 
+            <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" Margin="20,40,20,0">
                 <SearchBar x:Name="searchBar" Style="{StaticResource Z2XProgrammerSearchBar}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" Placeholder="{x:Static strings:AppResources.FrameSearchPlaceHolder}">
                     <SearchBar.Behaviors>
@@ -70,7 +70,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </SearchBar.Behaviors>
                 </SearchBar>
                 <Frame Margin="0,20,0,0" >
-                <ListView ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedSearchResult}" VerticalScrollBarVisibility="Default" SeparatorVisibility="Default">
+                    <ListView ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedSearchResult}" VerticalScrollBarVisibility="Default" SeparatorVisibility="Default">
                         <ListView.ItemTemplate >
                             <DataTemplate x:DataType="{x:Type x:String}">
                                 <ViewCell>
@@ -92,10 +92,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </VerticalStackLayout>
 
         </VerticalStackLayout>
-        
-    <!--</ScrollView>-->
 
-
-
+    </ScrollView>
 
 </ContentPage>
