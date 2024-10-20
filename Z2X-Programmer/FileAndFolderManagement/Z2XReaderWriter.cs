@@ -106,10 +106,13 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 DecoderConfiguration.ConfigurationVariables[n].Value = myFile.CVs[n].Value;
                 DecoderConfiguration.ConfigurationVariables[n].Number = myFile.CVs[n].Number;
                 DecoderConfiguration.ConfigurationVariables[n].Description = myFile.CVs[n].Description;
+                DecoderConfiguration.ConfigurationVariables[n].Enabled = myFile.CVs[n].Enabled;
+
 
                 DecoderConfiguration.BackupCVs[n].Value = myFile.CVs[n].Value;
                 DecoderConfiguration.BackupCVs[n].Number = myFile.CVs[n].Number;
                 DecoderConfiguration.BackupCVs[n].Description = myFile.CVs[n].Description;
+                DecoderConfiguration.BackupCVs[n].Enabled = myFile.CVs[n].Enabled;
             }
 
             DecoderConfiguration.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;

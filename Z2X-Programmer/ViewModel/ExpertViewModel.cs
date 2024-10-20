@@ -44,7 +44,7 @@ namespace Z2XProgrammer.ViewModel
     public partial class ExpertViewModel : ObservableObject
     {
 
-        #region REGION: Properties
+        #region REGION: PUBLIC PROPERTIES
         [ObservableProperty]
         internal ObservableCollection<ConfigurationVariableType>? configurationVariables;
 
@@ -125,17 +125,25 @@ namespace Z2XProgrammer.ViewModel
         ushort cvNumber;
         #endregion
 
-        #region REGION: Constructor
+        #region REGION: CONSTRUCTOR
         public ExpertViewModel()
         {
             DataValid = true;
             CvNumber = 1;
-            ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(DecoderConfiguration.ConfigurationVariables);
-            ConfigurationVariables.Remove(ConfigurationVariables[0]);
+
+            UpdateCVList();
+
+            WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnGetDecoderConfiguration();
+                });
+            });
         }
         #endregion
 
-        #region REGION: Commands
+        #region REGION: COMMANDS
         [RelayCommand]
         async Task WriteCV()
         {
@@ -162,7 +170,10 @@ namespace Z2XProgrammer.ViewModel
                 await Task.Run(() => ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
 
                 DecoderConfiguration.ConfigurationVariables[CvNumber].Value = Value;
+                DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
+
                 DecoderConfiguration.BackupCVs[CvNumber].Value = Value;
+                DecoderConfiguration.BackupCVs[CvNumber].Enabled = true;
 
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
@@ -205,6 +216,7 @@ namespace Z2XProgrammer.ViewModel
                 await Task.Run(() => ReadWriteDecoder.ReadCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 Value = DecoderConfiguration.ConfigurationVariables[CvNumber].Value;
+                DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
 
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
@@ -220,6 +232,32 @@ namespace Z2XProgrammer.ViewModel
             }
 
         }
+        #endregion
+
+        #region REGION: PRIVATE FUNCTIONS
+
+        private void UpdateCVList()
+        {
+            // Perform a LINQ query (e.g., filter items that start with 'C')
+            var filteredList = DecoderConfiguration.ConfigurationVariables.Where(s => s.Enabled== true);
+
+            ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(filteredList);
+
+            //ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(DecoderConfiguration.ConfigurationVariables);
+            //ConfigurationVariables.Remove(ConfigurationVariables[0]);
+
+        }
+        
+        /// <summary>
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
+        /// </summary>
+        private void OnGetDecoderConfiguration()
+        {
+
+            UpdateCVList();
+        }
+
         #endregion
 
     }

@@ -1324,4 +1324,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="AlertLocoListNoLocoSelected" xml:space="preserve">
     <value>Es wurde noch keine Lokomotive ausgewählt.</value>
   </data>
+  <data name="FrameExpertCVListDescription" xml:space="preserve">
+    <value>In dieser Liste sind alle Konfigurationsvariablen aufgeführt, für die der Wert derzeit bekannt ist.</value>
+  </data>
+  <data name="FrameExpertCVHeaderCVNumber" xml:space="preserve">
+    <value>Nummer</value>
+  </data>
+  <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
+    <value>Wert</value>
+  </data>
 </root>

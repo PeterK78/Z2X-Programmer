@@ -1322,4 +1322,13 @@ The application is aimed at beginners who want to configure the most important f
   <data name="AlertLocoListNoLocoSelected" xml:space="preserve">
     <value>No locomotive selected.</value>
   </data>
+  <data name="FrameExpertCVListDescription" xml:space="preserve">
+    <value>This list shows all configuration variables for which the value is currently known.</value>
+  </data>
+  <data name="FrameExpertCVHeaderCVNumber" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
 </root>

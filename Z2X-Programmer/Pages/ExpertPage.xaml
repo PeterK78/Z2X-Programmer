@@ -138,11 +138,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertCVListTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}">
 
-                    <CollectionView ItemsSource="{Binding ConfigurationVariables}" HeightRequest="300">
+                <VerticalStackLayout>
+
+                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameExpertCVListDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                    <CollectionView ItemsSource="{Binding ConfigurationVariables}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
                         <CollectionView.Header>
                             <Grid ColumnDefinitions="*,*">
-                            <Label BackgroundColor="{StaticResource Primary}" TextColor="White" Text="Configuration variable" Grid.Column="0"/>
-                            <Label BackgroundColor="{StaticResource Primary}" TextColor="White" Text="Value" Grid.Column="1"/>
+                                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVNumber}" Grid.Column="0"/>
+                                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVValue}" Grid.Column="1"/> 
                             </Grid>
                         </CollectionView.Header>
 
@@ -156,9 +160,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             
                         </CollectionView.ItemTemplate>
                         
-                        
                     </CollectionView>
-              
+
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
        

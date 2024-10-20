@@ -199,7 +199,10 @@ namespace Z2XProgrammer.Communication
                     return Task.FromResult(false);
                 }
 
+
+                DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled = true;
                 DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
+                DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
 
                 int percent = (int)(((double)100 / (double)ConfigVariablesToWrite.Count) * (double)i);
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
@@ -676,10 +679,13 @@ namespace Z2XProgrammer.Communication
         /// <param name="e"></param>
         private static void OnProgramResultReceived(object? sender, ProgramEventArgs e)
         {
-            
+
             // Copy the data of the result into the data store (decoder and application)
             DecoderConfiguration.BackupCVs[e.CV.Number].Value = e.CV.Value;
+            DecoderConfiguration.BackupCVs[e.CV.Number].Enabled = true;
+
             DecoderConfiguration.ConfigurationVariables[e.CV.Number].Value = e.CV.Value;
+            DecoderConfiguration.ConfigurationVariables[e.CV.Number].Enabled = true;
 
             Logger.PrintDevConsole("ReadWriteDecoder:OnProgramResultReceived _commandSuccessFull = " + e.Success.ToString());
             _commandSuccessFull = e.Success;

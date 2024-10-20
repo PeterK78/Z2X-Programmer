@@ -1087,6 +1087,33 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string FrameExpertCVHeaderCVNumber {
+            get {
+                return ResourceManager.GetString("FrameExpertCVHeaderCVNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string FrameExpertCVHeaderCVValue {
+            get {
+                return ResourceManager.GetString("FrameExpertCVHeaderCVValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This list shows all configuration variables for which the value is currently known..
+        /// </summary>
+        public static string FrameExpertCVListDescription {
+            get {
+                return ResourceManager.GetString("FrameExpertCVListDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All configuration variables.
         /// </summary>
         public static string FrameExpertCVListTitle {
