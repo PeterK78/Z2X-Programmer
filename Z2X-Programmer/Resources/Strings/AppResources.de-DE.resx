@@ -1333,4 +1333,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
     <value>Wert</value>
   </data>
+  <data name="LocoListColumnHeaderName" xml:space="preserve">
+    <value>Bezeichnung</value>
+  </data>
+  <data name="LocoListColumnHeaderAdress" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
 </root>

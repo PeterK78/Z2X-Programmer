@@ -1331,4 +1331,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
     <value>Value</value>
   </data>
+  <data name="LocoListColumnHeaderName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LocoListColumnHeaderAdress" xml:space="preserve">
+    <value>Address</value>
+  </data>
 </root>

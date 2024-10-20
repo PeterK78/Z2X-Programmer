@@ -3373,6 +3373,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string LocoListColumnHeaderAdress {
+            get {
+                return ResourceManager.GetString("LocoListColumnHeaderAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string LocoListColumnHeaderName {
+            get {
+                return ResourceManager.GetString("LocoListColumnHeaderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locomotive list.
         /// </summary>
         public static string LocoListTitle {

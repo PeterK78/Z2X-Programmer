@@ -43,8 +43,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <ColumnDefinition Width="400" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Name" Grid.Column="0"/>
-                            <Label HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" TextColor="White" Text="Adresse" Grid.Column="1"/>
+                        <Label HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderName}" Grid.Column="0"/>
+                        <Label HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderAdress}"  Grid.Column="1"/>
                         </Grid>
                     </CollectionView.Header>
 
