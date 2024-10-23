@@ -1339,4 +1339,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="LocoListColumnHeaderAdress" xml:space="preserve">
     <value>Adresse</value>
   </data>
+  <data name="AlertLocoListZ2XFolderNotAccessible" xml:space="preserve">
+    <value>Der ausgewählte Ordner ist für Z2X-Programmer nicht zugänglich. Bitte wählen Sie einen anderen Ordner.</value>
+  </data>
 </root>

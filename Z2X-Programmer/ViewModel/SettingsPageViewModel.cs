@@ -178,7 +178,7 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: COMMANDS        
 
         /// <summary>
-        /// Opens an FolderPicker dialog so that the user can select his Z2X directory.
+        /// Opens an folder picker dialog so that the user can select the Z2X directory.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -189,8 +189,33 @@ namespace Z2XProgrammer.ViewModel
                 FolderPickerResult result = await FolderPicker.Default.PickAsync();
                 if (result.IsSuccessful)
                 {
-                    LocoListSystemFolder = result.Folder.Path.ToString();
+                    // Note:
+                    // Sometimes the FolderPicker returns a folder which is not accessible for Z2X-Programmer.
+                    // For this reason, we check access to the selected folder. If it fails we will display
+                    // an error message to the user.
+                    if(Directory.Exists(result.Folder.Path.ToString()) == true)
+                    {
+                        LocoListSystemFolder = result.Folder.Path.ToString();
+                    }
+                    else
+                    {
+                        if ((Application.Current != null) && (Application.Current.MainPage != null))
+                        {
+                            await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotAccessible + LocoList.Folder, AppResources.OK);
+                        }
+                        return;
+                    }
                 }
+
+                if (Directory.Exists(LocoList.Folder) == false)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
+                    }
+                    return;
+                }
+
             }
             catch (Exception ex)
             {

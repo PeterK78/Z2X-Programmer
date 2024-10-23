@@ -192,6 +192,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected folder is not accessible for Z2X-Programmer. Please select a different folder..
+        /// </summary>
+        public static string AlertLocoListZ2XFolderNotAccessible {
+            get {
+                return ResourceManager.GetString("AlertLocoListZ2XFolderNotAccessible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The directory of your Z2X files does not exist: .
         /// </summary>
         public static string AlertLocoListZ2XFolderNotExist {
