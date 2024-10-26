@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[75, 3] {
+        static readonly string[,] SearchDatabase = new string[76, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19" },
@@ -108,7 +108,8 @@ namespace Z2XProgrammer.Helper
                                                                         { "RailComPage","FrameProtocolAnalogACLabel", "ZIMO_MSOPERATINGMODES_CV12" },
                                                                         { "RailComPage","FrameProtocolDCCModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
                                                                         { "RailComPage","FrameProtocolMMModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
-                                                                        { "RailComPage","FrameProtocolMFXModeLabel", "ZIMO_MSOPERATINGMODES_CV12" }
+                                                                        { "RailComPage","FrameProtocolMFXModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
+                                                                        { "FunctionKeysPage","FrameFunctionKeysDeactivateAccDecTimeLabel", "ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156" },
                                                                     };
 
         /// <summary>
