@@ -38,8 +38,7 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class LightViewModel : ObservableObject
     {
-
-        #region REGION: Decoder features
+        #region REGION: DECODER FEATURES
     
         [ObservableProperty]
         bool zIMO_LIGHT_EFFECTS_CV125X;
@@ -49,7 +48,7 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        #region REGION: Properties
+        #region REGION: PUBLIC PROPERTIES
 
         [ObservableProperty]
         bool anyDecoderFeatureAvailable;
@@ -230,7 +229,7 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        #region REGION: Constructor
+        #region REGION: CONSTRUCTOR
         public LightViewModel()
         {
 
@@ -280,7 +279,7 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
-            DimmingEnabled = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 1 ? true : false;
+            DimmingEnabled = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 0 ? false : true;
             Brightness = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue;
             BrightnessLabelText = GetBrightnessLabelText();
             DimmingOutput0frontEnabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 0);

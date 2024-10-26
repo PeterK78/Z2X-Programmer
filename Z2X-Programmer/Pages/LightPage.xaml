@@ -63,7 +63,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-                <!-- Brightness  -->
+            <!-- Brightness / Dimming -->
             <Label IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}">
                     <Grid>
@@ -98,7 +98,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingMasterValue}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" />
                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" >
-                            <Slider Value="{Binding Brightness}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" IsVisible="{Binding DimmingEnabled}" Style="{StaticResource Z2XSlider}"></Slider>
+                        <Slider Value="{Binding Brightness}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" IsVisible="{Binding DimmingEnabled}" Style="{StaticResource Z2XSlider}"></Slider>
                         <Label  Text="{Binding BrightnessLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
                     </HorizontalStackLayout>
 
