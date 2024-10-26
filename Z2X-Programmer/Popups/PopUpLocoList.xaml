@@ -31,6 +31,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              CanBeDismissedByTappingOutsideOfPopup="True"
              Color="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              >
+
+    <Border>
     <VerticalStackLayout  Padding="10,0,10,10">
 
             <Label Text="{x:Static strings:AppResources.LocoListTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
@@ -69,5 +71,5 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </HorizontalStackLayout>
             
     </VerticalStackLayout>
-    
+    </Border>
 </mct:Popup>
