@@ -29,6 +29,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.Model;
 using Z2XProgrammer.Resources.Strings;
@@ -162,6 +163,7 @@ namespace Z2XProgrammer.Helper
                     if(myFile.LocomotiveAddress == loco.LocomotiveAddress)
                     {
                         loco.FilePath = fileName;
+                        loco.UserDefindedImage =  Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
                     }
                 }
             }
@@ -197,6 +199,7 @@ namespace Z2XProgrammer.Helper
                     LocoListType entry = new LocoListType();
                     entry.LocomotiveAddress = myFile.CVs[1].Value;
                     entry.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
+                    entry.UserDefindedImage = Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
                     entry.FilePath = fileName;
 
                     locomotiveList.Add(entry);

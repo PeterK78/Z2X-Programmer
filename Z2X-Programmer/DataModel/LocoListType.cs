@@ -24,6 +24,10 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         public string FilePath { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Stores the use defined image.
+        /// </summary>
+        public ImageSource UserDefindedImage { get; set; }
 
         public LocoListType() { }
 

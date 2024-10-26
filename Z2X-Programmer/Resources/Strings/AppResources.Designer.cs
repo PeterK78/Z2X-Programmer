@@ -3391,6 +3391,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string LocoListColumnHeaderImage {
+            get {
+                return ResourceManager.GetString("LocoListColumnHeaderImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string LocoListColumnHeaderName {
