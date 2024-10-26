@@ -125,8 +125,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding AccelerationRateEnabled}" Margin="0,10,0,0" >
                             <HorizontalStackLayout>
-                                    <Slider Value="{Binding AccelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label Text="{Binding AccelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End" />
+                                <Button Text="-" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=DecreaseAccelarationRateCV3Command}" ></Button>
+                                    <Slider Margin="20,0,20,0"  Value="{Binding AccelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="{Binding LimitMaximumAccelerationRateCV3}" Minimum="{Binding LimitMinimumAccelerationRateCV3}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Button Text="+" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=IncreaseAccelarationRateCV3Command}"></Button>
+                                <Label Text="{Binding AccelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="105" HorizontalTextAlignment="End" />
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                         
@@ -152,8 +154,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding DecelerationRateEnabled}" Margin="0,10,0,0" >
                             <HorizontalStackLayout>
-                                    <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSliderToolTip}"   Value="{Binding DecelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding DecelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"/>
+                                    <Button Text="-" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=DecreaseDecelerationRateCV4Command}" ></Button>
+                                    <Slider Margin="20,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSliderToolTip}"   Value="{Binding DecelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="{Binding LimitMaximumDecelerationRateCV4}" Minimum="{Binding LimitMinimumDecelerationRateCV4}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Button Text="+" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=IncreaseDecelerationRateCV4Command}"></Button>
+                                    <Label  Text="{Binding DecelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="105" HorizontalTextAlignment="End"/>
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                         

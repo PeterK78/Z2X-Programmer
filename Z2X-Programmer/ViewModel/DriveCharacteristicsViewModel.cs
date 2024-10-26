@@ -22,6 +22,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.DataStore;
@@ -32,6 +33,21 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class DriveCharacteristicsViewModel : ObservableObject
     {
+
+        #region REGION: LIMITS FOR ENTRY VALIDATION
+        [ObservableProperty]
+        int limitMinimumAccelerationRateCV3;
+
+        [ObservableProperty]
+        int limitMaximumAccelerationRateCV3;
+
+        [ObservableProperty]
+        int limitMinimumDecelerationRateCV4;
+
+        [ObservableProperty]
+        int limitMaximumDecelerationRateCV4;
+
+        #endregion
 
         #region REGION: DECODER FEATURES
 
@@ -152,8 +168,10 @@ namespace Z2XProgrammer.ViewModel
         public DriveCharacteristicsViewModel()
         {
             AvailableSpeedStepModes = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCSpeedStepModes());
-            AvailableABCBreakModes = new ObservableCollection<string>(NMRAEnumConverter.GetAvailableDCCABCBreakModes());            
-            
+            AvailableABCBreakModes = new ObservableCollection<string>(NMRAEnumConverter.GetAvailableDCCABCBreakModes());
+
+            SetGUILimits();
+
             OnGetDataFromDataStore();
             OnGetDataFromDecoderSpecification();
 
@@ -177,6 +195,18 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// Sets the limits for all GUI elements.
+        /// </summary>
+        private void SetGUILimits()
+        {
+            LimitMinimumAccelerationRateCV3 = 1;
+            LimitMaximumAccelerationRateCV3 = 255;
+
+            LimitMinimumDecelerationRateCV4 = 1;
+            LimitMaximumDecelerationRateCV4 = 255;
+        }
 
         /// <summary>
         /// Returns the label for the acceleration rate.
@@ -249,6 +279,46 @@ namespace Z2XProgrammer.ViewModel
         }
 
         #endregion
+
+        #region REGION: COMMANDS
+        /// <summary>
+        /// Decreases the acceleration rate of CV3 by 1.
+        /// </summary>
+        [RelayCommand]
+        void DecreaseAccelarationRateCV3()
+        {
+            if (AccelerationRate > LimitMinimumAccelerationRateCV3) AccelerationRate--;
+        }
+
+        /// <summary>
+        /// Increases the acceleration rate of CV3 by 1.
+        /// </summary>
+        [RelayCommand]
+        void IncreaseAccelarationRateCV3()
+        {
+            if (AccelerationRate < LimitMaximumAccelerationRateCV3) AccelerationRate++;
+        }
+
+        /// <summary>
+        /// Decreases the deceleration rate of CV4 by 1.
+        /// </summary>
+        [RelayCommand]
+        void DecreaseDecelerationRateCV4()
+        {
+            if (DecelerationRate > LimitMinimumDecelerationRateCV4) DecelerationRate--;
+        }
+
+        /// <summary>
+        /// Increases the deceleration rate of CV4 by 1.
+        /// </summary>
+        [RelayCommand]
+        void IncreaseDecelerationRateCV4()
+        {
+            if (DecelerationRate < LimitMaximumDecelerationRateCV4) DecelerationRate++;
+        }
+
+        #endregion
+
 
     }
 }
