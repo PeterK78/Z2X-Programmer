@@ -85,11 +85,15 @@ namespace Z2XProgrammer.ViewModel
         internal ObservableCollection<string>?availableDecSpecs;
 
         [ObservableProperty]
-        internal string selectedDecSpeq;
+        internal string selectedDecSpeq = string.Empty;
         partial void OnSelectedDecSpeqChanged(string? oldValue, string newValue)
         {
             DecoderSpecification.DeqSpecName = newValue;
+            SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(newValue, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
         }
+
+        [ObservableProperty]
+        internal string selectedDecSpecNotes = string.Empty;
 
         [ObservableProperty]
         private ObservableCollection<String>? availableProgrammingModes;
@@ -127,6 +131,8 @@ namespace Z2XProgrammer.ViewModel
                 AvailableDecSpecs = new ObservableCollection<string>(DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath));
                 SelectedDecSpeq = DeqSpecReader.GetDefaultDecSpecName();
             }
+
+            SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(SelectedDecSpeq, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
 
             locomotiveImageSource = "badgeicon.png";
             LocomotiveDescription = "Z2X-Programmer";

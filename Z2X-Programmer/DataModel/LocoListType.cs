@@ -27,7 +27,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Stores the use defined image.
         /// </summary>
-        public ImageSource UserDefindedImage { get; set; }
+        public ImageSource UserDefindedImage { get; set; } = string.Empty;
 
         public LocoListType() { }
 

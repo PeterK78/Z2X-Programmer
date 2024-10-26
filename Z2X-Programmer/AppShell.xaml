@@ -87,7 +87,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="220" Phone="170"></OnIdiom>                    
                 </Picker.WidthRequest>
             </Picker>
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}" WidthRequest="250">
+            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}" WidthRequest="250" ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
                 <Picker.WidthRequest>
                     <OnIdiom Default="300" Phone="240"></OnIdiom>
                 </Picker.WidthRequest>

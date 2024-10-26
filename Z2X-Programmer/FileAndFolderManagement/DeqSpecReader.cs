@@ -119,8 +119,45 @@ namespace Z2XProgrammer.FileAndFolderManagement
         /// <returns>TRUE if the decoder specification file is available. FALSE if the decoder specification file is missing.</returns>
         public static bool IsDecoderSpecificationAvailable (string decSpecName)    
         {
-            if (GetDecSpecFileName(decSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath) != string.Empty) return true;
-            return false;   
+            try
+            {
+                if (GetDecSpecFileName(decSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath) != string.Empty) return true;
+                return false;
+            }
+            catch   { return false; } 
+        }
+
+
+        /// <summary>
+        /// Returns the decoder specification notes.
+        /// </summary>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
+        /// <returns></returns>
+        public static string GetDecSpecNotes(string decSpecName, string folder, string languageKey)
+        {
+            try
+            {
+                //  Check the input parameters
+                if ((decSpecName == "") || (decSpecName is null)) return string.Empty;
+                if ((folder == "") || (folder is null)) return string.Empty;
+
+                //  Get the file name of the decoder specification
+                string decSpecFileName = GetDecSpecFileName(decSpecName, folder);
+
+                if (decSpecFileName == "") return string.Empty;
+
+                XDocument xdoc = XDocument.Load(decSpecFileName);
+                if (xdoc == null) return "";
+
+                if (languageKey == AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN)
+                {
+                    if (xdoc.Element("decoderseries")!.Attribute("notes_de") == null) return string.Empty;
+                    if (xdoc.Element("decoderseries")!.Attribute("notes_de")!.Value != null) return xdoc.Element("decoderseries")!.Attribute("notes_de")!.Value;
+                }
+                if (xdoc.Element("decoderseries")!.Attribute("notes_en") == null) return string.Empty;
+                return xdoc.Element("decoderseries")!.Attribute("notes_en")!.Value;
+            }
+            catch { return string.Empty; }
         }
 
         /// <summary>
@@ -129,15 +166,17 @@ namespace Z2XProgrammer.FileAndFolderManagement
         /// <returns></returns>
         public static string GetDefaultDecSpecName()
         {
-
-            if (Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT) == AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN)
+            try
             {
-                return UNKNOWN_DECDODER_DE;
-            }
-            else
-            {
-                return UNKNOWN_DECDODER_EN;
-            }
+                if (Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT) == AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN)
+                {
+                    return UNKNOWN_DECDODER_DE;
+                }
+                else
+                {
+                    return UNKNOWN_DECDODER_EN;
+                }
+            } catch { return string.Empty; }
         }
 
         /// <summary>
@@ -243,11 +282,17 @@ namespace Z2XProgrammer.FileAndFolderManagement
             if ((fileName == null) || (fileName == string.Empty)) return "";
             if ((languageKey == null) || (languageKey == string.Empty)) return "";
 
-            XDocument xdoc = XDocument.Load(fileName);
-            if (xdoc == null) return "";
+            try
+            {
 
-            if(languageKey == AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN) return xdoc.Element("decoderseries")!.Attribute("description_de")!.Value;
-            return xdoc.Element("decoderseries")!.Attribute("description_en")!.Value;
+                XDocument xdoc = XDocument.Load(fileName);
+                if (xdoc == null) return "";
+
+                if (languageKey == AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN) return xdoc.Element("decoderseries")!.Attribute("description_de")!.Value;
+                return xdoc.Element("decoderseries")!.Attribute("description_en")!.Value;
+            }
+            catch { return string.Empty; }
+
         }
 
     
@@ -303,32 +348,37 @@ namespace Z2XProgrammer.FileAndFolderManagement
             string decSpecFileName = GetDecSpecFileName(decSpecName, folder);
             if (decSpecFileName == "") return string.Empty;
 
-            //  Open the decspec XML file of the given decoder specification
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(decSpecFileName);
-
-            //  Try to get the node with the feature name
-            XmlNodeList itemList = xmlDoc.GetElementsByTagName("decoder");
-
-            //  Check if we have found any items in the decoder specification file
-            if (itemList is null) return string.Empty;
-
-            //  Check if we have find one, single matching feature - if not return FALSE
-            if (itemList.Count == 0) return string.Empty;
-
-            //  Check if we have found any attributes
-            for (int i=0;i<= itemList.Count-1;i++)
+            try
             {
-                if (itemList[i]!.Attributes!["decoderid"] is null) continue;
 
-                if (itemList[i]!.Attributes!["decoderid"]!.Value == decoderID.ToString())
+                //  Open the decspec XML file of the given decoder specification
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(decSpecFileName);
+
+                //  Try to get the node with the feature name
+                XmlNodeList itemList = xmlDoc.GetElementsByTagName("decoder");
+
+                //  Check if we have found any items in the decoder specification file
+                if (itemList is null) return string.Empty;
+
+                //  Check if we have find one, single matching feature - if not return FALSE
+                if (itemList.Count == 0) return string.Empty;
+
+                //  Check if we have found any attributes
+                for (int i = 0; i <= itemList.Count - 1; i++)
                 {
-                    if (itemList[i]!.Attributes!["decodername"] is null) continue;
-                    return itemList[i]!.Attributes!["decodername"]!.Value;
-                }
-            }
+                    if (itemList[i]!.Attributes!["decoderid"] is null) continue;
 
-            return string.Empty;
+                    if (itemList[i]!.Attributes!["decoderid"]!.Value == decoderID.ToString())
+                    {
+                        if (itemList[i]!.Attributes!["decodername"] is null) continue;
+                        return itemList[i]!.Attributes!["decodername"]!.Value;
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch { return string.Empty; }  
 
         }
 
@@ -348,36 +398,41 @@ namespace Z2XProgrammer.FileAndFolderManagement
             if((featureName == "") || (featureName is null)) return false;
             if ((folder == "") || (folder is null)) return false;
 
-            //  Get the file name of the decoder specification
-            string decSpecFileName = GetDecSpecFileName(decSpecName, folder);
+            try
+            {
 
-            if (decSpecFileName == "") return false;
+                //  Get the file name of the decoder specification
+                string decSpecFileName = GetDecSpecFileName(decSpecName, folder);
 
-            //  Open the decspec XML file of the given decoder specification
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(decSpecFileName);
-            
-            //  Try to get the node with the feature name
-            XmlNodeList itemList = xmlDoc.GetElementsByTagName(featureName);
+                if (decSpecFileName == "") return false;
 
-            //  Check if we have found any items in the decoder specification file
-            if (itemList is null) return false;
-            
-            //  Check if we have find one, single matching feature - if not return FALSE
-            if (itemList.Count != 1) return false;
-            
-            //  Check if we have found any attributes
-            if (itemList[0]!.Attributes is null) return false;
+                //  Open the decspec XML file of the given decoder specification
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(decSpecFileName);
 
-            //  Check if we have found the "support" attribute
-            if (itemList[0]!.Attributes!["support"] is null) return false;
+                //  Try to get the node with the feature name
+                XmlNodeList itemList = xmlDoc.GetElementsByTagName(featureName);
 
-            //  Get the content of the "support" attribute 
-            string support = itemList[0]!.Attributes!["support"]!.Value;
-            
-            if (support.ToUpper() == "YES") return true;
+                //  Check if we have found any items in the decoder specification file
+                if (itemList is null) return false;
 
-            return false;
+                //  Check if we have find one, single matching feature - if not return FALSE
+                if (itemList.Count != 1) return false;
+
+                //  Check if we have found any attributes
+                if (itemList[0]!.Attributes is null) return false;
+
+                //  Check if we have found the "support" attribute
+                if (itemList[0]!.Attributes!["support"] is null) return false;
+
+                //  Get the content of the "support" attribute 
+                string support = itemList[0]!.Attributes!["support"]!.Value;
+
+                if (support.ToUpper() == "YES") return true;
+
+                return false;
+            }
+            catch {  return false; }    
         }
 
         /// <summary>
@@ -397,32 +452,37 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
             if (decSpecFileName == "") return NMRA.ManufacurerID_Unknown;
 
-            //  Open the decspec XML file of the given decoder specification
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(decSpecFileName);
+            try
+            {
 
-            //  Try to get the decoder node
-            XmlNodeList itemList = xmlDoc.GetElementsByTagName("decoderseries");
+                //  Open the decspec XML file of the given decoder specification
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(decSpecFileName);
 
-            //  Check if we have found any items in the decoder specification file
-            if (itemList is null) return NMRA.ManufacurerID_Unknown;
+                //  Try to get the decoder node
+                XmlNodeList itemList = xmlDoc.GetElementsByTagName("decoderseries");
 
-            //  Check if we have find one, single matching feature - if not return FALSE
-            if (itemList.Count != 1) return NMRA.ManufacurerID_Unknown;
+                //  Check if we have found any items in the decoder specification file
+                if (itemList is null) return NMRA.ManufacurerID_Unknown;
 
-            //  Check if we have found any attributes
-            if (itemList[0]!.Attributes is null) return NMRA.ManufacurerID_Unknown;
+                //  Check if we have find one, single matching feature - if not return FALSE
+                if (itemList.Count != 1) return NMRA.ManufacurerID_Unknown;
 
-            //  Check if we have found the "support" attribute
-            if (itemList[0]!.Attributes!["manufacturerid"] is null) return NMRA.ManufacurerID_Unknown;
+                //  Check if we have found any attributes
+                if (itemList[0]!.Attributes is null) return NMRA.ManufacurerID_Unknown;
 
-            //  Get the content of the "support" attribute 
-            string manufacturerID = itemList[0]!.Attributes!["manufacturerid"]!.Value;
-            byte returnValue = 0;
+                //  Check if we have found the "support" attribute
+                if (itemList[0]!.Attributes!["manufacturerid"] is null) return NMRA.ManufacurerID_Unknown;
 
-            if(byte.TryParse(manufacturerID,out returnValue) ==  false) return NMRA.ManufacurerID_Unknown;
-            
-            return byte.Parse(manufacturerID);
+                //  Get the content of the "support" attribute 
+                string manufacturerID = itemList[0]!.Attributes!["manufacturerid"]!.Value;
+                byte returnValue = 0;
+
+                if (byte.TryParse(manufacturerID, out returnValue) == false) return NMRA.ManufacurerID_Unknown;
+
+                return byte.Parse(manufacturerID);
+            }
+            catch { return NMRA.ManufacurerID_Unknown; }   
 
         }
 
@@ -440,44 +500,47 @@ namespace Z2XProgrammer.FileAndFolderManagement
             //  If we do not get a unique decoder ID, we use the generic decoder description
             if (decoderID == 0) return GetDefaultDecSpecName();
 
-
-            string[] fileEntries = Directory.GetFiles(ApplicationFolders.DecSpecsFolderPath, "*.decspec");
-            foreach (string fileName in fileEntries)
+            try
             {
 
-                XDocument xdoc = XDocument.Load(fileName);
-
-                //  Formatting check of the XML file - check if the decoder section is available
-                if (xdoc.Element("decoderseries") == null) return "";
-                XElement xDecoderElement = xdoc.Element("decoderseries")!;
-
-                //  Formatting check of the XML file - check if the manufacturerid attribute is available
-                if (xDecoderElement.Attribute("manufacturerid") == null) return "";
-                XAttribute xManufacturerIDAttribute = xDecoderElement.Attribute("manufacturerid")!;
-                
-                if (xManufacturerIDAttribute.Value == manufactuerID.ToString())
+                string[] fileEntries = Directory.GetFiles(ApplicationFolders.DecSpecsFolderPath, "*.decspec");
+                foreach (string fileName in fileEntries)
                 {
-                  //  var query = from c in xdoc.Descendants("decoderseries") select c;
-                    foreach (XElement element in xdoc.Descendants("decoder"))
+
+                    XDocument xdoc = XDocument.Load(fileName);
+                    //  Formatting check of the XML file - check if the decoder section is available
+                    if (xdoc.Element("decoderseries") == null) return "";
+                    XElement xDecoderElement = xdoc.Element("decoderseries")!;
+
+                    //  Formatting check of the XML file - check if the manufacturerid attribute is available
+                    if (xDecoderElement.Attribute("manufacturerid") == null) return "";
+                    XAttribute xManufacturerIDAttribute = xDecoderElement.Attribute("manufacturerid")!;
+
+                    if (xManufacturerIDAttribute.Value == manufactuerID.ToString())
                     {
-                        if (element.Attribute("decoderid") == null) continue;
-                        string decID = element.Attribute("decoderid")!.Value;
-                        if(decID.ToUpper() == decoderID.ToString().ToUpper())
+                        //  var query = from c in xdoc.Descendants("decoderseries") select c;
+                        foreach (XElement element in xdoc.Descendants("decoder"))
                         {
-                            if (xDecoderElement.Attribute("description_de") == null) return "";
-                            if (AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN == Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT))
+                            if (element.Attribute("decoderid") == null) continue;
+                            string decID = element.Attribute("decoderid")!.Value;
+                            if (decID.ToUpper() == decoderID.ToString().ToUpper())
                             {
-                                return xDecoderElement.Attribute("description_de")!.Value;
-                            }
-                            else
-                            {
-                                return xDecoderElement.Attribute("description_en")!.Value;
+                                if (xDecoderElement.Attribute("description_de") == null) return "";
+                                if (AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN == Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT))
+                                {
+                                    return xDecoderElement.Attribute("description_de")!.Value;
+                                }
+                                else
+                                {
+                                    return xDecoderElement.Attribute("description_en")!.Value;
+                                }
                             }
                         }
                     }
                 }
+                return GetDefaultDecSpecName();
             }
-            return GetDefaultDecSpecName();
+            catch { return string.Empty; }
         }
 
         /// <summary>
@@ -510,7 +573,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
         
     public static string UnknownDecoderSpec =@"<!-- Specification file for an unknown, basic decoder -->
-<decoderseries description_de=""" + UNKNOWN_DECDODER_DE + @""" description_en=""" + UNKNOWN_DECDODER_EN + @""" manufacturerid=""0"" decspecversion=""1"">
+<decoderseries description_de=""" + UNKNOWN_DECDODER_DE + @""" description_en=""" + UNKNOWN_DECDODER_EN + @""" manufacturerid=""0"" decspecversion=""1"" notes_de=""Decoder mit obligatorischen RCN225-Funktionen"" notes_en=""Decoder with mandatory RCN225 functions"">
 
     <!-- Supported decoders -->
 
@@ -535,7 +598,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
 ";
 
 public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatible standard decoder -->
-<decoderseries description_en=""RCN225 compatible decoder"" description_de=""RCN225 kompatibler Decoder"" manufacturerid=""0"" decspecversion=""1"">
+<decoderseries description_en=""RCN225 compatible decoder"" description_de=""RCN225 kompatibler Decoder"" manufacturerid=""0"" decspecversion=""1"" notes_de=""Decoder mit obligatorischen und optionalen RCN225-Funktionen"" notes_en=""Decoder with mandatory and optional RCN225 functions"" >
 
     <!-- Supported decoders -->
 
@@ -571,7 +634,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 ";
 
     public static string ZimoFXFunctionSpec = @"<!-- Specification file for ZIMO MX function decoders -->
-<decoderseries description_en=""ZIMO MX function decoder"" description_de=""ZIMO MX Funktionsdecoder"" manufacturerid=""145"" decspecversion=""1"">
+<decoderseries description_en=""ZIMO MX function decoder"" description_de=""ZIMO MX Funktionsdecoder"" manufacturerid=""145"" decspecversion=""1"" notes_de=""Decoder mit obligatorischen und optionalen RCN225-Funktionen"" notes_en=""Decoder with mandatory and optional RCN225 functions"">
 
     <!-- Supported decoders -->
     <decoder decoderid=""171""/>
@@ -601,7 +664,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 </decoderseries>";
 
     public static string ZimoMSLocomotiveSpec = @"<!-- Specification file for ZIMO MS sound decoders -->
-<decoderseries description_en=""ZIMO MS sound decoder"" description_de=""ZIMO MS Sounddecoder""  manufacturerid=""145"" decspecversion=""1"">
+<decoderseries description_en=""ZIMO MS sound decoder"" description_de=""ZIMO MS Sounddecoder""  manufacturerid=""145"" decspecversion=""1"" notes_de=""ZIMO MS Sounddecoder"" notes_en=""ZIMO MS sound decoder"">
 
     <!-- Supported decoders -->
     <decoder decoderid=""1"" decodername=""MS500"" />
@@ -682,7 +745,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 </decoderseries>";
 
         public static string ZimoMXLocomotiveSpec = @"<!-- Specification file for ZIMO MX sound decoders -->
-<decoderseries description_en=""ZIMO MX sound decoder"" description_de=""ZIMO MX Sounddecoder"" manufacturerid=""145"" decspecversion=""1"">
+<decoderseries description_en=""ZIMO MX sound decoder"" description_de=""ZIMO MX Sounddecoder"" manufacturerid=""145"" decspecversion=""1"" notes_de=""ZIMO MX Sounddecoder"" notes_en=""ZIMO MX sound decoders"">
 
     <!-- Supported decoders -->
     <decoder decoderid=""130"" decodername=""MX630 (2022)"" />
