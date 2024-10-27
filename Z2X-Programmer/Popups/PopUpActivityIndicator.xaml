@@ -29,6 +29,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              CanBeDismissedByTappingOutsideOfPopup="False"
              >
+    <Border>
     <VerticalStackLayout>
         <Grid MinimumWidthRequest="500" MinimumHeightRequest="150" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
             <Grid.ColumnDefinitions>
@@ -49,5 +50,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </Grid>
         
     </VerticalStackLayout>
-    
+    </Border>
+
 </mct:Popup>
