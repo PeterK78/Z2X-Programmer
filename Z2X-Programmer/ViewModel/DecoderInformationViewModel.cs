@@ -62,6 +62,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_BOOTLOADER_VERSION_24X;
 
+        [ObservableProperty]
+        bool zIMO_SOUNDPROJECTNR_CV254;
+
+
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
@@ -101,6 +105,9 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         internal bool zimoBootloaderIsFailSafe = false;
+
+        [ObservableProperty]
+        internal string zimoSoundProjectNumber = string.Empty;
 
         [ObservableProperty]
         internal string userDefindedNotes = string.Empty;
@@ -181,6 +188,7 @@ namespace Z2XProgrammer.ViewModel
                 ManufacturerZIMO = false;
             }
             ZIMO_BOOTLOADER_VERSION_24X = DecoderSpecification.ZIMO_BOOTLOADER_VERSION_24X;
+            ZIMO_SOUNDPROJECTNR_CV254 = DecoderSpecification.ZIMO_SOUNDPROJECTNR_CV254;
         }
 
         /// <summary>
@@ -210,6 +218,7 @@ namespace Z2XProgrammer.ViewModel
             UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
             ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion.ToString() + "." + DecoderConfiguration.ZIMO.BootloaderSubVersion.ToString();
             ZimoBootloaderIsFailSafe = ZIMO.IsBootloaderVersionFailSafe(DecoderConfiguration.ZIMO.BootloaderVersion, DecoderConfiguration.ZIMO.BootloaderSubVersion);
+            ZimoSoundProjectNumber = DecoderConfiguration.ZIMO.SoundProjectNumber.ToString();
 
 
             UserDefindedNotes = DecoderConfiguration.UserDefindedNotes;

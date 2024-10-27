@@ -512,6 +512,17 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
+        /// <summary>
+        /// Returns the sound project number in CV254.
+        /// </summary>
+        public byte SoundProjectNumber
+        {
+            get
+            {
+                return configurationVariables[254].Value;
+            }
+        }
+
 
         /// <summary>
         ///  The type of the function mapping in CV61

@@ -925,6 +925,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sound project number (CV254).
+        /// </summary>
+        public static string FrameDecoderZIMOInfoSoundProjectNr {
+            get {
+                return ResourceManager.GetString("FrameDecoderZIMOInfoSoundProjectNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Software version (CV7 + CV65).
         /// </summary>
         public static string FrameDecoderZIMOInfoSWVersion {

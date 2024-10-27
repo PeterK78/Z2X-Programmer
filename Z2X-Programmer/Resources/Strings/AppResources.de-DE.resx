@@ -1351,4 +1351,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="ZIMOBootloaderIsFailSafe" xml:space="preserve">
     <value>Die Fail-Safe-Funktion wird von dieser Bootloader-Version vollständig unterstützt.</value>
   </data>
+  <data name="FrameDecoderZIMOInfoSoundProjectNr" xml:space="preserve">
+    <value>Soundprojekt-Nummer (CV254)</value>
+  </data>
 </root>

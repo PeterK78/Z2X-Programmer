@@ -1349,4 +1349,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="ZIMOBootloaderIsFailSafe" xml:space="preserve">
     <value>The fail-safe function is fully supported by this bootloader version.</value>
   </data>
+  <data name="FrameDecoderZIMOInfoSoundProjectNr" xml:space="preserve">
+    <value>Sound project number (CV254)</value>
+  </data>
 </root>
