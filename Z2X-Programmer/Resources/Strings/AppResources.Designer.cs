@@ -3481,6 +3481,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The fail-safe function is fully supported by this bootloader version..
+        /// </summary>
+        public static string ZIMOBootloaderIsFailSafe {
+            get {
+                return ResourceManager.GetString("ZIMOBootloaderIsFailSafe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The fail-safe function of this bootloader is inadequate. It is strongly recommended to update the firmware..
+        /// </summary>
+        public static string ZIMOBootloaderNotFailSafe {
+            get {
+                return ResourceManager.GetString("ZIMOBootloaderNotFailSafe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No error (CV30 = 0).
         /// </summary>
         public static string ZIMOErrorCode0 {

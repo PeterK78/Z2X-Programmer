@@ -71,36 +71,39 @@ namespace Z2XProgrammer.ViewModel
 
         //  RCN225 properties
         [ObservableProperty]
-        internal string manufacturer;
+        internal string manufacturer = string.Empty;
 
         [ObservableProperty]
-        internal string manufacturerID;
+        internal string manufacturerID = string.Empty;
 
         [ObservableProperty]
-        internal string version;
+        internal string version = string.Empty;
 
         //  Doehler & Haass properties
         [ObservableProperty]
-        internal string doehlerAndHaasDecoderType;
+        internal string doehlerAndHaasDecoderType = string.Empty;
 
         [ObservableProperty]
-        internal string doehlerAndHaasFirmwareVersion;
-    
+        internal string doehlerAndHaasFirmwareVersion = string.Empty;
+
         //  ZIMO properties
         [ObservableProperty]
-        internal string zimoSWVersion;
+        internal string zimoSWVersion = string.Empty;
 
         [ObservableProperty]
-        internal string zimoDecoderType;
+        internal string zimoDecoderType = string.Empty;
 
         [ObservableProperty]
-        internal string zimoDecoderID;
+        internal string zimoDecoderID = string.Empty;
 
         [ObservableProperty]
-        internal string zimoBootloaderVersion;
+        internal string zimoBootloaderVersion = string.Empty;
 
         [ObservableProperty]
-        internal string userDefindedNotes;
+        internal bool zimoBootloaderIsFailSafe = false;
+
+        [ObservableProperty]
+        internal string userDefindedNotes = string.Empty;
         partial void OnUserDefindedNotesChanged(string value)
         {
             if (value == null) return;
@@ -108,10 +111,10 @@ namespace Z2XProgrammer.ViewModel
         }
 
         [ObservableProperty]
-        internal ImageSource locomotiveImageSource;
+        internal ImageSource locomotiveImageSource = string.Empty;
 
         [ObservableProperty]
-        internal string userDefindedDecoderDescription;
+        internal string userDefindedDecoderDescription = string.Empty;
         partial void OnUserDefindedDecoderDescriptionChanged(string value)
         {
             if (DataStoreDataValid == true)
@@ -129,18 +132,6 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         public DecoderInformationViewModel()
         {
-            UserDefindedDecoderDescription = string.Empty;
-            UserDefindedNotes = string.Empty;
-            ZimoBootloaderVersion = string.Empty;
-            ZimoDecoderID = string.Empty;
-            Manufacturer = string.Empty;
-            ManufacturerID = string.Empty;
-            Version = string.Empty; 
-            DoehlerAndHaasDecoderType = string.Empty;
-            DoehlerAndHaasFirmwareVersion = string.Empty;
-            ZimoSWVersion = string.Empty;
-            ZimoDecoderType = string.Empty;
-            LocomotiveImageSource = string.Empty;
 
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
@@ -217,7 +208,10 @@ namespace Z2XProgrammer.ViewModel
             ZimoSWVersion = DecoderConfiguration.ZIMO.SoftwareVersion;
             ZimoDecoderID = DecoderConfiguration.ZIMO.DecoderID;
             UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
-            ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion;
+            ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion.ToString() + "." + DecoderConfiguration.ZIMO.BootloaderSubVersion.ToString();
+            ZimoBootloaderIsFailSafe = ZIMO.IsBootloaderVersionFailSafe(DecoderConfiguration.ZIMO.BootloaderVersion, DecoderConfiguration.ZIMO.BootloaderSubVersion);
+
+
             UserDefindedNotes = DecoderConfiguration.UserDefindedNotes;
 
             //  Doehler & Haass specific settings
@@ -233,6 +227,8 @@ namespace Z2XProgrammer.ViewModel
                 LocomotiveImageSource = ImageSource.FromFile("ic_fluent_image_add_24_regular.png");
             }
         }
+
+        
         #endregion
 
         #region REGION: COMMANDS

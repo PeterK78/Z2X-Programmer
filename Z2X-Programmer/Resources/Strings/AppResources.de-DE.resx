@@ -1345,4 +1345,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="LocoListColumnHeaderImage" xml:space="preserve">
     <value>Bild</value>
   </data>
+  <data name="ZIMOBootloaderNotFailSafe" xml:space="preserve">
+    <value>Die Fail-Safe Funktion dieses Bootloaders ist mangelhaft. Es wird dringend empfohlen ein Update der Firmware durchzuführen.</value>
+  </data>
+  <data name="ZIMOBootloaderIsFailSafe" xml:space="preserve">
+    <value>Die Fail-Safe-Funktion wird von dieser Bootloader-Version vollständig unterstützt.</value>
+  </data>
 </root>

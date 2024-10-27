@@ -52,5 +52,21 @@ namespace Z2XProgrammer.Helper
                 default: return  value + " " + AppResources.ZIMOErrorCodeUnknown;
             }
         }
+
+        /// <summary>
+        /// Returns TRUE if the ZIMO bootloader version supports the "Fail-Safe" feature.
+        /// According to the instructions of the Roco Maintenance Tool, ZIMO MS bootloaders only support a "Fail-Safe" mode from version 2.2.
+        /// </summary>
+        /// <param name="bootloaderVersion"></param>
+        /// <param name="bootloaderSubversion"></param>
+        /// <returns></returns>
+        public static bool IsBootloaderVersionFailSafe(byte bootloaderVersion, byte bootloaderSubversion)
+        {
+            if (bootloaderVersion < 2) return false;
+            if (bootloaderVersion > 2) return true;
+            if (bootloaderSubversion < 2) return false;
+            return true;
+        }
+
     }
 }

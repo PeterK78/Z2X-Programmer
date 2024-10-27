@@ -480,13 +480,24 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Returns the ZIMO specific boot loader version (CV248, CV249)
+        /// Returns the version of the bootloader in CV248. See also BootloaderSubVersion of CV249.
         /// </summary>
-        public string BootloaderVersion
+        public byte BootloaderVersion
         {
             get
             {
-                return configurationVariables[248].Value.ToString() + "." + configurationVariables[249].Value.ToString();
+                return configurationVariables[248].Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns the subversion of the bootloader in CV249. See also BootloaderVersion of CV248.
+        /// </summary>
+        public byte BootloaderSubVersion
+        {
+            get
+            {
+                return configurationVariables[249].Value;
             }
         }
 
