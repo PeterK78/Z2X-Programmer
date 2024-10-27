@@ -55,4 +55,5 @@
 | ZIMO_SOUND_VOLUME_DIESELELEC_CV29X | 	CV296, CV298	 | Configures different volume levels for diesel and electric locomotives. | 	Sound | 
 | ZIMO_FUNCKEY_MUTE_CV313	 | CV313	 | Function button to fade the sound in and out.	 | Funtion keys | 
 | ZIMO_SOUND_STARTUPDELAY_CV273	 | CV273 | 	Configures the start-up delay of the sound. | 	Sound | 
- | ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 | 	CV285 | 	Configures the duration of the noise reduction on delay.	 | Sound | 
+| ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 | 	CV285 | 	Configures the duration of the noise reduction on delay.	 | Sound | 
+| ZIMO_SOUNDPROJECTNR_CV254 | CV254 | Contains the sound project number. |  Decoder information | 
