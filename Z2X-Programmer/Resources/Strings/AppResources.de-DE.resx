@@ -514,7 +514,7 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Zuordnung laut RCN-225</value>
   </data>
   <data name="FrameFunctionKeysMappingTitle" xml:space="preserve">
-    <value>Funktionszuordnung (Zuordnung von Taste zu Funktionsausgang)</value>
+    <value>Funktionsausgänge</value>
   </data>
   <data name="FrameFunctionKeysShuntingKey" xml:space="preserve">
     <value>Rangiertaste</value>

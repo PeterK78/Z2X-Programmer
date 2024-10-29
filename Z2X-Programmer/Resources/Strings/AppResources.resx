@@ -509,10 +509,10 @@ The following configuration variables will be changed:</value>
     <value>Value</value>
   </data>
   <data name="FrameFunctionKeysMappingStandardTitle" xml:space="preserve">
-    <value>Standard function mapping</value>
+    <value>Mapping of the function outputs</value>
   </data>
   <data name="FrameFunctionKeysMappingTitle" xml:space="preserve">
-    <value>Assignment according to RCN-225</value>
+    <value>Function outputs</value>
   </data>
   <data name="FrameFunctionKeysShuntingKey" xml:space="preserve">
     <value>Shunting key</value>

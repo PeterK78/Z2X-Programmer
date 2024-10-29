@@ -39,6 +39,9 @@ using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
+    /// <summary>
+    /// Implementation of the view model for the function keys page
+    /// </summary>
     public partial class FunctionKeysViewModel: ObservableObject
     {
 
@@ -85,15 +88,16 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
-        #region CV33 Function Mapping Properties
+        #region CV33 FUNCTION OUTPUT MAPPING OF KEY F0 (FORWARD)
         [ObservableProperty]
         ushort cV33Value;
-
+        
         [ObservableProperty]
         bool cV33ValueBit0;
         partial void OnCV33ValueBit0Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
 
         [ObservableProperty]
@@ -101,46 +105,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV33ValueBit1Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit2;
         partial void OnCV33ValueBit2Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit3;
         partial void OnCV33ValueBit3Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit4;
         partial void OnCV33ValueBit4Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit5;
         partial void OnCV33ValueBit5Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit6;
         partial void OnCV33ValueBit6Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         [ObservableProperty]
         bool cV33ValueBit7;
         partial void OnCV33ValueBit7Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 7, value);
+                DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;     
         }
         #endregion
 
-        #region CV34 Function Mapping Properties of key F0 backward
+        #region CV34 FUNCTION OUTPUT MAPPING OF KEY F0 (BACKWARD)
         [ObservableProperty]
         ushort cV34Value;
 
@@ -149,6 +160,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV34ValueBit0Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
 
         [ObservableProperty]
@@ -156,46 +168,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV34ValueBit1Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit2;
         partial void OnCV34ValueBit2Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit3;
         partial void OnCV34ValueBit3Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit4;
         partial void OnCV34ValueBit4Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit5;
         partial void OnCV34ValueBit5Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit6;
         partial void OnCV34ValueBit6Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         [ObservableProperty]
         bool cV34ValueBit7;
         partial void OnCV34ValueBit7Changed(bool value)
         {
             CV34Value = Bit.Set((byte)CV34Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF0Backward = (byte)CV34Value;
         }
         #endregion
 
-        #region CV35 Function Mapping Properties of key F1
+        #region CV35 FUNCTION OUTPUT MAPPING OF KEY F1
         [ObservableProperty]
         ushort cV35Value;
 
@@ -204,6 +223,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV35ValueBit0Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
 
         [ObservableProperty]
@@ -211,46 +231,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV35ValueBit1Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit2;
         partial void OnCV35ValueBit2Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit3;
         partial void OnCV35ValueBit3Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit4;
         partial void OnCV35ValueBit4Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit5;
         partial void OnCV35ValueBit5Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit6;
         partial void OnCV35ValueBit6Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         [ObservableProperty]
         bool cV35ValueBit7;
         partial void OnCV35ValueBit7Changed(bool value)
         {
             CV35Value = Bit.Set((byte)CV35Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF1 = (byte)CV35Value;
         }
         #endregion
 
-        #region CV36 Function Mapping Properties of key F2
+        #region CV36 FUNCTION OUTPUT MAPPING OF KEY F2
         [ObservableProperty]
         ushort cV36Value;
 
@@ -259,6 +286,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV36ValueBit0Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
 
         [ObservableProperty]
@@ -266,46 +294,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV36ValueBit1Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit2;
         partial void OnCV36ValueBit2Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit3;
         partial void OnCV36ValueBit3Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit4;
         partial void OnCV36ValueBit4Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit5;
         partial void OnCV36ValueBit5Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit6;
         partial void OnCV36ValueBit6Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         [ObservableProperty]
         bool cV36ValueBit7;
         partial void OnCV36ValueBit7Changed(bool value)
         {
             CV36Value = Bit.Set((byte)CV36Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF2 = (byte)CV36Value;
         }
         #endregion
 
-        #region CV37 Function Mapping Properties of key F3
+        #region CV37 FUNCTION OUTPUT MAPPING OF KEY F3
         [ObservableProperty]
         ushort cV37Value;
 
@@ -314,6 +349,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV37ValueBit0Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
 
         [ObservableProperty]
@@ -321,46 +357,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV37ValueBit1Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit2;
         partial void OnCV37ValueBit2Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit3;
         partial void OnCV37ValueBit3Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit4;
         partial void OnCV37ValueBit4Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit5;
         partial void OnCV37ValueBit5Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit6;
         partial void OnCV37ValueBit6Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit7;
         partial void OnCV37ValueBit7Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
         }
         #endregion
 
-        #region CV38 Function Mapping Properties of key F4
+        #region CV38 FUNCTION OUTPUT MAPPING OF KEY F4
         [ObservableProperty]
         ushort cV38Value;
 
@@ -369,6 +412,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV38ValueBit0Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
 
         [ObservableProperty]
@@ -376,46 +420,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV38ValueBit1Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit2;
         partial void OnCV38ValueBit2Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit3;
         partial void OnCV38ValueBit3Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit4;
         partial void OnCV38ValueBit4Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit5;
         partial void OnCV38ValueBit5Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit6;
         partial void OnCV38ValueBit6Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit7;
         partial void OnCV38ValueBit7Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
         }
         #endregion
 
-        #region CV39 Function Mapping Properties of key F5
+        #region CV39 FUNCTION OUTPUT MAPPING OF KEY F5
         [ObservableProperty]
         ushort cV39Value;
 
@@ -424,6 +475,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV39ValueBit0Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
 
         [ObservableProperty]
@@ -431,46 +483,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV39ValueBit1Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit2;
         partial void OnCV39ValueBit2Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit3;
         partial void OnCV39ValueBit3Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit4;
         partial void OnCV39ValueBit4Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit5;
         partial void OnCV39ValueBit5Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit6;
         partial void OnCV39ValueBit6Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit7;
         partial void OnCV39ValueBit7Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
         }
         #endregion
 
-        #region CV40 Function Mapping Properties of key F6
+        #region CV40 FUNCTION OUT MAPPING OF KEY F6
         [ObservableProperty]
         ushort cV40Value;
 
@@ -479,6 +538,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV40ValueBit0Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
 
         [ObservableProperty]
@@ -486,46 +546,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV40ValueBit1Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit2;
         partial void OnCV40ValueBit2Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit3;
         partial void OnCV40ValueBit3Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit4;
         partial void OnCV40ValueBit4Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit5;
         partial void OnCV40ValueBit5Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit6;
         partial void OnCV40ValueBit6Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         [ObservableProperty]
         bool cV40ValueBit7;
         partial void OnCV40ValueBit7Changed(bool value)
         {
             CV40Value = Bit.Set((byte)CV40Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF6 = (byte)CV40Value;
         }
         #endregion
 
-        #region CV41 Function Mapping Properties of key F7
+        #region CV41 FUNCTION OUTPUT MAPPING OF KEY F7
         [ObservableProperty]
         ushort cV41Value;
 
@@ -534,6 +601,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV41ValueBit0Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
 
         [ObservableProperty]
@@ -541,46 +609,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV41ValueBit1Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit2;
         partial void OnCV41ValueBit2Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit3;
         partial void OnCV41ValueBit3Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit4;
         partial void OnCV41ValueBit4Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit5;
         partial void OnCV41ValueBit5Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit6;
         partial void OnCV41ValueBit6Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         [ObservableProperty]
         bool cV41ValueBit7;
         partial void OnCV41ValueBit7Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;        
         }
         #endregion
 
-        #region CV42 Function Mapping Properties of key F8
+        #region CV42 FUNCTION OUTPUT MAPPING OF KEY F8
         [ObservableProperty]
         ushort cV42Value;
 
@@ -589,6 +664,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit0Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
         }
 
         [ObservableProperty]
@@ -596,46 +672,60 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit1Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit2;
         partial void OnCV42ValueBit2Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit3;
         partial void OnCV42ValueBit3Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit4;
         partial void OnCV42ValueBit4Changed(bool value)
         {
-            CV42Value = Bit.Set((byte)CV42Value, 3, value);
+            CV42Value = Bit.Set((byte)CV42Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit5;
         partial void OnCV42ValueBit5Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit6;
         partial void OnCV42ValueBit6Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         [ObservableProperty]
         bool cV42ValueBit7;
         partial void OnCV42ValueBit7Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+
         }
         #endregion
 
-        #region CV43 Function Mapping Properties of key F9
+        #region CV43 FUNCTION OUTPUT MAPPING OF KEY F9
         [ObservableProperty]
         ushort cV43Value;
 
@@ -644,6 +734,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV43ValueBit0Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
 
         [ObservableProperty]
@@ -651,46 +742,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV43ValueBit1Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit2;
         partial void OnCV43ValueBit2Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit3;
         partial void OnCV43ValueBit3Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit4;
         partial void OnCV43ValueBit4Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit5;
         partial void OnCV43ValueBit5Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit6;
         partial void OnCV43ValueBit6Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         [ObservableProperty]
         bool cV43ValueBit7;
         partial void OnCV43ValueBit7Changed(bool value)
         {
             CV43Value = Bit.Set((byte)CV43Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF9 = (byte)CV43Value;
         }
         #endregion
 
-        #region CV44 Function Mapping Properties of key F10
+        #region CV44 FUNCTION OUTPUT MAPPING OF KEY F10
         [ObservableProperty]
         ushort cV44Value;
 
@@ -699,6 +797,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV44ValueBit0Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
 
         [ObservableProperty]
@@ -706,46 +805,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV44ValueBit1Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit2;
         partial void OnCV44ValueBit2Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit3;
         partial void OnCV44ValueBit3Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit4;
         partial void OnCV44ValueBit4Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit5;
         partial void OnCV44ValueBit5Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit6;
         partial void OnCV44ValueBit6Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit7;
         partial void OnCV44ValueBit7Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
         }
         #endregion
 
-        #region CV45 Function Mapping Properties of key F11
+        #region CV45 FUNCTION OUTPUT MAPPING OF KEY F11
         [ObservableProperty]
         ushort cV45Value;
 
@@ -754,6 +860,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV45ValueBit0Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
 
         [ObservableProperty]
@@ -761,46 +868,53 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV45ValueBit1Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit2;
         partial void OnCV45ValueBit2Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit3;
         partial void OnCV45ValueBit3Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit4;
         partial void OnCV45ValueBit4Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit5;
         partial void OnCV45ValueBit5Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit6;
         partial void OnCV45ValueBit6Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit7;
         partial void OnCV45ValueBit7Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
         }
         #endregion
 
-        #region CV46 Function Mapping Properties of key F12
+        #region CV46 FUNCTION OUTPUT MAPPING OF KEY F12
         [ObservableProperty]
         ushort cV46Value;
 
@@ -809,6 +923,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV46ValueBit0Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
 
         [ObservableProperty]
@@ -816,42 +931,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV46ValueBit1Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit2;
         partial void OnCV46ValueBit2Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit3;
         partial void OnCV46ValueBit3Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit4;
         partial void OnCV46ValueBit4Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit5;
         partial void OnCV46ValueBit5Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit6;
         partial void OnCV46ValueBit6Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         [ObservableProperty]
         bool cV46ValueBit7;
         partial void OnCV46ValueBit7Changed(bool value)
         {
             CV46Value = Bit.Set((byte)CV46Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionMappingF12 = (byte)CV46Value;
         }
         #endregion
 

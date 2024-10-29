@@ -1312,7 +1312,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standard function mapping.
+        ///   Looks up a localized string similar to Mapping of the function outputs.
         /// </summary>
         public static string FrameFunctionKeysMappingStandardTitle {
             get {
@@ -1321,7 +1321,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assignment according to RCN-225.
+        ///   Looks up a localized string similar to Function outputs.
         /// </summary>
         public static string FrameFunctionKeysMappingTitle {
             get {
