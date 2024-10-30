@@ -282,11 +282,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The configuration variable could not be read. .
+        /// </summary>
+        public static string AlertReadCVError {
+            get {
+                return ResourceManager.GetString("AlertReadCVError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to reset the settings? Z2X-Programmer will be closed automatically..
         /// </summary>
         public static string AlertResetSettings {
             get {
                 return ResourceManager.GetString("AlertResetSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration variable could not be written. .
+        /// </summary>
+        public static string AlertWriteCVError {
+            get {
+                return ResourceManager.GetString("AlertWriteCVError", resourceCulture);
             }
         }
         

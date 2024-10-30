@@ -52,6 +52,9 @@ namespace Z2XProgrammer.ViewModel
         bool dataValid;
 
         [ObservableProperty]
+        bool activityReadWriteCVOngoing = false;
+
+        [ObservableProperty]
         bool bit0;
         partial void OnBit0Changed(bool value)
         {
@@ -160,6 +163,7 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 DataValid = false;
+                ActivityReadWriteCVOngoing = true;
 
                 //  Turn the track power ON if we are in POM mode
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack) ReadWriteDecoder.SetTrackPowerON();
@@ -167,18 +171,30 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                await Task.Run(() => ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
+                bool WriteSuccessFull = false;
+    
+                await Task.Run(() => WriteSuccessFull =  ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
 
-                DecoderConfiguration.ConfigurationVariables[CvNumber].Value = Value;
-                DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
+                if (WriteSuccessFull == true)
+                {
+                    DecoderConfiguration.ConfigurationVariables[CvNumber].Value = Value;
+                    DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
 
-                DecoderConfiguration.BackupCVs[CvNumber].Value = Value;
-                DecoderConfiguration.BackupCVs[CvNumber].Enabled = true;
+                    DecoderConfiguration.BackupCVs[CvNumber].Value = Value;
+                    DecoderConfiguration.BackupCVs[CvNumber].Enabled = true;
 
-                WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
-                DataValid = true;
-
+                    DataValid = true;
+                }
+                else
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError,  AppResources.AlertWriteCVError, AppResources.OK);
+                    }
+                }
+                ActivityReadWriteCVOngoing = false;
             }
             catch (Exception ex)
             {
@@ -206,6 +222,7 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 DataValid = false;
+                ActivityReadWriteCVOngoing = true;
 
                 //  Turn the track power ON if we are in POM mode
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack) ReadWriteDecoder.SetTrackPowerON();
@@ -213,14 +230,27 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                await Task.Run(() => ReadWriteDecoder.ReadCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
+                bool readSuccessFull = false;
+                await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 
-                Value = DecoderConfiguration.ConfigurationVariables[CvNumber].Value;
-                DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
+                if (readSuccessFull == true)
+                {
+                    Value = DecoderConfiguration.ConfigurationVariables[CvNumber].Value;
+                    DecoderConfiguration.ConfigurationVariables[CvNumber].Enabled = true;
 
-                WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
-                DataValid = true;
+                    DataValid = true;
+                }
+                else
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertReadCVError, AppResources.OK);
+                    }
+                }
+
+                ActivityReadWriteCVOngoing = false;
 
             }
             catch (Exception ex)

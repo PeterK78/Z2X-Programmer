@@ -1352,4 +1352,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameDecoderZIMOInfoSoundProjectNr" xml:space="preserve">
     <value>Sound project number (CV254)</value>
   </data>
+  <data name="AlertReadCVError" xml:space="preserve">
+    <value>The configuration variable could not be read. </value>
+  </data>
+  <data name="AlertWriteCVError" xml:space="preserve">
+    <value>The configuration variable could not be written. </value>
+  </data>
 </root>

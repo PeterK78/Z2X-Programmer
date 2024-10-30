@@ -52,7 +52,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- Read & Write single CVs  -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsEnabled="{Binding Path=ActivityReadWriteCVOngoing,Converter={StaticResource boolInvert}}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -64,6 +64,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
+
+                    <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" IsVisible="{Binding ActivityReadWriteCVOngoing}" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
                     
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" WidthRequest="200" MinimumWidthRequest="200" Text="{Binding CvNumber}" HorizontalOptions="End" HorizontalTextAlignment="Center" VerticalOptions="Center" Keyboard="Numeric"  >

@@ -1354,4 +1354,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameDecoderZIMOInfoSoundProjectNr" xml:space="preserve">
     <value>Soundprojekt-Nummer (CV254)</value>
   </data>
+  <data name="AlertReadCVError" xml:space="preserve">
+    <value>Die Konfigurationsvariable konnte nicht ausgelesen werden. </value>
+  </data>
+  <data name="AlertWriteCVError" xml:space="preserve">
+    <value>Die Konfigurationsvariable konnte nicht geschrieben werden.</value>
+  </data>
 </root>
