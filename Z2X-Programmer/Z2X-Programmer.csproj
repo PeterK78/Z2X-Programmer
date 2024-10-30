@@ -150,6 +150,7 @@
 	  <None Remove="Resources\Images\ic_fluent_arrow_upload_24_regular.svg" />
 	  <None Remove="Resources\Images\ic_fluent_card_ui_24_regular.svg" />
 	  <None Remove="Resources\Images\ic_fluent_chat_help_24_regular.svg" />
+	  <None Remove="Resources\Images\ic_fluent_developer_board_24_regular.svg" />
 	  <None Remove="Resources\Images\ic_fluent_engine_24_regular.svg" />
 	  <None Remove="Resources\Images\ic_fluent_folder_open_24_regular.svg" />
 	  <None Remove="Resources\Images\ic_fluent_form_new_24_regular.svg" />
@@ -217,6 +218,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FunctionKeysPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FunctionOutputsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\InfoPage.xaml">

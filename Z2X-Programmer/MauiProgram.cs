@@ -69,6 +69,10 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<SettingsSearchPage>();
             builder.Services.AddSingleton<SettingsSearchViewModel>();
 
+            builder.Services.AddSingleton<FunctionOutputsPage>();
+            builder.Services.AddSingleton<FunctionOutputsViewModel>();
+
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

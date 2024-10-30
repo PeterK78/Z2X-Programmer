@@ -502,6 +502,41 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
+        /// The pin mode of the SUSI interface 1 (CV201)
+        /// </summary>
+        public SUSIPinModeType SUSIInterface1PinMode
+        {
+            get
+            {
+                switch (configurationVariables[201].Value)
+                {
+                    case 0: return SUSIPinModeType.SUSI;
+                    case 11: return SUSIPinModeType.LogicLevelOutput;
+                    case 22: return SUSIPinModeType.LogicLevelInput;
+                    case 33: return SUSIPinModeType.ServoControlLine;
+                    case 44: return SUSIPinModeType.SUSI;
+                    case 55: return SUSIPinModeType.I2C;
+                    default: return SUSIPinModeType.Unknown;
+                }
+            }
+            set
+            {
+                switch (value)
+                {
+                    case SUSIPinModeType.SUSI: configurationVariables[201].Value = 44;break;
+                    case SUSIPinModeType.LogicLevelOutput: configurationVariables[201].Value = 11;break;
+                    case SUSIPinModeType.LogicLevelInput: configurationVariables[201].Value = 22;break;
+                    case SUSIPinModeType.ServoControlLine: configurationVariables[201].Value = 33;break;
+                    case SUSIPinModeType.I2C: configurationVariables[201].Value = 55;break;
+                    case SUSIPinModeType.Unknown: configurationVariables[201].Value = 44;break;
+                    default: configurationVariables[201].Value = 44;break;
+                }
+                return;
+                
+            }
+        }
+        
+        /// <summary>
         /// Returns the ZIMO specific decoder ID (CV250, CV251, CV252, CV253)
         /// </summary>
         public string DecoderID

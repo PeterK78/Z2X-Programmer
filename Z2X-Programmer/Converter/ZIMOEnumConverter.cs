@@ -30,6 +30,7 @@ namespace Z2XProgrammer.Converter
 {
     internal static class ZIMOEnumConverter
     {
+        private static List<ZIMOSUSIPinModeType> _ZIMOSUSIPinModeTypes = new List<ZIMOSUSIPinModeType>();
         private static List<ZIMOMotorControlFrequencyType> _ZIMOMotorControlFrequencyTypes = new List<ZIMOMotorControlFrequencyType>();
         private static List<ZIMOMotorControlPIDMotorType> _ZIMOMotorControlPIDMotorTypes = new List<ZIMOMotorControlPIDMotorType>();
         private static List<ZIMOLightEffect> _ZIMOLightEffects = new List<ZIMOLightEffect>();
@@ -67,6 +68,38 @@ namespace Z2XProgrammer.Converter
             dimUpAndDownEffect.Description = GetLightEffectDescription(LightEffects.DimmingUpAndDown);
             dimUpAndDownEffect.EffectType = LightEffects.DimmingUpAndDown;
             _ZIMOLightEffects.Add(dimUpAndDownEffect);
+
+
+            //
+            //  Setup the SUSI pin mode types
+            //
+            ZIMOSUSIPinModeType SUSIPinLogicLevelOutput = new ZIMOSUSIPinModeType();
+            SUSIPinLogicLevelOutput.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.LogicLevelOutput);
+            SUSIPinLogicLevelOutput.SUSIPinMode = SUSIPinModeType.LogicLevelOutput;
+            _ZIMOSUSIPinModeTypes.Add(SUSIPinLogicLevelOutput);
+
+            ZIMOSUSIPinModeType SUSIPinLogicLevelInput = new ZIMOSUSIPinModeType();
+            SUSIPinLogicLevelInput.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.LogicLevelInput);
+            SUSIPinLogicLevelInput.SUSIPinMode = SUSIPinModeType.LogicLevelInput;
+            _ZIMOSUSIPinModeTypes.Add(SUSIPinLogicLevelInput);
+
+            ZIMOSUSIPinModeType SUSIPinServo = new ZIMOSUSIPinModeType();
+            SUSIPinServo.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.ServoControlLine);
+            SUSIPinServo.SUSIPinMode = SUSIPinModeType.ServoControlLine;
+            _ZIMOSUSIPinModeTypes.Add(SUSIPinServo);
+
+            ZIMOSUSIPinModeType SUSIPinSUSI = new ZIMOSUSIPinModeType();
+            SUSIPinSUSI.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.SUSI);
+            SUSIPinSUSI.SUSIPinMode = SUSIPinModeType.SUSI;
+            _ZIMOSUSIPinModeTypes.Add(SUSIPinSUSI);
+
+            ZIMOSUSIPinModeType SUSIPinI2C = new ZIMOSUSIPinModeType();
+            SUSIPinI2C.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.I2C);
+            SUSIPinI2C.SUSIPinMode = SUSIPinModeType.I2C;
+            _ZIMOSUSIPinModeTypes.Add(SUSIPinI2C);
+
+
+
         }
 
 
@@ -75,7 +108,7 @@ namespace Z2XProgrammer.Converter
             List<string> Effect = new List<string>();
             foreach (ZIMOLightEffect item in _ZIMOLightEffects)
             {
-                if(item.Description != null) Effect.Add(item.Description);
+                if (item.Description != null) Effect.Add(item.Description);
             }
             return Effect;
         }
@@ -86,10 +119,55 @@ namespace Z2XProgrammer.Converter
             List<string> Names = new List<string>();
             foreach (ZIMOMotorControlPIDMotorType item in _ZIMOMotorControlPIDMotorTypes)
             {
-                if(item.Description != null) { Names.Add(item.Description); }
-                
+                if (item.Description != null) { Names.Add(item.Description); }
+
             }
             return Names;
+        }
+
+
+        
+        internal static ZIMO.SUSIPinModeType GetSUSIInterface1PinMode (string modeDescription)
+        {
+            try
+            {
+                if(modeDescription == AppResources.ZIMOSusiPinTypeLogicLevelOutput) return ZIMO.SUSIPinModeType.LogicLevelOutput;
+                if(modeDescription == AppResources.ZIMOSusiPinTypeLogicLevelReedInput) return ZIMO.SUSIPinModeType.LogicLevelInput;
+                if(modeDescription == AppResources.ZIMOSusiPinTypeServo) return ZIMO.SUSIPinModeType.ServoControlLine;
+                if(modeDescription == AppResources.ZIMOSusiPinTypeSUSI) return ZIMO.SUSIPinModeType.SUSI;
+                if(modeDescription == AppResources.ZIMOSusiPinTypeI2C) return ZIMO.SUSIPinModeType.I2C;
+                return ZIMO.SUSIPinModeType.Unknown;                    
+            }
+            catch
+            {
+                return ZIMO.SUSIPinModeType.Unknown;                    
+            }
+
+        }
+
+        /// <summary>
+        /// Converts a SUSIPinModeType to a human readable character string.
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        internal static string GetSUSIInterface1PinModeDescription (ZIMO.SUSIPinModeType mode)
+        {
+            try
+            {
+                switch (mode)
+                {
+                    case ZIMO.SUSIPinModeType.LogicLevelOutput: return AppResources.ZIMOSusiPinTypeLogicLevelOutput;
+                    case ZIMO.SUSIPinModeType.LogicLevelInput: return AppResources.ZIMOSusiPinTypeLogicLevelReedInput;
+                    case ZIMO.SUSIPinModeType.ServoControlLine: return AppResources.ZIMOSusiPinTypeServo;
+                    case ZIMO.SUSIPinModeType.SUSI: return AppResources.ZIMOSusiPinTypeSUSI;
+                    case ZIMO.SUSIPinModeType.I2C: return AppResources.ZIMOSusiPinTypeI2C;
+                    default: return AppResources.ZIMOSusiPinTypeUnknown;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         internal static string GetLightEffectDescription (ZIMO.LightEffects effect)
@@ -111,6 +189,20 @@ namespace Z2XProgrammer.Converter
                 case ZIMO.MotorControlPIDMotorTypes.BellAnchor: return AppResources.FrameMotorCharacteristicsPIDMotorTypeBellAnchor; 
                 default: return "Unknown ZIMO motor control PID motor type";
             }
+        }
+
+        /// <summary>
+        /// Returns a list with all available SUSI pin modes.
+        /// </summary>
+        /// <returns></returns>
+        internal static List<string>GetAvailableSUSIPinModes()
+        {
+            List<string> PinModes = new List<string>();
+            foreach (ZIMOSUSIPinModeType item in _ZIMOSUSIPinModeTypes)
+            {
+              if(item.Description != null) PinModes.Add(item.Description);
+            }
+            return PinModes;
         }
 
 

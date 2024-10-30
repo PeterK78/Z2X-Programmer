@@ -98,6 +98,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = "ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285";
         public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";
         public const string ZIMO_SOUNDPROJECTNR_CV254 = "ZIMO_SOUNDPROJECTNR_CV254";
+        public const string ZIMO_SUSIPORT1CONFIG_CV201 = "ZIMO_SUSIPORT1CONFIG_CV201";
         
 
         //  Döhler & Haass specific features
@@ -743,6 +744,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes""/>
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes""/>
     <ZIMO_SOUNDPROJECTNR_CV254 support=""yes""/>
+    <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes""/>
 
 </decoderseries>";
 

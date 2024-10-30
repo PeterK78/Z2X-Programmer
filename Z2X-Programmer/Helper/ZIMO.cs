@@ -33,6 +33,9 @@ namespace Z2XProgrammer.Helper
         internal enum FunctionMappingTypes { RCN225 = 0, ExtendedMapping = 1};
         internal enum LightEffects { NoEffect = 0, DimmingUpAndDown = 88 };
 
+        // The differet modes of the SUSI function output pins. Defined in CV201 and CV202.
+        internal enum SUSIPinModeType { Unknown = 0, LogicLevelOutput = 1, LogicLevelInput = 2, ServoControlLine = 3, SUSI = 4, I2C = 5 };
+
         internal static string GetSelfTestResult (byte value)
         {
             switch (value)

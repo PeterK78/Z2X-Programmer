@@ -126,6 +126,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}" Icon="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" >
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:FunctionOutputsPage}" Route="FunctionOutputsPage" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemProtocolTitle}" Icon="{AppThemeBinding Light=ic_fluent_arrows_bidirectional_24_regular.png, Dark=ic_fluent_arrows_bidirectional_24_dark.png}" >
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:RailComPage}"  Route="RailComPage"/>

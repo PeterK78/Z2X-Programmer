@@ -682,6 +682,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function outputs.
+        /// </summary>
+        public static string FlyoutItemFunctionOutputsTitle {
+            get {
+                return ResourceManager.GetString("FlyoutItemFunctionOutputsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string FlyoutItemInfoText {
@@ -2574,6 +2583,42 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The outputs of the SUSI interfaces can also take on other functions if required. Configure the required functionality here..
+        /// </summary>
+        public static string FrameProtocolZIMOSUSIDescription {
+            get {
+                return ResourceManager.GetString("FrameProtocolZIMOSUSIDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function of the first SUSI interface (CV201).
+        /// </summary>
+        public static string FrameProtocolZIMOSUSIPinClockLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolZIMOSUSIPinClockLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function output SUSI data (CV201):.
+        /// </summary>
+        public static string FrameProtocolZIMOSUSIPinDataLabel {
+            get {
+                return ResourceManager.GetString("FrameProtocolZIMOSUSIPinDataLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SUSI outputs.
+        /// </summary>
+        public static string FrameProtocolZIMOSUSITitle {
+            get {
+                return ResourceManager.GetString("FrameProtocolZIMOSUSITitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send address via broadcast on channel 1 (CV28.0).
         /// </summary>
         public static string FrameRailComConfigurationAddressBroadCast {
@@ -3684,6 +3729,60 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ZimoMotorControlFreqTypeLow {
             get {
                 return ResourceManager.GetString("ZimoMotorControlFreqTypeLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I2C.
+        /// </summary>
+        public static string ZIMOSusiPinTypeI2C {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeI2C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logic level output.
+        /// </summary>
+        public static string ZIMOSusiPinTypeLogicLevelOutput {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeLogicLevelOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logic level input.
+        /// </summary>
+        public static string ZIMOSusiPinTypeLogicLevelReedInput {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeLogicLevelReedInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Servo.
+        /// </summary>
+        public static string ZIMOSusiPinTypeServo {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeServo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard SUSI.
+        /// </summary>
+        public static string ZIMOSusiPinTypeSUSI {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeSUSI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown configuration.
+        /// </summary>
+        public static string ZIMOSusiPinTypeUnknown {
+            get {
+                return ResourceManager.GetString("ZIMOSusiPinTypeUnknown", resourceCulture);
             }
         }
     }

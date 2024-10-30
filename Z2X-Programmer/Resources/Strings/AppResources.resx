@@ -1358,4 +1358,37 @@ The application is aimed at beginners who want to configure the most important f
   <data name="AlertWriteCVError" xml:space="preserve">
     <value>The configuration variable could not be written. </value>
   </data>
+  <data name="FrameProtocolZIMOSUSITitle" xml:space="preserve">
+    <value>SUSI outputs</value>
+  </data>
+  <data name="FrameProtocolZIMOSUSIPinClockLabel" xml:space="preserve">
+    <value>Function of the first SUSI interface (CV201)</value>
+  </data>
+  <data name="FrameProtocolZIMOSUSIPinDataLabel" xml:space="preserve">
+    <value>Function output SUSI data (CV201):</value>
+  </data>
+  <data name="ZIMOSusiPinTypeLogicLevelOutput" xml:space="preserve">
+    <value>Logic level output</value>
+  </data>
+  <data name="ZIMOSusiPinTypeLogicLevelReedInput" xml:space="preserve">
+    <value>Logic level input</value>
+  </data>
+  <data name="ZIMOSusiPinTypeServo" xml:space="preserve">
+    <value>Servo</value>
+  </data>
+  <data name="ZIMOSusiPinTypeSUSI" xml:space="preserve">
+    <value>Standard SUSI</value>
+  </data>
+  <data name="ZIMOSusiPinTypeI2C" xml:space="preserve">
+    <value>I2C</value>
+  </data>
+  <data name="FlyoutItemFunctionOutputsTitle" xml:space="preserve">
+    <value>Function outputs</value>
+  </data>
+  <data name="ZIMOSusiPinTypeUnknown" xml:space="preserve">
+    <value>Unknown configuration</value>
+  </data>
+  <data name="FrameProtocolZIMOSUSIDescription" xml:space="preserve">
+    <value>The outputs of the SUSI interfaces can also take on other functions if required. Configure the required functionality here.</value>
+  </data>
 </root>
