@@ -76,6 +76,14 @@ namespace Z2XProgrammer.Communication
 
         }
 
+        /// <summary>
+        /// Turns the track power on.
+        /// </summary>
+        public static void SetTrackPowerOn()
+        {
+            CommandStation.Z21.SetTrackPowerOn();
+        }
+
         internal static NMRA.DCCProgrammingModes GetProgrammingModeFromDescription (string modeDescription)
         {
 

@@ -191,9 +191,15 @@ namespace Z2XProgrammer.ViewModel
                 {
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
                     {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError,  AppResources.AlertWriteCVError, AppResources.OK);
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWriteCVError, AppResources.OK);
                     }
                 }
+
+                //  After writing the CV on the programming track, we must switch the track power on.
+                //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+
+
                 ActivityReadWriteCVOngoing = false;
             }
             catch (Exception ex)
@@ -249,6 +255,10 @@ namespace Z2XProgrammer.ViewModel
                         await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertReadCVError, AppResources.OK);
                     }
                 }
+
+                //  After reading the CV on the programming track, we must switch the track power on.
+                //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
 
                 ActivityReadWriteCVOngoing = false;
 
