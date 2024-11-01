@@ -39,6 +39,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:ZIMOInputMappingConverter x:Key="ZIMOInputMappingConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -59,6 +60,51 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+                <!-- ZIMO_INPUTMAPPING_CV4XX -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="FrameFunctionKeysZIMOInputMappingDescription" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ZIMOInputMappingCVs}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                                <CollectionView.Header>
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleController}" Grid.Column="0"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" Grid.Column="1"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="2"/>
+                                    </Grid>
+                                </CollectionView.Header>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="datamodel:ZIMOInputMappingType">
+                                        <Grid ColumnDefinitions="*,*,*">
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ExternalFunctionKeyDescription}" HorizontalTextAlignment="Start" />
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding CVNumber}" HorizontalTextAlignment="Center" />
+                                            <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding Path=InternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}"/>
+                                        </Grid>
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <Button Grid.Row="3" Grid.Column="0" WidthRequest="200" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}"  ></Button>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
 
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_FUNCTIONKEYMAPPING_CV3346}" />
 

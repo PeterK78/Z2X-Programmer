@@ -1391,4 +1391,32 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameProtocolZIMOSUSIDescription" xml:space="preserve">
     <value>The outputs of the SUSI interfaces can also take on other functions if required. Configure the required functionality here.</value>
   </data>
+  <data name="FrameFunctionKeysZIMOInputMappingTitle" xml:space="preserve">
+    <value>Function key assignment </value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingDescription" xml:space="preserve">
+    <value>By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping.</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
+    <value>Edit ...</value>
+  </data>
+  <data name="FrameFunctionKeysZIMONoMappingSelected" xml:space="preserve">
+    <value>No function key selected.</value>
+  </data>
+  <data name="PopUpInputMappingDescription" xml:space="preserve">
+    <value>Select the desired button assignment.</value>
+  </data>
+  <data name="ZIMOInputMappingDirectMapping" xml:space="preserve">
+    <value>Same button as on the control unit</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleController" xml:space="preserve">
+    <value>Control device
+(e.g. multiMAUS, ᴡʟᴀɴMAUS, etc.)</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
+    <value>Configuration Variable</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
+    <value>Function key in the decoder</value>
+  </data>
 </root>

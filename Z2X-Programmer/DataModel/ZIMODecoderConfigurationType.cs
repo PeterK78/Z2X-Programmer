@@ -21,11 +21,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Z2XProgrammer.Helper;
 using static Z2XProgrammer.Helper.ZIMO;
 
@@ -340,6 +335,360 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
+        /// <summary>
+        /// Returns the input mapping for the external function key F0 (CV400).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF0
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(0);
+            }
+            set
+            {
+                configurationVariables[400].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F1 (CV401).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF1
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(1);
+            }
+            set
+            {
+                configurationVariables[401].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F2 (CV402).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF2
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(2);
+            }
+            set
+            {
+                configurationVariables[402].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F3 (CV403).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF3
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(3);
+            }
+            set
+            {
+                configurationVariables[403].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F4 (CV404).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF4
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(4);
+            }
+            set
+            {
+                configurationVariables[404].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F5 (CV405).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF5
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(5);
+            }
+            set
+            {
+                configurationVariables[405].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F6 (CV406).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF6
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(6);
+            }
+            set
+            {
+                configurationVariables[406].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F7 (CV407).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF7
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(7);
+            }
+            set
+            {
+                configurationVariables[407].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F8 (CV408).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF8
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(8);
+            }
+            set
+            {
+                configurationVariables[408].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F9 (CV409).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF9
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(9);
+            }
+            set
+            {
+                configurationVariables[409].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F10 (CV410).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF10
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(10);
+            }
+            set
+            {
+                configurationVariables[410].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F11 (CV411).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF11
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(11);
+            }
+            set
+            {
+                configurationVariables[411].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F12 (CV412).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF12
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(12);
+            }
+            set
+            {
+                configurationVariables[412].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F13 (CV413).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF13
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(13);
+            }
+            set
+            {
+                configurationVariables[413].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F14 (CV414).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF14
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(14);
+            }
+            set
+            {
+                configurationVariables[414].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F15 (CV415).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF15
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(15);
+            }
+            set
+            {
+                configurationVariables[415].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F16 (CV416).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF16
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(16);
+            }
+            set
+            {
+                configurationVariables[416].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F17 (CV417).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF17
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(17);
+            }
+            set
+            {
+                configurationVariables[417].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F18 (CV418).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF18
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(18);
+            }
+            set
+            {
+                configurationVariables[418].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F19 (CV419).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF19
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(19);
+            }
+            set
+            {
+                configurationVariables[419].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F20 (CV420).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF20
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(20);
+            }
+            set
+            {
+                configurationVariables[420].Value = (byte)value.InternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="externalFunctionKeyNumber"></param>
+        /// <returns></returns>
+        private ZIMOInputMappingType GetInputMappingInternalFunctionKeyNumber (int externalFunctionKeyNumber)
+        {
+                ZIMOInputMappingType item = new ZIMOInputMappingType();
+                item.ExternalFunctionKeyNumber = -1;
+                item.InternalFunctionKeyNumber = -1;
+
+                if (externalFunctionKeyNumber < 0) return item;
+                if (externalFunctionKeyNumber > 28) return item;
+
+                item.ExternalFunctionKeyNumber = externalFunctionKeyNumber;
+                item.ExternalFunctionKeyDescription = "F" + externalFunctionKeyNumber;
+                item.CVNumber = 400 + externalFunctionKeyNumber;
+                
+                // 0 = NO MAPPING -> 1:1 CONNECTION
+                if (configurationVariables[externalFunctionKeyNumber+400].Value == 0)
+                {
+                    item.InternalFunctionKeyNumber = 0;
+                }
+                // 1 ... 28 => F1 ... F28, 29 ... F0
+                else if ((configurationVariables[externalFunctionKeyNumber+400].Value > 0) && (configurationVariables[externalFunctionKeyNumber+400].Value < 30))
+                {
+                    item.InternalFunctionKeyNumber = configurationVariables[externalFunctionKeyNumber+400].Value;
+                }
+                // UNKNOWN CONFIGURATION
+                else
+                {
+                    item.InternalFunctionKeyNumber = -1;
+                }
+                return item;
+
+        }
 
 
         /// <summary>

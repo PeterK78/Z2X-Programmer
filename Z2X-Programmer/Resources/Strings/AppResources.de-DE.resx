@@ -1393,4 +1393,32 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameProtocolZIMOSUSIDescription" xml:space="preserve">
     <value>Die Ausgänge der SUSI-Schnittstellen können bei Bedarf auch andere Funktionen übernehmen. Konfigurieren Sie hier die benötigte Funktionalität.</value>
   </data>
+  <data name="FrameFunctionKeysZIMOInputMappingTitle" xml:space="preserve">
+    <value>Tastenbelegung</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingDescription" xml:space="preserve">
+    <value>Durch das Ändern der Tastenbelegung kann eine Funktionstaste eine beliebige andere Funktionstaste auslösen. Diese Funktion wird auch Eingangs-Mapping genannt.</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
+    <value>Ändern ...</value>
+  </data>
+  <data name="FrameFunctionKeysZIMONoMappingSelected" xml:space="preserve">
+    <value>Keine Taste ausgewählt.</value>
+  </data>
+  <data name="PopUpInputMappingDescription" xml:space="preserve">
+    <value>Wählen Sie die gewünschte Tastenbelegung aus.</value>
+  </data>
+  <data name="ZIMOInputMappingDirectMapping" xml:space="preserve">
+    <value>Idente Taste wie am Steuergerät</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleController" xml:space="preserve">
+    <value>Steuergerät
+(z. B. multiMAUS, ᴡʟᴀɴMAUS etc.)</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
+    <value>Konfigurationsvariable</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
+    <value>Funktionstaste im Decoder</value>
+  </data>
 </root>

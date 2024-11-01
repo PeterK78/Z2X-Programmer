@@ -104,6 +104,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_MSOPERATINGMODES_CV12= DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MSOPERATINGMODES_CV12, decSpecFolder);
                 ZIMO_SOUNDPROJECTNR_CV254 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUNDPROJECTNR_CV254, decSpecFolder);
                 ZIMO_SUSIPORT1CONFIG_CV201 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SUSIPORT1CONFIG_CV201, decSpecFolder);
+                ZIMO_INPUTMAPPING_CV4XX = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, decSpecFolder);
 
                 //  Inform the app that we have just read a new decoder specification file
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
@@ -161,6 +162,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_MSOPERATINGMODES_CV12 { get; set; }
         internal static bool ZIMO_SOUNDPROJECTNR_CV254 { get; set; }
         internal static bool ZIMO_SUSIPORT1CONFIG_CV201 { get ; set; }
+        internal static bool ZIMO_INPUTMAPPING_CV4XX { get; set; }
 
     }
 }

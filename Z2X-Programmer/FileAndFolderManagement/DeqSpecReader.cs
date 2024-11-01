@@ -99,6 +99,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";
         public const string ZIMO_SOUNDPROJECTNR_CV254 = "ZIMO_SOUNDPROJECTNR_CV254";
         public const string ZIMO_SUSIPORT1CONFIG_CV201 = "ZIMO_SUSIPORT1CONFIG_CV201";
+        public const string ZIMO_INPUTMAPPING_CV4XX = "ZIMO_INPUTMAPPING_CV4XX";        
         
 
         //  Döhler & Haass specific features
@@ -745,6 +746,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes""/>
     <ZIMO_SOUNDPROJECTNR_CV254 support=""yes""/>
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes""/>
+    <ZIMO_INPUTMAPPING_CV4XX support=""yes""/>
 
 </decoderseries>";
 

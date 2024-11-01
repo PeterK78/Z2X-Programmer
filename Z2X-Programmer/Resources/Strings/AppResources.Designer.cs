@@ -1465,6 +1465,70 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping..
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit ....
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingEdit {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control device
+        ///(e.g. multiMAUS, ᴡʟᴀɴMAUS, etc.).
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingHeaderTitleController {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingHeaderTitleController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration Variable.
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingHeaderTitleCV {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingHeaderTitleCV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function key in the decoder.
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function key assignment .
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No function key selected..
+        /// </summary>
+        public static string FrameFunctionKeysZIMONoMappingSelected {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMONoMappingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activate extended function mapping (CV137.4).
         /// </summary>
         public static string FrameFunctionsKeysDoehlerAndHaassMappingType {
@@ -3517,6 +3581,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the desired button assignment..
+        /// </summary>
+        public static string PopUpInputMappingDescription {
+            get {
+                return ResourceManager.GetString("PopUpInputMappingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data is written to the decoder.
         /// </summary>
         public static string PopUpMessageDownloadDecoder {
@@ -3684,6 +3757,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ZIMOErrorCodeUnknown {
             get {
                 return ResourceManager.GetString("ZIMOErrorCodeUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same button as on the control unit.
+        /// </summary>
+        public static string ZIMOInputMappingDirectMapping {
+            get {
+                return ResourceManager.GetString("ZIMOInputMappingDirectMapping", resourceCulture);
             }
         }
         

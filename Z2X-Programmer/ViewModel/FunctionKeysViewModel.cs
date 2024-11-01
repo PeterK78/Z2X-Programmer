@@ -21,20 +21,18 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Microsoft.Maui.Handlers;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
+using Z2XProgrammer.Popups;
 using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
@@ -45,6 +43,9 @@ namespace Z2XProgrammer.ViewModel
     public partial class FunctionKeysViewModel: ObservableObject
     {
 
+        internal ObservableCollection<ZIMOInputMappingType>? _ZIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
+
+
         #region REGION: DECODER FEATURES
 
         //  RCN225 features
@@ -52,7 +53,9 @@ namespace Z2XProgrammer.ViewModel
         bool rCN225_FUNCTIONKEYMAPPING_CV3346;
 
         //  ZIMO features
-        //  ZIMO_FUNCKEY_MUTE_CV313
+        [ObservableProperty]
+        bool zIMO_INPUTMAPPING_CV4XX;
+        
         [ObservableProperty]
         bool zIMO_FUNCKEY_MUTE_CV313;
 
@@ -87,6 +90,9 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        [ObservableProperty]
+        bool dataStoreDataValid;
 
         #region CV33 FUNCTION OUTPUT MAPPING OF KEY F0 (FORWARD)
         [ObservableProperty]
@@ -977,11 +983,15 @@ namespace Z2XProgrammer.ViewModel
         }
         #endregion
 
+        // ZIMO_INPUTMAPPING_CV4XX
         [ObservableProperty]
-        bool dataStoreDataValid;
-      
+        internal ZIMOInputMappingType selectedInputMapping = new ZIMOInputMappingType();
+        
         [ObservableProperty]
-        internal string zIMOFunctionMappingType;
+        internal ObservableCollection<ZIMOInputMappingType>? zIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
+     
+        [ObservableProperty]
+        internal string zIMOFunctionMappingType = string.Empty;
 
         [ObservableProperty]
         bool doehlerAndHaassExtendedFunctionMappingEnabled;
@@ -1145,9 +1155,8 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         public FunctionKeysViewModel()
         {
-
             AvailableFunctionKeys = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableFunctionKeys(true));
-            ZIMOFunctionMappingType = String.Empty;
+            ZIMOInputMappingCVs = _ZIMOInputMappingCVs;
 
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
@@ -1172,7 +1181,187 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
+        #region REGION: COMMANDS
+        [RelayCommand]
+        async Task EditInputMapping()
+        {
+            try
+            {
+                //  Check if a function key has been selected
+                if(SelectedInputMapping == null)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
+                        return;
+                    }
+                }
+
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+                PopUpEditInputMapping pop = new PopUpEditInputMapping(cancelTokenSource, SelectedInputMapping!);
+                await Shell.Current.CurrentPage.ShowPopupAsync(pop);
+
+                OnPropertyChanged("ZIMOInputMappingCVs");
+
+                ZIMOInputMappingCVs = null;
+                ZIMOInputMappingCVs = _ZIMOInputMappingCVs;
+                WriteZIMOInputMappingListToDecoderConfiguration();
+            
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
+                }
+            }
+        }
+
+        #endregion
+
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// Writes the current input mapping configuration to the decoder configuration.
+        /// </summary>
+        private void WriteZIMOInputMappingListToDecoderConfiguration()
+        {
+            try
+            {
+                if (_ZIMOInputMappingCVs == null) return;
+
+                foreach (ZIMOInputMappingType item in _ZIMOInputMappingCVs)
+                {
+                    switch (item.CVNumber)
+                    {
+                        case 400: DecoderConfiguration.ZIMO.InputMappingF0 = item; break;
+                        case 401: DecoderConfiguration.ZIMO.InputMappingF1 = item; break;
+                        case 402: DecoderConfiguration.ZIMO.InputMappingF2 = item; break;
+                        case 403: DecoderConfiguration.ZIMO.InputMappingF3 = item; break;
+                        case 404: DecoderConfiguration.ZIMO.InputMappingF4 = item; break;
+                        case 405: DecoderConfiguration.ZIMO.InputMappingF5 = item; break;
+                        case 406: DecoderConfiguration.ZIMO.InputMappingF6 = item; break;
+                        case 407: DecoderConfiguration.ZIMO.InputMappingF7 = item; break;
+                        case 408: DecoderConfiguration.ZIMO.InputMappingF8 = item; break;
+                        case 409: DecoderConfiguration.ZIMO.InputMappingF9 = item; break;
+                        case 410: DecoderConfiguration.ZIMO.InputMappingF10 = item; break;
+                        case 411: DecoderConfiguration.ZIMO.InputMappingF11 = item; break;
+                        case 412: DecoderConfiguration.ZIMO.InputMappingF12 = item; break;
+                        case 413: DecoderConfiguration.ZIMO.InputMappingF13 = item; break;
+                        case 414: DecoderConfiguration.ZIMO.InputMappingF14 = item; break;
+                        case 415: DecoderConfiguration.ZIMO.InputMappingF15 = item; break;
+                        case 416: DecoderConfiguration.ZIMO.InputMappingF16 = item; break;
+                        case 417: DecoderConfiguration.ZIMO.InputMappingF17 = item; break;
+                        case 418: DecoderConfiguration.ZIMO.InputMappingF18 = item; break;
+                        case 419: DecoderConfiguration.ZIMO.InputMappingF19 = item; break;
+                        case 420: DecoderConfiguration.ZIMO.InputMappingF20 = item; break;
+                    }
+                }
+            }
+            catch 
+            {
+                return;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Updates the ZIMO input mapping list with the current configuration variable values.
+        /// </summary>
+        private void UpdateZIMOInputMappingList()
+        {
+            if (_ZIMOInputMappingCVs == null) return;
+            
+            _ZIMOInputMappingCVs.Clear();
+
+            ZIMOInputMappingType itemF0 = new ZIMOInputMappingType();
+            itemF0 = DecoderConfiguration.ZIMO.InputMappingF0;
+            _ZIMOInputMappingCVs.Add(itemF0);
+
+            ZIMOInputMappingType itemF1 = new ZIMOInputMappingType();
+            itemF1 = DecoderConfiguration.ZIMO.InputMappingF1;
+            _ZIMOInputMappingCVs.Add(itemF1);
+
+            ZIMOInputMappingType itemF2 = new ZIMOInputMappingType();
+            itemF2 = DecoderConfiguration.ZIMO.InputMappingF2;
+            _ZIMOInputMappingCVs.Add(itemF2);
+
+            ZIMOInputMappingType itemF3 = new ZIMOInputMappingType();
+            itemF3 = DecoderConfiguration.ZIMO.InputMappingF3;
+            _ZIMOInputMappingCVs.Add(itemF3);
+
+            ZIMOInputMappingType itemF4 = new ZIMOInputMappingType();
+            itemF4 = DecoderConfiguration.ZIMO.InputMappingF4;
+            _ZIMOInputMappingCVs.Add(itemF4);
+
+            ZIMOInputMappingType itemF5 = new ZIMOInputMappingType();
+            itemF5 = DecoderConfiguration.ZIMO.InputMappingF5;
+            _ZIMOInputMappingCVs.Add(itemF5);
+
+            ZIMOInputMappingType itemF6 = new ZIMOInputMappingType();
+            itemF6 = DecoderConfiguration.ZIMO.InputMappingF6;
+            _ZIMOInputMappingCVs.Add(itemF6);
+
+            ZIMOInputMappingType itemF7 = new ZIMOInputMappingType();
+            itemF7 = DecoderConfiguration.ZIMO.InputMappingF7;
+            _ZIMOInputMappingCVs.Add(itemF7);
+
+            ZIMOInputMappingType itemF8 = new ZIMOInputMappingType();
+            itemF8 = DecoderConfiguration.ZIMO.InputMappingF8;
+            _ZIMOInputMappingCVs.Add(itemF8);
+
+            ZIMOInputMappingType itemF9 = new ZIMOInputMappingType();
+            itemF9 = DecoderConfiguration.ZIMO.InputMappingF9;
+            _ZIMOInputMappingCVs.Add(itemF9);
+
+            ZIMOInputMappingType itemF10 = new ZIMOInputMappingType();
+            itemF10 = DecoderConfiguration.ZIMO.InputMappingF10;
+            _ZIMOInputMappingCVs.Add(itemF10);
+
+            ZIMOInputMappingType itemF11 = new ZIMOInputMappingType();
+            itemF11 = DecoderConfiguration.ZIMO.InputMappingF11;
+            _ZIMOInputMappingCVs.Add(itemF11);
+
+            ZIMOInputMappingType itemF12 = new ZIMOInputMappingType();
+            itemF12 = DecoderConfiguration.ZIMO.InputMappingF12;
+            _ZIMOInputMappingCVs.Add(itemF12);
+
+            ZIMOInputMappingType itemF13 = new ZIMOInputMappingType();
+            itemF13 = DecoderConfiguration.ZIMO.InputMappingF13;
+            _ZIMOInputMappingCVs.Add(itemF13);
+
+            ZIMOInputMappingType itemF14 = new ZIMOInputMappingType();
+            itemF14 = DecoderConfiguration.ZIMO.InputMappingF14;
+            _ZIMOInputMappingCVs.Add(itemF14);
+
+            ZIMOInputMappingType itemF15 = new ZIMOInputMappingType();
+            itemF15 = DecoderConfiguration.ZIMO.InputMappingF15;
+            _ZIMOInputMappingCVs.Add(itemF15);
+
+            ZIMOInputMappingType itemF16 = new ZIMOInputMappingType();
+            itemF16 = DecoderConfiguration.ZIMO.InputMappingF16;
+            _ZIMOInputMappingCVs.Add(itemF16);
+
+            ZIMOInputMappingType itemF17 = new ZIMOInputMappingType();
+            itemF17 = DecoderConfiguration.ZIMO.InputMappingF17;
+            _ZIMOInputMappingCVs.Add(itemF17);
+
+            ZIMOInputMappingType itemF18 = new ZIMOInputMappingType();
+            itemF18 = DecoderConfiguration.ZIMO.InputMappingF18;
+            _ZIMOInputMappingCVs.Add(itemF18);
+
+            ZIMOInputMappingType itemF19 = new ZIMOInputMappingType();
+            itemF19 = DecoderConfiguration.ZIMO.InputMappingF19;
+            _ZIMOInputMappingCVs.Add(itemF19);
+
+            ZIMOInputMappingType itemF20 = new ZIMOInputMappingType();
+            itemF20 = DecoderConfiguration.ZIMO.InputMappingF20;
+            _ZIMOInputMappingCVs.Add(itemF20);
+
+
+        }
 
         /// <summary>
         /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
@@ -1191,6 +1380,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_FUNCKEY_SOUNDALLOFF_CV310 = DecoderSpecification.ZIMO_FUNCKEY_SOUNDALLOFF_CV310;
             ZIMO_FUNCKEY_CURVESQUEAL_CV308 = DecoderSpecification.ZIMO_FUNCKEY_CURVESQUEAL_CV308;
             ZIMO_FUNCKEY_MUTE_CV313 = DecoderSpecification.ZIMO_FUNCKEY_MUTE_CV313;
+            ZIMO_INPUTMAPPING_CV4XX = DecoderSpecification.ZIMO_INPUTMAPPING_CV4XX;
         }
 
 
@@ -1266,6 +1456,7 @@ namespace Z2XProgrammer.ViewModel
                 ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
                 ZIMOFuncKeysMuteInverted = false;
             }
+            UpdateZIMOInputMappingList();
 
 
         }
