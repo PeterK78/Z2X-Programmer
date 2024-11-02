@@ -214,7 +214,7 @@ Folgender Fehler ist aufgetreten:
     <value>Einstellungen</value>
   </data>
   <data name="ButtonMainMenuWriteDecoderText" xml:space="preserve">
-    <value>Decoder beschreiben</value>
+    <value>Schreibt alle Werte auf den Decoder</value>
   </data>
   <data name="ButtonResetZIMOErrorMemory" xml:space="preserve">
     <value>Fehlerspeicher zurücksetzen</value>
@@ -1420,5 +1420,11 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
     <value>Funktionstaste im Decoder</value>
+  </data>
+  <data name="ButtonMainMenuWriteDecoderDiffText" xml:space="preserve">
+    <value>Schreibt geänderte Werte auf den Decoder</value>
+  </data>
+  <data name="AlertNoModifiedValuesFound" xml:space="preserve">
+    <value>Es sind keine geänderten Einstellungen vorhanden. Der Download wird nicht durchgeführt.</value>
   </data>
 </root>

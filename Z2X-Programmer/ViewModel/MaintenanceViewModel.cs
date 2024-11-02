@@ -138,7 +138,7 @@ namespace Z2XProgrammer.ViewModel
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
-                await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.LocomotiveAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken, true));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.LocomotiveAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
 
                 //  The decoder reset is only allowed on the progam track.
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
@@ -184,7 +184,7 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 255, DecoderConfiguration.ProgrammingMode, cancelToken, true));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 255, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 for (int i = 1; i <= 10; i++)
                 {
@@ -225,7 +225,7 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 0, DecoderConfiguration.ProgrammingMode, cancelToken, true));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 0, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 await Task.Run(() => ReadWriteDecoder.ReadCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 

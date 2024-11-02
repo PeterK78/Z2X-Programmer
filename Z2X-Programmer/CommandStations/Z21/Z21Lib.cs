@@ -273,22 +273,9 @@ namespace Z21Lib
         /// </summary>
         /// <param name="cvNumber">The number of the configuration variable</param>
         /// <param name="value">The new value</param>
-        /// <param name="force">If force = false write operations to the following configuration variables will be blocked: CV8 </param>
-        public bool WriteCVProgramTrack(ushort cvNumber, byte value, bool force)
+        public bool WriteCVProgramTrack(ushort cvNumber, byte value)
         {
             Logger.PrintDevConsole("Z21Lib:WriteCVProgramTrack (LAN_X_CV_WRITE) cv:" + cvNumber + " value:" + value);
-
-            if (force == false)
-            {
-                //  The decoder version number 7 can not be changed 
-                if (cvNumber == 7) return false;
-
-                //  Writing to CV8 = Manfucaturer name will reset the decoder
-                if (cvNumber == 8) return false;
-
-                //  Writing to CV15 and CV16 will lock the decoder
-                if ((cvNumber == 15) || (cvNumber == 16)) return false;
-            }
 
             cvNumber--;
 
@@ -446,27 +433,11 @@ namespace Z21Lib
         /// <param name="cvNumber">The number of the configuration variable</param>
         /// <param name="locomotiveAddress">The address of the locomotive</param>
         /// <param name="value">The new value</param>
-        public bool WriteCVBytePOM(ushort cvNumber, ushort locomotiveAddress, byte value, bool force)
+        public bool WriteCVBytePOM(ushort cvNumber, ushort locomotiveAddress, byte value)
         {
             Logger.PrintDevConsole("Z21Lib:WriteCVBytePOM (LAN_X_CV_POM_WRITE_BYTE) locomotiveAddress:" + locomotiveAddress.ToString() + " cv nr.:" + cvNumber + " value:" + value);
 
             if (locomotiveAddress == 0) return false;
-
-            if (force == false)
-            {
-                //  Writing a new locomotive address is forbidden
-                if (cvNumber == 1) return false;
-
-                //  The decoder version number 7 can not be changed 
-                if (cvNumber == 7) return false;
-
-                //  Writing to CV8 will reset the decoder
-                if (cvNumber == 8) return false;
-
-                //  Writing to CV15 and CV16 will lock the decoder
-                if ((cvNumber == 15) || (cvNumber == 16)) return false;
-            }
-
 
             cvNumber--;
 
@@ -505,7 +476,7 @@ namespace Z21Lib
 
             bool ReturnValue = result.Status == System.Net.NetworkInformation.IPStatus.Success;
 
-            Logger.PrintDevConsole($"Z21Lib:PingAsync to " + IPAddress.ToString() + " was successfull = " + ReturnValue.ToString());
+            //Logger.PrintDevConsole($"Z21Lib:PingAsync to " + IPAddress.ToString() + " was successfull = " + ReturnValue.ToString());
 
             return ReturnValue;
 
@@ -557,7 +528,7 @@ namespace Z21Lib
         /// <param name="e"></param>
         private async void Z21PingTimerEllapsed(object? sender, ElapsedEventArgs e)
         {
-            Logger.PrintDevConsole("Z21Lib:Z21PingTimerEllapsed");
+            //Logger.PrintDevConsole("Z21Lib:Z21PingTimerEllapsed");
 
             _pingZ21Timer.Enabled = false;
             try

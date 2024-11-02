@@ -173,7 +173,7 @@ namespace Z2XProgrammer.ViewModel
 
                 bool WriteSuccessFull = false;
     
-                await Task.Run(() => WriteSuccessFull =  ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
+                await Task.Run(() => WriteSuccessFull =  ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 if (WriteSuccessFull == true)
                 {

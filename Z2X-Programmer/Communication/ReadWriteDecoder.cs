@@ -135,23 +135,23 @@ namespace Z2XProgrammer.Communication
         {
             switch (cv)
             {
-                
+                //  Writing the vehicle address in POM mode is forbidden.
                 case 1: if (mode == NMRA.DCCProgrammingModes.POMMainTrack) return false;
                         return true;
                         
-                //  The RCN225 standard decoder version in CV7 can not be updated by the user
+                //  The RCN225 standard decoder version in CV7 can not be updated by the user.
                 case 7: return false;
             
-                //  The RCN225 manufacturer ID in CV8 can not be updated by the user
+                //  The RCN225 manufacturer ID in CV8 can not be updated by the user.
                 case 8: return false;
                 
-                //   Writing to ZIMO CV65 is not allowed (overwrting the ZIMO specific SW-Version number)
+                //   Writing to ZIMO CV65 is not allowed (overwriting the ZIMO specific SW-Version number).
                 case 65: return false;
 
-                //  Writing to ZIMO specific CV250 is not allowed (overwriting the ZIMO specific decoder type)
+                //  Writing to ZIMO specific CV250 is not allowed (overwriting the ZIMO specific decoder type).
                 case 250: return false;
 
-                //  Writing to ZIMO specific CV251, CV252 and CV253 is not allowed (overwriting the ZIMO decoder unique ID)
+                //  Writing to ZIMO specific CV251, CV252 and CV253 is not allowed (overwriting the ZIMO decoder unique ID).
                 case 251:return false;
                 case 252: return false;
                 case 253: return false;
@@ -162,14 +162,15 @@ namespace Z2XProgrammer.Communication
 
 
         /// <summary>
-        /// Download all configuration variables from the decoder to the data store
+        /// Downloads the configuration settings to the decoder.
         /// </summary>
         /// <param name="cancelToken"></param>
         /// <param name="locomotiveAddress"></param>
         /// <param name="decSpecName"></param>
         /// <param name="mode"></param>
+        /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
         /// <returns></returns>
-        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort locomotiveAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progres)
+        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort locomotiveAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progres, bool allConfigVariables)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -189,19 +190,28 @@ namespace Z2XProgrammer.Communication
                 DecoderSpecification.DeqSpecName = _decSpecName;
             }
 
-            ConfigVariablesToWrite = GetModifiedConfigurationVariables(decSpecName, mode);
-
+            // Create a list of variables which we have to download to the decoder. Depending on the allConfigVariables flag,
+            // all variables are used or only those for which the current value is different from the backup value.
+            //
+            // Note: The functions GetAllConfigurationVariables and GetModifiedConfigurationVariables will provide only CVs which can be safelfy overwritten.
+            //
+            if (allConfigVariables == true)
+            {
+                ConfigVariablesToWrite = GetAllWritableConfigurationVariables(decSpecName, mode);
+            }
+            else
+            {
+                ConfigVariablesToWrite = GetModifiedConfigurationVariables(decSpecName, mode);
+            }
 
             //  Read all configuration variables from the decoder
             for (int i = 0; i <= ConfigVariablesToWrite.Count - 1; i++)
             {
-
-                if (WriteCV((ushort)ConfigVariablesToWrite[i], locomotiveAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken, false) == false)
+                if (WriteCV((ushort)ConfigVariablesToWrite[i], locomotiveAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
                 {
                     CommandStation.Z21.SetTrackPowerOn();
                     return Task.FromResult(false);
                 }
-
 
                 DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled = true;
                 DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
@@ -227,6 +237,95 @@ namespace Z2XProgrammer.Communication
 
 
         }
+
+        /// <summary>
+        /// Returns a list with configuration variables which can be safely written by the given decoder specification.
+        /// </summary>
+        /// <returns>Returns a list of configuration variable numbers</returns>
+        public static List<int> GetAllWritableConfigurationVariables(string decSpecName, NMRA.DCCProgrammingModes mode)
+        {
+            List<int> SupportConfigVariables = new List<int>();
+            List<int> ModifiedConfigVariables = new List<int>();
+
+            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
+            {
+                if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                {
+                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
+                    {
+                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
+                        if (nextCV != 0)
+                        {
+                            //  We skip unsafe CV values
+                            if (WriteRequestSafe(nextCV, mode) == false) continue;
+
+                            //  Check if we have already written this CV. If so, skip this CV
+                            if (SupportConfigVariables.Contains(nextCV) == false)
+                            {
+                                SupportConfigVariables.Add(nextCV);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
+            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
+            {
+
+                for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
+                {
+                    if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  We skip unsafe CV values
+                                if (WriteRequestSafe(nextCV, mode) == false) continue;
+
+                                //  Check if we have already written this CV. If so, skip this CV
+                                if (SupportConfigVariables.Contains(nextCV) == false)
+                                {
+                                    SupportConfigVariables.Add(nextCV);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
+            {
+                for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
+                {
+                    if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  We skip unsafe CV values
+                                if (WriteRequestSafe(nextCV, mode) == false) continue;
+
+                                //  Check if we have already written this CV. If so, skip this CV
+                                if (SupportConfigVariables.Contains(nextCV) == false)
+                                {
+                                    SupportConfigVariables.Add(nextCV);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return SupportConfigVariables;            
+        }
+        
+
 
         /// <summary>
         /// Returns a list with all configuration variables which have been modified.
@@ -548,7 +647,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="cv"></param>
         /// <param name="locomotiveAddress"></param>
         /// <returns></returns>
-        internal static bool WriteCV(ushort cv, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken token, bool force)
+        internal static bool WriteCV(ushort cv, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken token)
         {
             _mode = mode;
 
@@ -560,7 +659,9 @@ namespace Z2XProgrammer.Communication
 
             //  Now we are reading the data from the given cv
             _waitingForResultReceived = true; _commandSuccessFull = false;
-            bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.WriteCVBytePOM(cv, locomotiveAddress, value, false) : CommandStation.Z21.WriteCVProgramTrack(cv, value, force);
+         
+
+            bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.WriteCVBytePOM(cv, locomotiveAddress, value) : CommandStation.Z21.WriteCVProgramTrack(cv, value);
 
             //  Waiting for response of the command station
             if (read == false) return false;

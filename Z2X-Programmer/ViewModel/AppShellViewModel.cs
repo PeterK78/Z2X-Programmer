@@ -41,8 +41,6 @@ using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
-using Z2XProgrammer.Traincontroller;
-using System.Net;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -486,7 +484,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
-        async Task DownloadDecoder()
+        async Task DownloadDiffDecoder()
         {
             try
             {
@@ -494,6 +492,7 @@ namespace Z2XProgrammer.ViewModel
                 if (Application.Current == null) return;
                 if (Application.Current.MainPage == null) return;
 
+                //  We create a list of configuration values for which the current value is different from the backup value.
                 List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
                 if (ModifiedConfigVariables.Count > 0)
 
@@ -512,12 +511,76 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else
                 {
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNoSimple, AppResources.YES, AppResources.NO) == false)
-                    {
-                        return;
-                    }
+                    //  No modified values were found.
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
+                    return;
                 }
 
+                //  Check if we have valid locomotive address.
+                if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
+                    return;
+                }
+
+                //  Setup the cancellation token
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder);
+
+                Shell.Current.CurrentPage.ShowPopup(pop);
+
+                var progress = new Progress<int>(value =>
+                {
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessage(value));
+                });
+
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress,false));
+
+                await pop.CloseAsync();
+
+                if (success == true)
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertDecoderDonwloadSuccessfull, AppResources.OK);
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
+
+                }
+            }
+            catch (FormatException)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
+                }
+            }
+
+        }
+
+
+        /// <summary>
+        /// Downloads the modified settings to the decoder.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task DownloadDecoder()
+        {
+            try
+            {
+
+                if (Application.Current == null) return;
+                if (Application.Current.MainPage == null) return;
+                
                 //  Check the locomotive address
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
                 {
@@ -538,7 +601,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessage(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress, true));
 
                 await pop.CloseAsync();
 

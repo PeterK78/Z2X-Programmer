@@ -264,6 +264,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no modified settings. No download is being performed..
+        /// </summary>
+        public static string AlertNoModifiedValuesFound {
+            get {
+                return ResourceManager.GetString("AlertNoModifiedValuesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file could not be read because access was denied. Make sure that Z2X-Programmer has the required access authorizations..
         /// </summary>
         public static string AlertNoReadAccessToFilesAndFolders {
@@ -401,7 +410,16 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write decoder.
+        ///   Looks up a localized string similar to Writes modified values to the decoder.
+        /// </summary>
+        public static string ButtonMainMenuWriteDecoderDiffText {
+            get {
+                return ResourceManager.GetString("ButtonMainMenuWriteDecoderDiffText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writes all values to the decoder.
         /// </summary>
         public static string ButtonMainMenuWriteDecoderText {
             get {

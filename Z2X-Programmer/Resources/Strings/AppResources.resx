@@ -213,7 +213,7 @@ The following error has occurred:</value>
     <value>Settings</value>
   </data>
   <data name="ButtonMainMenuWriteDecoderText" xml:space="preserve">
-    <value>Write decoder</value>
+    <value>Writes all values to the decoder</value>
   </data>
   <data name="ButtonResetZIMOErrorMemory" xml:space="preserve">
     <value>Reset error memory</value>
@@ -1418,5 +1418,11 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
     <value>Function key in the decoder</value>
+  </data>
+  <data name="ButtonMainMenuWriteDecoderDiffText" xml:space="preserve">
+    <value>Writes modified values to the decoder</value>
+  </data>
+  <data name="AlertNoModifiedValuesFound" xml:space="preserve">
+    <value>There are no modified settings. No download is being performed.</value>
   </data>
 </root>

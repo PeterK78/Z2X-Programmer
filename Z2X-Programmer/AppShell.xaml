@@ -82,6 +82,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_diff_24_regular.png , Dark=ic_fluent_arrow_download_diff_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDiffDecoderCommand}" HorizontalOptions="End">
+                <Button.Text>
+                    <OnIdiom Default="" Phone=""></OnIdiom>
+                </Button.Text>
+            </Button>
             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}"  WidthRequest="180" >
                 <Picker.WidthRequest>
                     <OnIdiom Default="220" Phone="170"></OnIdiom>                    
