@@ -128,7 +128,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -385,10 +385,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         
                         <Label IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="10" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Entry IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="16" Grid.ColumnSpan="4" HorizontalOptions="End" VerticalOptions="Center"  IsReadOnly="True" Text="{Binding ZIMOFunctionMappingType}"  WidthRequest="300" HorizontalTextAlignment="End" ></Entry>
+                        <Entry IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="16" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsReadOnly="True" Text="{Binding ZIMOFunctionMappingType}"  WidthRequest="300" HorizontalTextAlignment="End" ></Entry>
 
                         <Label IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Switch IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="4" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
+                        <Switch IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="16" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
 
 
                     </Grid>
