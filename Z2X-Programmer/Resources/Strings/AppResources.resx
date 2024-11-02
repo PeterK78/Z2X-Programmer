@@ -1200,7 +1200,7 @@ Dimmung up and down = 88
     <value>(unknown error)</value>
   </data>
   <data name="ZIMOMappingTypeExtended" xml:space="preserve">
-    <value>Extended</value>
+    <value>Extended (without shifting left)</value>
   </data>
   <data name="ZIMOMappingTypeRCN225" xml:space="preserve">
     <value>Standard (RCN225 compatible)</value>

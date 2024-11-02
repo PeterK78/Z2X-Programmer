@@ -99,99 +99,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <Button Grid.Row="3" Grid.Column="0" WidthRequest="200" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}"  ></Button>
+                            <Button Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="200" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}"  ></Button>
 
-                        </Grid>
-                    </VerticalStackLayout>
-                </Frame>
-
-
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_FUNCTIONKEYMAPPING_CV3346}" />
-
-                <!-- Frame: Döhler & Haass specific function key mapping type  -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaasInfoTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}">
-                    <VerticalStackLayout>
-                        <!-- Function key mapping type -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,100,20" />
-                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Switch Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
-                        </Grid>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <!-- Döhler & Haass ABV key in CV133 -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
-                    <VerticalStackLayout>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                        </Grid>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <!-- Döhler & Haass shunting key in CV133 -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKey}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"/>
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
-                    <VerticalStackLayout>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                        </Grid>
-                    </VerticalStackLayout>
-                </Frame>
-
-                <!-- Frame: ZIMO specific function key mapping type  -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}">
-                    <VerticalStackLayout>
-                        <!-- Function key mapping type -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Label x:Name="FrameFunctionsKeysZIMOMappingType" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,100,20" />
-                            <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Entry Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"  IsReadOnly="True" Text="{Binding ZIMOFunctionMappingType}"  WidthRequest="300" HorizontalTextAlignment="End" ></Entry>
                         </Grid>
                     </VerticalStackLayout>
                 </Frame>
 
                 <!-- RCN225 standard function mapping in CVs #33 to #46  -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingStandardTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_FUNCTIONKEYMAPPING_CV3346}"/>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_FUNCTIONKEYMAPPING_CV3346}" />
                 <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_FUNCTIONKEYMAPPING_CV3346}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -234,6 +149,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            
                         </Grid.RowDefinitions>
 
                         <!-- The description of the function mapping -->
@@ -466,9 +383,58 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <CheckBox Grid.Row="17" Grid.Column="16" IsChecked="{Binding CV46ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
                         <Label Grid.Row="17" Grid.Column="17" Text="{Binding CV46Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
+                        
+                        <Label IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="10" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Entry IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="16" Grid.ColumnSpan="4" HorizontalOptions="End" VerticalOptions="Center"  IsReadOnly="True" Text="{Binding ZIMOFunctionMappingType}"  WidthRequest="300" HorizontalTextAlignment="End" ></Entry>
+
+                        <Label IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Switch IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Margin="0,40,0,0" Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="4" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
+
+
                     </Grid>
                 </Frame>
 
+                <!-- Döhler & Haass ABV key in CV133 -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Döhler & Haass shunting key in CV133 -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKey}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"/>
+                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+             
+              
                 <!-- ZIMO ABV key in CV156 -->
                 <Label x:Name="FrameFunctionKeysDeactivateAccDecTimeLabel" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}" />
                 <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}">

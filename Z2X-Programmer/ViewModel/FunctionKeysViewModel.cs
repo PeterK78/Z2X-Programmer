@@ -1435,7 +1435,7 @@ namespace Z2XProgrammer.ViewModel
             }
             else if (DecoderConfiguration.ZIMO.FunctionKeyMappingType == 97)
             {
-                ZIMOFunctionMappingType = ZIMOEnumConverter.GetMappingTypeDescription(ZIMO.FunctionMappingTypes.RCN225);
+                ZIMOFunctionMappingType = ZIMOEnumConverter.GetMappingTypeDescription(ZIMO.FunctionMappingTypes.ExtendedMapping);
             }
             else
             {

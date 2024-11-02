@@ -232,7 +232,11 @@ namespace Z2XProgrammer.Converter
             return MotorControlFrequencyTypes.LowFrequency;
         }
 
-        
+        /// <summary>
+        /// Returns the description of the selected function mapping in CV61.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         internal static string GetMappingTypeDescription (ZIMO.FunctionMappingTypes type)
         {
             switch (type)

@@ -3788,7 +3788,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended.
+        ///   Looks up a localized string similar to Extended (without shifting left).
         /// </summary>
         public static string ZIMOMappingTypeExtended {
             get {
