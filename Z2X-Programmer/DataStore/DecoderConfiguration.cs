@@ -35,6 +35,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Messages;
+using System.Collections.ObjectModel;
 
 namespace Z2XProgrammer.DataStore
 {
@@ -96,10 +97,14 @@ namespace Z2XProgrammer.DataStore
         public static string UserDefindedImage { get; set; }
 
         /// <summary>
-        /// The currently selected programming mode
+        /// The currently selected programming mode.
         /// </summary>
         internal static NMRA.DCCProgrammingModes ProgrammingMode { get; set; }
-       
+
+        /// <summary>
+        /// A list of user defined function output names.
+        /// </summary>
+        public static List<FunctionOutputType> UserDefinedFunctionOutputNames = new List<FunctionOutputType>();
        
         /// <summary>
         /// Constructor
@@ -120,12 +125,21 @@ namespace Z2XProgrammer.DataStore
         {
             BackupCVs.Clear();
             ConfigurationVariables.Clear();
+            UserDefinedFunctionOutputNames.Clear();
 
             //  Setup the list of configuration variables
             for (int i = 0; i <= Helper.NMRA.MaxCVValues + 1; i++)
             {
                 BackupCVs.Add(new ConfigurationVariableType() { Number = i, Enabled = false, Description = "", Value = 0 });
                 ConfigurationVariables.Add(new ConfigurationVariableType() { Number = i, Enabled = false, Description = "", Value = 0 });
+            }
+
+            //  Setup the list of function outputs
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0r" }); 
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0v" }); 
+            for (int i = 0; i<= Helper.NMRA.MaxFunctionOutputs-1;i++ )
+            {
+                UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i+1).ToString() }); 
             }
 
             //  Reset the user defined settings

@@ -22,16 +22,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Converter;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Messages;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
     public partial class FunctionOutputsViewModel: ObservableObject
     {
+
+       internal ObservableCollection<FunctionOutputType>? _functionOutputs= new ObservableCollection<FunctionOutputType>();
+
         #region REGION: DECODER FEATURES
 
         [ObservableProperty]
@@ -43,6 +49,12 @@ namespace Z2XProgrammer.ViewModel
         #endregion 
 
         #region REGION: PUBLIC PROPERTIES
+
+        [ObservableProperty]
+        internal ObservableCollection<FunctionOutputType>? functionOutputs= new ObservableCollection<FunctionOutputType>();
+
+        [ObservableProperty]
+        internal FunctionOutputType selectedFunctionOutput = new FunctionOutputType();
 
         //  ZIMO_SUSIPORT1CONFIG_CV201
         [ObservableProperty]
@@ -63,6 +75,8 @@ namespace Z2XProgrammer.ViewModel
         public FunctionOutputsViewModel()
         {
             AvailableSUSIPinModes = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableSUSIPinModes());
+
+            _functionOutputs = FunctionOutputs;
 
             OnGetDataFromDataStore();
             OnGetDataFromDecoderSpecification();
@@ -93,6 +107,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
             SelectedSUSIInterface1PinMode = ZIMOEnumConverter.GetSUSIInterface1PinModeDescription(DecoderConfiguration.ZIMO.SUSIInterface1PinMode);
+            FunctionOutputs = new ObservableCollection<FunctionOutputType>(DecoderConfiguration.UserDefinedFunctionOutputNames);
         }
 
         /// <summary>
@@ -104,7 +119,47 @@ namespace Z2XProgrammer.ViewModel
         {
             ZIMO_SUSIPORT1CONFIG_CV201 = DecoderSpecification.ZIMO_SUSIPORT1CONFIG_CV201;
         }
-            
+
+
+        #endregion
+
+        #region REGION: COMMANDS
+        [RelayCommand]
+        async Task EditFunctionOutputName()
+        {
+            try
+            {
+                //  Check if a function key has been selected
+                if(SelectedFunctionOutput == null)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
+                    }
+                    return;
+                }
+
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    string Result = await Application.Current.MainPage.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.ID, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.Description);
+                    if (Result != null) SelectedFunctionOutput.Description = Result;
+
+                    OnPropertyChanged(nameof(FunctionOutputs));
+
+                    _functionOutputs = FunctionOutputs;
+                    FunctionOutputs = null;
+                    FunctionOutputs = _functionOutputs;
+                }
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
+                }
+            }
+        }
+
 
         #endregion
     }

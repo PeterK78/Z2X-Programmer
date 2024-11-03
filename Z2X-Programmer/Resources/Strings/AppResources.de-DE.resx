@@ -1430,4 +1430,22 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
     <value>Die Konfiguration der erweiterten Zuordnung wird aktuell von Z2X-Programmer nicht unterstützt.</value>
   </data>
+  <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingTitle" xml:space="preserve">
+    <value>Namensgebung</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingDescription" xml:space="preserve">
+    <value>In der folgenden Tabelle können Sie jedem Funktionsausgang eine beliebige Beschreibung zuweisen.</value>
+  </data>
+  <data name="FrameFunctionOutputsGetNamingTitle" xml:space="preserve">
+    <value>Funktionsausgang</value>
+  </data>
+  <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
+    <value>Geben Sie eine beliebige Beschreibung ein:</value>
+  </data>
 </root>

@@ -1428,4 +1428,22 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
     <value>The configuration of the extended mapping is currently not supported by Z2X-Programmer.</value>
   </data>
+  <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingTitle" xml:space="preserve">
+    <value>Naming</value>
+  </data>
+  <data name="FrameFunctionOutputsNamingDescription" xml:space="preserve">
+    <value>In the following table, you can assign any description to each function output.</value>
+  </data>
+  <data name="FrameFunctionOutputsGetNamingTitle" xml:space="preserve">
+    <value>Function output</value>
+  </data>
+  <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
+    <value>Enter any description:</value>
+  </data>
 </root>

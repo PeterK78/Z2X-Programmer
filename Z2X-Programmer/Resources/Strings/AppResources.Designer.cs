@@ -1547,6 +1547,60 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter any description:.
+        /// </summary>
+        public static string FrameFunctionOutputsGetNamingDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsGetNamingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function output.
+        /// </summary>
+        public static string FrameFunctionOutputsGetNamingTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsGetNamingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the following table, you can assign any description to each function output..
+        /// </summary>
+        public static string FrameFunctionOutputsNamingDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsNamingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string FrameFunctionOutputsNamingHeaderTitleDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsNamingHeaderTitleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string FrameFunctionOutputsNamingHeaderTitleID {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsNamingHeaderTitleID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naming.
+        /// </summary>
+        public static string FrameFunctionOutputsNamingTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionOutputsNamingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activate extended function mapping (CV137.4).
         /// </summary>
         public static string FrameFunctionsKeysDoehlerAndHaassMappingType {

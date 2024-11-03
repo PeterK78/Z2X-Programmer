@@ -6,6 +6,7 @@
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              x:DataType="viewmodel:FunctionOutputsViewModel"
+             xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,40,40"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}">
@@ -32,6 +33,49 @@
 
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+                <!-- User defined description of the ouputs -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingTitle}" VerticalOptions="Center" />
+                <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionOutputs}" SelectedItem="{Binding SelectedFunctionOutput}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                                <CollectionView.Header>
+                                    <Grid ColumnDefinitions="100,*">
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleID}" Grid.Column="0"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleDescription}" Grid.Column="1"/>
+                                    </Grid>
+                                </CollectionView.Header>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="datamodel:FunctionOutputType">
+                                        <Grid ColumnDefinitions="100,*">
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ID}" HorizontalTextAlignment="Start" />
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Description}" HorizontalTextAlignment="Start" />
+                                        </Grid>
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <Button Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="200" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionOutputsViewModel}}, Path=EditFunctionOutputNameCommand}"  ></Button>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
 
                 <!-- ZIMO SUSI Configuration -->
                 <Label IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSITitle}" VerticalOptions="Center" />

@@ -20,32 +20,12 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
+
 namespace Z2XProgrammer.DataModel
 {
-    public class LocoListType
+    public class FunctionOutputType
     {
-
-        /// <summary>
-        /// User defined decoder description.
-        /// </summary>
-        public string UserDefindedDecoderDescription { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Locomotive address.
-        /// </summary>
-        public ushort LocomotiveAddress { get; set;  }
-
-        /// <summary>
-        /// Path to the Z2X file.
-        /// </summary>
-        public string FilePath { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Stores the use defined image.
-        /// </summary>
-        public ImageSource UserDefindedImage { get; set; } = string.Empty;
-
-        public LocoListType() { }
-
+        public string ID { get; set; } = string.Empty; 
+        public string Description { get; set; } = string.Empty;
     }
 }

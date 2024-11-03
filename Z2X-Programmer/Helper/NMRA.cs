@@ -55,9 +55,12 @@ namespace Z2XProgrammer.Helper
         public const byte ManufacturerID_PIKO = 162;
         public const byte ManufacturerID_DoehlerAndHaass = 97;
 
-        //  The maximum amount of CV values
+        // The maximum amount of CV values.
         public const ushort MaxCVValues = 1024;
 
+        // The maximum amount of function outputs.
+        public const ushort MaxFunctionOutputs = 12;
+        
         /// <summary>
         /// Converts the NMRA manufucaturer ID to a string
         /// </summary>

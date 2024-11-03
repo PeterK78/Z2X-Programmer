@@ -21,18 +21,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Z2XProgrammer.DataModel;
 
 namespace Z2XProgrammer.Model
 {
     /// <summary>
-    /// The data model of the Z2X programmer file format (version 1.0)
+    /// The data model of the Z2X programmer file format (version 1.0).
     /// </summary>
     [XmlRoot("Z2XProgrammer")]
     public class Z2XProgrammerFileType
@@ -92,5 +87,11 @@ namespace Z2XProgrammer.Model
         /// </summary>
         [XmlElement(ElementName = "Image", Order = 7)]
         public string UserDefinedImage { get; set; }
+
+        /// <summary>
+        /// The user defined function output names
+        /// </summary>
+        [XmlElement(ElementName = "FunctionOutputNames", Order = 8)]
+        public List<FunctionOutputType> UserDefinedFunctionOutputNames = new List<FunctionOutputType>();
     }
 }

@@ -68,18 +68,25 @@ namespace Z2XProgrammer.FileAndFolderManagement
         /// <returns></returns>
         public static Z2XProgrammerFileType CreateZ2XProgrammerFile()
         {
-            //  
-            // Setup the Z2X file content object
-            //
-            Z2XProgrammerFileType myZ2XFileContent = new Z2XProgrammerFileType();
-            myZ2XFileContent.LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
-            myZ2XFileContent.UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;             
-            myZ2XFileContent.CVs = DecoderConfiguration.ConfigurationVariables.ToList();
-            myZ2XFileContent.DeqSpecName = DecoderSpecification.DeqSpecName;
-            myZ2XFileContent.UserDefinedNotes = DecoderConfiguration.UserDefindedNotes;
-            myZ2XFileContent.UserDefinedImage = DecoderConfiguration.UserDefindedImage;
-
-            return myZ2XFileContent;
+            try
+            {
+                //  
+                // Setup the Z2X file content object
+                //
+                Z2XProgrammerFileType myZ2XFileContent = new Z2XProgrammerFileType();
+                myZ2XFileContent.LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                myZ2XFileContent.UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
+                myZ2XFileContent.CVs = DecoderConfiguration.ConfigurationVariables.ToList();
+                myZ2XFileContent.DeqSpecName = DecoderSpecification.DeqSpecName;
+                myZ2XFileContent.UserDefinedNotes = DecoderConfiguration.UserDefindedNotes;
+                myZ2XFileContent.UserDefinedImage = DecoderConfiguration.UserDefindedImage;
+                myZ2XFileContent.UserDefinedFunctionOutputNames = DecoderConfiguration.UserDefinedFunctionOutputNames.ToList();
+                return myZ2XFileContent;
+            }
+            catch
+            {
+                return new Z2XProgrammerFileType();
+            }   
         }
 
 
@@ -118,6 +125,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
             DecoderConfiguration.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
             DecoderConfiguration.UserDefindedNotes = myFile.UserDefinedNotes;
             DecoderConfiguration.UserDefindedImage = myFile.UserDefinedImage;
+            DecoderConfiguration.UserDefinedFunctionOutputNames = myFile.UserDefinedFunctionOutputNames;
 
             //  Check if the decoder specification file is available.
             if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException("Missing decoder specification file " + myFile.DeqSpecName);
