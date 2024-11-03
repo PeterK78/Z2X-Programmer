@@ -230,7 +230,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Create a blank new decoder configuration
+        /// Create a blank new decoder configuration.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -261,7 +261,6 @@ namespace Z2XProgrammer.ViewModel
                 }
             }
         }
-
 
         /// <summary>
         /// Connects to the command station
@@ -566,7 +565,6 @@ namespace Z2XProgrammer.ViewModel
             }
 
         }
-
 
         /// <summary>
         /// Downloads the modified settings to the decoder.

@@ -146,6 +146,8 @@ namespace Z2XProgrammer.ViewModel
 
                     OnPropertyChanged(nameof(FunctionOutputs));
 
+                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+
                     _functionOutputs = FunctionOutputs;
                     FunctionOutputs = null;
                     FunctionOutputs = _functionOutputs;

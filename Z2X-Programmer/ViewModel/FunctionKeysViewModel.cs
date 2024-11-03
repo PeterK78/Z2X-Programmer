@@ -45,7 +45,6 @@ namespace Z2XProgrammer.ViewModel
 
         internal ObservableCollection<ZIMOInputMappingType>? _ZIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
 
-
         #region REGION: DECODER FEATURES
 
         //  RCN225 features
@@ -93,6 +92,48 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        [ObservableProperty]
+        string output0vDescription = string.Empty;
+
+        [ObservableProperty]
+        string output0rDescription = string.Empty;
+
+        [ObservableProperty]
+        string output1Description = string.Empty;
+
+        [ObservableProperty]
+        string output2Description = string.Empty;
+        
+        [ObservableProperty]
+        string output3Description = string.Empty;
+                
+        [ObservableProperty]
+        string output4Description = string.Empty;
+
+        [ObservableProperty]
+        string output5Description = string.Empty;
+
+        [ObservableProperty]
+        string output6Description = string.Empty;
+
+        [ObservableProperty]
+        string output7Description = string.Empty;
+
+        [ObservableProperty]
+        string output8Description = string.Empty;
+
+        [ObservableProperty]
+        string output9Description = string.Empty;
+
+        [ObservableProperty]
+        string output10Description = string.Empty;
+
+        [ObservableProperty]
+        string output11Description = string.Empty;
+
+        [ObservableProperty]
+        string output12Description = string.Empty;
 
         #region CV33 FUNCTION OUTPUT MAPPING OF KEY F0 (FORWARD)
         [ObservableProperty]
@@ -156,6 +197,7 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;     
         }
         #endregion
+
 
         #region CV34 FUNCTION OUTPUT MAPPING OF KEY F0 (BACKWARD)
         [ObservableProperty]
@@ -1405,6 +1447,20 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            Output0vDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[0].Description == "" ? "0v" : DecoderConfiguration.UserDefinedFunctionOutputNames[0].Description;
+            Output0rDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[1].Description == "" ? "0r" : DecoderConfiguration.UserDefinedFunctionOutputNames[1].Description;
+            Output1Description = DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description == "" ? "1" : DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description;
+            Output3Description = DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description == "" ? "2" : DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description;
+            Output4Description = DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description == "" ? "3" : DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description;
+            Output5Description = DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description == "" ? "4" : DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description;
+            Output6Description = DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description == "" ? "5" : DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description;
+            Output7Description = DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description == "" ? "6" : DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description;
+            Output8Description = DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description == "" ? "7" : DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description;
+            Output9Description = DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description == "" ? "8" : DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description;
+            Output10Description = DecoderConfiguration.UserDefinedFunctionOutputNames[10].Description == "" ? "9" : DecoderConfiguration.UserDefinedFunctionOutputNames[10].Description;
+            Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[11].Description == "" ? "10" : DecoderConfiguration.UserDefinedFunctionOutputNames[11].Description;
+            Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description;
 
             //  RCN 225
             CV33Value = DecoderConfiguration.RCN225.FunctionMappingF0Forward;

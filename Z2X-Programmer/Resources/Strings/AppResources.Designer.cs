@@ -1583,7 +1583,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ID.
+        ///   Looks up a localized string similar to Output.
         /// </summary>
         public static string FrameFunctionOutputsNamingHeaderTitleID {
             get {

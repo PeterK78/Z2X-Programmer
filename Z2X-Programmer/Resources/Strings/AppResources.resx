@@ -1429,7 +1429,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>The configuration of the extended mapping is currently not supported by Z2X-Programmer.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
-    <value>ID</value>
+    <value>Output</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
     <value>Description</value>

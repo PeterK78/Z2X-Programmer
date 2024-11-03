@@ -1431,7 +1431,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Die Konfiguration der erweiterten Zuordnung wird aktuell von Z2X-Programmer nicht unterstützt.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
-    <value>ID</value>
+    <value>Ausgang</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
     <value>Beschreibung</value>

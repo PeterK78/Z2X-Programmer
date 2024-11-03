@@ -135,8 +135,8 @@ namespace Z2XProgrammer.DataStore
             }
 
             //  Setup the list of function outputs
-            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0r" }); 
             UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0v" }); 
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0r" }); 
             for (int i = 0; i<= Helper.NMRA.MaxFunctionOutputs-1;i++ )
             {
                 UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i+1).ToString() }); 
