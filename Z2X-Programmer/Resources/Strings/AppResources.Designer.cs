@@ -1294,7 +1294,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digital decoders have up to 12 function outputs. Configure here which function button switches which function output on and off..
+        ///   Looks up a localized string similar to In the following table you can configure which function button switches which function output on and off..
         /// </summary>
         public static string FrameFunctionKeysMappingDescription {
             get {
@@ -1565,7 +1565,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currently selected variant of the function assignment (CV61).
+        ///   Looks up a localized string similar to Extended assignment of function keys (CV61).
         /// </summary>
         public static string FrameFunctionsKeysZIMOMappingType {
             get {
@@ -1579,6 +1579,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionsKeysZIMOMappingTypeDescription {
             get {
                 return ResourceManager.GetString("FrameFunctionsKeysZIMOMappingTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration of the extended mapping is currently not supported by Z2X-Programmer..
+        /// </summary>
+        public static string FrameFunctionsKeysZIMOMappingTypeLabel {
+            get {
+                return ResourceManager.GetString("FrameFunctionsKeysZIMOMappingTypeLabel", resourceCulture);
             }
         }
         

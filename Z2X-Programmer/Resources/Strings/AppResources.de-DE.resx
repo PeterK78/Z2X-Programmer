@@ -490,7 +490,7 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Rückwärts</value>
   </data>
   <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
-    <value>Digitaldecoder verfügen über bis zu 12 Funktionsausgänge. Konfigurieren Sie hier, welche Funktionstaste welchen Funktionsausgang ein- und ausschaltet.</value>
+    <value>In dieser Tabelle können Sie festlegen, welche Funktionstaste welchen Funktionsausgang ein- und auschaltet.</value>
   </data>
   <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
     <value>Vorwärts</value>
@@ -556,7 +556,7 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Neben der Funktionszuordnung laut RCN-225 bieten Döhler &amp; Haass Decoder zusätzlich eine erweiterte Variante der Funktionszuordnung an.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Aktuell gewählte Variante der Funktionszuordnung (CV61)</value>
+    <value>Erweiterte Zuordnung der Funktionsausgänge (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>Neben der Funktionszuordnung laut RCN-225 bieten ZIMO Decoder zusätzliche Varianten der Funktionszuordnung an. Aktuell unterstützt Z2X-Programmer jedoch nur die Variante nach RCN-225.</value>
@@ -1426,5 +1426,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="AlertNoModifiedValuesFound" xml:space="preserve">
     <value>Es sind keine geänderten Einstellungen vorhanden. Der Download wird nicht durchgeführt.</value>
+  </data>
+  <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
+    <value>Die Konfiguration der erweiterten Zuordnung wird aktuell von Z2X-Programmer nicht unterstützt.</value>
   </data>
 </root>

@@ -488,7 +488,7 @@ The following configuration variables will be changed:</value>
     <value>Backward</value>
   </data>
   <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
-    <value>Digital decoders have up to 12 function outputs. Configure here which function button switches which function output on and off.</value>
+    <value>In the following table you can configure which function button switches which function output on and off.</value>
   </data>
   <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
     <value>Forward</value>
@@ -554,7 +554,7 @@ The following configuration variables will be changed:</value>
     <value>In addition to the function assignmIn addition to the function assignment according to RCN-225, Döhler &amp; Haass decoders also offer an extended version of the function assignment.ent according to RCN-225, Döhler &amp; Haass decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Currently selected variant of the function assignment (CV61)</value>
+    <value>Extended assignment of function keys (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>In addition to the function assignment according to RCN-225, ZIMO decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
@@ -1424,5 +1424,8 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertNoModifiedValuesFound" xml:space="preserve">
     <value>There are no modified settings. No download is being performed.</value>
+  </data>
+  <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
+    <value>The configuration of the extended mapping is currently not supported by Z2X-Programmer.</value>
   </data>
 </root>

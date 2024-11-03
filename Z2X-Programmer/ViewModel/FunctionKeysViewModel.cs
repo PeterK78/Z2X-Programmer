@@ -983,22 +983,36 @@ namespace Z2XProgrammer.ViewModel
         }
         #endregion
 
+
+        [ObservableProperty]
+        internal bool rCN225StandardFunctionMapping = true;
+
+        // ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61
+        [ObservableProperty]
+        internal bool zIMOExtendedFunctionMapping = false;
+        partial void OnZIMOExtendedFunctionMappingChanged(bool value)
+        {
+            RCN225StandardFunctionMapping = !value;
+            DecoderConfiguration.ZIMO.FunctionKeyMappingType = value == false ? (byte)0 : (byte)97; 
+        }
+
+        [ObservableProperty]
+        bool doehlerAndHaassExtendedFunctionMappingEnabled;
+        partial void OnDoehlerAndHaassExtendedFunctionMappingEnabledChanged(bool value)
+        {
+            RCN225StandardFunctionMapping = !value;
+            DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled = value;
+        }
+
         // ZIMO_INPUTMAPPING_CV4XX
         [ObservableProperty]
         internal ZIMOInputMappingType selectedInputMapping = new ZIMOInputMappingType();
         
         [ObservableProperty]
         internal ObservableCollection<ZIMOInputMappingType>? zIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
-     
-        [ObservableProperty]
-        internal string zIMOFunctionMappingType = string.Empty;
-
-        [ObservableProperty]
-        bool doehlerAndHaassExtendedFunctionMappingEnabled;
-        partial void OnDoehlerAndHaassExtendedFunctionMappingEnabledChanged(bool value)
-        {
-            DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled = value;
-        }
+        
+        
+      
 
         [ObservableProperty]
         int doehlerAndHaassFuncKeysShuntingFuncKeyNumber;
@@ -1429,18 +1443,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  ZIMO
             ZIMOFuncKeysAccDecDisableFuncKeyNumber = DecoderConfiguration.ZIMO.FuncKeysAccDecDisableFuncKeyNumber;
-            if (DecoderConfiguration.ZIMO.FunctionKeyMappingType == 0)
-            {
-                ZIMOFunctionMappingType = ZIMOEnumConverter.GetMappingTypeDescription(ZIMO.FunctionMappingTypes.RCN225);
-            }
-            else if (DecoderConfiguration.ZIMO.FunctionKeyMappingType == 97)
-            {
-                ZIMOFunctionMappingType = ZIMOEnumConverter.GetMappingTypeDescription(ZIMO.FunctionMappingTypes.ExtendedMapping);
-            }
-            else
-            {
-                ZIMOFunctionMappingType = AppResources.ZIMOMappingTypeUnknown;
-            }
+            ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.FunctionKeyMappingType == 0 ?  true : false;
             ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
