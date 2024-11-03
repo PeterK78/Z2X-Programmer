@@ -127,50 +127,15 @@ namespace Z2XProgrammer.Communication
         }
 
         /// <summary>
-        /// Returns TRUE if we can safely overwrite the given configuration variable.
-        /// </summary>
-        /// <param name="cv">Number of configuration variable to check.</param>
-        /// <returns></returns>
-        private static bool WriteRequestSafe (ushort cv, NMRA.DCCProgrammingModes mode)
-        {
-            switch (cv)
-            {
-                //  Writing the vehicle address in POM mode is forbidden.
-                case 1: if (mode == NMRA.DCCProgrammingModes.POMMainTrack) return false;
-                        return true;
-                        
-                //  The RCN225 standard decoder version in CV7 can not be updated by the user.
-                case 7: return false;
-            
-                //  The RCN225 manufacturer ID in CV8 can not be updated by the user.
-                case 8: return false;
-                
-                //   Writing to ZIMO CV65 is not allowed (overwriting the ZIMO specific SW-Version number).
-                case 65: return false;
-
-                //  Writing to ZIMO specific CV250 is not allowed (overwriting the ZIMO specific decoder type).
-                case 250: return false;
-
-                //  Writing to ZIMO specific CV251, CV252 and CV253 is not allowed (overwriting the ZIMO decoder unique ID).
-                case 251:return false;
-                case 252: return false;
-                case 253: return false;
-
-                default: return true;
-            }
-        }
-
-
-        /// <summary>
         /// Downloads the configuration settings to the decoder.
         /// </summary>
-        /// <param name="cancelToken"></param>
-        /// <param name="locomotiveAddress"></param>
-        /// <param name="decSpecName"></param>
-        /// <param name="mode"></param>
+        /// <param name="cancelToken">A cancel token to cancel the execution.</param>
+        /// <param name="vehicleAddress">The vehicle address.</param>
+        /// <param name="decSpecName">The decoder specification name.</param>
+        /// <param name="mode">The programming mode (NMRA.DCCProgrammingModes).</param>
         /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
         /// <returns></returns>
-        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort locomotiveAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progres, bool allConfigVariables)
+        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progres, bool allConfigVariables)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -186,7 +151,7 @@ namespace Z2XProgrammer.Communication
             //  If we currently do not have a valid decoder specification, or just the generic one - we try to detect it automatically
             if ((_decSpecName == "") || (_decSpecName == null) || (_decSpecName == DeqSpecReader.GetDefaultDecSpecName()))
             {
-                _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
+                _decSpecName = DetectDecoderDeqSpec(cancelToken, vehicleAddress);
                 DecoderSpecification.DeqSpecName = _decSpecName;
             }
 
@@ -207,7 +172,7 @@ namespace Z2XProgrammer.Communication
             //  Read all configuration variables from the decoder
             for (int i = 0; i <= ConfigVariablesToWrite.Count - 1; i++)
             {
-                if (WriteCV((ushort)ConfigVariablesToWrite[i], locomotiveAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
+                if (WriteCV((ushort)ConfigVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
                 {
                     CommandStation.Z21.SetTrackPowerOn();
                     return Task.FromResult(false);
@@ -251,14 +216,14 @@ namespace Z2XProgrammer.Communication
             {
                 if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                 {
+                    //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                    if (DeqSpecReader.IsWriteable(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                     for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
                     {
                         ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
                         if (nextCV != 0)
-                        {
-                            //  We skip unsafe CV values
-                            if (WriteRequestSafe(nextCV, mode) == false) continue;
-
+                        {                         
                             //  Check if we have already written this CV. If so, skip this CV
                             if (SupportConfigVariables.Contains(nextCV) == false)
                             {
@@ -277,14 +242,14 @@ namespace Z2XProgrammer.Communication
                 {
                     if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                     {
+                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                        if (DeqSpecReader.IsWriteable(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                         for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
                         {
                             ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
                             if (nextCV != 0)
                             {
-                                //  We skip unsafe CV values
-                                if (WriteRequestSafe(nextCV, mode) == false) continue;
-
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
@@ -300,17 +265,17 @@ namespace Z2XProgrammer.Communication
             if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
             {
                 for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
-                {
+                {                    
                     if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                     {
+                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                        if (DeqSpecReader.IsWriteable(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                         for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
                         {
                             ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
                             if (nextCV != 0)
                             {
-                                //  We skip unsafe CV values
-                                if (WriteRequestSafe(nextCV, mode) == false) continue;
-
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
@@ -340,14 +305,14 @@ namespace Z2XProgrammer.Communication
             {
                 if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                 {
+                    //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                    if (DeqSpecReader.IsWriteable(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                     for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
                     {
                         ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
                         if (nextCV != 0)
                         {
-                            //  We skip unsafe CV values
-                            if (WriteRequestSafe(nextCV, mode) == false) continue;
-
                             //  Check if we have already written this CV. If so, skip this CV
                             if (SupportConfigVariables.Contains(nextCV) == false)
                             {
@@ -366,14 +331,14 @@ namespace Z2XProgrammer.Communication
                 {
                     if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                     {
+                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                        if (DeqSpecReader.IsWriteable(decSpecName,  DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                         for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
                         {
                             ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
                             if (nextCV != 0)
                             {
-                                //  We skip unsafe CV values
-                                if (WriteRequestSafe(nextCV, mode) == false) continue;
-
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
@@ -392,14 +357,14 @@ namespace Z2XProgrammer.Communication
                 {
                     if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                     {
+                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                        if (DeqSpecReader.IsWriteable(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
                         for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
                         {
                             ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
                             if (nextCV != 0)
                             {
-                                //  We skip unsafe CV values
-                                if (WriteRequestSafe(nextCV, mode) == false) continue;
-
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {

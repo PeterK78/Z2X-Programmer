@@ -22,6 +22,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui.Converters;
 using System.Reflection.Metadata;
 using System.Xml;
 using System.Xml.Linq;
@@ -180,6 +181,57 @@ namespace Z2XProgrammer.FileAndFolderManagement
                     return UNKNOWN_DECDODER_EN;
                 }
             } catch { return string.Empty; }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the variables associated with the feature can be safely described. 
+        /// </summary>
+        /// <param name="decSpecName">The decoder specification name.</param>
+        /// <param name="featureName">The feature name.</param>
+        /// <param name="folder">The folder of the decoder specification files.</param>
+        /// <returns></returns>
+        public static bool IsWriteable(string decSpecName, string featureName, string folder)
+        {
+            //  Check the input parameters
+            if ((decSpecName == "") || (decSpecName is null)) return false;
+            if ((featureName == "") || (featureName is null)) return false;
+            if ((folder == "") || (folder is null)) return false;
+
+            try
+            {
+
+                //  Get the file name of the decoder specification
+                string decSpecFileName = GetDecSpecFileName(decSpecName, folder);
+
+                if (decSpecFileName == "") return false;
+
+                //  Open the decspec XML file of the given decoder specification
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(decSpecFileName);
+
+                //  Try to get the node with the feature name
+                XmlNodeList itemList = xmlDoc.GetElementsByTagName(featureName);
+
+                //  Check if we have found any items in the decoder specification file
+                if (itemList is null) return false;
+
+                //  Check if we have find one, single matching feature - if not return FALSE
+                if (itemList.Count != 1) return false;
+
+                //  Check if we have found any attributes
+                if (itemList[0]!.Attributes is null) return false;
+
+                //  Check if we have found the "support" attribute
+                if (itemList[0]!.Attributes!["writeable"] is null) return false;
+
+                //  Get the content of the "support" attribute 
+                string support = itemList[0]!.Attributes!["writeable"]!.Value;
+
+                if (support.ToUpper() == "YES") return true;
+
+                return false;
+            }
+            catch { return false; }
         }
 
         /// <summary>
@@ -581,21 +633,21 @@ namespace Z2XProgrammer.FileAndFolderManagement
     <!-- Supported decoders -->
 
      <!-- Supported RCN225 features -->
-    <RCN225_BASEADDRESS_CV1 support=""yes""/>
-    <RCN225_MINIMALSPEED_CV2 support=""yes""/>
-    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes""/>
-    <RCN225_DECELERATIONFACTOR_CV4 support=""yes""/>
-    <RCN225_MAXIMALSPEED_CV5 support=""yes""/>
-    <RCN225_DECODERVERSION_CV7 support=""yes""/>
-    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes""/>
-    <RCN225_ANALOGMODE_CV29 support=""yes""/>
-    <RCN225_DIRECTION_CV29_0 support=""yes""/>
-    <RCN225_SPEEDSTEPS_CV29_1 support=""yes""/>
-    <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
-    <RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
-    <RCN225_SPEEDTABLE_CV29_4 support=""yes""/>
-    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes""/>
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29 support=""yes"" writeable=""yes""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
 
 </decoderseries>
 ";
@@ -606,32 +658,32 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <!-- Supported decoders -->
 
      <!-- Supported RCN225 features -->
-    <RCN225_BASEADDRESS_CV1 support=""yes""/>
-    <RCN225_MINIMALSPEED_CV2 support=""yes""/>
-    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes""/>
-    <RCN225_DECELERATIONFACTOR_CV4 support=""yes""/>
-    <RCN225_MAXIMALSPEED_CV5 support=""yes""/>
-    <RCN225_DECODERVERSION_CV7 support=""yes""/>
-    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
-    <RCN225_DIRECTION_CV29_0 support=""yes""/>
-    <RCN225_SPEEDSTEPS_CV29_1 support=""yes""/>
-    <RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes""/>
-    <RCN225_SPEEDTABLE_CV29_4 support=""yes""/>
-    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes""/>
-    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes""/>
-    <RCN225_ANALOGMODE_CV29 support=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes""/>
-    <RCN225_CONSISTADDRESS_CV19 support=""yes""/>
-    <RCN225_AUTOMATICREGISTRATION_CV27_5 support=""yes""/>
-    <RCN225_HLU_CV27_2 support=""yes""/>
-    <RCN225_ABC_CV27_X support=""yes""/>
-    <RCN225_DECODERLOCK_CV15X support=""yes""/>
-    <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
-    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes""/>
-    <RCN225_OPERATINGMODES_CV12 support=""yes""/>
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
+    <RCN225_AUTOMATICREGISTRATION_CV27_5 support=""yes"" writeable=""yes""/>
+    <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERLOCK_CV15X support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
+    <RCN225_OPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
 
 </decoderseries>
 ";
@@ -643,24 +695,23 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <decoder decoderid=""171""/>
 
     <!-- Supported RCN225 features -->
-    <RCN225_BASEADDRESS_CV1 support=""yes""/>	
-    <RCN225_DECODERVERSION_CV7 support=""yes""/>
-    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
-    <RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes""/>
-    <RCN225_ABC_CV27_X support=""yes""/>
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>	
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
     
 
     <!-- Supported ZIMO features -->
-    <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes""/>
-    <ZIMO_SUBVERSIONNR_CV65 support=""yes""/>
-    <ZIMO_DECODERTYPE_CV250 support=""yes""/>
-    <ZIMO_DECODERID_CV25X support=""yes""/>
-    <ZIMO_DECODERID_CV25X support=""yes""/>
+    <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""yes""/>
+    <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
+    <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
     <ZIMO_MXUPDATELOCK_CV144 support =""yes"" />
 
     
@@ -696,57 +747,57 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <decoder decoderid=""127"" decodername=""MN180""/>
 
     <!-- Supported RCN225 features -->
-    <RCN225_BASEADDRESS_CV1 support=""yes""/>
-    <RCN225_MINIMALSPEED_CV2 support=""yes""/>
-    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes""/>
-    <RCN225_DECELERATIONFACTOR_CV4 support=""yes""/>
-    <RCN225_MAXIMALSPEED_CV5 support=""yes""/>
-    <RCN225_MEDIUMSPEED_CV6 support=""yes""/>		
-    <RCN225_DECODERVERSION_CV7 support=""yes""/>
-    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
-    <RCN225_DECODERLOCK_CV15X support=""yes""/>
-    <RCN225_DIRECTION_CV29_0 support=""yes""/>
-    <RCN225_SPEEDSTEPS_CV29_1 support=""yes""/>
-    <RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes""/>
-    <RCN225_SPEEDTABLE_CV29_4 support=""yes""/>
-    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes""/>
-    <RCN225_CONSISTADDRESS_CV19 support=""yes""/>
-    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes""/>
-    <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes""/>
-    <RCN225_HLU_CV27_2 support=""yes""/>
-    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes""/>
-    <RCN225_ABC_CV27_X support=""yes""/>
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <RCN225_MEDIUMSPEED_CV6 support=""yes"" writeable=""yes""/>		
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_DECODERLOCK_CV15X support=""yes"" writeable=""yes""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
+    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
+    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
 
     
     <!-- Supported ZIMO features -->
-    <ZIMO_SUBVERSIONNR_CV65 support=""yes""/>
-    <ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 support=""yes""/>
-    <ZIMO_DECODERTYPE_CV250 support=""yes""/>
-    <ZIMO_DECODERID_CV25X support=""yes""/>
-    <ZIMO_BOOTLOADER_VERSION_24X support=""yes""/>
-    <ZIMO_LIGHT_DIM_CV60 support=""yes""/>
-    <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes""/>
-    <ZIMO_BRAKESQUEAL_CV287 support=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes""/>
-    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes""/>
-    <ZIMO_SELFTEST_CV30 support=""yes""/>
-    <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes""/>
-    <ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 support=""yes""/>
-    <ZIMO_SOUND_STARTUPDELAY_CV273 support=""yes""/>
-    <ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 support=""yes""/>
-    <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes""/>
-    <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes""/>
-    <ZIMO_MSOPERATINGMODES_CV12 support=""yes""/>
-    <ZIMO_SOUNDPROJECTNR_CV254 support=""yes""/>
-    <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes""/>
-    <ZIMO_INPUTMAPPING_CV4XX support=""yes""/>
+    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
+    <ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 support=""yes"" writeable=""yes""/>
+    <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
+    <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
+    <ZIMO_BOOTLOADER_VERSION_24X support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes"" writeable=""yes""/>
+    <ZIMO_BRAKESQUEAL_CV287 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
+    <ZIMO_SELFTEST_CV30 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes"" writeable=""yes""/>
+    <ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_STARTUPDELAY_CV273 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes"" writeable=""yes""/>
+    <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUNDPROJECTNR_CV254 support=""yes"" writeable=""yes""/>
+    <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
+    <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -854,54 +905,54 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <decoder decoderid=""254"" decodername=""MX697 RevB"" />
 
     <!-- Supported RCN225 features -->
-	<RCN225_BASEADDRESS_CV1 support=""yes""/>
-	<RCN225_MINIMALSPEED_CV2 support=""yes""/>
-	<RCN225_ACCELERATIONFACTOR_CV3 support=""yes""/>
-	<RCN225_DECELERATIONFACTOR_CV4 support=""yes""/>
-	<RCN225_MAXIMALSPEED_CV5 support=""yes""/>		
-	<RCN225_MEDIUMSPEED_CV6 support=""yes""/>		
-    <RCN225_DECODERVERSION_CV7 support=""yes""/>
-    <RCN225_MANUFACTUERID_CV8 support=""yes""/>
+	<RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+	<RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+	<RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+	<RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+	<RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>		
+	<RCN225_MEDIUMSPEED_CV6 support=""yes"" writeable=""yes""/>		
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
 	<RCN225_DECODERLOCK_CV15X support=""no""/>
-	<RCN225_DIRECTION_CV29_0 support=""yes""/>
-	<RCN225_SPEEDSTEPS_CV29_1 support=""yes""/>
-	<RCN225_RAILCOMENABLED_CV29_3 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes""/>
-    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes""/>
-    <RCN225_SPEEDTABLE_CV29_4 support=""yes""/>
-	<RCN225_LONGSHORTADDRESS_CV29_5 support=""yes""/>
-    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes""/>
-    <RCN225_ANALOGMODE_CV29_2 support=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes""/>
-    <RCN225_CONSISTADDRESS_CV19 support=""yes""/>
-    <RCN225_ABC_CV27_X support=""yes""/>
+	<RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
+	<RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+	<RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
+	<RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
 
  
     <!-- Supported ZIMO features -->
-    <ZIMO_SUBVERSIONNR_CV65 support=""yes""/>
-	<ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 support=""yes""/>
-    <ZIMO_DECODERTYPE_CV250 support=""yes""/>
-    <ZIMO_DECODERID_CV25X support=""yes""/>
+    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
+	<ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 support=""yes"" writeable=""yes""/>
+    <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
+    <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
     <ZIMO_LIGHT_DIM_CV60 support=""yes"" />
-    <ZIMO_MXMOTORCONTROLFREQUENCY_CV9 support=""yes""/>
+    <ZIMO_MXMOTORCONTROLFREQUENCY_CV9 support=""yes"" writeable=""yes""/>
     <ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 support =""yes"" />
     <ZIMO_MXUPDATELOCK_CV144 support =""yes"" />
     <ZIMO_MXMOTORCONTROLPID_CV56 support =""yes""/>
-    <ZIMO_VOLUME_CV266 support=""yes""/>
-    <ZIMO_BRAKESQUEAL_CV287 support=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes""/>
-    <ZIMO_LIGHT_EFFECTS_CV125X support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes""/>
+    <ZIMO_VOLUME_CV266 support=""yes"" writeable=""yes""/>
+    <ZIMO_BRAKESQUEAL_CV287 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_STARTUPDELAY_CV273 support =""yes""/>
     <ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 support =""yes""/>
-    <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes""/>
-    <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes""/>
-    <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes""/>
-    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes""/>
-    <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes""/>
+    <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 

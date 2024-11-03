@@ -9,8 +9,8 @@
     <RCN225_ACCELERATIONFACTOR_CV3 support="yes"/>
     <RCN225_DECELERATIONFACTOR_CV4 support="yes"/>
     <RCN225_MAXIMALSPEED_CV5 support="yes"/>
-    <RCN225_DECODERVERSION_CV7 support="yes"/>
-    <RCN225_MANUFACTUERID_CV8 support="yes"/>
+    <RCN225_DECODERVERSION_CV7 support="no"/>
+    <RCN225_MANUFACTUERID_CV8 support="no"/>
     <RCN225_DIRECTION_CV29_0 support="yes"/>
     <RCN225_SPEEDSTEPS_CV29_1 support="yes"/>
     <RCN225_RAILCOMENABLED_CV29_3 support="yes"/>
