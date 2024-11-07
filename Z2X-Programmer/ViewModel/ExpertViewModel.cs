@@ -231,7 +231,10 @@ namespace Z2XProgrammer.ViewModel
                 ActivityReadWriteCVOngoing = true;
 
                 //  Turn the track power ON if we are in POM mode
-                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack) ReadWriteDecoder.SetTrackPowerON();
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
+                {
+                    await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
+                }
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
