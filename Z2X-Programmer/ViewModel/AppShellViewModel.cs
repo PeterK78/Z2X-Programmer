@@ -61,6 +61,9 @@ namespace Z2XProgrammer.ViewModel
         bool dataStoreDataValid;
 
         [ObservableProperty]
+        bool activityReadWriteCVOngoing = false;
+
+        [ObservableProperty]
         string applicationTitle = "Z2X-Programmer";
 
         [ObservableProperty]
@@ -202,7 +205,11 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
+                ActivityReadWriteCVOngoing = true;
+
                 locoList = await Task.Run(() => LocoList.GetLocomotiveList());
+
+                ActivityReadWriteCVOngoing = false;
 
                 if (locoList.Count == 0)
                 {
@@ -219,9 +226,12 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
+                
+
             }
             catch (Exception ex)
             {
+                
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
                     await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNotReachable + ex.Message, AppResources.OK);
