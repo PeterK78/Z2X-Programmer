@@ -93,7 +93,7 @@ In this case, check whether you have entered the correct IP address and whether 
 
 * Before the download, Z2X-Programmer informs you which configuration variables will be changed. Click on `Yes` to start transferring the settings.
 
-![The decoder will be configured](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/De/Assets/Z2X-Programmer-GettingStartedSummary.png "The decoder will be configured")
+![The decoder will be configured](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedSummary.png "The decoder will be configured")
 
 * If the download was successful, the following message appears:
 
