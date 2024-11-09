@@ -37,7 +37,7 @@ User-friendliness is supported with the following functions:
 * A search function helps you to find the functions you need
 
 
-## Supported Decoder Manufacturers
+## Supported decoder manufacturers
 Z2X-Programmer is universal and not limited to a specific decoder manufacturer. The application offers a wide range of configuration options that are available for all decoders. Which configuration options are used by a decoder is defined in a decoder specification file. The following decoder specification files are currently available:
 
 * RCN225 compatible decoders
@@ -48,6 +48,9 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 
 You can create your own decoder specification file at any time.
 
+>[!NOTE]
+> At the moment the focus is on Z21 digital command stations and ZIMO decoders - this is the hardware I currently own 😉.
+
 ## Screenshots
 ![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics.png "Changing the motor characteristics")
 
@@ -56,6 +59,8 @@ You can create your own decoder specification file at any time.
 ![Configuring function keys](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-FunctionKeys.png "Configuring function keys")
 
 ![Search](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Search.png "Search")
+
+![Android](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Android.png "Android")
 
 
 
