@@ -42,6 +42,9 @@ namespace Z2XProgrammer.ViewModel
         internal ObservableCollection<string>? availableLocoListSystems;
 
         [ObservableProperty]
+        internal bool activityConnectingOngoing = false;
+
+        [ObservableProperty]
         internal string selectedLocoListSystem;
         partial void OnSelectedLocoListSystemChanged(string value)
         {
@@ -287,7 +290,6 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-
         /// <summary>
         /// Connects to the Z21
         /// </summary>
@@ -297,11 +299,16 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
+                ActivityConnectingOngoing = true;
 
-                CommandStation.Disconnect();                    
+                CommandStation.Disconnect();
 
+                bool ConnectSuccessFull = false;
+                await Task.Run(() => ConnectSuccessFull =  CommandStation.Connect());
+                
                 if (CommandStation.Connect() == false)
                 {
+                    ActivityConnectingOngoing = false;
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
                     {
                         await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
@@ -309,14 +316,18 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else
                 {
+                    ActivityConnectingOngoing = false;
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
                     {
                         await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
                     }
                 }
+                
+                
             }
             catch (System.FormatException)
             {
+                ActivityConnectingOngoing = false;
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
                     await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
@@ -324,6 +335,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
+                ActivityConnectingOngoing = false;      
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
                     await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
