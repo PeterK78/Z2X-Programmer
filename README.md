@@ -48,6 +48,9 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 
 You can create your own decoder specification file at any time.
 
+>[!NOTE]
+> At the moment the focus is on Z21 digital command stations and ZIMO decoders - this is the hardware I currently own 😉.
+
 ## Screenshots
 ![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics.png "Changing the motor characteristics")
 
