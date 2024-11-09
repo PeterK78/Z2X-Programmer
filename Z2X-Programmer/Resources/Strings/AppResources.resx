@@ -1446,4 +1446,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
     <value>Enter any description:</value>
   </data>
+  <data name="DownloadAllSettingsYesNo" xml:space="preserve">
+    <value>Do you want to transfer all settings to the decoder? All known settings are overwritten on the decoder.</value>
+  </data>
 </root>

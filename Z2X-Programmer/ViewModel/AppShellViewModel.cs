@@ -588,15 +588,21 @@ namespace Z2XProgrammer.ViewModel
 
                 if (Application.Current == null) return;
                 if (Application.Current.MainPage == null) return;
+
+                //  Ask the user if he really wanna download all settings - it's quite critical.
+                if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadAllSettingsYesNo, AppResources.YES, AppResources.NO) == false)
+                {
+                        return;
+                }
                 
-                //  Check the locomotive address
+                //  Check the locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
-
-                //  Setup the cancellation token
+                
+                //  Setup the cancellation token.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 

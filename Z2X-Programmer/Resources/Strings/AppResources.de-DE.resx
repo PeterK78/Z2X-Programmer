@@ -1448,4 +1448,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
     <value>Geben Sie eine beliebige Beschreibung ein:</value>
   </data>
+  <data name="DownloadAllSettingsYesNo" xml:space="preserve">
+    <value>Möchten Sie alle Einstellungen auf den Decoder übertragen? Alle bekannten Einstellungen werden am Decoder überschrieben.</value>
+  </data>
 </root>

@@ -590,6 +590,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to transfer all settings to the decoder? All known settings are overwritten on the decoder..
+        /// </summary>
+        public static string DownloadAllSettingsYesNo {
+            get {
+                return ResourceManager.GetString("DownloadAllSettingsYesNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you now want to transfer the new settings to your decoder?
         ///
         ///The following configuration variables will be changed:.
