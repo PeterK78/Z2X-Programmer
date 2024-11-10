@@ -29,16 +29,23 @@ Unpack the ZIP archive into the newly created folder.
 ### Step 4: Start
 Start the Z2X-Programmer.exe file.
 
+![Run the Z2X-Programmer.exe](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-DoubleClickZ2XExe.png)
+
 ### Step 5: Installing the .NET Desktop Runtime (optional)
 If the .NET Desktop Runtime is missing on your system, it must be installed. The following dialog appears:
 
 ![.NET Runtime installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-InstallNetDesktopRunTime.png)
 
-Download the .NET Desktop Runtime from Microsoft and install it on your system.
+After clicking on `Download it now`, your browser will open. Download the .NET Desktop Runtime from the Microsoft webpage and install it on your system.
 
 ![.NET Runtime installation finished](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-NetDesktopRunTime.png)
 
-Run the Z2X-Programmer.exe file again
+Run the Z2X-Programmer.exe file again.
+
+![Run the Z2X-Programmer.exe](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-DoubleClickZ2XExe.png)
+
+>[!NOTE]
+> If you did not reboot your PC after the installation of the .NET Desktop Runtime it may happen that you have to start Z2X-Programmer.exe twice.
 
 ### Step 6: Accept the license agreement
 
