@@ -87,7 +87,7 @@ In this case, check whether you have entered the correct IP address and whether 
 
 ![Reverse direction of travel]( https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedInvertDriveDirection.png "Reverse direction of travel")
 
-* You can then transfer the new settings to the decoder using the `Write decoder` function:
+* You can then transfer the new settings to the decoder using the `Write modified values to decoder` function:
 
 ![Describe decoder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedDownloadData.png "Describe decoder")
 
