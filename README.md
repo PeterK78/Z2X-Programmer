@@ -70,6 +70,7 @@ You can create your own decoder specification file at any time.
 * [Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
 * [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md)
 * [Recommended Z21 settings](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/RecommendedZ21Settings_en.md)
+* [Locomotive list](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/LocomotiveList_en.md)
 
 
 ## Notes
