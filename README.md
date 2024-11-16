@@ -1,6 +1,7 @@
 ![Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-AppIcon.png "Z2X-Programmer")
 
 # Z2X-Programmer
+[![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Download-yellow.png)](https://github.com/PeterK78/Z2X-Programmer/releases)
 
 Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco / Fleischmann Z21 compatible digital command station. 
 The application is aimed at beginner level users who want to configure the most essential functions of their decoders in a simple and intuitive way. 
