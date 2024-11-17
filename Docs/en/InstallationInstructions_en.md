@@ -13,9 +13,16 @@ The following operating systems are supported:
 ### Supported Windows versions
 * Windows 11
 
-### Step 1: Download the ZIP archive
-The ZIP archive can be downloaded directly from the Z2X Programmer GitHub page.
-To do this, open the address [https://github.com/PeterK78/Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer) in your web browser.
+### Step 1: Download the Z2X-Programmer installation files
+The Z2X-Programmer installation files are currently provided in the form of a ZIP archive. This ZIP archive can be found in the `Releases` section of the following GitHub page:
+
+[https://github.com/PeterK78/Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer)
+
+![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-Releases.png)
+
+To install the Microsoft Windows version, first select the desired version (release) and then download the following ZIP archive to your Windows PC:
+
+![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-SelectZIPArchive-Windows.png)
 
 ### Step 2: Create a folder for Z2X programmer
 Now create a new folder for Z2X-Programmer. For example `C\Users\YourName\Z2X-Programmer`.
@@ -60,9 +67,16 @@ The installation is now complete.
 
 ### Step 1: Enable the installation of unknown apps on your Android device
 
-### Step 2: Download the ZIP archive
-The ZIP archive can be downloaded directly from the Z2X Programmer GitHub page.
-To do this, open the address [https://github.com/PeterK78/Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer) in your web browser.
+### Step 2: Download the Z2X-Programmer installation files
+The Z2X-Programmer installation files are currently provided in the form of a ZIP archive. This ZIP archive can be found in the `Releases` section of the following GitHub page:
+
+[https://github.com/PeterK78/Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer)
+
+![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-Releases.png)
+
+To install the Android version, first select the desired version (release) and then download the following ZIP archive to your Android device:
+
+![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-SelectZIPArchive-Android.png)
 
 ### Step 3: Extract the APK file
 

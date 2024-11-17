@@ -1,12 +1,18 @@
 # Getting started 
 Documentation on the first steps with Z2X-Programmer.
 
-This guide is divided into three sections:
+>[!NOTE]
+> Z2X-Programmer must be installed before you can carry out this quick guide. Please refer to the following instructions:
+>
+> https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md
+
+This guide is divided into five sections:
 
 1. [Connecting the Z21 digital command station](#1-connecting-the-z21-digital-command-station)
 2. [Reading out a decoder](#2-reading-out-a-decoder)
 3. [Search and find the required setting](#3-search-and-find-the-required-setting)
 4. [Transfering a new configuration](#4-transferring-a-new-configuration)
+5. [What you could do next](#5-what-you-could-do-next)
 
 ## 1. Connecting the Z21 digital command station
 
@@ -99,12 +105,15 @@ In this case, check whether you have entered the correct IP address and whether 
 
 ![The decoder has been successfully configured](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GettingStartedDownloadSuccess.png "The decoder has been successfully configured")
 
-  
+ 
+## 5. What you could do next
 
-  
+### Configure the locomotive list
+The following link opens a description of how to configure the locomotive list:
 
+https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/LocomotiveList_en.md
 
-
+![Locomotive list](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-LocomotiveListOverview.png)
 
 
 
