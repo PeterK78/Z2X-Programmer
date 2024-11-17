@@ -4,6 +4,7 @@
 [![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.png)](https://github.com/PeterK78/Z2X-Programmer/releases)
 [![Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-InstallationInstruction.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
 [![Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-GettingStarted.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
+[![FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-FAQ.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
 
 
 
@@ -76,7 +77,7 @@ You can create your own decoder specification file at any time.
 * [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md)
 * [Recommended Z21 settings](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/RecommendedZ21Settings_en.md)
 * [Locomotive list](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/LocomotiveList_en.md)
-
+* [FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
 
 ## Notes
 
