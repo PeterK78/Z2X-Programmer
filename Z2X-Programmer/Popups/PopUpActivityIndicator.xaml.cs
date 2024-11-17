@@ -32,36 +32,64 @@ public partial class PopUpActivityIndicator : Popup
 
     CancellationTokenSource _cancelTokenSource;
 
-	public PopUpActivityIndicator(CancellationTokenSource tokenSource, string textMessage)
+    #region REGION: CONSTRUCTOR
+
+    /// <summary>
+    /// The constructor.
+    /// </summary>
+    /// <param name="tokenSource">The token to signal that the user has canceled the process.</param>
+    /// <param name="textMessage">A  string that describes the process. This is displayed in the dialog.</param>
+    public PopUpActivityIndicator(CancellationTokenSource tokenSource, string textMessage)
 	{
 		InitializeComponent();
 
         ProgressDialogMessage.Text = textMessage;
-        ProgressLabelCV.Text = "0 %";
+        ProgressLabelPercentage.Text = "0 %";
         MyProgressBar.Progress = 0;
+        ProgressLabelCV.Text = "";
         
         _cancelTokenSource = tokenSource;
 
-        WeakReferenceMessenger.Default.Register<ProgressUpdateMessage>(this, (r, m) =>
+        WeakReferenceMessenger.Default.Register<ProgressUpdateMessagePercentage>(this, (r, m) =>
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                OnGetNewProgressInfo(m.Value);
+                OnGetNewProgressInfoPercentage(m.Value);
             });
         });
-     
-    }
 
+        WeakReferenceMessenger.Default.Register<ProgressUpdateMessageCV>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                OnGetNewProgressInfoCV(m.Value);
+            });
+        });
+
+    }
+    #endregion
+
+    #region REGION: PRIVATE FUNCTIONS
+
+    /// <summary>
+    /// Processes the cancel button was clicked event.
+    /// </summary>
+    /// <param name="sender">The canncel button object.</param>
+    /// <param name="e">The event arguments.</param>
     void CancelButton_Clicked(object sender, EventArgs e)
     {
         _cancelTokenSource?.Cancel();
     }
 
-    internal void OnGetNewProgressInfo(int value)
+    /// <summary>
+    /// Processes an ProgressUpdateMessagePercentage event.
+    /// </summary>
+    /// <param name="value">The current progress of the process as a percentage.</param>
+    internal void OnGetNewProgressInfoPercentage(int value)
     {
         try
         {
-            ProgressLabelCV.Text = value.ToString() + " %";
+            ProgressLabelPercentage.Text = value.ToString() + " %";
             MyProgressBar.Progress = ((double)value / (double)100);
 
         }
@@ -72,5 +100,26 @@ public partial class PopUpActivityIndicator : Popup
         }
 
     }
- 
+
+    /// <summary>
+    /// Processes an ProgressUpdateMessageCV event.
+    /// </summary>
+    /// <param name="value">The current currently processed cv.</param>
+    internal void OnGetNewProgressInfoCV(int value)
+    {
+        try
+        {
+            ProgressLabelCV.Text = "(CV" + value.ToString() + ")";
+        }
+        catch (System.ObjectDisposedException)
+        {
+            //  Somtimes the message ProgressUpdateMessage is delayed. So it can happen,
+            //  that this popup is already disposed. So this exception can be thrown.
+        }
+
+    }
+
+    #endregion
+
+
 }

@@ -133,9 +133,11 @@ namespace Z2XProgrammer.Communication
         /// <param name="vehicleAddress">The vehicle address.</param>
         /// <param name="decSpecName">The decoder specification name.</param>
         /// <param name="mode">The programming mode (NMRA.DCCProgrammingModes).</param>
+        /// <param name="progressPercentage">The current progress state in percent.</param>
         /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
+        /// <param name="progressCV">The currently processed CV.</param>
         /// <returns></returns>
-        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progres, bool allConfigVariables)
+        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -182,9 +184,13 @@ namespace Z2XProgrammer.Communication
                 DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
                 DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
 
+                //  Reporting the currently processed connfiguration value
+                progressCV.Report(ConfigVariablesToWrite[i]);
+
+                //  Reporting the current percentage value
                 int percent = (int)(((double)100 / (double)ConfigVariablesToWrite.Count) * (double)i);
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
-                progres.Report(percent);
+                progressPercentage.Report(percent);
 
                 if (cancelToken.IsCancellationRequested == true)
                 {
@@ -193,7 +199,7 @@ namespace Z2XProgrammer.Communication
                 }
 
             }
-            progres.Report(100);
+            progressPercentage.Report(100);
 
             // We turn the power on to stop the programming mode
             CommandStation.Z21.SetTrackPowerOn();
@@ -401,9 +407,10 @@ namespace Z2XProgrammer.Communication
         /// <param name="locomotiveAddress">The address of the required decoder.</param>
         /// <param name="decSpecName">The decoder specification name.</param>
         /// <param name="mode">The programming mode.</param>
-        /// <param name="progress">The current progress in percent.</param>
+        /// <param name="progressPercentage">The current progress state in percent.</param>
+        /// <param name="progressCV">The currently processed CV.</param>
         /// <returns></returns>
-        internal static Task<bool> UploadDecoderData(CancellationToken cancelToken, ushort locomotiveAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progress)
+        internal static Task<bool> UploadDecoderData(CancellationToken cancelToken, ushort locomotiveAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, IProgress<int> progressCV)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -523,9 +530,13 @@ namespace Z2XProgrammer.Communication
                     return Task.FromResult(false);
                 }
 
+                //  Reporting the currently processed connfiguration value
+                progressCV.Report(ConfigVariablesToRead[i]);
+                
+                //  Reporting the current percentage value
                 int percent = (int)(((double)100 / (double)ConfigVariablesToRead.Count) * (double)i);
                 Logger.PrintDevConsole("UploadDecoderData: Percentage:" + percent);
-                progress.Report(percent);
+                progressPercentage.Report(percent);
 
                 //  Check if the cancel token has been set  
                 if (cancelToken.IsCancellationRequested == true)
@@ -534,7 +545,7 @@ namespace Z2XProgrammer.Communication
                     return Task.FromResult(false);
                 }
             }
-            progress.Report(100);
+            progressPercentage.Report(100);
 
 
             // We turn the power on to stop the programming mode

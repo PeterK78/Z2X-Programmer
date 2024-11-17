@@ -30,9 +30,9 @@ using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace Z2XProgrammer.Messages
 {
-    public class ProgressUpdateMessage : ValueChangedMessage<int>
+    public class ProgressUpdateMessagePercentage : ValueChangedMessage<int>
     {
-        public ProgressUpdateMessage(int value) : base(value)
+        public ProgressUpdateMessagePercentage(int value) : base(value)
         {
         }
     }

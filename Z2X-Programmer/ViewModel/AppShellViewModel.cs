@@ -439,12 +439,17 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                var progress = new Progress<int>(value =>
+                var ProgressPercentage = new Progress<int>(value =>
                 {
-                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessage(value));
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessagePercentage(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress));
+                var ProgressCV = new Progress<int>(value =>
+                {
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
+                });
+
+                bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, ProgressCV));
                 await pop.CloseAsync();
 
                 //  Display an error message and return if the upload has failed
@@ -540,12 +545,17 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                var progress = new Progress<int>(value =>
+                var ProgressPercentage = new Progress<int>(value =>
                 {
-                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessage(value));
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessagePercentage(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress,false));
+                var ProgressCV = new Progress<int>(value =>
+                {
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
+                });
+
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage,false,ProgressCV));
 
                 await pop.CloseAsync();
 
@@ -610,12 +620,17 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                var progress = new Progress<int>(value =>
+                var ProgressPercentage = new Progress<int>(value =>
                 {
-                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessage(value));
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessagePercentage(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, progress, true));
+                var ProgressCV = new Progress<int>(value =>
+                {
+                    WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
+                });
+
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true,ProgressCV));
 
                 await pop.CloseAsync();
 
