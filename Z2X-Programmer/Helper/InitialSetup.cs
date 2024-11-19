@@ -46,7 +46,13 @@ namespace Z2XProgrammer.Helper
             //  Make sure that the folder DeqSpecs is exisiting in the app data folder. If the folder does not
             //  exist, create it.
             Logger.LogInformation("Setup decoder specification folder ...");
+            
+            //  Setup the folder for the decoder specification files
             SetupDeqSpecFolder();
+
+            //  Setup the folder for the Z2X files
+            SetupZ2XFolder();
+            
 
             //  Copy the decoder specification files
             DeqSpecReader.WriteDeqSpecFile("Generic.decspec", DeqSpecReader.UnknownDecoderSpec);
@@ -78,6 +84,22 @@ namespace Z2XProgrammer.Helper
             if(Directory.Exists(ApplicationFolders.DecSpecsFolderPath) == false)
             {
                 Directory.CreateDirectory(ApplicationFolders.DecSpecsFolderPath);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Creates the folder for the Z2X files within the AppData folder.
+        /// </summary>
+        /// <returns></returns>
+        private static bool SetupZ2XFolder()
+        {
+            //  We check whether the directory for the Z2X files has already been configured.
+            //  If not, we initialize the Z2X default folder.  
+            if(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_FOLDER_KEY, AppConstants.PREFERENCES_LOCOLIST_FOLDER_VALUE) == AppConstants.PREFERENCES_LOCOLIST_FOLDER_VALUE)
+            { 
+                Directory.CreateDirectory(ApplicationFolders.Z2XFolderPath);
+                Preferences.Default.Set(AppConstants.PREFERENCES_LOCOLIST_FOLDER_KEY, ApplicationFolders.Z2XFolderPath);
             }
             return true;
         }

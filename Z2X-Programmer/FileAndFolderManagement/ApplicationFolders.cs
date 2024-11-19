@@ -39,6 +39,14 @@ namespace Z2XProgrammer.FileAndFolderManagement
             get => GetDecSpecsFolderPath();
         }
 
+        /// <summary>
+        /// Contains the standard path to the Z2X files folder.
+        /// </summary>
+        public static string Z2XFolderPath
+        {   
+            get => GetZ2XFolderPath();
+        }  
+
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
@@ -50,17 +58,52 @@ namespace Z2XProgrammer.FileAndFolderManagement
         /// <returns>The path to the DecSpeqs folder</returns>
         private static string GetDecSpecsFolderPath()
         {
-
-            if(DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+            try
             {
-                return FileSystem.Current.AppDataDirectory + "\\DeqSpecs";
+                if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+                {
+                    return FileSystem.Current.AppDataDirectory + "\\DeqSpecs";
+                }
+                else if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+                    return FileSystem.Current.AppDataDirectory + "/DeqSpecs";
+                }
+                return "";
             }
-            else if(DeviceInfo.Current.Platform == DevicePlatform.Android)
+            catch
             {
-                return FileSystem.Current.AppDataDirectory + "/DeqSpecs";
+                return "";
             }
-            return "";
         }
+
+        /// <summary>
+        /// Returns the path to the Z2X-Programmer standard Z2X folder.
+        ///     
+        /// Note: This is the standard Z2X folder. The folder can be modified by the user in the Z2X-Programmer settings.        
+        /// 
+        /// </summary>
+        /// <returns>The path to the standard Z2X folder.</returns>
+        private static string GetZ2XFolderPath()
+        {
+            try
+            {
+                if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+                {
+                    return FileSystem.Current.AppDataDirectory + "\\Z2X";
+                }
+                else if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+                    return FileSystem.Current.AppDataDirectory + "/Z2X";
+                }
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+
 
         #endregion
     }
