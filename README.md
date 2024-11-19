@@ -84,9 +84,9 @@ You can create your own decoder specification file at any time.
 * Z2X-Programmer is not intended for experts. Experts are recommended to use the manufacturer-specific programming tools.
 
 ## Supported operating systems and languages
-* Z2X-Programmer is currently available for Windows and Android.
+* Z2X-Programmer is currently available for Microsoft Windows 11 and Android.
 * Further ports are possible (iOS, MacOS etc.), but not currently planned.
-* The software offers multilingual support, but so far only German language support is available.
+* The software offers multilingual support, but so far only German and English are available..
 
 ## Technical stuff
 
