@@ -201,6 +201,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Grid>
             </Frame>
 
+            <!-- Expert Settings -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsExpertTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsQuitOnReadError}"  HorizontalOptions="Start" />
+                    <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
+                </Grid>
+            </Frame>
+
+ 
             <!-- Reset Z2X-Programmer Settings -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsResetTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}">

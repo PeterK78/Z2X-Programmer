@@ -80,6 +80,7 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_LANGUAGE_KEY_DEFAULT = PREFERENCES_LANGUAGE_KEY_GERMAN;
         internal const string PREFERENCES_LANGUAGE_KEY_GERMAN = "GERMAN";
         internal const string PREFERENCES_LANGUAGE_KEY_ENGLISH = "ENGLISH";
-
+        internal const string PREFERENCES_QUITONREADERROR_KEY = "QUITONREADERROR";
+        internal const string PREFERENCES_QUITONREADERROR_VALUE = "1";
     }
 }

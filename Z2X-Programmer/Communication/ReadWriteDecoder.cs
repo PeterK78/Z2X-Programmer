@@ -171,18 +171,25 @@ namespace Z2XProgrammer.Communication
                 ConfigVariablesToWrite = GetModifiedConfigurationVariables(decSpecName, mode);
             }
 
-            //  Read all configuration variables from the decoder
+            //  The required configuration variables have now been collected.
+            //  Now we can write the configuration variables to the decoder.
             for (int i = 0; i <= ConfigVariablesToWrite.Count - 1; i++)
             {
-                if (WriteCV((ushort)ConfigVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
+                //  Before we write a planned configuration variable, we must check whether it is enabled in the current decoder configuration.
+                if (DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled == true)
                 {
-                    CommandStation.Z21.SetTrackPowerOn();
-                    return Task.FromResult(false);
+                    if (WriteCV((ushort)ConfigVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
+                    {
+                        CommandStation.Z21.SetTrackPowerOn();
+                        return Task.FromResult(false);
+                    }
+                    else
+                    {
+                        DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled = true;
+                        DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
+                        DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
+                    }
                 }
-
-                DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled = true;
-                DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
-                DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
 
                 //  Reporting the currently processed connfiguration value
                 progressCV.Report(ConfigVariablesToWrite[i]);
@@ -519,15 +526,28 @@ namespace Z2XProgrammer.Communication
                 }
             }
 
-            //  Read all configuration variables from the decoder
+            //  The required configuration variables have now been collected.
+            //  We can now read out the configuration variables.
             Logger.PrintDevConsole("ReadWriteDecoder: Reading the features from the decoder ...");
             for (int i = 0; i<= ConfigVariablesToRead.Count -1; i++)
             {
-
+                //  Read the next configuration variable from the collected list.
                 if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
                 {
-                    CommandStation.Z21.SetTrackPowerOn();
-                    return Task.FromResult(false);
+                    //  The required configuration variable could not be read.
+                    //  For this reason, we deactivate this configuration variable.
+                    //DecoderConfiguration.BackupCVs[ConfigVariablesToRead[i]].Value = 0;
+                    //DecoderConfiguration.BackupCVs[ConfigVariablesToRead[i]].Enabled = false;
+                    //DecoderConfiguration.ConfigurationVariables[ConfigVariablesToRead[i]].Value = 0;
+                    //DecoderConfiguration.ConfigurationVariables[ConfigVariablesToRead[i]].Enabled = false;
+
+                    // We now check the user-specific setting to see whether the function must be aborted in the event
+                    // of a read error. If yes, the process is canceled. Otherwise, reading continues.
+                    if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1)
+                    {                        
+                        CommandStation.Z21.SetTrackPowerOn();
+                        return Task.FromResult(false);
+                    }
                 }
 
                 //  Reporting the currently processed connfiguration value

@@ -130,13 +130,8 @@
 • Netzwerkverbindung zu Ihrer Digitalzentrale
 • Programmiermethode (POM oder Programmiergleis)</value>
   </data>
-  <data name="AlertDecoderUploadError" xml:space="preserve">
-    <value>Der Decoder konnte nicht ausgelesen werden. Prüfen Sie folgende Einstellungen:
-
-• Fahrzeugadresse korrekt?
-• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
-• Programmiermethode korrekt ausgewählt?
-• Die Lokomotive befindet sich im Stillstand?</value>
+  <data name="AlertDecoderUploadErrorPart1" xml:space="preserve">
+    <value>Die folgende Konfigurationsvariable konnte nicht gelesen werden:</value>
   </data>
   <data name="AlertDecoderUploadSuccess" xml:space="preserve">
     <value>Die Daten wurden erfolgreich aus dem Decoder ausgelesen.</value>
@@ -1450,5 +1445,19 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
     <value>Möchten Sie alle Einstellungen auf den Decoder übertragen? Alle bekannten Einstellungen werden am Decoder überschrieben.</value>
+  </data>
+  <data name="FrameSettingsExpertTitle" xml:space="preserve">
+    <value>Einstellungen für Experten</value>
+  </data>
+  <data name="FrameSettingsQuitOnReadError" xml:space="preserve">
+    <value>Das Auslesen eines Decoders abbrechen, wenn eine CV nicht gelesen werden kann</value>
+  </data>
+  <data name="AlertDecoderUploadErrorPart2" xml:space="preserve">
+    <value>Prüfen Sie folgende Einstellungen:
+
+• Fahrzeugadresse korrekt?
+• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
+• Programmiermethode korrekt ausgewählt?
+• Die Lokomotive befindet sich im Stillstand?</value>
   </data>
 </root>

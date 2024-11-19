@@ -413,6 +413,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         async Task UploadDecoder()
         {
+            int CurrentlyUploadedCV = 0;
 
             Logger.PrintDevConsole("AppShellViewModel: Enter UploadDecoder)");
 
@@ -439,13 +440,18 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
+                // Initializes the ProgressPercentage Progress object with the specified callback.
+                // This means that percentage changes can be received and forwarded during the upload. 
                 var ProgressPercentage = new Progress<int>(value =>
                 {
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessagePercentage(value));
                 });
 
+                // Initializes the ProgressCV Progress object with the specified callback.
+                // This means that the currently processed configuration variable can be received and forwarded during the upload. 
                 var ProgressCV = new Progress<int>(value =>
                 {
+                    CurrentlyUploadedCV = value;
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
@@ -457,7 +463,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
                     {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderUploadError, AppResources.OK);
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2, AppResources.OK);
                     }
                     return;
                 }

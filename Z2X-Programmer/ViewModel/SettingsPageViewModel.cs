@@ -126,7 +126,14 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         internal string decSpecFolder;
-      
+
+        [ObservableProperty]
+        internal bool quitOnReadError = true;
+        partial void OnQuitOnReadErrorChanged(bool value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_QUITONREADERROR_KEY, value == true ? "1" : "0");
+        }
+
         #endregion
 
         #region REGION: CONSTRUCTOR
@@ -172,7 +179,9 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 AutomaticDecoderDetection = false;
-            } 
+            }
+
+            QuitOnReadError = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1 ? true : false;
 
         }
 

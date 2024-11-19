@@ -92,16 +92,25 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The decoder could not be read out. Check the following settings:
+        ///   Looks up a localized string similar to Could not read configuration variable.
+        /// </summary>
+        public static string AlertDecoderUploadErrorPart1 {
+            get {
+                return ResourceManager.GetString("AlertDecoderUploadErrorPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check the following settings:
         ///
         ///•  Vehicle address correct?
         ///•  Is there a network connection to your digital central unit?
         ///•  Programming method correctly selected?
         ///•  Is the locomotive at a standstill?.
         /// </summary>
-        public static string AlertDecoderUploadError {
+        public static string AlertDecoderUploadErrorPart2 {
             get {
-                return ResourceManager.GetString("AlertDecoderUploadError", resourceCulture);
+                return ResourceManager.GetString("AlertDecoderUploadErrorPart2", resourceCulture);
             }
         }
         
@@ -3241,6 +3250,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings for experts.
+        /// </summary>
+        public static string FrameSettingsExpertTitle {
+            get {
+                return ResourceManager.GetString("FrameSettingsExpertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable logging.
         /// </summary>
         public static string FrameSettingsLoggingEnableDisable {
@@ -3264,6 +3282,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameSettingsLoggingTitle {
             get {
                 return ResourceManager.GetString("FrameSettingsLoggingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel the readout of a decoder if a CV cannot be read.
+        /// </summary>
+        public static string FrameSettingsQuitOnReadError {
+            get {
+                return ResourceManager.GetString("FrameSettingsQuitOnReadError", resourceCulture);
             }
         }
         

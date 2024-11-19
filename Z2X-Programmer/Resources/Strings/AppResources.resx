@@ -130,13 +130,8 @@
 • Network connection to your digital central unit
 • Programming method (POM or programming track)</value>
   </data>
-  <data name="AlertDecoderUploadError" xml:space="preserve">
-    <value>The decoder could not be read out. Check the following settings:
-
-•  Vehicle address correct?
-•  Is there a network connection to your digital central unit?
-•  Programming method correctly selected?
-•  Is the locomotive at a standstill?</value>
+  <data name="AlertDecoderUploadErrorPart1" xml:space="preserve">
+    <value>Could not read configuration variable</value>
   </data>
   <data name="AlertDecoderUploadSuccess" xml:space="preserve">
     <value>The data was successfully read from the decoder.</value>
@@ -1448,5 +1443,19 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
     <value>Do you want to transfer all settings to the decoder? All known settings are overwritten on the decoder.</value>
+  </data>
+  <data name="FrameSettingsExpertTitle" xml:space="preserve">
+    <value>Settings for experts</value>
+  </data>
+  <data name="FrameSettingsQuitOnReadError" xml:space="preserve">
+    <value>Cancel the readout of a decoder if a CV cannot be read</value>
+  </data>
+  <data name="AlertDecoderUploadErrorPart2" xml:space="preserve">
+    <value>Check the following settings:
+
+•  Vehicle address correct?
+•  Is there a network connection to your digital central unit?
+•  Programming method correctly selected?
+•  Is the locomotive at a standstill?</value>
   </data>
 </root>

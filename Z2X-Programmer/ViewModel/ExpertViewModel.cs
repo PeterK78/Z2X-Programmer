@@ -219,13 +219,11 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
-
                 if (CommandStation.Connect() == false)
                 {
                     if ((Application.Current != null) && (Application.Current.MainPage != null))
                     {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderUploadError, AppResources.OK);
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     }
                     return;
                 }
