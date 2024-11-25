@@ -144,26 +144,36 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameExpertCVListDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
-                    <CollectionView ItemsSource="{Binding ConfigurationVariables}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
-                        <CollectionView.Header>
-                            <Grid ColumnDefinitions="*,*">
-                                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVNumber}" Grid.Column="0"/>
-                                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVValue}" Grid.Column="1"/> 
-                            </Grid>
-                        </CollectionView.Header>
+                    <Border Padding="5,5,5,5" Margin="0,20,0,0">
 
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="datamodel:ConfigurationVariableType">
-                            <Grid ColumnDefinitions="*,*">
-                                <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}"/>
-                                <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Value}"/>
-                            </Grid>
-                        </DataTemplate>
-                            
-                        </CollectionView.ItemTemplate>
+                        <CollectionView ItemsSource="{Binding ConfigurationVariables}" SelectedItem="{Binding SelectedConfigurationVariable}" HeightRequest="300" SelectionMode="Single" SelectionChangedCommand="{Binding CVSelectedCommand, Mode=OneWay}">
+                            <CollectionView.Header>
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVNumber}" Grid.Column="0"/>
+                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameExpertCVHeaderCVValue}" Grid.Column="1"/>
+                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="Aktiviert" Grid.Column="2"/>
+                                </Grid>
+                            </CollectionView.Header>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="datamodel:ConfigurationVariableType">
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}" VerticalOptions="Center" />
+                                        <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Value}" VerticalOptions="Center" />
+                                        <CheckBox Grid.Column="2" IsChecked="{Binding Enabled}" IsEnabled="False"  VerticalOptions="Center"></CheckBox>
+                                    </Grid>
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
                         
-                    </CollectionView>
+                    </Border>
 
+                    <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
+                        <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ></Button>
+                    </HorizontalStackLayout>
+                    
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -89,8 +89,7 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedDecSpeq = string.Empty;
         partial void OnSelectedDecSpeqChanged(string? oldValue, string newValue)
         {
-            DecoderSpecification.DeqSpecName = newValue;
-            SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(newValue, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
+            SwitchDecoderSpecification(newValue);
         }
 
         [ObservableProperty]
@@ -240,7 +239,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Create a blank new decoder configuration.
+        /// Create a blank new decoder configuration project.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -248,7 +247,8 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
+                //  We inform the user whether they would like to create a new project.
+                //  If the user declines, we terminate the function.
                 if ((Application.Current != null) && (Application.Current.MainPage != null))
                 {
                     if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.AlertNewFile, AppResources.YES, AppResources.NO) == false)
@@ -257,10 +257,16 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
 
+                //  We initialize the decoder configuration.
+                //  We then inform the application that this has changed.
                 DecoderConfiguration.Init(NMRA.StandardLocomotiveAddress,"");
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
+                // Finally, we set the DecoderConfiguration to our standard DecoderConfiguration.
+                //  We then inform the application that this has changed.
                 DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
+                DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
+                DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
             }
             catch (Exception ex)
@@ -344,7 +350,8 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.IsValid = true;
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));                        
+                        
                     }
                     else
                     {
@@ -672,6 +679,28 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
+        /// Activates a newly selected decoder specification
+        /// </summary>
+        /// <param name="decSpecName">The name of the new decoder specification.</param>
+        private void SwitchDecoderSpecification(string decSpecName)
+        {
+            //  First, the new decoder specification is set. Afterwards we read the the notes from the decoder specification.
+            DecoderSpecification.DeqSpecName = decSpecName;
+            SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(decSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
+
+            //  In the second step, we configure the configuration variables.
+            //  First we mark all CVs to see if they are supported by the selected decoder
+            //  specification, then we activate all supported CVs.
+            DecoderConfiguration.SetDecoderSpecification(SelectedDecSpeq);
+            DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
+            
+            //  Inform the application that a new decoder specification has been selected.
+            WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+
+        }
+
+
+        /// <summary>
         /// Starts the blue blinking of the command station status label.
         /// </summary>
         private async void StartBlinkingCommandStateLabel()
@@ -762,7 +791,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDataFromDecoderSpecification()
         {
-            SelectedDecSpeq = DecoderSpecification.DeqSpecName;
+         //   SelectedDecSpeq = DecoderSpecification.DeqSpecName;
         }
 
         /// <summary>

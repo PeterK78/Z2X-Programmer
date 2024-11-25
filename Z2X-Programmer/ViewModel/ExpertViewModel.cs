@@ -45,9 +45,13 @@ namespace Z2XProgrammer.ViewModel
     {
 
         #region REGION: PUBLIC PROPERTIES
-        [ObservableProperty]
-        internal ObservableCollection<ConfigurationVariableType>? configurationVariables;
 
+        [ObservableProperty]
+        internal ObservableCollection<ConfigurationVariableType>? configurationVariables = new ObservableCollection<ConfigurationVariableType>();
+
+        [ObservableProperty]
+        internal ConfigurationVariableType? selectedConfigurationVariable;
+    
         [ObservableProperty]
         bool dataValid;
 
@@ -133,7 +137,6 @@ namespace Z2XProgrammer.ViewModel
         {
             DataValid = true;
             CvNumber = 1;
-
             UpdateCVList();
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
@@ -143,10 +146,59 @@ namespace Z2XProgrammer.ViewModel
                     OnGetDecoderConfiguration();
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<DecoderSpecificationUpdatedMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnGetDataFromDecoderSpecification();
+                });
+            });
+
         }
         #endregion
 
         #region REGION: COMMANDS
+    
+        //  Reads out the value and the number of the selected configuration variable and updates the GUI.
+        [RelayCommand]
+        private void CVSelected()
+        {
+            if (SelectedConfigurationVariable == null) return;
+            CvNumber = (ushort)SelectedConfigurationVariable.Number;
+            Value = SelectedConfigurationVariable.Value;
+        }
+
+        // This command toggles the enabled state of the selected configuration variable.
+        [RelayCommand]
+        private async Task EnableDisableCV()
+        {
+            try
+            {
+
+                //  Check if a function key has been selected.
+                if (SelectedConfigurationVariable == null)
+                {
+                    if ((Application.Current != null) && (Application.Current.MainPage != null))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
+                    }
+                    return;
+                }
+                
+                // We search for the required configuration variable and toggle the Enabled property.
+                ConfigurationVariableType result = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == SelectedConfigurationVariable.Number);
+                result.Enabled = !result.Enabled;
+            }
+            catch (Exception ex)
+            {
+                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
+                }
+            }
+        }
+
         [RelayCommand]
         async Task WriteCV()
         {
@@ -278,18 +330,20 @@ namespace Z2XProgrammer.ViewModel
         }
         #endregion
 
-        #region REGION: PRIVATE FUNCTIONS
+        #region REGION: PRIVATE FUNCTIONS        
 
+        /// <summary>
+        /// Updates the list of configuration variables.
+        /// </summary>
         private void UpdateCVList()
         {
-            // Perform a LINQ query (e.g., filter items that start with 'C')
-            var filteredList = DecoderConfiguration.ConfigurationVariables.Where(s => s.Enabled== true);
+            if (ConfigurationVariables == null) return;
+            ConfigurationVariables.Clear();
+            foreach(ConfigurationVariableType item in DecoderConfiguration.ConfigurationVariables)
+            {
+                if (item.DeqSecSupported == true) ConfigurationVariables.Add(item);
 
-            ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(filteredList);
-
-            //ConfigurationVariables = new ObservableCollection<ConfigurationVariableType>(DecoderConfiguration.ConfigurationVariables);
-            //ConfigurationVariables.Remove(ConfigurationVariables[0]);
-
+            }
         }
         
         /// <summary>
@@ -298,7 +352,15 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDecoderConfiguration()
         {
+            UpdateCVList();
+        }
 
+        /// <summary>
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
+        /// </summary>
+        public void OnGetDataFromDecoderSpecification()
+        {
             UpdateCVList();
         }
 

@@ -178,6 +178,9 @@ namespace Z2XProgrammer.Communication
                 //  Before we write a planned configuration variable, we must check whether it is enabled in the current decoder configuration.
                 if (DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled == true)
                 {
+                    //  We report the configuration variable that will be written next.
+                    progressCV.Report(ConfigVariablesToWrite[i]);
+
                     if (WriteCV((ushort)ConfigVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
                     {
                         CommandStation.Z21.SetTrackPowerOn();
@@ -190,11 +193,8 @@ namespace Z2XProgrammer.Communication
                         DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
                     }
                 }
-
-                //  Reporting the currently processed connfiguration value
-                progressCV.Report(ConfigVariablesToWrite[i]);
-
-                //  Reporting the current percentage value
+              
+                //  Reporting the current percentage value.
                 int percent = (int)(((double)100 / (double)ConfigVariablesToWrite.Count) * (double)i);
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
                 progressPercentage.Report(percent);
@@ -302,8 +302,94 @@ namespace Z2XProgrammer.Communication
 
             return SupportConfigVariables;            
         }
-        
+  
+        /// <summary>
+        /// Returns a list with configuration variables which can be read by the given decoder specification.
+        /// </summary>
+        /// <returns>Returns a list of configuration variable numbers.</returns>
+        public static List<int> GetAllReadableConfigurationVariables(string decSpecName)
+        {
+            List<int> ConfigVariablesToRead = new List<int>();
 
+            //
+            //  Read the RCN compatible features
+            //
+            Logger.PrintDevConsole("ReadWriteDecoder: Assembling RCN compatible features ...");
+            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
+            {
+               
+                if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                {
+                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) -1; cvIndex++)
+                    {
+                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
+                        if (nextCV != 0)
+                        {
+                            //  Check if we have already read this CV. If so, skip this CV
+                            if (ConfigVariablesToRead.Contains(nextCV) == false)
+                            {
+                                ConfigVariablesToRead.Add(nextCV);
+                            }
+                        }
+                    }                                    
+                }
+            }
+
+            //
+            //  Do we have a ZIMO decoder? If yes, read the ZIMO specific features
+            //
+            Logger.PrintDevConsole("ReadWriteDecoder: Assembling ZIMO compatible features ...");
+            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
+            {
+                for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
+                {
+                    if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  Check if we have already read this CV. If so, skip this CV
+                                if (ConfigVariablesToRead.Contains(nextCV) == false)
+                                {
+                                    ConfigVariablesToRead.Add(nextCV);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            //
+            // Do we have a Doehler & Haas decoder? If yes, read the Doehler & Hass specific features
+            //
+            Logger.PrintDevConsole("ReadWriteDecoder: Assembling Trix and Döhler and Haass compatible features ...");
+            if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
+            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
+            {
+                for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
+                {
+                    if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  Check if we have already read this CV. If so, skip this CV
+                                if (ConfigVariablesToRead.Contains(nextCV) == false)
+                                {
+                                    ConfigVariablesToRead.Add(nextCV);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return ConfigVariablesToRead;            
+        }
 
         /// <summary>
         /// Returns a list with all configuration variables which have been modified.
@@ -406,7 +492,6 @@ namespace Z2XProgrammer.Communication
 
         }
 
-
         /// <summary>
         /// Uploads the configuration variables from the datastore to the selected decoder.
         /// </summary>
@@ -451,114 +536,39 @@ namespace Z2XProgrammer.Communication
                 return Task.FromResult(false);
             }
 
-            //
-            //  Read the RCN compatible features
-            //
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling RCN compatible features ...");
-            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
-            {
-               
-                if (DeqSpecReader.FeatureSupported(_decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                {
-                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) -1; cvIndex++)
-                    {
-                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
-                        if (nextCV != 0)
-                        {
-                            //  Check if we have already read this CV. If so, skip this CV
-                            if (ConfigVariablesToRead.Contains(nextCV) == false)
-                            {
-                                ConfigVariablesToRead.Add(nextCV);
-                            }
-                        }
-                    }                                    
-                }
-            }
-
-            //
-            //  Do we have a ZIMO decoder? If yes, read the ZIMO specific features
-            //
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling ZIMO compatible features ...");
-            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
-            {
-                for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
-                {
-                    if (DeqSpecReader.FeatureSupported(_decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                    {
-                        for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
-                        {
-                            ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
-                            if (nextCV != 0)
-                            {
-                                //  Check if we have already read this CV. If so, skip this CV
-                                if (ConfigVariablesToRead.Contains(nextCV) == false)
-                                {
-                                    ConfigVariablesToRead.Add(nextCV);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Do we have a Doehler & Haas decoder? If yes, read the Doehler & Hass specific features
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling Trix and Döhler and Haass compatible features ...");
-            if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
-            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
-            {
-                for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
-                {
-                    if (DeqSpecReader.FeatureSupported(_decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                    {
-                        for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
-                        {
-                            ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
-                            if (nextCV != 0)
-                            {
-                                //  Check if we have already read this CV. If so, skip this CV
-                                if (ConfigVariablesToRead.Contains(nextCV) == false)
-                                {
-                                    ConfigVariablesToRead.Add(nextCV);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //  Create a list of supported and readable configuration variables.
+            ConfigVariablesToRead = GetAllReadableConfigurationVariables(decSpecName);
 
             //  The required configuration variables have now been collected.
             //  We can now read out the configuration variables.
             Logger.PrintDevConsole("ReadWriteDecoder: Reading the features from the decoder ...");
             for (int i = 0; i<= ConfigVariablesToRead.Count -1; i++)
             {
-                //  Read the next configuration variable from the collected list.
-                if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
+                // Before uploading, we need to check whether this variable is enabled.
+                if (DecoderConfiguration.IsCVEnabled((ushort)ConfigVariablesToRead[i]) == true)
                 {
-                    //  The required configuration variable could not be read.
-                    //  For this reason, we deactivate this configuration variable.
-                    //DecoderConfiguration.BackupCVs[ConfigVariablesToRead[i]].Value = 0;
-                    //DecoderConfiguration.BackupCVs[ConfigVariablesToRead[i]].Enabled = false;
-                    //DecoderConfiguration.ConfigurationVariables[ConfigVariablesToRead[i]].Value = 0;
-                    //DecoderConfiguration.ConfigurationVariables[ConfigVariablesToRead[i]].Enabled = false;
+                    //  We report the configuration variable that will be read next.
+                    progressCV.Report(ConfigVariablesToRead[i]);
 
-                    // We now check the user-specific setting to see whether the function must be aborted in the event
-                    // of a read error. If yes, the process is canceled. Otherwise, reading continues.
-                    if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1)
-                    {                        
-                        CommandStation.Z21.SetTrackPowerOn();
-                        return Task.FromResult(false);
+                    //  Read the next configuration variable from the collected list.
+                    if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
+                    {
+                        // We now check the user-specific setting to see whether the function must be aborted in the event
+                        // of a read error. If yes, the process is canceled. Otherwise, reading continues.
+                        if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1)
+                        {
+                            CommandStation.Z21.SetTrackPowerOn();
+                            return Task.FromResult(false);
+                        }
                     }
                 }
 
-                //  Reporting the currently processed connfiguration value
-                progressCV.Report(ConfigVariablesToRead[i]);
-                
-                //  Reporting the current percentage value
+                //  Reporting the current percentage value.
                 int percent = (int)(((double)100 / (double)ConfigVariablesToRead.Count) * (double)i);
                 Logger.PrintDevConsole("UploadDecoderData: Percentage:" + percent);
                 progressPercentage.Report(percent);
 
-                //  Check if the cancel token has been set  
+                //  Check if the cancel token has been set.  
                 if (cancelToken.IsCancellationRequested == true)
                 {
                     CommandStation.Z21.SetTrackPowerOn();
@@ -683,7 +693,6 @@ namespace Z2XProgrammer.Communication
 
         }
 
-
         /// <summary>
         /// Waits the given seconds for an ACK of the command station.
         /// </summary>
@@ -770,8 +779,6 @@ namespace Z2XProgrammer.Communication
             return DeqSpecReader.GetDefaultDecSpecName();
         }
 
-
-
         /// <summary>
         /// Event handler for the ProgramResultReceived event of the Z21 library
         /// </summary>
@@ -793,6 +800,59 @@ namespace Z2XProgrammer.Communication
             Logger.PrintDevConsole("ReadWriteDecoder:OnProgramResultReceived _waitingForResultReceived = false");
             _waitingForResultReceived = false;
 
+        }
+
+        public static bool AllCVsEnabled (string featureName)
+        {
+            //  Search the RCN225 features     
+            for (int i = 0; i<= RCNFeatures.GetLength(0) - 1; i++)            
+            {
+                if(RCNFeatures[i,0] == featureName)
+                {
+                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
+                    {
+                        int CVNumber = int.Parse(RCNFeatures[i, cvIndex]);
+                        if (CVNumber == 0) continue;
+                        ConfigurationVariableType item = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                        if (item.Enabled == false) return false;
+                    }
+                    return true;
+                }
+            }
+
+            //  Search the ZIMO features  
+            for (int i = 0; i<= ZIMOFeatures.GetLength(0) - 1; i++)            
+            {
+                if(ZIMOFeatures[i,0] == featureName)
+                {
+                    for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
+                    {
+                        int CVNumber = int.Parse(ZIMOFeatures[i, cvIndex]);
+                        if (CVNumber == 0) continue;
+                        ConfigurationVariableType item = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                        if (item.Enabled == false) return false;
+                    }
+                    return true;
+                }
+            }
+
+            //  Search the Döhler and Haass features
+            for (int i = 0; i<= DOEHLERHAASFeatures.GetLength(0) - 1; i++)            
+            {
+                if(ZIMOFeatures[i,0] == featureName)
+                {
+                    for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
+                    {
+                        int CVNumber = int.Parse(DOEHLERHAASFeatures[i, cvIndex]);
+                        if (CVNumber == 0) continue;
+                        ConfigurationVariableType item = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                        if (item.Enabled == false) return false;
+                    }
+                    return true;
+                }
+            }
+
+            return false;
         }
 
     }

@@ -36,6 +36,7 @@ using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Messages;
 using System.Collections.ObjectModel;
+using Z2XProgrammer.Communication;
 
 namespace Z2XProgrammer.DataStore
 {
@@ -169,5 +170,64 @@ namespace Z2XProgrammer.DataStore
                 v.Description = "";
             }
         }
+
+        /// <summary>
+        /// Returns TRUE if the given configuration variable is enabled. Returns FALSE if
+        /// the configuration variable is disabled.
+        /// </summary>
+        /// <param name="cvNumber">TRUE if enabled, FALSE if disabled.</param>
+        /// <returns></returns>
+        public static bool IsCVEnabled(ushort cvNumber)
+        {
+            foreach (ConfigurationVariableType item in ConfigurationVariables)
+            {
+                if (item.Number == cvNumber) return item.Enabled;
+            }
+            return true;
+        }
+    
+        /// <summary>
+        /// Enable each configuration variable if its supported by the given decoder specification.
+        /// </summary>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
+        public static void EnableAllCVsSupportedByDecSpec(string decSpecName)
+        {
+            try
+            {
+                DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.Enabled = false; });
+                foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                {
+                    ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                    variable.Enabled = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.PrintDevConsole(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Marks each configuration variable with the information whether it is supported by the current decoder specification.
+        /// </summary>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
+        public static void SetDecoderSpecification (string decSpecName)
+        {
+            try
+            {
+                DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.DeqSecSupported = false; });
+                foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                {
+                    ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                    variable.DeqSecSupported = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.PrintDevConsole(e.Message);
+            }
+            
+        }
+        
     }
 }

@@ -1186,7 +1186,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This list shows all configuration variables for which the value is currently known..
+        ///   Looks up a localized string similar to This list shows the value and status of all configuration variables that are supported by the selected decoder specification. .
         /// </summary>
         public static string FrameExpertCVListDescription {
             get {
@@ -1195,7 +1195,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All configuration variables.
+        ///   Looks up a localized string similar to Configuration variables.
         /// </summary>
         public static string FrameExpertCVListTitle {
             get {
@@ -1254,6 +1254,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameExpertSettingsCVReadWriteTitle {
             get {
                 return ResourceManager.GetString("FrameExpertSettingsCVReadWriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate / Deactivate.
+        /// </summary>
+        public static string FrameExpertSettingsEnableDisableCV {
+            get {
+                return ResourceManager.GetString("FrameExpertSettingsEnableDisableCV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es ist keine Konfigurationsvariable ausgewählt..
+        /// </summary>
+        public static string FrameExpertSettingsNoCVSelected {
+            get {
+                return ResourceManager.GetString("FrameExpertSettingsNoCVSelected", resourceCulture);
             }
         }
         

@@ -134,7 +134,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Frame>
 
             <!-- Extended speed curve -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}}" />
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
                 <VerticalStackLayout>
                     <HorizontalStackLayout>

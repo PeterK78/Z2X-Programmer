@@ -107,7 +107,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_INPUTMAPPING_CV4XX = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, decSpecFolder);
 
                 //  Inform the app that we have just read a new decoder specification file
-                WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                //WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
             }
         }
         internal static byte ManufacturerID { get; set; }

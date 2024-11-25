@@ -23,7 +23,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,8 +34,17 @@ namespace Z2XProgrammer.DataModel
     /// <summary>
     /// Contains the definition of single NMRA configuration variable (short CV)
     /// </summary>
-    public class ConfigurationVariableType
+    public class ConfigurationVariableType: INotifyPropertyChanged
     {
+        private bool _Enabled = false;
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)    
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// <summary>
         /// The number of the CV
         /// </summary>
@@ -43,17 +54,28 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// The value of the CV
         /// </summary>
-        public byte Value{ get; set; }
-
+        public byte Value {  get; set; }
+        
         /// <summary>
         /// Enable or disables the CV
         /// </summary>
-        public bool Enabled {  get; set; }
+        public bool Enabled
+        {
+            get => _Enabled;
+            set
+            {
+                _Enabled = value;
+                OnPropertyChanged(nameof(Enabled));
+            }
+        }
 
         /// <summary>
         /// A short description of th CV
         /// </summary>
         public string Description { get; set; }
+
+
+        public bool DeqSecSupported { get; set; }
 
 
         /// <summary>

@@ -444,7 +444,7 @@ The following configuration variables will be changed:</value>
     <value>Direction of travel</value>
   </data>
   <data name="FrameExpertCVListTitle" xml:space="preserve">
-    <value>All configuration variables</value>
+    <value>Configuration variables</value>
   </data>
   <data name="FrameExpertSettingsCVReadWriteButtonReadCV" xml:space="preserve">
     <value>Read CV</value>
@@ -1318,7 +1318,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>No locomotive selected.</value>
   </data>
   <data name="FrameExpertCVListDescription" xml:space="preserve">
-    <value>This list shows all configuration variables for which the value is currently known.</value>
+    <value>This list shows the value and status of all configuration variables that are supported by the selected decoder specification. </value>
   </data>
   <data name="FrameExpertCVHeaderCVNumber" xml:space="preserve">
     <value>Number</value>
@@ -1457,5 +1457,11 @@ The application is aimed at beginners who want to configure the most important f
 •  Is there a network connection to your digital central unit?
 •  Programming method correctly selected?
 •  Is the locomotive at a standstill?</value>
+  </data>
+  <data name="FrameExpertSettingsEnableDisableCV" xml:space="preserve">
+    <value>Activate / Deactivate</value>
+  </data>
+  <data name="FrameExpertSettingsNoCVSelected" xml:space="preserve">
+    <value>Es ist keine Konfigurationsvariable ausgewählt.</value>
   </data>
 </root>

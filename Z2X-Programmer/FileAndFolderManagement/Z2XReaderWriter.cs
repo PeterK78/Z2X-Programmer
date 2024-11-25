@@ -106,6 +106,9 @@ namespace Z2XProgrammer.FileAndFolderManagement
             // Call the Deserialize method and cast to the object type.
             myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(z2xFileStream)!;
 
+            //  Check if the decoder specification file is available.
+            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException("Missing decoder specification file " + myFile.DeqSpecName);
+           
             DecoderConfiguration.ClearBackupCVs();
             
             for (int n = 0; n < DecoderConfiguration.ConfigurationVariables.Count; n++)
@@ -114,7 +117,6 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 DecoderConfiguration.ConfigurationVariables[n].Number = myFile.CVs[n].Number;
                 DecoderConfiguration.ConfigurationVariables[n].Description = myFile.CVs[n].Description;
                 DecoderConfiguration.ConfigurationVariables[n].Enabled = myFile.CVs[n].Enabled;
-
 
                 DecoderConfiguration.BackupCVs[n].Value = myFile.CVs[n].Value;
                 DecoderConfiguration.BackupCVs[n].Number = myFile.CVs[n].Number;
@@ -127,12 +129,12 @@ namespace Z2XProgrammer.FileAndFolderManagement
             DecoderConfiguration.UserDefindedImage = myFile.UserDefinedImage;
             DecoderConfiguration.UserDefinedFunctionOutputNames = myFile.UserDefinedFunctionOutputNames;
 
-            //  Check if the decoder specification file is available.
-            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException("Missing decoder specification file " + myFile.DeqSpecName);
-
-            //  Make sure to use the language specific decoder specification name.
+             //  Make sure to use the language specific decoder specification name.
             string decoderSpecificationFileName = DeqSpecReader.GetDecSpecFileName(myFile.DeqSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath);
             DecoderSpecification.DeqSpecName = DeqSpecReader.GetDecSpecName(decoderSpecificationFileName, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
+
+            //  We mark the configuration variables whether they are supported by the selected DecoderSpecification.                
+            DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
             
             return true;
         }
