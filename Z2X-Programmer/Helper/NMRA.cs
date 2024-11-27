@@ -54,6 +54,7 @@ namespace Z2XProgrammer.Helper
         public const byte ManufacturerID_Trix = 131;
         public const byte ManufacturerID_PIKO = 162;
         public const byte ManufacturerID_DoehlerAndHaass = 97;
+        public const byte ManufacturerID_ESU = 151;
 
         // The maximum amount of CV values.
         public const ushort MaxCVValues = 1024;
@@ -74,6 +75,7 @@ namespace Z2XProgrammer.Helper
                 case ManufacturerID_Zimo:               return "ZIMO Elektronik GmbH"; 
                 case ManufacturerID_PIKO:               return "PIKO";
                 case ManufacturerID_DoehlerAndHaass:    return "Doehler & Haass Steuerungssysteme GmbH & Co. KG";
+                case ManufacturerID_ESU:                return "Electronic Solutions Ulm GmbH";
                 default:                                return  value.ToString() + " = Unknown manufacturer";
             }
         }
