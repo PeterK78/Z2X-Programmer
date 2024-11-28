@@ -55,6 +55,7 @@ namespace Z2XProgrammer.Helper
         public const byte ManufacturerID_DoehlerAndHaass = 97;
         public const byte ManufacturerID_Lenz = 99;
         public const byte ManufacturerID_Viessmann = 109;
+        public const byte ManufacturerID_Tran = 117;
         public const byte ManufacturerID_Digitrax = 129;
         public const byte ManufacturerID_Trix = 131;
         public const byte ManufacturerID_Zimo = 145;
@@ -85,6 +86,7 @@ namespace Z2XProgrammer.Helper
                 case  ManufacturerID_DoehlerAndHaass:   return "Doehler & Haass Steuerungssysteme GmbH & Co. KG";
                 case ManufacturerID_Lenz:               return "Lenz Elektronik GmbH";
                 case  ManufacturerID_Viessmann:         return "Viessmann Modellspielwaren GmbH";
+                case  ManufacturerID_Tran:              return "cT Elektronik (Tran)";
                 case  ManufacturerID_Digitrax:          return "Digitrax";
                 case  ManufacturerID_Trix:              return "Trix Modelleisenbahn";
                 case  ManufacturerID_Zimo:              return "ZIMO Elektronik GmbH"; 
