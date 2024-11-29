@@ -689,7 +689,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 ";
 
     public static string ZimoFXFunctionSpec = @"<!-- Specification file for ZIMO MX function decoders -->
-<decoderseries description_en=""ZIMO MX function decoder"" description_de=""ZIMO MX Funktionsdecoder"" manufacturerid=""145"" decspecversion=""1"" notes_de=""Decoder mit obligatorischen und optionalen RCN225-Funktionen"" notes_en=""Decoder with mandatory and optional RCN225 functions"">
+<decoderseries description_en=""ZIMO MX function decoder"" description_de=""ZIMO MX Funktionsdecoder"" manufacturerid=""145"" decspecversion=""1"" notes_de=""ZIMO MX Funktionsdecoder sind Decoder für nicht angetriebene Fahrzeuge"" notes_en=""ZIMO MX function decoders are decoders for non powered vehicles"">
 
     <!-- Supported decoders -->
     <decoder decoderid=""171"" decodername=""MX671"" />/>
