@@ -20,6 +20,7 @@ The following list shows the available commit keywords. These keywords should be
 | `COM`   | The communication interface between Z2X-Programmer and any digital control unit interface (like Z21). |
 | `FEATURE` | A decoder specification feature. |
 | `SETUP` | The setup and installation system. |
+| `DEQSPEC` | The decoder specification files. |
 
 
 
