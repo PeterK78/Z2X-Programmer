@@ -692,7 +692,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 <decoderseries description_en=""ZIMO MX function decoder"" description_de=""ZIMO MX Funktionsdecoder"" manufacturerid=""145"" decspecversion=""1"" notes_de=""Decoder mit obligatorischen und optionalen RCN225-Funktionen"" notes_en=""Decoder with mandatory and optional RCN225 functions"">
 
     <!-- Supported decoders -->
-    <decoder decoderid=""171""/>
+    <decoder decoderid=""171"" decodername=""MX671"" />/>
 
     <!-- Supported RCN225 features -->
     <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>	

@@ -150,11 +150,12 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            // We register to receive the DecoderSpecificationUpdatedMessage message.
             WeakReferenceMessenger.Default.Register<DecoderSpecificationUpdatedMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    OnGetDataFromDecoderSpecification();
+                    OnGetDataFromDecoderSpecification(m.Value);
                 });
             });
 
@@ -350,7 +351,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.IsValid = true;
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));                        
+                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
                         
                     }
                     else
@@ -789,9 +790,9 @@ namespace Z2XProgrammer.ViewModel
         /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
         /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
         /// </summary>
-        private void OnGetDataFromDecoderSpecification()
+        private void OnGetDataFromDecoderSpecification(bool updateGUI)
         {
-         //   SelectedDecSpeq = DecoderSpecification.DeqSpecName;
+            if (updateGUI) SelectedDecSpeq = DecoderSpecification.DeqSpecName;
         }
 
         /// <summary>

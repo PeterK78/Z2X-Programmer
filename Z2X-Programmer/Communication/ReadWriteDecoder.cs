@@ -21,6 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Runtime.CompilerServices;
 using Z21Lib.Events;
@@ -28,6 +29,7 @@ using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
+using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.Communication
 {
@@ -527,6 +529,9 @@ namespace Z2XProgrammer.Communication
             {
                 _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
                 DecoderSpecification.DeqSpecName = _decSpecName;
+                DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
+                DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
+                WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
             }
 
             if (cancelToken.IsCancellationRequested == true)
