@@ -1466,4 +1466,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameExpertSettingsNoCVSelected" xml:space="preserve">
     <value>No configuration variable is selected.</value>
   </data>
+  <data name="FrameSecondaryAddressPlaceholder" xml:space="preserve">
+    <value>Zweitadresse</value>
+  </data>
 </root>

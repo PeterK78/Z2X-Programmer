@@ -2872,6 +2872,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secondary address.
+        /// </summary>
+        public static string FrameSecondaryAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("FrameSecondaryAddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The decoder lock is active (CV15 &lt;&gt; CV16). The decoder cannot be programmed..
         /// </summary>
         public static string FrameSecurityDecoderLockActivated {

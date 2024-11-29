@@ -128,7 +128,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid>
                 </Frame>
 
-                <!-- ZIMO specific secondary address for function decoders -->
+                <!-- ZIMO_MXFX_SECONDADDRESS_CV64: ZIMO specific secondary address for function decoders -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressTitle}" VerticalOptions="Center" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}" />
                 <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}">
                     <Grid>
@@ -145,7 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Grid.Row="0" Grid.Column="0" Margin="0,10,0,20" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressDescription}" VerticalOptions="Center" />
 
                         <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressLabel}" VerticalOptions="Center" />
-                        <Entry Grid.Row="1" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" VerticalOptions="Center" Placeholder="Adresse" Text="{Binding SecondaryAddress}" Margin="0,10,100,0">
+                        <Entry Grid.Row="1" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
                             <Entry.Behaviors>
                                 <toolkit:NumericValidationBehavior 
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
