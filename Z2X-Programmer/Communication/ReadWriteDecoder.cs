@@ -542,7 +542,7 @@ namespace Z2XProgrammer.Communication
             }
 
             //  Create a list of supported and readable configuration variables.
-            ConfigVariablesToRead = GetAllReadableConfigurationVariables(decSpecName);
+            ConfigVariablesToRead = GetAllReadableConfigurationVariables(_decSpecName);
 
             //  The required configuration variables have now been collected.
             //  We can now read out the configuration variables.
