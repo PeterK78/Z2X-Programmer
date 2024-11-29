@@ -341,7 +341,7 @@ namespace Z2XProgrammer.Communication
             //  Do we have a ZIMO decoder? If yes, read the ZIMO specific features
             //
             Logger.PrintDevConsole("ReadWriteDecoder: Assembling ZIMO compatible features ...");
-            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
+            if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo) || (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
                 for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
                 {
@@ -368,7 +368,8 @@ namespace Z2XProgrammer.Communication
             //
             Logger.PrintDevConsole("ReadWriteDecoder: Assembling Trix and Döhler and Haass compatible features ...");
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
-            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
+            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass) ||
+            (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
                 for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
                 {
@@ -566,6 +567,11 @@ namespace Z2XProgrammer.Communication
                             return Task.FromResult(false);
                         }
                     }
+                }
+                else
+                {
+                    //  Just skip the CV variable - nothing to do
+                    int o = 0; o++;
                 }
 
                 //  Reporting the current percentage value.
