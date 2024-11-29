@@ -822,7 +822,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <decoder decoderid=""161"" decodername=""MX616 (2023)"" />
     <decoder decoderid=""165"" decodername=""REE_DU65"" />
     <decoder decoderid=""166"" decodername=""MX600 (2021)"" />
-    <decoder decoderid=""171"" decodername=""MX671"" />
     <decoder decoderid=""173"" decodername=""MX673"" />
     <decoder decoderid=""174"" decodername=""MX675"" />
     <decoder decoderid=""175"" decodername=""MX675"" />
