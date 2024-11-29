@@ -41,7 +41,8 @@
 | ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 | CV156 | Function button for deactivating the braking and acceleration time	 | Function keys | 
 | ZIMO_DECODERTYPE_CV250	 | CV250 | 	Reads out the decoder type.	 | Decoder information | 
 | ZIMO_DECODERID_CV25X | 	CV250, CV251, CV252, CV253	 | Reads out the decoder ID (serial number) of the decoder. | 	Decoder information | 
-| ZIMO_LIGHT_DIM_CV60 | 	CV60 | 	Activates and deactivates the dimming of individual function outputs. | 	Light | 
+| ZIMO_LIGHT_DIM_CV60 | 	CV60 | 	Activates and deactivates the dimming of individual function outputs. | Light | 
+| ZIMO_LIGHT_EFFECTS_CV125X | CV125, CV126 | Configures lighting effects such as fading in and out. | Light |
 | ZIMO_BOOTLOADER_VERSION_24X |	CV248, CV249  | 	Reads out the bootloader version. | 	Decoder information | 
 | ZIMO_MXMOTORCONTROLFREQUENCY_CV9	 | CV9 | 	Configures the motor control period and the EMF sampling algorithm.	 | Motor characteristics | 
 | ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 | 	CV57 | 	Configures the control reference.	 | Motor characteristics | 
