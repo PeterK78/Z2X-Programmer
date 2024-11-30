@@ -50,11 +50,21 @@ namespace Z2XProgrammer.Helper
 
         //  The standardized manufacturer IDs
         public const byte ManufacurerID_Unknown = 0;
-        public const byte ManufacturerID_Zimo = 145;
-        public const byte ManufacturerID_Trix = 131;
-        public const byte ManufacturerID_PIKO = 162;
+        public const byte ManufacurerID_Tams = 62;
+        public const byte ManufacurerID_Uhlenbrock = 85;
         public const byte ManufacturerID_DoehlerAndHaass = 97;
+        public const byte ManufacturerID_Lenz = 99;
+        public const byte ManufacturerID_Viessmann = 109;
+        public const byte ManufacturerID_Tran = 117;
+        public const byte ManufacturerID_Digitrax = 129;
+        public const byte ManufacturerID_Trix = 131;
+        public const byte ManufacturerID_Zimo = 145;
         public const byte ManufacturerID_ESU = 151;
+        public const byte ManufacturerID_Fleischmann = 155;
+        public const byte ManufacturerID_LGB = 159;
+        public const byte ManufacturerID_Roco = 161;
+        public const byte ManufacturerID_PIKO = 162;
+        public const byte ManufacturerID_Brawa = 166;
 
         // The maximum amount of CV values.
         public const ushort MaxCVValues = 1024;
@@ -71,11 +81,22 @@ namespace Z2XProgrammer.Helper
         {
             switch(value)
             {
-                case ManufacturerID_Trix:               return "Trix Modelleisenbahn";
-                case ManufacturerID_Zimo:               return "ZIMO Elektronik GmbH"; 
-                case ManufacturerID_PIKO:               return "PIKO";
-                case ManufacturerID_DoehlerAndHaass:    return "Doehler & Haass Steuerungssysteme GmbH & Co. KG";
-                case ManufacturerID_ESU:                return "Electronic Solutions Ulm GmbH";
+                case ManufacurerID_Tams:                return "Tams Elektronik GmbH";
+                case ManufacurerID_Uhlenbrock:          return "Uhlenbrock Elektronik GmbH";
+                case  ManufacturerID_DoehlerAndHaass:   return "Doehler & Haass Steuerungssysteme GmbH & Co. KG";
+                case ManufacturerID_Lenz:               return "Lenz Elektronik GmbH";
+                case  ManufacturerID_Viessmann:         return "Viessmann Modellspielwaren GmbH";
+                case  ManufacturerID_Tran:              return "cT Elektronik (Tran)";
+                case  ManufacturerID_Digitrax:          return "Digitrax";
+                case  ManufacturerID_Trix:              return "Trix Modelleisenbahn";
+                case  ManufacturerID_Zimo:              return "ZIMO Elektronik GmbH"; 
+                case  ManufacturerID_ESU:               return "Electronic Solutions Ulm GmbH";
+                case  ManufacturerID_Fleischmann:       return "Gebr. Fleischmann GmbH & Co";
+                case  ManufacturerID_LGB:               return "LGB (Ernst Paul Lehmann Patentwerk)";
+                case  ManufacturerID_Roco:              return "Modelleisenbahn GmbH (Roco)";
+                case  ManufacturerID_PIKO:              return "PIKO";
+                case  ManufacturerID_Brawa:             return "Brawa Modellspielwaren GmbH & Co"
+                    
                 default:                                return  value.ToString() + " = Unknown manufacturer";
             }
         }
