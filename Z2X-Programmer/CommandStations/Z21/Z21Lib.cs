@@ -56,7 +56,7 @@ namespace Z21Lib
         private bool _reachable = false;
 
         //  A private UDP client object 
-        private UdpClient _udpClient = new(_udpPort);
+        private UdpClient _udpClient = new();
 
         // _pingClientTimer is used ping the Z21 command station in 5 seconds interval.
         private System.Timers.Timer _pingZ21Timer = new System.Timers.Timer() { AutoReset = true, Enabled = false, Interval = new TimeSpan(0, 0, 5).TotalMilliseconds, };
@@ -369,7 +369,7 @@ namespace Z21Lib
             //  Check if the UDP client has been closed before
             if (_udpClient.Client == null)
             {
-                _udpClient = new(_udpPort);
+                _udpClient = new();
             }
 
             if (OperatingSystem.IsWindows())
