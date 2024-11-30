@@ -95,7 +95,7 @@ namespace Z2XProgrammer.Helper
                 case  ManufacturerID_LGB:               return "LGB (Ernst Paul Lehmann Patentwerk)";
                 case  ManufacturerID_Roco:              return "Modelleisenbahn GmbH (Roco)";
                 case  ManufacturerID_PIKO:              return "PIKO";
-                case  ManufacturerID_Brawa:             return "Brawa Modellspielwaren GmbH & Co"
+                case  ManufacturerID_Brawa:             return "Brawa Modellspielwaren GmbH & Co";
                     
                 default:                                return  value.ToString() + " = Unknown manufacturer";
             }
