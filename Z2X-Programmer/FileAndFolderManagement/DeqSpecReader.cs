@@ -713,7 +713,8 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
     <ZIMO_MXUPDATELOCK_CV144 support =""yes"" />
-
+    <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     
 </decoderseries>";
 
