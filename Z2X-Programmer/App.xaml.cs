@@ -31,70 +31,113 @@ namespace Z2XProgrammer
 {
     public partial class App : Application
     {
-        private Window? _window;
+        /// <summary>
+        /// The window object for the main window-
+        /// </summary>
+        private Window? _MainWindow;
 
         public App()
         {
             InitializeComponent();
-            
-            // Check if the user has already agreed to the license.
-            if (Preferences.Default.Get(AppConstants.PREFERENCES_LICENSE_KEY, AppConstants.PREFERENCES_LICENSE_DEFAULT) == "0")
-            {
-                MainPage = new LicensePage();
-            }
-            else
-            {
-                MainPage = new AppShell(new ViewModel.AppShellViewModel());
-            }
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            _window = base.CreateWindow(activationState);
-
-            if (_window != null)
+            // We check whether the user has already confirmed the license dialog.
+            // If not, we start with the license dialog. If yes, then we start regularly with the main window.
+            if (Preferences.Default.Get(AppConstants.PREFERENCES_LICENSE_KEY, AppConstants.PREFERENCES_LICENSE_DEFAULT) == "0")
             {
+                // We create the main window and save the object in a field so that we can also access it later.
+                _MainWindow = new Window(new LicensePage());
+                CenterMainWindow(_MainWindow, false);
+            }
+            else
+            {
+                // We create the main window and save the object in a field so that we can also access it later.
+                _MainWindow = new Window(new AppShell(new ViewModel.AppShellViewModel()));
+                ResizeMainWindow(_MainWindow);
+                CenterMainWindow(_MainWindow, true);
+            }
 
-                // Get display size
-                var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+            //  We register a handler that is called when the window is destroyed.
+            //  This allows us to save the current position and size of the window before exiting the program,
+            //  and so other clean up stuff.
+            _MainWindow.Destroying += (s, e) =>
+            {
+                //  Disconnect the digital command station.
+                CommandStation.Disconnect();
 
-                string width = Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, AppConstants.PREFERENCES_WINDOWWIDTH_DEFAULT);
-                string height = Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, AppConstants.PREFERENCES_WINDOWHEIGHT_DEFAULT);
+                //  We save the position and size of the main window.
+                //  This allows us to restore them the next time we start the program.
+                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, _MainWindow.Width.ToString());
+                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, _MainWindow.Height.ToString());
+                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSX_KEY, _MainWindow.X.ToString());
+                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSY_KEY, _MainWindow.Y.ToString());
+            };
 
-                _window.Width = double.Parse(width);
-                _window.Height = double.Parse(height);
+            return _MainWindow!;
+        }
+    
+        /// <summary>
+        /// Changes the size of the window based on the user-specific settings for width and length.
+        /// </summary>
+        /// <param name="window"></param>
+        private void ResizeMainWindow(Window window)
+        {
+            try
+            {
+                window.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, AppConstants.PREFERENCES_WINDOWWIDTH_DEFAULT));
+                window.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, AppConstants.PREFERENCES_WINDOWHEIGHT_DEFAULT));
+            }
+            catch (FormatException)
+            {
+                //  FormatExceptions usually occur when incorrect data has been saved in the user-specific settings.
+                //  In this case, we will not resize the window at all.                
+            }
+        }
 
-                // Center the window
-                if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT)) == "-1")
+        /// <summary>
+        /// Centers the given window.
+        /// </summary>
+        /// <param name="window">The window object to center.</param>
+        /// <param name="usePreferences">If TRUE user specific x and y coordinates are used.</param>
+        private void CenterMainWindow(Window window, bool usePreferences)
+        {
+
+            // We get the current resolution of the screen.
+            var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+
+            try
+            {
+                // We check whether we need to use the user-specific settings. If not, we center the window in the middle of the screen. 
+                // If yes, we use the user specific x and y coordinates to position the window (if the settings are missing, we will center the window in the middle of the screen).
+                if (usePreferences == true)
                 {
-                    _window.X = (displayInfo.Width / displayInfo.Density - _window.Width) / 2;
-                    _window.Y = (displayInfo.Height / displayInfo.Density - _window.Height) / 2;
+
+                    if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT)) == "-1")
+                    {
+                        window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
+                        window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
+                    }
+                    else
+                    {
+                        window.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT));
+                        window.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT));
+                    }
                 }
                 else
                 {
-                    _window.X = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT));
-                    _window.Y = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT));
+                    window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
+                    window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
                 }
-
-
-                _window.Destroying += (s, e) =>
-                {
-                    //  Disconnect the digital command station.
-                    CommandStation.Disconnect();
-
-                    int width = (int)_window.Width;
-                    int height = (int)_window.Height;
-                    int x = (int)_window.X;
-                    int y = (int)_window.Y;
-
-                    //  Update the window dimensions
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, width.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, height.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSX_KEY, x.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSY_KEY, y.ToString());
-                };
             }
-            return _window!;
-        }
+            catch (FormatException)
+            {
+                //  FormatExceptions usually occur when incorrect data has been saved in the user-specific settings.
+                //  In this case, we will only center the window and not use any user-specific settings.
+                window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
+                window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
+            }
+        }        
     }
 }
