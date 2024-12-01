@@ -1245,12 +1245,9 @@ namespace Z2XProgrammer.ViewModel
             {
                 //  Check if a function key has been selected
                 if(SelectedInputMapping == null)
-                {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
-                        return;
-                    }
+                {                    
+                    await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
+                    return;
                 }
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
@@ -1267,10 +1264,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 

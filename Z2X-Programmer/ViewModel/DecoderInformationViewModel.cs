@@ -251,10 +251,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -284,10 +281,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
 
         }

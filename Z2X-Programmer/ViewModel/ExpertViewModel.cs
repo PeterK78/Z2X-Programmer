@@ -179,10 +179,7 @@ namespace Z2XProgrammer.ViewModel
                 //  Check if a function key has been selected.
                 if (SelectedConfigurationVariable == null)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
                     return;
                 }
                 
@@ -192,10 +189,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -207,10 +201,7 @@ namespace Z2XProgrammer.ViewModel
 
                 if (CommandStation.Connect() == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
                     return;
                 }
 
@@ -244,10 +235,7 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWriteCVError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertWriteCVError, AppResources.OK);
                 }
 
                 //  After writing the CV on the programming track, we must switch the track power on.
@@ -259,10 +247,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -273,10 +258,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 if (CommandStation.Connect() == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
                 }
 
@@ -306,10 +288,7 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertReadCVError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertReadCVError, AppResources.OK);
                 }
 
                 //  After reading the CV on the programming track, we must switch the track power on.
@@ -321,10 +300,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
 
         }

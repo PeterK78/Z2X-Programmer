@@ -211,30 +211,21 @@ namespace Z2XProgrammer.ViewModel
                     }
                     else
                     {
-                        if ((Application.Current != null) && (Application.Current.MainPage != null))
-                        {
-                            await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotAccessible + LocoList.Folder, AppResources.OK);
-                        }
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotAccessible + LocoList.Folder, AppResources.OK);
                         return;
                     }
                 }
 
                 if (Directory.Exists(LocoList.Folder) == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
                     return;
                 }
 
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -247,26 +238,19 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertResetSettings, AppResources.YES, AppResources.NO) == false)
                 {
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.AlertResetSettings, AppResources.YES, AppResources.NO) == false)
-                    {
-                        return;
-                    }
+                    return;
                 }
+                
                 Preferences.Clear();
 
                 if (Application.Current != null) Application.Current.Quit();
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
-
         }
 
         [RelayCommand]
@@ -277,25 +261,16 @@ namespace Z2XProgrammer.ViewModel
 
                 if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out string errorFilename, out string errorMessage) == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDeqSpecFileNotRead + "\n\n" + errorFilename + "\n\n" + errorMessage, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFileNotRead + "\n\n" + errorFilename + "\n\n" + errorMessage, AppResources.OK);
                 }
                 else
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertDecSpecFilesOK, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecSpecFilesOK, AppResources.OK);
                 }
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -318,18 +293,12 @@ namespace Z2XProgrammer.ViewModel
                 if (CommandStation.Connect() == false)
                 {
                     ActivityConnectingOngoing = false;
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                 }
                 else
                 {
                     ActivityConnectingOngoing = false;
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
                 }
                 
                 
@@ -337,18 +306,12 @@ namespace Z2XProgrammer.ViewModel
             catch (System.FormatException)
             {
                 ActivityConnectingOngoing = false;
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
                 ActivityConnectingOngoing = false;      
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 

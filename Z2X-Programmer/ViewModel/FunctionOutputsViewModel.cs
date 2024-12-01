@@ -28,6 +28,7 @@ using System.Collections.ObjectModel;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
 
@@ -132,16 +133,13 @@ namespace Z2XProgrammer.ViewModel
                 //  Check if a function key has been selected
                 if(SelectedFunctionOutput == null)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
                     return;
                 }
 
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                if ((Application.Current != null) && (Application.Current.Windows[0].Page != null))
                 {
-                    string Result = await Application.Current.MainPage.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.ID, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.Description);
+                    string Result = await Application.Current.Windows[0].Page!.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.ID, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.Description);
                     if (Result != null) SelectedFunctionOutput.Description = Result;
 
                     OnPropertyChanged(nameof(FunctionOutputs));
@@ -155,10 +153,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 

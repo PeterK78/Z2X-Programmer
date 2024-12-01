@@ -46,7 +46,7 @@ public partial class LicensePage : ContentPage
     void OKButton_Clicked(object sender, EventArgs e)
     {
         Preferences.Default.Set(AppConstants.PREFERENCES_LICENSE_KEY, "1");
-        if(App.Current != null) App.Current.MainPage = new AppShell(new ViewModel.AppShellViewModel());
+        if(App.Current != null) App.Current.Windows[0].Page = new AppShell(new ViewModel.AppShellViewModel());
     }
 
     /// <summary>

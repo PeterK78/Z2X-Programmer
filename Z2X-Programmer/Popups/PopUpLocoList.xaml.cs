@@ -25,6 +25,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
 
@@ -70,10 +71,7 @@ public partial class PopUpLocoList : Popup
         }
         else
         {
-            if ((Application.Current != null) && (Application.Current.MainPage != null))
-            {
-                await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNoLocoSelected, AppResources.OK);
-            }
+            await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListNoLocoSelected, AppResources.OK);
         }
     }   
 }

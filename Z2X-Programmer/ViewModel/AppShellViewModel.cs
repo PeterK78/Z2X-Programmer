@@ -180,28 +180,20 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         async Task GetLocomotiveList()
         {
-
             try
             {
-
                 List<LocoListType> locoList = new List<LocoListType>();
 
                 //  Check if the Z2X files folder is available
                 if(LocoList.Folder == "")
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
                     return;
                 }
 
                 if(Directory.Exists(LocoList.Folder) == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
                     return;
                 }
 
@@ -213,10 +205,7 @@ namespace Z2XProgrammer.ViewModel
 
                 if (locoList.Count == 0)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
                     return;
                 }
 
@@ -226,16 +215,10 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                
-
             }
             catch (Exception ex)
             {
-                
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocoListNotReachable + ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListNotReachable + ex.Message, AppResources.OK);
             }
         }
 
@@ -250,12 +233,9 @@ namespace Z2XProgrammer.ViewModel
             {
                 //  We inform the user whether they would like to create a new project.
                 //  If the user declines, we terminate the function.
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertNewFile, AppResources.YES, AppResources.NO) == false)
                 {
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.AlertNewFile, AppResources.YES, AppResources.NO) == false)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 //  We initialize the decoder configuration.
@@ -272,10 +252,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -291,17 +268,11 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (System.FormatException)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -356,10 +327,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                     else
                     {
-                        if ((Application.Current != null) && (Application.Current.MainPage != null))
-                        {
-                            await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoZ2XFileType, AppResources.OK);
-                        }
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoZ2XFileType, AppResources.OK);
                         return;
                     }
                 }
@@ -367,19 +335,12 @@ namespace Z2XProgrammer.ViewModel
             catch (UnauthorizedAccessException)
             {
                 //  We do not have the permission to read the Z2X file. The user needs to grant permission to Z2X-Programmer.
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoReadAccessToFilesAndFolders, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoReadAccessToFilesAndFolders, AppResources.OK);
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertZ2XFileNotRead + ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotRead + ex.Message, AppResources.OK);
             }
-
         }
 
         /// <summary>
@@ -399,19 +360,12 @@ namespace Z2XProgrammer.ViewModel
                 var fileSaveResult = await FileSaver.Default.SaveAsync(Z2XReaderWriter.GetZ2XStandardFileName(), outputStream, cancelToken);
                 if (fileSaveResult.IsSuccessful == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved, AppResources.OK);
                 }
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
-                }
-
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
             }
         }
 
@@ -438,13 +392,8 @@ namespace Z2XProgrammer.ViewModel
                 //  Check the locomotive address
                 if ((DecoderConfiguration.RCN225.LocomotiveAddress == 0) && (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack))
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
-                    }
-                    return;
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                 }
-
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
@@ -469,18 +418,12 @@ namespace Z2XProgrammer.ViewModel
                 //  Display an error message and return if the upload has failed
                 if (success == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2, AppResources.OK);
                     return;
                 }
                 else
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertDecoderUploadSuccess, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderUploadSuccess, AppResources.OK);
                 }
 
                 DecoderConfiguration.IsValid = true;
@@ -488,20 +431,14 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (FormatException)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
                 DecoderConfiguration.IsValid = false;
                 if (pop != null) await pop.CloseAsync();
 
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
                 DecoderConfiguration.IsValid = false;
                 if (pop != null) await pop.CloseAsync();
             }
@@ -516,10 +453,8 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
                 if (Application.Current == null) return;
-                if (Application.Current.MainPage == null) return;
-
+                
                 //  We create a list of configuration values for which the current value is different from the backup value.
                 List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
                 if (ModifiedConfigVariables.Count > 0)
@@ -532,7 +467,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                     ModifiedCVValues = ModifiedCVValues.Remove(ModifiedCVValues.Length - 2, 2);
 
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNo + "\n" + ModifiedCVValues, AppResources.YES, AppResources.NO) == false)
+                    if (await MessageBox.Show(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNo + "\n" + ModifiedCVValues, AppResources.YES, AppResources.NO) == false)
                     {
                         return;
                     }
@@ -540,14 +475,14 @@ namespace Z2XProgrammer.ViewModel
                 else
                 {
                     //  No modified values were found.
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
                     return;
                 }
 
                 //  Check if we have valid locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
 
@@ -575,27 +510,21 @@ namespace Z2XProgrammer.ViewModel
 
                 if (success == true)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertDecoderDonwloadSuccessfull, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderDonwloadSuccessfull, AppResources.OK);
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
 
                 }
             }
             catch (FormatException)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
 
         }
@@ -611,10 +540,9 @@ namespace Z2XProgrammer.ViewModel
             {
 
                 if (Application.Current == null) return;
-                if (Application.Current.MainPage == null) return;
-
+                
                 //  Ask the user if he really wanna download all settings - it's quite critical.
-                if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.DownloadAllSettingsYesNo, AppResources.YES, AppResources.NO) == false)
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.DownloadAllSettingsYesNo, AppResources.YES, AppResources.NO) == false)
                 {
                         return;
                 }
@@ -622,7 +550,7 @@ namespace Z2XProgrammer.ViewModel
                 //  Check the locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
                 
@@ -650,27 +578,21 @@ namespace Z2XProgrammer.ViewModel
 
                 if (success == true)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.AlertDecoderDonwloadSuccessfull, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderDonwloadSuccessfull, AppResources.OK);
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
 
                 }
             }
             catch (FormatException)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
 
         }

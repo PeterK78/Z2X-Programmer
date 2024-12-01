@@ -118,20 +118,14 @@ namespace Z2XProgrammer.ViewModel
                 //  The decoder reset is only allowed on the progam track.
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetNoPOMMode, AppResources.YES);
-                        return;
-                    }
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetNoPOMMode, AppResources.YES);
+                    return;
                 }
 
                 //  Make sure that the user really wanna reset the decoder
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.FrameSecurityDecoderResetButtonMessage, AppResources.YES, AppResources.NO) == false)
                 {
-                    if (await Application.Current.MainPage.DisplayAlert(AppResources.AlertAttention, AppResources.FrameSecurityDecoderResetButtonMessage, AppResources.YES, AppResources.NO) == false)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 if (CommandStation.Connect() == false) return;
@@ -143,19 +137,13 @@ namespace Z2XProgrammer.ViewModel
                 //  The decoder reset is only allowed on the progam track.
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetResetPerformed, AppResources.YES, AppResources.NO);
-                        return;
-                    }
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetResetPerformed, AppResources.YES, AppResources.NO);
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -167,10 +155,7 @@ namespace Z2XProgrammer.ViewModel
 
                 if (CommandStation.Connect() == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
                 }
 
@@ -200,10 +185,7 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
@@ -215,10 +197,7 @@ namespace Z2XProgrammer.ViewModel
 
                 if (CommandStation.Connect() == false)
                 {
-                    if ((Application.Current != null) && (Application.Current.MainPage != null))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
-                    }
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
                 }
 
@@ -235,12 +214,8 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
-
 
         }
 

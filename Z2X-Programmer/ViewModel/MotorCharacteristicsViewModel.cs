@@ -536,18 +536,11 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertInformation, AppResources.FrameMotorCharacteristicsMotorControlFrequencyHelp, AppResources.OK);
-                }
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameMotorCharacteristicsMotorControlFrequencyHelp, AppResources.OK);
             }
             catch (Exception ex)
             {
-                if ((Application.Current != null) && (Application.Current.MainPage != null))
-                {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.AlertError, ex.Message, AppResources.OK);
-                }
+                Logger.PrintDevConsole("OpenMotorControlFrequencyHelp " + ex.Message);
             }
         }
 
