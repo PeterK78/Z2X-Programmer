@@ -45,6 +45,9 @@ New features:
 
 7. The list of known decoder manufacturers has been extended.
 
+8. The configuration variables read or written are displayed
+   during the upload and download.
+
 Bug fixes:
 
 1. The description of the decoder specification for Zimo FX
@@ -55,6 +58,8 @@ Bug fixes:
    the decoder specification for Zimo MX sound decoder.
 4. The name of the Zimo MX671 decoder has been added
    to the Zimo FX function decoder specification.
+5. The UDP client is no longer bound to the local UDP
+   port 21105.
 
 Technical improvements:
 
