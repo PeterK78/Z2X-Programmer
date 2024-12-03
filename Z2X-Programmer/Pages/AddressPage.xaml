@@ -114,7 +114,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End"></Switch>
 
                         <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Entry Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}" Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200">
+                        <Entry Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}" Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing">
                             <Entry.Behaviors>
                                 <toolkit:NumericValidationBehavior 
                                         InvalidStyle="{StaticResource Z2XInvalidEntry}"
