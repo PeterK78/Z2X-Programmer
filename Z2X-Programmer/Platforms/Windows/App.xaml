@@ -5,4 +5,15 @@
     xmlns:maui="using:Microsoft.Maui"
     xmlns:local="using:Z2XProgrammer.WinUI">
 
+    <maui:MauiWinUIApplication.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ToggleSwitch">
+                <Setter Property="Margin" Value="0,0,-100,0" />
+            </Style>
+        </ResourceDictionary>
+    </maui:MauiWinUIApplication.Resources>
+
+
 </maui:MauiWinUIApplication>
+
+
