@@ -3752,6 +3752,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string SwitchStateOff {
+            get {
+                return ResourceManager.GetString("SwitchStateOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string SwitchStateOn {
+            get {
+                return ResourceManager.GetString("SwitchStateOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here you can insert your personal notes.
         /// </summary>
         public static string UserDefinedNotesPlaceholder {

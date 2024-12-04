@@ -25,6 +25,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              x:Class="Z2XProgrammer.Pages.AddressPage"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
@@ -33,6 +34,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,40,40"
              Title="{x:Static strings:AppResources.FlyoutItemAddressText}">
+
+    <ContentPage.Resources>
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
+    </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
 
@@ -111,7 +116,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Margin="0,10,100,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                         <Label x:Name="FrameLocomotiveAddressUseConsistAddressLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressUseConsistAddressLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End"></Switch>
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=ConsistAddressEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                        </HorizontalStackLayout>
 
                         <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Entry Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}" Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing">

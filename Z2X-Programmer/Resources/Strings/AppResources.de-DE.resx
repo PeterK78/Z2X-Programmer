@@ -1469,4 +1469,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameSecondaryAddressPlaceholder" xml:space="preserve">
     <value>Zweitadresse</value>
   </data>
+  <data name="SwitchStateOn" xml:space="preserve">
+    <value>Ein</value>
+  </data>
+  <data name="SwitchStateOff" xml:space="preserve">
+    <value>Aus</value>
+  </data>
 </root>

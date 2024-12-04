@@ -1467,4 +1467,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameSecondaryAddressPlaceholder" xml:space="preserve">
     <value>Secondary address</value>
   </data>
+  <data name="SwitchStateOn" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="SwitchStateOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
 </root>
