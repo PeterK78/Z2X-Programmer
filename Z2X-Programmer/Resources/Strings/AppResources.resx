@@ -1473,4 +1473,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="SwitchStateOff" xml:space="preserve">
     <value>Off</value>
   </data>
+  <data name="FrameFunctionKeysMappingSecondaryAddressTitle" xml:space="preserve">
+    <value>Function outputs of the second address</value>
+  </data>
+  <data name="FrameFunctionKeysMappingSecondaryAddressDescription" xml:space="preserve">
+    <value>ZIMO FX function decoders offer the second address function. Function outputs can be assigned to the function keys that are addressed using the second address.</value>
+  </data>
 </root>

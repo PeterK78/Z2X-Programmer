@@ -1475,4 +1475,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="SwitchStateOff" xml:space="preserve">
     <value>Aus</value>
   </data>
+  <data name="FrameFunctionKeysMappingSecondaryAddressTitle" xml:space="preserve">
+    <value>Funktionsausgänge der Zweitadresse</value>
+  </data>
+  <data name="FrameFunctionKeysMappingSecondaryAddressDescription" xml:space="preserve">
+    <value>ZIMO FX Funktionsdecoder bieten die Funktion der Zweitadresse. Den Funktionstasten die anhand der Zweitadresse angesprochen werden, können Funktionsausgänge zugewiesen werden.</value>
+  </data>
 </root>

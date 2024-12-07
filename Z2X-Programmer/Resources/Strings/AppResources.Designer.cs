@@ -1393,6 +1393,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ZIMO FX function decoders offer the second address function. Function outputs can be assigned to the function keys that are addressed using the second address..
+        /// </summary>
+        public static string FrameFunctionKeysMappingSecondaryAddressDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingSecondaryAddressDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function outputs of the second address.
+        /// </summary>
+        public static string FrameFunctionKeysMappingSecondaryAddressTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingSecondaryAddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mapping of the function outputs.
         /// </summary>
         public static string FrameFunctionKeysMappingStandardTitle {

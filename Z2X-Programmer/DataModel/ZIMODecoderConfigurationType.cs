@@ -1146,6 +1146,216 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F0 (forward) in CV69
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF0Forward
+        {
+            get
+            {
+                return configurationVariables[69].Value;
+            }
+            set
+            {
+                configurationVariables[69].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F0 (backward) in CV69
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF0Backward
+        {
+            get
+            {
+                return configurationVariables[70].Value;
+            }
+            set
+            {
+                configurationVariables[70].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F1 in CV71
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF1
+        {
+            get
+            {
+                return configurationVariables[71].Value;
+            }
+            set
+            {
+                configurationVariables[71].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F2 in CV72
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF2
+        {
+            get
+            {
+                return configurationVariables[72].Value;
+            }
+            set
+            {
+                configurationVariables[72].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F3 in CV73
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF3
+        {
+            get
+            {
+                return configurationVariables[73].Value;
+            }
+            set
+            {
+                configurationVariables[73].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F4 in CV74
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF4
+        {
+            get
+            {
+                return configurationVariables[74].Value;
+            }
+            set
+            {
+                configurationVariables[74].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F5 in CV75
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF5
+        {
+            get
+            {
+                return configurationVariables[75].Value;
+            }
+            set
+            {
+                configurationVariables[75].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F6 in CV76
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF6
+        {
+            get
+            {
+                return configurationVariables[76].Value;
+            }
+            set
+            {
+                configurationVariables[76].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F7 in CV77
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF7
+        {
+            get
+            {
+                return configurationVariables[77].Value;
+            }
+            set
+            {
+                configurationVariables[77].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F8 in CV78
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF8
+        {
+            get
+            {
+                return configurationVariables[78].Value;
+            }
+            set
+            {
+                configurationVariables[78].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F9 in CV79
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF9
+        {
+            get
+            {
+                return configurationVariables[79].Value;
+            }
+            set
+            {
+                configurationVariables[79].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F10 in CV80
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF10
+        {
+            get
+            {
+                return configurationVariables[80].Value;
+            }
+            set
+            {
+                configurationVariables[80].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F11 in CV81
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF11
+        {
+            get
+            {
+                return configurationVariables[81].Value;
+            }
+            set
+            {
+                configurationVariables[81].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the function mapping of the secondary address for the key F12 in CV82
+        /// </summary>
+        public byte FunctionMappingSecondaryAddressF12
+        {
+            get
+            {
+                return configurationVariables[82].Value;
+            }
+            set
+            {
+                configurationVariables[82].Value = value;
+            }
+        }
+
     }
 }
 
