@@ -290,4 +290,8 @@
   <AndroidPackageFormat>apk</AndroidPackageFormat>
 </PropertyGroup>
 
+<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
+  <AndroidPackageFormat>apk</AndroidPackageFormat>
+</PropertyGroup>
+
 </Project>
