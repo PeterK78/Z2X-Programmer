@@ -1,7 +1,7 @@
 ------------------------------------------------------------------
 File:         Readme.txt
 Version:      0.1.2.0-beta.5
-Date:         30.11.2024
+Date:         08.12.2024
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
@@ -9,8 +9,12 @@ Below you will find a brief description and version
 information on the software supplied.
 
 ------------------------------------------------------------------
-Version 0.1.2.0-beta.5 / 30.11.2024
+Version 0.1.2.0-beta.5 / 08.12.2024
 ------------------------------------------------------------------
+Note:
+
+  A detailed list of changes can be found in the Z2X programmer
+  repository on GitHub.
 
 * Fifth beta version (Beta Version 5, V0.1.2.0)
 
@@ -28,7 +32,7 @@ New features:
    basis.
 
 2. Zimo FX function decoders now also support ZIMO_LIGHT_DIM_CV60
-   and ZIMO_LIGHT_EFFECTS_CV125X light features.Function outputs
+   and ZIMO_LIGHT_EFFECTS_CV125X light features. Function outputs
    can now be dimmed and assigned effects.
 
 4. The icons for upload and download have been updated. The new
@@ -48,6 +52,9 @@ New features:
 8. The configuration variables read or written are displayed
    during the upload and download.
 
+9. The feature ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X has
+   been added.
+
 Bug fixes:
 
 1. The description of the decoder specification for Zimo FX
@@ -60,6 +67,13 @@ Bug fixes:
    to the Zimo FX function decoder specification.
 5. The UDP client is no longer bound to the local UDP
    port 21105.
+6. The feature “RCN225_DECODERRESET_CV8” was noted
+   as “Safe to write to”. This could lead to unintentional
+   decoder resets.
+7. The feature "ZIMO_SUBVERSIONNR_CV65" was noted
+   as "Safe to write to". This could lead to aborts
+   when downloading the settings
+   
 
 Technical improvements:
 
