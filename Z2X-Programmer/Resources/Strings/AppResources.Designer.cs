@@ -318,6 +318,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The second address feature is not supported by this decoder..
+        /// </summary>
+        public static string AlertSecondaryAddressNotSupported {
+            get {
+                return ResourceManager.GetString("AlertSecondaryAddressNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configuration variable could not be written. .
         /// </summary>
         public static string AlertWriteCVError {
@@ -1393,7 +1402,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ZIMO FX function decoders offer the second address function. Function outputs can be assigned to the function keys that are addressed using the second address..
+        ///   Looks up a localized string similar to Function outputs can be assigned to the function keys that are addressed using the second address..
         /// </summary>
         public static string FrameFunctionKeysMappingSecondaryAddressDescription {
             get {
@@ -1402,7 +1411,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function outputs of the second address.
+        ///   Looks up a localized string similar to Function outputs.
         /// </summary>
         public static string FrameFunctionKeysMappingSecondaryAddressTitle {
             get {
@@ -3615,6 +3624,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FunctionKeysNotDefined {
             get {
                 return ResourceManager.GetString("FunctionKeysNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary address.
+        /// </summary>
+        public static string FunctionKeysSecondaryAddressTabTitle {
+            get {
+                return ResourceManager.GetString("FunctionKeysSecondaryAddressTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle address.
+        /// </summary>
+        public static string FunctionKeysVehicleAddressTabTitle {
+            get {
+                return ResourceManager.GetString("FunctionKeysVehicleAddressTabTitle", resourceCulture);
             }
         }
         

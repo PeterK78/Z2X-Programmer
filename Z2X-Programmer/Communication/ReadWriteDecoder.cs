@@ -232,7 +232,10 @@ namespace Z2XProgrammer.Communication
                 if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                 {
                     //  We check whether we are allowed to describe the configuration variables belonging to the feature.
-                    if (DeqSpecReader.IsWriteable(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+                    if (DeqSpecReader.IsWriteable(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false)
+                    {
+                        continue;
+                    }
 
                     for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
                     {

@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[79, 3] {
+        static readonly string[,] SearchDatabase = new string[80, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19" },
@@ -112,7 +112,8 @@ namespace Z2XProgrammer.Helper
                                                                         { "FunctionKeysPage","FrameFunctionKeysDeactivateAccDecTimeLabel", "ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156" },
                                                                         { "DecoderInformationPage","FrameDecoderZIMOInfoSoundProjectNr", "ZIMO_SOUNDPROJECTNR_CV254" },
                                                                         { "FunctionOutputsPage","FrameProtocolZIMOSUSIPinClockLabel", "ZIMO_SUSIPORT1CONFIG_CV201" },
-                                                                        { "FunctionKeysPage","FrameFunctionKeysZIMOInputMappingDescription", "ZIMO_INPUTMAPPING_CV4XX" }
+                                                                        { "FunctionKeysPage","FrameFunctionKeysZIMOInputMappingDescription", "ZIMO_INPUTMAPPING_CV4XX" },
+                                                                        { "FunctionKeysSecondaryAddressPage", "FrameFunctionKeysMappingSecondaryAddressTitle","ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X"}
                                                                     };
 
         /// <summary>

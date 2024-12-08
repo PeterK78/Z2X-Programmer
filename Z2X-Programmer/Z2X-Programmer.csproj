@@ -184,6 +184,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\FunctionKeysSecondaryAddressPage.xaml.cs">
+	    <DependentUpon>FunctionKeysSecondaryAddressPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\ProtocolPage.xaml.cs">
 	    <DependentUpon>ProtocolPage.xaml</DependentUpon>
 	  </Compile>
@@ -218,6 +221,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ExpertPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FunctionKeysSecondaryAddressPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FunctionKeysPage.xaml">

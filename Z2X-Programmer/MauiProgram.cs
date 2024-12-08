@@ -72,6 +72,9 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<FunctionOutputsPage>();
             builder.Services.AddSingleton<FunctionOutputsViewModel>();
 
+            builder.Services.AddSingleton<FunctionKeysSecondaryAddressPage>();
+            builder.Services.AddSingleton<FunctionKeysSecondaryAddressViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

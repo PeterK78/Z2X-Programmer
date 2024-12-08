@@ -37,10 +37,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         Shell.FlyoutBackgroundColor = "{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}"
         Shell.NavBarHasShadow="True"
         Shell.NavBarIsVisible="True"
+        Shell.TabBarTitleColor= "{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
+        Shell.TabBarForegroundColor= "{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Primary}}"
+        Shell.TabBarUnselectedColor = "{AppThemeBinding Light={StaticResource ButtonText_Light}, Dark={StaticResource ButtonText_Dark}}"
         Shell.ForegroundColor ="{AppThemeBinding Light={StaticResource FlyOutHamburgerIconColor_Light}, Dark={StaticResource FlyOutHamburgerIconColor_Dark}}"
         Title="{Binding ApplicationTitle}"
         >
-    
     
     <Shell.FlyoutHeader>
         <VerticalStackLayout>
@@ -135,10 +137,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}" Icon="{AppThemeBinding Light=ic_fluent_keyboard_123_24_regular.png, Dark=ic_fluent_keyboard_123_24_dark.png}" >
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:FunctionKeysPage}" Route="FunctionKeysPage" />
-        </Tab>
+    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}" Icon="{AppThemeBinding Light=ic_fluent_keyboard_123_24_regular.png, Dark=ic_fluent_keyboard_123_24_dark.png}">
+        <ShellContent Title="{x:Static strings:AppResources.FunctionKeysVehicleAddressTabTitle}" ContentTemplate="{DataTemplate pages:FunctionKeysPage}" Route="FunctionKeysPage"/>
+        <ShellContent Title="{x:Static strings:AppResources.FunctionKeysSecondaryAddressTabTitle}" ContentTemplate="{DataTemplate pages:FunctionKeysSecondaryAddressPage}" Route="FunctionKeysSecondaryAddressPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}" Icon="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" >
@@ -201,7 +202,5 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <ShellContent ContentTemplate="{DataTemplate pages:InfoPage}" />
         </Tab>
     </FlyoutItem>
-
-
 
 </Shell>
