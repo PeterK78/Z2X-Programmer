@@ -641,7 +641,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
     <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
     <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
-    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_ANALOGMODE_CV29 support=""yes"" writeable=""yes""/>
     <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
     <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
@@ -675,7 +675,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29 support=""yes"" writeable=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
     <RCN225_AUTOMATICREGISTRATION_CV27_5 support=""yes"" writeable=""yes""/>
@@ -702,7 +702,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
     <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
     
@@ -770,7 +770,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
     <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
@@ -925,7 +925,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 	<RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
-    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
