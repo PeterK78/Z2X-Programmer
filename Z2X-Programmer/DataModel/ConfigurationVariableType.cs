@@ -36,7 +36,7 @@ namespace Z2XProgrammer.DataModel
     /// </summary>
     public class ConfigurationVariableType: INotifyPropertyChanged
     {
-        private bool _Enabled = false;
+        private bool _Enabled = true;
         
         public event PropertyChangedEventHandler? PropertyChanged;
 

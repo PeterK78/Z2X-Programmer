@@ -131,8 +131,8 @@ namespace Z2XProgrammer.DataStore
             //  Setup the list of configuration variables
             for (int i = 0; i <= Helper.NMRA.MaxCVValues + 1; i++)
             {
-                BackupCVs.Add(new ConfigurationVariableType() { Number = i, Enabled = false, Description = "", Value = 0 });
-                ConfigurationVariables.Add(new ConfigurationVariableType() { Number = i, Enabled = false, Description = "", Value = 0 });
+                BackupCVs.Add(new ConfigurationVariableType() { Number = i, Enabled = true, Description = "", Value = 0 });
+                ConfigurationVariables.Add(new ConfigurationVariableType() { Number = i, Enabled = true, Description = "", Value = 0 });
             }
 
             //  Setup the list of function outputs
@@ -166,7 +166,7 @@ namespace Z2XProgrammer.DataStore
             foreach (ConfigurationVariableType v in BackupCVs)
             {
                 v.Value = 0;
-                v.Enabled = false;
+                v.Enabled = true;
                 v.Description = "";
             }
         }
