@@ -41,7 +41,6 @@ using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
-using Windows.ApplicationModel.UserDataTasks.DataProvider;
 
 
 namespace Z2XProgrammer.ViewModel
