@@ -534,7 +534,7 @@ namespace Z2XProgrammer.Communication
                 _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
                 DecoderSpecification.DeqSpecName = _decSpecName;
                 DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
-                DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
+                //DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
             }
 
