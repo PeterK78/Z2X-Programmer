@@ -622,7 +622,8 @@ namespace Z2XProgrammer.ViewModel
             //  First we mark all CVs to see if they are supported by the selected decoder
             //  specification, then we activate all supported CVs.
             DecoderConfiguration.SetDecoderSpecification(SelectedDecSpeq);
-            DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
+
+            //DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
             
             //  Inform the application that a new decoder specification has been selected.
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
