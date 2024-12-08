@@ -41,6 +41,7 @@ using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
+using Windows.ApplicationModel.UserDataTasks.DataProvider;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -59,6 +60,9 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        [ObservableProperty]
+        bool connectingOngoing = false;
 
         [ObservableProperty]
         bool activityReadWriteCVOngoing = false;
@@ -264,7 +268,11 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                CommandStation.Connect();
+                ConnectingOngoing = true;
+
+                await Task.Run(() => CommandStation.Connect());                
+
+                ConnectingOngoing = false;
             }
             catch (System.FormatException)
             {
