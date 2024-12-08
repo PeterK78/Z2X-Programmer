@@ -710,7 +710,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <!-- Supported ZIMO features -->
     <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
-    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""yes""/>
+    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
     <ZIMO_MXUPDATELOCK_CV144 support =""yes"" />
