@@ -46,15 +46,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Image Source="{AppThemeBinding Light=ic_fluent_wrench_screwdriver_24_regular.png, Dark=ic_fluent_wrench_screwdriver_24_dark.png}" Margin="0,0,10,0" ></Image>
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemMaintenanceText}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
-
-            <!-- No data available information -->
-            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
-                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
-                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            </HorizontalStackLayout>
-
+            
             <!-- Page sheet content -->
-            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+            <VerticalStackLayout>
 
                 <!-- Decoder reset in CV8 RCN225_DECODERRESET_CV8 -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetTitle}" VerticalOptions="Center" />
