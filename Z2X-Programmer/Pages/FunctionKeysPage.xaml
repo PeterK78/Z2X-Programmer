@@ -160,9 +160,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingTypeLabel}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" TextColor="Red"> </Label>
                         </VerticalStackLayout>
 
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="16" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}"  HorizontalOptions="End">
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="17" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}"  HorizontalOptions="End">
                             <Label Text="{Binding Path=ZIMOExtendedFunctionMapping,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding ZIMOExtendedFunctionMapping}"></Switch>
+                            <Switch HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding ZIMOExtendedFunctionMapping}"></Switch>
                         </HorizontalStackLayout>
 
                         <!-- DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 -->
