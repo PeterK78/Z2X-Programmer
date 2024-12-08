@@ -37,6 +37,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -62,18 +63,21 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}" />
             <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
                     <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Label x:Name="FrameMotorCharacteristicsCharacteristicCurveTypeLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="1" Grid.Column="0"  IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
-                </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label x:Name="FrameMotorCharacteristicsCharacteristicCurveTypeLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0"  HorizontalOptions="End">
+                                <Label Text="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
+                            </HorizontalStackLayout>
+                    </Grid>
             </Frame>
 
             <!-- Basic speed curve with only 3 parameters (CV2, CV5 and CV6) -->
@@ -122,11 +126,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
                         <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
+                            <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                        </HorizontalStackLayout>
 
                         <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                                <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Maximum="255" Minimum="2" VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Maximum="255" Minimum="2" VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                         </HorizontalStackLayout>
                     </Grid>
@@ -300,10 +307,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                        <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                        <Switch IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                    </HorizontalStackLayout>
+
                     <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                            <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                        <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                         <Label   Text="{Binding MotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
                     </HorizontalStackLayout>
 
@@ -327,7 +338,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                        </HorizontalStackLayout>
+
                         <Label IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
                             <Slider  Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="0" Maximum="155"  VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
@@ -353,9 +369,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,100,0" />
                         <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="?" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=OpenMotorControlFrequencyHelpCommand}"  HeightRequest="10" WidthRequest="10" VerticalOptions="Start" HorizontalOptions="EndAndExpand" ></Button>
                         <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
 
-                    </Grid>
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
+                        </HorizontalStackLayout>
+
+                        </Grid>
                     <Frame Style="{StaticResource Z2XProgrammerFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
