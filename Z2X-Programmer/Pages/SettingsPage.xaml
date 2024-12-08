@@ -38,6 +38,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -99,7 +100,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AutomaticDecoderDetection}" HorizontalOptions="End"></Switch>
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                        <Label Text="{Binding Path=AutomaticDecoderDetection,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                        <Switch  IsToggled="{Binding AutomaticDecoderDetection}" HorizontalOptions="End"></Switch>
+                    </HorizontalStackLayout>
                 </Grid>
             </Frame>
 
@@ -197,7 +201,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsLoggingEnableDisable}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
+                        <Label Text="{Binding Path=EnableLogging,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                        <Switch  IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
+                    </HorizontalStackLayout>
                 </Grid>
             </Frame>
 
@@ -213,7 +220,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsQuitOnReadError}"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
+                        <Label Text="{Binding Path=QuitOnReadError,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                        <Switch  IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
+                    </HorizontalStackLayout>
                 </Grid>
             </Frame>
 
