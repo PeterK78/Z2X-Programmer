@@ -36,6 +36,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -76,14 +77,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Margin="0,20,0,20" x:Name="FrameProtocolOperatingModesDescription" Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolOperatingModesDescription}" VerticalOptions="Center" />
                         
                         <Label x:Name="FrameProtocolDCCModeLabel" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCModeLabel}" VerticalOptions="Center" />
-                        <Switch Grid.Row="1" Grid.Column="1" IsEnabled="False"  ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsEnabled="False">
+                            <Label Text="{Binding Path=DccOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
 
-                      
+
                         <Label x:Name="FrameProtocolMMModeLabel" Grid.Row="2"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolMMModeLabel}" VerticalOptions="Center" />
-                        <Switch Grid.Row="2" Grid.Column="1"  IsToggled="{Binding MMOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=MMOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding MMOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
 
                         <Label x:Name="FrameProtocolMFXModeLabel" Grid.Row="3"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolMFXModeLabel}" VerticalOptions="Center" />
-                        <Switch Grid.Row="3" Grid.Column="1"  IsToggled="{Binding MFXOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        <HorizontalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=MFXOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding MFXOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
 
                     </Grid>
                 </Frame>
@@ -103,16 +113,25 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
 
                         <Label x:Name="FrameRailComEnableDisableRailCom" Grid.Row="0"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComEnableDisableRailCom}" VerticalOptions="Center" />
-                        <Switch Grid.Row="0" Grid.Column="1"  IsToggled="{Binding RailComEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=RailComEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding RailComEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
 
                         <!-- RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0} -->
                         <Label x:Name="FrameRailComConfigurationAddressBroadCast" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationAddressBroadCast}" VerticalOptions="Center" />
-                        <Switch Grid.Row="1" Grid.Column="1" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}"   IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}">
+                            <Label Text="{Binding Path=RailComChannel1AdrBroadcast,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
 
                         <!-- RCN225_RAILCOMCHANNEL2DATA_CV28_1} -->
                         <Label x:Name="FrameRailComConfigurationDataChannel2" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationDataChannel2}" VerticalOptions="Center" />
-                        <Switch  Grid.Row="2" Grid.Column="1" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}"   IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
-                        
+                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}">
+                            <Label Text="{Binding Path=RailComChannel2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                        </HorizontalStackLayout>
+
                     </Grid>
                 </Frame>
 
@@ -136,13 +155,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label Margin="0,20,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeDescription}" VerticalOptions="Center" />
 
                             <Label  x:Name="FrameProtocolAnalogModeLabel" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogModeLabel}" VerticalOptions="Center" />
-                            <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                                <Label Text="{Binding Path=AcModeEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            </HorizontalStackLayout>
 
                             <Label  x:Name="FrameProtocolAnalogDCLabel" Grid.Row="2"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogDCLabel}" VerticalOptions="Center" />
-                            <Switch Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}"  IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}">
+                                <Label Text="{Binding Path=AnalogOperationDCEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            </HorizontalStackLayout>
 
-                            <Label  x:Name="FrameProtocolAnalogACLabel" Grid.Row="3"  Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogACLabel}" VerticalOptions="Center" />
-                            <Switch Grid.Row="3" Grid.Column="1"  IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            <Label  x:Name="FrameProtocolAnalogACLabel" Grid.Row="3" Grid.Column="0" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolAnalogACLabel}" VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" >
+                                <Label Text="{Binding Path=AnalogOperationACEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            </HorizontalStackLayout>
 
                         </Grid>
                     </VerticalStackLayout>
@@ -163,7 +191,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCADescription}" VerticalOptions="Center" />
                             <Label  Grid.Row="1"  Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCALabel}" VerticalOptions="Center" />
-                            <Switch Grid.Row="1" Grid.Column="1"  IsToggled="{Binding AutomaticRegistrationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                                <Label Text="{Binding Path=AutomaticRegistrationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch   IsToggled="{Binding AutomaticRegistrationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                            </HorizontalStackLayout>
                         </Grid>
                     </VerticalStackLayout>
                 </Frame>
