@@ -21,10 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using Microsoft.Maui.Graphics.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -35,114 +32,100 @@ using Z2XProgrammer.Helper;
 namespace Z2XProgrammer.Traincontroller
 {
     /// <summary>
-    /// Contains the implementation of the Rocrail train controller software.
+    /// Contains the implementation of the Rocrail train controller software. The Rocrail
+    /// RCP protocol is used to communicate with the Rocrail server.
+    /// 
+    /// See the RCP documentation:
+    /// https://wiki.rocrail.net/doku.php?id=develop:cs-protocol-en
     /// </summary>
     internal static class Rocrail
     {
         /// <summary>
-        /// Connects to the Rocrail server and calls the locomotive list data.
+        /// Connects to the Rocrail server and calls the locomotive list data by
+        /// using the Rocrail Client Protocol (RCP).
         /// </summary>
         /// <param name="ipAdress">The ip address of the Rocrail server.</param>
         /// <param name="port">The port number of the Rocrail server.</param>
         internal async static Task<List<LocoListType>> GetLocomotiveList(IPAddress ipAdress, int port)
         {
+            Socket _client = null!;
+
             try
             {
-                List<LocoListType> LocoList = [];
+                //  Before we start communicating, we check whether the Rocrail server is available.
+                //  The default timeout of the PingAsync method is 5 seconds.
+                if (await PingAsync(ipAdress) == false) return [];
 
-                //  We ping the rocrail server. If we do not receive a pong we quit                    
-                if(await PingAsync(ipAdress) == false) return LocoList;
-
+                //  We set up a TCPIP socket for communication with the Rocrail server.
                 IPEndPoint ipEndPoint = new(ipAdress, port);
-
-                using Socket _client = new(ipEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
+                _client = new(ipEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 await _client.ConnectAsync(ipEndPoint);
 
-                // Send message <model cmd="lclist"/>
-                string MessageX = "<model cmd=\"lclist\"/>";
-                string Message = AddXMLHeader("model", MessageX);
+                // Now we create the RCP message and send it to the Rocrail server.
+                // RCP uses the UTF-8 format, so we must ensure that our message is converted to this format before sending.
+                _ = await _client.SendAsync(Encoding.UTF8.GetBytes(CreateRCPMessage("model", "<model cmd=\"lclist\"/>")), SocketFlags.None);
 
-                var messageBytes = Encoding.UTF8.GetBytes(Message);
-                _ = await _client.SendAsync(messageBytes, SocketFlags.None);
-
-                bool LcListFound = false;
-                string RocrailMessage = "";
+                // We are now waiting for the RCP LCLIST response. We simply wait until we receive the closing XML tag </lclist>.
+                // To avoid an infinite loop, we use a 5 second timeout.
+                byte[] RCPReceiveBuffer = new byte[1024];
                 string MessageBuffer = "";
-                string CharactersReceived = "";
 
-                while (LcListFound == false)
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                while (MessageBuffer.Contains("</lclist>") == false)
                 {
-
-                    byte[] RawByteBuffer = new byte[1024];
-                    int BytesReceived = await _client.ReceiveAsync(RawByteBuffer, SocketFlags.None);
-                    CharactersReceived = Encoding.UTF8.GetString(RawByteBuffer, 0, BytesReceived);
-                    MessageBuffer += CharactersReceived;
-
-                    while (BytesReceived >= RawByteBuffer.Length)
-                    {
-                        BytesReceived = await _client.ReceiveAsync(RawByteBuffer, SocketFlags.None);
-                        CharactersReceived = Encoding.UTF8.GetString(RawByteBuffer, 0, BytesReceived);
-                        MessageBuffer += CharactersReceived;
-                    }
-
-                    
-                    while ((IsMessageAvailbelInBuffer(MessageBuffer) == true) && (LcListFound == false))
-                    {
-                        Logger.PrintDevConsole($"Rocrail: Trying to parse " + RocrailMessage);
-
-                        RocrailMessage = GetNextMessageFromBuffer(MessageBuffer);
-                        MessageBuffer = RemoveMessageFromBuffer(MessageBuffer);
-                        
-                        //  Check if we have got the lclist response message
-                        if (RocrailMessage.Contains("<lclist>"))
-                        {
-                            XElement LcListElements = XElement.Parse(RocrailMessage, LoadOptions.PreserveWhitespace);
-                            if (LcListElements.Name == "lclist")
-                            {
-                                LocoList = ProcessLclist(LcListElements);
-                                LcListFound = true;
-                            }
-                        }
-                    }
-
+                    Array.Clear(RCPReceiveBuffer);
+                    int NumberOfBytesReceived = await _client.ReceiveAsync(RCPReceiveBuffer, SocketFlags.None);
+                    MessageBuffer += Encoding.UTF8.GetString(RCPReceiveBuffer, 0, NumberOfBytesReceived);
+                    if (sw.ElapsedMilliseconds > 5000) throw new TimeoutException();
                 }
-
                 _client.Close();
 
-                return LocoList;
+                //  Now we mask out the LCLIST response.
+                string LCLISTMessage = MessageBuffer.Substring(MessageBuffer.IndexOf("<lclist>"), MessageBuffer.IndexOf("</lclist>") - MessageBuffer.IndexOf("<lclist>") + "</lclist>".Length);
+                
+                //  Finally, we parse the XML string and convert it to a LocoListType.
+                return ConvertXElementToLocolist(XElement.Parse(LCLISTMessage, LoadOptions.PreserveWhitespace));
             }
             catch (Exception ex) 
             {
-                string msg = ex.Message;
+                if(_client != null) _client.Close();
+                Logger.PrintDevConsole("Rocrail:GetLocomotiveList: " + ex.Message);
                 return []; 
             }   
         }
 
         /// <summary>
-        /// Process the Rocrail locomotive list XML element lclist.
+        /// Converts an XElement object to a LocoListType list.
         /// </summary>
-        /// <param name="lclist">The lclist XML element of Rocrail.</param>
-        internal static List<LocoListType> ProcessLclist(XElement lclist)
+        /// <param name="lclist">The lclist XElement object.</param>
+        internal static List<LocoListType> ConvertXElementToLocolist(XElement lclist)
         {
-
-            List<LocoListType> locoList = [];
-
-            foreach (XElement element in lclist.Elements())
+            try
             {
-                LocoListType entry = new LocoListType();
+                List<LocoListType> locoList = [];
 
-                if (element.Attribute("addr") != null) entry.LocomotiveAddress = ushort.Parse(element.Attribute("addr")!.Value);
-                if(element.Attribute("id") != null) entry.UserDefindedDecoderDescription = element.Attribute("id")!.Value;
+                foreach (XElement element in lclist.Elements())
+                {
+                    LocoListType entry = new LocoListType();
 
-                locoList.Add(entry);
+                    if (element.Attribute("addr") != null) entry.LocomotiveAddress = ushort.Parse(element.Attribute("addr")!.Value);
+                    if (element.Attribute("id") != null) entry.UserDefindedDecoderDescription = element.Attribute("id")!.Value;
+
+                    locoList.Add(entry);
+                }
+                return locoList;
             }
-            return locoList;
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("Rocrail:ConvertXElementToLocolist: " + ex.Message);
+                return [];
+            }
 
         }
 
         /// <summary>
-        /// Sends a ping to the Rocrail server. If we receive a pong, the function returns true. 
+        /// Sends a ping to the specified IP address. If we receive a pong, the function returns true. 
         /// </summary>
         /// <returns>Returns true if the client is reachable. False if an error occurs. </returns>
         internal static async Task<bool> PingAsync(IPAddress ipAdress)
@@ -153,119 +136,15 @@ namespace Z2XProgrammer.Traincontroller
         }
 
         /// <summary>
-        /// Adds the Rocrail XML header to the Rocrail XML message.
+        /// Creates a Rocrail RCP message.
         /// </summary>
-        /// <param name="xmlType">The Rocrail XML type.</param>
-        /// <param name="xmlMsg">The Rocrail XML message.</param>
+        /// <param name="xmlType">The RCP XML type.</param>
+        /// <param name="xmlMsg">The RCP XML message.</param>
         /// <returns></returns>
-        internal static string AddXMLHeader(string xmlType, string xmlMsg)
+        internal static string CreateRCPMessage(string xmlType, string xmlMsg)
         {
-            string buffer = string.Empty;
-            buffer = "<xmlh><xml size=\"" + xmlMsg.Length + "\" name=\"" + xmlType + "\"/></xmlh>" + xmlMsg ;
-            return buffer;
+            return "<xmlh><xml size=\"" + xmlMsg.Length + "\" name=\"" + xmlType + "\"/></xmlh>" + xmlMsg ;
         }
-
-        /// <summary>
-        /// Returns the XML header of a Rocrail server message.
-        /// </summary>
-        /// <param name="message">A Rocrail server message.</param>
-        internal static string GetXMLHeader( string message)
-        {
-            int Start = message.IndexOf("</xmlh>");
-            message = message.Substring(0,Start + 7);
-            return message;
-        }
-
-        /// <summary>
-        /// Returns the size of the XML message - defined in the XML header.
-        /// </summary>
-        /// <param name="header">A string which contains the XML header.</param>
-        /// <returns></returns>
-        internal static int GetMessageSize (string header)
-        {
-            int Start = header.IndexOf("size=\"");
-            int End = header.IndexOf("\"/>", Start + 1);
-            string Size = header.Substring(Start +6, End - Start - 6);            
-            return int.Parse(Size);
-        }
-
-        /// <summary>
-        /// Checks if a valid Rocrail XML message is available in the message buffer.
-        /// </summary>
-        /// <param name="buffer">The Rocrail message buffer.</param>
-        /// <returns></returns>
-        internal static bool IsMessageAvailbelInBuffer( string buffer)
-        {
-            //  Check whether at least the required characters for the header are present.
-            if (buffer.Length <= 70)
-            {
-                Logger.PrintDevConsole($"Rocrail: Buffer too small small for header.");
-                return false;
-            }
-
-            //  Check if we have at least on XML header present in the buffer.
-            if (buffer.IndexOf("</xmlh>") < 0)
-            {
-                Logger.PrintDevConsole($"Rocrail: XML header not present.");
-                return false;
-            }
-
-            string XMLHeader = GetXMLHeader(buffer);
-            int XMLMessageLength = GetMessageSize(buffer);
-
-            //  Check whether the buffer contains at least the characters required for this message.
-            if (buffer.Length < XMLMessageLength + XMLHeader.Length)
-            {
-                Logger.PrintDevConsole($"Rocrail: Buffer too smal for message.");
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Returns the next Rocrail XML message from the buffer.
-        /// </summary>
-        /// <param name="buffer">The Rocrail message buffer.</param>
-        /// <returns></returns>
-        internal static string GetNextMessageFromBuffer(string buffer)
-        {
-            string XMLHeader = GetXMLHeader(buffer);
-            buffer = buffer.Remove(0, XMLHeader.Length);
-
-            int XMLLength = GetMessageSize(XMLHeader);
-
-            //int HiddenCharaceters = CountHiddenCharacters(buffer);
-
-            int len = buffer.Length;
-            
-            if( len < XMLLength)
-            {
-                // Längen problem
-                int x = 0;
-                x++;
-    
-            }
-            string Message = buffer.Substring(0, XMLLength);
-
-            int nullchar = Message.IndexOf('\0');
-            Message = Message.Substring(0, nullchar - 1);
-
-            return Message; 
-        
-        }
-
-        /// <summary>
-        /// Removes the first Rocrail XML message from the buffer.
-        /// </summary>
-        /// <param name="buffer">The Rocrail message buffer.</param>
-        /// <returns></returns>
-        internal static string RemoveMessageFromBuffer(string buffer)
-        {
-            string XMLHeader = GetXMLHeader(buffer);
-            buffer = buffer.Remove(0, XMLHeader.Length);
-            int XMLLength = GetMessageSize(XMLHeader);
-            return buffer.Remove(0, XMLLength);
-        }
+      
     }
 }
