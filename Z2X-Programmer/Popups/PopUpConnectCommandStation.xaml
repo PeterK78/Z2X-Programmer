@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Popups.PopUpConnectCommandStation"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             >
+    <Border>
+    <VerticalStackLayout>
+        <Grid MinimumWidthRequest="500" MinimumHeightRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Grid.Column="0" Source="badgeicon.png" HeightRequest="40" WidthRequest="40" Margin="10,20,10,10" VerticalOptions="Center" HorizontalOptions="Center" ></Image>
+            <Label x:Name="ProgressDialogMessage" Margin="20,20,20,20" Grid.Row="1" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+            <ActivityIndicator Grid.Row="2" Grid.Column="0" IsEnabled="True" IsRunning="True"></ActivityIndicator>
+            <Button Grid.Row="3" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,20" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+        </Grid>
+    </VerticalStackLayout>
+    </Border>
+
+</mct:Popup>

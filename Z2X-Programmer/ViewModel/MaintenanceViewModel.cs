@@ -115,6 +115,8 @@ namespace Z2XProgrammer.ViewModel
             try
             {
 
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
+
                 //  The decoder reset is only allowed on the progam track.
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
                 {
@@ -128,10 +130,8 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
-                if (CommandStation.Connect() == false) return;
+                if (CommandStation.Connect(cancelToken, 5000) == false) return;
 
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
                 await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.LocomotiveAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
 
                 //  The decoder reset is only allowed on the progam track.
@@ -153,17 +153,16 @@ namespace Z2XProgrammer.ViewModel
             try
             {
 
-                if (CommandStation.Connect() == false)
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+
+                if (CommandStation.Connect(cancelToken, 5000) == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
                 }
 
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
-
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, "Testing ...");
-
 
                 //  Application.Current.MainPage.ShowPopup(pop);
 
@@ -195,15 +194,16 @@ namespace Z2XProgrammer.ViewModel
             try
             {
 
-                if (CommandStation.Connect() == false)
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+
+                if (CommandStation.Connect(cancelToken, 5000) == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
                 }
 
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
-
+             
                 await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 0, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 await Task.Run(() => ReadWriteDecoder.ReadCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));

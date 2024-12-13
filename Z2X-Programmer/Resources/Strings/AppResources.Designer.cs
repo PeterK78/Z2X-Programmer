@@ -142,6 +142,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The connection with your digital center cannot be established. Is the IP address.
+        /// </summary>
+        public static string AlertDigitalCommandStationNoReachablePart1 {
+            get {
+                return ResourceManager.GetString("AlertDigitalCommandStationNoReachablePart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to correct?.
+        /// </summary>
+        public static string AlertDigitalCommandStationNoReachablePart2 {
+            get {
+                return ResourceManager.GetString("AlertDigitalCommandStationNoReachablePart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string AlertError {
@@ -3651,6 +3669,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FyoutItemMotorCharacteristicsText {
             get {
                 return ResourceManager.GetString("FyoutItemMotorCharacteristicsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A connection is established with your digital center (IP address:.
+        /// </summary>
+        public static string InfoConnectionToDigitalCommandStation {
+            get {
+                return ResourceManager.GetString("InfoConnectionToDigitalCommandStation", resourceCulture);
             }
         }
         

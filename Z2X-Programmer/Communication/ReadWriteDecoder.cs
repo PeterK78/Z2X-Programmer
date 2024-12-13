@@ -147,7 +147,7 @@ namespace Z2XProgrammer.Communication
             List<int> ConfigVariablesToWrite = new List<int>();
 
             //  We check if we can reach the command station
-            if (CommandStation.Connect() == false) { return Task.FromResult(false); }
+            if (CommandStation.Connect(cancelToken,5000) == false) { return Task.FromResult(false); }
 
             //  Turn the track power ON if we are in POM mode
             if (mode == NMRA.DCCProgrammingModes.POMMainTrack) SetTrackPowerON();
@@ -519,7 +519,7 @@ namespace Z2XProgrammer.Communication
 
             //  We check if we can reach the command station
             Logger.PrintDevConsole("ReadWriteDecoder: CommandStation.Connect()");
-            if (CommandStation.Connect() == false) { return Task.FromResult(false); }
+            if (CommandStation.Connect(cancelToken,5000) == false) { return Task.FromResult(false); }
 
             //  Turn the track power ON if we are in POM mode
             if (mode == NMRA.DCCProgrammingModes.POMMainTrack)

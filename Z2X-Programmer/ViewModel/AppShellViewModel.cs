@@ -260,22 +260,36 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Connects to the command station
+        /// This command is executed when the operating status button is pressed.
+        /// If the digital command station cannot be reached, a new connection is established.
         /// </summary>
         [RelayCommand]
         async Task ConnectCommandStation()
         {
             try
             {
+                // This property controls the ActivityIndicator
+                // We set this property to True so that it is displayed.
                 ConnectingOngoing = true;
 
-                await Task.Run(() => CommandStation.Connect());                
+                //  Setup the cancellation token
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
 
+                //  We are now trying to establish a new connection to the digital command station.                    
+                bool ConnectionSuccess = false;
+                await Task.Run(() => ConnectionSuccess = CommandStation.Connect(cancelToken, 5000));
+                
+                //  We hide the ActivityIndicator.
                 ConnectingOngoing = false;
+                
+                // We will inform the user if we are unable to establish a connection.
+                if(ConnectionSuccess == false) await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
+                
             }
             catch (System.FormatException)
             {
-                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
+               await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
@@ -377,7 +391,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// This commando uploads the configuration from the locomitive decoder into the data store
+        /// This commando uploads the configuration from the decoder.
         /// </summary>
         [RelayCommand]
         async Task UploadDecoder()
@@ -386,13 +400,13 @@ namespace Z2XProgrammer.ViewModel
 
             Logger.PrintDevConsole("AppShellViewModel: Enter UploadDecoder)");
 
-            //  Setup the cancellation token
+            //  Setup the cancellation token.
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = cancelTokenSource.Token;
 
             //  Setup the popup window
             PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder);
-
+            
             try
             {
 
@@ -400,6 +414,21 @@ namespace Z2XProgrammer.ViewModel
                 if ((DecoderConfiguration.RCN225.LocomotiveAddress == 0) && (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack))
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
+                }
+
+                //  Before we start uploading the data from the decoder, we check whether we can establish a connection to the digital command center.
+                //  If the digital command center is actually not reachable, we try to create a connection.
+                if (CommandStation.Z21.IsReachable == false)
+                {
+                    PopUpConnectCommandStation popupConnectCommandSation = new PopUpConnectCommandStation(cancelTokenSource, AppResources.InfoConnectionToDigitalCommandStation + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + ")." );
+                    Shell.Current.CurrentPage.ShowPopup(popupConnectCommandSation);
+                    bool ConnectSuccess = await Task.Run(() => CommandStation.Connect(cancelToken, 10000));
+                    await popupConnectCommandSation.CloseAsync();
+                    if (ConnectSuccess == false)
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
+                        return;
+                    }
                 }
 
                 Shell.Current.CurrentPage.ShowPopup(pop);

@@ -199,7 +199,9 @@ namespace Z2XProgrammer.ViewModel
             try
             {
 
-                if (CommandStation.Connect() == false)
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
+
+                if (CommandStation.Connect(cancelToken, 5000) == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
                     return;
@@ -213,9 +215,6 @@ namespace Z2XProgrammer.ViewModel
                 {
                     await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
                 }
-
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
 
                 bool WriteSuccessFull = false;
     
@@ -256,7 +255,10 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                if (CommandStation.Connect() == false)
+
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
+
+                if (CommandStation.Connect(cancelToken, 5000) == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                     return;
@@ -270,10 +272,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
                 }
-
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
-
+         
                 bool readSuccessFull = false;
                 await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 

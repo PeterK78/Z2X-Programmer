@@ -275,7 +275,8 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Connects to the Z21
+        /// This command establishes a connection to your digital command staiton.
+        /// This allows the configured IP address to be checked for correctness.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -283,24 +284,28 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
+                // This property controls the ActivityIndicator. We set this property to TRUE so that the ActivityIndicator is displayed.
                 ActivityConnectingOngoing = true;
 
+                // So that we can check whether the new IP address is correct, we must terminate existing connections.
                 CommandStation.Disconnect();
 
+                // Now we are trying to establish a connection.
                 bool ConnectSuccessFull = false;
-                await Task.Run(() => ConnectSuccessFull =  CommandStation.Connect());
-                
-                if (CommandStation.Connect() == false)
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
+                await Task.Run(() => ConnectSuccessFull = CommandStation.Connect(cancelToken, 5000));
+
+                //  We hide the ActivityIndicator.
+                ActivityConnectingOngoing = false;
+
+                if (ConnectSuccessFull == false)
                 {
-                    ActivityConnectingOngoing = false;
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
                 }
                 else
                 {
-                    ActivityConnectingOngoing = false;
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
                 }
-                
                 
             }
             catch (System.FormatException)

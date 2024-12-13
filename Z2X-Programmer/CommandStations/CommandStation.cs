@@ -23,6 +23,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -136,38 +137,41 @@ namespace Z2XProgrammer.Communication
         }
 
         /// <summary>
-        /// Connects to the selected command station.
+        /// Connects to the selected digital command station.
         /// </summary>
-        /// <returns>True if the connection was successfull. False if the connection could not be established.</returns>
-        public static bool Connect()
+        /// <param name="cancelToken">A cancelation toke to cancel the connection process.</param>
+        /// <param name="timeOut">A timeout in milliseconds.</param>
+        /// <returns></returns>
+        public static bool Connect(CancellationToken cancelToken, long timeOut)
         {
-
-            //  Timeout while connecting to the command station
-            int ElapsedTime = 0;
-     
-            //  Check if we need to connect to the command station
-            if (CommandStation.Z21.IsReachable == false)
+            try
             {
+                //  We check whether the digital command station is already reachable.
+                //  If so, we return.
+                if (CommandStation.Z21.IsReachable == true) return true;
+
+                // We get the configured IP address from the settings and connect to the configured digital control center.
                 IPAddress address = IPAddress.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
                 CommandStation.Z21.Connect(address);
 
-                //  We wait for a response of the Z21
-                while ((CommandStation.Z21.IsReachable == false) && (ElapsedTime < 1000))
+                //  We are now waiting for the command center to connect.
+                //  The wait is ended prematurely when the timeout has expired or when the cancelation token is set.
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                while ((CommandStation.Z21.IsReachable == false) && (stopwatch.ElapsedMilliseconds < timeOut) && (cancelToken.IsCancellationRequested == false))
                 {
                     Thread.Sleep(1);
-                    ElapsedTime++;
-                    if (CommandStation.Z21.IsReachable == true)
-                    {
-                        return true;
-                    }
+                    if (CommandStation.Z21.IsReachable == true) return true;
                 }
 
-                //  The Z21 is not reachable
+                //  The digital command center is not reachable.
                 return false;
-                
             }
-
-            return true;
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("CommandStation.Connect:" + ex.Message);
+                return false;
+            }
+                
         }      
 
         #region REGION: PRIVATE FUNCTIONS

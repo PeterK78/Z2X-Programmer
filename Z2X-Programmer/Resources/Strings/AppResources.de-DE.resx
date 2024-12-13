@@ -1490,4 +1490,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="AlertSecondaryAddressNotSupported" xml:space="preserve">
     <value>Die Funktion Zweitadresse wird von diesem Decoder nicht unterstützt.</value>
   </data>
+  <data name="InfoConnectionToDigitalCommandStation" xml:space="preserve">
+    <value>Es wird eine Verbindung mit Ihrer Digitalzentrale hergestellt (IP-Adresse:</value>
+  </data>
+  <data name="AlertDigitalCommandStationNoReachablePart1" xml:space="preserve">
+    <value>Die Verbindung mit ihrer Digitalzentrale kann nicht hergestellt werden. Ist die IP-Adresse</value>
+  </data>
+  <data name="AlertDigitalCommandStationNoReachablePart2" xml:space="preserve">
+    <value>korrekt?</value>
+  </data>
 </root>

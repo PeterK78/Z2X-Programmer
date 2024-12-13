@@ -190,6 +190,9 @@
 	  <Compile Update="Pages\ProtocolPage.xaml.cs">
 	    <DependentUpon>ProtocolPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\PopUpConnectCommandStation.xaml.cs">
+	    <DependentUpon>PopUpConnectCommandStation.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Popups\PopUpEditInputMapping.xaml.cs">
 	    <DependentUpon>PopUpEditInputMapping.xaml</DependentUpon>
 	  </Compile>
@@ -257,6 +260,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SoundPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\PopUpConnectCommandStation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\PopUpEditInputMapping.xaml">

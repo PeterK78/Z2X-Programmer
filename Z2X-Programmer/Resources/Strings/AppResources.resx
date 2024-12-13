@@ -1488,4 +1488,13 @@ The application is aimed at beginners who want to configure the most important f
   <data name="AlertSecondaryAddressNotSupported" xml:space="preserve">
     <value>The second address feature is not supported by this decoder.</value>
   </data>
+  <data name="InfoConnectionToDigitalCommandStation" xml:space="preserve">
+    <value>A connection is established with your digital center (IP address:</value>
+  </data>
+  <data name="AlertDigitalCommandStationNoReachablePart1" xml:space="preserve">
+    <value>The connection with your digital center cannot be established. Is the IP address</value>
+  </data>
+  <data name="AlertDigitalCommandStationNoReachablePart2" xml:space="preserve">
+    <value>correct?</value>
+  </data>
 </root>
