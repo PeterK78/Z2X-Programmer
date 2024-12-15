@@ -817,7 +817,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The address mode determines whether vehicle addresses in the range from 0 to 127 or from 128 to 10239 are used. The standard range is 0 to 127..
+        ///   Looks up a localized string similar to The address mode determines whether vehicle addresses in the range from 1 to 127 or from 128 to 10239 are used. The standard range is 1 to 127..
         /// </summary>
         public static string FrameAddressModeDescription {
             get {
@@ -2042,7 +2042,9 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Each decoder requires a unique vehicle address for identification. Address 3 is used as standard..
+        ///   Looks up a localized string similar to In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required.
+        ///
+        ///⚠ The valid address range is determined by the “Address mode” setting..
         /// </summary>
         public static string FrameLocomotiveAddressDescription {
             get {
@@ -2056,15 +2058,6 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameLocomotiveAddressPlaceholder {
             get {
                 return ResourceManager.GetString("FrameLocomotiveAddressPlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vehicle address.
-        /// </summary>
-        public static string FrameLocomotiveAddressTitle {
-            get {
-                return ResourceManager.GetString("FrameLocomotiveAddressTitle", resourceCulture);
             }
         }
         
@@ -3088,6 +3081,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional display of current CV values.
+        /// </summary>
+        public static string FrameSettingsAdditionalDisplayOfCVValues {
+            get {
+                return ResourceManager.GetString("FrameSettingsAdditionalDisplayOfCVValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display language.
         /// </summary>
         public static string FrameSettingsAppLanguageDescription {
@@ -3120,15 +3122,6 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameSettingsAppLanguageLabel {
             get {
                 return ResourceManager.GetString("FrameSettingsAppLanguageLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display language.
-        /// </summary>
-        public static string FrameSettingsAppLanguageTitle {
-            get {
-                return ResourceManager.GetString("FrameSettingsAppLanguageTitle", resourceCulture);
             }
         }
         
@@ -3318,6 +3311,26 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameSettingsDecSpecFolderTitle {
             get {
                 return ResourceManager.GetString("FrameSettingsDecSpecFolderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the display of Z2X-Programmer.
+        ///
+        ///⚠ Changes are applied after a restart..
+        /// </summary>
+        public static string FrameSettingsDisplayDescription {
+            get {
+                return ResourceManager.GetString("FrameSettingsDisplayDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display.
+        /// </summary>
+        public static string FrameSettingsDisplayTitle {
+            get {
+                return ResourceManager.GetString("FrameSettingsDisplayTitle", resourceCulture);
             }
         }
         
@@ -3633,6 +3646,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameSpeedStepsSystemTitle {
             get {
                 return ResourceManager.GetString("FrameSpeedStepsSystemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle address.
+        /// </summary>
+        public static string FrameVehicleAddressTitle {
+            get {
+                return ResourceManager.GetString("FrameVehicleAddressTitle", resourceCulture);
             }
         }
         

@@ -323,7 +323,7 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Sound</value>
   </data>
   <data name="FrameAddressModeDescription" xml:space="preserve">
-    <value>Der Adressmodus bestimmt, ob Fahrzeugadressen im Bereich von 0 bis 127 oder von 128 bis 10239 verwenden werden. Der Standardbereich ist 0 bis 127.</value>
+    <value>Der Adressmodus bestimmt, ob Fahrzeugadressen im Bereich von 1 bis 127 oder von 128 bis 10239 verwenden werden. Der Standardbereich ist 1 bis 127.</value>
   </data>
   <data name="FrameAddressSecondAddressDescription" xml:space="preserve">
     <value>Koppeln Sie mit der Zweitadresse den Funktionsdecoder an die Funktionen eines Triebfahrzeugs. Somit können z. B. die Lichter mit nur einem Tastendruck aktiviert werden.</value>
@@ -662,12 +662,14 @@ Die folgenden Konfigurationsvariablen werden geändert:
     <value>Verbundadresse</value>
   </data>
   <data name="FrameLocomotiveAddressDescription" xml:space="preserve">
-    <value>Jeder Decoder benötigt zur Identifzierung eine eindeutige Fahrzeugadresse. Standardmäßig wird Adresse 3 verwendet.</value>
+    <value>Im regulären Betrieb benötigt jeder Decoder eine eindeutige Fahrzeugadresse. Standardmäßig wird Adresse 3 verwendet. Einzige Ausnahme ist die Programmierung am Programmiergleis. In diesem Betriebsmodus wird keine Fahrzeugadresse benötigt.
+
+⚠ Der gütlige Adressbereich wird durch die Einstellung „Adressmodus“ bestimmt.</value>
   </data>
   <data name="FrameLocomotiveAddressPlaceholder" xml:space="preserve">
     <value>Fahrzeugadresse</value>
   </data>
-  <data name="FrameLocomotiveAddressTitle" xml:space="preserve">
+  <data name="FrameVehicleAddressTitle" xml:space="preserve">
     <value>Fahrzeugadresse</value>
   </data>
   <data name="FrameLocomotiveAddressUseConsistAddressLabel" xml:space="preserve">
@@ -990,8 +992,8 @@ Frequenztyp = Niedrigfrequenz</value>
   <data name="FrameSettingsAppLanguageLabel" xml:space="preserve">
     <value>Schaltflächen, Menüs und andere Steuerelemente werden in dieser Sprache angezeigt (Neustart wird benötigt).</value>
   </data>
-  <data name="FrameSettingsAppLanguageTitle" xml:space="preserve">
-    <value>Anzeigesprache</value>
+  <data name="FrameSettingsDisplayTitle" xml:space="preserve">
+    <value>Anzeige</value>
   </data>
   <data name="FrameSettingsButtonCheckDeqSpecLabel" xml:space="preserve">
     <value>Prüfen</value>
@@ -1494,9 +1496,17 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Es wird eine Verbindung mit Ihrer Digitalzentrale hergestellt (IP-Adresse:</value>
   </data>
   <data name="AlertDigitalCommandStationNoReachablePart1" xml:space="preserve">
-    <value>Die Verbindung mit ihrer Digitalzentrale kann nicht hergestellt werden. Ist die IP-Adresse</value>
+    <value>Die Verbindung mit ihrer Digitalzentrale konnte nicht hergestellt werden. Ist die IP-Adresse</value>
   </data>
   <data name="AlertDigitalCommandStationNoReachablePart2" xml:space="preserve">
     <value>korrekt?</value>
+  </data>
+  <data name="FrameSettingsAdditionalDisplayOfCVValues" xml:space="preserve">
+    <value>Zusätzliche Anzeige von aktuellen CV-Werten</value>
+  </data>
+  <data name="FrameSettingsDisplayDescription" xml:space="preserve">
+    <value>Passen Sie die Darstellung von Z2X-Programmer an.
+
+⚠ Änderungen werden nach einem Neustart übernommen.</value>
   </data>
 </root>

@@ -47,7 +47,13 @@ namespace Z2XProgrammer.ViewModel
 
         private string localSearchTarget = "";
 
-        #region REGION: DECODER FEATURES
+        #region REGION: DATASTORE & SETTINGS & SEARCH
+
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
         public string SearchTarget
         {
@@ -58,14 +64,16 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        [ObservableProperty]
-        bool dataStoreDataValid;
+        #endregion
+
+        #region REGION: DECODER FEATURES
 
         [ObservableProperty]
         bool rCN225_CONSISTADDRESS_CV19;
 
         [ObservableProperty]
         bool zIMO_MXFX_SECONDADDRESS_CV64;
+
         #endregion
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
@@ -85,6 +93,41 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
+        [ObservableProperty]
+        ushort vehicleAddress;
+        partial void OnVehicleAddressChanged(ushort oldValue, ushort newValue)
+        {
+            DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
+            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, DecoderConfiguration.RCN225.LocomotiveAddress.ToString());
+            VehicleAddressCVConfiguration = Subline.Create(new List<byte>{1,17,18});
+            WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+        }
+
+        [ObservableProperty]
+        string vehicleAddressCVConfiguration = string.Empty;
+
+        // RCN225: DCC address mode CV29.5 (RCN225_LONGSHORTADDRESS_CV29_5)
+        [ObservableProperty]
+        internal ObservableCollection<string> availableDCCAddressModesVehicleAdr;
+
+        [ObservableProperty]
+        internal string selectedDCCAddressModeVehicleAdr;
+        partial void OnSelectedDCCAddressModeVehicleAdrChanged(string? oldValue, string newValue)
+        {
+            if (newValue == null) return;
+            DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
+            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<byte>{29});
+            SetGUILimits();
+            VehicleAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
+            ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;            
+        }
+
+        [ObservableProperty]
+        string selectedDCCAddressModeVehicleAddrCVConfiguration = string.Empty;
+
+        // RCN225: Consist address CV19 (RCN225_CONSISTADDRESS_CV19)
         [ObservableProperty]
         bool consistAddressEnabled;
         partial void OnConsistAddressEnabledChanged(bool value)
@@ -112,28 +155,25 @@ namespace Z2XProgrammer.ViewModel
         partial void OnConsistAddressChanged(ushort value)
         {
             DecoderConfiguration.RCN225.ConsistAddress = value;
+            ConsistAddressCVConfiguration = Subline.Create(new List<byte>{19});
         }
 
         [ObservableProperty]
-        ushort locomotiveAddress;
-        partial void OnLocomotiveAddressChanged(ushort oldValue, ushort newValue)
-        {
-            DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
-            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, DecoderConfiguration.RCN225.LocomotiveAddress.ToString());
-            WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
-        }
-
+        string consistAddressCVConfiguration = string.Empty;
+    
+        // ZIMO: Secondary address for function decoders CV64 (ZIMO_MXFX_SECONDADDRESS_CV64)
         [ObservableProperty]
         ushort secondaryAddress;
         partial void OnSecondaryAddressChanged(ushort value)
         {
             DecoderConfiguration.ZIMO.SecondaryAddress = value;
+            SecondaryAddressCVConfiguration = Subline.Create(new List<byte> { 64, 67, 68 });
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
         }
-
         [ObservableProperty]
-        internal ObservableCollection<string> availableDCCAddressModesVehicleAdr;
-
+        string secondaryAddressCVConfiguration = string.Empty;
+       
+        // ZIMO: Secondary address mode for function decoders CV112 (ZIMO_MXFX_SECONDADDRESS_CV64)
         [ObservableProperty]
         internal ObservableCollection<string> availableDCCAddressModesSecondaryAdr;
 
@@ -143,21 +183,16 @@ namespace Z2XProgrammer.ViewModel
         {
             if (newValue == null) return;
             DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
+            SelectedDCCAddressModeSecondaryAdrCVValues = Subline.Create(new List<byte> { 112 });
             SetGUILimits();
             SecondaryAddress = DecoderConfiguration.ZIMOBackup.SecondaryAddress;
         }
 
         [ObservableProperty]
-        internal string selectedDCCAddressModeVehicleAdr;
-        partial void OnSelectedDCCAddressModeVehicleAdrChanged(string? oldValue, string newValue)
-        {
-            if (newValue == null) return;
-            DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
-            SetGUILimits();
-            LocomotiveAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
-            ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;
-            
-        }
+        internal string selectedDCCAddressModeSecondaryAdrCVValues = string.Empty;
+
+
+        
         #endregion
 
         #region REGION: CONSTRUCTOR
@@ -169,7 +204,7 @@ namespace Z2XProgrammer.ViewModel
             AvailableDCCAddressModesVehicleAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
             AvailableDCCAddressModesSecondaryAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
 
-            LocomotiveAddress = ushort.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_DEFAULT));
+            VehicleAddress = ushort.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_DEFAULT));
 
             SelectedDCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
             SelectedDCCAddressModeSecondaryAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
@@ -246,7 +281,7 @@ namespace Z2XProgrammer.ViewModel
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
             //  Update the vehicle address
-            LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
             SelectedDCCAddressModeVehicleAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr);
 
             //  Update the ZIMO specific secondary address

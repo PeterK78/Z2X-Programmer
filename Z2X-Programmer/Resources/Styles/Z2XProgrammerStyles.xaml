@@ -9,6 +9,39 @@
     <x:String x:Key="ButtonTitleViewSaveFileDark">ic_fluent_save_24_dark.svg</x:String>
     
     <!-- Styles -->
+
+    <!-- The Z2XBorderFrame style represents the style of a frame from .NET MAUI 8 and before.
+         This Border style is used to visually group controls that have a dependency on each other.-->
+    <Style x:Key="Z2XBorderFrame" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"></Setter>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
+        <Setter Property="StrokeThickness" Value="0.1"></Setter>
+        <Setter Property="Padding" Value="20,20,20,20"></Setter>
+        <Setter Property="Stroke" Value="Black"></Setter>
+    </Style>
+
+    <!-- No longer allowed since .NET 9. Should be replaced by Z2XBorderFrame.#
+         Is currently still used until all frame elements have been converted. -->
+    <Style x:Key="Z2XProgrammerFrame" TargetType="Frame">
+        <Setter Property="Margin" Value="0,0,0,10"></Setter>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
+    </Style>
+
+    <!-- The Z2XProgrammerLabelAdditionalCVValuesStyle  style is used to display the additional
+         current CV values.-->
+    <Style x:Key="Z2XProgrammerLabelAdditionalCVValuesStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#6E6E6E"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="Margin" Value="0,1,0,1"></Setter>
+    </Style>
+
+    <!-- This style Z2XProgrammerLabelSublineStyle is used if a subline text is to be displayed.-->
+    <Style x:Key="Z2XProgrammerLabelSublineStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#6E6E6E"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Margin" Value="0,1,0,1"></Setter>
+    </Style>
+
     <Style x:Key="Z2XSlider" TargetType="Slider">
         <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" />
         <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
@@ -64,10 +97,7 @@
         <Setter Property="CancelButtonColor" Value="#fabb00"></Setter>
     </Style>
 
-    <Style x:Key="Z2XProgrammerFrame" TargetType="Frame">
-        <Setter Property="Margin" Value="0,0,0,10"></Setter>
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
-    </Style>
+
 
     <Style x:Key="Z2XProgrammerLabelLocoInfoStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading1Color_Light}, Dark={StaticResource LabelHeading1Color_Dark}}"></Setter>
@@ -76,6 +106,7 @@
         <Setter Property="Margin" Value="0,25,0,15"></Setter>
     </Style>
 
+    
     <Style x:Key="Z2XProgrammerLabelStandardStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelStandardColor_Light}, Dark={StaticResource LabelStandardColor_Dark}}"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>

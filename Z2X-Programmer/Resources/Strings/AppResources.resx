@@ -321,7 +321,7 @@ The following configuration variables will be changed:</value>
     <value>Sound</value>
   </data>
   <data name="FrameAddressModeDescription" xml:space="preserve">
-    <value>The address mode determines whether vehicle addresses in the range from 0 to 127 or from 128 to 10239 are used. The standard range is 0 to 127.</value>
+    <value>The address mode determines whether vehicle addresses in the range from 1 to 127 or from 128 to 10239 are used. The standard range is 1 to 127.</value>
   </data>
   <data name="FrameAddressSecondAddressDescription" xml:space="preserve">
     <value>Use the second address to link the function decoder to the functions of a traction unit. This means that the lights, for example, can be activated at the touch of a button.</value>
@@ -660,12 +660,14 @@ The following configuration variables will be changed:</value>
     <value>Consist address</value>
   </data>
   <data name="FrameLocomotiveAddressDescription" xml:space="preserve">
-    <value>Each decoder requires a unique vehicle address for identification. Address 3 is used as standard.</value>
+    <value>In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required.
+
+⚠ The valid address range is determined by the “Address mode” setting.</value>
   </data>
   <data name="FrameLocomotiveAddressPlaceholder" xml:space="preserve">
     <value>Vehicle address</value>
   </data>
-  <data name="FrameLocomotiveAddressTitle" xml:space="preserve">
+  <data name="FrameVehicleAddressTitle" xml:space="preserve">
     <value>Vehicle address</value>
   </data>
   <data name="FrameLocomotiveAddressUseConsistAddressLabel" xml:space="preserve">
@@ -988,8 +990,8 @@ Frequency type = Low frequency</value>
   <data name="FrameSettingsAppLanguageLabel" xml:space="preserve">
     <value>Buttons, menus and other control elements are displayed in this language (restart is required).</value>
   </data>
-  <data name="FrameSettingsAppLanguageTitle" xml:space="preserve">
-    <value>Display language</value>
+  <data name="FrameSettingsDisplayTitle" xml:space="preserve">
+    <value>Display</value>
   </data>
   <data name="FrameSettingsButtonCheckDeqSpecLabel" xml:space="preserve">
     <value>Check</value>
@@ -1496,5 +1498,13 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertDigitalCommandStationNoReachablePart2" xml:space="preserve">
     <value>correct?</value>
+  </data>
+  <data name="FrameSettingsAdditionalDisplayOfCVValues" xml:space="preserve">
+    <value>Additional display of current CV values</value>
+  </data>
+  <data name="FrameSettingsDisplayDescription" xml:space="preserve">
+    <value>Customize the display of Z2X-Programmer.
+
+⚠ Changes are applied after a restart.</value>
   </data>
 </root>

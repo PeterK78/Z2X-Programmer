@@ -82,5 +82,7 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_LANGUAGE_KEY_ENGLISH = "ENGLISH";
         internal const string PREFERENCES_QUITONREADERROR_KEY = "QUITONREADERROR";
         internal const string PREFERENCES_QUITONREADERROR_VALUE = "1";
+        internal const string PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY = "ADDITIONALDISPLAYOFCVVALUES";
+        internal const string PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE = "0";
     }
 }

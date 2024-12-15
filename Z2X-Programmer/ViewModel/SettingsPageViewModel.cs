@@ -134,6 +134,15 @@ namespace Z2XProgrammer.ViewModel
             Preferences.Default.Set(AppConstants.PREFERENCES_QUITONREADERROR_KEY, value == true ? "1" : "0");
         }
 
+        //  Additional display of CV values
+        [ObservableProperty]
+        internal bool additionalDisplayOfCVValues = false;
+        partial void OnAdditionalDisplayOfCVValuesChanged(bool value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, value == true ? "1" : "0");
+        }
+
+
         #endregion
 
         #region REGION: CONSTRUCTOR
@@ -182,6 +191,7 @@ namespace Z2XProgrammer.ViewModel
             }
 
             QuitOnReadError = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1 ? true : false;
+            AdditionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
         }
 

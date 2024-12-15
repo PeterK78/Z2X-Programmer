@@ -49,9 +49,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemAddressText}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
 
-            <!-- Vehicle address -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <!-- NOTE:
+                    As a rule, all visual controls are only displayed once the datastore has been filled. Exceptions are the controls
+                    for the vehicle address and the address type. These controls must always be visible, as it would not be possible
+                    to read out a decoder without these controls.
+            -->
+
+            <!-- RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameVehicleAddressTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -62,24 +68,27 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="0,10,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Label x:Name="FrameAddressVehicleAddressLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
-                    <Entry Grid.Row="1" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding LocomotiveAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior 
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="{Binding LimitMinimumAddress}"
-                                MaximumValue="{Binding LimitMaximumAddress}"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="FrameAddressVehicleAddressLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                        <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding VehicleAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
+                            <Entry.Behaviors>
+                                <toolkit:NumericValidationBehavior 
+                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                    ValidStyle="{StaticResource Z2XValidEntry}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumValue="{Binding LimitMinimumAddress}"
+                                    MaximumValue="{Binding LimitMaximumAddress}"
+                                    MaximumDecimalPlaces="0" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding VehicleAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
                 </Grid>
-            </Frame>
-            
-            <!-- DCC address mode -->
+            </Border>
+
+            <!-- RCN225: DCC address mode CV29.5 (RCN225_LONGSHORTADDRESS_CV29_5) -->
             <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -91,16 +100,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.RowDefinitions>
                     <Label Margin="0,10,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameAddressModeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Label x:Name="FrameAddressVehicleAddressModeLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="StartAndExpand" />
-                    <Picker Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                        <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
                 </Grid>
-            </Frame>
+            </Border>
 
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-                <!-- Consist address -->
+                <!-- RCN225: Consist address CV19 (RCN225_CONSISTADDRESS_CV19) -->
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -121,24 +133,27 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Switch IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
                         </HorizontalStackLayout>
 
-                        <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Entry Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}" Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing">
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior 
-                                        InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                        ValidStyle="{StaticResource Z2XValidEntry}"
-                                        Flags="ValidateOnValueChanged"
-                                        MinimumValue="{Binding LimitMinimumAddress}"
-                                        MaximumValue="{Binding LimitMaximumAddress}"
-                                        MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
-                        </Entry>
+                        <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}">
+                            <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior 
+                                            InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                            ValidStyle="{StaticResource Z2XValidEntry}"
+                                            Flags="ValidateOnValueChanged"
+                                            MinimumValue="{Binding LimitMinimumAddress}"
+                                            MaximumValue="{Binding LimitMaximumAddress}"
+                                            MaximumDecimalPlaces="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding ConsistAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
 
-                <!-- ZIMO_MXFX_SECONDADDRESS_CV64: ZIMO specific secondary address for function decoders -->
+                <!-- ZIMO: Secondary address for function decoders CV64, CV67, CV68 and CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressTitle}" VerticalOptions="Center" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -152,22 +167,33 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label Grid.Row="0" Grid.Column="0" Margin="0,10,0,20" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressDescription}" VerticalOptions="Center" />
 
+                        <!-- ZIMO: The secondary address in CV64, CV67 and CV68 (ZIMO_MXFX_SECONDADDRESS_CV64)-->
                         <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressLabel}" VerticalOptions="Center" />
-                        <Entry Grid.Row="1" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior 
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="{Binding LimitZimoSecondAddressMinimum}"
-                                MaximumValue="{Binding LimitZimoSecondAddressMaximum}"
-                                MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressModeLabel}" VerticalOptions="Center" />
-                        <Picker Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesSecondaryAdr}" SelectedItem="{Binding SelectedDCCAddressModeSecondaryAdr}" HorizontalOptions="End" WidthRequest="350" HorizontalTextAlignment="End"  VerticalOptions="End"></Picker>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                            <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior 
+                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                    ValidStyle="{StaticResource Z2XValidEntry}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumValue="{Binding LimitZimoSecondAddressMinimum}"
+                                    MaximumValue="{Binding LimitZimoSecondAddressMaximum}"
+                                    MaximumDecimalPlaces="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SecondaryAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+
+                        <!-- ZIMO: The secondary address mode in CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressModeLabel}" VerticalOptions="Center" Margin="0,20,0,0" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand"  Margin="0,20,0,0" >
+                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesSecondaryAdr}" SelectedItem="{Binding SelectedDCCAddressModeSecondaryAdr}" HorizontalOptions="End" WidthRequest="350" HorizontalTextAlignment="End"  VerticalOptions="End"></Picker>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeSecondaryAdrCVValues}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+                        
+
                     </Grid>
-                </Frame>
+                </Border>
 
             </VerticalStackLayout>
 
