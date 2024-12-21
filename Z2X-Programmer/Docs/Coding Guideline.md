@@ -12,8 +12,9 @@
 | Interface | Pascal | `IDisposable` |
 | Method | Pascal | `ToString` |
 | Namespace | Pascal |`System.Drawing` |
-| Parameter | Camel | `typeName` |
-|Property | Pascal | `BackColor` |
+| Parameter | lowerCamelCase | `typeName` |
+| Property | Pascal | `BackColor` |
+| Local variables | lowerCamelCase | `myLocalVar` |
 
 
 ## Regions
