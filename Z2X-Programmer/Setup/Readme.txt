@@ -1,12 +1,48 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.5
-Date:         08.12.2024
+Version:      0.1.2.0-beta.6
+Date:         22.12.2024
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.6 / 22.12.2024
+------------------------------------------------------------------
+Note:
+
+  A detailed list of changes can be found in the Z2X programmer
+  repository on GitHub.
+
+* Sixth beta version (Beta Version 6, V0.1.2.0)
+
+New features:
+
+* Modified CVs are now displayed in detail before a download.
+
+* The current values of the CVs can now be displayed for each
+  setting. Note: Not all settings have been expanded yet, the
+  work is still being carried out.Ongoing process.
+
+* More detailed error messages if the digital command station
+  cannot be reached.
+
+Bug fixes:
+
+* Receiving a Rocrail locomotive list can sometimes take a
+  long time.
+
+* The names of some function outputs could not be set
+  correctly.
+
+* GUI elements for RCN225_DIRECTION_CV29_0 were visible
+  although this feature was not activated.
+
+Technical improvements:
+
+* Upgraded to MAUI Community Toolikt V10.0.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.5 / 08.12.2024
