@@ -626,7 +626,9 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to transfer all settings to the decoder? All known settings are overwritten on the decoder..
+        ///   Looks up a localized string similar to Would you now like to transfer all known settings to the decoder?
+        ///
+        ///The following values are written to the decoder:.
         /// </summary>
         public static string DownloadAllSettingsYesNo {
             get {
@@ -635,9 +637,63 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you now want to transfer the new settings to your decoder?
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string DownloadDataButtonCancel {
+            get {
+                return ResourceManager.GetString("DownloadDataButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string DownloadDataButtonOK {
+            get {
+                return ResourceManager.GetString("DownloadDataButtonOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current decoder value.
+        /// </summary>
+        public static string DownloadDataColumnHeaderCVDecoderValue {
+            get {
+                return ResourceManager.GetString("DownloadDataColumnHeaderCVDecoderValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CV number.
+        /// </summary>
+        public static string DownloadDataColumnHeaderCVNumber {
+            get {
+                return ResourceManager.GetString("DownloadDataColumnHeaderCVNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New value after download.
+        /// </summary>
+        public static string DownloadDataColumnHeaderCVZ2XValue {
+            get {
+                return ResourceManager.GetString("DownloadDataColumnHeaderCVZ2XValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writing data to the decoder.
+        /// </summary>
+        public static string DownloadDataTitle {
+            get {
+                return ResourceManager.GetString("DownloadDataTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you now want to transfer the changed settings to your decoder?
         ///
-        ///The following configuration variables will be changed:.
+        ///The following values are written to the decoder:.
         /// </summary>
         public static string DownloadNewSettingsYesNo {
             get {
@@ -3122,6 +3178,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameSettingsAppLanguageLabel {
             get {
                 return ResourceManager.GetString("FrameSettingsAppLanguageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The locomotive list gives you quick access to your Z2X projects. You can use the following settings to adjust the behavior of the locomotive list..
+        /// </summary>
+        public static string FrameSettingsAppLocoListDescription {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppLocoListDescription", resourceCulture);
             }
         }
         

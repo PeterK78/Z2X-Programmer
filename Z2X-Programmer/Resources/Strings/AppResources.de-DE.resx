@@ -266,9 +266,9 @@ Folgender Fehler ist aufgetreten:
     <value>Standard (RCN225 kompatibel)</value>
   </data>
   <data name="DownloadNewSettingsYesNo" xml:space="preserve">
-    <value>Wollen Sie die neuen Einstellungen nun auf ihren Decoder übertragen?
+    <value>Wollen Sie die geänderten Einstellungen nun auf ihren Decoder übertragen?
 
-Die folgenden Konfigurationsvariablen werden geändert:
+Die folgenden Werte werden auf den Decoder geschrieben:
 </value>
   </data>
   <data name="DownloadNoCVsModified" xml:space="preserve">
@@ -1446,7 +1446,9 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Geben Sie eine beliebige Beschreibung ein:</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
-    <value>Möchten Sie alle Einstellungen auf den Decoder übertragen? Alle bekannten Einstellungen werden am Decoder überschrieben.</value>
+    <value>Möchten Sie nun alle bekannten Einstellungen auf den Decoder übertragen?
+
+Die folgenden Werte werden auf den Decoder geschrieben:</value>
   </data>
   <data name="FrameSettingsExpertTitle" xml:space="preserve">
     <value>Einstellungen für Experten</value>
@@ -1508,5 +1510,26 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Passen Sie die Darstellung von Z2X-Programmer an.
 
 ⚠ Änderungen werden nach einem Neustart übernommen.</value>
+  </data>
+  <data name="DownloadDataTitle" xml:space="preserve">
+    <value>Daten auf den Decoder schreiben</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
+    <value>CV Nummer</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVZ2XValue" xml:space="preserve">
+    <value>Neuer Wert nach Download</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVDecoderValue" xml:space="preserve">
+    <value>Aktueller Wert im Decoder</value>
+  </data>
+  <data name="DownloadDataButtonOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DownloadDataButtonCancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="FrameSettingsAppLocoListDescription" xml:space="preserve">
+    <value>Die Lokomotiven-Liste bietet ihnen einen schnellen Zugriff auf Ihre Z2X-Projekte. Mit den folgenden Einstellungen können Sie das Verhalten der Lokomotiven-Liste anpassen.</value>
   </data>
 </root>

@@ -265,9 +265,9 @@ The following error has occurred:</value>
     <value>Standard (RCN225 compatible)</value>
   </data>
   <data name="DownloadNewSettingsYesNo" xml:space="preserve">
-    <value>Do you now want to transfer the new settings to your decoder?
+    <value>Do you now want to transfer the changed settings to your decoder?
 
-The following configuration variables will be changed:</value>
+The following values are written to the decoder:</value>
   </data>
   <data name="DownloadNoCVsModified" xml:space="preserve">
     <value>No settings have been changed. No download is performed.</value>
@@ -1444,7 +1444,9 @@ The application is aimed at beginners who want to configure the most important f
     <value>Enter any description:</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
-    <value>Do you want to transfer all settings to the decoder? All known settings are overwritten on the decoder.</value>
+    <value>Would you now like to transfer all known settings to the decoder?
+
+The following values are written to the decoder:</value>
   </data>
   <data name="FrameSettingsExpertTitle" xml:space="preserve">
     <value>Settings for experts</value>
@@ -1506,5 +1508,26 @@ The application is aimed at beginners who want to configure the most important f
     <value>Customize the display of Z2X-Programmer.
 
 ⚠ Changes are applied after a restart.</value>
+  </data>
+  <data name="DownloadDataTitle" xml:space="preserve">
+    <value>Writing data to the decoder</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
+    <value>CV number</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVZ2XValue" xml:space="preserve">
+    <value>New value after download</value>
+  </data>
+  <data name="DownloadDataColumnHeaderCVDecoderValue" xml:space="preserve">
+    <value>Current decoder value</value>
+  </data>
+  <data name="DownloadDataButtonOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DownloadDataButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FrameSettingsAppLocoListDescription" xml:space="preserve">
+    <value>The locomotive list gives you quick access to your Z2X projects. You can use the following settings to adjust the behavior of the locomotive list.</value>
   </data>
 </root>

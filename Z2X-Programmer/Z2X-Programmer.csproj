@@ -196,6 +196,9 @@
 	  <Compile Update="Popups\PopUpEditInputMapping.xaml.cs">
 	    <DependentUpon>PopUpEditInputMapping.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\PopUpDownloadData.xaml.cs">
+	    <DependentUpon>PopUpDownloadData.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Popups\PopUpLocoList.xaml.cs">
 	    <DependentUpon>PopUpLocoList.xaml</DependentUpon>
 	  </Compile>
@@ -266,6 +269,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\PopUpEditInputMapping.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\PopUpDownloadData.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\PopUpLocoList.xaml">

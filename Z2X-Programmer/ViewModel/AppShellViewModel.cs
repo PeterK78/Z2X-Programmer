@@ -492,23 +492,9 @@ namespace Z2XProgrammer.ViewModel
                 if (Application.Current == null) return;
                 
                 //  We create a list of configuration values for which the current value is different from the backup value.
+                string ModifiedCVValues = String.Empty;
                 List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
-                if (ModifiedConfigVariables.Count > 0)
-
-                {
-                    string ModifiedCVValues = String.Empty;
-                    for (int i = 0; i <= ModifiedConfigVariables.Count - 1; i++)
-                    {
-                        ModifiedCVValues += "CV" + ModifiedConfigVariables[i].ToString() + ", ";
-                    }
-                    ModifiedCVValues = ModifiedCVValues.Remove(ModifiedCVValues.Length - 2, 2);
-
-                    if (await MessageBox.Show(AppResources.AlertAttention, AppResources.DownloadNewSettingsYesNo + "\n" + ModifiedCVValues, AppResources.YES, AppResources.NO) == false)
-                    {
-                        return;
-                    }
-                }
-                else
+                if (ModifiedConfigVariables.Count == 0)
                 {
                     //  No modified values were found.
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
@@ -522,7 +508,15 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
-                //  Setup the cancellation token
+                
+                //  We show the user which variables are changed. We then ask whether they want to download these values
+                //  - if so, we start the download. Otherwise we return.
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.AlertAttention);
+                var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
+                if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
+                
+
+                //  Setup the cancellation token.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
@@ -540,7 +534,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage,false,ProgressCV));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage,false,ProgressCV, ModifiedConfigVariables));
 
                 await pop.CloseAsync();
 
@@ -574,14 +568,23 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
                 if (Application.Current == null) return;
-                
-                //  Ask the user if he really wanna download all settings - it's quite critical.
-                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.DownloadAllSettingsYesNo, AppResources.YES, AppResources.NO) == false)
+
+                //  We create a list with configuration variables which can be safely written by the given decoder specification.
+                string ModifiedCVValues = String.Empty;
+                List<int> ListOfWritableConfigVariables = ReadWriteDecoder.GetAllWritableConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
+                if (ListOfWritableConfigVariables.Count == 0)
                 {
-                        return;
+                    //  Somethin happed - we did not find any valid CV value.
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
+                    return;
                 }
+
+                //  We show the user which variables are changed. We then ask whether they want to download these values
+                //  - if so, we start the download. Otherwise we return.
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo,  AppResources.AlertAttention);
+                var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
+                if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
                 
                 //  Check the locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
@@ -589,11 +592,11 @@ namespace Z2XProgrammer.ViewModel
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
-                
+
                 //  Setup the cancellation token.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
-
+              
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
@@ -608,7 +611,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true,ProgressCV));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true,ProgressCV, ListOfWritableConfigVariables));
 
                 await pop.CloseAsync();
 

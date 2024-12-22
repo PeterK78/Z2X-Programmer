@@ -139,12 +139,10 @@ namespace Z2XProgrammer.Communication
         /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
         /// <param name="progressCV">The currently processed CV.</param>
         /// <returns></returns>
-        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV)
+        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV, List<int> configVariablesToWrite)
         {
             _mode = mode;
             _decSpecName = decSpecName;
-            
-            List<int> ConfigVariablesToWrite = new List<int>();
 
             //  We check if we can reach the command station
             if (CommandStation.Connect(cancelToken,5000) == false) { return Task.FromResult(false); }
@@ -159,45 +157,31 @@ namespace Z2XProgrammer.Communication
                 DecoderSpecification.DeqSpecName = _decSpecName;
             }
 
-            // Create a list of variables which we have to download to the decoder. Depending on the allConfigVariables flag,
-            // all variables are used or only those for which the current value is different from the backup value.
-            //
-            // Note: The functions GetAllConfigurationVariables and GetModifiedConfigurationVariables will provide only CVs which can be safelfy overwritten.
-            //
-            if (allConfigVariables == true)
-            {
-                ConfigVariablesToWrite = GetAllWritableConfigurationVariables(decSpecName, mode);
-            }
-            else
-            {
-                ConfigVariablesToWrite = GetModifiedConfigurationVariables(decSpecName, mode);
-            }
-
             //  The required configuration variables have now been collected.
             //  Now we can write the configuration variables to the decoder.
-            for (int i = 0; i <= ConfigVariablesToWrite.Count - 1; i++)
+            for (int i = 0; i <= configVariablesToWrite.Count - 1; i++)
             {
                 //  Before we write a planned configuration variable, we must check whether it is enabled in the current decoder configuration.
-                if (DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled == true)
+                if (DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Enabled == true)
                 {
                     //  We report the configuration variable that will be written next.
-                    progressCV.Report(ConfigVariablesToWrite[i]);
+                    progressCV.Report(configVariablesToWrite[i]);
 
-                    if (WriteCV((ushort)ConfigVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value, _mode, cancelToken) == false)
+                    if (WriteCV((ushort)configVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value, _mode, cancelToken) == false)
                     {
                         CommandStation.Z21.SetTrackPowerOn();
                         return Task.FromResult(false);
                     }
                     else
                     {
-                        DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Enabled = true;
-                        DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[ConfigVariablesToWrite[i]].Value;
-                        DecoderConfiguration.BackupCVs[ConfigVariablesToWrite[i]].Enabled = true;
+                        DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Enabled = true;
+                        DecoderConfiguration.BackupCVs[configVariablesToWrite[i]].Value = DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value;
+                        DecoderConfiguration.BackupCVs[configVariablesToWrite[i]].Enabled = true;
                     }
                 }
               
                 //  Reporting the current percentage value.
-                int percent = (int)(((double)100 / (double)ConfigVariablesToWrite.Count) * (double)i);
+                int percent = (int)(((double)100 / (double)configVariablesToWrite.Count) * (double)i);
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
                 progressPercentage.Report(percent);
 
@@ -227,6 +211,7 @@ namespace Z2XProgrammer.Communication
             List<int> SupportConfigVariables = new List<int>();
             List<int> ModifiedConfigVariables = new List<int>();
 
+            //  RCN 225 
             for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
             {
                 if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
@@ -242,16 +227,18 @@ namespace Z2XProgrammer.Communication
                         ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
                         if (nextCV != 0)
                         {                         
-                            //  Check if we have already written this CV. If so, skip this CV
+                            //  Check if we have already written this CV. If so, skip this CV.
                             if (SupportConfigVariables.Contains(nextCV) == false)
                             {
-                                SupportConfigVariables.Add(nextCV);
+                                //  Add this CV if it's enabled.
+                                if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                             }
                         }
                     }
                 }
             }
 
+            //  TRIX and Doehler & Haass
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
             (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
             {
@@ -271,15 +258,16 @@ namespace Z2XProgrammer.Communication
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
-                                    SupportConfigVariables.Add(nextCV);
+                                    //  Add this CV if it's enabled.
+                                    if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                                 }
                             }
                         }
                     }
                 }
-
             }
 
+            // ZIMO
             if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
             {
                 for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
@@ -297,7 +285,8 @@ namespace Z2XProgrammer.Communication
                                 //  Check if we have already written this CV. If so, skip this CV
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
-                                    SupportConfigVariables.Add(nextCV);
+                                    //  Add this CV if it's enabled.
+                                    if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                                 }
                             }
                         }
@@ -398,7 +387,7 @@ namespace Z2XProgrammer.Communication
         }
 
         /// <summary>
-        /// Returns a list with all configuration variables which have been modified.
+        /// Returns a list with all configuration variables which can be safely written and have been modified.
         /// </summary>
         /// <returns>Returns a list of configuration variable numbers</returns>
         public static List<int> GetModifiedConfigurationVariables(string decSpecName, NMRA.DCCProgrammingModes mode)
@@ -406,88 +395,15 @@ namespace Z2XProgrammer.Communication
             List<int> SupportConfigVariables = new List<int>();
             List<int> ModifiedConfigVariables = new List<int>();
 
-            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
-            {
-                if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                {
-                    //  We check whether we are allowed to describe the configuration variables belonging to the feature.
-                    if (DeqSpecReader.IsWriteable(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
-
-                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
-                    {
-                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
-                        if (nextCV != 0)
-                        {
-                            //  Check if we have already written this CV. If so, skip this CV
-                            if (SupportConfigVariables.Contains(nextCV) == false)
-                            {
-                                SupportConfigVariables.Add(nextCV);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
-            (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass))
-            {
-
-                for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
-                {
-                    if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                    {
-                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
-                        if (DeqSpecReader.IsWriteable(decSpecName,  DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
-
-                        for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
-                        {
-                            ushort nextCV = ushort.Parse(DOEHLERHAASFeatures[i, cvIndex]);
-                            if (nextCV != 0)
-                            {
-                                //  Check if we have already written this CV. If so, skip this CV
-                                if (SupportConfigVariables.Contains(nextCV) == false)
-                                {
-                                    SupportConfigVariables.Add(nextCV);
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-
-            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
-            {
-                for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
-                {
-                    if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
-                    {
-                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
-                        if (DeqSpecReader.IsWriteable(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
-
-                        for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
-                        {
-                            ushort nextCV = ushort.Parse(ZIMOFeatures[i, cvIndex]);
-                            if (nextCV != 0)
-                            {
-                                //  Check if we have already written this CV. If so, skip this CV
-                                if (SupportConfigVariables.Contains(nextCV) == false)
-                                {
-                                    SupportConfigVariables.Add(nextCV);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            //  Read all configuration variables from the decoder
+            //  Create a list of CV variables which can be safely written to.
+            SupportConfigVariables = GetAllWritableConfigurationVariables(decSpecName, mode);
+      
+            //  We now check whether the content of a variable is different. Only such variables are reported back.
             for (int i = 0; i <= SupportConfigVariables.Count - 1; i++)
             {
-
                 //  Check if this CV values has been changed, otherwise skip
-                byte currentValue = DecoderConfiguration.ConfigurationVariables[SupportConfigVariables[i]].Value;
-                byte backupValue = DecoderConfiguration.BackupCVs[SupportConfigVariables[i]].Value;
+                //byte currentValue = DecoderConfiguration.ConfigurationVariables[SupportConfigVariables[i]].Value;
+                //byte backupValue = DecoderConfiguration.BackupCVs[SupportConfigVariables[i]].Value;
                 if (DecoderConfiguration.ConfigurationVariables[SupportConfigVariables[i]].Value != DecoderConfiguration.BackupCVs[SupportConfigVariables[i]].Value)
                 {
                     ModifiedConfigVariables.Add(SupportConfigVariables[i]);

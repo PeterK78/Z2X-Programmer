@@ -33,6 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:SettingsSearchViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,40,40"
+             x:Name="ThisSettingsSearchPage"
              Title="{x:Static strings:AppResources.FlyoutItemSettingsSearchTitle}">
 
     <ContentPage.Resources>
@@ -41,6 +42,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <!-- According to various internet reports a ListView within a ScrollView can led to an unhadled exception "Layout cycle detected. Layout could not complete".
         Due to this we will currently not use a ScrollView on the SettingsSearchPage -->
+    
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
 
         <VerticalStackLayout>
@@ -64,7 +66,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <toolkit:EventToCommandBehavior
                                     EventName="TextChanged"
                                     Command="{Binding SearchTextChangedCommand}"
-                                    BindingContext="{Binding BindingContext, Source={x:Reference PageScrollView}, x:DataType=ScrollView}"
+                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisSettingsSearchPage}, x:DataType=ContentPage}"
                                     CommandParameter="{Binding Text, Source={x:Reference searchBar},x:DataType=SearchBar}"/>
                     </SearchBar.Behaviors>
                 </SearchBar>
@@ -82,7 +84,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </ListView.ItemTemplate>
                         <ListView.Behaviors>
                             <toolkit:EventToCommandBehavior
-                                BindingContext="{Binding BindingContext, Source={x:Reference PageScrollView}, x:DataType=ScrollView}"
+                                BindingContext="{Binding BindingContext, Source={x:Reference ThisSettingsSearchPage}, x:DataType=ContentPage}"
                                 EventName="ItemTapped"
                                 Command="{Binding SearchResultSelectedCommand}"/>
                         </ListView.Behaviors>

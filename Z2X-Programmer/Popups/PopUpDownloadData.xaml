@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Popups.PopUpDownloadData"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             Color="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             >
+
+    <Border>
+    <VerticalStackLayout  Padding="10,0,10,10">
+
+            <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
+
+            <Label x:Name="DecriptionTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ></Label>
+
+            <Border Style="{StaticResource Z2XBorderFrame}">
+                <CollectionView x:Name="ConfigurationVariablesCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="600">
+                    <CollectionView.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVNumber}" Grid.Column="0"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVDecoderValue}"  Grid.Column="1"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text=""  Grid.Column="2"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVZ2XValue}"  Grid.Column="3"/>
+                        </Grid>
+                    </CollectionView.Header>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="datamodel:ConfigurationVariableDownloadInfo">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueDecoder}"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="➡️"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueZ2X}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+            <HorizontalStackLayout HorizontalOptions="End">
+                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Border>
+</mct:Popup>
