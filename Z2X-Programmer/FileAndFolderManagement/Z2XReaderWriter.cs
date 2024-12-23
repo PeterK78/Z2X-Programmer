@@ -127,7 +127,19 @@ namespace Z2XProgrammer.FileAndFolderManagement
             DecoderConfiguration.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
             DecoderConfiguration.UserDefindedNotes = myFile.UserDefinedNotes;
             DecoderConfiguration.UserDefindedImage = myFile.UserDefinedImage;
-            DecoderConfiguration.UserDefinedFunctionOutputNames = myFile.UserDefinedFunctionOutputNames;
+
+            //  Some older Z2X project files do not contain descriptions for the 14 function outputs.
+            //  For this reason, we check whether descriptions exist - if not, we create new empty descriptions.
+            if ((myFile.UserDefinedFunctionOutputNames != null) && (myFile.UserDefinedFunctionOutputNames.Count == 14))
+            {
+                //  We have found names for the function outputs in the Z2X project file. 
+                DecoderConfiguration.UserDefinedFunctionOutputNames = myFile.UserDefinedFunctionOutputNames;
+            }
+            else
+            {
+                //  We have not found any descriptions for the 14 function outputs. We therefore initialize new empty descriptions.
+                foreach (FunctionOutputType item in DecoderConfiguration.UserDefinedFunctionOutputNames) { item.Description = ""; };
+            }
 
              //  Make sure to use the language specific decoder specification name.
             string decoderSpecificationFileName = DeqSpecReader.GetDecSpecFileName(myFile.DeqSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath);
