@@ -40,6 +40,9 @@ Bug fixes:
 * GUI elements for RCN225_DIRECTION_CV29_0 were visible
   although this feature was not activated.
 
+* Older Z2X projects without names for function outputs
+  lead to a crash.
+
 Technical improvements:
 
 * Upgraded to MAUI Community Toolikt V10.0.
