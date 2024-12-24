@@ -26,6 +26,7 @@
 |RCN225_LONGSHORTADDRESS_CV29_5		| CV29.5		| Address mode - defines whether short addresses from CV1 or long addresses from CV17+CV18 are used.	| 	Address |
 |RCN225_FUNCTIONKEYMAPPING_CV3346	| 	CV33, CV46	| The assignment of function button to function output.		| Function keys |
 |RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X	| 	CV67, CV94		| The characteristic curve points of the extended speed characteristic curve.		| Motor characteristics |
+|RCN225_OPERATINGMODES_CV12 | CV12 | Defines the operating modes in which the decoder may operate. | Protocols |
 
 ## ZIMO
 | Keyword |	Configuration Value	| Description | 	Tab |
@@ -58,3 +59,4 @@
 | ZIMO_SOUND_STARTUPDELAY_CV273	 | CV273 | 	Configures the start-up delay of the sound. | 	Sound | 
 | ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 | 	CV285 | 	Configures the duration of the noise reduction on delay.	 | Sound | 
 | ZIMO_SOUNDPROJECTNR_CV254 | CV254 | Contains the sound project number. |  Decoder information | 
+| ZIMO_MSOPERATINGMODES_CV12 | CV12 | Prevents the DCC operating mode from being deactivated if RCN225_OPERATINGMODES_CV12 is set. | Protocols |
