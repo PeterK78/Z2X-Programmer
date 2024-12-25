@@ -1526,7 +1526,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Die Lokomotiven-Liste bietet ihnen einen schnellen Zugriff auf Ihre Z2X-Projekte. Mit den folgenden Einstellungen können Sie das Verhalten der Lokomotiven-Liste anpassen.</value>
   </data>
   <data name="FrameProtocolZIMODCCModeInfo" xml:space="preserve">
-    <value>Bei ZIMO Decoder kann der DCC Betriebsmodus nicht deaktiviert werden.</value>
+    <value>Bei ZIMO Decoder kann der DCC-Betriebsmodus nicht deaktiviert werden.</value>
   </data>
   <data name="AlertDataInBackupAreNotFromDecoder" xml:space="preserve">
     <value>⚠ Die angezeigten Decoderwerte stammen aus einer Z2X-Projektdatei. Es ist somit möglich, dass diese Werte nicht mehr auf dem neuesten Stand sind. Laden Sie die Einstellungen aus dem Decoder, um zuverlässige aktuelle Werte zu erhalten.</value>
