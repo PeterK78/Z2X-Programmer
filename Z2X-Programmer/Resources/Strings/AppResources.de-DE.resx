@@ -888,7 +888,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Mit diesen Optionen können Sie den Analogbetrieb des Decoders konfigurieren.</value>
   </data>
   <data name="FrameProtocolAnalogModeLabel" xml:space="preserve">
-    <value>Analogbetrieb aktiviert (CV29.2)</value>
+    <value>Analogbetrieb aktivieren (CV29.2)</value>
   </data>
   <data name="FrameProtocolAnalogModeTitle" xml:space="preserve">
     <value>Analogbetrieb</value>
@@ -897,7 +897,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Aktivieren Sie die automatische Anmeldung per RCN-218 oder RailComPlus®.</value>
   </data>
   <data name="FrameProtocolDCCALabel" xml:space="preserve">
-    <value>Automatische Anmeldung aktiviert (CV28.7)</value>
+    <value>Automatische Anmeldung aktivieren (CV28.7)</value>
   </data>
   <data name="FrameProtocolDCCATitle" xml:space="preserve">
     <value>Automatische Anmeldung</value>
@@ -1270,10 +1270,10 @@ Auf- und Abblenden = 88</value>
     <value>Digitale Betriebsmodi</value>
   </data>
   <data name="FrameProtocolAnalogDCLabel" xml:space="preserve">
-    <value>Betriebsmodus DC-Gleichstrom aktiviert (CV12.0)</value>
+    <value>Betriebsmodus DC-Gleichstrom aktivieren (CV12.0)</value>
   </data>
   <data name="FrameProtocolAnalogACLabel" xml:space="preserve">
-    <value>Betriebsmodus AC-Wechselstrom aktiviert (CV12.4)</value>
+    <value>Betriebsmodus AC-Wechselstrom aktivieren (CV12.4)</value>
   </data>
   <data name="FrameProtocolDCCModeLabel" xml:space="preserve">
     <value>DCC (CV12.2)</value>
@@ -1288,7 +1288,7 @@ Auf- und Abblenden = 88</value>
     <value>Bei ZIMO Decoder kann DCC nicht ausgeschaltet werden</value>
   </data>
   <data name="FrameProtocolOperatingModesDescription" xml:space="preserve">
-    <value>Hier können Sie die verfügbaren digitalen Betriebsmodi des Decoders ein- und ausschalten. Beachten Sie bitte, DCC ist bei ZIMO Decoder immer aktiviert.</value>
+    <value>Hier können Sie die verfügbaren digitalen Betriebsmodi des Decoders ein- und ausschalten. Es wird empfohlen, nur die Betriebsarten zu aktivieren, die auch genutzt werden.</value>
   </data>
   <data name="LicenseText" xml:space="preserve">
     <value>Z2X-Programmer ist eine Anwendung zur Konfiguration von Lok- und Funktionsdecodern mit Hilfe einer Roco / Fleischmann Z21 kompatiblen Digitalzentrale.
@@ -1531,5 +1531,8 @@ Die folgenden Werte werden auf den Decoder geschrieben:</value>
   </data>
   <data name="FrameSettingsAppLocoListDescription" xml:space="preserve">
     <value>Die Lokomotiven-Liste bietet ihnen einen schnellen Zugriff auf Ihre Z2X-Projekte. Mit den folgenden Einstellungen können Sie das Verhalten der Lokomotiven-Liste anpassen.</value>
+  </data>
+  <data name="FrameProtocolZIMODCCModeInfo" xml:space="preserve">
+    <value>Bei ZIMO Decoder kann der DCC Betriebsmodus nicht deaktiviert werden.</value>
   </data>
 </root>

@@ -774,7 +774,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
     <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
-
+    <RCN225_OPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
     
     <!-- Supported ZIMO features -->
     <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>

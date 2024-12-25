@@ -28,20 +28,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.ViewModel
 {
     public partial class ProtocolViewModel : ObservableObject
     {
-        #region REGION: DECODER FEATURES
+
+        #region REGION: DATASTORE & SETTINGS & SEARCH
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
         bool dataStoreDataValid;
 
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
+        #region REGION: DECODER FEATURES
+      
+        // ZIMO: The DCC operating mode cannot be deactivated (ZIMO_MSOPERATINGMODES_CV12)
         [ObservableProperty]
         bool zIMO_MSOPERATINGMODES_CV12;
 
+        // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
         [ObservableProperty]
         bool rCN225_OPERATINGMODES_CV12;
 
@@ -64,82 +80,107 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
-        //  RCN225_OPERATINGMODES_CV12 Bit 0
-        [ObservableProperty]
-        bool analogOperationDCEnabled;
-        partial void OnAnalogOperationDCEnabledChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled = value;
-        }
-
-        //  RCN225_OPERATINGMODES_CV12 Bit 2
+        // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+        // DCC in CV12 Bit 2
         [ObservableProperty]
         bool dccOperationEnabled;
         partial void OnDccOperationEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.OperatingModeDCCEnabled = value;
+            CV12Configuration = Subline.Create(new List<byte>{12});
         }
 
-        //  RCN225_OPERATINGMODES_CV12 Bit 4
-        [ObservableProperty]
-        bool analogOperationACEnabled;
-        partial void OnAnalogOperationACEnabledChanged(bool value)
-        
-        {
-            DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled = value;
-        }
-
-        //  RCN225_OPERATINGMODES_CV12 Bit 5
+        // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+        // Motorola MM in CV12 Bit 5
         [ObservableProperty]
         bool mMOperationEnabled;
         partial void OnMMOperationEnabledChanged(bool value)
-        
         {
             DecoderConfiguration.RCN225.OperatingModeMMEnabled = value;
+            CV12Configuration = Subline.Create(new List<byte>{12});
         }
 
-        //  RCN225_OPERATINGMODES_CV12 Bit 6
+        // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+        // MFX in CV12 Bit 6
         [ObservableProperty]
         bool mFXOperationEnabled;
-        partial void OnMFXOperationEnabledChanged(bool value)
-        
+        partial void OnMFXOperationEnabledChanged(bool value)        
         {
             DecoderConfiguration.RCN225.OperatingModeMFXEnabled = value;
+            CV12Configuration = Subline.Create(new List<byte>{12});
         }
-    
+
+        // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+        // DC analog mode in CV12 Bit 0
         [ObservableProperty]
-        bool railComEnabled;
-        partial void OnRailComEnabledChanged(bool value)
+        bool analogOperationDCEnabled;
+        partial void OnAnalogOperationDCEnabledChanged(bool value)
         {
-            DecoderConfiguration.RCN225.RailComEnabled = value;
+            DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled = value;
+            CV12Configuration = Subline.Create(new List<byte>{12});
+        }
+        
+        // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+        // AC analog mode in CV12 Bit 4
+        [ObservableProperty]
+        bool analogOperationACEnabled;
+        partial void OnAnalogOperationACEnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled = value;
+            CV12Configuration = Subline.Create(new List<byte>{12});
         }
 
         [ObservableProperty]
-        bool railComChannel1AdrBroadcast;
-        partial void OnRailComChannel1AdrBroadcastChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.RailComChannel1AdrBroadcast = value;
-        }
+        string cV12Configuration = string.Empty;
 
-        [ObservableProperty]
-        bool railComChannel2Enabled;
-        partial void OnRailComChannel2EnabledChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.RailComChannel2Enabled = value;
-        }
-
+        // RCN225: AC mode enabled in CV29 bit 2
         [ObservableProperty]
         bool acModeEnabled;
         partial void OnAcModeEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.ACModeEnabled  = value;
+            CV29Configuration = Subline.Create(new List<byte> { 29 });
         }
+        [ObservableProperty]
+        string cV29Configuration = string.Empty;
+
+        // RCN225: Railcom configuration in CV29.3 (RCN225_RAILCOMENABLED_CV29_3)
+        [ObservableProperty]
+        bool railComEnabled;
+        partial void OnRailComEnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.RailComEnabled = value;
+            CV29Configuration = Subline.Create(new List<byte> { 29 });
+        }
+
+        // RCN225: Railcom channel 1 address broadcast in CV28.0 (RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0)
+        [ObservableProperty]
+        bool railComChannel1AdrBroadcast;
+        partial void OnRailComChannel1AdrBroadcastChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.RailComChannel1AdrBroadcast = value;
+            CV28Configuration = Subline.Create(new List<byte> { 28 });
+        }
+
+        // RCN225: Railcom channel 2 in CV28            
+        [ObservableProperty]
+        bool railComChannel2Enabled;
+        partial void OnRailComChannel2EnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.RailComChannel2Enabled = value;
+            CV28Configuration = Subline.Create(new List<byte> { 28 });
+        }
+
+        [ObservableProperty]
+        string cV28Configuration = string.Empty;
+       
 
         [ObservableProperty]
         bool automaticRegistrationEnabled;
         partial void OnAutomaticRegistrationEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.AutomaticRegistrationEnabled = value;
+            CV28Configuration = Subline.Create(new List<byte> { 28 });
         }
 
         #endregion

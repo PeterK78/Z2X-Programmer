@@ -2732,7 +2732,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AC alternating current operating mode activated (CV12.4).
+        ///   Looks up a localized string similar to Activate AC alternating current operating mode (CV12.4).
         /// </summary>
         public static string FrameProtocolAnalogACLabel {
             get {
@@ -2741,7 +2741,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DC direct current operating mode activated (CV12.0).
+        ///   Looks up a localized string similar to Activate DC direct current operating mode (CV12.0).
         /// </summary>
         public static string FrameProtocolAnalogDCLabel {
             get {
@@ -2759,7 +2759,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Analog mode activated (CV29.2).
+        ///   Looks up a localized string similar to Activate analog mode (CV29.2).
         /// </summary>
         public static string FrameProtocolAnalogModeLabel {
             get {
@@ -2786,7 +2786,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatic registration activated (CV28.7).
+        ///   Looks up a localized string similar to Activate automatic login (CV28.7).
         /// </summary>
         public static string FrameProtocolDCCALabel {
             get {
@@ -2840,7 +2840,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here you can switch the available digtial operating modes of the decoder on and off. Please note that DCC is always activated for ZIMO decoders..
+        ///   Looks up a localized string similar to Here you can switch the available digital operating modes of the decoder on and off. It is recommended that you only activate the operating modes that are actually used..
         /// </summary>
         public static string FrameProtocolOperatingModesDescription {
             get {
@@ -2854,6 +2854,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameProtocolOperatingModesTitle {
             get {
                 return ResourceManager.GetString("FrameProtocolOperatingModesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The DCC operating mode cannot be deactivated for ZIMO decoders..
+        /// </summary>
+        public static string FrameProtocolZIMODCCModeInfo {
+            get {
+                return ResourceManager.GetString("FrameProtocolZIMODCCModeInfo", resourceCulture);
             }
         }
         
