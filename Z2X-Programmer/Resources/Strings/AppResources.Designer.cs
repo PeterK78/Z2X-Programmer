@@ -2103,9 +2103,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required.
-        ///
-        ///⚠ The valid address range is determined by the “Address mode” setting..
+        ///   Looks up a localized string similar to In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required..
         /// </summary>
         public static string FrameLocomotiveAddressDescription {
             get {

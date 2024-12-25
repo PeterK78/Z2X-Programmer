@@ -658,9 +658,7 @@ The following error has occurred:</value>
     <value>Consist address</value>
   </data>
   <data name="FrameLocomotiveAddressDescription" xml:space="preserve">
-    <value>In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required.
-
-⚠ The valid address range is determined by the “Address mode” setting.</value>
+    <value>In regular operation, each decoder requires a unique vehicle address. Address 3 is used as standard. The only exception is programming on the programming track. In this operating mode, no vehicle address is required.</value>
   </data>
   <data name="FrameLocomotiveAddressPlaceholder" xml:space="preserve">
     <value>Vehicle address</value>

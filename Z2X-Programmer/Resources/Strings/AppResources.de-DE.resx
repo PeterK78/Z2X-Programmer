@@ -659,9 +659,7 @@ Folgender Fehler ist aufgetreten:
     <value>Verbundadresse</value>
   </data>
   <data name="FrameLocomotiveAddressDescription" xml:space="preserve">
-    <value>Im regulären Betrieb benötigt jeder Decoder eine eindeutige Fahrzeugadresse. Standardmäßig wird Adresse 3 verwendet. Einzige Ausnahme ist die Programmierung am Programmiergleis. In diesem Betriebsmodus wird keine Fahrzeugadresse benötigt.
-
-⚠ Der gütlige Adressbereich wird durch die Einstellung „Adressmodus“ bestimmt.</value>
+    <value>Im regulären Betrieb benötigt jeder Decoder eine eindeutige Fahrzeugadresse. Standardmäßig wird Adresse 3 verwendet. Einzige Ausnahme ist die Programmierung am Programmiergleis. In diesem Betriebsmodus wird keine Fahrzeugadresse benötigt.</value>
   </data>
   <data name="FrameLocomotiveAddressPlaceholder" xml:space="preserve">
     <value>Fahrzeugadresse</value>
