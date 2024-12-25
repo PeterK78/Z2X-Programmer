@@ -266,10 +266,7 @@ Folgender Fehler ist aufgetreten:
     <value>Standard (RCN225 kompatibel)</value>
   </data>
   <data name="DownloadNewSettingsYesNo" xml:space="preserve">
-    <value>Wollen Sie die geänderten Einstellungen nun auf ihren Decoder übertragen?
-
-Die folgenden Werte werden auf den Decoder geschrieben:
-</value>
+    <value>Wollen Sie die geänderten Einstellungen nun auf ihren Decoder übertragen?</value>
   </data>
   <data name="DownloadNoCVsModified" xml:space="preserve">
     <value>Es wurden keine geänderten Einstellungen gefunden. Es wird kein Download durchgeführt.</value>
@@ -1446,9 +1443,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Geben Sie eine beliebige Beschreibung ein:</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
-    <value>Möchten Sie nun alle bekannten Einstellungen auf den Decoder übertragen?
-
-Die folgenden Werte werden auf den Decoder geschrieben:</value>
+    <value>Möchten Sie nun alle bekannten Einstellungen auf den Decoder übertragen?</value>
   </data>
   <data name="FrameSettingsExpertTitle" xml:space="preserve">
     <value>Einstellungen für Experten</value>
@@ -1512,7 +1507,7 @@ Die folgenden Werte werden auf den Decoder geschrieben:</value>
 ⚠ Änderungen werden nach einem Neustart übernommen.</value>
   </data>
   <data name="DownloadDataTitle" xml:space="preserve">
-    <value>Daten auf den Decoder schreiben</value>
+    <value>Einstellungen auf den Decoder schreiben</value>
   </data>
   <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
     <value>CV Nummer</value>
@@ -1534,5 +1529,8 @@ Die folgenden Werte werden auf den Decoder geschrieben:</value>
   </data>
   <data name="FrameProtocolZIMODCCModeInfo" xml:space="preserve">
     <value>Bei ZIMO Decoder kann der DCC Betriebsmodus nicht deaktiviert werden.</value>
+  </data>
+  <data name="AlertDataInBackupAreNotFromDecoder" xml:space="preserve">
+    <value>⚠ Die angezeigten Decoderwerte stammen aus einer Z2X-Projektdatei. Es ist somit möglich, dass diese Werte nicht mehr auf dem neuesten Stand sind. Laden Sie die Einstellungen aus dem Decoder, um zuverlässige aktuelle Werte zu erhalten.</value>
   </data>
 </root>

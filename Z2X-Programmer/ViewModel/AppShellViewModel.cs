@@ -342,6 +342,9 @@ namespace Z2XProgrammer.ViewModel
 
                         DecoderConfiguration.IsValid = true;
 
+                        //  We set property BackupDataFromDecoderIsValid to FALSE to signal that the backup data was loaded from a Z2X file.    
+                        DecoderConfiguration.BackupDataFromDecoderIsValid = false;   
+
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
                         
@@ -451,7 +454,7 @@ namespace Z2XProgrammer.ViewModel
                 bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, ProgressCV));
                 await pop.CloseAsync();
 
-                //  Display an error message and return if the upload has failed
+                //  Display an error message and return if the upload has failed.
                 if (success == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2, AppResources.OK);
@@ -462,7 +465,11 @@ namespace Z2XProgrammer.ViewModel
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderUploadSuccess, AppResources.OK);
                 }
 
+                // We set property BackupDataFromDecoderIsValid to TRUE to signal that the backup data was loaded directly from the decoder.
+                DecoderConfiguration.BackupDataFromDecoderIsValid = true;
+
                 DecoderConfiguration.IsValid = true;
+
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
             }
             catch (FormatException)
@@ -511,7 +518,7 @@ namespace Z2XProgrammer.ViewModel
                 
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.AlertAttention);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
                 var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
                 if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
                 
@@ -582,7 +589,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo,  AppResources.AlertAttention);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_24_regular.png",DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
                 var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
                 if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
                 

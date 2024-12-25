@@ -265,9 +265,7 @@ The following error has occurred:</value>
     <value>Standard (RCN225 compatible)</value>
   </data>
   <data name="DownloadNewSettingsYesNo" xml:space="preserve">
-    <value>Do you now want to transfer the changed settings to your decoder?
-
-The following values are written to the decoder:</value>
+    <value>Do you now want to transfer the changed settings to your decoder?</value>
   </data>
   <data name="DownloadNoCVsModified" xml:space="preserve">
     <value>No settings have been changed. No download is performed.</value>
@@ -1444,9 +1442,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Enter any description:</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
-    <value>Would you now like to transfer all known settings to the decoder?
-
-The following values are written to the decoder:</value>
+    <value>Would you now like to transfer all known settings to the decoder?</value>
   </data>
   <data name="FrameSettingsExpertTitle" xml:space="preserve">
     <value>Settings for experts</value>
@@ -1510,7 +1506,7 @@ The following values are written to the decoder:</value>
 ⚠ Changes are applied after a restart.</value>
   </data>
   <data name="DownloadDataTitle" xml:space="preserve">
-    <value>Writing data to the decoder</value>
+    <value>Writing settings to the decoder</value>
   </data>
   <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
     <value>CV number</value>
@@ -1532,5 +1528,8 @@ The following values are written to the decoder:</value>
   </data>
   <data name="FrameProtocolZIMODCCModeInfo" xml:space="preserve">
     <value>The DCC operating mode cannot be deactivated for ZIMO decoders.</value>
+  </data>
+  <data name="AlertDataInBackupAreNotFromDecoder" xml:space="preserve">
+    <value>⚠ The displayed decoder values originate from a Z2X project file. It is possible that these values are no longer up to date. Load the settings from the decoder to obtain reliable current values.</value>
   </data>
 </root>

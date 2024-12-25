@@ -54,6 +54,11 @@ namespace Z2XProgrammer.DataStore
         public static bool IsValid { get; set; }
 
         /// <summary>
+        /// Returns TRUE if the backup data was read from a decoder (and not from a Z2X file).
+        /// </summary>
+        public static bool BackupDataFromDecoderIsValid { get; set; }
+
+        /// <summary>
         /// The actual configuration variables.
         /// </summary>
         public static List<ConfigurationVariableType> ConfigurationVariables = new List<ConfigurationVariableType>();
@@ -128,14 +133,14 @@ namespace Z2XProgrammer.DataStore
             ConfigurationVariables.Clear();
             UserDefinedFunctionOutputNames.Clear();
 
-            //  Setup the list of configuration variables
+            //  Setup the list of configuration variables.
             for (int i = 0; i <= Helper.NMRA.MaxCVValues + 1; i++)
             {
                 BackupCVs.Add(new ConfigurationVariableType() { Number = i, Enabled = true, Description = "", Value = 0 });
                 ConfigurationVariables.Add(new ConfigurationVariableType() { Number = i, Enabled = true, Description = "", Value = 0 });
             }
 
-            //  Setup the list of function outputs
+            //  Setup the list of function outputs.
             UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0v" }); 
             UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0r" }); 
             for (int i = 0; i<= Helper.NMRA.MaxFunctionOutputs-1;i++ )
@@ -143,22 +148,25 @@ namespace Z2XProgrammer.DataStore
                 UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i+1).ToString() }); 
             }
 
-            //  Reset the user defined settings
+            //  Reset the user defined settings.
             UserDefindedNotes = string.Empty;
             UserDefindedImage = string.Empty;
             UserDefindedDecoderDescription = description;
 
-            //  Set the NMRA default addresses
+            //  Set the NMRA default addresses.
             RCN225.LocomotiveAddress = locomotiveAddress;
             RCN225Backup.LocomotiveAddress = NMRA.StandardLocomotiveAddress;
 
-            //  The current data in the data store is not valid
+            //  The current data in the data store is not valid.
             IsValid = false;
+
+            //  The backup data has not been read from the decoder.
+            BackupDataFromDecoderIsValid = false;
 
         }
 
         /// <summary>
-        /// Clears the data store and sets the default values of specific CVs
+        /// Clears the data store and sets the default values of specific CVs.
         /// </summary>
         public static void ClearBackupCVs()
         {

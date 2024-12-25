@@ -70,6 +70,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ⚠ The displayed decoder values originate from a Z2X project file. It is possible that these values are no longer up to date. Load the settings from the decoder to obtain reliable current values..
+        /// </summary>
+        public static string AlertDataInBackupAreNotFromDecoder {
+            get {
+                return ResourceManager.GetString("AlertDataInBackupAreNotFromDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The settings have been successfully written to the decoder..
         /// </summary>
         public static string AlertDecoderDonwloadSuccessfull {
@@ -626,9 +635,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Would you now like to transfer all known settings to the decoder?
-        ///
-        ///The following values are written to the decoder:.
+        ///   Looks up a localized string similar to Would you now like to transfer all known settings to the decoder?.
         /// </summary>
         public static string DownloadAllSettingsYesNo {
             get {
@@ -682,7 +689,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Writing data to the decoder.
+        ///   Looks up a localized string similar to Writing settings to the decoder.
         /// </summary>
         public static string DownloadDataTitle {
             get {
@@ -691,9 +698,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you now want to transfer the changed settings to your decoder?
-        ///
-        ///The following values are written to the decoder:.
+        ///   Looks up a localized string similar to Do you now want to transfer the changed settings to your decoder?.
         /// </summary>
         public static string DownloadNewSettingsYesNo {
             get {

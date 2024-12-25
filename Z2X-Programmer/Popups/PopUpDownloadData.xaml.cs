@@ -35,8 +35,14 @@ namespace Z2XProgrammer.Popups;
 // It is typically displayed before downloading new data to a decoder.
 public partial class PopUpDownloadData : Popup
 {
-
-	public PopUpDownloadData(List<int> configurationVariables, string descriptionText, string titleText)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PopUpDownloadData"/> class.
+    /// </summary>
+    /// <param name="configurationVariables">A list of CV numbers which are written to the decoder.</param>
+    /// <param name="descriptionText">Any description text to be displayed in the dialog.</param>
+    /// <param name="titleText">The title of the dialog.</param>
+    /// <param name="titleIconSource">The ressource name of the dialog icon.</param>
+	public PopUpDownloadData(List<int> configurationVariables, string descriptionText, string titleText, string titleIconSource, bool DataFromDecoderValid)
     {
         InitializeComponent();
 
@@ -44,6 +50,30 @@ public partial class PopUpDownloadData : Popup
 
         DecriptionTextLabel.Text = descriptionText;
         TitelTextLabel.Text = titleText;
+
+        //  Setup the icon.
+        if ((titleIconSource != null) && (titleIconSource != ""))
+        { 
+            TitelIcon.Source = titleIconSource;
+            TitelIcon.IsVisible = true;
+        }
+        else
+        {
+
+            TitelIcon.IsVisible = false;
+        }
+
+        //  If the data in the backup is not from the decoder, show a warning.
+        if(!DataFromDecoderValid)
+        {
+            NoteTextLabel.Text = AppResources.AlertDataInBackupAreNotFromDecoder;
+            NoteTextLabel.IsVisible = true;
+        }
+        else
+        {
+            NoteTextLabel.IsVisible = false;
+        }
+
 
         List<ConfigurationVariableDownloadInfo> listOfCVariables = new List<ConfigurationVariableDownloadInfo>();
         foreach(int variable in configurationVariables)
