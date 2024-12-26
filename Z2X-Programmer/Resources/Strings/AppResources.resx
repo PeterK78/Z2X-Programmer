@@ -817,7 +817,7 @@ The following error has occurred:</value>
     <value>Use default setting (CV9)</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyDescription" xml:space="preserve">
-    <value>Both the motor control frequency and the EMF sampling rate can be configured. This allows the driving behavior and noise development to be influenced.</value>
+    <value>The motor control frequency, the EMF sampling rate and the EMF measuring gaps can be configured. This allows the driving behavior as well as the noise development to be influenced.</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip" xml:space="preserve">
     <value>Higher values may be necessary for round motors, lower values reduce drive noise and increase the performance of Faulhaber and Maxxon motors.</value>
@@ -840,7 +840,7 @@ Settings for old motors:
 Frequency type = Low frequency</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyTitle" xml:space="preserve">
-    <value>Motor control frequency and EMK sampling rate</value>
+    <value>Motor control frequency, EMF sampling rate and EMF measurement gap</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip" xml:space="preserve">
     <value>Select high frequency for new motors and low frequency for old motors.</value>

@@ -818,7 +818,7 @@ Folgender Fehler ist aufgetreten:
     <value>Standardeinstellung verwenden (CV9)</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyDescription" xml:space="preserve">
-    <value>Sowohl die Motoransteuerungsfrequenz wie auch die EMK-Abtastrate können konfiguriert werden. Dadurch können das Fahrverhalten wie auch die Geräuschentwicklung beeinflusst werden.</value>
+    <value>Die Motoransteuerungsfrequenz, die EMK-Abtastrate und die EMK-Messlücken können konfiguriert werden. Dadurch können das Fahrverhalten wie auch die Geräuschentwicklung beeinflusst werden.</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip" xml:space="preserve">
     <value>Höhere Werte sind eventuell notwendig für Rund-Motoren, niedrigere Werte verringern Antriebsgeräusche und erhöhen die Leistung bei Faulhaber und Maxxon Motoren.</value>
@@ -841,7 +841,7 @@ Einstellungen für alte Motoren:
 Frequenztyp = Niedrigfrequenz</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyTitle" xml:space="preserve">
-    <value>Motoransteuerungsfrequenz und EMK-Abtastrate</value>
+    <value>Motoransteuerungsfrequenz, EMK-Abtastrate und EMK-Messlücke</value>
   </data>
   <data name="FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip" xml:space="preserve">
     <value>Wählen Sie Hochfrequenz für neue Motoren und Niederfrequenz für alte Motoren.</value>

@@ -59,9 +59,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-            <!-- Speed curve selection (standard or extended) RCN225_SPEEDTABLE_CV29_4-->
+            <!-- RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -78,11 +78,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Switch IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
                             </HorizontalStackLayout>
                     </Grid>
-            </Frame>
+            </Border>
 
             <!-- Basic speed curve with only 3 parameters (CV2, CV5 and CV6) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
                 <VerticalStackLayout>
                     <!-- Minimum speed CV2 -->
                     <Grid>
@@ -138,11 +138,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </HorizontalStackLayout>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Extended speed curve -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
                 <VerticalStackLayout>
                     <HorizontalStackLayout>
                         <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67}" VerticalOptions="Center" WidthRequest="200"></Label>
@@ -289,11 +289,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 </VerticalStackLayout>
 
-            </Frame>
+            </Border>
 
             <!-- ZIMOs MX specific motor reference voltage feature in CV57-->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                 <Grid Margin="0,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -320,11 +320,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 </Grid>
 
-            </Frame>
+            </Border>
 
             <!-- ZIMOs MS specific motor reference voltage feature in CV57-->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                 <Grid Margin="0,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -350,11 +350,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label   Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
                         </HorizontalStackLayout>
                 </Grid>
-            </Frame>
+            </Border>
 
-            <!-- ZIMO MX decoder motor control frequency CV9 -->
+            <!-- ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}">
                 <VerticalStackLayout>
                     <Grid Margin="0,10,0,0">
                         <Grid.ColumnDefinitions>
@@ -366,17 +366,21 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,100,0" />
-                        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="?" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=OpenMotorControlFrequencyHelpCommand}"  HeightRequest="10" WidthRequest="10" VerticalOptions="Start" HorizontalOptions="EndAndExpand" ></Button>
-                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <!-- Description -->
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
 
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                            <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
-                        </HorizontalStackLayout>
+                        <!-- Use default motor control frequency -->
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV9Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                         </Grid>
-                    <Frame Style="{StaticResource Z2XProgrammerFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
+                        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -395,33 +399,33 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- EMK Rate -->
                             <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKRate}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding IsHighFrequencySelected}">
-                                    <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
                                 <Label  Margin ="10,0,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" VerticalOptions="Center" Text="{Binding EMKRate}" MinimumWidthRequest="100" HorizontalTextAlignment="End" ></Label>
                             </HorizontalStackLayout>
                             
                             <!-- Low frequency -->
                             <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsFrequency}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  >
-                                    <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
                                 <Label  Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding LowFrequency}" HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Label>
                             </HorizontalStackLayout>
 
                             <!-- EMK Gap -->
                             <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKGap}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <HorizontalStackLayout Grid.Row="2"  Grid.Column="1" IsVisible="{Binding IsHighFrequencySelected}" VerticalOptions="Center" >
-                                    <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="1" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
                                 <Label  ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}" Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding EMKGap}" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                             </HorizontalStackLayout>
 
                             
                         </Grid>
-                    </Frame>
+                    </Border>
                 </VerticalStackLayout>             
-            </Frame>
+            </Border>
 
             <!-- ZIMO MX decoder motor control PID settings CV56 -->
             <Label IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
                 <Grid Margin="0,10,0,0">
                     <Grid.RowDefinitions>
                          <RowDefinition Height="*"></RowDefinition>
@@ -453,10 +457,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 </Grid>
 
-            </Frame>
+            </Border>
 
             <!-- Döhler & Haas specific -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -470,7 +474,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label WidthRequest="100" Text="{Binding ImpulsWidthTime}" VerticalOptions="Center" Margin="10,0,0,0" ></Label>
                     </HorizontalStackLayout>
                 </Grid>
-            </Frame>
+            </Border>
 
             </VerticalStackLayout>
         </VerticalStackLayout>

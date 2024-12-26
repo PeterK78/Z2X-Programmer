@@ -26,10 +26,12 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Converter;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
+using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.ViewModel
 {
@@ -37,10 +39,22 @@ namespace Z2XProgrammer.ViewModel
 
     public partial class MotorCharacteristicsViewModel : ObservableObject
     {
-        #region REGION: DECODER FEATURES
 
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
+        #region REGION: DECODER FEATURES
+
 
         //  RCN225_SPEEDTABLE_CV29_4
         [ObservableProperty]
@@ -70,6 +84,120 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
+        [ObservableProperty]
+        internal bool useDefaultMotorControlFrequency;
+        partial void OnUseDefaultMotorControlFrequencyChanged(bool value)
+        {
+            // Does the user want to use default settings (value == TRUE)) or configure the parameters themselves?
+            if (value == true)
+            {
+                // The user would like to use the ZIMO default settings. Therefore we set the CV9 to 0.
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
+            }
+            else
+            {
+                // The user would like to use the user-specific settings.
+                // We use the precise default settings 55 as suggested by ZIMO.
+                // CV55 equals to High frequency,medium scanning rate
+                EMKRate = 5;
+                EMKGap = 5;
+                SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(MotorControlFrequencyTypes.HighFrequency);
+                IsHighFrequencySelected = true;
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 55;
+            }
+            CV9Configuration = Subline.Create(new List<byte>{9});
+        }
+
+        [ObservableProperty]
+        internal int lowFrequency;
+        partial void OnLowFrequencyChanged(int value)
+        {
+            // If the user wants to use the default settings, we set CV9 to 0.
+            if (useDefaultMotorControlFrequency == true)
+            {
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
+                return; 
+            }
+
+            // Check the range of the slider, just in case ...
+            if (value < 176) return;
+            if (value > 255) return;
+            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)value;
+            CV9Configuration = Subline.Create(new List<byte>{9});
+        }
+
+        [ObservableProperty]
+        internal ObservableCollection<string> availableMotorControlFrequencyTypes;
+
+        [ObservableProperty]
+        internal string selectedMotorControlFrequqencyType = "";
+        partial void OnSelectedMotorControlFrequqencyTypeChanged(string value)
+        {
+            // If the user wants to use the default settings, we set CV9 to 0.
+            if (useDefaultMotorControlFrequency == true)
+            {
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
+                return; 
+            }
+
+            if (ZIMOEnumConverter.GetMotorControlFrequencyType(value) == ZIMO.MotorControlFrequencyTypes.HighFrequency)
+            {
+                // We use the default settings 55 for CV9 as suggested by ZIMO.
+                // CV55 equals to High frequency,medium scanning rate
+                 IsHighFrequencySelected = true;
+                EMKRate = 5;
+                EMKGap = 5;
+                SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(MotorControlFrequencyTypes.HighFrequency);
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 55;
+            }
+            else
+            {
+                // We use 127 as a default settings for low frequency motors.
+                IsHighFrequencySelected = false;
+                LowFrequency = 127;
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)LowFrequency;
+            }
+            CV9Configuration = Subline.Create(new List<byte>{9});
+        }
+
+        [ObservableProperty]
+        internal bool isHighFrequencySelected;
+
+        [ObservableProperty]
+        internal int eMKRate;
+        partial void OnEMKRateChanged(int value)
+        {
+            // If the user wants to use the default settings, we set CV9 to 0.
+            if (useDefaultMotorControlFrequency == true)
+            {
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
+                return; 
+            }
+
+            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
+            CV9Configuration = Subline.Create(new List<byte>{9});
+        }
+
+        [ObservableProperty]
+        internal int eMKGap;
+        partial void OnEMKGapChanged(int value)
+        {
+            // If the user wants to use the default settings, we set CV9 to 0.
+            if (useDefaultMotorControlFrequency == true)
+            {
+                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
+                return; 
+            }
+
+            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
+            CV9Configuration = Subline.Create(new List<byte>{9});
+        }
+
+        [ObservableProperty]
+        string cV9Configuration = Subline.Create(new List<byte>{9});
+
 
         // ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57
         [ObservableProperty]
@@ -121,28 +249,8 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        [ObservableProperty]
-        internal int lowFrequency;
-        partial void OnLowFrequencyChanged(int value)
-        {
-            if (value < 176) return;
-            if (value > 255) return;
-            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)value;
-        }
-
-        [ObservableProperty]
-        internal int eMKRate;
-        partial void OnEMKRateChanged(int value)
-        {
-            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-        }
-
-        [ObservableProperty]
-        internal int eMKGap;
-        partial void OnEMKGapChanged(int value)
-        {
-            DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-        }
+       
+       
 
         [ObservableProperty]
         internal ObservableCollection<string> availableMotorControlPIDMotorTypes;
@@ -197,40 +305,10 @@ namespace Z2XProgrammer.ViewModel
         }
 
 
-        [ObservableProperty]
-        internal ObservableCollection<string> availableMotorControlFrequencyTypes;
-
-        [ObservableProperty]
-        internal string selectedMotorControlFrequqencyType = "";
-        partial void OnSelectedMotorControlFrequqencyTypeChanged(string value)
-        {
-            if (ZIMOEnumConverter.GetMotorControlFrequencyType(value) == ZIMO.MotorControlFrequencyTypes.HighFrequency)
-            {
-                IsHighFrequencySelected = true;
-            }
-            else
-            {
-                IsHighFrequencySelected = false;
-            }
-        }
-
-        [ObservableProperty]
-        internal bool isHighFrequencySelected;
+      
 
 
-        [ObservableProperty]
-        internal bool useDefaultMotorControlFrequency;
-        partial void OnUseDefaultMotorControlFrequencyChanged(bool value)
-        {
-            if (value == true)
-            {
-                DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
-            }
-            else
-            {
-                DecoderConfiguration.ZIMO.MotorFrequencyControl = 55;
-            }
-        }
+       
 
 
         [ObservableProperty]
@@ -529,23 +607,6 @@ namespace Z2XProgrammer.ViewModel
         }
         #endregion
 
-        #region REGION: COMMANDS
-
-        [RelayCommand]
-        async Task OpenMotorControlFrequencyHelp()
-        {
-            try
-            {
-                await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameMotorCharacteristicsMotorControlFrequencyHelp, AppResources.OK);
-            }
-            catch (Exception ex)
-            {
-                Logger.PrintDevConsole("OpenMotorControlFrequencyHelp " + ex.Message);
-            }
-        }
-
-        #endregion
-
         # region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
@@ -630,8 +691,8 @@ namespace Z2XProgrammer.ViewModel
             ExtendedSpeedCurveValue93 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[26].Value;
             ExtendedSpeedCurveValue94 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[27].Value;
 
-
-            //  Check if the default value for CV9 = 0 is set in the decoder
+            // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
+            // Check if CV9 is set to 0 -> using default values
             if (DecoderConfiguration.ZIMO.MotorFrequencyControl == 0)
             {
                 UseDefaultMotorControlFrequency = true;

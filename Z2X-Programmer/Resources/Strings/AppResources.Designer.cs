@@ -2571,7 +2571,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Both the motor control frequency and the EMF sampling rate can be configured. This allows the driving behavior and noise development to be influenced..
+        ///   Looks up a localized string similar to The motor control frequency, the EMF sampling rate and the EMF measuring gaps can be configured. This allows the driving behavior as well as the noise development to be influenced..
         /// </summary>
         public static string FrameMotorCharacteristicsMotorControlFrequencyDescription {
             get {
@@ -2618,7 +2618,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Motor control frequency and EMK sampling rate.
+        ///   Looks up a localized string similar to Motor control frequency, EMF sampling rate and EMF measurement gap.
         /// </summary>
         public static string FrameMotorCharacteristicsMotorControlFrequencyTitle {
             get {
