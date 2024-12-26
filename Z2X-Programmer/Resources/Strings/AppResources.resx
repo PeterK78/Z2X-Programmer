@@ -547,7 +547,7 @@ The following error has occurred:</value>
     <value>In addition to the function assignmIn addition to the function assignment according to RCN-225, Döhler &amp; Haass decoders also offer an extended version of the function assignment.ent according to RCN-225, Döhler &amp; Haass decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Extended assignment of function keys (CV61)</value>
+    <value>Extended assignment of function outputs - without left shift (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>In addition to the function assignment according to RCN-225, ZIMO decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>

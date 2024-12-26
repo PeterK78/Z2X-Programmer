@@ -909,17 +909,19 @@ namespace Z2XProgrammer.DataModel
 
 
         /// <summary>
-        ///  The type of the function mapping in CV61
+        ///  Is TRUE if the extended function mapping in CV61 is activated ( = 97).
         /// </summary>
-        public byte FunctionKeyMappingType
+        public bool ExtendedFunctionKeyMapping
         {
             get
             {
-                return configurationVariables[61].Value;
+                if (configurationVariables[61].Value == 97) return true;
+                return false;
             }
             set
             {
-                configurationVariables[61].Value = value;
+                if (value == true) configurationVariables[61].Value = 97;
+                else configurationVariables[61].Value = 0;
             }
         }
 

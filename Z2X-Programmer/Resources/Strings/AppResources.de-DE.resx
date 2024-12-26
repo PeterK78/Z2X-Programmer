@@ -548,7 +548,7 @@ Folgender Fehler ist aufgetreten:
     <value>Neben der Funktionszuordnung laut RCN-225 bieten Döhler &amp; Haass Decoder zusätzlich eine erweiterte Variante der Funktionszuordnung an.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Erweiterte Zuordnung der Funktionsausgänge (CV61)</value>
+    <value>Erweiterte Zuordnung der Funktionsausgänge - ohne Linksverschiebung (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>Neben der Funktionszuordnung laut RCN-225 bieten ZIMO Decoder zusätzliche Varianten der Funktionszuordnung an. Aktuell unterstützt Z2X-Programmer jedoch nur die Variante nach RCN-225.</value>

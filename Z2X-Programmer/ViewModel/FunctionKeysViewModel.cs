@@ -1038,7 +1038,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnZIMOExtendedFunctionMappingChanged(bool value)
         {
             RCN225StandardFunctionMapping = !value;
-            DecoderConfiguration.ZIMO.FunctionKeyMappingType = value == false ? (byte)0 : (byte)97; 
+            DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping = value;
         }
 
         [ObservableProperty]
@@ -1497,7 +1497,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  ZIMO
             ZIMOFuncKeysAccDecDisableFuncKeyNumber = DecoderConfiguration.ZIMO.FuncKeysAccDecDisableFuncKeyNumber;
-            ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.FunctionKeyMappingType == 0 ?  true : false;
+            ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping;
             ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;

@@ -1761,7 +1761,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended assignment of function keys (CV61).
+        ///   Looks up a localized string similar to Extended assignment of function outputs - without left shift (CV61).
         /// </summary>
         public static string FrameFunctionsKeysZIMOMappingType {
             get {
