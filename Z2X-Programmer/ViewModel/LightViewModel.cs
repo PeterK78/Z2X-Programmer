@@ -30,6 +30,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Z2XProgrammer.Converter;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
@@ -38,11 +39,27 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class LightViewModel : ObservableObject
     {
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion        
+
+
         #region REGION: DECODER FEATURES
-    
+        
+        // ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
         [ObservableProperty]
         bool zIMO_LIGHT_EFFECTS_CV125X;
 
+        // ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60)
         [ObservableProperty]
         bool zIMO_LIGHT_DIM_CV60;
 
@@ -53,25 +70,34 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool anyDecoderFeatureAvailable;
 
+     
         [ObservableProperty]
-        bool dataStoreDataValid;
+        internal ObservableCollection<string> availableZIMOLightEffects = new ObservableCollection<string>();
 
+        // ZIMO: Light effects in CV125 for function output F0 (front headlight)
         [ObservableProperty]
-        internal ObservableCollection<string> availableZIMOLightEffects;
-
-        [ObservableProperty]
-        internal string selectedZIMOLightEffect0v;
+        internal string selectedZIMOLightEffect0v = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0v);
         partial void OnSelectedZIMOLightEffect0vChanged(string value)
         {       
             DecoderConfiguration.ZIMO.LightEffectOutput0v = ZIMOEnumConverter.GetLightEffectType(value);
+            CV125Configuration = Subline.Create(new List<byte> { 125 });
         }
-        
+
         [ObservableProperty]
-        internal string selectedZIMOLightEffect0r;
+        string cV125Configuration = Subline.Create(new List<byte>{125});
+
+        // ZIMO: Light effects in CV126 for rear headlight (default F0 reverse)
+        [ObservableProperty]
+        internal string selectedZIMOLightEffect0r = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0r);
         partial void OnSelectedZIMOLightEffect0rChanged(string value)
         {
             DecoderConfiguration.ZIMO.LightEffectOutput0r = ZIMOEnumConverter.GetLightEffectType(value);
+            CV126Configuration = Subline.Create(new List<byte> { 126 });
         }
+
+        [ObservableProperty]
+        string cV126Configuration = Subline.Create(new List<byte>{126});
+
 
 
         [ObservableProperty]
@@ -232,11 +258,6 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: CONSTRUCTOR
         public LightViewModel()
         {
-
-            AvailableZIMOLightEffects = new ObservableCollection<string>();
-            SelectedZIMOLightEffect0v = string.Empty;
-            SelectedZIMOLightEffect0r = string.Empty;
-
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
