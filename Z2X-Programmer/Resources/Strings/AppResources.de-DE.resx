@@ -1531,4 +1531,34 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="AlertDataInBackupAreNotFromDecoder" xml:space="preserve">
     <value>⚠ Die angezeigten Decoderwerte stammen aus einer Z2X-Projektdatei. Es ist somit möglich, dass diese Werte nicht mehr auf dem neuesten Stand sind. Laden Sie die Einstellungen aus dem Decoder, um zuverlässige aktuelle Werte zu erhalten.</value>
   </data>
+  <data name="FrameGettingStartedTitle" xml:space="preserve">
+    <value>Erste Schritte</value>
+  </data>
+  <data name="FrameGettingStartedDescription" xml:space="preserve">
+    <value>Z2X-Programmer benötigt eine aktive Verbindung zu Ihrer Digitalzentale. Diese Verbindung muss vor dem ersten Start konfiguriert werden.</value>
+  </data>
+  <data name="FrameGettingStartedStep1" xml:space="preserve">
+    <value>Wechseln Sie auf die Registerkarte </value>
+  </data>
+  <data name="FrameGettingStartedStep2" xml:space="preserve">
+    <value>Scrollen Sie zum Abschnitt </value>
+  </data>
+  <data name="FrameGettingStartedStep3" xml:space="preserve">
+    <value>Geben Sie die IP-Adresse ihrer Digitalzentrale ein.</value>
+  </data>
+  <data name="FrameGettingStartedStep4" xml:space="preserve">
+    <value>Klicken Sie auf die Schaltfläche </value>
+  </data>
+  <data name="FrameGettingStartedStep11" xml:space="preserve">
+    <value>Einstellungen.</value>
+  </data>
+  <data name="FrameGettingStartedStep21" xml:space="preserve">
+    <value>Digitalzentrale Z21.</value>
+  </data>
+  <data name="FrameGettingStartedStep41" xml:space="preserve">
+    <value>Verbindung testen.</value>
+  </data>
+  <data name="FrameGettingStartedIntroduction" xml:space="preserve">
+    <value>Führen Sie folgende Schritte nach dem Start von Z2X-Programmer aus:</value>
+  </data>
 </root>

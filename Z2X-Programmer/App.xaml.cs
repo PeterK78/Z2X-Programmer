@@ -32,7 +32,7 @@ namespace Z2XProgrammer
     public partial class App : Application
     {
         /// <summary>
-        /// The window object for the main window-
+        /// The window object for the main window.
         /// </summary>
         private Window? _MainWindow;
 
@@ -49,14 +49,15 @@ namespace Z2XProgrammer
             {
                 // We create the main window and save the object in a field so that we can also access it later.
                 _MainWindow = new Window(new LicensePage());
-                CenterMainWindow(_MainWindow, false);
+                GUI.ResizeWindow(_MainWindow,800, 600);
+                GUI.CenterWindow(_MainWindow);
             }
             else
             {
                 // We create the main window and save the object in a field so that we can also access it later.
                 _MainWindow = new Window(new AppShell(new ViewModel.AppShellViewModel()));
                 ResizeMainWindow(_MainWindow);
-                CenterMainWindow(_MainWindow, true);
+                PlaceMainWindow(_MainWindow);
             }
 
             //  We register a handler that is called when the window is destroyed.
@@ -97,39 +98,29 @@ namespace Z2XProgrammer
         }
 
         /// <summary>
-        /// Centers the given window.
+        /// Places the main window. If user-specific positions are available, these are used.
+        /// If the user-specific positions are missing, the window is centered.
         /// </summary>
-        /// <param name="window">The window object to center.</param>
-        /// <param name="usePreferences">If TRUE user specific x and y coordinates are used.</param>
-        private void CenterMainWindow(Window window, bool usePreferences)
+        /// <param name="window">The window object to center.</param>        
+        private void PlaceMainWindow(Window window)
         {
-
             // We get the current resolution of the screen.
             var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
             try
-            {
-                // We check whether we need to use the user-specific settings. If not, we center the window in the middle of the screen. 
-                // If yes, we use the user specific x and y coordinates to position the window (if the settings are missing, we will center the window in the middle of the screen).
-                if (usePreferences == true)
-                {
-
-                    if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT)) == "-1")
-                    {
-                        window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
-                        window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
-                    }
-                    else
-                    {
-                        window.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT));
-                        window.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT));
-                    }
-                }
-                else
+            { 
+                // We use the user-specific positions if they are available. Otherwise we will center the window.
+                if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT)) == "-1")
                 {
                     window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
                     window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
                 }
+                else
+                {
+                    window.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT));
+                    window.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT));
+                }
+            
             }
             catch (FormatException)
             {

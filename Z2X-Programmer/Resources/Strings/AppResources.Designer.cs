@@ -1815,6 +1815,96 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Z2X-Programmer benötigt eine aktive Verbindung zu Ihrer Digitalzentale. Diese Verbindung muss vor dem ersten Start konfiguriert werden. Führen Sie die folgenden Schritte aus, um die Verbindung herzustellen:.
+        /// </summary>
+        public static string FrameGettingStartedDescription {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carry out the following steps after starting Z2X-Programmer for the first time:.
+        /// </summary>
+        public static string FrameGettingStartedIntroduction {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedIntroduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wechseln Sie auf die Registerkarte &quot;Einstellungen&quot;..
+        /// </summary>
+        public static string FrameGettingStartedStep1 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings..
+        /// </summary>
+        public static string FrameGettingStartedStep11 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll to the section .
+        /// </summary>
+        public static string FrameGettingStartedStep2 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital command station Z21..
+        /// </summary>
+        public static string FrameGettingStartedStep21 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the IP address of your digital command station..
+        /// </summary>
+        public static string FrameGettingStartedStep3 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on the button .
+        /// </summary>
+        public static string FrameGettingStartedStep4 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test connection..
+        /// </summary>
+        public static string FrameGettingStartedStep41 {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedStep41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting Started.
+        /// </summary>
+        public static string FrameGettingStartedTitle {
+            get {
+                return ResourceManager.GetString("FrameGettingStartedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string FrameInfoApplicationInformationTitle {
@@ -2609,7 +2699,7 @@ namespace Z2XProgrammer.Resources.Strings {
         ///Sampling rate = 1, measuring gap = 1 : Large Faulhaber motor (H0 and 0)
         ///
         ///Settings for old motors:
-        ///Frequency type = Low fre [rest of string was truncated]&quot;;.
+        ///Frequency typ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string FrameMotorCharacteristicsMotorControlFrequencyHelp {
             get {

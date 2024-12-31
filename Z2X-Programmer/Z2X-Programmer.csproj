@@ -118,22 +118,27 @@
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <AndroidResource Remove="Assets\**" />
 	  <AndroidResource Remove="Controls\**" />
+	  <AndroidResource Remove="Resources\Raw\**" />
 	  <Compile Remove="Assets\**" />
 	  <Compile Remove="Controls\**" />
+	  <Compile Remove="Resources\Raw\**" />
 	  <EmbeddedResource Remove="Assets\**" />
 	  <EmbeddedResource Remove="Controls\**" />
+	  <EmbeddedResource Remove="Resources\Raw\**" />
 	  <MauiCss Remove="Assets\**" />
 	  <MauiCss Remove="Controls\**" />
+	  <MauiCss Remove="Resources\Raw\**" />
 	  <MauiXaml Remove="Assets\**" />
 	  <MauiXaml Remove="Controls\**" />
+	  <MauiXaml Remove="Resources\Raw\**" />
 	  <None Remove="Assets\**" />
 	  <None Remove="Controls\**" />
+	  <None Remove="Resources\Raw\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -186,6 +191,9 @@
 	<ItemGroup>
 	  <Compile Update="Pages\FunctionKeysSecondaryAddressPage.xaml.cs">
 	    <DependentUpon>FunctionKeysSecondaryAddressPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\GettingStartedPage.xaml.cs">
+	    <DependentUpon>GettingStartedPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\ProtocolPage.xaml.cs">
 	    <DependentUpon>ProtocolPage.xaml</DependentUpon>
@@ -241,6 +249,9 @@
 	  <MauiXaml Update="Pages\InfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\GettingStartedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\LightPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -283,10 +294,6 @@
 	  <MauiXaml Update="Resources\Styles\Z2XProgrammerStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\Raw\" />
 	</ItemGroup>
 
 

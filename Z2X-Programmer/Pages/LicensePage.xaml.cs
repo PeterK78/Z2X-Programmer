@@ -34,23 +34,28 @@ public partial class LicensePage : ContentPage
     /// </summary>
     public LicensePage()
     {
-        InitializeComponent();
-       // LicenseLabel.Text = License.Text;    
+        InitializeComponent();       
     }
 
     /// <summary>
-    /// Handles the click event of the OK button
+    /// Handles the click event of the OKButton button.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     void OKButton_Clicked(object sender, EventArgs e)
     {
-        Preferences.Default.Set(AppConstants.PREFERENCES_LICENSE_KEY, "1");
-        if(App.Current != null) App.Current.Windows[0].Page = new AppShell(new ViewModel.AppShellViewModel());
+        //  The user has aggreed to the license. We will now open the GettingStarted page.
+        if (App.Current != null)
+        {
+            //  Set the active page, set the size and center the window.
+            App.Current.Windows[0].Page = new GettingStartedPage();
+            GUI.ResizeWindow(App.Current.Windows[0], 800, 600);
+            GUI.CenterWindow(App.Current.Windows[0]);
+        }      
     }
 
     /// <summary>
-    /// Handles the click event of the NO button
+    /// Handles the click event of the NOButton button.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -60,7 +65,7 @@ public partial class LicensePage : ContentPage
     }
 
     /// <summary>
-    /// Handles the click event of the Licencse button
+    /// Handles the click event of the LicencseButton button.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -71,7 +76,7 @@ public partial class LicensePage : ContentPage
     }
 
     /// <summary>
-    /// Handles the checked event of the checbox CheckboxAccept
+    /// Handles the checked event of the checbox CheckboxAccept.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

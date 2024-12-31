@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->  
+    
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             x:Class="Z2XProgrammer.Pages.GettingStartedPage"
+             Title="{x:Static strings:AppResources.FrameGettingStartedTitle}">
+    
+    
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical">
+        
+        <VerticalStackLayout Margin="20,20,20,20">
+
+            <!-- The title text and the Z2X-Programmer icon -->
+            <HorizontalStackLayout>
+                <Image Source="badgeicon.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start" VerticalOptions="Center" />
+                <Label Margin="20,0,0,0" Text="Z2X-Programmer" Style="{StaticResource Z2XProgrammerLabelHeading1Style}" VerticalOptions="Center" ></Label>
+            </HorizontalStackLayout>
+
+            <!-- The "Getting Started" heading -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameGettingStartedTitle}" HorizontalOptions="Start" Margin="0,20,0,0"/>
+
+            <!-- A brief introduction to why we need the introduction  -->
+            <Border Padding="10,10,10,10" Margin="0,20,0,0">
+                <HorizontalStackLayout >
+                    <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" VerticalOptions="Center"></Image>
+                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" MaximumWidthRequest="680" Text="{x:Static strings:AppResources.FrameGettingStartedDescription}" LineBreakMode="WordWrap" VerticalOptions="Center"  HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <Label Margin="0,40,0,0" Text="{x:Static strings:AppResources.FrameGettingStartedIntroduction}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"></Label>
+            
+            <!-- The step by step guide -->
+            <Grid Margin="0,0,0,20">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image Margin="0,20,20,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_checkmark_circle_24_regular.png, Dark=ic_fluent_checkmark_circle_24_dark.png}" VerticalOptions="Center"></Image>
+                <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="0" Grid.Column="1">
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep1}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"></Label>
+                    <Image Source="{AppThemeBinding Light=ic_fluent_settings_24_regular.png, Dark=ic_fluent_settings_24_dark.png}" HeightRequest="13" WidthRequest="13" VerticalOptions="Center" Margin="5,0,0,0"></Image>
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep11}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" FontAttributes="Bold" Margin="2,0,0,0" ></Label>
+                </HorizontalStackLayout>
+
+                <Image Margin="0,20,20,0" Grid.Row="1" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_checkmark_circle_24_regular.png, Dark=ic_fluent_checkmark_circle_24_dark.png}" VerticalOptions="Center"></Image>
+                <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1">
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep2}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"></Label>
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep21}"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" FontAttributes="Bold" Margin="5,0,0,0"></Label>
+                </HorizontalStackLayout>
+
+                <Image Margin="0,20,20,0" Grid.Row="2" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_checkmark_circle_24_regular.png, Dark=ic_fluent_checkmark_circle_24_dark.png}" VerticalOptions="Center"></Image>
+                <Label Margin="0,20,0,0" Text="{x:Static strings:AppResources.FrameGettingStartedStep3}" Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"></Label>
+
+                <Image Margin="0,20,20,0" Grid.Row="3" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_checkmark_circle_24_regular.png, Dark=ic_fluent_checkmark_circle_24_dark.png}" VerticalOptions="Center"></Image>
+                <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="3" Grid.Column="1">
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep4}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"></Label>
+                    <Label Text="{x:Static strings:AppResources.FrameGettingStartedStep41}"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" FontAttributes="Bold" Margin="5,0,0,0"></Label>
+                </HorizontalStackLayout>
+
+            </Grid>
+
+            <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,40,0,0" x:Name="OKButton" WidthRequest="150" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonOK}" HorizontalOptions="End" VerticalOptions="End"></Button>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
