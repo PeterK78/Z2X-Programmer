@@ -221,7 +221,7 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        // ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57
+        // ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
         [ObservableProperty]
         internal bool zIMOMSMotorControlReferenceVoltageAutomaticMode;
         partial void OnZIMOMSMotorControlReferenceVoltageAutomaticModeChanged(bool value)
@@ -240,8 +240,7 @@ namespace Z2XProgrammer.ViewModel
             if (value != 0)
             {
                 DecoderConfiguration.ZIMO.MotorReferenceVoltage = (byte)(value + (byte)100);
-                ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
-                
+                ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";                
             }
             else
             {
@@ -692,60 +691,70 @@ namespace Z2XProgrammer.ViewModel
             ExtendedSpeedCurveValue94 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[27].Value;
 
             // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
-            // Check if CV9 is set to 0 -> using default values
-            if (DecoderConfiguration.ZIMO.MotorFrequencyControl == 0)
+            if (ZIMO_MXMOTORCONTROLFREQUENCY_CV9 == true)
             {
-                UseDefaultMotorControlFrequency = true;
-                SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(ZIMO.MotorControlFrequencyTypes.HighFrequency);
-            }
-            else
-            {
-                //  In CV9 user specific values are used.
-                UseDefaultMotorControlFrequency = false;
-
-                //  Check if high frequency is used ..
-                if (DecoderConfiguration.ZIMO.MotorFrequencyControl < 100)
+                // Check if CV9 is set to 0 -> using default values
+                if (DecoderConfiguration.ZIMO.MotorFrequencyControl == 0)
                 {
-                    //  Set the type = HighFrequency
+                    UseDefaultMotorControlFrequency = true;
                     SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(ZIMO.MotorControlFrequencyTypes.HighFrequency);
-
-                    //  Set the EMK Rate. Its the tens place in CV9
-                    int emkGapTemp = 0; int emkRateTemp = 0; int temp;
-                    PlaceValue.GetPlaceValues(DecoderConfiguration.ZIMO.MotorFrequencyControl, out emkGapTemp, out emkRateTemp, out temp);
-                    EMKRate = emkRateTemp;
-                    EMKGap = emkGapTemp;
                 }
-                // ... low frequency is used.
                 else
                 {
-                    SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(ZIMO.MotorControlFrequencyTypes.LowFrequency);
-                    LowFrequency = DecoderConfiguration.ZIMO.MotorFrequencyControl;
+                    //  In CV9 user specific values are used.
+                    UseDefaultMotorControlFrequency = false;
+
+                    //  Check if high frequency is used ..
+                    if (DecoderConfiguration.ZIMO.MotorFrequencyControl < 100)
+                    {
+                        //  Set the type = HighFrequency
+                        SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(ZIMO.MotorControlFrequencyTypes.HighFrequency);
+
+                        //  Set the EMK Rate. Its the tens place in CV9
+                        int emkGapTemp = 0; int emkRateTemp = 0; int temp;
+                        PlaceValue.GetPlaceValues(DecoderConfiguration.ZIMO.MotorFrequencyControl, out emkGapTemp, out emkRateTemp, out temp);
+                        EMKRate = emkRateTemp;
+                        EMKGap = emkGapTemp;
+                    }
+                    // ... low frequency is used.
+                    else
+                    {
+                        SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(ZIMO.MotorControlFrequencyTypes.LowFrequency);
+                        LowFrequency = DecoderConfiguration.ZIMO.MotorFrequencyControl;
+                    }
                 }
             }
 
-            MotorControlReferenceValue = DecoderConfiguration.ZIMO.MotorReferenceVoltage;
-            MotorControlReferenceVoltage = (MotorControlReferenceValue / 10).ToString() + " V";
-            if (DecoderConfiguration.ZIMO.MotorReferenceVoltage == 0)
+            // ZIMO: MX decoder motor control reference voltage in CV57 (ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57)
+            if (ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 == true)
             {
-                MotorControlReferenceVoltageAutomaticMode = true;
-            }
-            else
-            {
-                MotorControlReferenceVoltageAutomaticMode = false;
+                MotorControlReferenceValue = DecoderConfiguration.ZIMO.MotorReferenceVoltage;
+                MotorControlReferenceVoltage = (MotorControlReferenceValue / 10).ToString() + " V";
+                if (DecoderConfiguration.ZIMO.MotorReferenceVoltage == 0)
+                {
+                    MotorControlReferenceVoltageAutomaticMode = true;
+                }
+                else
+                {
+                    MotorControlReferenceVoltageAutomaticMode = false;
+                }
             }
 
-            // ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57
-            if(DecoderConfiguration.ZIMO.MotorReferenceVoltage < 100)
+            // ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
+            if (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 == true)
             {
-                ZIMOMSMotorControlReferenceVoltageAutomaticMode = true;
-                ZIMOMSmotorControlReferenceValue = 1;
+                if(DecoderConfiguration.ZIMO.MotorReferenceVoltage < 100)
+                {
+                    ZIMOMSMotorControlReferenceVoltageAutomaticMode = true;
+                    ZIMOMSmotorControlReferenceValue = 1;
+                }
+                else
+                {
+                    ZIMOMSMotorControlReferenceVoltageAutomaticMode = false;
+                    ZIMOMSmotorControlReferenceValue = (byte)(DecoderConfiguration.ZIMO.MotorReferenceVoltage - 100);
+                }
+                ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
             }
-            else
-            {
-                ZIMOMSMotorControlReferenceVoltageAutomaticMode = false;
-                ZIMOMSmotorControlReferenceValue = (byte)(DecoderConfiguration.ZIMO.MotorReferenceVoltage - 100);
-            }
-            ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
 
 
             if (DecoderConfiguration.ZIMO.MotorPIDSettings < 100)

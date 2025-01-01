@@ -322,7 +322,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             </Border>
 
-            <!-- ZIMOs MS specific motor reference voltage feature in CV57-->
+            <!-- ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                 <Grid Margin="0,10,0,0">
