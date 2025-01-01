@@ -37,6 +37,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -59,9 +60,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-            <!-- Decoder Lock in CV15 + CV16 -->
+            <!-- RCN225: Decoder lock configuration in CV15 and CV16 (RCN225_DECODERLOCK_CV15X) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding RCN225_DECODERLOCK_CV15X}"  HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockTitle}" VerticalOptions="Center" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_DECODERLOCK_CV15X}" >
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_DECODERLOCK_CV15X}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -74,44 +75,49 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                     
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockDescription}" VerticalOptions="Center" />
+                        <Label Margin="0,0,0,40"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockDescription}" VerticalOptions="Center" />
 
                         <Label x:Name="FrameSecurityDecoderLockLabelCV15"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockLabelCV15}" VerticalOptions="Center" />
-                        <Entry Margin="0,0,0,20"  Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV15}"  WidthRequest="250" VerticalOptions="Center" >
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior 
-                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                    ValidStyle="{StaticResource Z2XValidEntry}"
-                                    Flags="ValidateOnValueChanged"
-                                    MinimumValue="{Binding LimitMinimumCV15}"
-                                    MaximumValue="{Binding LimitMaximumCV15}"
-                                    MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
+                            <Entry Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV15}"  WidthRequest="250" VerticalOptions="Center" >
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior 
+                                        InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                        ValidStyle="{StaticResource Z2XValidEntry}"
+                                        Flags="ValidateOnValueChanged"
+                                        MinimumValue="{Binding LimitMinimumCV15}"
+                                        MaximumValue="{Binding LimitMaximumCV15}"
+                                        MaximumDecimalPlaces="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV15Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                        </Entry>
-
-                        <Label x:Name="FrameSecurityDecoderLockLabelCV16" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockLabelCV16}" VerticalOptions="Center" />
-                        <Entry Margin="0,0,0,20" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" Grid.Row="2" Grid.Column="1" MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV16}"  WidthRequest="250" VerticalOptions="Center" >
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior 
-                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                    ValidStyle="{StaticResource Z2XValidEntry}"
-                                    Flags="ValidateOnValueChanged"
-                                    MinimumValue="{Binding LimitMinimumCV16}"
-                                    MaximumValue="{Binding LimitMaximumCV16}"
-                                    MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
-                        </Entry>
+                        <Label Margin="0,20,0,0" x:Name="FrameSecurityDecoderLockLabelCV16" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockLabelCV16}" VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="0,20,0,0">
+                            <Entry Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand"  MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV16}"  WidthRequest="250" VerticalOptions="Center" >
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior 
+                                        InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                        ValidStyle="{StaticResource Z2XValidEntry}"
+                                        Flags="ValidateOnValueChanged"
+                                        MinimumValue="{Binding LimitMinimumCV16}"
+                                        MaximumValue="{Binding LimitMaximumCV16}"
+                                        MaximumDecimalPlaces="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV16Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                         <Label TextColor="Red" IsVisible="{Binding DecoderLockCV1516Activated}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockActivated}" VerticalOptions="Center" />
                         <Label TextColor="Green" IsVisible="{Binding Path=DecoderLockCV1516Activated,Converter={StaticResource boolInvert}}"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderLockNotActivated}" VerticalOptions="Center" />
                     
                     </Grid>
-            </Frame>
-            
-            <!-- The ZIMO Programming and update lock in CV144"-->
+            </Border>
+
+            <!-- ZIMO: Zimo specific update configuration in CV144 for MX decoder (ZIMO_MXUPDATELOCK_CV144) -->
             <Label  Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXUPDATELOCK_CV144}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame IsVisible="{Binding ZIMO_MXUPDATELOCK_CV144}" Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXUPDATELOCK_CV144}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -125,25 +131,59 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
+                    <!-- ZIMO: LockWritingCVsInServiceMode -->                                         
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockProgramCVServiceMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding LockWritingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                        <HorizontalStackLayout >
+                            <Label Text="{Binding Path=LockWritingCVsInServiceMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch  IsToggled="{Binding LockWritingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO: LockReadingCVsInServiceMode -->                            
                     <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockReadCVServiceMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding LockReadingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                        <HorizontalStackLayout >
+                            <Label Text="{Binding Path=LockReadingCVsInServiceMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch  IsToggled="{Binding LockReadingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO: LockWritingCVsOnMainTrack -->
                     <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockProgramCVMainTrack}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding LockWritingCVsOnMainTrack}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                        <HorizontalStackLayout >
+                            <Label Text="{Binding Path=LockWritingCVsOnMainTrack,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch  IsToggled="{Binding LockWritingCVsOnMainTrack}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO: LockUpdatingDecoderFirmware -->
                     <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockFirmwareUpdate}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="3" Grid.Column="1" IsToggled="{Binding LockUpdatingDecoderFirmware}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                    <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                        <HorizontalStackLayout >
+                            <Label Text="{Binding Path=LockUpdatingDecoderFirmware,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch  IsToggled="{Binding LockUpdatingDecoderFirmware}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO:  PlaySoundWhenProgrammingCV-->
                     <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSecurityZIMOUpdateLockJingleSound}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Switch Grid.Row="4" Grid.Column="1" IsToggled="{Binding PlaySoundWhenProgrammingCV}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                    <VerticalStackLayout Grid.Row="4" Grid.Column="1">
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Path=PlaySoundWhenProgrammingCV,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch IsToggled="{Binding PlaySoundWhenProgrammingCV}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
                 </Grid>
 
-
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
         </VerticalStackLayout>

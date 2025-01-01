@@ -924,7 +924,7 @@ Frequency type = Low frequency</value>
     <value>The decoder lock is active (CV15 &lt;&gt; CV16). The decoder cannot be programmed.</value>
   </data>
   <data name="FrameSecurityDecoderLockDescription" xml:space="preserve">
-    <value>The decoder lock is used for several decoders with identical vehicle addresses in a vehicle. This means that CVs can only be changed in one specific decoder.  If the decoder lock is active, the decoder can neither be read nor written to. The lock is activated by entering different values in CV15 and CV16.  CV15 can always be written to.</value>
+    <value>If the decoder lock is active, the decoder can neither be read nor written to. The lock is activated by entering different values in CV15 and CV16. CV15 can always be written to.</value>
   </data>
   <data name="FrameSecurityDecoderLockLabelCV15" xml:space="preserve">
     <value>Decoder lock (CV15)</value>

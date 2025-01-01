@@ -23,7 +23,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.ViewModel
@@ -31,10 +33,21 @@ namespace Z2XProgrammer.ViewModel
     public partial class SecurityViewModel : ObservableObject
     {
 
-        #region #region REGION: DECODER FEATURES
+        #region REGION: DATASTORE & SETTINGS
 
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
+        #region #region REGION: DECODER FEATURES
+    
 
         [ObservableProperty]
         bool rCN225_DECODERLOCK_CV15X;
@@ -46,11 +59,13 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
+        // ZIMO: Zimo specific update configuration in CV144 for MX decoder (ZIMO_MXUPDATELOCK_CV144)
         [ObservableProperty]
         bool lockWritingCVsInServiceMode;
         partial void OnLockWritingCVsInServiceModeChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockWritingCVsOnProgramTrack = value;
+            CV144Configuration = Subline.Create(new List<byte>{144});
         }
 
         [ObservableProperty]
@@ -58,14 +73,15 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockReadingCVsInServiceModeChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockReadingCVsOnProgramTrack = value;
+            CV144Configuration = Subline.Create(new List<byte>{144});
         }
-
 
         [ObservableProperty]
         bool lockWritingCVsOnMainTrack;
         partial void OnLockWritingCVsOnMainTrackChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockWritingCVsOnMainTrack = value;
+            CV144Configuration = Subline.Create(new List<byte>{144});
         }
 
         [ObservableProperty]
@@ -73,16 +89,21 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockUpdatingDecoderFirmwareChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockUpatingDecoderFirmware = value;
+            CV144Configuration = Subline.Create(new List<byte> { 144 });
         }
-
 
         [ObservableProperty]
         bool playSoundWhenProgrammingCV;
         partial void OnPlaySoundWhenProgrammingCVChanged(bool value)
         {
             DecoderConfiguration.ZIMO.PlaySoundWhenProgrammingCV = value;
+            CV144Configuration = Subline.Create(new List<byte>{144});
         }
 
+        [ObservableProperty]
+        string cV144Configuration = Subline.Create(new List<byte>{144});
+
+        // RCN225: Decoder lock configuration in CV15 and CV16 (RCN225_DECODERLOCK_CV15X)
         [ObservableProperty]
         bool decoderLockCV1516Activated;
         
@@ -92,6 +113,8 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.DecoderLockPasswordCV16 = value;
             DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
+            CV15Configuration = Subline.Create(new List<byte> {15});
+            CV16Configuration = Subline.Create(new List<byte>{16});
         }
 
         [ObservableProperty]
@@ -100,7 +123,16 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.DecoderLockPasswordCV15 = value;
             DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
+            CV15Configuration = Subline.Create(new List<byte> {15});
+            CV16Configuration = Subline.Create(new List<byte>{16});
         }
+
+        [ObservableProperty]
+        string cV15Configuration = Subline.Create(new List<byte> {15});
+
+        [ObservableProperty]
+        string cV16Configuration = Subline.Create(new List<byte>{16});
+
 
         #endregion
 
@@ -151,14 +183,23 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
-            DecoderLockPasswordCV16 = DecoderConfiguration.RCN225.DecoderLockPasswordCV16;
-            DecoderLockPasswordCV15 = DecoderConfiguration.RCN225.DecoderLockPasswordCV15;
-            LockWritingCVsInServiceMode = DecoderConfiguration.ZIMO.LockWritingCVsOnProgramTrack;
-            LockReadingCVsInServiceMode = DecoderConfiguration.ZIMO.LockReadingCVsOnProgramTrack;
-            LockWritingCVsOnMainTrack = DecoderConfiguration.ZIMO.LockWritingCVsOnMainTrack;
-            LockUpdatingDecoderFirmware = DecoderConfiguration.ZIMO.LockUpatingDecoderFirmware;
-            PlaySoundWhenProgrammingCV = DecoderConfiguration.ZIMO.PlaySoundWhenProgrammingCV;
-            DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
+            
+            if(RCN225_DECODERLOCK_CV15X == true)
+            {
+                DecoderLockPasswordCV16 = DecoderConfiguration.RCN225.DecoderLockPasswordCV16;
+                DecoderLockPasswordCV15 = DecoderConfiguration.RCN225.DecoderLockPasswordCV15;
+                DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
+            }
+
+            if(ZIMO_MXUPDATELOCK_CV144 == true)
+            {
+                LockWritingCVsInServiceMode = DecoderConfiguration.ZIMO.LockWritingCVsOnProgramTrack;
+                LockReadingCVsInServiceMode = DecoderConfiguration.ZIMO.LockReadingCVsOnProgramTrack;
+                LockWritingCVsOnMainTrack = DecoderConfiguration.ZIMO.LockWritingCVsOnMainTrack;
+                LockUpdatingDecoderFirmware = DecoderConfiguration.ZIMO.LockUpatingDecoderFirmware;
+                PlaySoundWhenProgrammingCV = DecoderConfiguration.ZIMO.PlaySoundWhenProgrammingCV;
+            }
+            
         }
 
         /// <summary>

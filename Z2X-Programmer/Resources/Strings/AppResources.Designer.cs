@@ -3086,7 +3086,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The decoder lock is used for several decoders with identical vehicle addresses in a vehicle. This means that CVs can only be changed in one specific decoder.  If the decoder lock is active, the decoder can neither be read nor written to. The lock is activated by entering different values in CV15 and CV16.  CV15 can always be written to..
+        ///   Looks up a localized string similar to If the decoder lock is active, the decoder can neither be read nor written to. The lock is activated by entering different values in CV15 and CV16. CV15 can always be written to..
         /// </summary>
         public static string FrameSecurityDecoderLockDescription {
             get {

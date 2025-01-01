@@ -925,7 +925,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Die Decodersperre ist aktiv (CV15 &lt;&gt; CV16). Der Decoder kann nicht programmiert werden.</value>
   </data>
   <data name="FrameSecurityDecoderLockDescription" xml:space="preserve">
-    <value>Die Decodersperre wird bei mehreren Decodern mit identer Fahrzeugadresse in einem Fahrzeug genutzt. Dadurch können CVs in nur einem bestimmten Decoder geändert werden.  Ist die Decodersperre aktiv, so kann der Decoder weder gelesen noch beschrieben werden. Die Sperre wird aktiviert, in dem man unterschiedliche Werte in CV15 und CV16 einträgt.  Auf CV15 kann immer geschrieben werden.</value>
+    <value>Ist die Decodersperre aktiv, so kann der Decoder weder gelesen noch beschrieben werden. Die Sperre wird aktiviert, in dem man unterschiedliche Werte in CV15 und CV16 einträgt. Auf CV15 kann immer geschrieben werden.</value>
   </data>
   <data name="FrameSecurityDecoderLockLabelCV15" xml:space="preserve">
     <value>Decodersperre (CV15)</value>
