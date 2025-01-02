@@ -829,7 +829,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Is TRUE if the additional speed parameters have been enabled in
-        /// CV 29.4
+        /// CV 29.4.
         /// </summary>
         public bool ExtendedSpeedCurveEnabled
         {
@@ -839,13 +839,13 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                Bit.Set(configurationVariables[29].Value, 4, value);
+                configurationVariables[29].Value = Bit.Set(configurationVariables[29].Value, 4, value);
             }
 
         }
 
         /// <summary>
-        /// The address mode of the vehicle address (long versus short)
+        /// The address mode of the vehicle address (long versus short).
         /// </summary>
         internal NMRA.DCCAddressModes DCCAddressModeVehicleAdr
         {
@@ -869,7 +869,9 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
-      
+        /// <summary>
+        /// Sets the CVs 67 to 94 to the values of the extended speed curve.
+        /// </summary>
         public ExtendedSpeedCurveType ExtendedSpeedCurveValues
         {
             get
@@ -884,6 +886,10 @@ namespace Z2XProgrammer.DataModel
             set
             {
                 _extendedSpeedCurve = value;
+                for (int i = 0; i <= NMRA.NumberOfExtendedSpeedSteps - 1; i++)
+                {
+                    configurationVariables[i + 67].Value = _extendedSpeedCurve.CV[i].Value;
+                }
             }
         }
 

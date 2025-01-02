@@ -85,6 +85,222 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
+        // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
+        [ObservableProperty]
+        internal bool extendedSpeedCurveEnabled;
+        partial void OnExtendedSpeedCurveEnabledChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled = value;
+            CV29Configuration = Subline.Create(new List<byte>{29});
+        }
+        [ObservableProperty]
+        string cV29Configuration = Subline.Create(new List<byte>{29});
+        
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue67;
+        partial void OnExtendedSpeedCurveValue67Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(67, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue68;
+        partial void OnExtendedSpeedCurveValue68Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(68, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue69;
+        partial void OnExtendedSpeedCurveValue69Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(69, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue70;
+        partial void OnExtendedSpeedCurveValue70Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(70, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue71;
+        partial void OnExtendedSpeedCurveValue71Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(71, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue72;
+        partial void OnExtendedSpeedCurveValue72Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(72, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue73;
+        partial void OnExtendedSpeedCurveValue73Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(73, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue74;
+        partial void OnExtendedSpeedCurveValue74Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(74, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue75;
+        partial void OnExtendedSpeedCurveValue75Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(75, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue76;
+        partial void OnExtendedSpeedCurveValue76Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(76, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue77;
+        partial void OnExtendedSpeedCurveValue77Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(77, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue78;
+        partial void OnExtendedSpeedCurveValue78Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(78, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue79;
+        partial void OnExtendedSpeedCurveValue79Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(79, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue80;
+        partial void OnExtendedSpeedCurveValue80Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(80, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue81;
+        partial void OnExtendedSpeedCurveValue81Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(81, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue82;
+        partial void OnExtendedSpeedCurveValue82Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(82, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue83;
+        partial void OnExtendedSpeedCurveValue83Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(83, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue84;
+        partial void OnExtendedSpeedCurveValue84Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(84, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue85;
+        partial void OnExtendedSpeedCurveValue85Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(85, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue86;
+        partial void OnExtendedSpeedCurveValue86Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(86, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue87;
+        partial void OnExtendedSpeedCurveValue87Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(87, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue88;
+        partial void OnExtendedSpeedCurveValue88Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(88, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue89;
+        partial void OnExtendedSpeedCurveValue89Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(89, value);
+        }
+
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue90;
+        partial void OnExtendedSpeedCurveValue90Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(90, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue91;
+        partial void OnExtendedSpeedCurveValue91Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(91, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue92;
+        partial void OnExtendedSpeedCurveValue92Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(92, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue93;
+        partial void OnExtendedSpeedCurveValue93Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(93, value);
+        }
+
+        [ObservableProperty]
+        internal byte extendedSpeedCurveValue94;
+        partial void OnExtendedSpeedCurveValue94Changed(byte value)
+        {
+            SetExtendedSpeedCurveValue(94, value);
+        }
+        
+
         // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
         [ObservableProperty]
         internal bool useDefaultMotorControlFrequency;
@@ -322,215 +538,7 @@ namespace Z2XProgrammer.ViewModel
         internal string impulsWidthTime = "";
 
 
-        [ObservableProperty]
-        internal bool extendedSpeedCurveEnabled;
-        partial void OnExtendedSpeedCurveEnabledChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled = value;
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue67;
-        partial void OnExtendedSpeedCurveValue67Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(67, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue68;
-        partial void OnExtendedSpeedCurveValue68Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(68, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue69;
-        partial void OnExtendedSpeedCurveValue69Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(69, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue70;
-        partial void OnExtendedSpeedCurveValue70Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(70, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue71;
-        partial void OnExtendedSpeedCurveValue71Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(71, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue72;
-        partial void OnExtendedSpeedCurveValue72Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(72, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue73;
-        partial void OnExtendedSpeedCurveValue73Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(73, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue74;
-        partial void OnExtendedSpeedCurveValue74Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(74, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue75;
-        partial void OnExtendedSpeedCurveValue75Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(75, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue76;
-        partial void OnExtendedSpeedCurveValue76Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(76, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue77;
-        partial void OnExtendedSpeedCurveValue77Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(77, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue78;
-        partial void OnExtendedSpeedCurveValue78Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(78, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue79;
-        partial void OnExtendedSpeedCurveValue79Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(79, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue80;
-        partial void OnExtendedSpeedCurveValue80Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(80, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue81;
-        partial void OnExtendedSpeedCurveValue81Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(81, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue82;
-        partial void OnExtendedSpeedCurveValue82Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(82, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue83;
-        partial void OnExtendedSpeedCurveValue83Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(83, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue84;
-        partial void OnExtendedSpeedCurveValue84Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(84, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue85;
-        partial void OnExtendedSpeedCurveValue85Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(85, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue86;
-        partial void OnExtendedSpeedCurveValue86Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(86, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue87;
-        partial void OnExtendedSpeedCurveValue87Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(87, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue88;
-        partial void OnExtendedSpeedCurveValue88Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(88, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue89;
-        partial void OnExtendedSpeedCurveValue89Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(89, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue90;
-        partial void OnExtendedSpeedCurveValue90Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(90, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue91;
-        partial void OnExtendedSpeedCurveValue91Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(91, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue92;
-        partial void OnExtendedSpeedCurveValue92Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(92, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue93;
-        partial void OnExtendedSpeedCurveValue93Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(93, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue94;
-        partial void OnExtendedSpeedCurveValue94Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(94, value);
-        }
+       
 
         [ObservableProperty]
         internal string minimumSpeedValueDescription = "";
@@ -803,13 +811,20 @@ namespace Z2XProgrammer.ViewModel
         /// <summary>
         /// Sets the value of the extended speed curve configurations CVs (CV67 - CV94).
         /// </summary>
-        /// <param name="cvNumber">The number of the configuration variable (67 - 94)</param>
-        /// <param name="value"></param>
+        /// <param name="cvNumber">The number of the configuration variable (67 - 94).</param>
+        /// <param name="value">The value of the CV.</param>
         private bool SetExtendedSpeedCurveValue(ushort cvNumber, byte value)
         {
+            //  Range check 
             if (cvNumber > 94) return false;
             if (cvNumber < 67) return false;
-            DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[cvNumber - 67].Value = value;
+
+            ExtendedSpeedCurveType tempSpeedSettings = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues;
+            
+            tempSpeedSettings.CV[cvNumber - 67].Value = value;
+
+            DecoderConfiguration.RCN225.ExtendedSpeedCurveValues = tempSpeedSettings;
+
             return true;
         }
 
