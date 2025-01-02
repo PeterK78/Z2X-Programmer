@@ -127,7 +127,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Contains the minimum speed of CV2
+        /// Contains the minimum speed of CV2.
         /// </summary>
         public byte MinimumSpeed
         {

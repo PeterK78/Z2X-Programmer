@@ -87,7 +87,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}" />
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
                 <VerticalStackLayout>
-                    <!-- Minimum speed CV2 -->
+                    <!-- RCN225: Minimum speed in CV2 -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -97,23 +97,29 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Label x:Name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <HorizontalStackLayout >
                                 <Slider Value="{Binding MinimumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                        </HorizontalStackLayout>
-                    </Grid>
+                                <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+                        </Grid>
 
-                    <!-- Medium speed CV6 -->
+                    <!-- RCN225: Medium speed in CV6 -->
                     <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MEDIUMSPEED_CV6}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label x:Name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMediumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Column="1">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <HorizontalStackLayout>
                                 <Slider Value="{Binding MediumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                        </HorizontalStackLayout>
+                                <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV6Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
                     </Grid>
 
                     <!-- Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
@@ -129,16 +135,20 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
                         <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
-                            <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                         <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Maximum="255" Minimum="2" VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Maximum="{Binding LimitMaximumMaxSpeedCV5}" Minimum="{Binding LimitMinimumMaxSpeedCV5}" VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                         </HorizontalStackLayout>
+                        
                     </Grid>
                 </VerticalStackLayout>
             </Border>

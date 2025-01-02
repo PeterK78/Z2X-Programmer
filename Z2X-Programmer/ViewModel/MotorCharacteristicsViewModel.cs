@@ -53,8 +53,16 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        #region REGION: DECODER FEATURES
+        #region REGION: LIMITS FOR ENTRY VALIDATION
+        [ObservableProperty]
+        int limitMinimumMaxSpeedCV5=2;
 
+        [ObservableProperty]
+        int limitMaximumMaxSpeedCV5=255;
+        
+        #endregion
+
+        #region REGION: DECODER FEATURES
 
         //  RCN225_SPEEDTABLE_CV29_4
         [ObservableProperty]
@@ -84,6 +92,76 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        // RCN225: Maximum speed in CV5
+        [ObservableProperty]
+        internal string maximumSpeedValueDescription = "";
+
+        [ObservableProperty]
+        internal bool maximumSpeedDefaultUsed;
+        partial void OnMaximumSpeedDefaultUsedChanged(bool value)
+        {
+            if(value == false)
+            {
+                LimitMinimumMaxSpeedCV5 = 2;
+                MaximumSpeed = 100;
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+                CV5Configuration = Subline.Create(new List<byte> { 5 });
+            }
+            else
+            {
+                LimitMinimumMaxSpeedCV5 = 0;
+                MaximumSpeed = 0;
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+                CV5Configuration = Subline.Create(new List<byte> { 5 });
+            }
+        }
+
+        [ObservableProperty]
+        internal byte maximumSpeed;
+        partial void OnMaximumSpeedChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.MaximumSpeed = value;
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+            CV5Configuration = Subline.Create(new List<byte> { 5 });
+        }
+
+        [ObservableProperty]
+        string cV5Configuration = Subline.Create(new List<byte>{5});
+
+
+        // RCN225: Medium speed in CV6
+        [ObservableProperty]
+        internal string mediumSpeedValueDescription = "";
+
+        [ObservableProperty]
+        internal byte mediumSpeed;
+        partial void OnMediumSpeedChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.MediumSpeed = value;
+            MediumSpeedValueDescription = GetMediumSpeedLabel();
+            CV6Configuration = Subline.Create(new List<byte>{6});
+        }
+
+        [ObservableProperty]
+        string cV6Configuration = Subline.Create(new List<byte>{6});
+
+
+        // RCN225: Minimum speed in CV2
+        [ObservableProperty]
+        internal string minimumSpeedValueDescription = "";
+
+        [ObservableProperty]
+        internal byte minimumSpeed;
+        partial void OnMinimumSpeedChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.MinimumSpeed = value;
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel();
+            CV2Configuration = Subline.Create(new List<byte>{2});
+        }
+        [ObservableProperty]
+        string cV2Configuration = Subline.Create(new List<byte>{2});
+        
 
         // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
         [ObservableProperty]
@@ -464,9 +542,6 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-       
-       
-
         [ObservableProperty]
         internal ObservableCollection<string> availableMotorControlPIDMotorTypes;
 
@@ -519,13 +594,6 @@ namespace Z2XProgrammer.ViewModel
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
         }
 
-
-      
-
-
-       
-
-
         [ObservableProperty]
         internal byte impulsWidthValue;
         partial void OnImpulsWidthValueChanged(byte value)
@@ -536,54 +604,7 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         internal string impulsWidthTime = "";
-
-
-       
-
-        [ObservableProperty]
-        internal string minimumSpeedValueDescription = "";
-
-        [ObservableProperty]
-        internal byte minimumSpeed;
-        partial void OnMinimumSpeedChanged(byte value)
-        {
-            DecoderConfiguration.RCN225.MinimumSpeed = value;
-            MinimumSpeedValueDescription = GetMinimumSpeedLabel();
-        }
-
-        [ObservableProperty]
-        internal string mediumSpeedValueDescription = "";
-
-        [ObservableProperty]
-        internal byte mediumSpeed;
-        partial void OnMediumSpeedChanged(byte value)
-        {
-            DecoderConfiguration.RCN225.MediumSpeed = value;
-            MediumSpeedValueDescription = GetMediumSpeedLabel();
-        }
-
-        [ObservableProperty]
-        internal string maximumSpeedValueDescription = "";
-
-
-        [ObservableProperty]
-        internal bool maximumSpeedDefaultUsed;
-        partial void OnMaximumSpeedDefaultUsedChanged(bool value)
-        {
-            if(true)
-            {
-                MaximumSpeed = DecoderConfiguration.RCN225Backup.MaximumSpeed;
-                MaximumSpeedValueDescription = GetMaximumSpeedLabel();
-            }
-        }
-
-        [ObservableProperty]
-        internal byte maximumSpeed;
-        partial void OnMaximumSpeedChanged(byte value)
-        {
-            DecoderConfiguration.RCN225.MaximumSpeed = value;
-            MaximumSpeedValueDescription = GetMaximumSpeedLabel();
-        }
+        
         #endregion
         
         #region REGION: CONSTRUCTOR
@@ -594,6 +615,8 @@ namespace Z2XProgrammer.ViewModel
 
             OnGetDataFromDecoderSpecification();
             OnGetDecoderConfiguration();
+
+            SetGUILimits();
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
@@ -826,6 +849,15 @@ namespace Z2XProgrammer.ViewModel
             DecoderConfiguration.RCN225.ExtendedSpeedCurveValues = tempSpeedSettings;
 
             return true;
+        }
+
+        /// <summary>
+        /// Sets the limits for all GUI elements.
+        /// </summary>
+        private void SetGUILimits()
+        {
+            LimitMaximumMaxSpeedCV5 = 255;
+            LimitMinimumMaxSpeedCV5 = 2;    
         }
 
         #endregion
