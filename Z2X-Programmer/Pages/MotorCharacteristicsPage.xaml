@@ -389,7 +389,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             </Border>
 
-            <!-- ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57) -->
+            <!-- ZIMO: MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57) -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                 <Grid Margin="0,10,0,0">
@@ -405,18 +405,21 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                            <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV57Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                         <Label IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                            <Slider  Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="0" Maximum="155"  VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label   Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                            <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" Maximum="{Binding LimitMaximumZIMOMSmotorControlReferenceVoltage}"  VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
                         </HorizontalStackLayout>
-                </Grid>
+                        
+                    </Grid>
             </Border>
 
             <!-- ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9) -->

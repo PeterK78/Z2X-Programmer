@@ -59,6 +59,12 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         int limitMaximumMaxSpeedCV5=255;
+
+        [ObservableProperty]
+        int limitMinimumZIMOMSmotorControlReferenceVoltage = 1;
+
+        [ObservableProperty]
+        int limitMaximumZIMOMSmotorControlReferenceVoltage = 155;
         
         #endregion
 
@@ -515,14 +521,23 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        // ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
+        // ZIMO: MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
         [ObservableProperty]
         internal bool zIMOMSMotorControlReferenceVoltageAutomaticMode;
         partial void OnZIMOMSMotorControlReferenceVoltageAutomaticModeChanged(bool value)
         {
-            if (value == true) ZIMOMSmotorControlReferenceValue = 0;
+            if (value == true)
+            {
+                LimitMinimumZIMOMSmotorControlReferenceVoltage = 0;
+                ZIMOMSmotorControlReferenceValue = 0;
+            }
+            else
+            {
+                LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
+                ZIMOMSmotorControlReferenceValue = 1;
+            }
+            CV57Configuration = Subline.Create(new List<byte>{57});
         }
-
 
         [ObservableProperty]
         internal string zIMOMSmotorControlReferenceVoltage = "";
@@ -534,13 +549,18 @@ namespace Z2XProgrammer.ViewModel
             if (value != 0)
             {
                 DecoderConfiguration.ZIMO.MotorReferenceVoltage = (byte)(value + (byte)100);
-                ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";                
+                ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
             }
             else
             {
                 DecoderConfiguration.ZIMO.MotorReferenceVoltage = 0;
             }
+            CV57Configuration = Subline.Create(new List<byte>{57});
         }
+
+        [ObservableProperty]
+        string cV57Configuration = Subline.Create(new List<byte>{57});
+
 
         [ObservableProperty]
         internal ObservableCollection<string> availableMotorControlPIDMotorTypes;
@@ -857,7 +877,10 @@ namespace Z2XProgrammer.ViewModel
         private void SetGUILimits()
         {
             LimitMaximumMaxSpeedCV5 = 255;
-            LimitMinimumMaxSpeedCV5 = 2;    
+            LimitMinimumMaxSpeedCV5 = 2;
+
+            LimitMaximumZIMOMSmotorControlReferenceVoltage = 155;
+            LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
         }
 
         #endregion
