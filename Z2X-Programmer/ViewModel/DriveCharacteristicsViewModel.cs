@@ -223,16 +223,16 @@ namespace Z2XProgrammer.ViewModel
 
             SetGUILimits();
 
-            OnGetDataFromDataStore();
             OnGetDataFromDecoderSpecification();
-
-                WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
+            OnGetDataFromDataStore();
+            
+            WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        OnGetDataFromDataStore();
-                    });
+                    OnGetDataFromDataStore();
                 });
+            });
 
             WeakReferenceMessenger.Default.Register<DecoderSpecificationUpdatedMessage>(this, (r, m) =>
             {
