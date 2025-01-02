@@ -433,7 +433,7 @@ The following error has occurred:</value>
     <value>Activate this switch if you want to use a braking time</value>
   </data>
   <data name="FrameDriveCharacteristicsDirectionDescription" xml:space="preserve">
-    <value>Use these options to reverse the direction of travel. These functions are used, for example, with incorrectly installed decoders.</value>
+    <value>Use these options to reverse the direction of travel.</value>
   </data>
   <data name="FrameDriveCharacteristicsDirectionLabel" xml:space="preserve">
     <value>Direction of travel inverted (CV29.0)</value>

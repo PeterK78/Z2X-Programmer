@@ -419,7 +419,7 @@ Folgender Fehler ist aufgetreten:
     <value>Bremsstrecken</value>
   </data>
   <data name="FrameDriveCharacteristicsConsistDirectionLabel" xml:space="preserve">
-    <value>Fahrtrichtung im Verbundbetrieb invertiert (CV19.7)</value>
+    <value>Fahrtrichtung im Verbundbetrieb invertieren (CV19.7)</value>
   </data>
   <data name="FrameDriveCharacteristicsDecTimeEnabled" xml:space="preserve">
     <value>Bremszeit verwenden</value>
@@ -434,10 +434,10 @@ Folgender Fehler ist aufgetreten:
     <value>Aktivieren Sie diesen Schalter wenn Sie eine Bremszeit verwenden wollen</value>
   </data>
   <data name="FrameDriveCharacteristicsDirectionDescription" xml:space="preserve">
-    <value>Vewenden Sie diese Optionen, um die Fahrtrichtung umzukehren. Diese Funktionen werden z. B. bei falsch verbauten Decodern angewendet.</value>
+    <value>Vewenden Sie diese Optionen, um die Fahrtrichtung umzukehren.</value>
   </data>
   <data name="FrameDriveCharacteristicsDirectionLabel" xml:space="preserve">
-    <value>Fahrtrichtung invertiert (CV29.0)</value>
+    <value>Fahrtrichtung invertieren (CV29.0)</value>
   </data>
   <data name="FrameDriveCharacteristicsTitle" xml:space="preserve">
     <value>Fahrtrichtung</value>

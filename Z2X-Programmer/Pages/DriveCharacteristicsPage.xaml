@@ -74,22 +74,33 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDirectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
+                        <!-- RCN225: Normal drive direction in CV29.0 (RCN225_DIRECTION_CV29_0) -->
                         <Label x:Name="FrameDriveCharacteristicsDirectionLabel" IsVisible="{Binding RCN225_DIRECTION_CV29_0}" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDirectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_DIRECTION_CV29_0}">
-                            <Label Text="{Binding Path=DirectionReversal,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding DirectionReversal}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_DIRECTION_CV29_0}">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Path=DirectionReversal,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <VerticalStackLayout>
+                                <Switch IsToggled="{Binding DirectionReversal}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
+                        <!-- RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19) -->
                         <Label  x:Name="FrameDriveCharacteristicsConsistDirectionLabel" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsConsistDirectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
-                            <Label Text="{Binding Path=DirectionConsistModeReveral,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding DirectionConsistModeReveral}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DirectionConsistModeReveral,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DirectionConsistModeReveral}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV19Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                     </Grid>
+                    
                 </Border>
 
-                <!-- RCN225: Speed step system -->
+                <!-- RCN225: Speed steps mode in CV29.0 (RCN225_SPEEDSTEPSMODE_CV29_0) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSpeedStepsSystemTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                 <Border Style="{StaticResource Z2XBorderFrame}">
                     <Grid>
@@ -103,16 +114,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSpeedStepsSystemDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label x:Name="FrameSpeedStepsSystemLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSpeedStepsSystemLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Picker Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerPickerStyle}" HorizontalTextAlignment="End" ItemsSource="{Binding AvailableSpeedStepModes}" SelectedItem="{Binding SelectedSpeedStepsMode}" HorizontalOptions="End" WidthRequest="300" MinimumWidthRequest="300" VerticalOptions="Center"></Picker>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" Margin="0,20,0,0">
+                            <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" HorizontalTextAlignment="End" ItemsSource="{Binding AvailableSpeedStepModes}" SelectedItem="{Binding SelectedSpeedStepsMode}" HorizontalOptions="End" WidthRequest="300" MinimumWidthRequest="300" VerticalOptions="Center"></Picker>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
                     </Grid>
                 </Border>
 
-                <!-- RCN225: Acceleration CV3 / Deceleration CV4 -->
+                <!-- RCN225: Acceleration rate in CV3  / Deceleration rate in CV4 -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccDecTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                 <Border Style="{StaticResource Z2XBorderFrame}">
                     <VerticalStackLayout>
 
-                        <!-- Acceleration rate CV3 -->
+                        <!-- RCN225: Acceleration rate in CV3 -->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -126,24 +140,25 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                             <Label x:Name="FrameDriveCharacteristicsAccDecAccTimeEnabledDisabled" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccDecAccTimeEnabledDisabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccTimeEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                                <Label Text="{Binding Path=AccelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding AccelerationRateEnabled}" HorizontalOptions="End"></Switch>
-                            </HorizontalStackLayout>
-                            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccDecAccTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding AccelerationRateEnabled}" />
-
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding AccelerationRateEnabled}" Margin="0,10,0,0" >
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                                 <HorizontalStackLayout>
-                                    <Button Text="-" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=DecreaseAccelarationRateCV3Command}" ></Button>
-                                    <Slider Margin="20,0,20,0"  Value="{Binding AccelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="{Binding LimitMaximumAccelerationRateCV3}" Minimum="{Binding LimitMinimumAccelerationRateCV3}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Button Text="+" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=IncreaseAccelarationRateCV3Command}"></Button>
-                                    <Label Text="{Binding AccelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="105" HorizontalTextAlignment="End" />
+                                    <Label Text="{Binding Path=AccelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch IsToggled="{Binding AccelerationRateEnabled}" HorizontalOptions="End"></Switch>
                                 </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV3Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
+                            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccDecAccTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding AccelerationRateEnabled}" />
+                            
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding AccelerationRateEnabled}" Margin="0,10,0,0" >
+                                <Button Text="-" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=DecreaseAccelarationRateCV3Command}" ></Button>
+                                <Slider Margin="20,0,20,0"  Value="{Binding AccelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="{Binding LimitMaximumAccelerationRateCV3}" Minimum="{Binding LimitMinimumAccelerationRateCV3}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Button Text="+" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DriveCharacteristicsViewModel}}, Path=IncreaseAccelarationRateCV3Command}"></Button>
+                                <Label Text="{Binding AccelerationRateTime}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="5,0,0,0" MinimumWidthRequest="105" HorizontalTextAlignment="End" />
+                            </HorizontalStackLayout>
 
                         </Grid>
 
-                        <!-- Decleration rate CV4 -->
+                        <!-- RCN225: Decleration rate CV4 -->
                         <Grid Margin="0,40,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -158,10 +173,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                             <Label x:Name="FrameDriveCharacteristicsDecTimeLabel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                                <Label Text="{Binding Path=DecelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSwitchToolTip}" IsToggled="{Binding DecelerationRateEnabled}" HorizontalOptions="End" ></Switch>
-                            </HorizontalStackLayout>
+                            <VerticalStackLayout  Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Path=DecelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSwitchToolTip}" IsToggled="{Binding DecelerationRateEnabled}" HorizontalOptions="End" ></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV4Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>                                
+                                
                             <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsAccDecDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DecelerationRateEnabled}" />
 
                             <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding DecelerationRateEnabled}" Margin="0,10,0,0" >
@@ -178,7 +197,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- RCN225: Braking tracks -->
+                <!-- RCN225: ABC and HLU brraking track functions (RCN225_ABC_CV27_X) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                 <Border Style="{StaticResource Z2XBorderFrame}">
                     <Grid>
@@ -194,16 +213,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
 
-                        <!-- ABC CV27.x -->
+                        <!-- RCN225: ABC breaking track function in CV27 (RCN225_ABC_CV27_X) -->
                         <Label  x:Name="FrameDriveCharacteristicsBrakingTrackABCLabel"  IsVisible="{Binding RCN225_ABC_CV27_X}"  LineBreakMode="WordWrap"   Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackABCLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Picker Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" IsVisible="{Binding RCN225_ABC_CV27_X}" ItemsSource="{Binding AvailableABCBreakModes}" SelectedItem="{Binding SelectedABCBreakMode}" HorizontalOptions="End" WidthRequest="400" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding RCN225_ABC_CV27_X}" >
+                            <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableABCBreakModes}" SelectedItem="{Binding SelectedABCBreakMode}" HorizontalOptions="End" WidthRequest="400" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV27Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                        <!-- HLU CV27.2 -->
+                        <!-- RCN225: HLU breaking track function in CV27.2 (RCN225_HLU_CV27_2) -->
                         <Label x:Name="FrameDriveCharacteristicsBrakingTrackHLULabel"   IsVisible="{Binding RCN225_HLU_CV27_2}"  LineBreakMode="WordWrap"   Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackHLULabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_HLU_CV27_2}">
-                            <Label Text="{Binding Path=HluEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding HluEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_HLU_CV27_2}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=HluEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding HluEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV27Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                     </Grid>
                 </Border>

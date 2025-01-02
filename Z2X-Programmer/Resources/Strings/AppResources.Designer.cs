@@ -1229,7 +1229,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use these options to reverse the direction of travel. These functions are used, for example, with incorrectly installed decoders..
+        ///   Looks up a localized string similar to Use these options to reverse the direction of travel..
         /// </summary>
         public static string FrameDriveCharacteristicsDirectionDescription {
             get {

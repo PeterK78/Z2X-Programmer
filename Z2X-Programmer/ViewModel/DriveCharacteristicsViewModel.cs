@@ -25,6 +25,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
@@ -33,6 +34,19 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class DriveCharacteristicsViewModel : ObservableObject
     {
+
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
         [ObservableProperty]
@@ -51,9 +65,7 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: DECODER FEATURES
 
-        [ObservableProperty]
-        bool dataStoreDataValid;
-
+        //  RCN225: Drive direction in CV29.0 (RCN225_DIRECTION_CV29_0)
         [ObservableProperty]
         bool rCN225_DIRECTION_CV29_0;
 
@@ -70,8 +82,112 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
+        //  RCN225: Drive direction in CV29.0 (RCN225_DIRECTION_CV29_0)
+        [ObservableProperty]
+        bool directionReversal;
+        partial void OnDirectionReversalChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.DirectionReversal = value;
+            CV29Configuration = Subline.Create(new List<byte>{29});
+        }
+        [ObservableProperty]
+        string cV29Configuration = Subline.Create(new List<byte>{29});
 
-        //  RCN225_ABC_CV27_X
+        //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19) -->
+        [ObservableProperty]
+        bool directionConsistModeReveral;
+        partial void OnDirectionConsistModeReveralChanged(bool value)
+        {
+            DecoderConfiguration.RCN225.DirectionReversalConsistMode = value;
+            CV19Configuration = Subline.Create(new List<byte> { 19 });  
+        }        
+        [ObservableProperty]
+        string cV19Configuration = Subline.Create(new List<byte>{19});
+
+        //  RCN225: Speed steps mode in CV29.0 (RCN225_SPEEDSTEPSMODE_CV29_0)
+        [ObservableProperty]
+        internal ObservableCollection<string> availableSpeedStepModes;
+        
+        [ObservableProperty]
+        internal string selectedSpeedStepsMode = "";
+        partial void OnSelectedSpeedStepsModeChanged(string value)
+        {
+            if ((value == null) || (value == "")) return;
+            DecoderConfiguration.RCN225.SpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepsModeFromDescription(value);
+            AccelerationRateTime = GetAccelerationRateTimeLabel();
+            CV29Configuration = Subline.Create(new List<byte>{29});
+        }
+
+        // RCN225: Acceleration rate in CV3
+        [ObservableProperty]
+        internal bool accelerationRateEnabled;
+        partial void OnAccelerationRateEnabledChanged(bool value)
+        {
+            if (value == true)
+            {
+                LimitMinimumAccelerationRateCV3 = 1;
+                AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
+            }
+            else
+            {
+                //  We turn off the acceleration rate.
+                LimitMinimumAccelerationRateCV3 = 0;
+                AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
+            }
+            CV3Configuration = Subline.Create(new List<byte>{3});
+        }
+
+        [ObservableProperty]
+        internal byte accelerationRate;
+        partial void OnAccelerationRateChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.AccelerationRate = value;
+            AccelerationRateTime = GetAccelerationRateTimeLabel();
+            CV3Configuration = Subline.Create(new List<byte>{3});
+        }
+
+        [ObservableProperty]
+        internal string accelerationRateTime = "";
+
+        [ObservableProperty]
+        string cV3Configuration = Subline.Create(new List<byte>{3});
+
+        // RCN225: Decleration rate CV4
+        [ObservableProperty]
+        internal bool decelerationRateEnabled;
+        partial void OnDecelerationRateEnabledChanged(bool value)
+        {
+            if (value == true)
+            {
+                LimitMinimumDecelerationRateCV4 = 1;
+                DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
+            }   
+            else
+            {
+                //  We turn off the deceleration rate.
+                LimitMinimumDecelerationRateCV4 = 0;
+                DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
+            }
+            CV4Configuration = Subline.Create(new List<byte> { 4 });
+        }
+
+        [ObservableProperty]
+        internal byte decelerationRate;
+        partial void OnDecelerationRateChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.DecelerationRate = value;
+            DecelerationRateTime = GetDecelerationRateTimeLabel();
+            CV4Configuration = Subline.Create(new List<byte> { 4 });
+        }
+
+        [ObservableProperty]
+        internal string decelerationRateTime = "";
+
+        [ObservableProperty]
+        string cV4Configuration = Subline.Create(new List<byte>{4});
+
+
+        // RCN225: ABC breaking track function in CV27 (RCN225_ABC_CV27_X)
         [ObservableProperty]
         internal ObservableCollection<string> availableABCBreakModes;
 
@@ -81,85 +197,20 @@ namespace Z2XProgrammer.ViewModel
         {
             if ((value == null) || (value == "")) return;
             DecoderConfiguration.RCN225.ABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeFromDescription(value);
+            CV27Configuration = Subline.Create(new List<byte> { 27 });
         }
 
+        [ObservableProperty]
+        string cV27Configuration = Subline.Create(new List<byte>{27});
+
+        // RCN225: HLU function in CV27 (RCN225_HLU_CV27_2)
         [ObservableProperty]
         bool hluEnabled;
         partial void OnHluEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.HLUEnabled = value;
+            CV27Configuration = Subline.Create(new List<byte>{27});
         }
-
-        [ObservableProperty]
-        bool directionConsistModeReveral;
-        partial void OnDirectionConsistModeReveralChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.DirectionReversalConsistMode = value;
-        }
-
-
-        [ObservableProperty]
-        bool directionReversal;
-        partial void OnDirectionReversalChanged(bool value)
-        {
-            DecoderConfiguration.RCN225.DirectionReversal = value;
-        }
-
-        [ObservableProperty]
-        internal ObservableCollection<string> availableSpeedStepModes;
-
-        [ObservableProperty]
-        internal string selectedSpeedStepsMode = "";
-        partial void OnSelectedSpeedStepsModeChanged(string value)
-        {
-            if ((value == null) || (value == "")) return;
-            DecoderConfiguration.RCN225.SpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepsModeFromDescription(value);
-            AccelerationRateTime = GetAccelerationRateTimeLabel();
-        }
-
-        
-
-        [ObservableProperty]
-        internal bool accelerationRateEnabled;
-        partial void OnAccelerationRateEnabledChanged(bool value)
-        {
-            if (value == true)
-            {
-                AccelerationRate = DecoderConfiguration.RCN225.AccelerationRate;
-            }
-        }
-
-        [ObservableProperty]
-        internal byte accelerationRate;
-        partial void OnAccelerationRateChanged(byte value)
-        {
-            DecoderConfiguration.RCN225.AccelerationRate = value;
-            AccelerationRateTime = GetAccelerationRateTimeLabel();
-        }
-
-        [ObservableProperty]
-        internal string accelerationRateTime = "";
-
-        [ObservableProperty]
-        internal bool decelerationRateEnabled;
-        partial void OnDecelerationRateEnabledChanged(bool value)
-        {
-            if (value == true)
-            {
-                DecelerationRate = DecoderConfiguration.RCN225Backup.DecelerationRate;
-            }                
-        }
-
-        [ObservableProperty]
-        internal byte decelerationRate;
-        partial void OnDecelerationRateChanged(byte value)
-        {
-            DecoderConfiguration.RCN225.DecelerationRate = value;
-            DecelerationRateTime = GetDecelerationRateTimeLabel();
-        }
-
-        [ObservableProperty]
-        internal string decelerationRateTime = "";
 
         #endregion
 
@@ -214,7 +265,7 @@ namespace Z2XProgrammer.ViewModel
         /// <returns></returns>
         private string GetAccelerationRateTimeLabel()
         {
-            return AccelerationRate.ToString() + " (" + String.Format("{0:N2}", NMRA.CalculateAccDecRateTimes(AccelerationRate, DecoderConfiguration.RCN225.SpeedStepsMode)) + " s)";
+            return AccelerationRate.ToString() + " (" + String.Format("{0:N1}", NMRA.CalculateAccDecRateTimes(AccelerationRate, DecoderConfiguration.RCN225.SpeedStepsMode)) + " s)";
         }
 
         /// <summary>
@@ -248,12 +299,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
-            DirectionReversal = DecoderConfiguration.RCN225.DirectionReversal;
-            HluEnabled = DecoderConfiguration.RCN225.HLUEnabled;
             SelectedSpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepModeDescription(DecoderConfiguration.RCN225.SpeedStepsMode);
-
-            SelectedABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeDescription(DecoderConfiguration.RCN225.ABCBreakMode);
-
             AccelerationRate = DecoderConfiguration.RCN225.AccelerationRate;
             if(AccelerationRate == 0)
             {
@@ -276,6 +322,11 @@ namespace Z2XProgrammer.ViewModel
                 DecelerationRateEnabled = true;
             }
             DecelerationRateTime = GetDecelerationRateTimeLabel();
+            
+            if(RCN225_DIRECTION_CV29_0  == true) DirectionReversal = DecoderConfiguration.RCN225.DirectionReversal;
+            if(RCN225_HLU_CV27_2 == true) HluEnabled = DecoderConfiguration.RCN225.HLUEnabled;
+            if(RCN225_ABC_CV27_X == true) SelectedABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeDescription(DecoderConfiguration.RCN225.ABCBreakMode);
+            
         }
 
         #endregion
