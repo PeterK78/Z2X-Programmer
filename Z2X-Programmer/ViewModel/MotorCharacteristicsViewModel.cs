@@ -56,15 +56,9 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: LIMITS FOR ENTRY VALIDATION
         [ObservableProperty]
         int limitMinimumMaxSpeedCV5=2;
-
-        [ObservableProperty]
-        int limitMaximumMaxSpeedCV5=255;
-
+        
         [ObservableProperty]
         int limitMinimumZIMOMSmotorControlReferenceVoltage = 1;
-
-        [ObservableProperty]
-        int limitMaximumZIMOMSmotorControlReferenceVoltage = 155;
         
         #endregion
 
@@ -526,15 +520,15 @@ namespace Z2XProgrammer.ViewModel
         internal bool zIMOMSMotorControlReferenceVoltageAutomaticMode;
         partial void OnZIMOMSMotorControlReferenceVoltageAutomaticModeChanged(bool value)
         {
-            if (value == true)
-            {
-                LimitMinimumZIMOMSmotorControlReferenceVoltage = 0;
-                ZIMOMSmotorControlReferenceValue = 0;
-            }
-            else
+            if (value == false)
             {
                 LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
                 ZIMOMSmotorControlReferenceValue = 1;
+            }
+            else
+            {
+                LimitMinimumZIMOMSmotorControlReferenceVoltage = 0;
+                ZIMOMSmotorControlReferenceValue = 0;
             }
             CV57Configuration = Subline.Create(new List<byte>{57});
         }
@@ -562,6 +556,7 @@ namespace Z2XProgrammer.ViewModel
         string cV57Configuration = Subline.Create(new List<byte>{57});
 
 
+        // ZIMO: MX decoder motor control PID settings CV56
         [ObservableProperty]
         internal ObservableCollection<string> availableMotorControlPIDMotorTypes;
 
@@ -579,8 +574,8 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
+            CV56Configuration = Subline.Create(new List<byte> { 56 });
         }
-
 
         [ObservableProperty]
         internal int motorControlPIDIntegralValue;
@@ -596,6 +591,7 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
+            CV56Configuration = Subline.Create(new List<byte> { 56 });
         }
 
         [ObservableProperty]
@@ -612,18 +608,30 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
+            CV56Configuration = Subline.Create(new List<byte>{56});
         }
 
+        [ObservableProperty]
+        string cV56Configuration = Subline.Create(new List<byte>{56});
+        
+
+        // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
         [ObservableProperty]
         internal byte impulsWidthValue;
         partial void OnImpulsWidthValueChanged(byte value)
         {
             DecoderConfiguration.DoehlerHaas.MotorImpulsWidth = value;
             UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
+            CV49Configuration = Subline.Create(new List<byte>{49});
         }
 
         [ObservableProperty]
         internal string impulsWidthTime = "";
+
+        [ObservableProperty]
+        string cV49Configuration = Subline.Create(new List<byte>{49});
+        
+
         
         #endregion
         
@@ -635,9 +643,7 @@ namespace Z2XProgrammer.ViewModel
 
             OnGetDataFromDecoderSpecification();
             OnGetDecoderConfiguration();
-
-            SetGUILimits();
-
+            
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -871,17 +877,14 @@ namespace Z2XProgrammer.ViewModel
             return true;
         }
 
-        /// <summary>
-        /// Sets the limits for all GUI elements.
-        /// </summary>
-        private void SetGUILimits()
-        {
-            LimitMaximumMaxSpeedCV5 = 255;
-            LimitMinimumMaxSpeedCV5 = 2;
-
-            LimitMaximumZIMOMSmotorControlReferenceVoltage = 155;
-            LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
-        }
+        ///// <summary>
+        ///// Sets the limits for all GUI elements.
+        ///// </summary>
+        //private void SetGUILimits()
+        //{
+        //    LimitMaximumZIMOMSmotorControlReferenceVoltage = 155;
+        //    LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
+        //}
 
         #endregion
 

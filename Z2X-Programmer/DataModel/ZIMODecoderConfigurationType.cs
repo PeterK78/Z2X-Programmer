@@ -754,7 +754,7 @@ namespace Z2XProgrammer.DataModel
 
 
         /// <summary>
-        /// Gets or sets the motor PID settings in CV56
+        /// Gets or sets the motor PID settings in CV56.
         /// </summary>
         public byte MotorPIDSettings
         {

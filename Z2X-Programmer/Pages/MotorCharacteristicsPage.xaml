@@ -145,7 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Maximum="{Binding LimitMaximumMaxSpeedCV5}" Minimum="{Binding LimitMinimumMaxSpeedCV5}" VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="{Binding LimitMinimumMaxSpeedCV5}"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                         </HorizontalStackLayout>
                         
@@ -415,7 +415,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                            <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" Maximum="{Binding LimitMaximumZIMOMSmotorControlReferenceVoltage}"  VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" Maximum="155" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
                         </HorizontalStackLayout>
                         
@@ -493,9 +493,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </VerticalStackLayout>             
             </Border>
 
-            <!-- ZIMO MX decoder motor control PID settings CV56 -->
+            <!-- ZIMO: MX decoder motor control PID settings CV56 (ZIMO_MXMOTORCONTROLPID_CV56) -->
             <Label IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
+            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
                 <Grid Margin="0,10,0,0">
                     <Grid.RowDefinitions>
                          <RowDefinition Height="*"></RowDefinition>
@@ -510,26 +510,38 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,10,0,20" />
 
+                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Motor type selection -->
                     <Label  Grid.Row="1" Grid.Column="0" Margin ="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDMotorType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Picker  Grid.Row="1"  Grid.Column="1" Margin ="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End" ></Picker>
+                    <VerticalStackLayout Grid.Row="1"  Grid.Column="1" Margin ="0,10,0,20">
+                        <Picker   ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End" ></Picker>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Proportional value -->
                     <Label Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDPValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                        <HorizontalStackLayout >
                             <Slider  Value="{Binding MotorControlPIDProportionalValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
+                            <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
 
+                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Integral value -->
                     <Label Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDIValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="3" Grid.Column="1" >
+                    <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                        <HorizontalStackLayout >
                             <Slider  Value="{Binding MotorControlPIDIntegralValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                </Grid>
+                            <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
+                    
+                    </Grid>
 
             </Border>
 
-            <!-- Döhler & Haas specific -->
+            <!-- DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49) -->
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -539,10 +551,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Column="0" >
                         <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     </VerticalStackLayout>
-                    <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
                             <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                        <Label WidthRequest="100" Text="{Binding ImpulsWidthTime}" VerticalOptions="Center" Margin="10,0,0,0" ></Label>
-                    </HorizontalStackLayout>
+                            <Label WidthRequest="100" Text="{Binding ImpulsWidthTime}" VerticalOptions="Center" Margin="10,0,0,0" ></Label>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
                 </Grid>
             </Border>
 
