@@ -1407,7 +1407,7 @@ The application is aimed at beginners who want to configure the most important f
 (e.g. multiMAUS, ᴡʟᴀɴMAUS, etc.)</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
-    <value>Configuration Variable</value>
+    <value>Number of the configuration variable </value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
     <value>Function key in the decoder</value>
@@ -1559,5 +1559,8 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameGettingStartedIntroduction" xml:space="preserve">
     <value>Carry out the following steps after starting Z2X-Programmer for the first time:</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleValue" xml:space="preserve">
+    <value>Value of the configuration variable </value>
   </data>
 </root>

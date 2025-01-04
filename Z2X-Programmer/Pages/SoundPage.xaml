@@ -64,9 +64,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-                <!-- ZIMO_SOUND_VOLUME_GENERIC_C266 -->
+                <!-- ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266) -->
                 <Label IsVisible="{Binding ZIMO_SOUND_VOLUME_GENERIC_C266}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_GENERIC_C266}" >
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_GENERIC_C266}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -79,7 +79,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
                     
                         <Label Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeLabel}" VerticalOptions="Center" />
-                    
+
+                        <!-- ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266) -->
                         <VerticalStackLayout Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
                             <Label x:Name="FrameSoundOverallVolumeTitle" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundOverallVolumeTitle}" VerticalOptions="Center" />
                             <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeTooltip}" VerticalOptions="Center" />
@@ -87,47 +88,49 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Margin="20,20,0,0">
                             <VerticalStackLayout VerticalOptions="Center">
                                 <Slider Value="{Binding OverallVolume}"  WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                                <Frame Grid.Row="2" Grid.Column="1" WidthRequest="300" MinimumWidthRequest="300"  HeightRequest="4" HorizontalOptions="Start">
-                                    <Frame.Background>
+                                <Border Style="{StaticResource Z2XBorderFrame}" Grid.Row="2" Grid.Column="1" WidthRequest="300" MinimumWidthRequest="300"  HeightRequest="4" HorizontalOptions="Start">
+                                    <Border.Background>
                                         <LinearGradientBrush EndPoint="1,0">
                                             <GradientStop Color="Green" Offset="0.0" />
                                             <GradientStop Color="Yellow" Offset="0.2" />
                                             <GradientStop Color="Orange" Offset="0.3" />
                                             <GradientStop Color="Red" Offset="0.5" />
                                         </LinearGradientBrush>
-                                    </Frame.Background>
-                                </Frame>
+                                    </Border.Background>
+                                </Border>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV266Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
                             <Label  Text="{Binding OverallVolumeText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
                         </HorizontalStackLayout>
 
+                        <!-- ZIMO: SoundMaxVolumeFuncKeys CV395 -->
                         <VerticalStackLayout Grid.Row="3" Grid.Column="0" Margin="0,20,0,0">
                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}"  HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundMaxVolumeFuncKeysLabel}" VerticalOptions="Center" />
                             <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundMaxVolumeFuncKeysTooltip}" VerticalOptions="Center" />
                         </VerticalStackLayout>
-                    
                         <HorizontalStackLayout Grid.Row="3" Grid.Column="1" Margin="20,20,0,0">
                             <VerticalStackLayout VerticalOptions="Center">
                                 <Slider Value="{Binding MaximumVolumeForFunctionKeys}"  WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Frame Grid.Row="2" Grid.Column="1" WidthRequest="300" MinimumWidthRequest="300"  HeightRequest="4" HorizontalOptions="Start">
-                                    <Frame.Background>
+                                <Border Style="{StaticResource Z2XBorderFrame}" Grid.Row="2" Grid.Column="1" WidthRequest="300" MinimumWidthRequest="300"  HeightRequest="4" HorizontalOptions="Start">
+                                    <Border.Background>
                                         <LinearGradientBrush EndPoint="1,0">
                                             <GradientStop Color="Green" Offset="0.0" />
                                             <GradientStop Color="Yellow" Offset="0.2" />
                                             <GradientStop Color="Orange" Offset="0.3" />
                                             <GradientStop Color="Red" Offset="0.5" />
                                         </LinearGradientBrush>
-                                    </Frame.Background>
-                                </Frame>
+                                    </Border.Background>
+                                </Border>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV395Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
                             <Label  Text="{Binding MaximumVolumeForFunctionKeysText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
                         </HorizontalStackLayout>
                     </Grid>
-            </Frame>
+            </Border>
 
-                <!-- ZIMO_SOUND_VOLUME_STEAM_CV27X-->
+                <!-- ZIMO: Steam sounds in CV27X (ZIMO_SOUND_VOLUME_STEAM_CV27X) -->
                 <Label IsVisible="{Binding ZIMO_SOUND_VOLUME_STEAM_CV27X}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeSteamLocomotiveTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_STEAM_CV27X}" >
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_STEAM_CV27X}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -149,35 +152,50 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeLowSpeedNoLoadLabel}" VerticalOptions="Center" />
-                        <HorizontalStackLayout Grid.Row="0" Grid.Column="1"  VerticalOptions="Center" >
-                            <Slider Value="{Binding SoundVolumeSlowSpeedNoLoad}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding SoundVolumeSlowSpeedNoLoad}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout  Grid.Row="0" Grid.Column="1"  VerticalOptions="Center" >
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding SoundVolumeSlowSpeedNoLoad}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding SoundVolumeSlowSpeedNoLoad}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV275Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
+                        <!-- ZIMO: ZIMO_SOUND_VOLUME_FASTSPEEDNOLOAD_CV276 -->                                
                         <Label Margin="0,20,0,0"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeFastSpeedNoLoadLabel}" VerticalOptions="Center" />
-                        <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1"  VerticalOptions="Center" >
-                            <Slider Value="{Binding SoundVolumeFastSpeedNoLoad}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding SoundVolumeFastSpeedNoLoad}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1"  VerticalOptions="Center" >
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding SoundVolumeFastSpeedNoLoad}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding SoundVolumeFastSpeedNoLoad}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV276Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
+                        <!-- ZIMO: ZIMO: ZIMO_SOUND_VOLUME_ACCELERATION_CV283 -->
                         <Label Margin="0,20,0,0" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeAccelerationLabel}" VerticalOptions="Center" />
-                        <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" >
-                            <Slider Value="{Binding SoundVolumeAcceleration}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding SoundVolumeAcceleration}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout  Margin="0,20,0,0" Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+                            <HorizontalStackLayout >
+                                <Slider Value="{Binding SoundVolumeAcceleration}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding SoundVolumeAcceleration}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV283Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
+                        <!-- ZIMO: ZIMO_SOUND_VOLUME_DECELERATION_CV286 -->
                         <Label Margin="0,20,0,0"  Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeDecelerationLabel}" VerticalOptions="Center" />
-                        <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="3" Grid.Column="1"  VerticalOptions="Center" >
-                            <Slider Value="{Binding SoundVolumeDeceleration}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding SoundVolumeDeceleration}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout  Margin="0,20,0,0" Grid.Row="3" Grid.Column="1"  VerticalOptions="Center" >
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding SoundVolumeDeceleration}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding SoundVolumeDeceleration}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV286Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                     </Grid>
-                </Frame>
+                </Border>
 
                 <!-- ZIMO_SOUND_VOLUME_DIESELELEC_CV29X-->
                 <Label IsVisible="{Binding ZIMO_SOUND_VOLUME_DIESELELEC_CV29X}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeElectroDieselLocomotiveTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_DIESELELEC_CV29X}" >
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_DIESELELEC_CV29X}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -189,24 +207,30 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeElectroLocomotiveLabel}" VerticalOptions="Center" />
-                                <HorizontalStackLayout Grid.Row="0" Grid.Column="1"  VerticalOptions="Center" >
+                        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeElectroLocomotiveLabel}" VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1"  VerticalOptions="Center" >
+                            <HorizontalStackLayout >
                                 <Slider Value="{Binding SoundEMotorVolume}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                                 <Label  Text="{Binding SoundEMotorVolume}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
                             </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV296Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                            <Label Margin="0,20,0,0" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeElectroLocoDependedSpeedLabel}" VerticalOptions="Center" />
-                                <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" >
+                        <Label Margin="0,20,0,0" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeElectroLocoDependedSpeedLabel}" VerticalOptions="Center" />
+                        <VerticalStackLayout  Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" >
+                            <HorizontalStackLayout>
                                 <Slider Value="{Binding SoundEMotorVolumeDependedSpeed}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                                 <Label  Text="{Binding SoundEMotorVolumeDependedSpeed}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
                             </HorizontalStackLayout>
-
-                        </Grid>
-                </Frame>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV298Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+                        
+                    </Grid>
+                </Border>
 
                 <!-- ZIMO Brake Squeal in CV287 -->
                 <Label IsVisible="{Binding ZIMO_BRAKESQUEAL_CV287}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundBreakSquealTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_BRAKESQUEAL_CV287}" >
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_BRAKESQUEAL_CV287}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -219,16 +243,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundBreakSquealLevelTitel}" VerticalOptions="Center" Margin="0,0,0,20" />
                         <Label x:Name="FrameSoundBreakSquealLevelLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundBreakSquealLevelLabel}" VerticalOptions="Center" />
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
-                            <Slider Value="{Binding BreakSquealLevel}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding BreakSquealLevel}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout  Grid.Row="1" Grid.Column="1">
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding BreakSquealLevel}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding BreakSquealLevel}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV287Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
                     </Grid>
-                </Frame>
+                </Border>
 
                 <!-- ZIMO different sound times like ZIMO_SOUND_STARTUPDELAY_CV273 or ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 -->
                 <Label IsVisible="{Binding AnyZIMOSoundTimesFeaturesAvailable}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundTimesTitle}" VerticalOptions="Center" />
-                <Frame IsVisible="{Binding AnyZIMOSoundTimesFeaturesAvailable}" Style="{StaticResource Z2XProgrammerFrame}">
+                <Border Style="{StaticResource Z2XBorderFrame}"  IsVisible="{Binding AnyZIMOSoundTimesFeaturesAvailable}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -241,22 +268,28 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <!-- ZIMO_SOUND_STARTUPDELAY_CV273 -->
+                            <!-- ZIMO: ZIMO_SOUND_STARTUPDELAY_CV273 -->
                             <Label IsVisible="{Binding ZIMO_SOUND_STARTUPDELAY_CV273}"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundStartUpDelayLabel}" VerticalOptions="Center" />
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding ZIMO_SOUND_STARTUPDELAY_CV273}">
-                                <Slider Value="{Binding SoundStartUpDelay}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding SoundStartUpDelayText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                            </HorizontalStackLayout>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding ZIMO_SOUND_STARTUPDELAY_CV273}">
+                                <HorizontalStackLayout >
+                                    <Slider Value="{Binding SoundStartUpDelay}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding SoundStartUpDelayText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV273Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
-                            <!-- ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 -->
+                            <!-- ZIMO: ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 -->
                             <Label Margin="0,20,0,0" IsVisible="{Binding ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285}"  Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundDurationNoiseReduction}" VerticalOptions="Center" />
-                                <HorizontalStackLayout Margin="0,20,0,0" Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285}">
-                                <Slider Value="{Binding SoundDurationNoiseReduction}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding SoundDurationNoiseReductionText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                            </HorizontalStackLayout>
+                            <VerticalStackLayout  Margin="0,20,0,0" Grid.Row="2" Grid.Column="1" IsVisible="{Binding ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285}">
+                                <HorizontalStackLayout>
+                                    <Slider Value="{Binding SoundDurationNoiseReduction}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding SoundDurationNoiseReductionText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV285Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                        </Grid>
-                    </Frame>
+                    </Grid>
+                    </Border>
                 
             </VerticalStackLayout>
 

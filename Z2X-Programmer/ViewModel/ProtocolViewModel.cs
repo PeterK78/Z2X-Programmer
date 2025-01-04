@@ -87,7 +87,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnDccOperationEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.OperatingModeDCCEnabled = value;
-            CV12Configuration = Subline.Create(new List<byte>{12});
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
 
         // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
@@ -97,7 +97,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMMOperationEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.OperatingModeMMEnabled = value;
-            CV12Configuration = Subline.Create(new List<byte>{12});
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
 
         // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
@@ -107,7 +107,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMFXOperationEnabledChanged(bool value)        
         {
             DecoderConfiguration.RCN225.OperatingModeMFXEnabled = value;
-            CV12Configuration = Subline.Create(new List<byte>{12});
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
 
         // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
@@ -117,7 +117,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnAnalogOperationDCEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled = value;
-            CV12Configuration = Subline.Create(new List<byte>{12});
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
         
         // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
@@ -127,7 +127,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnAnalogOperationACEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled = value;
-            CV12Configuration = Subline.Create(new List<byte>{12});
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
 
         [ObservableProperty]
@@ -139,7 +139,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnAcModeEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.ACModeEnabled  = value;
-            CV29Configuration = Subline.Create(new List<byte> { 29 });
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
         }
         [ObservableProperty]
         string cV29Configuration = string.Empty;
@@ -150,7 +150,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnRailComEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.RailComEnabled = value;
-            CV29Configuration = Subline.Create(new List<byte> { 29 });
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
         }
 
         // RCN225: Railcom channel 1 address broadcast in CV28.0 (RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0)
@@ -159,7 +159,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnRailComChannel1AdrBroadcastChanged(bool value)
         {
             DecoderConfiguration.RCN225.RailComChannel1AdrBroadcast = value;
-            CV28Configuration = Subline.Create(new List<byte> { 28 });
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
         }
 
         // RCN225: Railcom channel 2 in CV28            
@@ -168,7 +168,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnRailComChannel2EnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.RailComChannel2Enabled = value;
-            CV28Configuration = Subline.Create(new List<byte> { 28 });
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
         }
 
         [ObservableProperty]
@@ -180,7 +180,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnAutomaticRegistrationEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.AutomaticRegistrationEnabled = value;
-            CV28Configuration = Subline.Create(new List<byte> { 28 });
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
         }
 
         #endregion

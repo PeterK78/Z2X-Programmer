@@ -26,6 +26,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Communication;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
@@ -36,10 +37,20 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class MaintenanceViewModel: ObservableObject
     {
-        #region REGION: PUBLIC PROPERTIES
-       
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
+        #region REGION: DECODER FEATURES
 
         [ObservableProperty]
         bool zIMO_SELFTEST_CV30;
@@ -47,8 +58,15 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool rCN225_DECODERRESET_CV8;
 
+        #endregion
+
+        #region REGION: PUBLIC PROPERTIES
+        
         [ObservableProperty]
         string zIMODecoderErrorState = "";
+
+        [ObservableProperty]
+        string cV30Configuration = Subline.Create(new List<uint>{30});
 
         #endregion
 

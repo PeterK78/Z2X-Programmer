@@ -88,10 +88,10 @@ namespace Z2XProgrammer.ViewModel
         partial void OnDirectionReversalChanged(bool value)
         {
             DecoderConfiguration.RCN225.DirectionReversal = value;
-            CV29Configuration = Subline.Create(new List<byte>{29});
+            CV29Configuration = Subline.Create(new List<uint>{29});
         }
         [ObservableProperty]
-        string cV29Configuration = Subline.Create(new List<byte>{29});
+        string cV29Configuration = Subline.Create(new List<uint>{29});
 
         //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19) -->
         [ObservableProperty]
@@ -99,10 +99,10 @@ namespace Z2XProgrammer.ViewModel
         partial void OnDirectionConsistModeReveralChanged(bool value)
         {
             DecoderConfiguration.RCN225.DirectionReversalConsistMode = value;
-            CV19Configuration = Subline.Create(new List<byte> { 19 });  
+            CV19Configuration = Subline.Create(new List<uint> { 19 });  
         }        
         [ObservableProperty]
-        string cV19Configuration = Subline.Create(new List<byte>{19});
+        string cV19Configuration = Subline.Create(new List<uint>{19});
 
         //  RCN225: Speed steps mode in CV29.0 (RCN225_SPEEDSTEPSMODE_CV29_0)
         [ObservableProperty]
@@ -115,7 +115,7 @@ namespace Z2XProgrammer.ViewModel
             if ((value == null) || (value == "")) return;
             DecoderConfiguration.RCN225.SpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepsModeFromDescription(value);
             AccelerationRateTime = GetAccelerationRateTimeLabel();
-            CV29Configuration = Subline.Create(new List<byte>{29});
+            CV29Configuration = Subline.Create(new List<uint>{29});
         }
 
         // RCN225: Acceleration rate in CV3
@@ -134,7 +134,7 @@ namespace Z2XProgrammer.ViewModel
                 LimitMinimumAccelerationRateCV3 = 0;
                 AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
             }
-            CV3Configuration = Subline.Create(new List<byte>{3});
+            CV3Configuration = Subline.Create(new List<uint>{3});
         }
 
         [ObservableProperty]
@@ -143,14 +143,14 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.AccelerationRate = value;
             AccelerationRateTime = GetAccelerationRateTimeLabel();
-            CV3Configuration = Subline.Create(new List<byte>{3});
+            CV3Configuration = Subline.Create(new List<uint>{3});
         }
 
         [ObservableProperty]
         internal string accelerationRateTime = "";
 
         [ObservableProperty]
-        string cV3Configuration = Subline.Create(new List<byte>{3});
+        string cV3Configuration = Subline.Create(new List<uint>{3});
 
         // RCN225: Decleration rate CV4
         [ObservableProperty]
@@ -168,7 +168,7 @@ namespace Z2XProgrammer.ViewModel
                 LimitMinimumDecelerationRateCV4 = 0;
                 DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
             }
-            CV4Configuration = Subline.Create(new List<byte> { 4 });
+            CV4Configuration = Subline.Create(new List<uint> { 4 });
         }
 
         [ObservableProperty]
@@ -177,14 +177,14 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.DecelerationRate = value;
             DecelerationRateTime = GetDecelerationRateTimeLabel();
-            CV4Configuration = Subline.Create(new List<byte> { 4 });
+            CV4Configuration = Subline.Create(new List<uint> { 4 });
         }
 
         [ObservableProperty]
         internal string decelerationRateTime = "";
 
         [ObservableProperty]
-        string cV4Configuration = Subline.Create(new List<byte>{4});
+        string cV4Configuration = Subline.Create(new List<uint>{4});
 
 
         // RCN225: ABC breaking track function in CV27 (RCN225_ABC_CV27_X)
@@ -197,11 +197,11 @@ namespace Z2XProgrammer.ViewModel
         {
             if ((value == null) || (value == "")) return;
             DecoderConfiguration.RCN225.ABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeFromDescription(value);
-            CV27Configuration = Subline.Create(new List<byte> { 27 });
+            CV27Configuration = Subline.Create(new List<uint> { 27 });
         }
 
         [ObservableProperty]
-        string cV27Configuration = Subline.Create(new List<byte>{27});
+        string cV27Configuration = Subline.Create(new List<uint>{27});
 
         // RCN225: HLU function in CV27 (RCN225_HLU_CV27_2)
         [ObservableProperty]
@@ -209,7 +209,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnHluEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.HLUEnabled = value;
-            CV27Configuration = Subline.Create(new List<byte>{27});
+            CV27Configuration = Subline.Create(new List<uint>{27});
         }
 
         #endregion

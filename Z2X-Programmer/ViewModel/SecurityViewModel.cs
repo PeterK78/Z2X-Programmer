@@ -65,7 +65,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockWritingCVsInServiceModeChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockWritingCVsOnProgramTrack = value;
-            CV144Configuration = Subline.Create(new List<byte>{144});
+            CV144Configuration = Subline.Create(new List<uint>{144});
         }
 
         [ObservableProperty]
@@ -73,7 +73,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockReadingCVsInServiceModeChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockReadingCVsOnProgramTrack = value;
-            CV144Configuration = Subline.Create(new List<byte>{144});
+            CV144Configuration = Subline.Create(new List<uint>{144});
         }
 
         [ObservableProperty]
@@ -81,7 +81,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockWritingCVsOnMainTrackChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockWritingCVsOnMainTrack = value;
-            CV144Configuration = Subline.Create(new List<byte>{144});
+            CV144Configuration = Subline.Create(new List<uint>{144});
         }
 
         [ObservableProperty]
@@ -89,7 +89,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnLockUpdatingDecoderFirmwareChanged(bool value)
         {
             DecoderConfiguration.ZIMO.LockUpatingDecoderFirmware = value;
-            CV144Configuration = Subline.Create(new List<byte> { 144 });
+            CV144Configuration = Subline.Create(new List<uint> { 144 });
         }
 
         [ObservableProperty]
@@ -97,11 +97,11 @@ namespace Z2XProgrammer.ViewModel
         partial void OnPlaySoundWhenProgrammingCVChanged(bool value)
         {
             DecoderConfiguration.ZIMO.PlaySoundWhenProgrammingCV = value;
-            CV144Configuration = Subline.Create(new List<byte>{144});
+            CV144Configuration = Subline.Create(new List<uint>{144});
         }
 
         [ObservableProperty]
-        string cV144Configuration = Subline.Create(new List<byte>{144});
+        string cV144Configuration = Subline.Create(new List<uint>{144});
 
         // RCN225: Decoder lock configuration in CV15 and CV16 (RCN225_DECODERLOCK_CV15X)
         [ObservableProperty]
@@ -113,8 +113,8 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.DecoderLockPasswordCV16 = value;
             DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
-            CV15Configuration = Subline.Create(new List<byte> {15});
-            CV16Configuration = Subline.Create(new List<byte>{16});
+            CV15Configuration = Subline.Create(new List<uint> {15});
+            CV16Configuration = Subline.Create(new List<uint>{16});
         }
 
         [ObservableProperty]
@@ -123,15 +123,15 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.DecoderLockPasswordCV15 = value;
             DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
-            CV15Configuration = Subline.Create(new List<byte> {15});
-            CV16Configuration = Subline.Create(new List<byte>{16});
+            CV15Configuration = Subline.Create(new List<uint> {15});
+            CV16Configuration = Subline.Create(new List<uint>{16});
         }
 
         [ObservableProperty]
-        string cV15Configuration = Subline.Create(new List<byte> {15});
+        string cV15Configuration = Subline.Create(new List<uint> {15});
 
         [ObservableProperty]
-        string cV16Configuration = Subline.Create(new List<byte>{16});
+        string cV16Configuration = Subline.Create(new List<uint>{16});
 
 
         #endregion

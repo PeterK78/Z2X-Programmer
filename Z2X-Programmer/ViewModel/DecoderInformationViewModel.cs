@@ -25,6 +25,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Converter;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
@@ -38,6 +39,19 @@ namespace Z2XProgrammer.ViewModel
     /// </summary>
     public partial class DecoderInformationViewModel : ObservableObject
     {
+
+        #region REGION: DATASTORE & SETTINGS
+        
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
 
         #region REGION: DECODER FEATURES
         [ObservableProperty]
@@ -69,11 +83,8 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
-
-        [ObservableProperty]
-        bool dataStoreDataValid;
-
-        //  RCN225 properties
+      
+        // RCN225: Manufacturer
         [ObservableProperty]
         internal string manufacturer = string.Empty;
 
@@ -81,33 +92,66 @@ namespace Z2XProgrammer.ViewModel
         internal string manufacturerID = string.Empty;
 
         [ObservableProperty]
+        string cV8Configuration = Subline.Create(new List<uint>{8});
+
+        // RCN225: Software version
+        [ObservableProperty]
         internal string version = string.Empty;
 
-        //  Doehler & Haass properties
+        [ObservableProperty]   
+        string cV7Configuration = Subline.Create(new List<uint>{7});
+        
+        // Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
         [ObservableProperty]
         internal string doehlerAndHaasDecoderType = string.Empty;
+
+        [ObservableProperty]   
+        string cV261Configuration = Subline.Create(new List<uint>{261});
+
 
         [ObservableProperty]
         internal string doehlerAndHaasFirmwareVersion = string.Empty;
 
-        //  ZIMO properties
+        [ObservableProperty]   
+        string haasFirmwareVersionConfiguration = Subline.Create(new List<uint>{261});
+
+        //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
         [ObservableProperty]
         internal string zimoSWVersion = string.Empty;
+        [ObservableProperty]   
 
+        string cV65and7Configuration = Subline.Create(new List<uint>{7,65});
+
+        //  ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250)
         [ObservableProperty]
         internal string zimoDecoderType = string.Empty;
 
+        [ObservableProperty]   
+        string cV250Configuration = Subline.Create(new List<uint>{250});
+        
+        // ZIMO: Decoder ID (ZIMO_DECODERID_CV25X)
         [ObservableProperty]
         internal string zimoDecoderID = string.Empty;
 
+        [ObservableProperty]   
+        string cVDecoderIDConfiguration = Subline.Create(new List<uint>{250,251,252,253});
+        
+        // ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X)
         [ObservableProperty]
         internal string zimoBootloaderVersion = string.Empty;
+
+        [ObservableProperty]   
+        string cVBootloaderVersionConfiguration = Subline.Create(new List<uint>{248,249});
 
         [ObservableProperty]
         internal bool zimoBootloaderIsFailSafe = false;
 
+        // ZIMO: Sound project number (ZIMO_SOUNDPROJECTNR_CV254) 
         [ObservableProperty]
         internal string zimoSoundProjectNumber = string.Empty;
+
+        [ObservableProperty]   
+        string cV254Configuration = Subline.Create(new List<uint>{254});
 
         [ObservableProperty]
         internal string userDefindedNotes = string.Empty;

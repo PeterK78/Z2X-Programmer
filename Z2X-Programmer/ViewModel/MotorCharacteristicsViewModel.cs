@@ -106,14 +106,14 @@ namespace Z2XProgrammer.ViewModel
                 LimitMinimumMaxSpeedCV5 = 2;
                 MaximumSpeed = 100;
                 MaximumSpeedValueDescription = GetMaximumSpeedLabel();
-                CV5Configuration = Subline.Create(new List<byte> { 5 });
+                CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
             else
             {
                 LimitMinimumMaxSpeedCV5 = 0;
                 MaximumSpeed = 0;
                 MaximumSpeedValueDescription = GetMaximumSpeedLabel();
-                CV5Configuration = Subline.Create(new List<byte> { 5 });
+                CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
         }
 
@@ -123,11 +123,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.MaximumSpeed = value;
             MaximumSpeedValueDescription = GetMaximumSpeedLabel();
-            CV5Configuration = Subline.Create(new List<byte> { 5 });
+            CV5Configuration = Subline.Create(new List<uint> { 5 });
         }
 
         [ObservableProperty]
-        string cV5Configuration = Subline.Create(new List<byte>{5});
+        string cV5Configuration = Subline.Create(new List<uint>{5});
 
 
         // RCN225: Medium speed in CV6
@@ -140,11 +140,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.MediumSpeed = value;
             MediumSpeedValueDescription = GetMediumSpeedLabel();
-            CV6Configuration = Subline.Create(new List<byte>{6});
+            CV6Configuration = Subline.Create(new List<uint>{6});
         }
 
         [ObservableProperty]
-        string cV6Configuration = Subline.Create(new List<byte>{6});
+        string cV6Configuration = Subline.Create(new List<uint>{6});
 
 
         // RCN225: Minimum speed in CV2
@@ -157,10 +157,10 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.MinimumSpeed = value;
             MinimumSpeedValueDescription = GetMinimumSpeedLabel();
-            CV2Configuration = Subline.Create(new List<byte>{2});
+            CV2Configuration = Subline.Create(new List<uint>{2});
         }
         [ObservableProperty]
-        string cV2Configuration = Subline.Create(new List<byte>{2});
+        string cV2Configuration = Subline.Create(new List<uint>{2});
         
 
         // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
@@ -169,10 +169,10 @@ namespace Z2XProgrammer.ViewModel
         partial void OnExtendedSpeedCurveEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled = value;
-            CV29Configuration = Subline.Create(new List<byte>{29});
+            CV29Configuration = Subline.Create(new List<uint>{29});
         }
         [ObservableProperty]
-        string cV29Configuration = Subline.Create(new List<byte>{29});
+        string cV29Configuration = Subline.Create(new List<uint>{29});
         
 
         [ObservableProperty]
@@ -401,7 +401,7 @@ namespace Z2XProgrammer.ViewModel
                 IsHighFrequencySelected = true;
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 55;
             }
-            CV9Configuration = Subline.Create(new List<byte>{9});
+            CV9Configuration = Subline.Create(new List<uint>{9});
         }
 
         [ObservableProperty]
@@ -419,7 +419,7 @@ namespace Z2XProgrammer.ViewModel
             if (value < 176) return;
             if (value > 255) return;
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)value;
-            CV9Configuration = Subline.Create(new List<byte>{9});
+            CV9Configuration = Subline.Create(new List<uint>{9});
         }
 
         [ObservableProperty]
@@ -453,7 +453,7 @@ namespace Z2XProgrammer.ViewModel
                 LowFrequency = 127;
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)LowFrequency;
             }
-            CV9Configuration = Subline.Create(new List<byte>{9});
+            CV9Configuration = Subline.Create(new List<uint>{9});
         }
 
         [ObservableProperty]
@@ -471,7 +471,7 @@ namespace Z2XProgrammer.ViewModel
             }
 
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-            CV9Configuration = Subline.Create(new List<byte>{9});
+            CV9Configuration = Subline.Create(new List<uint>{9});
         }
 
         [ObservableProperty]
@@ -486,11 +486,11 @@ namespace Z2XProgrammer.ViewModel
             }
 
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-            CV9Configuration = Subline.Create(new List<byte>{9});
+            CV9Configuration = Subline.Create(new List<uint>{9});
         }
 
         [ObservableProperty]
-        string cV9Configuration = Subline.Create(new List<byte>{9});
+        string cV9Configuration = Subline.Create(new List<uint>{9});
 
 
         // ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57
@@ -530,7 +530,7 @@ namespace Z2XProgrammer.ViewModel
                 LimitMinimumZIMOMSmotorControlReferenceVoltage = 0;
                 ZIMOMSmotorControlReferenceValue = 0;
             }
-            CV57Configuration = Subline.Create(new List<byte>{57});
+            CV57Configuration = Subline.Create(new List<uint>{57});
         }
 
         [ObservableProperty]
@@ -549,11 +549,11 @@ namespace Z2XProgrammer.ViewModel
             {
                 DecoderConfiguration.ZIMO.MotorReferenceVoltage = 0;
             }
-            CV57Configuration = Subline.Create(new List<byte>{57});
+            CV57Configuration = Subline.Create(new List<uint>{57});
         }
 
         [ObservableProperty]
-        string cV57Configuration = Subline.Create(new List<byte>{57});
+        string cV57Configuration = Subline.Create(new List<uint>{57});
 
 
         // ZIMO: MX decoder motor control PID settings CV56
@@ -574,7 +574,7 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
-            CV56Configuration = Subline.Create(new List<byte> { 56 });
+            CV56Configuration = Subline.Create(new List<uint> { 56 });
         }
 
         [ObservableProperty]
@@ -591,7 +591,7 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
-            CV56Configuration = Subline.Create(new List<byte> { 56 });
+            CV56Configuration = Subline.Create(new List<uint> { 56 });
         }
 
         [ObservableProperty]
@@ -608,11 +608,11 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
-            CV56Configuration = Subline.Create(new List<byte>{56});
+            CV56Configuration = Subline.Create(new List<uint>{56});
         }
 
         [ObservableProperty]
-        string cV56Configuration = Subline.Create(new List<byte>{56});
+        string cV56Configuration = Subline.Create(new List<uint>{56});
         
 
         // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
@@ -622,14 +622,14 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.DoehlerHaas.MotorImpulsWidth = value;
             UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
-            CV49Configuration = Subline.Create(new List<byte>{49});
+            CV49Configuration = Subline.Create(new List<uint>{49});
         }
 
         [ObservableProperty]
         internal string impulsWidthTime = "";
 
         [ObservableProperty]
-        string cV49Configuration = Subline.Create(new List<byte>{49});
+        string cV49Configuration = Subline.Create(new List<uint>{49});
         
 
         

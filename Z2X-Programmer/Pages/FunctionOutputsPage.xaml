@@ -36,7 +36,7 @@
 
                 <!-- User defined description of the ouputs -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}">
+                <Border Style="{StaticResource Z2XBorderFrame}">
                     <VerticalStackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -74,12 +74,11 @@
 
                         </Grid>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-
-                <!-- ZIMO SUSI Configuration -->
+                <!-- ZIMO: ZIMO SUSI Configuration in CV201 (ZIMO_SUSIPORT1CONFIG_CV201) -->
                 <Label IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSITitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}">
                     <VerticalStackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -93,14 +92,14 @@
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIDescription}" VerticalOptions="Center" Margin="0,0,0,20" />
 
                             <Label x:Name="FrameProtocolZIMOSUSIPinClockLabel"  Grid.Row="1"  Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIPinClockLabel}" VerticalOptions="Center" />
-                            <Picker Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableSUSIPinModes}" SelectedItem="{Binding SelectedSUSIInterface1PinMode}" HorizontalOptions="End" WidthRequest="400" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center"  >
+                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableSUSIPinModes}" SelectedItem="{Binding SelectedSUSIInterface1PinMode}" HorizontalOptions="End" WidthRequest="400" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV201Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
                         </Grid>
                     </VerticalStackLayout>
-                </Frame>
-
-
-
+                </Border>
 
             </VerticalStackLayout>
 

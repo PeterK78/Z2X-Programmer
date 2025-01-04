@@ -52,7 +52,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 <!-- Decoder reset in CV8 RCN225_DECODERRESET_CV8 -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetTitle}" VerticalOptions="Center" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding RCN225_DECODERRESET_CV8}" >
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_DECODERRESET_CV8}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -61,13 +61,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label x:Name="FrameSecurityDecoderResetLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetLabel}" VerticalOptions="Center" />
                         <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0"  Grid.Column="1" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetButtonLabel}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=ResetDecoderCommand}"  WidthRequest="200" VerticalOptions="End" ></Button>
                     </Grid>
-                </Frame>
+                </Border>
 
 
                 <!-- ZIMO self test of MS function decoders  -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SELFTEST_CV30}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_SELFTEST_CV30}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SELFTEST_CV30}">
                     <VerticalStackLayout>
+                        
                         <!-- Function key mapping type -->
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -80,10 +81,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                            
 
                             <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMaintenanceSelfTestLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
-                            <Entry IsReadOnly="True" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" WidthRequest="600" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ZIMODecoderErrorState}" VerticalOptions="Center"  HorizontalOptions="End" Margin="0,20,0,0" />
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End"  >
+                                <Entry IsReadOnly="True" HorizontalTextAlignment="End" WidthRequest="600" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ZIMODecoderErrorState}" VerticalOptions="Center"  HorizontalOptions="End" Margin="0,20,0,0" />
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV30Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
                             <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,20,0,0">
                                 <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,0,0,0" Text="{x:Static strings:AppResources.ButtonStartZIMOSelftTest}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=StartZIMOSelfTestCommand}"  WidthRequest="250" VerticalOptions="Center" HorizontalOptions="End" ></Button>
@@ -93,7 +96,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         </Grid>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
                 
             </VerticalStackLayout>
 

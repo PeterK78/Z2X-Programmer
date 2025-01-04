@@ -39,10 +39,20 @@ namespace Z2XProgrammer.ViewModel
 
        internal ObservableCollection<FunctionOutputType>? _functionOutputs= new ObservableCollection<FunctionOutputType>();
 
-        #region REGION: DECODER FEATURES
+        #region REGION: DATASTORE & SETTINGS
 
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
         bool dataStoreDataValid;
+
+         // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
+        #region REGION: DECODER FEATURES       
 
         [ObservableProperty]
         bool zIMO_SUSIPORT1CONFIG_CV201;
@@ -57,7 +67,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal FunctionOutputType selectedFunctionOutput = new FunctionOutputType();
 
-        //  ZIMO_SUSIPORT1CONFIG_CV201
+        //  ZIMO: ZIMO SUSI Configuration in CV201 (ZIMO_SUSIPORT1CONFIG_CV201)
         [ObservableProperty]
         internal ObservableCollection<string> availableSUSIPinModes;
 
@@ -67,7 +77,11 @@ namespace Z2XProgrammer.ViewModel
         {
             if ((value == "") || (value == null)) return;
             DecoderConfiguration.ZIMO.SUSIInterface1PinMode = ZIMOEnumConverter.GetSUSIInterface1PinMode(value);
+            CV201Configuration = Subline.Create(new List<uint>{201});
         }
+
+        [ObservableProperty]
+        string cV201Configuration = Subline.Create(new List<uint>{201});
 
 
         #endregion

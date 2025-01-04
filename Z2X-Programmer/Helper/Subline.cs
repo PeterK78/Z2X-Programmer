@@ -32,7 +32,7 @@ namespace Z2XProgrammer.Helper
         /// </summary>
         /// <param name="configurationVariableNumbers">A list with numbers of the required configuration variables.</param>
         /// <returns></returns>
-        internal static string Create(List<byte> configurationVariableNumbers)
+        internal static string Create(List<uint> configurationVariableNumbers)
         {
             try
             {
@@ -40,9 +40,9 @@ namespace Z2XProgrammer.Helper
                 if (configurationVariableNumbers.Count == 0) return string.Empty;
 
                 string msg = string.Empty;
-                foreach (byte value in configurationVariableNumbers)
+                foreach (uint value in configurationVariableNumbers)
                 {
-                    msg += "CV" + value.ToString() + "=" + DecoderConfiguration.ConfigurationVariables[value].Value.ToString() + " | ";
+                    msg += "CV" + value.ToString() + "=" + DecoderConfiguration.ConfigurationVariables[(int)value].Value.ToString() + " | ";
                 }
                 return msg[..^3];
             }

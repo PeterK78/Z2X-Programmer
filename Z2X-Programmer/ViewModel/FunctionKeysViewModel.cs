@@ -46,6 +46,19 @@ namespace Z2XProgrammer.ViewModel
 
         internal ObservableCollection<ZIMOInputMappingType>? _ZIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
 
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+         // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
+
         #region REGION: DECODER FEATURES
 
         //  RCN225 features
@@ -91,10 +104,15 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
+        // ZIMO: ZIMO input mapping in CV400 - CV428 (ZIMO_INPUTMAPPING_CV4XX)
+        //  SelectedInputMapping contains the data for the currently selected input mapping (if the user edits a mapping).
         [ObservableProperty]
-        bool dataStoreDataValid;
+        internal ZIMOInputMappingType selectedInputMapping = new ZIMOInputMappingType();
 
-     
+        //  ZIMOInputMappingCVs contains all input mappings for the current decoder.
+        [ObservableProperty]
+        internal ObservableCollection<ZIMOInputMappingType>? zIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
+       
 
         #region FUNCTION OUTPUT DESCRIPTION
         [ObservableProperty]
@@ -1032,61 +1050,20 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal bool rCN225StandardFunctionMapping = true;
 
-        // ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61
+        // ZIMO: Extended function key mapping - without left-shift (ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61)
         [ObservableProperty]
         internal bool zIMOExtendedFunctionMapping = false;
         partial void OnZIMOExtendedFunctionMappingChanged(bool value)
         {
             RCN225StandardFunctionMapping = !value;
             DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping = value;
+            CV61Configuration = Subline.Create(new List<uint>{61});
         }
-
         [ObservableProperty]
-        bool doehlerAndHaassExtendedFunctionMappingEnabled;
-        partial void OnDoehlerAndHaassExtendedFunctionMappingEnabledChanged(bool value)
-        {
-            RCN225StandardFunctionMapping = !value;
-            DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled = value;
-        }
-
-        // ZIMO_INPUTMAPPING_CV4XX
-        [ObservableProperty]
-        internal ZIMOInputMappingType selectedInputMapping = new ZIMOInputMappingType();
+        string cV61Configuration = Subline.Create(new List<uint>{61});
         
-        [ObservableProperty]
-        internal ObservableCollection<ZIMOInputMappingType>? zIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
-        
-        
-      
 
-        [ObservableProperty]
-        int doehlerAndHaassFuncKeysShuntingFuncKeyNumber;
-        partial void OnDoehlerAndHaassFuncKeysShuntingFuncKeyNumberChanged(int value)
-        {
-            if (value == -1)
-            {
-                DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber = 0;
-            }
-            else
-            {
-                DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber = (byte)value;
-            }
-        }
-
-        [ObservableProperty]
-        int doehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber;
-        partial void OnDoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumberChanged(int value)
-        {
-            if (value == -1)
-            {
-                DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber = 0;
-            }
-            else
-            {
-                DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber = (byte)value;
-            }
-        }
-
+        // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
         [ObservableProperty]
         internal ObservableCollection<string> availableFunctionKeys;
 
@@ -1102,9 +1079,65 @@ namespace Z2XProgrammer.ViewModel
             {
                 DataStore.DecoderConfiguration.ZIMO.FuncKeysAccDecDisableFuncKeyNumber = (byte)value;
             }
+            CV156Configuration = Subline.Create(new List<uint> { 156 });
         }
 
-        //  ZIMO_FUNCKEY_MUTE_CV313
+        [ObservableProperty]
+        string cV156Configuration = Subline.Create(new List<uint>{156});
+
+
+        // Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137)
+        [ObservableProperty]
+        bool doehlerAndHaassExtendedFunctionMappingEnabled;
+        partial void OnDoehlerAndHaassExtendedFunctionMappingEnabledChanged(bool value)
+        {
+            RCN225StandardFunctionMapping = !value;
+            DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled = value;
+            CV137Configuration = Subline.Create(new List<uint>{137});
+        }
+
+        [ObservableProperty]
+        string cV137Configuration = Subline.Create(new List<uint>{137});
+
+        // Döhler & Haass: Shunting key in CV133 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132)
+        [ObservableProperty]
+        int doehlerAndHaassFuncKeysShuntingFuncKeyNumber;
+        partial void OnDoehlerAndHaassFuncKeysShuntingFuncKeyNumberChanged(int value)
+        {
+            if (value == -1)
+            {
+                DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber = 0;
+            }
+            else
+            {
+                DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber = (byte)value;
+            }
+            CV132Configuration = Subline.Create(new List<uint> { 132 });
+        }
+
+        [ObservableProperty]
+        string cV132Configuration = Subline.Create(new List<uint>{132});
+
+        // Döhler & Haass: ABV key in CV133 (DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133)
+        [ObservableProperty]
+        int doehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber;
+        partial void OnDoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumberChanged(int value)
+        {
+            if (value == -1)
+            {
+                DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber = 0;
+            }
+            else
+            {
+                DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber = (byte)value;
+            }
+            CV133Configuration = Subline.Create(new List<uint> { 133 });
+        }
+
+        [ObservableProperty]
+        string cV133Configuration = Subline.Create(new List<uint>{133});
+
+        //  ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313)
         [ObservableProperty]
         int zIMOFuncKeysMute;
         partial void OnZIMOFuncKeysMuteChanged(int value)
@@ -1126,9 +1159,15 @@ namespace Z2XProgrammer.ViewModel
                 }
 
             }
+            CV313Configuration = Subline.Create(new List<uint> { 313 });
         }
+
+        [ObservableProperty]
+        string cV313Configuration = Subline.Create(new List<uint>{313});
+
         [ObservableProperty]
         bool zIMOFuncKeysMuteInverted;
+
         partial void OnZIMOFuncKeysMuteInvertedChanged(bool value)
         {
             if(value == true)            
@@ -1139,10 +1178,10 @@ namespace Z2XProgrammer.ViewModel
             {
                 DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)ZIMOFuncKeysMute;
             }
-
+            CV313Configuration = Subline.Create(new List<uint> { 313 });
         }
 
-
+        // ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310)
         [ObservableProperty]
         int zIMOFuncKeysSoundOnOff;
         partial void OnZIMOFuncKeysSoundOnOffChanged(int value)
@@ -1155,10 +1194,13 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff = (byte)value;
-
+                CV310Configuration = Subline.Create(new List<uint>{310});
             }
         }
+        [ObservableProperty]
+        string cV310Configuration = Subline.Create(new List<uint>{310});        
 
+        // ZIMO: Sound louder in CV397 (ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397) 
         [ObservableProperty]
         int zIMOFuncKeysSoundVolumeLouder;
         partial void OnZIMOFuncKeysSoundVolumeLouderChanged(int value)
@@ -1173,8 +1215,13 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder = (byte)value;
 
             }
+            CV397Configuration = Subline.Create(new List<uint>{397});
         }
 
+        [ObservableProperty]
+        string cV397Configuration = Subline.Create(new List<uint>{397});
+
+        // ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396
         [ObservableProperty]
         int zIMOFuncKeysSoundVolumeQuieter;
         partial void OnZIMOFuncKeysSoundVolumeQuieterChanged(int value)
@@ -1188,8 +1235,13 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter = (byte)value;
 
             }
+            CV396Configuration = Subline.Create(new List<uint>{396});
         }
 
+        [ObservableProperty]
+        string cV396Configuration = Subline.Create(new List<uint>{396});
+
+        // ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308)
         [ObservableProperty]
         int zIMOFuncKeysCurveSqueal;
         partial void OnZIMOFuncKeysCurveSquealChanged(int value)
@@ -1203,7 +1255,10 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal = (byte)value;
 
             }
+            CV308Configuration = Subline.Create(new List<uint>{308});
         }
+        [ObservableProperty]
+        string cV308Configuration = Subline.Create(new List<uint>{308});
 
         #endregion
 
@@ -1240,19 +1295,21 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
+        // Opens a pop-up window so that the user can configure the input mapping of the function keys.
         #region REGION: COMMANDS
         [RelayCommand]
         async Task EditInputMapping()
         {
             try
             {
-                //  Check if a function key has been selected
-                if(SelectedInputMapping == null)
+                //  Check if a function key has been selected, if not create a messagebox to inform the user.
+                if (SelectedInputMapping == null)
                 {                    
                     await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
                     return;
                 }
 
+                // Open a pop-up window to edit the input mapping of the selected function key.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
                 PopUpEditInputMapping pop = new PopUpEditInputMapping(cancelTokenSource, SelectedInputMapping!);

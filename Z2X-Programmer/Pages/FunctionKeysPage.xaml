@@ -74,25 +74,49 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Label x:Name="FrameFunctionKeysZIMOInputMappingDescription" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
-                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ZIMOInputMappingCVs}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                            <!-- A complex table with CV numbers and values -->
+                            <CollectionView IsVisible="{Binding AdditionalDisplayOfCVValues}"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ZIMOInputMappingCVs}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
                                 <CollectionView.Header>
-                                    <Grid ColumnDefinitions="*,*,*">
+                                    <Grid ColumnDefinitions="*,*,*,*">
                                         <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleController}" Grid.Column="0"/>
-                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" Grid.Column="1"/>
-                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="2"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="1"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" Grid.Column="2"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleValue}" Grid.Column="3"/>
                                     </Grid>
                                 </CollectionView.Header>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="datamodel:ZIMOInputMappingType">
-                                        <Grid ColumnDefinitions="*,*,*">
+                                        <Grid ColumnDefinitions="*,*,*,*">
                                             <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ExternalFunctionKeyDescription}" HorizontalTextAlignment="Start" />
-                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding CVNumber}" HorizontalTextAlignment="Center" />
-                                            <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding Path=InternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}"/>
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding Path=InternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}"/>
+                                            <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding CVNumber}" HorizontalTextAlignment="Center" />
+                                            <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Center" Text="{Binding InternalFunctionKeyNumber}"/>
+                                        </Grid>
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- A simplified table without CV numbers and values -->
+                            <CollectionView IsVisible="{Binding Path=AdditionalDisplayOfCVValues,Converter={StaticResource boolInvert}}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ZIMOInputMappingCVs}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                                <CollectionView.Header>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleController}" Grid.Column="0"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="1"/>
+                                    </Grid>
+                                </CollectionView.Header>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="datamodel:ZIMOInputMappingType">
+                                        <Grid ColumnDefinitions="*,*">
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ExternalFunctionKeyDescription}" HorizontalTextAlignment="Start" />
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding Path=InternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}"/>
                                         </Grid>
                                     </DataTemplate>
 
@@ -158,21 +182,26 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingTypeLabel}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" TextColor="Red"> </Label>
                         </VerticalStackLayout>
+                        <VerticalStackLayout  Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="5" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}"  HorizontalOptions="End">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Path=ZIMOExtendedFunctionMapping, Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                                <Switch HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding ZIMOExtendedFunctionMapping}"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV61Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                        <HorizontalStackLayout Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="5" IsVisible="{Binding ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61}"  HorizontalOptions="End">
-                            <Label Text="{Binding Path=ZIMOExtendedFunctionMapping, Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center"></Label>
-                            <Switch HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding ZIMOExtendedFunctionMapping}"></Switch>
-                        </HorizontalStackLayout>
-
-                        <!-- DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 -->
+                        <!-- Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137) -->
                         <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Margin="0,10,0,20" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" >
                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingTypeLabel}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" TextColor="Red" ></Label>
                         </VerticalStackLayout>
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="16" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}"  HorizontalOptions="End">
-                            <Label Text="{Binding Path=DoehlerAndHaassExtendedFunctionMappingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="16" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}"  HorizontalOptions="End">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DoehlerAndHaassExtendedFunctionMappingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137}" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV137Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
                         <!-- The description of the function mapping -->
                         <Label IsEnabled="{Binding RCN225StandardFunctionMapping}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,10,0,20" />
@@ -408,7 +437,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid>
                 </Border>
 
-                <!-- Döhler & Haass ABV key in CV133 -->
+                <!-- Döhler & Haass: ABV key in CV133 (DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
                     <VerticalStackLayout>
@@ -423,12 +452,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker Grid.Row="1"  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV133Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Döhler & Haass shunting key in CV133 -->
+                <!-- Döhler & Haass: Shunting key in CV133 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKey}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"/>
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
                     <VerticalStackLayout>
@@ -443,12 +475,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1"  Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV132Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- ZIMO ABV key in CV156 -->
+                <!-- ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156) -->
                 <Label x:Name="FrameFunctionKeysDeactivateAccDecTimeLabel" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}">
                     <VerticalStackLayout>
@@ -463,12 +498,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker  VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV156Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- ZIMO sound on and off CV310 -->
+                <!-- ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310) and curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundControlTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDALLOFF_CV310}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDALLOFF_CV310}">
                     <VerticalStackLayout>
@@ -485,11 +523,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
+                            <!-- ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310) -->
                             <Label Margin="0,20,0,20" x:Name="FrameFunctionKeysSoundVolumeOnOffLabel" Grid.Row="1" Grid.Column="0"  LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeOnOffLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Margin="0,20,0,20" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundOnOff}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Margin="0,20,0,20" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker   Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundOnOff}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV310Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
+                            <!-- ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308) -->
                             <Label  Margin="0,0,0,20" x:Name="FrameFunctionKeysCurveSquealLabel" IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}"  Grid.Row="2" Grid.Column="0"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysCurveSquealLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Margin="0,0,0,20" IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}"  Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysCurveSqueal}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Margin="0,0,0,20"  Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}"   Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysCurveSqueal}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV308Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
                         </Grid>
                     </VerticalStackLayout>
@@ -514,17 +560,28 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
+                            <!-- ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396) -->
                             <Label  Margin="0,20,0,20" x:Name="FrameFunctionKeysSoundVolumeQuieterLabel" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeQuieterLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Margin="0,20,0,20" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeQuieter}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Margin="0,20,0,20" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeQuieter}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV396Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
+                            <!-- ZIMO: Sound louder in CV397 (ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397) -->                                
                             <Label  Margin="0,0,0,20" x:Name="FrameFunctionKeysSoundVolumeLouderLabel" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeLouderLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Margin="0,0,0,20" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeLouder}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                            <VerticalStackLayout Margin="0,0,0,20" Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center"  IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" >
+                                <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeLouder}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV397Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
-                            <!-- Sound mute in CV313 -->
+                            <!-- ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313) -->
                             <Label Margin="0,0,0,0" x:Name="FrameFunctionKeysSoundMuteLabel" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  Grid.Row="3" Grid.Column="0"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Picker Margin="0,0,0,0" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}" Grid.Row="3" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysMute}" WidthRequest="300" HorizontalTextAlignment="End"></Picker>
-                            <Label Grid.Row="4" Grid.Column="0"  IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteInvertLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Margin="0,0,0,0" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}" Grid.Row="3" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
+                                <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysMute}" WidthRequest="300" HorizontalTextAlignment="End"></Picker>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV313Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
+                            <Label Grid.Row="4" Grid.Column="0"  IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteInvertLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <HorizontalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}">
                                 <Label Text="{Binding Path=ZIMOFuncKeysMuteInverted,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch  IsToggled="{Binding ZIMOFuncKeysMuteInverted}" HorizontalOptions="End"></Switch>

@@ -1408,7 +1408,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
 (z. B. multiMAUS, ᴡʟᴀɴMAUS etc.)</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
-    <value>Konfigurationsvariable</value>
+    <value>Nummer der Konfigurationsvariable </value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder" xml:space="preserve">
     <value>Funktionstaste im Decoder</value>
@@ -1560,5 +1560,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameGettingStartedIntroduction" xml:space="preserve">
     <value>Führen Sie folgende Schritte nach dem Start von Z2X-Programmer aus:</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleValue" xml:space="preserve">
+    <value>Wert der Konfigurationsvariable </value>
   </data>
 </root>

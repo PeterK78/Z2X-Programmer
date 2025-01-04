@@ -1653,7 +1653,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configuration Variable.
+        ///   Looks up a localized string similar to Number of the configuration variable .
         /// </summary>
         public static string FrameFunctionKeysZIMOInputMappingHeaderTitleCV {
             get {
@@ -1667,6 +1667,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value of the configuration variable .
+        /// </summary>
+        public static string FrameFunctionKeysZIMOInputMappingHeaderTitleValue {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOInputMappingHeaderTitleValue", resourceCulture);
             }
         }
         

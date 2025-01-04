@@ -52,7 +52,6 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion        
 
-
         #region REGION: DECODER FEATURES
         
         // ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
@@ -69,7 +68,6 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool anyDecoderFeatureAvailable;
-
      
         [ObservableProperty]
         internal ObservableCollection<string> availableZIMOLightEffects = new ObservableCollection<string>();
@@ -80,11 +78,11 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSelectedZIMOLightEffect0vChanged(string value)
         {       
             DecoderConfiguration.ZIMO.LightEffectOutput0v = ZIMOEnumConverter.GetLightEffectType(value);
-            CV125Configuration = Subline.Create(new List<byte> { 125 });
+            CV125Configuration = Subline.Create(new List<uint> { 125 });
         }
 
         [ObservableProperty]
-        string cV125Configuration = Subline.Create(new List<byte>{125});
+        string cV125Configuration = Subline.Create(new List<uint>{125});
 
         // ZIMO: Light effects in CV126 for rear headlight (default F0 reverse)
         [ObservableProperty]
@@ -92,14 +90,14 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSelectedZIMOLightEffect0rChanged(string value)
         {
             DecoderConfiguration.ZIMO.LightEffectOutput0r = ZIMOEnumConverter.GetLightEffectType(value);
-            CV126Configuration = Subline.Create(new List<byte> { 126 });
+            CV126Configuration = Subline.Create(new List<uint> { 126 });
         }
 
         [ObservableProperty]
-        string cV126Configuration = Subline.Create(new List<byte>{126});
+        string cV126Configuration = Subline.Create(new List<uint>{126});
 
 
-
+        // ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60)
         [ObservableProperty]
         bool dimmingEnabled;
         partial void OnDimmingEnabledChanged(bool value)
@@ -112,7 +110,11 @@ namespace Z2XProgrammer.ViewModel
             {
                 DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue = DecoderConfiguration.ZIMOBackup.DimmingFunctionOutputMasterValue;
             }
+            CV60Configuration = Subline.Create(new List<uint>{60});
         }
+
+        [ObservableProperty]
+        string cV60Configuration = Subline.Create(new List<uint>{60});
 
         [ObservableProperty]
         bool dimmingOutput0frontEnabled;
@@ -121,7 +123,10 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 0, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
+        [ObservableProperty]
+        string cV114Configuration = Subline.Create(new List<uint>{114});
 
 
         [ObservableProperty]
@@ -131,6 +136,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 1, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -140,6 +146,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 2, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -149,6 +156,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 3, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -158,6 +166,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 4, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -167,6 +176,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 5, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -176,6 +186,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 6, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -185,6 +196,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 7, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
+            CV114Configuration = Subline.Create(new List<uint>{114});
         }
 
         [ObservableProperty]
@@ -194,7 +206,10 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 0, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
+        [ObservableProperty]
+        string cV152Configuration = Subline.Create(new List<uint>{152});
 
         [ObservableProperty]
         bool dimmingOutput8Enabled;
@@ -203,6 +218,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 1, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
 
         [ObservableProperty]
@@ -212,6 +228,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 2, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
 
         [ObservableProperty]
@@ -221,6 +238,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 3, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
 
         [ObservableProperty]
@@ -230,6 +248,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 4, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
 
         [ObservableProperty]
@@ -239,6 +258,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 5, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
+            CV152Configuration = Subline.Create(new List<uint>{152});
         }
 
 
@@ -248,6 +268,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue = value;
             BrightnessLabelText = GetBrightnessLabelText();
+            CV60Configuration = Subline.Create(new List<uint> { 60 });
         }
 
         [ObservableProperty]

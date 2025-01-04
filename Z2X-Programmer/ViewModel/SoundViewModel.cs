@@ -23,7 +23,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.ViewModel
@@ -31,6 +33,19 @@ namespace Z2XProgrammer.ViewModel
 
     public partial class SoundViewModel : ObservableObject
     {
+
+        #region REGION: DATASTORE & SETTINGS
+
+        // dataStoreDataValid is TRUE if current decoder settings are available
+        // (e.g. a Z2X project has been loaded or a decoder has been read out).
+        [ObservableProperty]
+        bool dataStoreDataValid;
+
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        [ObservableProperty]
+        bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
+
+        #endregion
 
         #region REGION: DECODER FEATURES
 
@@ -61,106 +76,22 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
-        [ObservableProperty]
-        bool dataStoreDataValid;
 
-        [ObservableProperty]
-        bool anyDecoderFeatureAvailable;
-
-        [ObservableProperty]
-        bool anyZIMOSoundTimesFeaturesAvailable;
-
-        
-        [ObservableProperty]
-        byte soundEMotorVolumeDependedSpeed;
-        partial void OnSoundEMotorVolumeDependedSpeedChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundEMotorVolumeDependedSpeed = value;
-        }
-
-        
-        [ObservableProperty]
-        byte soundEMotorVolume;
-        partial void OnSoundEMotorVolumeChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundEMotorVolume = value;
-        }
-
-
-        // ZIMO_SOUND_VOLUME_DECELERATION_CV286
-        [ObservableProperty]
-        byte soundVolumeDeceleration;
-        partial void OnSoundVolumeDecelerationChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundVolumeDeceleration = value;
-        }
-
-        // ZIMO_SOUND_VOLUME_ACCELERATION_CV283
-        [ObservableProperty]
-        byte soundVolumeAcceleration;
-        partial void OnSoundVolumeAccelerationChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundVolumeAcceleration = value;
-        }
-
-        // ZIMO_SOUND_VOLUME_FASTSPEEDNOLOAD_CV276
-        [ObservableProperty]
-        byte soundVolumeFastSpeedNoLoad;
-        partial void OnSoundVolumeFastSpeedNoLoadChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundVolumeFastSpeedNoLoad = value;
-        }
-
-
-        // ZIMO_SOUND_VOLUME_SLOWSPEEDNOLOAD_CV275
-        [ObservableProperty]
-        byte soundVolumeSlowSpeedNoLoad;
-        partial void OnSoundVolumeSlowSpeedNoLoadChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundVolumeSlowSpeedNoLoad = value;
-        }
-
-        // ZIMO_SOUND_STARTUPDELAY_CV273
-        [ObservableProperty]
-        byte soundStartUpDelay;
-        partial void OnSoundStartUpDelayChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundStartUpDelay = value;
-            SoundStartUpDelayText = GetSoundStartUpDelayLabel();
-        }
-        [ObservableProperty]
-        string soundStartUpDelayText = "";
-
-        // ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285
-        [ObservableProperty]
-        byte soundDurationNoiseReduction;
-        partial void OnSoundDurationNoiseReductionChanged(byte value)
-        {
-            DecoderConfiguration.ZIMO.SoundDurationNoiseReduction = value;
-            SoundDurationNoiseReductionText = GetSoundDurationNoiseReductionLabel();
-        }
-        [ObservableProperty]
-        string soundDurationNoiseReductionText = "";
-
-
-        [ObservableProperty]
-        int breakSquealLevel;
-        partial void OnBreakSquealLevelChanged(int value)
-        {
-            DecoderConfiguration.ZIMO.BreakSquealLevel = (byte)value;
-        }
-
-        // ZIMO_SOUND_VOLUME_GENERIC_C266
+        // ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266)
         [ObservableProperty]
         int overallVolume;
         partial void OnOverallVolumeChanged(int value)
         {
             DecoderConfiguration.ZIMO.OverallVolume = (byte)value;
             OverallVolumeText = GetOverallVolumeText();
+            CV266Configuration = Subline.Create(new List<uint>{266});
         }
 
         [ObservableProperty]
         string overallVolumeText = "";
+
+        [ObservableProperty]
+        string cV266Configuration = Subline.Create(new List<uint>{266});
 
         [ObservableProperty]
         int maximumVolumeForFunctionKeys;
@@ -169,10 +100,137 @@ namespace Z2XProgrammer.ViewModel
             DecoderConfiguration.ZIMO.MaximumVolumeForFuncKeysControl = (byte)value;
             float percentage = ((float)400 / (float)255) * (float)value;
             MaximumVolumeForFunctionKeysText = GetMaximumVolumeForFunctionKeysText();
+            CV395Configuration = Subline.Create(new List<uint>{395});
         }
 
         [ObservableProperty]
         string maximumVolumeForFunctionKeysText = "";
+
+        [ObservableProperty]
+        string cV395Configuration = Subline.Create(new List<uint>{395});
+
+        [ObservableProperty]
+        bool anyDecoderFeatureAvailable;
+
+        [ObservableProperty]
+        bool anyZIMOSoundTimesFeaturesAvailable;
+
+        //  ZIMO: CV298
+        [ObservableProperty]
+        byte soundEMotorVolumeDependedSpeed;
+        partial void OnSoundEMotorVolumeDependedSpeedChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundEMotorVolumeDependedSpeed = value;
+            CV298Configuration = Subline.Create(new List<uint>{298});
+        }
+        [ObservableProperty]
+        string cV298Configuration = Subline.Create(new List<uint>{298});
+
+        //  ZIMO: CV296
+        [ObservableProperty]
+        byte soundEMotorVolume;
+        partial void OnSoundEMotorVolumeChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundEMotorVolume = value;
+            CV296Configuration = Subline.Create(new List<uint>{296});
+        }
+        [ObservableProperty]
+        string cV296Configuration = Subline.Create(new List<uint>{296});
+
+
+
+        // ZIMO: ZIMO_SOUND_VOLUME_DECELERATION_CV286
+        [ObservableProperty]
+        byte soundVolumeDeceleration;
+        partial void OnSoundVolumeDecelerationChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundVolumeDeceleration = value;
+            CV286Configuration = Subline.Create(new List<uint> { 286 });
+        }
+        [ObservableProperty]
+        string cV286Configuration = Subline.Create(new List<uint>{286});
+
+        // ZIMO: ZIMO_SOUND_VOLUME_ACCELERATION_CV283
+        [ObservableProperty]
+        byte soundVolumeAcceleration;
+        partial void OnSoundVolumeAccelerationChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundVolumeAcceleration = value;
+            CV283Configuration = Subline.Create(new List<uint>{283});
+        }
+        [ObservableProperty]
+        string cV283Configuration = Subline.Create(new List<uint>{283});
+
+
+        // ZIMO: ZIMO_SOUND_VOLUME_FASTSPEEDNOLOAD_CV276
+        [ObservableProperty]
+        byte soundVolumeFastSpeedNoLoad;
+        partial void OnSoundVolumeFastSpeedNoLoadChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundVolumeFastSpeedNoLoad = value;
+            CV276Configuration = Subline.Create(new List<uint>{276});
+        }
+        [ObservableProperty]
+        string cV276Configuration = Subline.Create(new List<uint>{276});
+
+
+        // ZIMO: Steam sounds in CV27X (ZIMO_SOUND_VOLUME_STEAM_CV27X)
+        [ObservableProperty]
+        byte soundVolumeSlowSpeedNoLoad;
+        partial void OnSoundVolumeSlowSpeedNoLoadChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundVolumeSlowSpeedNoLoad = value;
+            CV275Configuration = Subline.Create(new List<uint>{275});
+        }
+        [ObservableProperty]
+        string cV275Configuration = Subline.Create(new List<uint>{275});
+
+
+        // ZIMO: ZIMO_SOUND_STARTUPDELAY_CV273
+        [ObservableProperty]
+        byte soundStartUpDelay;
+        partial void OnSoundStartUpDelayChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundStartUpDelay = value;
+            SoundStartUpDelayText = GetSoundStartUpDelayLabel();
+            CV273Configuration = Subline.Create(new List<uint>{273});
+        }
+        [ObservableProperty]
+        string soundStartUpDelayText = "";
+
+        [ObservableProperty]
+        string cV273Configuration = Subline.Create(new List<uint>{273});
+
+
+        // ZIMO: ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285
+        [ObservableProperty]
+        byte soundDurationNoiseReduction;
+        partial void OnSoundDurationNoiseReductionChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.SoundDurationNoiseReduction = value;
+            SoundDurationNoiseReductionText = GetSoundDurationNoiseReductionLabel();
+            CV285Configuration = Subline.Create(new List<uint> { 285 });
+        }
+        [ObservableProperty]
+        string soundDurationNoiseReductionText = "";
+
+        [ObservableProperty]
+        string cV285Configuration = Subline.Create(new List<uint>{285});
+
+
+        [ObservableProperty]
+        int breakSquealLevel;
+        partial void OnBreakSquealLevelChanged(int value)
+        {
+            DecoderConfiguration.ZIMO.BreakSquealLevel = (byte)value;
+            CV287Configuration = Subline.Create(new List<uint> { 287 });
+        }
+        [ObservableProperty]
+        string cV287Configuration = Subline.Create(new List<uint>{287});
+
+
+
+       
 
         #endregion
 

@@ -101,7 +101,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
             Preferences.Default.Set(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, DecoderConfiguration.RCN225.LocomotiveAddress.ToString());
-            VehicleAddressCVConfiguration = Subline.Create(new List<byte>{1,17,18});
+            VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
         }
 
@@ -118,7 +118,7 @@ namespace Z2XProgrammer.ViewModel
         {
             if (newValue == null) return;
             DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
-            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<byte>{29});
+            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<uint>{29});
             SetGUILimits();
             VehicleAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
             ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;            
@@ -155,7 +155,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnConsistAddressChanged(ushort value)
         {
             DecoderConfiguration.RCN225.ConsistAddress = value;
-            ConsistAddressCVConfiguration = Subline.Create(new List<byte>{19});
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19});
         }
 
         [ObservableProperty]
@@ -167,7 +167,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSecondaryAddressChanged(ushort value)
         {
             DecoderConfiguration.ZIMO.SecondaryAddress = value;
-            SecondaryAddressCVConfiguration = Subline.Create(new List<byte> { 64, 67, 68 });
+            SecondaryAddressCVConfiguration = Subline.Create(new List<uint> { 64, 67, 68 });
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
         }
         [ObservableProperty]
@@ -183,7 +183,7 @@ namespace Z2XProgrammer.ViewModel
         {
             if (newValue == null) return;
             DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
-            SelectedDCCAddressModeSecondaryAdrCVValues = Subline.Create(new List<byte> { 112 });
+            SelectedDCCAddressModeSecondaryAdrCVValues = Subline.Create(new List<uint> { 112 });
             SetGUILimits();
             SecondaryAddress = DecoderConfiguration.ZIMOBackup.SecondaryAddress;
         }
