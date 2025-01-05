@@ -60,7 +60,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </HorizontalStackLayout>
 
             <!-- Page sheet content -->
-            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" Margin="20,40,20,0">
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" Margin="0,20,0,0">
                 <SearchBar x:Name="searchBar" Style="{StaticResource Z2XProgrammerSearchBar}" SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}, x:DataType=SearchBar}" Placeholder="{x:Static strings:AppResources.FrameSearchPlaceHolder}">
                     <SearchBar.Behaviors>
                         <toolkit:EventToCommandBehavior
