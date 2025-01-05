@@ -32,7 +32,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:FunctionKeysSecondaryAddressViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Padding="40,40,40,40"
+             Padding="40,40,5,20"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}">
 
     <ContentPage.Resources>

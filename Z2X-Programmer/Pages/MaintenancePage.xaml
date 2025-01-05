@@ -31,7 +31,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              x:DataType="viewmodel:MaintenanceViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,40,40"
+             Padding="40,40,5,20"
              Title="{x:Static strings:AppResources.FlyoutItemMaintenanceText}">
 
     <ContentPage.Resources>

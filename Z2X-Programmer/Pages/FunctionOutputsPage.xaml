@@ -8,7 +8,7 @@
              x:DataType="viewmodel:FunctionOutputsViewModel"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,40,40"
+             Padding="40,40,5,20"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}">
 
     <ContentPage.Resources>
