@@ -1534,10 +1534,10 @@ The application is aimed at beginners who want to configure the most important f
     <value>Getting Started</value>
   </data>
   <data name="FrameGettingStartedDescription" xml:space="preserve">
-    <value>Z2X-Programmer benötigt eine aktive Verbindung zu Ihrer Digitalzentale. Diese Verbindung muss vor dem ersten Start konfiguriert werden. Führen Sie die folgenden Schritte aus, um die Verbindung herzustellen:</value>
+    <value>Z2X-Programmer requires an active connection to your digital control center. This connection must be configured before the first start.</value>
   </data>
   <data name="FrameGettingStartedStep1" xml:space="preserve">
-    <value>Wechseln Sie auf die Registerkarte "Einstellungen".</value>
+    <value>Switch to the tab </value>
   </data>
   <data name="FrameGettingStartedStep2" xml:space="preserve">
     <value>Scroll to the section </value>

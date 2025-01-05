@@ -1824,7 +1824,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Z2X-Programmer benötigt eine aktive Verbindung zu Ihrer Digitalzentale. Diese Verbindung muss vor dem ersten Start konfiguriert werden. Führen Sie die folgenden Schritte aus, um die Verbindung herzustellen:.
+        ///   Looks up a localized string similar to Z2X-Programmer requires an active connection to your digital control center. This connection must be configured before the first start..
         /// </summary>
         public static string FrameGettingStartedDescription {
             get {
@@ -1842,7 +1842,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wechseln Sie auf die Registerkarte &quot;Einstellungen&quot;..
+        ///   Looks up a localized string similar to Switch to the tab .
         /// </summary>
         public static string FrameGettingStartedStep1 {
             get {
