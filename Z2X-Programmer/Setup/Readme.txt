@@ -1,7 +1,7 @@
 ------------------------------------------------------------------
 File:         Readme.txt
 Version:      0.1.2.0-beta.6
-Date:         22.12.2024
+Date:         05.01.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
@@ -9,7 +9,7 @@ Below you will find a brief description and version
 information on the software supplied.
 
 ------------------------------------------------------------------
-Version 0.1.2.0-beta.6 / 22.12.2024
+Version 0.1.2.0-beta.6 / 05.01.2025
 ------------------------------------------------------------------
 Note:
 
@@ -23,13 +23,37 @@ New features:
 * Modified CVs are now displayed in detail before a download.
 
 * The current values of the CVs can now be displayed for each
-  setting. Note: Not all settings have been expanded yet, the
-  work is still being carried out.Ongoing process.
+  setting.
 
 * More detailed error messages if the digital command station
   cannot be reached.
 
+* A “Getting started” dialog has been added.
+
 Bug fixes:
+
+* Older Z2X projects without names for function outputs lead
+  to a crash.
+
+* The ZIMO-specific extended assignment of the function outputs
+  - without left shift (CV61) was sporadically activated
+  incorrectly.
+
+* The status of the ZIMO light effects was not read out correctly,
+  also the GUI did not react correctly to the
+  feature ZIMO_LIGHT_EFFECTS_CV125X.
+
+* The values for feature ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57
+  were sporadically overwritten by the values of the feature
+  ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57.
+
+* The extended speed curve values are now written to the
+  decoder.
+
+* The default maximum speed switch did not work properly.
+
+* The automatic motor reference value switch for ZIMO MS
+  decoder did not work properly.
 
 * Receiving a Rocrail locomotive list can sometimes take a
   long time.
@@ -39,9 +63,6 @@ Bug fixes:
 
 * GUI elements for RCN225_DIRECTION_CV29_0 were visible
   although this feature was not activated.
-
-* Older Z2X projects without names for function outputs
-  lead to a crash.
 
 Technical improvements:
 
