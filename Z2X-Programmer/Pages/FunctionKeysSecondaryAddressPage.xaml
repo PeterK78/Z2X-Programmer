@@ -68,7 +68,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 <!-- ZIMO function keys mapping of the secondary address (CV69 to CV82)  -->
                 <Label x:Name="FrameFunctionKeysMappingSecondaryAddressTitle" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingSecondaryAddressTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X}" />
-                <Frame Style="{StaticResource Z2XProgrammerFrame}" IsVisible="{Binding ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -334,7 +334,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     </Grid>
 
-                </Frame>
+                </Border>
 
             </VerticalStackLayout>
 

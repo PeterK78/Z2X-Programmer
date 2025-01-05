@@ -45,7 +45,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- About -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoApplicationInformationTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -72,7 +72,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
            
             <!-- License text -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -87,7 +87,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoOpenSourceLibsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
             <!-- .NET MAUI Community Toolkit -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -112,10 +112,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- .NET MAUI Community MVVM -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -140,10 +140,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- MetroLog.Maui -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -168,10 +168,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Microsoft.Extensions.Logging.Debug -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -196,10 +196,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Microsoft.Maui.Controls -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -224,10 +224,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Microsoft.Maui.Controls.Compatibility -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -252,10 +252,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Microsoft.NET.ILLink.Tasks -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -280,10 +280,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Microsoft Fluent Icon -->
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -308,7 +308,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Label>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
 
         </VerticalStackLayout>

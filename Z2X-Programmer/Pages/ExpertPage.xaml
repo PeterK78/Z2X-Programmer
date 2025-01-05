@@ -52,7 +52,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- Read & Write single CVs  -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}" IsEnabled="{Binding Path=ActivityReadWriteCVOngoing,Converter={StaticResource boolInvert}}" >
+            <Border Style="{StaticResource Z2XBorderFrame}" IsEnabled="{Binding Path=ActivityReadWriteCVOngoing,Converter={StaticResource boolInvert}}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -134,11 +134,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
                         </HorizontalStackLayout>
                     </Grid>
-            </Frame>
+            </Border>
 
             <!-- CV list -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertCVListTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
 
                 <VerticalStackLayout>
 
@@ -175,7 +175,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </HorizontalStackLayout>
                     
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
        
 

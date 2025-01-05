@@ -37,7 +37,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <Label Text="{x:Static strings:AppResources.LocoListTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}"></Label>
 
-            <Frame Style="{StaticResource Z2XProgrammerFrame}">
+            <Border Style="{StaticResource Z2XBorderFrame}">
                 <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="500">
                     <CollectionView.Header>
                         <Grid>
@@ -67,7 +67,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Frame>
+            </Border>
 
             <HorizontalStackLayout HorizontalOptions="End">
                 <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
