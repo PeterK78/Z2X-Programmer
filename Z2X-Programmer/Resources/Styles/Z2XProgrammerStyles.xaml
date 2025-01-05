@@ -15,9 +15,9 @@
     <Style x:Key="Z2XBorderFrame" TargetType="Border">
         <Setter Property="StrokeShape" Value="RoundRectangle 8"></Setter>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
-        <Setter Property="StrokeThickness" Value="0.1"></Setter>
+        <Setter Property="StrokeThickness" Value="0.5"></Setter>
         <Setter Property="Padding" Value="20,20,20,20"></Setter>
-        <Setter Property="Stroke" Value="Black"></Setter>
+        <Setter Property="Stroke" Value="#ACACAC"></Setter>
     </Style>
 
     <!-- No longer allowed since .NET 9. Should be replaced by Z2XBorderFrame.#
