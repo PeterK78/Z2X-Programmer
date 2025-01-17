@@ -115,12 +115,71 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedDCCAddressModeVehicleAdr;
         partial void OnSelectedDCCAddressModeVehicleAdrChanged(string? oldValue, string newValue)
         {
+            //  Did we get a new value? Otherwise return.
             if (newValue == null) return;
+
+            //  Convert the description to the enum value and store it in the decoder configuration.
             DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeFromDescription(newValue);
-            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<uint>{29});
+            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<uint> { 29 });
+
+            //  Depending on the selected DCC address mode, set the limits for the address.
             SetGUILimits();
-            VehicleAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
-            ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;            
+
+            //  We need to make sure that we are using valid vehicle and consist addresses.
+            if (DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Extended)
+            {
+                //  Lets check if a valid long vehicle address has already been configured.
+                if ((DecoderConfiguration.RCN225.LocomotiveAddress > NMRA.LongAddressMinimum) && (DecoderConfiguration.RCN225.LocomotiveAddress < NMRA.LongAddressMaximum))
+                {
+                    //  A valid long vehicle address is already available - let's use it.
+                    VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                }
+                else
+                {
+                    //  We do not have a valid long vehicle address - let's use the default one. 
+                    VehicleAddress = NMRA.StandardLongVehicleAddress;
+                }
+
+                //  Lets check if a valid long consist address has already been configured.
+                if ((DecoderConfiguration.RCN225.ConsistAddress > NMRA.LongAddressMinimum) && (DecoderConfiguration.RCN225.ConsistAddress < NMRA.LongAddressMinimum))
+                {
+                    //  A valid long vehicle address is already available - let's use it.
+                    ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
+                }
+                else
+                {   
+                    //  We do not have a valid long consist address - let's use the default one.     
+                    ConsistAddress = NMRA.StandardLongVehicleAddress;
+                }
+            }
+            else
+            {
+                //  Lets check if a valid short vehicle address has already been configured.
+                if ((DecoderConfiguration.RCN225.LocomotiveAddress > NMRA.ShortAddressMinimum) && (DecoderConfiguration.RCN225.LocomotiveAddress < NMRA.ShortAddressMaximum))
+                {
+                    //  A valid long vehicle address is already available - let's use it.
+                    VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                }
+                else
+                {
+                    //  We do not have a valid long vehicle address - let's use the default one. 
+                    VehicleAddress = NMRA.StandardShortVehicleAddress;
+                }
+
+                //  Lets check if a valid long consist address has already been configured.
+                if ((DecoderConfiguration.RCN225.ConsistAddress > NMRA.ShortAddressMinimum) && (DecoderConfiguration.RCN225.ConsistAddress < NMRA.ShortAddressMaximum))
+                {
+                    //  A valid long vehicle address is already available - let's use it.
+                    ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
+                }
+                else
+                {   
+                    //  We do not have a valid long consist address - let's use the default one.     
+                    ConsistAddress = NMRA.StandardShortVehicleAddress;
+                }
+
+            }
+            
         }
 
         [ObservableProperty]
@@ -232,17 +291,21 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PRIVATE FUNCTIONS
 
+        /// <summary>
+        /// Updates the limits in the GUI.
+        /// </summary>
         public void SetGUILimits()
         {
-            if(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Short)
+            //  Set the limits for the vehicle address, depending on the selected DCC address mode.
+            if (DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Short)
             {
-                LimitMinimumAddress = 1;
-                LimitMaximumAddress = 127;
+                LimitMinimumAddress = NMRA.ShortAddressMinimum;
+                LimitMaximumAddress = NMRA.ShortAddressMaximum;
             }
             else
             {
-                LimitMinimumAddress = 128;
-                LimitMaximumAddress = 10239;
+                LimitMinimumAddress = NMRA.LongAddressMinimum;
+                LimitMaximumAddress = NMRA.LongAddressMaximum;
             }
     
             if(DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr == NMRA.DCCAddressModes.Short)

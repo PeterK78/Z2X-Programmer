@@ -121,7 +121,7 @@ namespace Z2XProgrammer.DataStore
             UserDefindedImage = string.Empty;
             UserDefindedDecoderDescription = string.Empty;
 
-            Init(NMRA.StandardLocomotiveAddress, "");
+            Init(NMRA.StandardShortVehicleAddress, "");
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Z2XProgrammer.DataStore
 
             //  Set the NMRA default addresses.
             RCN225.LocomotiveAddress = locomotiveAddress;
-            RCN225Backup.LocomotiveAddress = NMRA.StandardLocomotiveAddress;
+            RCN225Backup.LocomotiveAddress = NMRA.StandardShortVehicleAddress;
 
             //  The current data in the data store is not valid.
             IsValid = false;

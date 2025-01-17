@@ -29,18 +29,25 @@ namespace Z2XProgrammer.Helper
     public static class NMRA
     {
         /// <summary>
-        /// NMRA defined enumerations
+        /// NMRA defined enumerations.
         /// </summary>
         internal enum DCCProgrammingModes { DirectProgrammingTrack = 0, POMMainTrack = 1 };
         internal enum DCCAddressModes { Short = 0, Extended = 1 };
         internal enum DCCSpeedStepsModes { Steps14 = 0, Step28to128 = 1};
         internal enum DCCABCBreakModes { Off = 0, RightTrack = 1, LeftTrack=2};
 
+        //  Valid ranges for vehicle addresses according to RCN225.
+        public const int ShortAddressMinimum = 1;
+        public const int ShortAddressMaximum = 127;
+        public const int LongAddressMinimum = 128;
+        public const int LongAddressMaximum = 10239;
+
         public const byte NumberOfFunctionKeys = 28;
         public const byte NumberOfExtendedSpeedSteps = 28;
 
         //  The standard locomotive address
-        public const byte StandardLocomotiveAddress = 3;
+        public const byte StandardShortVehicleAddress = 3;
+        public const int StandardLongVehicleAddress = 1000;
         
         public const byte StandardCV2 = 1;
         public const byte StandardCV3 = 2;

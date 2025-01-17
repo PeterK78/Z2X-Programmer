@@ -256,7 +256,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We initialize the decoder configuration.
                 //  We then inform the application that this has changed.
-                DecoderConfiguration.Init(NMRA.StandardLocomotiveAddress, "");
+                DecoderConfiguration.Init(NMRA.StandardShortVehicleAddress, "");
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
                 //  Finally, we set the DecoderConfiguration to our standard DecoderConfiguration.
