@@ -100,7 +100,6 @@ namespace Z2XProgrammer.ViewModel
         partial void OnVehicleAddressChanged(ushort oldValue, ushort newValue)
         {
             DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
-            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, DecoderConfiguration.RCN225.LocomotiveAddress.ToString());
             VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
         }
@@ -202,13 +201,11 @@ namespace Z2XProgrammer.ViewModel
         public AddressViewModel()
         {
             AvailableDCCAddressModesVehicleAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
-            AvailableDCCAddressModesSecondaryAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
-
-            VehicleAddress = ushort.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_KEY, AppConstants.PREFERENCES_LOCOMOTIVEADDRESS_DEFAULT));
+            AvailableDCCAddressModesSecondaryAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());           
 
             SelectedDCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
             SelectedDCCAddressModeSecondaryAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
-            
+           
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
@@ -280,8 +277,9 @@ namespace Z2XProgrammer.ViewModel
 
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
-            //  Update the vehicle address
+            //  Update the vehicle address.
             VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+
             SelectedDCCAddressModeVehicleAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr);
 
             //  Update the ZIMO specific secondary address

@@ -1564,4 +1564,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleValue" xml:space="preserve">
     <value>Wert der Konfigurationsvariable </value>
   </data>
+  <data name="ButtonMainMenuUndo" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
+  <data name="ButtonMainMenuRedo" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
 </root>

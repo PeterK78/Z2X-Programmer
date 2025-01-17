@@ -21,22 +21,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Messaging;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Z2XProgrammer.Helper;
+using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.DataModel
 {
     /// <summary>
-    /// Contains the definition of single NMRA configuration variable (short CV)
+    /// Contains the definition of single NMRA configuration variable (short configuration variable)
     /// </summary>
     public class ConfigurationVariableType: INotifyPropertyChanged
     {
+        //  Private field variables.
         private bool _Enabled = true;
+        private byte _Value = 0;
         
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -46,40 +46,61 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// The number of the CV
+        /// The number of the configuration variable.
         /// </summary>
         /// 
         public int Number { get; set; }
 
         /// <summary>
-        /// The value of the CV
+        /// The value of the configuration variable.
         /// </summary>
-        public byte Value {  get; set; }
-        
+        public byte Value
+        {
+            get => _Value;
+            set
+            {
+                if(_Value == value) return;
+
+                //  Setup the UndoRedo-Information.
+                UndoRedoType undoRedoInfo = new UndoRedoType();
+                undoRedoInfo.CVNumber = Number;
+                undoRedoInfo.OldValue = _Value;
+                undoRedoInfo.NewValue = value;
+
+                _Value = value;
+                
+                //  Inform the UndoRedo-Manager that a CV value has been changed.
+                WeakReferenceMessenger.Default.Send(new UndoRedoMessage(undoRedoInfo));
+            }
+        }
+
         /// <summary>
-        /// Enable or disables the CV
+        /// Enable or disables the configuration variable.
         /// </summary>
         public bool Enabled
         {
             get => _Enabled;
             set
-            {
+            {                
                 _Enabled = value;
                 OnPropertyChanged(nameof(Enabled));
             }
         }
 
         /// <summary>
-        /// A short description of th CV
+        /// A short description of th configuration variable.
         /// </summary>
         public string Description { get; set; }
 
 
+        /// <summary>
+        /// Is TRUE if the configuration variable is supported by the decoder specification.
+        /// </summary>
         public bool DeqSecSupported { get; set; }
 
 
         /// <summary>
-        /// Constructor of ConfigurationVariable
+        /// Constructor of ConfigurationVariable.
         /// </summary>
         public ConfigurationVariableType()
         {

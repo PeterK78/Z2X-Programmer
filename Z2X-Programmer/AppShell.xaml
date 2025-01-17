@@ -77,44 +77,74 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
     
+    <!-- The toolbar -->
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal"  VerticalOptions="EndAndExpand" Margin="{OnPlatform '40,0,0,0', iOS='0,0,0,0', Android='0,0,0,0'}">
 
+            <!--  New project -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_form_new_24_regular.png, Dark=ic_fluent_form_new_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=NewCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuNewFileTooltip}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+
+            <!-- Open Z2X-project -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_folder_open_24_regular.png, Dark=ic_fluent_folder_open_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenZ2XFileCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuOpenFileTooltip}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>                    
                 </Button.Text>
             </Button>
+
+            <!-- Undo last step  -->
+            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_undo_24_regular.png, Dark=ic_fluent_arrow_undo_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UndoCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuUndo}" HorizontalOptions="End" IsEnabled="{Binding UndoAvailable}">
+                <Button.Text>
+                    <OnIdiom Default="" Phone=""></OnIdiom>
+                </Button.Text>
+            </Button>
+
+            <!-- Redo last step  -->
+            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_redo_24_regular.png, Dark=ic_fluent_arrow_redo_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=RedoCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuRedo}" HorizontalOptions="End" IsEnabled="{Binding RedoAvailable}" >
+                <Button.Text>
+                    <OnIdiom Default="" Phone=""></OnIdiom>
+                </Button.Text>
+            </Button>
+
+            <!-- Save Z2X-project -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_save_24_regular.png, Dark=ic_fluent_save_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuSaveFileText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=SaveZ2XFileCommand}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+
+            <!-- Upload decoder data -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_regular.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuReadDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UploadDecoderCommand}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+
+            <!-- Download decoder data -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_regular.png , Dark=ic_fluent_arrow_download_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDecoderCommand}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+
+            <!-- Download decoder data (only differences) -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_diff_24_regular.png , Dark=ic_fluent_arrow_download_diff_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDiffDecoderCommand}" HorizontalOptions="End">
                 <Button.Text>
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+
+            <!-- Programming mode selection -->
             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}"  WidthRequest="180" >
                 <Picker.WidthRequest>
                     <OnIdiom Default="220" Phone="170"></OnIdiom>                    
                 </Picker.WidthRequest>
             </Picker>
+
+            <!-- Decoder specification selection -->
             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}" WidthRequest="250" ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
                 <Picker.WidthRequest>
                     <OnIdiom Default="300" Phone="240"></OnIdiom>

@@ -31,7 +31,9 @@
     
     <!-- Button colors -->    
     <Color x:Key="ButtonBackground_Light">#f9f9f9</Color>
+    <Color x:Key="ButtonBackground_Light_Disabled">#f3f3f3</Color>
     <Color x:Key="ButtonBackground_Dark">#2b2b2b</Color>
+    <Color x:Key="ButtonBackground_Dark_Disabled">#636363</Color>
     <Color x:Key="ButtonText_Light">#Black</Color>
     <Color x:Key="ButtonText_Dark">White</Color>
     <Color x:Key="ButtonHighlight_Light">#f3f3f3</Color>

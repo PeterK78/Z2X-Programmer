@@ -60,8 +60,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_COMMANDSTATIONIP_DEFAULT = "192.168.0.111";
         internal const string PREFERENCES_PROGRAMMINGMODE_KEY = "PROGRAMMINGMODE";
         internal const string PREFERENCES_PROGRAMMINGMODE_DEFAULT = "0";
-        internal const string PREFERENCES_LOCOMOTIVEADDRESS_KEY = "PREFERENCES_LOCOMOTIVE_ADDRESS";
-        internal const string PREFERENCES_LOCOMOTIVEADDRESS_DEFAULT = "3";
         internal const string PREFERENCES_AUTODECODER_DETECT_KEY = "AUTODECODERDETECT";
         internal const string PREFERENCES_AUTODECODER_DETECT_DEFAULT = "1";
         internal const string PREFERENCES_LOGGING_KEY = "PREFERENCES_LOGGING_KEY";

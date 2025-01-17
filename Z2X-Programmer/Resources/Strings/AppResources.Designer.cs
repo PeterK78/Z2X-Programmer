@@ -437,6 +437,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string ButtonMainMenuRedo {
+            get {
+                return ResourceManager.GetString("ButtonMainMenuRedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string ButtonMainMenuSaveFileText {
@@ -451,6 +460,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ButtonMainMenuSettingsText {
             get {
                 return ResourceManager.GetString("ButtonMainMenuSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string ButtonMainMenuUndo {
+            get {
+                return ResourceManager.GetString("ButtonMainMenuUndo", resourceCulture);
             }
         }
         

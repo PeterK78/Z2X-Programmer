@@ -80,9 +80,12 @@ namespace Z2XProgrammer
             builder.Logging.AddDebug();
 #endif
 
-            //  Initialize the logging service
+            // Initialize the logging service.
             Logger.Init(nameof(MauiProgram));
             Logger.LogInformation("Starting InitialSetup.DoFirstSetup() ...");
+
+            // Initialize the UndoRedo managing service.
+            UndoRedoManager.Init();
 
             InitialSetup.DoFirstSetup();
 

@@ -41,6 +41,7 @@ using Z2XProgrammer.Converter;
 using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
+using System.ComponentModel;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -59,6 +60,12 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool dataStoreDataValid;
+
+        [ObservableProperty]
+        bool undoAvailable = false;
+
+        [ObservableProperty]
+        bool redoAvailable = false;
 
         [ObservableProperty]
         bool connectingOngoing = false;
@@ -119,7 +126,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         public AppShellViewModel()
         {
-             AvailableProgrammingModes = new ObservableCollection<String>(CommandStation.GetAvailableProgrammingModeNames());
+            AvailableProgrammingModes = new ObservableCollection<String>(CommandStation.GetAvailableProgrammingModeNames());
          
             int mode = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY, AppConstants.PREFERENCES_PROGRAMMINGMODE_DEFAULT));
             SelectedProgrammingMode = CommandStation.GetProgrammingModeDescription((NMRA.DCCProgrammingModes)mode);
@@ -170,7 +177,13 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            //  Setup the UndoRedo manager. 
+            UndoRedoManager.Reset();
+            UndoRedoManager.PropertyChanged += OnUndoRedoManagerPropertyChanged;
+
         }
+
+        
 
         #endregion
 
@@ -243,15 +256,18 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We initialize the decoder configuration.
                 //  We then inform the application that this has changed.
-                DecoderConfiguration.Init(NMRA.StandardLocomotiveAddress,"");
+                DecoderConfiguration.Init(NMRA.StandardLocomotiveAddress, "");
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
-                // Finally, we set the DecoderConfiguration to our standard DecoderConfiguration.
+                //  Finally, we set the DecoderConfiguration to our standard DecoderConfiguration.
                 //  We then inform the application that this has changed.
                 DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
                 DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
                 DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+
+                UndoRedoManager.Reset();
+
             }
             catch (Exception ex)
             {
@@ -295,6 +311,28 @@ namespace Z2XProgrammer.ViewModel
             {
                 await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
+        }
+
+        /// <summary>
+        /// Undos the last configuration variable change.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task Undo()
+        {
+            await Task.Run(() =>  UndoRedoManager.UndoLastCVChange());
+            WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+        }
+
+        /// <summary>
+        /// Redos the undo.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task Redo()
+        {
+            await Task.Run(() => UndoRedoManager.RedoLastUndo());
+            WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
         }
 
         /// <summary>
@@ -347,6 +385,8 @@ namespace Z2XProgrammer.ViewModel
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
+
+                        UndoRedoManager.Reset();
                         
                     }
                     else
@@ -471,6 +511,8 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.IsValid = true;
 
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+
+                UndoRedoManager.Reset();
             }
             catch (FormatException)
             {
@@ -646,6 +688,12 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
+
+        private void OnUndoRedoManagerPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            UndoAvailable = UndoRedoManager.UndoAvailable;
+            RedoAvailable = UndoRedoManager.RedoAvailable; 
+        }
 
         /// <summary>
         /// Activates a newly selected decoder specification
