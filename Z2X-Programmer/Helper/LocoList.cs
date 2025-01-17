@@ -49,11 +49,22 @@ namespace Z2XProgrammer.Helper
             }
         }
 
+        //  Returns the port address of the configured train controller software.
         public static int PortNumber
-        { get
-          {
-                return int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_PORTNR_KEY, AppConstants.PREFERENCES_LOCOLIST_PORTNR_VALUE));
-          }
+        { 
+            get
+            {
+                //  Try to parse the user specific traincontroller port number. If the parsing fails, return the default port number
+                bool success = int.TryParse(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_PORTNR_KEY, AppConstants.PREFERENCES_LOCOLIST_PORTNR_VALUE), out int portNumber);
+                if (success)
+                {
+                    return portNumber;
+                }
+                else
+                {
+                    return 8051;
+                }
+            }
         }
 
         public static IPAddress IPAddress
