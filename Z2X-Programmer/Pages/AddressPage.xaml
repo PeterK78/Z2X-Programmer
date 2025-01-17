@@ -33,7 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:AddressViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,5,20"
-             x:Name="ThisAddressPage"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemAddressText}">
 
     <ContentPage.Resources>
@@ -74,7 +74,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding VehicleAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
                             <Entry.Behaviors>
                                 <toolkit:NumericValidationBehavior                                     
-                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisAddressPage}, x:DataType=ContentPage}"
+                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                     InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                     ValidStyle="{StaticResource Z2XValidEntry}"
                                     Flags="ValidateOnValueChanged"
@@ -140,6 +140,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
+                                            BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                             InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                             ValidStyle="{StaticResource Z2XValidEntry}"
                                             Flags="ValidateOnValueChanged"
@@ -175,12 +176,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
-                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                    ValidStyle="{StaticResource Z2XValidEntry}"
-                                    Flags="ValidateOnValueChanged"
-                                    MinimumValue="{Binding LimitZimoSecondAddressMinimum}"
-                                    MaximumValue="{Binding LimitZimoSecondAddressMaximum}"
-                                    MaximumDecimalPlaces="0" />
+                                        BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                                        InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                        ValidStyle="{StaticResource Z2XValidEntry}"
+                                        Flags="ValidateOnValueChanged"
+                                        MinimumValue="{Binding LimitZimoSecondAddressMinimum}"
+                                        MaximumValue="{Binding LimitZimoSecondAddressMaximum}"
+                                        MaximumDecimalPlaces="0" />
                                 </Entry.Behaviors>
                             </Entry>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SecondaryAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>

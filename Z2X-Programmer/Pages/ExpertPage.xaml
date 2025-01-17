@@ -34,6 +34,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Padding="40,40,5,20"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemExpertTitle}">
 
     <ContentPage.Resources>
@@ -70,7 +71,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" WidthRequest="200" MinimumWidthRequest="200" Text="{Binding CvNumber}" HorizontalOptions="End" HorizontalTextAlignment="Center" VerticalOptions="Center" Keyboard="Numeric"  >
                         <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior 
+                            <toolkit:NumericValidationBehavior
+                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                 ValidStyle="{StaticResource Z2XValidEntry}"
                                 Flags="ValidateOnValueChanged"
@@ -84,12 +86,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Entry Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" MinimumWidthRequest="200" WidthRequest="200" Text="{Binding Value}" HorizontalOptions="End" HorizontalTextAlignment="Center" IsPassword="{Binding Path=DataValid,Converter={StaticResource boolInvert}}" VerticalOptions="Center" Keyboard="Numeric" >
                         <Entry.Behaviors>
                             <toolkit:NumericValidationBehavior 
-                            InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                            ValidStyle="{StaticResource Z2XValidEntry}"
-                            Flags="ValidateOnValueChanged"
-                            MinimumValue="0"
-                            MaximumValue="255"
-                            MaximumDecimalPlaces="0" />
+                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                ValidStyle="{StaticResource Z2XValidEntry}"
+                                Flags="ValidateOnValueChanged"
+                                MinimumValue="0"
+                                MaximumValue="255"
+                                MaximumDecimalPlaces="0" />
                         </Entry.Behaviors>
                     </Entry>
                     

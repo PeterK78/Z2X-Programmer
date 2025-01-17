@@ -33,6 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:SecurityViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,5,20"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemSecurityTitle}">
     
     <ContentPage.Resources>
@@ -82,6 +83,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Entry Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV15}"  WidthRequest="250" VerticalOptions="Center" >
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
+                                        BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                         InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                         ValidStyle="{StaticResource Z2XValidEntry}"
                                         Flags="ValidateOnValueChanged"
@@ -98,6 +100,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Entry Keyboard="Numeric" ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand"  MinimumWidthRequest="200" VerticalTextAlignment="Center" Text="{Binding DecoderLockPasswordCV16}"  WidthRequest="250" VerticalOptions="Center" >
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
+                                        BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                         InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                         ValidStyle="{StaticResource Z2XValidEntry}"
                                         Flags="ValidateOnValueChanged"

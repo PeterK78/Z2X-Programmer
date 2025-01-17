@@ -34,6 +34,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,5,20"
              Shell.PresentationMode="ModalAnimated"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.ButtonMainMenuSettingsText}">
 
     <ContentPage.Resources>
@@ -72,6 +73,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Entry  Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsZ21IPAddressPlaceholder}" Text="{Binding Z21IPAddress}" ClearButtonVisibility="WhileEditing">
                             <Entry.Behaviors>
                                 <toolkit:TextValidationBehavior 
+                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                     InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                     ValidStyle="{StaticResource Z2XValidEntry}"
                                     Flags="ValidateOnValueChanged"
@@ -142,6 +144,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Entry IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="5" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailAddrPlaceHolder}" Text="{Binding LocoListSystemIPAddress}" ClearButtonVisibility="WhileEditing">
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior 
+                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                     InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                     ValidStyle="{StaticResource Z2XValidEntry}"
                                     Flags="ValidateOnValueChanged"
@@ -154,6 +157,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Entry IsVisible="{Binding LocoListSystemRocrailSelected}" Grid.Row="6" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center" VerticalTextAlignment="Center"  WidthRequest="300"  HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListRocrailPortPlaceHolder}" Text="{Binding LocoListSystemPort}" ClearButtonVisibility="WhileEditing">
                         <Entry.Behaviors>
                             <toolkit:TextValidationBehavior 
+                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                 ValidStyle="{StaticResource Z2XValidEntry}"
                                 Flags="ValidateOnValueChanged"
