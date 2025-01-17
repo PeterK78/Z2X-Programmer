@@ -60,7 +60,8 @@ namespace Z2XProgrammer.Helper
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-loc.decspec", DeqSpecReader.ZimoMXLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MS-loc.decspec", DeqSpecReader.ZimoMSLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-fx.decspec", DeqSpecReader.ZimoFXFunctionSpec);
-            
+            DeqSpecReader.WriteDeqSpecFile("ZIMO-MN-loc.decspec", DeqSpecReader.ZimoMNLocomotiveSpec);
+
             //  Automatically setup the the GUI language if we did not before ...
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_KEY, AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_VALUE) != "1")
             {

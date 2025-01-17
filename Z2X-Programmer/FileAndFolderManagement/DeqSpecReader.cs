@@ -739,16 +739,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <decoder decoderid=""13"" decodername=""MS581""/>
     <decoder decoderid=""14"" decodername=""MS540""/>
 
-    <decoder decoderid=""119"" decodername=""MN140""/>
-    <decoder decoderid=""120"" decodername=""MN250""/>
-    <decoder decoderid=""121"" decodername=""MN150""/>
-    <decoder decoderid=""122"" decodername=""MN160""/>
-    <decoder decoderid=""123"" decodername=""MN340""/>
-    <decoder decoderid=""124"" decodername=""MN170""/>
-    <decoder decoderid=""125"" decodername=""MN300""/>
-    <decoder decoderid=""126"" decodername=""MN330""/>
-    <decoder decoderid=""127"" decodername=""MN180""/>
-
     <!-- Supported RCN225 features -->
     <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
     <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
@@ -799,6 +789,67 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes"" writeable=""yes""/>
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
     <ZIMO_SOUNDPROJECTNR_CV254 support=""yes"" writeable=""yes""/>
+    <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
+    <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
+
+</decoderseries>";
+
+ public static string ZimoMNLocomotiveSpec = @"<!-- Specification file for ZIMO MN decoders -->
+<decoderseries description_en=""ZIMO MN decoder"" description_de=""ZIMO MN Decoder""  manufacturerid=""145"" decspecversion=""1"" notes_de=""ZIMO MN Decoder"" notes_en=""ZIMO MN decoder"">
+
+    <!-- Supported decoders -->
+    <decoder decoderid=""119"" decodername=""MN140""/>
+    <decoder decoderid=""120"" decodername=""MN250""/>
+    <decoder decoderid=""121"" decodername=""MN150""/>
+    <decoder decoderid=""122"" decodername=""MN160""/>
+    <decoder decoderid=""123"" decodername=""MN340""/>
+    <decoder decoderid=""124"" decodername=""MN170""/>
+    <decoder decoderid=""125"" decodername=""MN300""/>
+    <decoder decoderid=""126"" decodername=""MN330""/>
+    <decoder decoderid=""127"" decodername=""MN180""/>
+
+    <!-- Supported RCN225 features -->
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <RCN225_MEDIUMSPEED_CV6 support=""yes"" writeable=""yes""/>		
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_DECODERLOCK_CV15X support=""yes"" writeable=""yes""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_CONSISTADDRESS_CV19 support=""yes"" writeable=""yes""/>
+    <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
+    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+    <RCN225_OPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
+    
+    <!-- Supported ZIMO features -->
+    <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
+    <ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 support=""yes"" writeable=""yes""/>
+    <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
+    <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
+    <ZIMO_BOOTLOADER_VERSION_24X support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
+    <ZIMO_SELFTEST_CV30 support=""yes"" writeable=""yes""/>
+    <ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 support=""yes"" writeable=""yes""/>
+    <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
 
