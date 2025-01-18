@@ -75,44 +75,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// The consist address in CV19.
-        /// </summary>
-        public ushort ConsistAddress
-        {
-            get
-            {
-                if(DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Short)
-                {
-                    //  The highest bit stores the direction during consist operation. We remove the bit
-                    //  before returning the address
-                    byte tempValue = configurationVariables[19].Value;
-                    return Bit.Set(tempValue, 7, false);
-                }
-                return NMRA.GetExtendedConsistAddress(configurationVariables[19].Value, configurationVariables[20].Value);
-            }
-            set
-            {
-                if (DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Short)
-                {
-                    if (value > 127) return;
-                    bool tempDirection = Bit.IsSet(configurationVariables[19].Value, 7);
-                    configurationVariables[19].Value = (byte)value;
-                    configurationVariables[19].Value = Bit.Set(configurationVariables[19].Value, 7, tempDirection);
-                }
-                else
-                {
-                    byte cv19 = 0; byte cv20 = 0;
-                    if (NMRA.ConvertExtendedConsistAddressToCVValues(value, ReverseDirectionConsistMode, out cv19, out cv20) == true)
-                    {
-                        configurationVariables[19].Value = cv19;
-                        configurationVariables[20].Value = cv20;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// The consist address in CV19.
+        /// The direction for consist mode in CV19.7.
         /// </summary>
         public bool ReverseDirectionConsistMode
         {
@@ -126,6 +89,59 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
+        /// <summary>
+        /// The consist address in CV19 and CV20.
+        /// </summary>
+        public ushort ConsistAddress
+        {
+            get
+            {
+                //  If CV20 is not equal to 0, we use the stanndard consist addresses
+                if (configurationVariables[20].Value == 0)
+                {
+                    //  The highest bit stores the direction during consist operation. We remove the bit
+                    //  before returning the address
+                    byte tempValue = configurationVariables[19].Value;
+                    return Bit.Set(tempValue, 7, false);
+                }
+                else
+                {
+                    return NMRA.GetExtendedConsistAddress(configurationVariables[19].Value, configurationVariables[20].Value);
+                }   
+            }
+            set
+            {
+                //  Do we have to turn off consist addresses?
+                if(value == 0)
+                {
+                    configurationVariables[19].Value = 0;
+                    configurationVariables[20].Value = 0;
+                    return;
+                }
+
+                // Consist addresses are valid between 0 and 10239.
+                if (value > 10239) return;
+
+                //  Standard consist addresses in CV19 are valid between 1 and 127. If the consist address is higher, we use CV19 and CV20
+                if (value <= 127)
+                {   
+                    bool tempDirection = ReverseDirectionConsistMode;
+                    configurationVariables[19].Value = (byte)value;
+                    configurationVariables[19].Value = Bit.Set(configurationVariables[19].Value, 7, tempDirection);
+                    configurationVariables[20].Value = 0;
+                }
+                else
+                {
+                    byte cv19 = 0; byte cv20 = 0;
+                    if (NMRA.ConvertExtendedConsistAddressToCVValues(value, ReverseDirectionConsistMode, out cv19, out cv20) == true)
+                    {
+                        configurationVariables[19].Value = cv19;
+                        configurationVariables[20].Value = cv20;
+                    }
+                }
+            }
+        }
+       
         /// <summary>
         /// Contains the minimum speed of CV2.
         /// </summary>

@@ -70,7 +70,7 @@ namespace Z2XProgrammer.ViewModel
         bool rCN225_DIRECTION_CV29_0;
 
         [ObservableProperty]
-        bool rCN225_CONSISTADDRESS_CV19;
+        bool rCN225_CONSISTADDRESS_CV19X;
 
         [ObservableProperty]
         bool rCN225_HLU_CV27_2;
@@ -93,7 +93,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV29Configuration = Subline.Create(new List<uint>{29});
 
-        //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19) -->
+        //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19X) -->
         [ObservableProperty]
         bool directionConsistModeReveral;
         partial void OnDirectionConsistModeReveralChanged(bool value)
@@ -285,7 +285,7 @@ namespace Z2XProgrammer.ViewModel
         public void OnGetDataFromDecoderSpecification()
         {
             RCN225_DIRECTION_CV29_0 = DecoderSpecification.RCN225_DIRECTION_CV29_0;
-            RCN225_CONSISTADDRESS_CV19 = DecoderSpecification.RCN225_CONSISTADDRESS_CV19;
+            RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
             RCN225_HLU_CV27_2 = DecoderSpecification.RCN225_HLU_CV27_2;
             RCN225_ABC_CV27_X = DecoderSpecification.RCN225_ABC_CV27_X;
         }

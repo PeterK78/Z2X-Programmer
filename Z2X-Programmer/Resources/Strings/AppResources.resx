@@ -649,10 +649,10 @@ The following error has occurred:</value>
     <value>Effects</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrDescription" xml:space="preserve">
-    <value>Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address.</value>
+    <value>Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address. Addresses from 1 to 10239 are possible.</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrLabel" xml:space="preserve">
-    <value>Consist address (CV19)</value>
+    <value>Consist address (CV19, CV20)</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrTitle" xml:space="preserve">
     <value>Consist address</value>
@@ -667,7 +667,7 @@ The following error has occurred:</value>
     <value>Vehicle address</value>
   </data>
   <data name="FrameLocomotiveAddressUseConsistAddressLabel" xml:space="preserve">
-    <value>Use consist address</value>
+    <value>Use consist address (CV19, CV20)</value>
   </data>
   <data name="FrameMaintenanceSelfTestDescription" xml:space="preserve">
     <value>Perform a simple decoder self-test.</value>

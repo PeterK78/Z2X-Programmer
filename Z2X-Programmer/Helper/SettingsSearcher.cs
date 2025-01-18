@@ -36,10 +36,10 @@ namespace Z2XProgrammer.Helper
         static readonly string[,] SearchDatabase = new string[80, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
-                                                                        { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19" },
-                                                                        { "AddressPage", "FrameLocomotiveAddressConsistAdrLabel","RCN225_CONSISTADDRESS_CV19"},
+                                                                        { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
+                                                                        { "AddressPage", "FrameLocomotiveAddressConsistAdrLabel","RCN225_CONSISTADDRESS_CV19X"},
                                                                         { "DriveCharacteristicsPage", "FrameDriveCharacteristicsDirectionLabel", "RCN225_DIRECTION_CV29_0"},
-                                                                        { "DriveCharacteristicsPage", "FrameDriveCharacteristicsConsistDirectionLabel", "RCN225_CONSISTADDRESS_CV19"},
+                                                                        { "DriveCharacteristicsPage", "FrameDriveCharacteristicsConsistDirectionLabel", "RCN225_CONSISTADDRESS_CV19X"},
                                                                         { "DriveCharacteristicsPage","FrameSpeedStepsSystemLabel", "" },
                                                                         { "DriveCharacteristicsPage","FrameDriveCharacteristicsAccDecAccTimeEnabledDisabled", "" },
                                                                         { "DriveCharacteristicsPage","FrameDriveCharacteristicsDecTimeLabel", "" },

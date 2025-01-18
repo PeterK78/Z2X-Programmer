@@ -2193,7 +2193,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address..
+        ///   Looks up a localized string similar to Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address. Addresses from 1 to 10239 are possible..
         /// </summary>
         public static string FrameLocomotiveAddressConsistAdrDescription {
             get {
@@ -2202,7 +2202,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consist address (CV19).
+        ///   Looks up a localized string similar to Consist address (CV19, CV20).
         /// </summary>
         public static string FrameLocomotiveAddressConsistAdrLabel {
             get {
@@ -2238,7 +2238,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use consist address.
+        ///   Looks up a localized string similar to Use consist address (CV19, CV20).
         /// </summary>
         public static string FrameLocomotiveAddressUseConsistAddressLabel {
             get {

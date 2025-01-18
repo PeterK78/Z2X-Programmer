@@ -86,9 +86,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
 
-                        <!-- RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19) -->
-                        <Label  x:Name="FrameDriveCharacteristicsConsistDirectionLabel" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsConsistDirectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
+                        <!-- RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19X) -->
+                        <Label  x:Name="FrameDriveCharacteristicsConsistDirectionLabel" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsConsistDirectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DirectionConsistModeReveral,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch IsToggled="{Binding DirectionConsistModeReveral}" HorizontalOptions="End" VerticalOptions="Center"></Switch>

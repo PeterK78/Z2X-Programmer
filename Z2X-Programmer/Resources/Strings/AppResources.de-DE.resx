@@ -650,10 +650,10 @@ Folgender Fehler ist aufgetreten:
     <value>Effekte</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrDescription" xml:space="preserve">
-    <value>Verbundadressen werden verwendet, wenn zwei oder mehrere Lokomotiven im Verbund fahren. Die zusätzlichen Lokomotiven erhalten als Verbundadresse die Fahrzeugadresse der führenden Lokomotive.</value>
+    <value>Verbundadressen werden verwendet, wenn zwei oder mehrere Lokomotiven im Verbund fahren. Die zusätzlichen Lokomotiven erhalten als Verbundadresse die Fahrzeugadresse der führenden Lokomotive. Adressen von 1 bis 10239 sind möglich.</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrLabel" xml:space="preserve">
-    <value>Verbundadresse (CV19)</value>
+    <value>Verbundadresse (CV19, CV20)</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrTitle" xml:space="preserve">
     <value>Verbundadresse</value>
@@ -668,7 +668,7 @@ Folgender Fehler ist aufgetreten:
     <value>Fahrzeugadresse</value>
   </data>
   <data name="FrameLocomotiveAddressUseConsistAddressLabel" xml:space="preserve">
-    <value>Verbundadresse verwenden</value>
+    <value>Verbundadresse verwenden (CV19, CV20)</value>
   </data>
   <data name="FrameMaintenanceSelfTestDescription" xml:space="preserve">
     <value>Führen Sie einen einfachen Decoder-Selbsttest durch.</value>

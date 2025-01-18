@@ -69,7 +69,7 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: DECODER FEATURES
 
         [ObservableProperty]
-        bool rCN225_CONSISTADDRESS_CV19;
+        bool rCN225_CONSISTADDRESS_CV19X;
 
         [ObservableProperty]
         bool zIMO_MXFX_SECONDADDRESS_CV64;
@@ -139,18 +139,6 @@ namespace Z2XProgrammer.ViewModel
                     //  We do not have a valid long vehicle address - let's use the default one. 
                     VehicleAddress = NMRA.StandardLongVehicleAddress;
                 }
-
-                //  Lets check if a valid long consist address has already been configured.
-                if ((DecoderConfiguration.RCN225.ConsistAddress > NMRA.LongAddressMinimum) && (DecoderConfiguration.RCN225.ConsistAddress < NMRA.LongAddressMinimum))
-                {
-                    //  A valid long vehicle address is already available - let's use it.
-                    ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
-                }
-                else
-                {   
-                    //  We do not have a valid long consist address - let's use the default one.     
-                    ConsistAddress = NMRA.StandardLongVehicleAddress;
-                }
             }
             else
             {
@@ -165,19 +153,6 @@ namespace Z2XProgrammer.ViewModel
                     //  We do not have a valid long vehicle address - let's use the default one. 
                     VehicleAddress = NMRA.StandardShortVehicleAddress;
                 }
-
-                //  Lets check if a valid long consist address has already been configured.
-                if ((DecoderConfiguration.RCN225.ConsistAddress > NMRA.ShortAddressMinimum) && (DecoderConfiguration.RCN225.ConsistAddress < NMRA.ShortAddressMaximum))
-                {
-                    //  A valid long vehicle address is already available - let's use it.
-                    ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
-                }
-                else
-                {   
-                    //  We do not have a valid long consist address - let's use the default one.     
-                    ConsistAddress = NMRA.StandardShortVehicleAddress;
-                }
-
             }
             
         }
@@ -185,27 +160,33 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string selectedDCCAddressModeVehicleAddrCVConfiguration = string.Empty;
 
-        // RCN225: Consist address CV19 (RCN225_CONSISTADDRESS_CV19)
+        // RCN225: Consist address CV19 and CV20 (RCN225_CONSISTADDRESS_CV19X)
         [ObservableProperty]
         bool consistAddressEnabled;
         partial void OnConsistAddressEnabledChanged(bool value)
         {
+            //  Check if we have to disable the consist address.
             if (value == false)
             {
+                //  To turn of the consist address we have to set the consist address to 0.
                 DecoderConfiguration.RCN225.ConsistAddress = 0;
-                return;
             }
             else
             {
-                if ((DecoderConfiguration.RCN225Backup.ConsistAddress == 0)  || (DecoderConfiguration.RCN225Backup.ConsistAddress > 127))
+                //  Just in case we do not have any consist address configured, we set a new default value.
+                if (DecoderConfiguration.RCN225.ConsistAddress == 0) 
                 {
-                    ConsistAddress = 1;
-                }
-                else
-                {
-                    ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;
+                    if ((DecoderConfiguration.RCN225Backup.ConsistAddress == 0) || (DecoderConfiguration.RCN225Backup.ConsistAddress > 127))
+                    {
+                        ConsistAddress = NMRA.StandardShortVehicleAddress;
+                    }
+                    else
+                    {
+                        ConsistAddress = DecoderConfiguration.RCN225Backup.ConsistAddress;
+                    }
                 }
             }
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
         }
 
         [ObservableProperty]
@@ -213,11 +194,11 @@ namespace Z2XProgrammer.ViewModel
         partial void OnConsistAddressChanged(ushort value)
         {
             DecoderConfiguration.RCN225.ConsistAddress = value;
-            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19});
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
         }
 
         [ObservableProperty]
-        string consistAddressCVConfiguration = string.Empty;
+        string consistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
     
         // ZIMO: Secondary address for function decoders CV64 (ZIMO_MXFX_SECONDADDRESS_CV64)
         [ObservableProperty]
@@ -328,7 +309,7 @@ namespace Z2XProgrammer.ViewModel
         public void OnGetDataFromDecoderSpecification()
         {
             ZIMO_MXFX_SECONDADDRESS_CV64 = DecoderSpecification.ZIMO_MXFX_SECONDADDRESS_CV64;
-            RCN225_CONSISTADDRESS_CV19 = DecoderSpecification.RCN225_CONSISTADDRESS_CV19;
+            RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
         }
 
         /// <summary>

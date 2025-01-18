@@ -78,7 +78,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_BRAKESQUEAL_CV287 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_BRAKESQUEAL_CV287, decSpecFolder);
                 RCN225_FUNCTIONKEYMAPPING_CV3346 =  DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_FUNCTIONKEYMAPPING_CV3346, decSpecFolder);
                 ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61, decSpecFolder);
-                RCN225_CONSISTADDRESS_CV19 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_CONSISTADDRESS_CV19, decSpecFolder);
+                RCN225_CONSISTADDRESS_CV19X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_CONSISTADDRESS_CV19X, decSpecFolder);
                 ZIMO_LIGHT_EFFECTS_CV125X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_LIGHT_EFFECTS_CV125X, decSpecFolder);
                 DOEHLERANDHAAS_DECODERTYPE_CV261 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, decSpecFolder);
                 DOEHLERANDHAAS_FIRMWAREVERSION_CV262x = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, decSpecFolder);
@@ -137,7 +137,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_BRAKESQUEAL_CV287 { get; set; }
         internal static bool RCN225_FUNCTIONKEYMAPPING_CV3346 { get; set; }
         internal static bool ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 { get; set; }
-        internal static bool RCN225_CONSISTADDRESS_CV19  { get; set; }
+        internal static bool RCN225_CONSISTADDRESS_CV19X  { get; set; }
         internal static bool ZIMO_LIGHT_EFFECTS_CV125X { get; set; }
         internal static bool DOEHLERANDHAAS_DECODERTYPE_CV261 { get; set; }
         internal static bool DOEHLERANDHAAS_FIRMWAREVERSION_CV262x { get; set; }

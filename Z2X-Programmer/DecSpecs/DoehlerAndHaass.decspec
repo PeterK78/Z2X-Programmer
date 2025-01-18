@@ -20,7 +20,7 @@
     <RCN225_ANALOGMODE_CV29 support="yes"/>
     <RCN225_DECODERRESET_CV8 support="yes"/>
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support="yes"/>
-    <RCN225_CONSISTADDRESS_CV19 support="yes"/>
+    <RCN225_CONSISTADDRESS_CV19X support="yes"/>
     <RCN225_ABC_CV27_X support="yes"/>
 
     <!-- Supported Döhler and Haass features -->                

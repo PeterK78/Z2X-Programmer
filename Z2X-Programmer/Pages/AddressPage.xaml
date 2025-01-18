@@ -112,9 +112,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-                <!-- RCN225: Consist address CV19 (RCN225_CONSISTADDRESS_CV19) -->
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}" />
-                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19}">
+                <!-- RCN225: Consist address CV19 (RCN225_CONSISTADDRESS_CV19X) -->
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -129,12 +129,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid.RowDefinitions>
                         <Label Margin="0,10,100,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
+                        <!-- RCN225: Enable and disable the usage of the consist address CV19 and CV20 (RCN225_CONSISTADDRESS_CV19X) -->
                         <Label x:Name="FrameLocomotiveAddressUseConsistAddressLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressUseConsistAddressLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                            <Label Text="{Binding Path=ConsistAddressEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
-                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=ConsistAddressEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding ConsistAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
+                        <!-- RCN225: The consist address in CV19 and CV20 (RCN225_CONSISTADDRESS_CV19) -->
                         <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}">
                             <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
@@ -144,8 +149,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                             InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                             ValidStyle="{StaticResource Z2XValidEntry}"
                                             Flags="ValidateOnValueChanged"
-                                            MinimumValue="{Binding LimitMinimumAddress}"
-                                            MaximumValue="{Binding LimitMaximumAddress}"
+                                            MinimumValue="0"
+                                            MaximumValue="10239"
                                             MaximumDecimalPlaces="0" />
                                 </Entry.Behaviors>
                             </Entry>
