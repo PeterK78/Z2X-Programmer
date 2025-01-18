@@ -123,10 +123,14 @@ namespace Z2XProgrammer.ViewModel
         internal bool accelerationRateEnabled;
         partial void OnAccelerationRateEnabledChanged(bool value)
         {
+            //  Check if the acceleration rate is enabled.
             if (value == true)
             {
+                //  We set the mimum limit for the acceleration rate.
                 LimitMinimumAccelerationRateCV3 = 1;
-                AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
+
+                //  We check if the currently configured acceleration rate is 0. 
+                if (DecoderConfiguration.RCN225.AccelerationRate == 0) AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
             }
             else
             {
@@ -157,10 +161,14 @@ namespace Z2XProgrammer.ViewModel
         internal bool decelerationRateEnabled;
         partial void OnDecelerationRateEnabledChanged(bool value)
         {
+            //  Check if the deceleration rate is enabled.
             if (value == true)
             {
+                //  We set the mimum limit for the deceleration rate.
                 LimitMinimumDecelerationRateCV4 = 1;
-                DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
+
+                //  We check if the currently configured deceleration rate is 0. 
+                if (DecoderConfiguration.RCN225.DecelerationRate == 0) DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
             }   
             else
             {
