@@ -12,7 +12,7 @@
 |RCN225_MANUFACTUERID_CV8		| CV8	| 	The manufacturer ID of the decoder.	| 	Decoder information|
 |RCN225_DECODERRESET_CV8	| 	CV8	| 	Resets the decoder to the factory settings.	| 	Maintenance|
 |RCN225_DECODERLOCK_CV15X	| 	CV15, CV16		| Activates or deactivates the decoder lock.	| 	Security |
-|RCN225_CONSISTADDRESS_CV19	| 	CV19		| Defines the network address.		| Address |
+|RCN225_CONSISTADDRESS_CV19X	| 	CV19, CV20		| Defines the consist address.		| Address |
 |RCN225_ABC_CV27_X		| CV270, CV27.1	| 	Activates the ABC braking distance.	| 	Driving characteristics |
 |RCN225_HLU_CV27_2		| CV27.2		| Activates the HLU braking distance.	| 	Protocols |
 |RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0		| CV28.0		| RailCom®: Activates or deactivates the sending of the address on channel 1.	| 	Protocols |
