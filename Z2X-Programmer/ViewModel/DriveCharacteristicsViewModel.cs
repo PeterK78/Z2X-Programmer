@@ -326,7 +326,8 @@ namespace Z2XProgrammer.ViewModel
             if(RCN225_DIRECTION_CV29_0  == true) DirectionReversal = DecoderConfiguration.RCN225.DirectionReversal;
             if(RCN225_HLU_CV27_2 == true) HluEnabled = DecoderConfiguration.RCN225.HLUEnabled;
             if(RCN225_ABC_CV27_X == true) SelectedABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeDescription(DecoderConfiguration.RCN225.ABCBreakMode);
-            
+            if(RCN225_CONSISTADDRESS_CV19X == true) DirectionConsistModeReveral = DecoderConfiguration.RCN225.DirectionReversalConsistMode;
+
         }
 
         #endregion
