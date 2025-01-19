@@ -55,10 +55,10 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
         [ObservableProperty]
-        int limitMinimumMaxSpeedCV5=2;
+        int limitMinimumMaxSpeedCV5=0;
         
         [ObservableProperty]
-        int limitMinimumZIMOMSmotorControlReferenceVoltage = 1;
+        int limitMinimumZIMOMSmotorControlReferenceVoltage = 0;
         
         #endregion
 
@@ -103,14 +103,12 @@ namespace Z2XProgrammer.ViewModel
         {
             if(value == false)
             {
-                LimitMinimumMaxSpeedCV5 = 2;
-                MaximumSpeed = 100;
+                if(DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
                 MaximumSpeedValueDescription = GetMaximumSpeedLabel();
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
             else
             {
-                LimitMinimumMaxSpeedCV5 = 0;
                 MaximumSpeed = 0;
                 MaximumSpeedValueDescription = GetMaximumSpeedLabel();
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
@@ -520,14 +518,15 @@ namespace Z2XProgrammer.ViewModel
         internal bool zIMOMSMotorControlReferenceVoltageAutomaticMode;
         partial void OnZIMOMSMotorControlReferenceVoltageAutomaticModeChanged(bool value)
         {
+            // We check if the user would like to the automatic configuration.
             if (value == false)
             {
-                LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
-                ZIMOMSmotorControlReferenceValue = 1;
+                //  The user would like to use specific voltage settings. If we have already valid voltage settings
+                //  (e.g. from a decoder upload), we use them. Otherwise we set a default value of 1V.
+                if (DecoderConfiguration.ZIMO.MotorReferenceVoltage == 0) ZIMOMSmotorControlReferenceValue = 1;
             }
             else
             {
-                LimitMinimumZIMOMSmotorControlReferenceVoltage = 0;
                 ZIMOMSmotorControlReferenceValue = 0;
             }
             CV57Configuration = Subline.Create(new List<uint>{57});
@@ -807,8 +806,8 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else
                 {
-                    ZIMOMSMotorControlReferenceVoltageAutomaticMode = false;
                     ZIMOMSmotorControlReferenceValue = (byte)(DecoderConfiguration.ZIMO.MotorReferenceVoltage - 100);
+                    ZIMOMSMotorControlReferenceVoltageAutomaticMode = false;
                 }
                 ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
             }
@@ -841,6 +840,7 @@ namespace Z2XProgrammer.ViewModel
             RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = DecoderSpecification.RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X;
             ZIMO_MXMOTORCONTROLFREQUENCY_CV9 = DecoderSpecification.ZIMO_MOTORCONTROLFREQUENCY_CV9;
             ZIMO_MXMOTORCONTROLPID_CV56 = DecoderSpecification.ZIMO_MXMOTORCONTROLPID_CV56;
+            ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57;
             ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57;
             RCN225_SPEEDTABLE_CV29_4 = DecoderSpecification.RCN225_SPEEDTABLE_CV29_4;
         }
@@ -876,16 +876,7 @@ namespace Z2XProgrammer.ViewModel
 
             return true;
         }
-
-        ///// <summary>
-        ///// Sets the limits for all GUI elements.
-        ///// </summary>
-        //private void SetGUILimits()
-        //{
-        //    LimitMaximumZIMOMSmotorControlReferenceVoltage = 155;
-        //    LimitMinimumZIMOMSmotorControlReferenceVoltage = 1;
-        //}
-
+        
         #endregion
 
     }

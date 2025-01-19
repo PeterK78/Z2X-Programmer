@@ -97,18 +97,22 @@ namespace Z2XProgrammer.ViewModel
         string cV126Configuration = Subline.Create(new List<uint>{126});
 
 
-        // ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60)
+        // ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60).
         [ObservableProperty]
         bool dimmingEnabled;
         partial void OnDimmingEnabledChanged(bool value)
         {
-            if(value == false)
+            //  We check if the user would like to use the dimming function.
+            if (value == true)
             {
-                DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue = 0;
+                // The user would like to use the dimming function. We check if we already have a valid value for the brightness,
+                // if not we set it to 170. According to the ZIMO manual, the default value 170 =  2/3 of full voltage.
+                if (DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 0) Brightness = 170;
             }
             else
             {
-                DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue = DecoderConfiguration.ZIMOBackup.DimmingFunctionOutputMasterValue;
+                // The user would like to disable the dimming function. We set the brightness to 0.
+                Brightness = 0;
             }
             CV60Configuration = Subline.Create(new List<uint>{60});
         }

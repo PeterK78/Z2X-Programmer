@@ -50,16 +50,16 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
         [ObservableProperty]
-        int limitMinimumAccelerationRateCV3;
+        int limitMinimumAccelerationRateCV3 = 0;
 
         [ObservableProperty]
-        int limitMaximumAccelerationRateCV3;
+        int limitMaximumAccelerationRateCV3 = 255;
 
         [ObservableProperty]
-        int limitMinimumDecelerationRateCV4;
+        int limitMinimumDecelerationRateCV4 = 0;
 
         [ObservableProperty]
-        int limitMaximumDecelerationRateCV4;
+        int limitMaximumDecelerationRateCV4 = 255;
 
         #endregion
 
@@ -118,25 +118,22 @@ namespace Z2XProgrammer.ViewModel
             CV29Configuration = Subline.Create(new List<uint>{29});
         }
 
-        // RCN225: Acceleration rate in CV3
+        // RCN225: Acceleration rate in CV3.
         [ObservableProperty]
         internal bool accelerationRateEnabled;
         partial void OnAccelerationRateEnabledChanged(bool value)
         {
-            //  Check if the acceleration rate is enabled.
+            //  Check if the user specific acceleration rate is enabled.
             if (value == true)
             {
-                //  We set the mimum limit for the acceleration rate.
-                LimitMinimumAccelerationRateCV3 = 1;
-
-                //  We check if the currently configured acceleration rate is 0. 
-                if (DecoderConfiguration.RCN225.AccelerationRate == 0) AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
+                // The user would like to use the user specific acceleration rate. We check if we already have a valid value for the acceleration rate,
+                // if not we set it to 2 (according to the ZIMO manual, no recommendation in the RCN225 available).
+                if (DecoderConfiguration.RCN225.AccelerationRate == 0) AccelerationRate = 2;
             }
             else
             {
-                //  We turn off the acceleration rate.
-                LimitMinimumAccelerationRateCV3 = 0;
-                AccelerationRate = (byte)LimitMinimumAccelerationRateCV3;
+                //  We turn off the user specific acceleration rate.
+                AccelerationRate = 0;
             }
             CV3Configuration = Subline.Create(new List<uint>{3});
         }
@@ -156,7 +153,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV3Configuration = Subline.Create(new List<uint>{3});
 
-        // RCN225: Decleration rate CV4
+        // RCN225: Decleration rate CV4.
         [ObservableProperty]
         internal bool decelerationRateEnabled;
         partial void OnDecelerationRateEnabledChanged(bool value)
@@ -164,17 +161,14 @@ namespace Z2XProgrammer.ViewModel
             //  Check if the deceleration rate is enabled.
             if (value == true)
             {
-                //  We set the mimum limit for the deceleration rate.
-                LimitMinimumDecelerationRateCV4 = 1;
-
-                //  We check if the currently configured deceleration rate is 0. 
-                if (DecoderConfiguration.RCN225.DecelerationRate == 0) DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
+                // The user would like to use the user specific deceleration rate. We check if we already have a valid value for the deceleration rate,
+                // if not we set it to 1 (according to the ZIMO manual, no recommendation in the RCN225 available). 
+                if (DecoderConfiguration.RCN225.DecelerationRate == 0) DecelerationRate = 1;
             }   
             else
             {
                 //  We turn off the deceleration rate.
-                LimitMinimumDecelerationRateCV4 = 0;
-                DecelerationRate = (byte)LimitMinimumDecelerationRateCV4;
+                DecelerationRate = 0;
             }
             CV4Configuration = Subline.Create(new List<uint> { 4 });
         }
@@ -229,8 +223,6 @@ namespace Z2XProgrammer.ViewModel
             AvailableSpeedStepModes = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCSpeedStepModes());
             AvailableABCBreakModes = new ObservableCollection<string>(NMRAEnumConverter.GetAvailableDCCABCBreakModes());
 
-            SetGUILimits();
-
             OnGetDataFromDecoderSpecification();
             OnGetDataFromDataStore();
             
@@ -254,18 +246,6 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
-
-        /// <summary>
-        /// Sets the limits for all GUI elements.
-        /// </summary>
-        private void SetGUILimits()
-        {
-            LimitMinimumAccelerationRateCV3 = 1;
-            LimitMaximumAccelerationRateCV3 = 255;
-
-            LimitMinimumDecelerationRateCV4 = 1;
-            LimitMaximumDecelerationRateCV4 = 255;
-        }
 
         /// <summary>
         /// Returns the label for the acceleration rate.
