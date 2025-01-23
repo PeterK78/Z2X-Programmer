@@ -1941,6 +1941,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open homepage ....
+        /// </summary>
+        public static string FrameInfoOpenProjectHomepage {
+            get {
+                return ResourceManager.GetString("FrameInfoOpenProjectHomepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open source libraries.
         /// </summary>
         public static string FrameInfoOpenSourceLibsTitle {

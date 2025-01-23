@@ -1570,4 +1570,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="ButtonMainMenuRedo" xml:space="preserve">
     <value>Wiederherstellen</value>
   </data>
+  <data name="FrameInfoOpenProjectHomepage" xml:space="preserve">
+    <value>Homepage öffnen ...</value>
+  </data>
 </root>
