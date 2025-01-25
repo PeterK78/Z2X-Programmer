@@ -1012,7 +1012,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Automatische Decoder-Erkennung</value>
   </data>
   <data name="FrameSettingsDecSpecFolderDescription" xml:space="preserve">
-    <value>Dieser Ordner enthält die Spezifikationen der unterstützten Decoder.</value>
+    <value>Dieser Ordner enthält ihre persönlichen Decoder-Spezifikationen.</value>
   </data>
   <data name="FrameSettingsDecSpecFolderTitle" xml:space="preserve">
     <value>Decoder-Spezifikationen</value>
@@ -1572,5 +1572,14 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameInfoOpenProjectHomepage" xml:space="preserve">
     <value>Homepage öffnen ...</value>
+  </data>
+  <data name="FrameSettingsAppUserDecSpecFolderSelectFolder" xml:space="preserve">
+    <value>Verzeichnis auswählen</value>
+  </data>
+  <data name="AlertDeqSpecFolderNotAccessible" xml:space="preserve">
+    <value>Der ausgewählte Ordner ist für Z2X-Programmer nicht zugänglich. Bitte wählen Sie einen anderen Ordner.</value>
+  </data>
+  <data name="AlertDecSpecNotFound" xml:space="preserve">
+    <value>Die Decoder-Spezifikation wurde nicht gefunden:</value>
   </data>
 </root>

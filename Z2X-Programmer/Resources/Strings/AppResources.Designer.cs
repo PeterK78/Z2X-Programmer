@@ -142,11 +142,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The decoder specification was not found:.
+        /// </summary>
+        public static string AlertDecSpecNotFound {
+            get {
+                return ResourceManager.GetString("AlertDecSpecNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following error was found in a decoder specification:.
         /// </summary>
         public static string AlertDeqSpecFileNotRead {
             get {
                 return ResourceManager.GetString("AlertDeqSpecFileNotRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected folder is not accessible for Z2X-Programmer. Please select a different folder..
+        /// </summary>
+        public static string AlertDeqSpecFolderNotAccessible {
+            get {
+                return ResourceManager.GetString("AlertDeqSpecFolderNotAccessible", resourceCulture);
             }
         }
         
@@ -3437,6 +3455,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select directory.
+        /// </summary>
+        public static string FrameSettingsAppUserDecSpecFolderSelectFolder {
+            get {
+                return ResourceManager.GetString("FrameSettingsAppUserDecSpecFolderSelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check.
         /// </summary>
         public static string FrameSettingsButtonCheckDeqSpecLabel {
@@ -3500,7 +3527,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This folder contains the specifications of the supported decoders..
+        ///   Looks up a localized string similar to This folder contains your personal decoder specifications..
         /// </summary>
         public static string FrameSettingsDecSpecFolderDescription {
             get {

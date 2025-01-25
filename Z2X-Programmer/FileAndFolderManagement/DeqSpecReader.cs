@@ -127,6 +127,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
             try
             {
                 if (GetDecSpecFileName(decSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath) != string.Empty) return true;
+                if (GetDecSpecFileName(decSpecName, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath) != string.Empty) return true;
                 return false;
             }
             catch   { return false; } 

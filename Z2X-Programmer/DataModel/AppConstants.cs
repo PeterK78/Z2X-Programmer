@@ -44,7 +44,7 @@ namespace Z2XProgrammer.DataModel
 
         //  The file name of the decoder specification ZIP archive.
         //  Note: .NET MAUI is critical on using file types. Do not use ZIP - it will break the call OpenAppPackageFileAsync
-        internal const string DecSpecsZIPArchiveFileName = "decspecs.bin";
+        //internal const string DecSpecsZIPArchiveFileName = "decspecs.bin";
 
         internal const string PREFERENCES_LOCOLIST_FOLDER_KEY = "LOCOLIST_FOLDER";
         internal const string PREFERENCES_LOCOLIST_FOLDER_VALUE = "";
@@ -82,5 +82,7 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_QUITONREADERROR_VALUE = "1";
         internal const string PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY = "ADDITIONALDISPLAYOFCVVALUES";
         internal const string PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE = "0";
+        internal const string PREFERENCES_USERSPECIFICDECSPECFOLDER_KEY = "USERSPECIFICDECSPECFOLDER";
+        internal const string PREFERENCES_USERSPECIFICDECSPECFOLDER_VALUE = "";
     }
 }

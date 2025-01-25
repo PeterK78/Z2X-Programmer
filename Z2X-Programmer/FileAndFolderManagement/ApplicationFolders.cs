@@ -21,6 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using Z2XProgrammer.DataModel;
 
 namespace Z2XProgrammer.FileAndFolderManagement
 {
@@ -37,6 +38,22 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public static string DecSpecsFolderPath
         {
             get => GetDecSpecsFolderPath();
+        }
+
+        /// <summary>
+        /// Contains the path to the user specific decoder specification files.
+        /// </summary>
+        public static string UserSpecificDecSpecsFolderPath
+        {
+            get => GetUserSpecificDecSpecsFolderPath();
+        }
+
+        /// <summary>
+        /// Contains the default path to the user specific decoder specification files.
+        /// </summary>
+        public static string DefaultUserSpecificDecSpecsFolderPath
+        {
+            get => GetDefaultUserSpecificDecSpecsFolderPath();
         }
 
         /// <summary>
@@ -74,6 +91,43 @@ namespace Z2XProgrammer.FileAndFolderManagement
             {
                 return "";
             }
+        }
+
+        /// <summary>
+        /// Returns the path to the user specific DecSpeqs folder.
+        /// </summary>
+        /// <returns>The path to the user specific DecSpeqs folder</returns>
+        private static string GetUserSpecificDecSpecsFolderPath()
+        {
+            try
+            {
+                //  Check if the user specific decoder specification folder is defined in the preferences
+                string userSpecificDecSpecsFolderPath = Preferences.Default.Get(AppConstants.PREFERENCES_USERSPECIFICDECSPECFOLDER_KEY, AppConstants.PREFERENCES_USERSPECIFICDECSPECFOLDER_VALUE);
+
+                //  If the user specific decoder specification folder is available, we return the path.
+                if (Directory.Exists(userSpecificDecSpecsFolderPath) == true)
+                {
+                    return userSpecificDecSpecsFolderPath;
+                }
+
+                //  If the user specific decoder specification folder is not available, we return default path.
+                return GetDefaultUserSpecificDecSpecsFolderPath();
+                
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Returns the default path to the user specific DecSpeqs folder.
+        /// The folder is located in a subfolder "DeqSpecs" in the app data folder.
+        /// </summary>
+        /// <returns>The path to the default user specific decoder specification folder</returns>
+        private static string GetDefaultUserSpecificDecSpecsFolderPath()
+        {
+            return GetDecSpecsFolderPath() + "\\UserSpecific";
         }
 
         /// <summary>

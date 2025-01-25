@@ -131,16 +131,26 @@ namespace Z2XProgrammer.ViewModel
             int mode = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY, AppConstants.PREFERENCES_PROGRAMMINGMODE_DEFAULT));
             SelectedProgrammingMode = CommandStation.GetProgrammingModeDescription((NMRA.DCCProgrammingModes)mode);
 
-            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out string errorFilename, out string errorMessage) == false)
+
+            //  We create a list with available decoder speficication files.
+            string errorFilename = "";
+            string errorMessage = "";
+            AvailableDecSpecs = new ObservableCollection<string>(new List<string>());
+            SelectedDecSpeq = "";
+
+            //  At first we add the internal decoder specification files.
+            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out  errorFilename, out errorMessage) == true)
             {
-                AvailableDecSpecs = new ObservableCollection<string>(new List<string>());
-                SelectedDecSpeq = "";
-            }
-            else
-            {
-                AvailableDecSpecs = new ObservableCollection<string>(DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath));
+                foreach (string item in DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) AvailableDecSpecs.Add(item);
                 SelectedDecSpeq = DeqSpecReader.GetDefaultDecSpecName();
             }
+            //  Now we add the user specific decoder specification files.
+            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out  errorFilename, out  errorMessage) == true)
+            {
+                foreach (string item in DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) AvailableDecSpecs.Add(item);
+                SelectedDecSpeq = DeqSpecReader.GetDefaultDecSpecName();
+            }
+
 
             SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(SelectedDecSpeq, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
 

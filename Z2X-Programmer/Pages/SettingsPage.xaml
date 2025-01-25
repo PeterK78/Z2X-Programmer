@@ -201,12 +201,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Grid>
             </Border>
 
-            <!-- Path to the decoder specification files -->
+            <!-- Path to the user specific decoder specification files -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameSettingsDecSpecFolderTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Border Style="{StaticResource Z2XBorderFrame}">
                 <VerticalStackLayout>
                     <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDecSpecFolderDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Entry Text="{Binding DecSpecFolder}" IsReadOnly="True" IsEnabled="True" Margin="0,10,0,0" ></Entry>
+                    <Entry Text="{Binding UserSpecificDecoderSpecificationFolder}" IsReadOnly="True" IsEnabled="True" Margin="0,10,0,0" ></Entry>
+                    <Button WidthRequest="200" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsAppUserDecSpecFolderSelectFolder}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=SelectUserSpecificDeqSpecFolderCommand}" HorizontalOptions="End"></Button>
                     <Button WidthRequest="200" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=CheckDecoderSpecificationsCommand}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecTooltip}"  ></Button>
                 </VerticalStackLayout>
             </Border>

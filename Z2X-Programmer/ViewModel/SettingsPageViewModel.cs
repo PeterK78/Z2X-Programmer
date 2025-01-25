@@ -124,8 +124,13 @@ namespace Z2XProgrammer.ViewModel
             Preferences.Default.Set(AppConstants.PREFERENCES_AUTODECODER_DETECT_KEY, prefValue.ToString());
         }
 
+        //  The user specific decoder specification folder.
         [ObservableProperty]
-        internal string decSpecFolder;
+        internal string userSpecificDecoderSpecificationFolder = "";
+        partial void OnUserSpecificDecoderSpecificationFolderChanged(string value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_USERSPECIFICDECSPECFOLDER_KEY, value);
+        }
 
         [ObservableProperty]
         internal bool quitOnReadError = true;
@@ -148,13 +153,18 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: CONSTRUCTOR
 
         public SettingsPageViewModel()
-
         {
             //
-            //  Setup the content of the GUI elements
+            //  Setup the initial content of the different GUI elements.
             //
+
+            //  The IP address of the Z21 command station.
             Z21IPAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
-            DecSpecFolder = FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath;
+
+            //  The user specific decoder specification folder.  
+            UserSpecificDecoderSpecificationFolder = FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath;
+
+            //  The loco list settings.
             LocoListSystemIPAddress = LocoList.IPAddress.ToString();
             LocoListSystemPort = LocoList.PortNumber.ToString();
             LocoListSystemFolder = LocoList.Folder.ToString();
@@ -197,7 +207,75 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        #region REGION: COMMANDS        
+        #region REGION: COMMANDS   
+
+        /// <summary>
+        /// Opens an folder picker dialog so that the user can select the user specific decoder specification folder.
+        /// </summary>
+        [RelayCommand]
+        async Task SelectUserSpecificDeqSpecFolder()
+        {
+            try
+            {
+                FolderPickerResult result = await FolderPicker.Default.PickAsync();
+                if (result.IsSuccessful)
+                {
+                    // Note:
+                    // Sometimes the FolderPicker returns a folder which is not accessible for Z2X-Programmer.
+                    // For this reason, we check access to the selected folder. If it fails we will display
+                    // an error message to the user.
+                    if(Directory.Exists(result.Folder.Path.ToString()) == true)
+                    {
+                        UserSpecificDecoderSpecificationFolder = result.Folder.Path.ToString();                        
+                    }
+                    else
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFolderNotAccessible + LocoList.Folder, AppResources.OK);
+                        return;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+
+        }
+
+        /// <summary>
+        /// Checks the available decoder specifications for correctness.
+        /// </summary>
+        [RelayCommand]
+        async Task CheckDecoderSpecifications()
+        {
+            try
+            {
+                string errorFilename = "";
+                string errorMessage = "";
+
+                //  At first we check the decoder specification files in the internal decoder specification folder.
+                if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out errorFilename, out errorMessage) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFileNotRead + "\n\n" + errorFilename + "\n\n" + errorMessage, AppResources.OK);
+                    return;
+                }
+
+                //  Now we check the decoder specification files in the user specific decoder specification folder.
+                if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out errorFilename, out errorMessage) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFileNotRead + "\n\n" + errorFilename + "\n\n" + errorMessage, AppResources.OK);
+                    return;
+                }
+
+                //  Display a message that the decoder specification files are OK.
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecSpecFilesOK, AppResources.OK);
+                            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
 
         /// <summary>
         /// Opens an folder picker dialog so that the user can select the Z2X directory.
@@ -263,26 +341,7 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-        [RelayCommand]
-        async Task CheckDecoderSpecifications()
-        {
-            try
-            {
-
-                if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out string errorFilename, out string errorMessage) == false)
-                {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFileNotRead + "\n\n" + errorFilename + "\n\n" + errorMessage, AppResources.OK);
-                }
-                else
-                {
-                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecSpecFilesOK, AppResources.OK);
-                }
-            }
-            catch (Exception ex)
-            {
-                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
-            }
-        }
+      
 
         /// <summary>
         /// This command establishes a connection to your digital command staiton.

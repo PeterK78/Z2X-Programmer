@@ -47,8 +47,8 @@ namespace Z2XProgrammer.Helper
             //  exist, create it.
             Logger.LogInformation("Setup decoder specification folder ...");
             
-            //  Setup the folder for the decoder specification files
-            SetupDeqSpecFolder();
+            //  Setup the folder for the decoder specification files.
+            SetupDeqSpecFolders();
 
             //  Setup the folder for the Z2X files
             SetupZ2XFolder();
@@ -77,15 +77,23 @@ namespace Z2XProgrammer.Helper
         }
 
         /// <summary>
-        /// Creates the folder for the decoder specification files within the AppData folder.
+        /// Creates the default decoder specification files folder within the AppData folder.
         /// </summary>
         /// <returns></returns>
-        private static bool SetupDeqSpecFolder()
+        private static bool SetupDeqSpecFolders()
         {
-            if(Directory.Exists(ApplicationFolders.DecSpecsFolderPath) == false)
+            //  At first we check if the internal decoder specification folder. If not, we create it.
+            if (Directory.Exists(ApplicationFolders.DecSpecsFolderPath) == false)
             {
                 Directory.CreateDirectory(ApplicationFolders.DecSpecsFolderPath);
             }
+
+            //  Now we check if the default user specific decoder specification folder is available. If not, we create it.   
+            if (Directory.Exists(ApplicationFolders.DefaultUserSpecificDecSpecsFolderPath)  == false)
+            {
+                Directory.CreateDirectory(ApplicationFolders.DefaultUserSpecificDecSpecsFolderPath);
+            }
+
             return true;
         }
 

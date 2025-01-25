@@ -25,6 +25,7 @@ using System.Xml.Serialization;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Model;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.FileAndFolderManagement
 {
@@ -107,8 +108,9 @@ namespace Z2XProgrammer.FileAndFolderManagement
             myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(z2xFileStream)!;
 
             //  Check if the decoder specification file is available.
-            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException("Missing decoder specification file " + myFile.DeqSpecName);
-           
+            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException(AppResources.AlertDecSpecNotFound + myFile.DeqSpecName);
+          
+
             DecoderConfiguration.ClearBackupCVs();
             
             for (int n = 0; n < DecoderConfiguration.ConfigurationVariables.Count; n++)
@@ -141,8 +143,14 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 foreach (FunctionOutputType item in DecoderConfiguration.UserDefinedFunctionOutputNames) { item.Description = ""; };
             }
 
-             //  Make sure to use the language specific decoder specification name.
+            //  Make sure to use the language specific decoder specification name. First we try to find the decoder
+            //  specification in the internal folder. After that we check the user specific folder.
             string decoderSpecificationFileName = DeqSpecReader.GetDecSpecFileName(myFile.DeqSpecName, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath);
+            if(decoderSpecificationFileName == "")
+            {
+                decoderSpecificationFileName = DeqSpecReader.GetDecSpecFileName(myFile.DeqSpecName, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath);
+            }
+
             DecoderSpecification.DeqSpecName = DeqSpecReader.GetDecSpecName(decoderSpecificationFileName, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
 
             //  We mark the configuration variables whether they are supported by the selected DecoderSpecification.                

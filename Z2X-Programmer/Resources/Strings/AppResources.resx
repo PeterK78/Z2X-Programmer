@@ -1011,7 +1011,7 @@ Frequency type = Low frequency</value>
     <value>Automatic decoder detection</value>
   </data>
   <data name="FrameSettingsDecSpecFolderDescription" xml:space="preserve">
-    <value>This folder contains the specifications of the supported decoders.</value>
+    <value>This folder contains your personal decoder specifications.</value>
   </data>
   <data name="FrameSettingsDecSpecFolderTitle" xml:space="preserve">
     <value>Decoder specifications</value>
@@ -1571,5 +1571,14 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameInfoOpenProjectHomepage" xml:space="preserve">
     <value>Open homepage ...</value>
+  </data>
+  <data name="FrameSettingsAppUserDecSpecFolderSelectFolder" xml:space="preserve">
+    <value>Select directory</value>
+  </data>
+  <data name="AlertDeqSpecFolderNotAccessible" xml:space="preserve">
+    <value>The selected folder is not accessible for Z2X-Programmer. Please select a different folder.</value>
+  </data>
+  <data name="AlertDecSpecNotFound" xml:space="preserve">
+    <value>The decoder specification was not found:</value>
   </data>
 </root>
