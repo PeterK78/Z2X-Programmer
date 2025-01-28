@@ -643,7 +643,7 @@ The following error has occurred:</value>
     <value>Dimming</value>
   </data>
   <data name="FrameLightEffectsDescription" xml:space="preserve">
-    <value>Any effect can be assigned to each function output. This allows you, for example, to gently fade the headlights up and down.</value>
+    <value>A light effect can be assigned to each function output. You can also set the direction of travel in which the effect is active.</value>
   </data>
   <data name="FrameLightEffectsTitle" xml:space="preserve">
     <value>Effects</value>
@@ -1121,7 +1121,7 @@ Frequency type = Low frequency</value>
   <data name="FyoutItemMotorCharacteristicsText" xml:space="preserve">
     <value>Motor characteristics</value>
   </data>
-  <data name="LightEffectToolip" xml:space="preserve">
+  <data name="LightEffectTooltip" xml:space="preserve">
     <value>No effect = 0
 Dimmung up and down = 88
 </value>
@@ -1580,5 +1580,62 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertDecSpecNotFound" xml:space="preserve">
     <value>The decoder specification was not found:</value>
+  </data>
+  <data name="LightEffectDirectionTypeIndepend" xml:space="preserve">
+    <value>Direction-independent</value>
+  </data>
+  <data name="LightEffectDirectionTypeForward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="LightEffectDirectionTypeBackward" xml:space="preserve">
+    <value>Backward</value>
+  </data>
+  <data name="LightEffectTypeSinglePulseStrobe" xml:space="preserve">
+    <value>Single pulse strobe</value>
+  </data>
+  <data name="LightEffectTypeDoublePulseStrobe" xml:space="preserve">
+    <value>Double pulse strobe</value>
+  </data>
+  <data name="LightEffectTypeRotaryBeacon" xml:space="preserve">
+    <value>Rotary beacon</value>
+  </data>
+  <data name="LightEffectTypeDecoupler" xml:space="preserve">
+    <value>Decoupler</value>
+  </data>
+  <data name="LightEffectTypeSoftStart" xml:space="preserve">
+    <value>Soft start</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputTurnsOffAtSpeed" xml:space="preserve">
+    <value>Turns off at speed</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputFluorescentTubeEffect" xml:space="preserve">
+    <value>Fluorescent tube</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA1" xml:space="preserve">
+    <value>Effect, output FA1 (CV127)</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputUnknown" xml:space="preserve">
+    <value>Unknown effect</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA2" xml:space="preserve">
+    <value>Effect, output FA2 (CV128)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA3" xml:space="preserve">
+    <value>Effect, output FA3 (CV129)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA4" xml:space="preserve">
+    <value>Effect, output FA4 (CV130)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA5" xml:space="preserve">
+    <value>Effect, output FA5 (CV131)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA6" xml:space="preserve">
+    <value>Effect, output FA6 (CV132)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA7" xml:space="preserve">
+    <value>Effect, output FA7 (CV133)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA8" xml:space="preserve">
+    <value>Effect, output FA8 (CV134)</value>
   </data>
 </root>

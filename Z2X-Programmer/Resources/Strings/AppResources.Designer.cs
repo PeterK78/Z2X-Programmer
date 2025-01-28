@@ -2193,6 +2193,78 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA1 (CV127).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA1 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA2 (CV128).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA2 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA3 (CV129).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA3 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA4 (CV130).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA4 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA5 (CV131).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA5 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA6 (CV132).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA6 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA7 (CV133).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA7 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effect, output FA8 (CV134).
+        /// </summary>
+        public static string FrameLightDimmingOutputFA8 {
+            get {
+                return ResourceManager.GetString("FrameLightDimmingOutputFA8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dimming.
         /// </summary>
         public static string FrameLightDimmingTitle {
@@ -2202,7 +2274,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Any effect can be assigned to each function output. This allows you, for example, to gently fade the headlights up and down..
+        ///   Looks up a localized string similar to A light effect can be assigned to each function output. You can also set the direction of travel in which the effect is active..
         /// </summary>
         public static string FrameLightEffectsDescription {
             get {
@@ -3948,13 +4020,49 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backward.
+        /// </summary>
+        public static string LightEffectDirectionTypeBackward {
+            get {
+                return ResourceManager.GetString("LightEffectDirectionTypeBackward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forward.
+        /// </summary>
+        public static string LightEffectDirectionTypeForward {
+            get {
+                return ResourceManager.GetString("LightEffectDirectionTypeForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direction-independent.
+        /// </summary>
+        public static string LightEffectDirectionTypeIndepend {
+            get {
+                return ResourceManager.GetString("LightEffectDirectionTypeIndepend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No effect = 0
         ///Dimmung up and down = 88
         ///.
         /// </summary>
-        public static string LightEffectToolip {
+        public static string LightEffectTooltip {
             get {
-                return ResourceManager.GetString("LightEffectToolip", resourceCulture);
+                return ResourceManager.GetString("LightEffectTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoupler.
+        /// </summary>
+        public static string LightEffectTypeDecoupler {
+            get {
+                return ResourceManager.GetString("LightEffectTypeDecoupler", resourceCulture);
             }
         }
         
@@ -3968,11 +4076,74 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double pulse strobe.
+        /// </summary>
+        public static string LightEffectTypeDoublePulseStrobe {
+            get {
+                return ResourceManager.GetString("LightEffectTypeDoublePulseStrobe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fluorescent tube.
+        /// </summary>
+        public static string LightEffectTypeFunctionOutputFluorescentTubeEffect {
+            get {
+                return ResourceManager.GetString("LightEffectTypeFunctionOutputFluorescentTubeEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turns off at speed.
+        /// </summary>
+        public static string LightEffectTypeFunctionOutputTurnsOffAtSpeed {
+            get {
+                return ResourceManager.GetString("LightEffectTypeFunctionOutputTurnsOffAtSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown effect.
+        /// </summary>
+        public static string LightEffectTypeFunctionOutputUnknown {
+            get {
+                return ResourceManager.GetString("LightEffectTypeFunctionOutputUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No effect.
         /// </summary>
         public static string LightEffectTypeNoEffect {
             get {
                 return ResourceManager.GetString("LightEffectTypeNoEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotary beacon.
+        /// </summary>
+        public static string LightEffectTypeRotaryBeacon {
+            get {
+                return ResourceManager.GetString("LightEffectTypeRotaryBeacon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single pulse strobe.
+        /// </summary>
+        public static string LightEffectTypeSinglePulseStrobe {
+            get {
+                return ResourceManager.GetString("LightEffectTypeSinglePulseStrobe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soft start.
+        /// </summary>
+        public static string LightEffectTypeSoftStart {
+            get {
+                return ResourceManager.GetString("LightEffectTypeSoftStart", resourceCulture);
             }
         }
         

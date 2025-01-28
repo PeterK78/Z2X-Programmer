@@ -792,6 +792,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SOUNDPROJECTNR_CV254 support=""yes"" writeable=""yes""/>
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -853,6 +854,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
+    <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 

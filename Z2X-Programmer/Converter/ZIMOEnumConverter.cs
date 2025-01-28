@@ -33,11 +33,14 @@ namespace Z2XProgrammer.Converter
         private static List<ZIMOSUSIPinModeType> _ZIMOSUSIPinModeTypes = new List<ZIMOSUSIPinModeType>();
         private static List<ZIMOMotorControlFrequencyType> _ZIMOMotorControlFrequencyTypes = new List<ZIMOMotorControlFrequencyType>();
         private static List<ZIMOMotorControlPIDMotorType> _ZIMOMotorControlPIDMotorTypes = new List<ZIMOMotorControlPIDMotorType>();
-        private static List<ZIMOLightEffect> _ZIMOLightEffects = new List<ZIMOLightEffect>();
-
+        private static List<ZIMOLightEffectType> _ZIMOLightEffects = new List<ZIMOLightEffectType>();
+        private static List<ZIMOLightEffectDirectionType> _ZIMOLightEffectDirections = new List<ZIMOLightEffectDirectionType>();
 
         static ZIMOEnumConverter()
         {
+            //  Initialize the supported ZIMO light effects in CV125x.
+            InitializeZIMOLightEffects();
+
             ZIMOMotorControlFrequencyType lowFreq = new ZIMOMotorControlFrequencyType();
             lowFreq.Description = GetMotorControlFrequencyTypeDescription(MotorControlFrequencyTypes.LowFrequency);
             lowFreq.FreqType = ZIMO.MotorControlFrequencyTypes.LowFrequency;
@@ -58,18 +61,7 @@ namespace Z2XProgrammer.Converter
             bellAnchorMotor.Description = GetMotorControlPIDMotorTypeDescription(MotorControlPIDMotorTypes.BellAnchor);
             bellAnchorMotor.MotorType = MotorControlPIDMotorTypes.BellAnchor;
             _ZIMOMotorControlPIDMotorTypes.Add(bellAnchorMotor);
-
-            ZIMOLightEffect noEffect = new ZIMOLightEffect();
-            noEffect.Description = GetLightEffectDescription(LightEffects.NoEffect);
-            noEffect.EffectType = LightEffects.NoEffect;
-            _ZIMOLightEffects.Add(noEffect);
-
-            ZIMOLightEffect dimUpAndDownEffect = new ZIMOLightEffect();
-            dimUpAndDownEffect.Description = GetLightEffectDescription(LightEffects.DimmingUpAndDown);
-            dimUpAndDownEffect.EffectType = LightEffects.DimmingUpAndDown;
-            _ZIMOLightEffects.Add(dimUpAndDownEffect);
-
-
+   
             //
             //  Setup the SUSI pin mode types
             //
@@ -97,20 +89,192 @@ namespace Z2XProgrammer.Converter
             SUSIPinI2C.Description = GetSUSIInterface1PinModeDescription(SUSIPinModeType.I2C);
             SUSIPinI2C.SUSIPinMode = SUSIPinModeType.I2C;
             _ZIMOSUSIPinModeTypes.Add(SUSIPinI2C);
+        }
 
+        /// <summary>
+        /// Initializes the ZIMO light effects in CV125X.
+        /// It setups the light directions as well as the supported light effects.
+        /// </summary>
+        internal static void InitializeZIMOLightEffects()
+        {
+            //  
+            //  Setup the three differen light effect directions
+            //
 
+            //  Independend = 0.
+            ZIMOLightEffectDirectionType directionIndepend = new ZIMOLightEffectDirectionType();
+            directionIndepend.Description = AppResources.LightEffectDirectionTypeIndepend;
+            directionIndepend.Direction = LightEffectDirection.DirectionIndependend;
+            _ZIMOLightEffectDirections.Add(directionIndepend);
+
+            //  Forward = 1.
+            ZIMOLightEffectDirectionType directionForward = new ZIMOLightEffectDirectionType();
+            directionForward.Description = AppResources.LightEffectDirectionTypeForward;
+            directionForward.Direction = LightEffectDirection.Forward;
+            _ZIMOLightEffectDirections.Add(directionForward);
+
+            //  Backward = 2.
+            ZIMOLightEffectDirectionType directionBackward = new ZIMOLightEffectDirectionType();
+            directionBackward.Description = AppResources.LightEffectDirectionTypeBackward;
+            directionBackward.Direction = LightEffectDirection.Backward;
+            _ZIMOLightEffectDirections.Add(directionBackward);
+
+            //
+            //  Setup the 9 supported light effects.
+            //
+
+            //  No effect = 0.
+            ZIMOLightEffectType noEffect = new ZIMOLightEffectType();
+            noEffect.Description = GetLightEffectDescription(LightEffects.NoEffect);
+            noEffect.EffectType = LightEffects.NoEffect;
+            _ZIMOLightEffects.Add(noEffect);
+
+            //  Dimming up and down = 88.
+            ZIMOLightEffectType dimUpAndDownEffect = new ZIMOLightEffectType();
+            dimUpAndDownEffect.Description = GetLightEffectDescription(LightEffects.DimmingUpAndDown);
+            dimUpAndDownEffect.EffectType = LightEffects.DimmingUpAndDown;
+            _ZIMOLightEffects.Add(dimUpAndDownEffect);
+
+            //  Fluorescent tube effect = 92.
+            ZIMOLightEffectType fluorescentTubeEffect = new ZIMOLightEffectType();
+            fluorescentTubeEffect.Description = GetLightEffectDescription(LightEffects.FluorescentTubeEffect);
+            fluorescentTubeEffect.EffectType = LightEffects.FluorescentTubeEffect;
+            _ZIMOLightEffects.Add(fluorescentTubeEffect);
+
+            //  Function output turns off at speed = 60.
+            ZIMOLightEffectType functionOutputTurnsOffAtSpeed = new ZIMOLightEffectType();
+            functionOutputTurnsOffAtSpeed.Description = GetLightEffectDescription(LightEffects.FunctionOutputTurnsOffAtSpeed);
+            functionOutputTurnsOffAtSpeed.EffectType = LightEffects.FunctionOutputTurnsOffAtSpeed;
+            _ZIMOLightEffects.Add(functionOutputTurnsOffAtSpeed);
+
+            //  Decoupler = 48.
+            ZIMOLightEffectType decoupler = new ZIMOLightEffectType();
+            decoupler.Description = GetLightEffectDescription(LightEffects.Decoupler);
+            decoupler.EffectType = LightEffects.Decoupler;
+            _ZIMOLightEffects.Add(decoupler);
+
+            //  Double pulse strobe = 22.   
+            ZIMOLightEffectType doublePulseStrobe = new ZIMOLightEffectType();
+            doublePulseStrobe.Description = GetLightEffectDescription(LightEffects.DoublePulseStrobe);
+            doublePulseStrobe.EffectType = LightEffects.DoublePulseStrobe;
+            _ZIMOLightEffects.Add(doublePulseStrobe);
+
+            //  Single pulse strobe = 16.
+            ZIMOLightEffectType singlePulseStrobe = new ZIMOLightEffectType();
+            singlePulseStrobe.Description = GetLightEffectDescription(LightEffects.SinglePulseStrobe);
+            singlePulseStrobe.EffectType = LightEffects.SinglePulseStrobe;
+            _ZIMOLightEffects.Add(singlePulseStrobe);
+
+            //  Rotary beacon = 24. 
+            ZIMOLightEffectType rotaryBeacon = new ZIMOLightEffectType();
+            rotaryBeacon.Description = GetLightEffectDescription(LightEffects.RotaryBeacon);
+            rotaryBeacon.EffectType = LightEffects.RotaryBeacon;
+            _ZIMOLightEffects.Add(rotaryBeacon);
+
+            //  Soft start = 52.
+            ZIMOLightEffectType softStart = new ZIMOLightEffectType();
+            softStart.Description = GetLightEffectDescription(LightEffects.SoftStart);
+            softStart.EffectType = LightEffects.SoftStart;
+            _ZIMOLightEffects.Add(softStart);
 
         }
 
+        /// <summary>
+        /// Returns the light effect direction enum for the given description.
+        /// </summary>
+        internal static ZIMO.LightEffectDirection GetLightEffectDirectionType (string description)
+        {
+            if(description == GetLightEffectDirectionDescription(LightEffectDirection.DirectionIndependend)) return LightEffectDirection.DirectionIndependend;
+            if (description == GetLightEffectDirectionDescription(LightEffectDirection.Forward)) return LightEffectDirection.Forward;
+            if (description == GetLightEffectDirectionDescription(LightEffectDirection.Backward)) return LightEffectDirection.Backward;
+            return LightEffectDirection.DirectionIndependend;
+        }
 
+        /// <summary>
+        /// Returns the light effect type for the given light effect description.
+        /// </summary>
+        internal static ZIMO.LightEffects GetLightEffectType (string description)
+        {
+            if (description == GetLightEffectDescription(LightEffects.NoEffect)) return LightEffects.NoEffect;
+            if (description == GetLightEffectDescription(LightEffects.DimmingUpAndDown)) return LightEffects.DimmingUpAndDown;
+            if (description == GetLightEffectDescription(LightEffects.SinglePulseStrobe)) return LightEffects.SinglePulseStrobe;
+            if (description == GetLightEffectDescription(LightEffects.DoublePulseStrobe)) return LightEffects.DoublePulseStrobe;
+            if (description == GetLightEffectDescription(LightEffects.RotaryBeacon)) return LightEffects.RotaryBeacon;
+            if (description == GetLightEffectDescription(LightEffects.Decoupler)) return LightEffects.Decoupler;
+            if (description == GetLightEffectDescription(LightEffects.SoftStart)) return LightEffects.SoftStart;
+            if (description == GetLightEffectDescription(LightEffects.FunctionOutputTurnsOffAtSpeed)) return LightEffects.FunctionOutputTurnsOffAtSpeed;
+            if (description == GetLightEffectDescription(LightEffects.FluorescentTubeEffect)) return LightEffects.FluorescentTubeEffect;
+            if (description == GetLightEffectDescription(LightEffects.Unknown)) return LightEffects.Unknown;
+            return LightEffects.NoEffect;
+        }
+
+        /// <summary>
+        /// Returns a list with available light effect directions.
+        /// Note: The light effect direction is used to configure ZIMO light effects in CV125.
+        /// </summary>
+        /// <returns></returns>
+        internal static List<string> GetAvailableLightEffectDirections()
+        {
+            List<string> EffectDirection = new List<string>();
+            foreach (ZIMOLightEffectDirectionType item in _ZIMOLightEffectDirections)
+            {
+                if (item.Description != null) EffectDirection.Add(item.Description);
+            }
+            return EffectDirection;
+        }
+
+        /// <summary>
+        /// Returns a list with all available light effects.
+        /// </summary>
+        /// <returns></returns>
         internal static List<string> GetAvailableLightEffects()
         {
             List<string> Effect = new List<string>();
-            foreach (ZIMOLightEffect item in _ZIMOLightEffects)
+            foreach (ZIMOLightEffectType item in _ZIMOLightEffects)
             {
                 if (item.Description != null) Effect.Add(item.Description);
             }
             return Effect;
+        }
+
+        /// <summary>
+        /// Returns the description for the given light effect.
+        /// </summary>
+        /// <param name="effect"></param>
+        /// <returns></returns>
+        internal static string GetLightEffectDescription (ZIMO.LightEffects effect)
+        {
+            switch  (effect)
+            {
+                case ZIMO.LightEffects.NoEffect: return AppResources.LightEffectTypeNoEffect;
+                case ZIMO.LightEffects.DimmingUpAndDown: return AppResources.LightEffectTypeDimmingUpAndDown;
+                case ZIMO.LightEffects.SinglePulseStrobe: return AppResources.LightEffectTypeSinglePulseStrobe;
+                case ZIMO.LightEffects.DoublePulseStrobe: return AppResources.LightEffectTypeDoublePulseStrobe;
+                case ZIMO.LightEffects.RotaryBeacon: return AppResources.LightEffectTypeRotaryBeacon;
+                case ZIMO.LightEffects.Decoupler: return AppResources.LightEffectTypeDecoupler;
+                case ZIMO.LightEffects.SoftStart: return AppResources.LightEffectTypeSoftStart;
+                case ZIMO.LightEffects.FunctionOutputTurnsOffAtSpeed: return AppResources.LightEffectTypeFunctionOutputTurnsOffAtSpeed;
+                case ZIMO.LightEffects.FluorescentTubeEffect: return AppResources.LightEffectTypeFunctionOutputFluorescentTubeEffect;
+                case ZIMO.LightEffects.Unknown: return AppResources.LightEffectTypeFunctionOutputUnknown;
+
+                default: return "Unknown ZIMO light effect";
+            }
+        }
+
+        /// <summary>
+        /// Returns the description for the given light effect direction.
+        /// </summary>
+        /// <param name="direction">A ZIMO light effection direction.</param>
+        /// <returns></returns>
+        internal static string GetLightEffectDirectionDescription (ZIMO.LightEffectDirection direction)
+        {
+            switch  (direction)
+            {
+                case ZIMO.LightEffectDirection.DirectionIndependend: return AppResources.LightEffectDirectionTypeIndepend;
+                case ZIMO.LightEffectDirection.Forward: return AppResources.LightEffectDirectionTypeForward;    
+                case ZIMO.LightEffectDirection.Backward: return AppResources.LightEffectDirectionTypeBackward;
+                default: return "Unknown ZIMO light effect direction.";
+            }
         }
 
 
@@ -170,16 +334,7 @@ namespace Z2XProgrammer.Converter
             }
         }
 
-        internal static string GetLightEffectDescription (ZIMO.LightEffects effect)
-        {
-            switch  (effect)
-            {
-                case ZIMO.LightEffects.NoEffect: return AppResources.LightEffectTypeNoEffect;
-                case ZIMO.LightEffects.DimmingUpAndDown: return AppResources.LightEffectTypeDimmingUpAndDown;
-                default: return "Unknown ZIMO motor control PID motor type";
-            }
-
-        }
+       
 
         internal static string GetMotorControlPIDMotorTypeDescription(ZIMO.MotorControlPIDMotorTypes type)
         {
@@ -246,14 +401,7 @@ namespace Z2XProgrammer.Converter
                 default: return "Unknown ZIMO function mapping type";
             }
 
-        }
-
-        internal static ZIMO.LightEffects GetLightEffectType (string description)
-        {
-            if(description == GetLightEffectDescription(LightEffects.NoEffect)) return LightEffects.NoEffect;
-            if (description == GetLightEffectDescription(LightEffects.DimmingUpAndDown)) return LightEffects.DimmingUpAndDown;
-            return LightEffects.NoEffect;
-        }
+        }      
 
         internal static ZIMO.FunctionMappingTypes GetMappingType(string description)
         {

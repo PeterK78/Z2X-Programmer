@@ -298,40 +298,293 @@ namespace Z2XProgrammer.DataModel
 
 
         /// <summary>
-        /// Sets or gets the light effect for ouput 0 front.
+        /// Sets or gets the light effect for ouput 0 front in CV125.
         /// </summary>
         public LightEffects LightEffectOutput0v
         {
             get
             {
-
-                if (configurationVariables[125].Value == 0) return LightEffects.NoEffect;
-                if (configurationVariables[125].Value == 88) return LightEffects.DimmingUpAndDown;
-                return LightEffects.NoEffect;
+                return GetLighEffect(125);
             }
             set
             {
-                if (value == LightEffects.NoEffect) configurationVariables[125].Value = 0;
-                if (value == LightEffects.DimmingUpAndDown) configurationVariables[125].Value = 88;
+                SetLightEffect(125, value);
             }
         }
 
         /// <summary>
-        /// Sets or gets the light effect for ouput 0 front.
+        /// Sets or gets the light effect direction for ouput 0 front in CV125.
+        public LightEffectDirection LightEffectDirectionOutput0v
+        {
+            get
+            {
+                return GetLightEffectDirection(125);
+            }
+            set
+            {
+                SetLightEffectDirection(125, value);
+            }
+        }
+
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput 0 rear in CV126.
         /// </summary>
         public LightEffects LightEffectOutput0r
         {
             get
             {
-
-                if (configurationVariables[126].Value == 0) return LightEffects.NoEffect;
-                if (configurationVariables[126].Value == 88) return LightEffects.DimmingUpAndDown;
-                return LightEffects.NoEffect;
+                return GetLighEffect(126);
             }
             set
             {
-                if (value == LightEffects.NoEffect) configurationVariables[126].Value = 0;
-                if (value == LightEffects.DimmingUpAndDown) configurationVariables[126].Value = 88;
+                SetLightEffect(126, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput 0 rear in CV126.
+        public LightEffectDirection LightEffectDirectionOutput0r
+        {
+            get
+            {
+               return GetLightEffectDirection(126);
+            }
+            set
+            {
+                SetLightEffectDirection(126, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA1 in CV127.
+        /// </summary>
+        public LightEffects LightEffectOutputFA1
+        {
+            get
+            {
+                return GetLighEffect(127);
+            }
+            set
+            {
+                SetLightEffect(127, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA1 in CV127.
+        public LightEffectDirection LightEffectDirectionOutputFA1
+        {
+            get
+            {
+               return GetLightEffectDirection(127);
+            }
+            set
+            {
+                SetLightEffectDirection(127, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA2 in CV128.
+        /// </summary>
+        public LightEffects LightEffectOutputFA2
+        {
+            get
+            {
+                return GetLighEffect(128);
+            }
+            set
+            {
+                SetLightEffect(128, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA2 in CV128.
+        public LightEffectDirection LightEffectDirectionOutputFA2
+        {
+            get
+            {
+               return GetLightEffectDirection(128);
+            }
+            set
+            {
+                SetLightEffectDirection(128, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA3 in CV129.
+        /// </summary>
+        public LightEffects LightEffectOutputFA3
+        {
+            get
+            {
+                return GetLighEffect(129);
+            }
+            set
+            {
+                SetLightEffect(129, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA3 in CV129.
+        public LightEffectDirection LightEffectDirectionOutputFA3
+        {
+            get
+            {
+               return GetLightEffectDirection(129);
+            }
+            set
+            {
+                SetLightEffectDirection(129, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA4 in CV130.
+        /// </summary>
+        public LightEffects LightEffectOutputFA4
+        {
+            get
+            {
+                return GetLighEffect(130);
+            }
+            set
+            {
+                SetLightEffect(130, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA4 in CV130.
+        public LightEffectDirection LightEffectDirectionOutputFA4
+        {
+            get
+            {
+               return GetLightEffectDirection(130);
+            }
+            set
+            {
+                SetLightEffectDirection(130, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA5 in CV131.
+        /// </summary>
+        public LightEffects LightEffectOutputFA5
+        {
+            get
+            {
+                return GetLighEffect(131);
+            }
+            set
+            {
+                SetLightEffect(131, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA5 in CV131.
+        public LightEffectDirection LightEffectDirectionOutputFA5
+        {
+            get
+            {
+               return GetLightEffectDirection(131);
+            }
+            set
+            {
+                SetLightEffectDirection(131, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA6 in CV132.
+        /// </summary>
+        public LightEffects LightEffectOutputFA6
+        {
+            get
+            {
+                return GetLighEffect(132);
+            }
+            set
+            {
+                SetLightEffect(132, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA6 in CV132.
+        public LightEffectDirection LightEffectDirectionOutputFA6
+        {
+            get
+            {
+               return GetLightEffectDirection(132);
+            }
+            set
+            {
+                SetLightEffectDirection(132, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA7 in CV159.
+        /// </summary>
+        public LightEffects LightEffectOutputFA7
+        {
+            get
+            {
+                return GetLighEffect(159);
+            }
+            set
+            {
+                SetLightEffect(159, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA7 in CV159.
+        public LightEffectDirection LightEffectDirectionOutputFA7
+        {
+            get
+            {
+               return GetLightEffectDirection(159);
+            }
+            set
+            {
+                SetLightEffectDirection(159, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect for ouput FA8 in CV160.
+        /// </summary>
+        public LightEffects LightEffectOutputFA8
+        {
+            get
+            {
+                return GetLighEffect(160);
+            }
+            set
+            {
+                SetLightEffect(160, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the light effect direction for ouput FA8 in CV160.
+        public LightEffectDirection LightEffectDirectionOutputFA8
+        {
+            get
+            {
+               return GetLightEffectDirection(160);
+            }
+            set
+            {
+                SetLightEffectDirection(160, value);
             }
         }
 
@@ -1358,6 +1611,96 @@ namespace Z2XProgrammer.DataModel
             }
         }
 
+        /// <summary>
+        /// Converts the value of a given CV number to a ZIMO light effect.
+        /// </summary>
+        /// <param name="cvNumber">A ZIMO light effect CV number e.g. 125</param>
+        /// <returns></returns>
+        internal ZIMO.LightEffects GetLighEffect(int cvNumber)
+        {
+            //  We grab the value of CV125 and mask out the direction bits.
+            byte effect = configurationVariables[cvNumber].Value;
+            effect = Bit.Set(effect, 0, false);
+            effect = Bit.Set(effect, 1, false);
+
+            //  Check the value and return the corresponding enum.
+            if (effect == 0) return LightEffects.NoEffect;
+            if (effect == 88) return LightEffects.DimmingUpAndDown;
+            if (effect == 16) return LightEffects.SinglePulseStrobe;
+            if (effect == 22) return LightEffects.DoublePulseStrobe;
+            if (effect == 24) return LightEffects.RotaryBeacon;
+            if (effect == 48) return LightEffects.Decoupler;
+            if (effect == 52) return LightEffects.SoftStart;
+            if (effect == 60) return LightEffects.FunctionOutputTurnsOffAtSpeed;
+            if (effect == 92) return LightEffects.FluorescentTubeEffect;
+
+            return LightEffects.Unknown;
+        }
+
+        /// <summary>
+        /// Converts the value of a given CV number to a ZIMO light effect direction.
+        /// </summary>
+        /// <param name="cvNumber">A ZIMO light effect CV number e.g. 125</param>
+        /// <returns></returns>
+        internal LightEffectDirection GetLightEffectDirection (int cvNumber)
+        {
+            bool forward =  Bit.IsSet(configurationVariables[cvNumber].Value, 0);
+            bool backward = Bit.IsSet(configurationVariables[cvNumber].Value, 1);
+
+            if ((forward == false) && (backward == false)) return LightEffectDirection.DirectionIndependend;
+            if ((forward == true) && (backward == false)) return LightEffectDirection.Forward;
+            if ((forward == false) && (backward == true)) return LightEffectDirection.Backward;
+            return LightEffectDirection.DirectionIndependend;
+        }
+
+        /// <summary>
+        /// Sets the light effect direction for a given CV number.
+        /// </summary>
+        /// <param name="cvNumber">The desired CV number.</param>
+        /// <param name="direction">The desired direciton.</param>
+        internal void SetLightEffectDirection (int cvNumber, LightEffectDirection direction)
+        {
+            if(direction == LightEffectDirection.DirectionIndependend)
+            {
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, false);
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, false);
+            }
+            if(direction == LightEffectDirection.Forward)
+            {
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, true);
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, false);
+            }
+            if(direction == LightEffectDirection.Backward)
+            {
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, false);
+                configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, true);
+            }
+        }
+
+        /// <summary>
+        /// Sets the light effect for a given CV number.
+        /// </summary>
+        /// <param name="cvNumber">The desired CV number.</param>
+        /// <param name="effect">The desired effect.</param>
+        internal void SetLightEffect(int cvNumber, ZIMO.LightEffects effect)
+        {
+            //  Save the current direction bits.
+            LightEffectDirection currentDirection = GetLightEffectDirection(cvNumber);
+
+            //  Set the effect bits.
+            if (effect == LightEffects.NoEffect) configurationVariables[cvNumber].Value = 0;
+            if (effect == LightEffects.DimmingUpAndDown) configurationVariables[cvNumber].Value = 88;
+            if (effect == LightEffects.SinglePulseStrobe) configurationVariables[cvNumber].Value = 16;
+            if (effect == LightEffects.DoublePulseStrobe) configurationVariables[cvNumber].Value = 22;
+            if (effect == LightEffects.RotaryBeacon) configurationVariables[cvNumber].Value = 24;
+            if (effect == LightEffects.Decoupler) configurationVariables[cvNumber].Value = 48;
+            if (effect == LightEffects.SoftStart) configurationVariables[cvNumber].Value = 52;
+            if (effect == LightEffects.FunctionOutputTurnsOffAtSpeed) configurationVariables[cvNumber].Value = 60;
+            if (effect == LightEffects.FluorescentTubeEffect) configurationVariables[cvNumber].Value = 92;
+
+            //  Restore the direction bits.
+            SetLightEffectDirection(cvNumber, currentDirection);
+        }
     }
 }
 

@@ -21,19 +21,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.DataModel
 {
-    internal class ZIMOLightEffect
+    /// <summary>
+    /// This class contains the light effects for the ZIMO decoder.
+    /// </summary>
+    internal class ZIMOLightEffectType
     {
-
         internal string? Description { get; set; }
         internal LightEffects EffectType{ get; set; }
+        internal ZIMOLightEffectDirectionType ?Direction { get; set; }
     }
 }

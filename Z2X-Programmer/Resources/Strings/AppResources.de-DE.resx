@@ -644,7 +644,7 @@ Folgender Fehler ist aufgetreten:
     <value>Dimmen</value>
   </data>
   <data name="FrameLightEffectsDescription" xml:space="preserve">
-    <value>Jedem Funktionsausgang kann ein beliebiger Effekt zugewiesen werden. Dadurch können Sie z. B. ein sanftes Auf- und Abblenden der Stirnbeleuchtung erreichen.</value>
+    <value>Jedem Funktionsausgang kann ein Lichteffekt zugewiesen werden. Sie können auch die Fahrtrichtung einstellen, in welcher der Effekt aktiv ist.</value>
   </data>
   <data name="FrameLightEffectsTitle" xml:space="preserve">
     <value>Effekte</value>
@@ -1122,7 +1122,7 @@ Frequenztyp = Niedrigfrequenz</value>
   <data name="FyoutItemMotorCharacteristicsText" xml:space="preserve">
     <value>Motoreigenschaften</value>
   </data>
-  <data name="LightEffectToolip" xml:space="preserve">
+  <data name="LightEffectTooltip" xml:space="preserve">
     <value>Kein Effekt = 0
 Auf- und Abblenden = 88</value>
   </data>
@@ -1581,5 +1581,62 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="AlertDecSpecNotFound" xml:space="preserve">
     <value>Die Decoder-Spezifikation wurde nicht gefunden:</value>
+  </data>
+  <data name="LightEffectDirectionTypeIndepend" xml:space="preserve">
+    <value>Richtungsunabhängig</value>
+  </data>
+  <data name="LightEffectDirectionTypeForward" xml:space="preserve">
+    <value>Vorwärts</value>
+  </data>
+  <data name="LightEffectDirectionTypeBackward" xml:space="preserve">
+    <value>Rückwärts</value>
+  </data>
+  <data name="LightEffectTypeSinglePulseStrobe" xml:space="preserve">
+    <value>Einzelimplus-Blitzlicht</value>
+  </data>
+  <data name="LightEffectTypeDoublePulseStrobe" xml:space="preserve">
+    <value>Doppelimpuls-Blitzlicht</value>
+  </data>
+  <data name="LightEffectTypeRotaryBeacon" xml:space="preserve">
+    <value>Rundumleuchte</value>
+  </data>
+  <data name="LightEffectTypeDecoupler" xml:space="preserve">
+    <value>Entkuppler</value>
+  </data>
+  <data name="LightEffectTypeSoftStart" xml:space="preserve">
+    <value>Soft-Start</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputTurnsOffAtSpeed" xml:space="preserve">
+    <value>Ausschalten bei Geschwindigkeit</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputFluorescentTubeEffect" xml:space="preserve">
+    <value>Leuchtstoffröhre</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA1" xml:space="preserve">
+    <value>Effekt, Ausgang FA1 (CV127)</value>
+  </data>
+  <data name="LightEffectTypeFunctionOutputUnknown" xml:space="preserve">
+    <value>Unbekannter Effekt</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA2" xml:space="preserve">
+    <value>Effekt, Ausgang FA2 (CV128)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA3" xml:space="preserve">
+    <value>Effekt, Ausgang FA3 (CV129)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA4" xml:space="preserve">
+    <value>Effekt, Ausgang FA4 (CV130)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA5" xml:space="preserve">
+    <value>Effekt, Ausgang FA5 (CV131)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA6" xml:space="preserve">
+    <value>Effekt, Ausgang FA6 (CV132)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA7" xml:space="preserve">
+    <value>Effekt, Ausgang FA7 (CV133)</value>
+  </data>
+  <data name="FrameLightDimmingOutputFA8" xml:space="preserve">
+    <value>Effekt, Ausgang FA8 (CV134)</value>
   </data>
 </root>
