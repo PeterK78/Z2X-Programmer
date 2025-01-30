@@ -1639,4 +1639,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameLightDimmingOutputFA8" xml:space="preserve">
     <value>Effekt, Ausgang FA8 (CV134)</value>
   </data>
+  <data name="LocoListColumnHeaderZ2XAvailable" xml:space="preserve">
+    <value>Z2X-Datei</value>
+  </data>
 </root>

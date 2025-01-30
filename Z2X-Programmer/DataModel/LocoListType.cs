@@ -45,6 +45,11 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         public ImageSource UserDefindedImage { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Z2X file available.
+        /// </summary> 
+        public bool Z2XFileAvailable { get; set; } = false;
+
         public LocoListType() { }
 
     }

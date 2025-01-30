@@ -200,7 +200,8 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: COMMANDS
 
         /// <summary>
-        /// Reads the locomotive list from the train controller software.
+        /// Reads the locomotive list from the train controller software and presents
+        /// it to the user.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -210,16 +211,16 @@ namespace Z2XProgrammer.ViewModel
             {
                 List<LocoListType> locoList = new List<LocoListType>();
 
-                //  Check if the Z2X files folder is available
-                if(LocoList.Folder == "")
+                //  Check if the Z2X files folder is available.
+                if(LocoList.Z2XFileFolder == "")
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
                     return;
                 }
 
-                if(Directory.Exists(LocoList.Folder) == false)
+                if(Directory.Exists(LocoList.Z2XFileFolder) == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Z2XFileFolder, AppResources.OK);
                     return;
                 }
 
@@ -229,11 +230,11 @@ namespace Z2XProgrammer.ViewModel
 
                 ActivityReadWriteCVOngoing = false;
 
-                if (locoList.Count == 0)
-                {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
-                    return;
-                }
+                //if (locoList.Count == 0)
+                //{
+                //    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
+                //    return;
+                //}
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
@@ -860,31 +861,35 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                //  Check if we have a matching Z2X file   
-                string[] fileEntries = Directory.GetFiles(LocoList.Folder);
+                //  Check if we have a matching Z2X file.
+                string[] fileEntries = Directory.GetFiles(LocoList.Z2XFileFolder);
                 foreach (string fileEntry in fileEntries)
                 {
-                    Stream fs = File.OpenRead(fileEntry);
-                    Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
-                    var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
-
-                    // Call the Deserialize method and cast to the object type.
-                    myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
-
-                    if (myFile.LocomotiveAddress == value.LocomotiveAddress)
+                    using (Stream fs = File.OpenRead(fileEntry))
                     {
-                        value.FilePath = fileEntry;
-                        break;
+                        Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
+                        var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
+
+                        // Call the Deserialize method and cast to the object type.
+                        myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+
+                        if (myFile.LocomotiveAddress == value.LocomotiveAddress)
+                        {
+                            value.FilePath = fileEntry;
+                            break;
+                        }
                     }
                 }
 
                 if (File.Exists(value.FilePath))
                 {
-                    Stream fs = File.OpenRead(value.FilePath);
-                    Z2XReaderWriter.ReadFile(fs);
-                    DecoderConfiguration.IsValid = true;
-                    WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-                    WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                    using (Stream fs = File.OpenRead(value.FilePath))
+                    {
+                        Z2XReaderWriter.ReadFile(fs);
+                        DecoderConfiguration.IsValid = true;
+                        WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                    }
                 }
                 else
                 {

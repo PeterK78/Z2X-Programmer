@@ -1638,4 +1638,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameLightDimmingOutputFA8" xml:space="preserve">
     <value>Effect, output FA8 (CV134)</value>
   </data>
+  <data name="LocoListColumnHeaderZ2XAvailable" xml:space="preserve">
+    <value>Z2X file</value>
+  </data>
 </root>

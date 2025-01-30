@@ -167,7 +167,7 @@ namespace Z2XProgrammer.ViewModel
             //  The loco list settings.
             LocoListSystemIPAddress = LocoList.IPAddress.ToString();
             LocoListSystemPort = LocoList.PortNumber.ToString();
-            LocoListSystemFolder = LocoList.Folder.ToString();
+            LocoListSystemFolder = LocoList.Z2XFileFolder.ToString();
 
 
             AvailableLanguages = new ObservableCollection<string>(AppCulture.GetAvailableLanguagesDescriptions());
@@ -230,7 +230,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                     else
                     {
-                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFolderNotAccessible + LocoList.Folder, AppResources.OK);
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDeqSpecFolderNotAccessible + LocoList.Z2XFileFolder, AppResources.OK);
                         return;
                     }
                 }
@@ -299,14 +299,14 @@ namespace Z2XProgrammer.ViewModel
                     }
                     else
                     {
-                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotAccessible + LocoList.Folder, AppResources.OK);
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotAccessible + LocoList.Z2XFileFolder, AppResources.OK);
                         return;
                     }
                 }
 
-                if (Directory.Exists(LocoList.Folder) == false)
+                if (Directory.Exists(LocoList.Z2XFileFolder) == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Folder, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Z2XFileFolder, AppResources.OK);
                     return;
                 }
 

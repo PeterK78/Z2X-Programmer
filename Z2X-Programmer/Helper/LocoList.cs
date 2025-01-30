@@ -76,7 +76,10 @@ namespace Z2XProgrammer.Helper
             }
         }
 
-        public static string Folder
+        /// <summary>
+        /// Return the folder where the Z2X files for the locomotive list are stored.
+        /// </summary>
+        public static string Z2XFileFolder
         {
             get
             {
@@ -153,29 +156,32 @@ namespace Z2XProgrammer.Helper
         {
             List<LocoListType> locomotiveList = new List<LocoListType>();
 
-            //  Grab the locomotive list from Rocrail
+            //  Grab the locomotive list from Rocrail.
             locomotiveList = await Task.Run(() =>  Rocrail.GetLocomotiveList(IPAddress, PortNumber));
 
             //  Add the path to the local Z2X file
-            string[] fileEntries = Directory.GetFiles(Folder);
+            string[] fileEntries = Directory.GetFiles(Z2XFileFolder);
             foreach (LocoListType loco in locomotiveList)
             {
                 foreach (string fileName in fileEntries)
                 {
-                    Stream fs = File.OpenRead(fileName);
+                    using (Stream fs = File.OpenRead(fileName))
+                    {   
 
-                    Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
+                        Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
 
-                    var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
+                        var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
 
-                    // Call the Deserialize method and cast to the object type.
-                    myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+                        // Call the Deserialize method and cast to the object type.
+                        myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
 
-                    if(myFile.LocomotiveAddress == loco.LocomotiveAddress)
-                    {
-                        loco.FilePath = fileName;
-                        loco.UserDefindedImage =  Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
-                    }
+                        if(myFile.LocomotiveAddress == loco.LocomotiveAddress)
+                        {
+                            loco.Z2XFileAvailable = true;
+                            loco.FilePath = fileName;
+                            loco.UserDefindedImage =  Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
+                        }
+                    }   
                 }
             }
             return locomotiveList;
@@ -191,35 +197,38 @@ namespace Z2XProgrammer.Helper
 
             List<LocoListType> locomotiveList = new List<LocoListType>();
 
-            string[] fileEntries = Directory.GetFiles(Folder);
-
+            //  Loop through all files in the Z2X file folder.
+            string[] fileEntries = Directory.GetFiles(Z2XFileFolder);
             foreach (string fileName in fileEntries)
             {
-                Stream fs = File.OpenRead(fileName);
-
-                Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
-
-                var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
-
-                try
+                using (Stream fs = File.OpenRead(fileName))
                 {
+                    Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
 
-                    // Call the Deserialize method and cast to the object type.
-                    myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+                    var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
 
-                    LocoListType entry = new LocoListType();
-                    entry.LocomotiveAddress = myFile.CVs[1].Value;
-                    entry.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
-                    entry.UserDefindedImage = Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
-                    entry.FilePath = fileName;
+                    try
+                    {
 
-                    locomotiveList.Add(entry);
-                }
-                catch (InvalidOperationException )
-                {
-                    //  If we try to deserialize a wrong file format we receive a InvalidOperationException.
-                    //  Do nothing - just skip this file.
-                }
+                        // Call the Deserialize method and cast to the object type.
+                        myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+
+                        LocoListType entry = new LocoListType();
+                        entry.LocomotiveAddress = myFile.CVs[1].Value;
+                        entry.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
+                        entry.UserDefindedImage = Base64StringToImage.ConvertBase64String2ImageSource(myFile.UserDefinedImage);
+                        entry.FilePath = fileName;
+                        entry.Z2XFileAvailable = true;
+
+                        locomotiveList.Add(entry);
+
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        //  If we try to deserialize a wrong file format we receive a InvalidOperationException.
+                        //  Do nothing - just skip this file.
+                    }
+                };
             }
             return Task.FromResult(locomotiveList);
          

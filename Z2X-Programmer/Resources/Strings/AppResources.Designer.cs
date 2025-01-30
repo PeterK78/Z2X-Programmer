@@ -4184,6 +4184,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Z2X file.
+        /// </summary>
+        public static string LocoListColumnHeaderZ2XAvailable {
+            get {
+                return ResourceManager.GetString("LocoListColumnHeaderZ2XAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locomotive list.
         /// </summary>
         public static string LocoListTitle {
