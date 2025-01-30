@@ -34,6 +34,7 @@ namespace Z21Lib.Enums
         OFF = 0,
         ON = 1,
         Short = 2,
-        Programing = 3
+        Programing = 3,
+        Unknown = 0xFF
     }
 }

@@ -137,6 +137,18 @@ namespace Z2XProgrammer.Communication
         }
 
         /// <summary>
+        /// Returns TRUE if the command station is reachable.
+        /// </summary>  
+        public static bool IsReachable
+        {
+            get
+            {
+                return Z21.IsReachable;
+            }
+        }
+
+
+        /// <summary>
         /// Connects to the selected digital command station.
         /// </summary>
         /// <param name="cancelToken">A cancelation toke to cancel the connection process.</param>

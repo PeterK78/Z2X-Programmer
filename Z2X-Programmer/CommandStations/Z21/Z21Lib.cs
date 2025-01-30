@@ -341,7 +341,7 @@ namespace Z21Lib
         public void SetTrackPowerOn()
         {
 
-            Logger.PrintDevConsole("Z21Lib:ReadCV (LAN_X_SET_TRACK_POWER_ON)");
+            Logger.PrintDevConsole("Z21Lib:SetTrackPowerOn (LAN_X_SET_TRACK_POWER_ON)");
 
             byte[] bytes = new byte[7];
             bytes[0] = 0x07;
@@ -350,6 +350,30 @@ namespace Z21Lib
             bytes[3] = 0;
             bytes[4] = 0x21;
             bytes[5] = 0x81;
+            bytes[6] = (byte)(bytes[4] ^ bytes[5]);
+
+            Sending(bytes);
+
+        }
+
+        /// <summary>
+        /// This command is used to switch track voltage off.
+        ///
+        /// Z21 commando: LAN_X_SET_TRACK_POWER_OFF
+        /// 
+        /// </summary>
+        public void SetTrackPowerOff()
+        {
+
+            Logger.PrintDevConsole("Z21Lib:SetTrackPowerOff (LAN_X_SET_TRACK_POWER_OFF)");
+
+            byte[] bytes = new byte[7];
+            bytes[0] = 0x07;
+            bytes[1] = 0;
+            bytes[2] = 0x40;
+            bytes[3] = 0;
+            bytes[4] = 0x21;
+            bytes[5] = 0x80;
             bytes[6] = (byte)(bytes[4] ^ bytes[5]);
 
             Sending(bytes);

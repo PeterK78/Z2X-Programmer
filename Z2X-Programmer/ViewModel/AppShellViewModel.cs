@@ -51,10 +51,16 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PRIVATE FIELDS
 
+        //  Stores the current connection state of the digital command station.
         private bool _commandStationReachable = false;
+
+        //  Stores the current state of the status LED.
         private bool _commandStationStatusBlinking = false;
 
-        #endregion 
+        //  Stores the current state of the digital command station.
+        private Z21Lib.Enums.TrackPower _commandStationOperationMode = Z21Lib.Enums.TrackPower.Unknown;
+
+        #endregion
 
         #region REGION: PUBLIC PROPERTIES
 
@@ -295,25 +301,40 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                // This property controls the ActivityIndicator
-                // We set this property to True so that it is displayed.
-                ConnectingOngoing = true;
+                //  If the digital command center is already reachable, we return.
+                if (CommandStation.IsReachable == false)
+                {
+                    // This property controls the ActivityIndicator
+                    // We set this property to True so that it is displayed.
+                    ConnectingOngoing = true;
 
-                //  Setup the cancellation token
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
+                    //  Setup the cancellation token
+                    CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                    CancellationToken cancelToken = cancelTokenSource.Token;
 
-                //  We are now trying to establish a new connection to the digital command station.                    
-                bool ConnectionSuccess = false;
-                await Task.Run(() => ConnectionSuccess = CommandStation.Connect(cancelToken, 5000));
+                    //  We are now trying to establish a new connection to the digital command station.                    
+                    bool ConnectionSuccess = false;
+                    await Task.Run(() => ConnectionSuccess = CommandStation.Connect(cancelToken, 5000));
                 
-                //  We hide the ActivityIndicator.
-                ConnectingOngoing = false;
+                    //  We hide the ActivityIndicator.
+                    ConnectingOngoing = false;
                 
-                // We will inform the user if we are unable to establish a connection.
-                if(ConnectionSuccess == false) await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
-                
-            }
+                    // We will inform the user if we are unable to establish a connection.
+                    if(ConnectionSuccess == false) await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
+                }
+                else
+                {
+                    //  The command station is already connected. Therefore we just toggle the track power.
+                    if(_commandStationOperationMode == Z21Lib.Enums.TrackPower.OFF)
+                    {
+                        CommandStation.Z21.SetTrackPowerOn();
+                    }
+                    else
+                    {
+                        CommandStation.Z21.SetTrackPowerOff();
+                    }
+                }
+            }   
             catch (System.FormatException)
             {
                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
@@ -770,6 +791,7 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateShortCircuitMode;
                     CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);   // BLUE
                     StopBlinkingCommandStateLabel();
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.Short;
                     break;
 
                 case Z21Lib.Enums.TrackPower.ON:
@@ -778,6 +800,7 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateNormalMode;
                     CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);   // BLUE
                     StopBlinkingCommandStateLabel();
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.ON;
                     break;
 
                 case Z21Lib.Enums.TrackPower.OFF:
@@ -786,6 +809,7 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateStopMode;
                     CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);   // BLUE
                     StartBlinkingCommandStateLabel();
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.OFF; 
                     break;
 
                 case Z21Lib.Enums.TrackPower.Programing:
@@ -794,6 +818,7 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateProgrammingMode;
                     CommandStationConnectionStateColor = Color.FromRgb(27, 135, 85); // GREEN
                     StopBlinkingCommandStateLabel();
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.Programing; 
                     break;
             }
             
