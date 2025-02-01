@@ -314,6 +314,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput 0 front in CV125.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutput0v
         {
             get
