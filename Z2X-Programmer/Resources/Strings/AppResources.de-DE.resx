@@ -1592,7 +1592,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Rückwärts</value>
   </data>
   <data name="LightEffectTypeSinglePulseStrobe" xml:space="preserve">
-    <value>Einzelimplus-Blitzlicht</value>
+    <value>Einzelimpuls-Blitzlicht</value>
   </data>
   <data name="LightEffectTypeDoublePulseStrobe" xml:space="preserve">
     <value>Doppelimpuls-Blitzlicht</value>
