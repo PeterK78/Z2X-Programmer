@@ -1,12 +1,58 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.6
-Date:         05.01.2025
+Version:      0.1.2.0-beta.7
+Date:         01.02.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.7 / 05.01.2025
+------------------------------------------------------------------
+Note:
+
+  A detailed list of changes can be found in the Z2X programmer
+  repository on GitHub.
+
+* Seventh beta version (Beta Version 7, V0.1.2.0)
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.7 / 05.01.2025
+------------------------------------------------------------------
+
+Note:
+  A detailed list of changes can be found in the Z2X programmer
+  repository on GitHub.
+
+New features:
+
+* Undo and Redo has been added.
+
+* Added a decoder specification for ZIMO MN decoder.
+
+* User specific directory for decoder specifications.
+
+* The feature ZIMO_LIGHT_EFFECTS_CV125X has been updated.
+
+* The locomotive list now shows whether a Z2X file is available.
+
+* The track voltage can now also be switched on and off
+  using the “Connection State” button.
+
+Bug fixes:
+
+* Sporadically, a non-valid vehicle address was selected after
+  changing the DCC address mode.
+
+* The direction in consist mode was sporadically not displayed
+  correctly.
+
+* In some cases, the values for CV3 and CV4 were not displayed
+  correctly in the GUI.
+
+* The layout of the info page has been updated.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.6 / 05.01.2025
