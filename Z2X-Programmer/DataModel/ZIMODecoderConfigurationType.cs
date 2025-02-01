@@ -345,6 +345,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput 0 rear in CV126.
+        /// </summary>  
         public LightEffectDirection LightEffectDirectionOutput0r
         {
             get
@@ -374,6 +375,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA1 in CV127.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA1
         {
             get
@@ -403,6 +405,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA2 in CV128.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA2
         {
             get
@@ -432,6 +435,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA3 in CV129.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA3
         {
             get
@@ -461,6 +465,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA4 in CV130.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA4
         {
             get
@@ -490,6 +495,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA5 in CV131.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA5
         {
             get
@@ -519,6 +525,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA6 in CV132.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA6
         {
             get
@@ -548,6 +555,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA7 in CV159.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA7
         {
             get
@@ -577,6 +585,7 @@ namespace Z2XProgrammer.DataModel
 
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA8 in CV160.
+        /// </summary>
         public LightEffectDirection LightEffectDirectionOutputFA8
         {
             get
