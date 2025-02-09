@@ -262,6 +262,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
@@ -366,8 +369,30 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV160Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
 
+                    <!-- ZIMO MS/MN: Timing setting for the effect number 88 in CV190 and CV191  (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X) -->
+                    <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,60,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsTimingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}"  />
+                        <Label Grid.Row="12" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeInTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                    <VerticalStackLayout Grid.Row="12" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                        <HorizontalStackLayout>
+                            <Slider Value="{Binding ZIMOLightEffectFadeInTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Text="{Binding ZIMOLightEffectFadeInTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                        </HorizontalStackLayout>
+                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV190Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
+
+                        <Label Grid.Row="13" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeOutTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                        <VerticalStackLayout Grid.Row="13" Grid.Column="1" Margin="0,20,0,0"  HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                        <HorizontalStackLayout>
+                            <Slider Value="{Binding ZIMOLightEffectFadeOutTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Text="{Binding ZIMOLightEffectFadeOutTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                        </HorizontalStackLayout>
+                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV191Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    </VerticalStackLayout>
+
                     </Grid>
             </Border>
+
+
 
             </VerticalStackLayout>
         </VerticalStackLayout>

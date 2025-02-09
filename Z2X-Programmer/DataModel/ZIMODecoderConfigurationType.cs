@@ -953,6 +953,35 @@ namespace Z2XProgrammer.DataModel
 
         }
 
+        /// <summary>
+        /// Sets or gets the fade in time for various light effects in CV190.
+        /// </summary>  
+        public byte MSMNLightEffectFadeInTime
+        {
+            get
+            {
+                return configurationVariables[190].Value;
+            }
+            set
+            {
+                configurationVariables[190].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the fade out time for various light effects in CV191.
+        /// </summary>  
+        public byte MSMNLightEffectFadeOutTime
+        {
+            get
+            {
+                return configurationVariables[191].Value;
+            }
+            set
+            {
+                configurationVariables[191].Value = value;
+            }
+        }
 
         /// <summary>
         /// Sets or gets the dimming value (brightness) for all functions outputs in CV60.

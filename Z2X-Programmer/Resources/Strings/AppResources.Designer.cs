@@ -2328,11 +2328,38 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fade-In time (CV190).
+        /// </summary>
+        public static string FrameLightEffectFadeInTimeLabel {
+            get {
+                return ResourceManager.GetString("FrameLightEffectFadeInTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade-Out time (CV191).
+        /// </summary>
+        public static string FrameLightEffectFadeOutTimeLabel {
+            get {
+                return ResourceManager.GetString("FrameLightEffectFadeOutTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A light effect can be assigned to each function output. You can also set the direction of travel in which the effect is active..
         /// </summary>
         public static string FrameLightEffectsDescription {
             get {
                 return ResourceManager.GetString("FrameLightEffectsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can set fade-in and fade-out times for the “Fade in and fade out” light effect..
+        /// </summary>
+        public static string FrameLightEffectsTimingTitle {
+            get {
+                return ResourceManager.GetString("FrameLightEffectsTimingTitle", resourceCulture);
             }
         }
         

@@ -69,7 +69,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
 
         //
-        //  ZIMO specific features    
+        //  ZIMO specific features.   
         //
         public const string ZIMO_LIGHT_EFFECTS_CV125X = "ZIMO_LIGHT_EFFECTS_CV125X";
         public const string ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 = "ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396";
@@ -102,6 +102,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_SUSIPORT1CONFIG_CV201 = "ZIMO_SUSIPORT1CONFIG_CV201";
         public const string ZIMO_INPUTMAPPING_CV4XX = "ZIMO_INPUTMAPPING_CV4XX";
         public const string ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = "ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X";
+        public const string ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         
 
         //  Döhler & Haass specific features
@@ -793,6 +794,8 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
+    <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
+
 
 </decoderseries>";
 
@@ -855,6 +858,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
+    <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 

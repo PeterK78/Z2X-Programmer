@@ -22,8 +22,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.Runtime.CompilerServices;
 using Z21Lib.Events;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
@@ -67,7 +65,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.RCN225_OPERATINGMODES_CV12, "12", "0", "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"}
                                 };
 
-        static readonly string[,] ZIMOFeatures = new string[31, 29] {
+        static readonly string[,] ZIMOFeatures = new string[32, 29] {
                                   {DeqSpecReader.ZIMO_SUBVERSIONNR_CV65, "65", "0", "0" ,"0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_DECODERTYPE_CV250, "250", "0", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_DECODERID_CV25X, "250", "251", "252", "253","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
@@ -98,7 +96,8 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.ZIMO_SOUNDPROJECTNR_CV254, "254", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_SUSIPORT1CONFIG_CV201, "201", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, "400", "401","402","403" ,"404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","0","0","0","0","0","0","0"},
-                                  {DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, "69", "70","71","72" ,"73","74","75","76","77","78","79","80","81","82","0","0","0","0","0","0","0","0","0","0","0","0","0","0"}
+                                  {DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, "69", "70","71","72" ,"73","74","75","76","77","78","79","80","81","82","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
+                                  {DeqSpecReader.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X, "190", "191","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"}
                                 };
 
         static readonly string[,] DOEHLERHAASFeatures = new string[6, 29] {
