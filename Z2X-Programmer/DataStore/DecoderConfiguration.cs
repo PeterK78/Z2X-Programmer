@@ -90,17 +90,23 @@ namespace Z2XProgrammer.DataStore
         /// <summary>
         /// Stores the user defined decoder description.
         /// </summary>
-        public static string UserDefindedDecoderDescription { get; set; }
+        public static string UserDefindedDecoderDescription { get; set; } = string.Empty;
 
         /// <summary>
         /// Stores the use defined notes.
         /// </summary>
-        public static string UserDefindedNotes { get; set; }
+        public static string UserDefindedNotes { get; set; } = string.Empty;
 
         /// <summary>
         /// Stores the use defined image.
         /// </summary>
-        public static string UserDefindedImage { get; set; }
+        public static string UserDefindedImage { get; set; } = string.Empty;
+
+
+        /// <summary>
+        /// The path to the Z2X file.
+        /// </summary>  
+        public static string Z2XFilePath { get; set; } = string.Empty;
 
         /// <summary>
         /// The currently selected programming mode.
@@ -117,10 +123,6 @@ namespace Z2XProgrammer.DataStore
         /// </summary>
         static DecoderConfiguration()
         {
-            UserDefindedNotes = string.Empty;
-            UserDefindedImage = string.Empty;
-            UserDefindedDecoderDescription = string.Empty;
-
             Init(NMRA.StandardShortVehicleAddress, "");
         }
 

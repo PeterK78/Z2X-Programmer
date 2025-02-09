@@ -101,14 +101,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
-
-            <!-- Redo last step  -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_redo_24_regular.png, Dark=ic_fluent_arrow_redo_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=RedoCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuRedo}" HorizontalOptions="End" IsEnabled="{Binding RedoAvailable}" >
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
-
+      
             <!-- Save Z2X-project -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_save_24_regular.png, Dark=ic_fluent_save_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuSaveFileText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=SaveZ2XFileCommand}" HorizontalOptions="End">
                 <Button.Text>
@@ -150,6 +143,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="300" Phone="240"></OnIdiom>
                 </Picker.WidthRequest>
             </Picker>
+
+            <!-- Extended menu items dropdown -->
+            <Button ImageSource="{AppThemeBinding Light=ic_fluent_more_horizontal_24_regular.png , Dark=ic_fluent_more_horizontal_24_dark.png}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenExtendedMenuItemPopupCommand}" HorizontalOptions="End">
+                <Button.Text>
+                    <OnIdiom Default="" Phone=""></OnIdiom>
+                </Button.Text>
+            </Button>
+
         </StackLayout>
     </Shell.TitleView>
 

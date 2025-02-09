@@ -1642,4 +1642,22 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="LocoListColumnHeaderZ2XAvailable" xml:space="preserve">
     <value>Z2X-Datei</value>
   </data>
+  <data name="ExtendedMenuItemSaveAs" xml:space="preserve">
+    <value>Speichern unter ...</value>
+  </data>
+  <data name="ExtendedMenuItemRedo" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="AlertNoDataToSave" xml:space="preserve">
+    <value>Es ist kein Z2X-Projekt geöffnet. Das Projekt kann nicht gespeichert werden.</value>
+  </data>
+  <data name="ExtendedMenuItemTitle" xml:space="preserve">
+    <value>Erweiterte Symbolleiste</value>
+  </data>
+  <data name="AlertNoRedoAvailable" xml:space="preserve">
+    <value>Es können aktuell keine Befehle wiederholt werden.</value>
+  </data>
+  <data name="ExtendedMenuItemReportProblem" xml:space="preserve">
+    <value>Problem melden ...</value>
+  </data>
 </root>

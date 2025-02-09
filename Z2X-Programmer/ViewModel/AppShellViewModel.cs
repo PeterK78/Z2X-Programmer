@@ -413,7 +413,13 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.IsValid = true;
 
                         //  We set property BackupDataFromDecoderIsValid to FALSE to signal that the backup data was loaded from a Z2X file.    
-                        DecoderConfiguration.BackupDataFromDecoderIsValid = false;   
+                        DecoderConfiguration.BackupDataFromDecoderIsValid = false;
+
+                        //  We set the path to the Z2X file.
+                        DecoderConfiguration.Z2XFilePath = result.FullPath;
+
+                        //  We set the application title to the name of the Z2X file.
+                        ApplicationTitle = "Z2X-Programmer - " + Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
@@ -440,12 +446,51 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Opens a FilePicker dialog and saves the data to a Z2X file.
+        /// Saves the data to the current Z2X file.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
         async Task SaveZ2XFile()
         {
+            try
+            {
+                //  If we do not have a Z2X file path, we open the SaveAsZ2XFile dialog.
+                if (DecoderConfiguration.Z2XFilePath == "") 
+                {
+                    await SaveAsZ2XFile();
+                    return;
+                }
+
+                XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
+                try
+                {
+                    if (File.Exists(DecoderConfiguration.Z2XFilePath) ==  true) File.Delete(DecoderConfiguration.Z2XFilePath);
+                    using FileStream outputStream = System.IO.File.OpenWrite(DecoderConfiguration.Z2XFilePath);
+                    using StreamWriter streamWriter = new StreamWriter(outputStream);
+                    x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+                catch (Exception ex)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
+
+        /// <summary>
+        /// Opens a FilePicker dialog and saves the data to a Z2X file.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task SaveAsZ2XFile()
+        {
+            if (DataStoreDataValid == false) return;
+            
             CancellationToken cancelToken = new CancellationToken();
             XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
             using MemoryStream outputStream = new MemoryStream();
@@ -454,7 +499,20 @@ namespace Z2XProgrammer.ViewModel
             {
                 x.Serialize(outputStream, Z2XReaderWriter.CreateZ2XProgrammerFile());
                 var fileSaveResult = await FileSaver.Default.SaveAsync(Z2XReaderWriter.GetZ2XStandardFileName(), outputStream, cancelToken);
-                if (fileSaveResult.IsSuccessful == false)
+                if (fileSaveResult.IsSuccessful == true)
+                {
+                    if (fileSaveResult.FilePath != null)
+                    {
+                        //  Update the new Z2X project file path.
+                        DecoderConfiguration.Z2XFilePath = fileSaveResult.FilePath;
+
+                        //  We set the application title to the name of the Z2X file.
+                        ApplicationTitle = "Z2X-Programmer - " + Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+
+                        return;
+                    }
+                }
+                else
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved, AppResources.OK);
                 }
@@ -462,6 +520,62 @@ namespace Z2XProgrammer.ViewModel
             catch (Exception ex)
             {
                 await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
+            }
+        }
+
+        /// <summary>
+        /// Opens the extendend toolbar menu.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task OpenExtendedMenuItemPopup()
+        {
+            try
+            {
+
+                //  Create a collection of menu items.
+                List<string> menuItems = new List<string>();
+                menuItems.Add(AppResources.ExtendedMenuItemSaveAs);
+                menuItems.Add(AppResources.ExtendedMenuItemRedo);
+                menuItems.Add(AppResources.ExtendedMenuItemReportProblem);
+
+                //  Present the the action sheet to the user.
+                if (Application.Current == null) return;
+                string action = await Application.Current.Windows[0].Page!.DisplayActionSheet(AppResources.ExtendedMenuItemTitle,null, null, menuItems.ToArray());
+
+                //  Execute the selected action.
+                if (action == AppResources.ExtendedMenuItemSaveAs)
+                {
+                    if (DataStoreDataValid == true)
+                    {
+                        await SaveAsZ2XFile();
+                    }
+                    else
+                    {
+                        await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoDataToSave, AppResources.OK);
+                    }
+                }
+                else if (action == AppResources.ExtendedMenuItemRedo)
+                {
+                    if (RedoAvailable == true)
+                    {
+                        await Redo();
+                    }
+                    else
+                    {
+                        await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoRedoAvailable, AppResources.OK);
+                    }
+                }
+                else if (action == AppResources.ExtendedMenuItemReportProblem)
+                {
+                    await Browser.OpenAsync("https://github.com/PeterK78/Z2X-Programmer/issues");
+                }   
+
+
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 

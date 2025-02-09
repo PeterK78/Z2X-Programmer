@@ -300,6 +300,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Z2X project is open. The project cannot be saved..
+        /// </summary>
+        public static string AlertNoDataToSave {
+            get {
+                return ResourceManager.GetString("AlertNoDataToSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This decoder does not support any functions on this tab..
         /// </summary>
         public static string AlertNoFeatureSupported {
@@ -332,6 +341,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string AlertNoReadAccessToFilesAndFolders {
             get {
                 return ResourceManager.GetString("AlertNoReadAccessToFilesAndFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No commands can currently be repeated..
+        /// </summary>
+        public static string AlertNoRedoAvailable {
+            get {
+                return ResourceManager.GetString("AlertNoRedoAvailable", resourceCulture);
             }
         }
         
@@ -757,6 +775,42 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string DownloadNoCVsModified {
             get {
                 return ResourceManager.GetString("DownloadNoCVsModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string ExtendedMenuItemRedo {
+            get {
+                return ResourceManager.GetString("ExtendedMenuItemRedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report a problem ....
+        /// </summary>
+        public static string ExtendedMenuItemReportProblem {
+            get {
+                return ResourceManager.GetString("ExtendedMenuItemReportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as ....
+        /// </summary>
+        public static string ExtendedMenuItemSaveAs {
+            get {
+                return ResourceManager.GetString("ExtendedMenuItemSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended toolbar.
+        /// </summary>
+        public static string ExtendedMenuItemTitle {
+            get {
+                return ResourceManager.GetString("ExtendedMenuItemTitle", resourceCulture);
             }
         }
         

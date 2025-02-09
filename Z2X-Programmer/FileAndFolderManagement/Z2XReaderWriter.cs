@@ -92,7 +92,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
 
         /// <summary>
-        /// Reads the given file stream from a Z2X file and updates the data store.
+        /// Reads the given file stream from a Z2X project file and updates the data store.
         /// </summary>
         /// <param name="z2xFileStream">A file stream of a Z2X file.</param>
         /// <returns></returns>

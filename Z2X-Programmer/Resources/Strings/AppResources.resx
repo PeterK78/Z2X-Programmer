@@ -1641,4 +1641,22 @@ The application is aimed at beginners who want to configure the most important f
   <data name="LocoListColumnHeaderZ2XAvailable" xml:space="preserve">
     <value>Z2X file</value>
   </data>
+  <data name="ExtendedMenuItemSaveAs" xml:space="preserve">
+    <value>Save as ...</value>
+  </data>
+  <data name="ExtendedMenuItemRedo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="AlertNoDataToSave" xml:space="preserve">
+    <value>No Z2X project is open. The project cannot be saved.</value>
+  </data>
+  <data name="ExtendedMenuItemTitle" xml:space="preserve">
+    <value>Extended toolbar</value>
+  </data>
+  <data name="AlertNoRedoAvailable" xml:space="preserve">
+    <value>No commands can currently be repeated.</value>
+  </data>
+  <data name="ExtendedMenuItemReportProblem" xml:space="preserve">
+    <value>Report a problem ...</value>
+  </data>
 </root>
