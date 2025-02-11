@@ -31,6 +31,7 @@ using System.Reflection;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Popups;
@@ -60,6 +61,10 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: DECODER FEATURES
+
+        //  Any sound function keys supported?
+        [ObservableProperty]
+        bool soundFunctionKeysSupported = false;
 
         //  RCN225 features
         [ObservableProperty]
@@ -1478,6 +1483,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDataFromDecoderSpecification()
         {
+            SoundFunctionKeysSupported = DeqSpecReader.AnySoundFunctionKeysSupported(DecoderSpecification.DeqSpecName);
             ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 = DecoderSpecification.ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156;
             RCN225_FUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.RCN225_FUNCTIONKEYMAPPING_CV3346;
             ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 = DecoderSpecification.ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61;

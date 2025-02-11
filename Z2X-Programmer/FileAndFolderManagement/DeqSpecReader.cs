@@ -134,6 +134,32 @@ namespace Z2XProgrammer.FileAndFolderManagement
             catch   { return false; } 
         }
 
+        /// <summary>   
+        /// Returns TRUE if the given decoder specification supports any sound
+        /// function keys.
+        /// </summary>  
+        public static bool AnySoundFunctionKeysSupported(string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+            "ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396",
+            "ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397",
+            "ZIMO_FUNCKEY_SOUNDALLOFF_CV310",
+            "ZIMO_FUNCKEY_CURVESQUEAL_CV308",
+            "ZIMO_FUNCKEY_MUTE_CV313"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+        }
+
 
         /// <summary>
         /// Returns the decoder specification notes.
@@ -848,10 +874,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_BOOTLOADER_VERSION_24X support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
     <ZIMO_SELFTEST_CV30 support=""yes"" writeable=""yes""/>
     <ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 support=""yes"" writeable=""yes""/>
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
