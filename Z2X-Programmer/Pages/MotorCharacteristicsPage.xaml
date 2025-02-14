@@ -373,7 +373,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                         <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                         <Switch IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
@@ -404,7 +404,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    
+                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
@@ -463,7 +464,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
 
                             <!-- Selection: High- or low frequency -->
-                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
+                            <Label x:Name="FrameMotorCharacteristicsMotorControlFreqType" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
                             <Picker Grid.Row="0" Grid.Column="1" Margin="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlFrequencyTypes}" SelectedItem="{Binding SelectedMotorControlFrequqencyType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End"></Picker>
 
                             <!-- EMK Rate -->

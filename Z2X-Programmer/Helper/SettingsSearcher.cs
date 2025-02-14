@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[80, 3] {
+        static readonly string[,] SearchDatabase = new string[85, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
@@ -113,41 +113,78 @@ namespace Z2XProgrammer.Helper
                                                                         { "DecoderInformationPage","FrameDecoderZIMOInfoSoundProjectNr", "ZIMO_SOUNDPROJECTNR_CV254" },
                                                                         { "FunctionOutputsPage","FrameProtocolZIMOSUSIPinClockLabel", "ZIMO_SUSIPORT1CONFIG_CV201" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysZIMOInputMappingDescription", "ZIMO_INPUTMAPPING_CV4XX" },
-                                                                        { "FunctionKeysSecondaryAddressPage", "FrameFunctionKeysMappingSecondaryAddressTitle","ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X"}
+                                                                        { "FunctionKeysSecondaryAddressPage", "FrameFunctionKeysMappingSecondaryAddressTitle","ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X"},
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsReferenceVoltageAutoMode", "ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57" },
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS", "ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57" },
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsMotorControlFreqType", "ZIMO_MXMOTORCONTROLFREQUENCY_CV9" },
+                                                                        { "LightPage", "FrameLightEffectFadeInTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
+                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" }
                                                                     };
 
         /// <summary>
-        /// Searches the database for the specified keywords and returns the entries found.
+        /// Returns entries in the search database that contain the search string
+        /// and are supported by the current decoder specification.
         /// </summary>
-        /// <param name="keyword"></param>
+        /// <param name="searchTerm">The search term.</param>
         /// <returns></returns>
-        internal static List<string> GetResults(string keyword)
+        internal static List<string> GetResults(string searchTerm)
         {
-            List<string> results = new List<string>();
-
-            if (keyword == "") return results;
-            if (keyword.Length < 3) return results;
-
-            for (int i = 0; i < SearchDatabase.GetLength(0); i++)
+            try
             {
-                if (AppResources.ResourceManager == null) continue;
-                string SearchTerm  = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!;
-                if ((SearchTerm == null) || (SearchTerm == "")) continue;
+                List<string> results = new List<string>();
 
-                if (SearchTerm.ToUpper().Contains(keyword.ToUpper()))
+                //  Input parameter checking.
+                if (searchTerm == "") return results;
+                if (searchTerm.Length < 3) return results;
+
+                //  Search the database for the search term.
+                for (int i = 0; i < SearchDatabase.GetLength(0); i++)
                 {
-                    results.Add(SearchTerm);
+                    //  Get the next database string.
+                    if (AppResources.ResourceManager == null) continue;
+                    string SearchTerm  = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!;
+                    if ((SearchTerm == null) || (SearchTerm == "")) continue;
+
+                    //  Check if the search term is contained in the database string.
+                    if (SearchTerm.ToUpper().Contains(searchTerm.ToUpper()))
+                    {
+                        //  Check if the feature is supported by the current decoder specification.
+                        Type myDecoderSpecificationType = typeof(DecoderSpecification);
+                        if (myDecoderSpecificationType != null)
+                        {
+                            PropertyInfo myPropInfo = myDecoderSpecificationType.GetProperty(SearchDatabase[i, 2].ToUpper(), BindingFlags.Static | BindingFlags.NonPublic)!;
+                            if (myPropInfo != null)
+                            {
+                                {
+                                    if ((bool)myPropInfo.GetValue(null, null)! == true)
+                                    {
+                                        results.Add(SearchTerm);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
 
-            if (results.Count == 0)
+                //  Add a "nothing found" message if no results have been found.
+                if (results.Count == 0)
+                {
+                    results.Add(AppResources.FrameSearchNothingFound);
+                }
+
+                //  Sort the results.   
+                results.Sort();
+
+                return results;
+
+            }
+            catch (Exception ex)
             {
-                results.Add(AppResources.FrameSearchNothingFound);
+                Logger.PrintDevConsole("SettingsSearcher:GetResults:" + ex.Message);
+                return new List<string>();
             }
 
-            results.Sort();
-
-            return results;
+          
         }
 
         /// <summary>
@@ -160,42 +197,53 @@ namespace Z2XProgrammer.Helper
         /// <returns></returns>
         internal static bool GetNavigationTarget(string searchResult, out string pageName, out string labelName)
         {
-
             pageName = "";
             labelName = "";
 
             if (searchResult == null) return false;
 
-            for (int i = 0; i < SearchDatabase.GetLength(0); i++)
+            try
             {
-                string SearchTerm = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!.ToUpper();
-                if (SearchTerm.ToUpper() == searchResult.ToUpper())
+                for (int i = 0; i < SearchDatabase.GetLength(0); i++)
                 {
-                    pageName = SearchDatabase[i, 0];
-                    labelName = SearchDatabase[i, 1];
+                    string SearchTerm = AppResources.ResourceManager.GetString(SearchDatabase[i, 1])!;
 
-                    string DecoderConfigurationProperty = SearchDatabase[i, 2].ToUpper();
-
-                    if (DecoderConfigurationProperty == "") return true;
+                    //  Did we find a valid search term?
+                    if (SearchTerm == null) continue;
                     
-                    //// Get the PropertyInfo object by passing the property name.
-                    Type myDecoderSpecificationType = typeof(DecoderSpecification);
-                    if (myDecoderSpecificationType != null)
+                    if (SearchTerm.ToUpper() == searchResult.ToUpper())
                     {
-                        PropertyInfo myPropInfo = myDecoderSpecificationType.GetProperty(DecoderConfigurationProperty, BindingFlags.Static | BindingFlags.NonPublic)!;
-                        if (myPropInfo != null)
+                        pageName = SearchDatabase[i, 0];
+                        labelName = SearchDatabase[i, 1];
+
+                        //  Check if the feature is supported by the current decoder specification.
+                        string DecoderConfigurationProperty = SearchDatabase[i, 2].ToUpper();
+                        if (DecoderConfigurationProperty == "") return true;
+                    
+                        //  Check if the feature is supported by the current decoder specification.
+                        Type myDecoderSpecificationType = typeof(DecoderSpecification);
+                        if (myDecoderSpecificationType != null)
                         {
+                            PropertyInfo myPropInfo = myDecoderSpecificationType.GetProperty(DecoderConfigurationProperty, BindingFlags.Static | BindingFlags.NonPublic)!;
+                            if (myPropInfo != null)
                             {
-                                if((bool)myPropInfo.GetValue(null, null)! == true)
                                 {
-                                    return true;
+                                    if((bool)myPropInfo.GetValue(null, null)! == true)
+                                    {
+                                        return true;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+               return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("SettingsSearcher:GetNavigationTarget:" + ex.Message);
+                return false;   
+            }
         }
     }       
 }

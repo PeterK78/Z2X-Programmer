@@ -68,7 +68,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_BOOTLOADER_VERSION_24X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_BOOTLOADER_VERSION_24X, decSpecFolder);
                 RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X, decSpecFolder);
                 RCN225_ANALOGMODE_CV29_2 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_ANALOGMODE_CV29_2, decSpecFolder);
-                ZIMO_MOTORCONTROLFREQUENCY_CV9 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXMOTORCONTROLFREQUENCY_CV9, decSpecFolder);
+                ZIMO_MXMOTORCONTROLFREQUENCY_CV9 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXMOTORCONTROLFREQUENCY_CV9, decSpecFolder);
                 ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57, decSpecFolder);
                 ZIMO_MXUPDATELOCK_CV144 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXUPDATELOCK_CV144, decSpecFolder);
                 ZIMO_MXFX_SECONDADDRESS_CV64 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXFX_SECONDADDRESS_CV64, decSpecFolder);
@@ -128,7 +128,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_BOOTLOADER_VERSION_24X { get; set; }
         internal static bool RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X { get; set; }
         internal static bool RCN225_ANALOGMODE_CV29_2 { get; set; }
-        internal static bool ZIMO_MOTORCONTROLFREQUENCY_CV9 { get; set; }
+        internal static bool ZIMO_MXMOTORCONTROLFREQUENCY_CV9 { get; set; }
         internal static bool ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 { get; set; }
         internal static bool ZIMO_MXUPDATELOCK_CV144 { get; set; }
         internal static bool ZIMO_MXFX_SECONDADDRESS_CV64 { get; set; }

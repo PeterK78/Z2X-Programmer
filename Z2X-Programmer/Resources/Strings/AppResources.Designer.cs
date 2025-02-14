@@ -3014,6 +3014,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic adjustment to the rail voltage (CV57).
+        /// </summary>
+        public static string FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The reference voltage defines the voltage that the decoder interprets as Vmax. Either the track voltage or a fixed defined value can be used. By using a fixed voltage value, the control behavior can be decoupled from the track voltage..
         /// </summary>
         public static string FrameMotorCharacteristicsReferenceVoltageDescription {

@@ -1669,4 +1669,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameLightEffectFadeOutTimeLabel" xml:space="preserve">
     <value>Abblendzeit (CV191)</value>
   </data>
+  <data name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS" xml:space="preserve">
+    <value>Automatische Anpassung an die Schienenspannung (CV57)</value>
+  </data>
 </root>
