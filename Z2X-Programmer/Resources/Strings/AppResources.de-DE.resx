@@ -482,7 +482,7 @@ Folgender Fehler ist aufgetreten:
     <value>Rückwärts</value>
   </data>
   <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
-    <value>In dieser Tabelle können Sie festlegen, welche Funktionstaste welchen Funktionsausgang ein- und auschaltet.</value>
+    <value>In der folgenden Tabelle können Sie festlegen, welche Funktionstaste welchen Funktionsausgang ein- und auschaltet.</value>
   </data>
   <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
     <value>Vorwärts</value>
@@ -548,7 +548,7 @@ Folgender Fehler ist aufgetreten:
     <value>Neben der Funktionszuordnung laut RCN-225 bieten Döhler &amp; Haass Decoder zusätzlich eine erweiterte Variante der Funktionszuordnung an.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Erweiterte Zuordnung der Funktionsausgänge - ohne Linksverschiebung (CV61)</value>
+    <value>Erweiterte Zuordnung der Funktionsausgänge aktivieren (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>Neben der Funktionszuordnung laut RCN-225 bieten ZIMO Decoder zusätzliche Varianten der Funktionszuordnung an. Aktuell unterstützt Z2X-Programmer jedoch nur die Variante nach RCN-225.</value>
@@ -1420,7 +1420,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Es sind keine geänderten Einstellungen vorhanden. Der Download wird nicht durchgeführt.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
-    <value>Die Konfiguration der erweiterten Zuordnung wird aktuell von Z2X-Programmer nicht unterstützt.</value>
+    <value>ZIMO Decoder bieten eine erweiterte Variante der Funktionszuordnung an. Anhand dieser erweiterten Variante können höhere Funktionstasten auch niedrigere Funktionsausgänge schalten.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
     <value>Ausgang</value>
@@ -1671,5 +1671,17 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS" xml:space="preserve">
     <value>Automatische Anpassung an die Schienenspannung (CV57)</value>
+  </data>
+  <data name="FrameFunctionKeysMappingDeleteConfig" xml:space="preserve">
+    <value>Zuordnung löschen</value>
+  </data>
+  <data name="AlertDeleteFunctionMapping" xml:space="preserve">
+    <value>Möchten Sie die Zuordnung der Funktionsausgänge löschen?</value>
+  </data>
+  <data name="AlertResetFunctionMapping" xml:space="preserve">
+    <value>Wollen Sie Zuordnung auf die Standard-Einstellung zurücksetzen?</value>
+  </data>
+  <data name="FrameFunctionKeysMappingResetConfig" xml:space="preserve">
+    <value>Zuordnung zurücksetzen</value>
   </data>
 </root>

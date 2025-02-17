@@ -25,10 +25,8 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Maui.Handlers;
 using System.Collections.ObjectModel;
 using System.Reflection;
-using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.FileAndFolderManagement;
@@ -94,6 +92,10 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool zIMO_FUNCKEY_CURVESQUEAL_CV308;
+
+        //  ZIMO: Function mapping in CV33 - CV46 for FX decoder
+        [ObservableProperty]
+        bool zIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = false;
 
         //   Döhler & Haass
         [ObservableProperty]
@@ -1302,6 +1304,81 @@ namespace Z2XProgrammer.ViewModel
 
         // Opens a pop-up window so that the user can configure the input mapping of the function keys.
         #region REGION: COMMANDS
+
+        /// <summary>   
+        /// Reset the function output mapping in CV33 to CV46 to default values.
+        /// </summary>
+        [RelayCommand]
+        async Task ResetOutputMappingCV33CV46()
+        {
+            try
+            {
+                //  We ask the user whether they want to delete the configuration.
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertResetFunctionMapping, AppResources.YES, AppResources.NO) == false)
+                {
+                    return;
+                }
+
+                //  We delete the configuration.
+                CV33ValueBit0 = true; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false; 
+                CV34ValueBit0 = false; CV34ValueBit1 = true; CV34ValueBit2 = false; CV34ValueBit3 = false; CV34ValueBit4 = false; CV34ValueBit5 = false; CV34ValueBit6 = false; CV34ValueBit7 = false;
+                CV35ValueBit0 = false; CV35ValueBit1 = false; CV35ValueBit2 = true; CV35ValueBit3 = false; CV35ValueBit4 = false; CV35ValueBit5 = false; CV35ValueBit6 = false; CV35ValueBit7 = false;
+                CV36ValueBit0 = false; CV36ValueBit1 = false; CV36ValueBit2 = false; CV36ValueBit3 = true; CV36ValueBit4 = false; CV36ValueBit5 = false; CV36ValueBit6 = false; CV36ValueBit7 = false;
+                CV37ValueBit0 = false; CV37ValueBit1 = true; CV37ValueBit2 = false; CV37ValueBit3 = false; CV37ValueBit4 = false; CV37ValueBit5 = false; CV37ValueBit6 = false; CV37ValueBit7 = false;
+                CV38ValueBit0 = false; CV38ValueBit1 = false; CV38ValueBit2 = true; CV38ValueBit3 = false; CV38ValueBit4 = false; CV38ValueBit5 = false; CV38ValueBit6 = false; CV38ValueBit7 = false;
+                CV39ValueBit0 = false; CV39ValueBit1 = false; CV39ValueBit2 = false; CV39ValueBit3 = true; CV39ValueBit4 = false; CV39ValueBit5 = false; CV39ValueBit6 = false; CV39ValueBit7 = false;
+                CV40ValueBit0 = false; CV40ValueBit1 = false; CV40ValueBit2 = false; CV40ValueBit3 = false; CV40ValueBit4 = true; CV40ValueBit5 = false; CV40ValueBit6 = false; CV40ValueBit7 = false;
+                CV41ValueBit0 = false; CV41ValueBit1 = false; CV41ValueBit2 = true; CV41ValueBit3 = false; CV41ValueBit4 = false; CV41ValueBit5 = false; CV41ValueBit6 = false; CV41ValueBit7 = false;
+                CV42ValueBit0 = false; CV42ValueBit1 = false; CV42ValueBit2 = false; CV42ValueBit3 = true; CV42ValueBit4 = false; CV42ValueBit5 = false; CV42ValueBit6 = false; CV42ValueBit7 = false;
+                CV43ValueBit0 = false; CV43ValueBit1 = false; CV43ValueBit2 = false; CV43ValueBit3 = false; CV43ValueBit4 = true; CV43ValueBit5 = false; CV43ValueBit6 = false; CV43ValueBit7 = false;
+                CV44ValueBit0 = false; CV44ValueBit1 = false; CV44ValueBit2 = false; CV44ValueBit3 = false; CV44ValueBit4 = false; CV44ValueBit5 = true; CV44ValueBit6 = false; CV44ValueBit7 = false;
+                CV45ValueBit0 = false; CV45ValueBit1 = false; CV45ValueBit2 = false; CV45ValueBit3 = false; CV45ValueBit4 = false; CV45ValueBit5 = false; CV45ValueBit6 = true; CV45ValueBit7 = false;
+                CV46ValueBit0 = false; CV46ValueBit1 = false; CV46ValueBit2 = false; CV46ValueBit3 = false; CV46ValueBit4 = false; CV46ValueBit5 = false; CV46ValueBit6 = false; CV46ValueBit7 = true;
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
+    
+
+        /// <summary>
+        /// This functions deletes the output mapping of the function keys F1 to F12 in CV33 to CV46.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task DeleteOutputMappingCV33CV46()
+        {
+            try
+            {
+                //  We ask the user whether they want to delete the configuration.
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertDeleteFunctionMapping, AppResources.YES, AppResources.NO) == false)
+                {
+                    return;
+                }
+
+                //  We delete the configuration.
+                CV33ValueBit0 = false; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false; 
+                CV34ValueBit0 = false; CV34ValueBit1 = false; CV34ValueBit2 = false; CV34ValueBit3 = false; CV34ValueBit4 = false; CV34ValueBit5 = false; CV34ValueBit6 = false; CV34ValueBit7 = false;
+                CV35ValueBit0 = false; CV35ValueBit1 = false; CV35ValueBit2 = false; CV35ValueBit3 = false; CV35ValueBit4 = false; CV35ValueBit5 = false; CV35ValueBit6 = false; CV35ValueBit7 = false;
+                CV36ValueBit0 = false; CV36ValueBit1 = false; CV36ValueBit2 = false; CV36ValueBit3 = false; CV36ValueBit4 = false; CV36ValueBit5 = false; CV36ValueBit6 = false; CV36ValueBit7 = false;
+                CV37ValueBit0 = false; CV37ValueBit1 = false; CV37ValueBit2 = false; CV37ValueBit3 = false; CV37ValueBit4 = false; CV37ValueBit5 = false; CV37ValueBit6 = false; CV37ValueBit7 = false;
+                CV38ValueBit0 = false; CV38ValueBit1 = false; CV38ValueBit2 = false; CV38ValueBit3 = false; CV38ValueBit4 = false; CV38ValueBit5 = false; CV38ValueBit6 = false; CV38ValueBit7 = false;
+                CV39ValueBit0 = false; CV39ValueBit1 = false; CV39ValueBit2 = false; CV39ValueBit3 = false; CV39ValueBit4 = false; CV39ValueBit5 = false; CV39ValueBit6 = false; CV39ValueBit7 = false;
+                CV40ValueBit0 = false; CV40ValueBit1 = false; CV40ValueBit2 = false; CV40ValueBit3 = false; CV40ValueBit4 = false; CV40ValueBit5 = false; CV40ValueBit6 = false; CV40ValueBit7 = false;
+                CV41ValueBit0 = false; CV41ValueBit1 = false; CV41ValueBit2 = false; CV41ValueBit3 = false; CV41ValueBit4 = false; CV41ValueBit5 = false; CV41ValueBit6 = false; CV41ValueBit7 = false;
+                CV42ValueBit0 = false; CV42ValueBit1 = false; CV42ValueBit2 = false; CV42ValueBit3 = false; CV42ValueBit4 = false; CV42ValueBit5 = false; CV42ValueBit6 = false; CV42ValueBit7 = false;
+                CV43ValueBit0 = false; CV43ValueBit1 = false; CV43ValueBit2 = false; CV43ValueBit3 = false; CV43ValueBit4 = false; CV43ValueBit5 = false; CV43ValueBit6 = false; CV43ValueBit7 = false;
+                CV44ValueBit0 = false; CV44ValueBit1 = false; CV44ValueBit2 = false; CV44ValueBit3 = false; CV44ValueBit4 = false; CV44ValueBit5 = false; CV44ValueBit6 = false; CV44ValueBit7 = false;
+                CV45ValueBit0 = false; CV45ValueBit1 = false; CV45ValueBit2 = false; CV45ValueBit3 = false; CV45ValueBit4 = false; CV45ValueBit5 = false; CV45ValueBit6 = false; CV45ValueBit7 = false;
+                CV46ValueBit0 = false; CV46ValueBit1 = false; CV46ValueBit2 = false; CV46ValueBit3 = false; CV46ValueBit4 = false; CV46ValueBit5 = false; CV46ValueBit6 = false; CV46ValueBit7 = false;
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
+
         [RelayCommand]
         async Task EditInputMapping()
         {
@@ -1496,6 +1573,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_FUNCKEY_CURVESQUEAL_CV308 = DecoderSpecification.ZIMO_FUNCKEY_CURVESQUEAL_CV308;
             ZIMO_FUNCKEY_MUTE_CV313 = DecoderSpecification.ZIMO_FUNCKEY_MUTE_CV313;
             ZIMO_INPUTMAPPING_CV4XX = DecoderSpecification.ZIMO_INPUTMAPPING_CV4XX;
+            ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346;
         }
 
         /// <summary>
@@ -1524,34 +1602,21 @@ namespace Z2XProgrammer.ViewModel
 
             //  RCN 225
             CV33Value = DecoderConfiguration.RCN225.FunctionMappingF0Forward;
-            GetCV33Bits();
             CV34Value = DecoderConfiguration.RCN225.FunctionMappingF0Backward;
-            GetCV34Bits();
             CV35Value = DecoderConfiguration.RCN225.FunctionMappingF1;
-            GetCV35Bits();
             CV36Value = DecoderConfiguration.RCN225.FunctionMappingF2;
-            GetCV36Bits();
             CV37Value = DecoderConfiguration.RCN225.FunctionMappingF3;
-            GetCV37Bits();
             CV38Value = DecoderConfiguration.RCN225.FunctionMappingF4;
-            GetCV38Bits();
             CV39Value = DecoderConfiguration.RCN225.FunctionMappingF5;
-            GetCV39Bits();
             CV40Value = DecoderConfiguration.RCN225.FunctionMappingF6;
-            GetCV40Bits();
             CV41Value = DecoderConfiguration.RCN225.FunctionMappingF7;
-            GetCV41Bits();
             CV42Value = DecoderConfiguration.RCN225.FunctionMappingF8;
-            GetCV42Bits();
             CV43Value = DecoderConfiguration.RCN225.FunctionMappingF9;
-            GetCV43Bits();
             CV44Value = DecoderConfiguration.RCN225.FunctionMappingF10;
-            GetCV44Bits();
             CV45Value = DecoderConfiguration.RCN225.FunctionMappingF11;
-            GetCV45Bits();
             CV46Value = DecoderConfiguration.RCN225.FunctionMappingF12;
-            GetCV46Bits();
-
+            for (byte cv = 33; cv <= 46; cv++) SetBitsOfCV(cv);
+            
             
             //  Döhler and Haass
             DoehlerAndHaassExtendedFunctionMappingEnabled = DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled;
@@ -1579,175 +1644,46 @@ namespace Z2XProgrammer.ViewModel
             UpdateZIMOInputMappingList();
         }
 
-        private void GetCV33Bits()
+        /// <summary>
+        /// Sets the the bit properties of the given configuration variable number.
+        /// </summary>
+        /// <param name="number">The number of the desired configuration variable.</param>
+        private void SetBitsOfCV(byte number)
         {
-            CV33ValueBit0 = Bit.IsSet(CV33Value, 0);
-            CV33ValueBit1 = Bit.IsSet(CV33Value, 1);
-            CV33ValueBit2 = Bit.IsSet(CV33Value, 2);
-            CV33ValueBit3 = Bit.IsSet(CV33Value, 3);
-            CV33ValueBit4 = Bit.IsSet(CV33Value, 4);
-            CV33ValueBit5 = Bit.IsSet(CV33Value, 5);
-            CV33ValueBit6 = Bit.IsSet(CV33Value, 6);
-            CV33ValueBit7 = Bit.IsSet(CV33Value, 7);
+            if (number == 0) return;
+
+            //  Use reflection to grab the property of the desired configuration variable.
+            Type typeCV = this.GetType();
+            PropertyInfo prop = typeCV.GetProperty("CV" + number.ToString() + "Value")!;
+            if (prop == null)
+            {
+                Logger.PrintDevConsole("GetBitsOfCV: Unable to get the property CV" + number.ToString() + "Value");
+                return;
+            }
+            
+            //  Get the current value of the desired configuration variable.
+            ushort ValueCV = (ushort)prop.GetValue(this, null)!; 
+
+            //  Loop trough all 8 bits of the desired configuration variable.
+            for (int i = 0; i <= 7; i++)
+            {
+                //  Grab the property of the desired bit of the configuration variable.
+                string BitsPropertyName = "CV" + number.ToString() + "ValueBit" + i.ToString();
+                Type type = this.GetType();
+                PropertyInfo propInfo = type.GetProperty(BitsPropertyName)!;
+                if (propInfo == null)
+                {
+                    Logger.PrintDevConsole("GetBitsOfCV: Unable to get the property " +  BitsPropertyName);
+                    return;
+                }
+
+                //  Set the state of the desired bit in the configuration variable.
+                Logger.PrintDevConsole("GetBitsOfCV: Setting property CV" + number.ToString() + "Value to value " + ValueCV.ToString());
+                propInfo.SetValue(this, Bit.IsSet(ValueCV , i), null);
+            }
+        
         }
       
-        private void GetCV34Bits()
-        {
-            CV34ValueBit0 = Bit.IsSet(CV34Value, 0);
-            CV34ValueBit1 = Bit.IsSet(CV34Value, 1);
-            CV34ValueBit2 = Bit.IsSet(CV34Value, 2);
-            CV34ValueBit3 = Bit.IsSet(CV34Value, 3);
-            CV34ValueBit4 = Bit.IsSet(CV34Value, 4);
-            CV34ValueBit5 = Bit.IsSet(CV34Value, 5);
-            CV34ValueBit6 = Bit.IsSet(CV34Value, 6);
-            CV34ValueBit7 = Bit.IsSet(CV34Value, 7);
-        }
-
-        private void GetCV35Bits()
-        {
-            CV35ValueBit0 = Bit.IsSet(CV35Value, 0);
-            CV35ValueBit1 = Bit.IsSet(CV35Value, 1);
-            CV35ValueBit2 = Bit.IsSet(CV35Value, 2);
-            CV35ValueBit3 = Bit.IsSet(CV35Value, 3);
-            CV35ValueBit4 = Bit.IsSet(CV35Value, 4);
-            CV35ValueBit5 = Bit.IsSet(CV35Value, 5);
-            CV35ValueBit6 = Bit.IsSet(CV35Value, 6);
-            CV35ValueBit7 = Bit.IsSet(CV35Value, 7);
-        }
-
-        private void GetCV36Bits()
-        {
-            CV36ValueBit0 = Bit.IsSet(CV36Value, 0);
-            CV36ValueBit1 = Bit.IsSet(CV36Value, 1);
-            CV36ValueBit2 = Bit.IsSet(CV36Value, 2);
-            CV36ValueBit3 = Bit.IsSet(CV36Value, 3);
-            CV36ValueBit4 = Bit.IsSet(CV36Value, 4);
-            CV36ValueBit5 = Bit.IsSet(CV36Value, 5);
-            CV36ValueBit6 = Bit.IsSet(CV36Value, 6);
-            CV36ValueBit7 = Bit.IsSet(CV36Value, 7);
-        }
-
-        private void GetCV37Bits()
-        {
-            CV37ValueBit0 = Bit.IsSet(CV37Value, 0);
-            CV37ValueBit1 = Bit.IsSet(CV37Value, 1);
-            CV37ValueBit2 = Bit.IsSet(CV37Value, 2);
-            CV37ValueBit3 = Bit.IsSet(CV37Value, 3);
-            CV37ValueBit4 = Bit.IsSet(CV37Value, 4);
-            CV37ValueBit5 = Bit.IsSet(CV37Value, 5);
-            CV37ValueBit6 = Bit.IsSet(CV37Value, 6);
-            CV37ValueBit7 = Bit.IsSet(CV37Value, 7);
-        }
-
-        private void GetCV38Bits()
-        {
-            CV38ValueBit0 = Bit.IsSet(CV38Value, 0);
-            CV38ValueBit1 = Bit.IsSet(CV38Value, 1);
-            CV38ValueBit2 = Bit.IsSet(CV38Value, 2);
-            CV38ValueBit3 = Bit.IsSet(CV38Value, 3);
-            CV38ValueBit4 = Bit.IsSet(CV38Value, 4);
-            CV38ValueBit5 = Bit.IsSet(CV38Value, 5);
-            CV38ValueBit6 = Bit.IsSet(CV38Value, 6);
-            CV38ValueBit7 = Bit.IsSet(CV38Value, 7);
-        }
-
-        private void GetCV39Bits()
-        {
-            CV39ValueBit0 = Bit.IsSet(CV39Value, 0);
-            CV39ValueBit1 = Bit.IsSet(CV39Value, 1);
-            CV39ValueBit2 = Bit.IsSet(CV39Value, 2);
-            CV39ValueBit3 = Bit.IsSet(CV39Value, 3);
-            CV39ValueBit4 = Bit.IsSet(CV39Value, 4);
-            CV39ValueBit5 = Bit.IsSet(CV39Value, 5);
-            CV39ValueBit6 = Bit.IsSet(CV39Value, 6);
-            CV39ValueBit7 = Bit.IsSet(CV39Value, 7);
-        }
-
-        private void GetCV40Bits()
-        {
-            CV40ValueBit0 = Bit.IsSet(CV40Value, 0);
-            CV40ValueBit1 = Bit.IsSet(CV40Value, 1);
-            CV40ValueBit2 = Bit.IsSet(CV40Value, 2);
-            CV40ValueBit3 = Bit.IsSet(CV40Value, 3);
-            CV40ValueBit4 = Bit.IsSet(CV40Value, 4);
-            CV40ValueBit5 = Bit.IsSet(CV40Value, 5);
-            CV40ValueBit6 = Bit.IsSet(CV40Value, 6);
-            CV40ValueBit7 = Bit.IsSet(CV40Value, 7);
-        }
-
-        private void GetCV41Bits()
-        {
-            CV41ValueBit0 = Bit.IsSet(CV41Value, 0);
-            CV41ValueBit1 = Bit.IsSet(CV41Value, 1);
-            CV41ValueBit2 = Bit.IsSet(CV41Value, 2);
-            CV41ValueBit3 = Bit.IsSet(CV41Value, 3);
-            CV41ValueBit4 = Bit.IsSet(CV41Value, 4);
-            CV41ValueBit5 = Bit.IsSet(CV41Value, 5);
-            CV41ValueBit6 = Bit.IsSet(CV41Value, 6);
-            CV41ValueBit7 = Bit.IsSet(CV41Value, 7);
-        }
-
-        private void GetCV42Bits()
-        {
-            CV42ValueBit0 = Bit.IsSet(CV42Value, 0);
-            CV42ValueBit1 = Bit.IsSet(CV42Value, 1);
-            CV42ValueBit2 = Bit.IsSet(CV42Value, 2);
-            CV42ValueBit3 = Bit.IsSet(CV42Value, 3);
-            CV42ValueBit4 = Bit.IsSet(CV42Value, 4);
-            CV42ValueBit5 = Bit.IsSet(CV42Value, 5);
-            CV42ValueBit6 = Bit.IsSet(CV42Value, 6);
-            CV42ValueBit7 = Bit.IsSet(CV42Value, 7);
-        }
-
-        private void GetCV43Bits()
-        {
-            CV43ValueBit0 = Bit.IsSet(CV43Value, 0);
-            CV43ValueBit1 = Bit.IsSet(CV43Value, 1);
-            CV43ValueBit2 = Bit.IsSet(CV43Value, 2);
-            CV43ValueBit3 = Bit.IsSet(CV43Value, 3);
-            CV43ValueBit4 = Bit.IsSet(CV43Value, 4);
-            CV43ValueBit5 = Bit.IsSet(CV43Value, 5);
-            CV43ValueBit6 = Bit.IsSet(CV43Value, 6);
-            CV43ValueBit7 = Bit.IsSet(CV43Value, 7);
-        }
-
-
-        private void GetCV44Bits()
-        {
-            CV44ValueBit0 = Bit.IsSet(CV44Value, 0);
-            CV44ValueBit1 = Bit.IsSet(CV44Value, 1);
-            CV44ValueBit2 = Bit.IsSet(CV44Value, 2);
-            CV44ValueBit3 = Bit.IsSet(CV44Value, 3);
-            CV44ValueBit4 = Bit.IsSet(CV44Value, 4);
-            CV44ValueBit5 = Bit.IsSet(CV44Value, 5);
-            CV44ValueBit6 = Bit.IsSet(CV44Value, 6);
-            CV44ValueBit7 = Bit.IsSet(CV44Value, 7);
-        }
-
-        private void GetCV45Bits()
-        {
-            CV45ValueBit0 = Bit.IsSet(CV45Value, 0);
-            CV45ValueBit1 = Bit.IsSet(CV45Value, 1);
-            CV45ValueBit2 = Bit.IsSet(CV45Value, 2);
-            CV45ValueBit3 = Bit.IsSet(CV45Value, 3);
-            CV45ValueBit4 = Bit.IsSet(CV45Value, 4);
-            CV45ValueBit5 = Bit.IsSet(CV45Value, 5);
-            CV45ValueBit6 = Bit.IsSet(CV45Value, 6);
-            CV45ValueBit7 = Bit.IsSet(CV45Value, 7);
-        }
-
-        private void GetCV46Bits()
-        {
-            CV46ValueBit0 = Bit.IsSet(CV46Value, 0);
-            CV46ValueBit1 = Bit.IsSet(CV46Value, 1);
-            CV46ValueBit2 = Bit.IsSet(CV46Value, 2);
-            CV46ValueBit3 = Bit.IsSet(CV46Value, 3);
-            CV46ValueBit4 = Bit.IsSet(CV46Value, 4);
-            CV46ValueBit5 = Bit.IsSet(CV46Value, 5);
-            CV46ValueBit6 = Bit.IsSet(CV46Value, 6);
-            CV46ValueBit7 = Bit.IsSet(CV46Value, 7);
-        }
-
         #endregion
 
     }

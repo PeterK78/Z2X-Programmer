@@ -151,6 +151,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to delete the assignment of the function outputs?.
+        /// </summary>
+        public static string AlertDeleteFunctionMapping {
+            get {
+                return ResourceManager.GetString("AlertDeleteFunctionMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following error was found in a decoder specification:.
         /// </summary>
         public static string AlertDeqSpecFileNotRead {
@@ -368,6 +377,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string AlertReadCVError {
             get {
                 return ResourceManager.GetString("AlertReadCVError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to reset the assignment to the default setting?.
+        /// </summary>
+        public static string AlertResetFunctionMapping {
+            get {
+                return ResourceManager.GetString("AlertResetFunctionMapping", resourceCulture);
             }
         }
         
@@ -1508,7 +1526,16 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the following table you can configure which function button switches which function output on and off..
+        ///   Looks up a localized string similar to Delete Mapping.
+        /// </summary>
+        public static string FrameFunctionKeysMappingDeleteConfig {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingDeleteConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the following table, you can specify which function button switches which function output on and off..
         /// </summary>
         public static string FrameFunctionKeysMappingDescription {
             get {
@@ -1567,6 +1594,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysMappingHeadeValue {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysMappingHeadeValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Mapping.
+        /// </summary>
+        public static string FrameFunctionKeysMappingResetConfig {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingResetConfig", resourceCulture);
             }
         }
         
@@ -1860,7 +1896,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended assignment of function outputs - without left shift (CV61).
+        ///   Looks up a localized string similar to Activate extended assignment of function outputs (CV61).
         /// </summary>
         public static string FrameFunctionsKeysZIMOMappingType {
             get {
@@ -1878,7 +1914,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration of the extended mapping is currently not supported by Z2X-Programmer..
+        ///   Looks up a localized string similar to ZIMO decoders offer an extended version of the function assignment. Using this extended variant, higher function keys can also switch lower function outputs..
         /// </summary>
         public static string FrameFunctionsKeysZIMOMappingTypeLabel {
             get {

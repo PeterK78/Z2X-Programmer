@@ -103,6 +103,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_INPUTMAPPING_CV4XX = "ZIMO_INPUTMAPPING_CV4XX";
         public const string ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = "ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X";
         public const string ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X";
+        public const string ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346";
         
 
         //  Döhler & Haass specific features
@@ -731,12 +732,11 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
-    
 
     <!-- Supported ZIMO features -->
     <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes"" writeable=""yes""/>
+    <ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>

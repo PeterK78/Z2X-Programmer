@@ -481,7 +481,7 @@ The following error has occurred:</value>
     <value>Backward</value>
   </data>
   <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
-    <value>In the following table you can configure which function button switches which function output on and off.</value>
+    <value>In the following table, you can specify which function button switches which function output on and off.</value>
   </data>
   <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
     <value>Forward</value>
@@ -547,7 +547,7 @@ The following error has occurred:</value>
     <value>In addition to the function assignmIn addition to the function assignment according to RCN-225, Döhler &amp; Haass decoders also offer an extended version of the function assignment.ent according to RCN-225, Döhler &amp; Haass decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingType" xml:space="preserve">
-    <value>Extended assignment of function outputs - without left shift (CV61)</value>
+    <value>Activate extended assignment of function outputs (CV61)</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeDescription" xml:space="preserve">
     <value>In addition to the function assignment according to RCN-225, ZIMO decoders offer additional variants of function assignment. However, Z2X-Programmer currently only supports the variant according to RCN-225.</value>
@@ -1419,7 +1419,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>There are no modified settings. No download is being performed.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
-    <value>The configuration of the extended mapping is currently not supported by Z2X-Programmer.</value>
+    <value>ZIMO decoders offer an extended version of the function assignment. Using this extended variant, higher function keys can also switch lower function outputs.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
     <value>Output</value>
@@ -1670,5 +1670,17 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS" xml:space="preserve">
     <value>Automatic adjustment to the rail voltage (CV57)</value>
+  </data>
+  <data name="FrameFunctionKeysMappingDeleteConfig" xml:space="preserve">
+    <value>Delete Mapping</value>
+  </data>
+  <data name="AlertDeleteFunctionMapping" xml:space="preserve">
+    <value>Would you like to delete the assignment of the function outputs?</value>
+  </data>
+  <data name="AlertResetFunctionMapping" xml:space="preserve">
+    <value>Do you want to reset the assignment to the default setting?</value>
+  </data>
+  <data name="FrameFunctionKeysMappingResetConfig" xml:space="preserve">
+    <value>Reset Mapping</value>
   </data>
 </root>
