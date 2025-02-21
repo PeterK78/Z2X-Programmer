@@ -1684,4 +1684,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysMappingResetConfig" xml:space="preserve">
     <value>Zuordnung zurücksetzen</value>
   </data>
+  <data name="FrameFunctionKeysHighBeamDimmingTitle" xml:space="preserve">
+    <value>Fernlicht- und Abblendtaste</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingDescription" xml:space="preserve">
+    <value>Konfigurieren Sie hier jene Funktionsausgänge, welche beim Drücken der Taste F6 oder F7 in den gedimmeten Zustand wechseln.</value>
+  </data>
+  <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
+    <value>Taste umkehren</value>
+  </data>
 </root>

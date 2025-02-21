@@ -1472,6 +1472,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reverse key.
+        /// </summary>
+        public static string FrameFunctionKeyHighDippedBeamInvertedLabel {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeyHighDippedBeamInvertedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function key for switching the curve squeal on and off (CV308).
         /// </summary>
         public static string FrameFunctionKeysCurveSquealLabel {
@@ -1513,6 +1522,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed..
+        /// </summary>
+        public static string FrameFunctionKeysHighBeamDimmingDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHighBeamDimmingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High beam and dipped beam button.
+        /// </summary>
+        public static string FrameFunctionKeysHighBeamDimmingTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHighBeamDimmingTitle", resourceCulture);
             }
         }
         

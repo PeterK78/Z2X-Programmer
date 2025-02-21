@@ -1683,4 +1683,13 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionKeysMappingResetConfig" xml:space="preserve">
     <value>Reset Mapping</value>
   </data>
+  <data name="FrameFunctionKeysHighBeamDimmingTitle" xml:space="preserve">
+    <value>High beam and dipped beam button</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingDescription" xml:space="preserve">
+    <value>Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed.</value>
+  </data>
+  <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
+    <value>Reverse key</value>
+  </data>
 </root>

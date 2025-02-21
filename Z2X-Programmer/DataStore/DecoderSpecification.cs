@@ -108,6 +108,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, decSpecFolder);
                 ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X, decSpecFolder);
                 ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346, decSpecFolder);
+                ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X, decSpecFolder);
 
                 //  Inform the app that we have just read a new decoder specification file
                 //WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
@@ -169,6 +170,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X { get; set; }
         internal static bool ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X { get; set; }
         internal static bool ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 { get; set; }
+        internal static bool ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X { get; set; }
 
     }
 }

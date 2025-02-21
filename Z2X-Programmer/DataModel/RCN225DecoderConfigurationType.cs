@@ -233,7 +233,39 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Contains the function mapping for the key F1 in CV35
+        /// Contains the configuration of the function key F6 high- and dipped beam settings in CV119.
+        /// </summary>
+        public byte FunctionKeyF6HighDippedBeam
+        {
+            get
+            {
+                return configurationVariables[119].Value;
+            }
+            set
+            {
+                configurationVariables[119].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the configuration of the function key F7 high- and dipped beam settings in CV120.
+        /// </summary>
+        public byte FunctionKeyF7HighDippedBeam
+        {
+            get
+            {
+                return configurationVariables[120].Value;
+            }
+            set
+            {
+                configurationVariables[120].Value = value;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Contains the function mapping for the key F1 in CV35.
         /// </summary>
         public byte FunctionMappingF1
         {

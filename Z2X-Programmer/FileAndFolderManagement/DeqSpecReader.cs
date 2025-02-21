@@ -95,6 +95,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_SOUND_VOLUME_STEAM_CV27X = "ZIMO_SOUND_VOLUME_STEAM_CV27X";
         public const string ZIMO_SOUND_VOLUME_DIESELELEC_CV29X = "ZIMO_SOUND_VOLUME_DIESELELEC_CV29X";
         public const string ZIMO_FUNCKEY_MUTE_CV313 = "ZIMO_FUNCKEY_MUTE_CV313";
+        public const string ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X";
         public const string ZIMO_SOUND_STARTUPDELAY_CV273 = "ZIMO_SOUND_STARTUPDELAY_CV273";
         public const string ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = "ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285";
         public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";
@@ -821,7 +822,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
-
+    <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -881,6 +882,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 

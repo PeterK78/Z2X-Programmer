@@ -93,6 +93,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_FUNCKEY_CURVESQUEAL_CV308;
 
+        //  ZIMO: Function keys for high beam and dimming in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X)
+        [ObservableProperty]
+        bool zIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = false;
+
         //  ZIMO: Function mapping in CV33 - CV46 for FX decoder
         [ObservableProperty]
         bool zIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = false;
@@ -119,7 +123,145 @@ namespace Z2XProgrammer.ViewModel
         //  ZIMOInputMappingCVs contains all input mappings for the current decoder.
         [ObservableProperty]
         internal ObservableCollection<ZIMOInputMappingType>? zIMOInputMappingCVs= new ObservableCollection<ZIMOInputMappingType>();
-       
+
+        //  ZIMO: Function keys for high beam and dipped beam in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X)
+        #region ZIMO: Function keys for high beam and dipped beam in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X)
+        [ObservableProperty]
+        ushort cV119Value;
+
+        [ObservableProperty]
+        bool cV119ValueBit0;
+        partial void OnCV119ValueBit0Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit1;
+        partial void OnCV119ValueBit1Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit2;
+        partial void OnCV119ValueBit2Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit3;
+        partial void OnCV119ValueBit3Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit4;
+        partial void OnCV119ValueBit4Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit5;
+        partial void OnCV119ValueBit5Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit6;
+        partial void OnCV119ValueBit6Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        bool cV119ValueBit7;
+        partial void OnCV119ValueBit7Changed(bool value)
+        {
+            CV119Value = Bit.Set((byte)CV119Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam = (byte)CV119Value;
+        }
+
+        [ObservableProperty]
+        ushort cV120Value;
+
+        [ObservableProperty]
+        bool cV120ValueBit0;
+        partial void OnCV120ValueBit0Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 0, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit1;
+        partial void OnCV120ValueBit1Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 1, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit2;
+        partial void OnCV120ValueBit2Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 2, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit3;
+        partial void OnCV120ValueBit3Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 3, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit4;
+        partial void OnCV120ValueBit4Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 4, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit5;
+        partial void OnCV120ValueBit5Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 5, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit6;
+        partial void OnCV120ValueBit6Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 6, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+        [ObservableProperty]
+        bool cV120ValueBit7;
+        partial void OnCV120ValueBit7Changed(bool value)
+        {
+            CV120Value = Bit.Set((byte)CV120Value, 7, value);
+            DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam = (byte)CV120Value;
+        }
+
+
+        #endregion
 
         #region FUNCTION OUTPUT DESCRIPTION
         [ObservableProperty]
@@ -1574,6 +1716,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_FUNCKEY_MUTE_CV313 = DecoderSpecification.ZIMO_FUNCKEY_MUTE_CV313;
             ZIMO_INPUTMAPPING_CV4XX = DecoderSpecification.ZIMO_INPUTMAPPING_CV4XX;
             ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346;
+            ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DecoderSpecification.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X;
         }
 
         /// <summary>
@@ -1630,6 +1773,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
             ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
+            
             
             if(DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
             {
