@@ -1664,13 +1664,13 @@ namespace Z2XProgrammer.DataModel
 
             //  Check the value and return the corresponding enum.
             if (effect == 0) return LightEffects.NoEffect;
-            if (effect == 88) return LightEffects.DimmingUpAndDown;
             if (effect == 16) return LightEffects.SinglePulseStrobe;
-            if (effect == 22) return LightEffects.DoublePulseStrobe;
+            if (effect == 20) return LightEffects.DoublePulseStrobe;
             if (effect == 24) return LightEffects.RotaryBeacon;
             if (effect == 48) return LightEffects.Decoupler;
             if (effect == 52) return LightEffects.SoftStart;
             if (effect == 60) return LightEffects.FunctionOutputTurnsOffAtSpeed;
+            if (effect == 88) return LightEffects.DimmingUpAndDown;
             if (effect == 92) return LightEffects.FluorescentTubeEffect;
 
             return LightEffects.Unknown;
