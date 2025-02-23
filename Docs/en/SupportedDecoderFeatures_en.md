@@ -24,7 +24,7 @@
 |RCN225_RAILCOMENABLED_CV29_3	| 	CV29.3	| 	Activates or deactivates RailCom® bidirectional communication.	| 	Protocols |
 |RCN225_SPEEDTABLE_CV29_4		| CV29.4	| 	Activates or deactivates the extended speed curve.		| Motor characteristics |
 |RCN225_LONGSHORTADDRESS_CV29_5		| CV29.5		| Address mode - defines whether short addresses from CV1 or long addresses from CV17+CV18 are used.	| 	Address |
-|RCN225_FUNCTIONKEYMAPPING_CV3346	| 	CV33, CV46	| The assignment of function button to function output.		| Function keys |
+|RCN225_FUNCTIONKEYMAPPING_CV3346	| 	CV33 - CV46	| The assignment of function button to function output.		| Function keys |
 |RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X	| 	CV67, CV94		| The characteristic curve points of the extended speed characteristic curve.		| Motor characteristics |
 |RCN225_OPERATINGMODES_CV12 | CV12 | Defines the operating modes in which the decoder may operate. | Protocols |
 
@@ -51,7 +51,7 @@
 | ZIMO_MXFX_SECONDADDRESS_CV64	 | CV64	 | Configures the second address of a function decoder. | 	Address | 
 | ZIMO_MXMOTORCONTROLPID_CV56 | 	CV56 | 	Configures the motor control reference.	 | Motor characteristics | 
 | ZIMO_BRAKESQUEAL_CV287	 | CV287	 | Configures the threshold for the brake squeal. | 	Sound | 
-| ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61	 | CV61	 | Configures the function mapping variant. | 	Function keys | 
+| ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61	 | CV61	 | Configures the function assignment variant for ZIMO MS/MX/MN decoders. Requires the feature RCN225_FUNCTIONKEYMAPPING_CV3346. For ZIMO MX function decoders, please use ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346.| 	Function keys | 
 | ZIMO_SOUND_VOLUME_GENERIC_C266	 | CV266	| Configures the overall volume. | 	Sound | 
 | ZIMO_SOUND_VOLUME_STEAM_CV27X	 | CV275, CV276, CV283, CV286 | 	Configures different volumes of steam locomotives. | 	Sound | 
 | ZIMO_SOUND_VOLUME_DIESELELEC_CV29X | 	CV296, CV298	 | Configures different volume levels for diesel and electric locomotives. | 	Sound | 
@@ -60,4 +60,5 @@
 | ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 | 	CV285 | 	Configures the duration of the noise reduction on delay.	 | Sound | 
 | ZIMO_SOUNDPROJECTNR_CV254 | CV254 | Contains the sound project number. |  Decoder information | 
 | ZIMO_MSOPERATINGMODES_CV12 | CV12 | Prevents the DCC operating mode from being deactivated if RCN225_OPERATINGMODES_CV12 is set. | Protocols |
-| ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X | CV119, CV120 | Configures up and down function buttons | Function keys |
+| ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X | CV119, CV120 | Configures up and down function buttons. | Function keys |
+| ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 | 	CV33 - CV46	| The assignment of function keys to function outputs for ZIMO MX function decoders.	| Function keys |
