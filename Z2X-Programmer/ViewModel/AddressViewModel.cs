@@ -40,12 +40,8 @@ using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.ViewModel
 {
-
-    [QueryProperty(nameof(SearchTarget), "SearchTarget")]
     public partial class AddressViewModel : ObservableObject
     {
-
-        private string localSearchTarget = "";
 
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
@@ -54,15 +50,6 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
-
-        public string SearchTarget
-        {
-            get => localSearchTarget;
-            set
-            {
-                localSearchTarget = value;
-            }
-        }
 
         #endregion
 

@@ -21,6 +21,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using System.Reflection;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.ViewModel;
 
 namespace Z2XProgrammer.Pages;
@@ -34,18 +36,39 @@ public partial class FunctionKeysSecondaryAddressPage : ContentPage
         BindingContext = vm;
 	}
 
+    /// <summary>
+    /// Set the SearchTarget property to a name attribute of any XAML element on the associated content page.
+    /// If the SearchTarget property is set, the content page scrolls to the specified XAML element.
+    /// 
+    /// Note: This property is typically used by the search system. Please refer to the static SettingsSearcher class.
+    /// </summary>
     public string SearchTarget
     {
         set
         {
-            if (value == null) return;
+            try
+            {
+                //  Check the input values. Do not process empty or null values.
+                if ((value == null) || (value == "")) return;
 
-            Element TargetElement = (Element)this.FindByName(value);
-            if (TargetElement == null) return;
+                //  Find the XAML element by the name attribute.
+                Element TargetElement = (Element)this.FindByName(value);
+                if (TargetElement == null)
+                {
+                    Logger.PrintDevConsole("The search could not find the requested XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod().Name + ")");
+                    return;
+                }
 
-            Timer timer = new Timer((object? obj) => {
-                MainThread.BeginInvokeOnMainThread(() => PageScrollView.ScrollToAsync((Element)this.FindByName(value), ScrollToPosition.Start, false));
-            }, null, 100, Timeout.Infinite);
+                //  Scroll to the XAML element.
+                Timer timer = new Timer((object? obj) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() => PageScrollView.ScrollToAsync((Element)this.FindByName(value), ScrollToPosition.Start, false));
+                }, null, 100, Timeout.Infinite);
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("An error occurred while trying to scroll to the XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod().Name + "): " + ex.Message);
+            }
         }
     }
 }

@@ -34,18 +34,15 @@ public partial class SettingsSearchPage : ContentPage
         BindingContext = vm;
     }
 
+    /// <summary>
+    /// Attention: The SettingsSearcher page does not support a search function.
+    /// For this reason, the property is only listed here for compatibility purposes.
+    /// </summary>
     public string SearchTarget
     {
         set
         {
-            if (value == null) return;
-
-            Element TargetElement = (Element)this.FindByName(value);
-            if (TargetElement == null) return;
-
-            //Timer timer = new Timer((object? obj) => {
-            //    MainThread.BeginInvokeOnMainThread(() => PageScrollView.ScrollToAsync((Element)this.FindByName(value), ScrollToPosition.End, false));
-            //}, null, 100, Timeout.Infinite);
+            return;
         }
     }
 }

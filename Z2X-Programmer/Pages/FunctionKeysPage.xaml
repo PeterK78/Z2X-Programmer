@@ -913,7 +913,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 
                 <!-- ZIMO: Function keys for high beam and dimming in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X) -->
                 <Label x:Name="FrameFunctionKeysHighBeamDimmingTitle" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}" />
-                   <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
                    <VerticalStackLayout>
                        <Grid>
                              <Grid.ColumnDefinitions>
@@ -939,7 +939,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                              </Grid.RowDefinitions>
 
                              <!-- The description of the function mapping -->
-                             <Label  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,20" />
+                             <Label  x:Name="FrameFunctionKeysHighBeamDimmingDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,20" />
 
                              <BoxView  Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
                              <BoxView  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />

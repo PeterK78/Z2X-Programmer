@@ -1688,7 +1688,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Fernlicht- und Abblendtaste</value>
   </data>
   <data name="FrameFunctionKeysHighBeamDimmingDescription" xml:space="preserve">
-    <value>Konfigurieren Sie hier jene Funktionsausgänge, welche beim Drücken der Taste F6 oder F7 in den gedimmeten Zustand wechseln.</value>
+    <value>Konfigurieren Sie hier jene Funktionsausgänge, welche beim Drücken der Taste F6 oder F7 in den gedimmeten Zustand wechseln (CV119, CV120).</value>
   </data>
   <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
     <value>Taste umkehren</value>

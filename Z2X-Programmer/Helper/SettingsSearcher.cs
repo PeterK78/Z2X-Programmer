@@ -29,11 +29,11 @@ namespace Z2XProgrammer.Helper
 {
 
     /// <summary>
-    /// Implements the search for settings functionality of Z2X-Programmer.
+    /// Implements the "search for settings" functionality of Z2X-Programmer.
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[85, 3] {
+        static readonly string[,] SearchDatabase = new string[87, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
@@ -118,7 +118,9 @@ namespace Z2XProgrammer.Helper
                                                                         { "MotorCharacteristicsPage", "FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS", "ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57" },
                                                                         { "MotorCharacteristicsPage", "FrameMotorCharacteristicsMotorControlFreqType", "ZIMO_MXMOTORCONTROLFREQUENCY_CV9" },
                                                                         { "LightPage", "FrameLightEffectFadeInTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
-                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" }
+                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingTitle", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" },
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingDescription", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" }
                                                                     };
 
         /// <summary>

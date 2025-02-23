@@ -1526,7 +1526,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed..
+        ///   Looks up a localized string similar to Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed (CV119, CV120)..
         /// </summary>
         public static string FrameFunctionKeysHighBeamDimmingDescription {
             get {
