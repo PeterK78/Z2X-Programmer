@@ -54,7 +54,7 @@ public partial class SoundPage : ContentPage
                 Element TargetElement = (Element)this.FindByName(value);
                 if (TargetElement == null)
                 {
-                    Logger.PrintDevConsole("The search could not find the requested XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod().Name + ")");
+                    Logger.PrintDevConsole("The search could not find the requested XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod()!.Name + ")");
                     return;
                 }
 
@@ -66,7 +66,7 @@ public partial class SoundPage : ContentPage
             }
             catch (Exception ex)
             {
-                Logger.PrintDevConsole("An error occurred while trying to scroll to the XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod().Name + "): " + ex.Message);
+                Logger.PrintDevConsole("An error occurred while trying to scroll to the XAML element " + value + " in the XAML content page " + MethodBase.GetCurrentMethod()!.DeclaringType!.Name + " (" + MethodBase.GetCurrentMethod()!.Name + "): " + ex.Message);
             }
         }
     }    

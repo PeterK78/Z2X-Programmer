@@ -38,7 +38,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             
             <!-- Title and icon of the popup dialog -->
             <HorizontalStackLayout HorizontalOptions="StartAndExpand" Margin="0,0,0,10">
-                <Image x:Name="TitelIcon" Margin="0,0,10,0" IsVisible="{Binding DataStoreDataValid}" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
+                <Image x:Name="TitelIcon" Margin="0,0,10,0" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                 <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" VerticalOptions="Center" ></Label>
             </HorizontalStackLayout>
 
