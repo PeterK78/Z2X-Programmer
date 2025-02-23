@@ -1,12 +1,46 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.7
-Date:         01.02.2025
+Version:      0.1.2.0-beta.8
+Date:         23.02.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.8 / 25.02.2025
+------------------------------------------------------------------
+
+Note:
+
+  A detailed list of changes can be found in the Z2X programmer
+  repository on GitHub.
+
+* Eighth beta version (Beta Version 8, V0.1.2.0)
+
+New features:
+
+1. The extended toolbar with the commands “Save as” and
+   “Report a bug” has been added.
+
+2. The feature ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X has been
+   added.
+
+3. The feature ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 has been added.
+
+4. The feature ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X has
+   been added.
+
+5. The search database has been updated.
+
+Bug fixes:
+
+1. Fixed a bug with the feature ZIMO_LIGHT_EFFECTS_CV125X and
+   the effect "Double puls strobe" which was not read correctly.
+
+2. Sound function keys were incorrectly displayed for ZIMO MN
+   decoders. The problem has been fixed.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.7 / 05.01.2025
@@ -17,14 +51,6 @@ Note:
   repository on GitHub.
 
 * Seventh beta version (Beta Version 7, V0.1.2.0)
-
-------------------------------------------------------------------
-Version 0.1.2.0-beta.7 / 05.01.2025
-------------------------------------------------------------------
-
-Note:
-  A detailed list of changes can be found in the Z2X programmer
-  repository on GitHub.
 
 New features:
 
