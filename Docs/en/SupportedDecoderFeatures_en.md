@@ -62,3 +62,4 @@
 | ZIMO_MSOPERATINGMODES_CV12 | CV12 | Prevents the DCC operating mode from being deactivated if RCN225_OPERATINGMODES_CV12 is set. | Protocols |
 | ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X | CV119, CV120 | Configures up and down function buttons. | Function keys |
 | ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 | 	CV33 - CV46	| The assignment of function keys to function outputs for ZIMO MX function decoders.	| Function keys |
+| ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X | CV190, CV191 | The fade-in and fade-out times for the “fade-in and fade-out” light effect. | Light | 
