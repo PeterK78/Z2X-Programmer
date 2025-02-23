@@ -60,3 +60,4 @@
 | ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 | 	CV285 | 	Configures the duration of the noise reduction on delay.	 | Sound | 
 | ZIMO_SOUNDPROJECTNR_CV254 | CV254 | Contains the sound project number. |  Decoder information | 
 | ZIMO_MSOPERATINGMODES_CV12 | CV12 | Prevents the DCC operating mode from being deactivated if RCN225_OPERATINGMODES_CV12 is set. | Protocols |
+| ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X | CV119, CV120 | Configures up and down function buttons | Function keys |
