@@ -283,6 +283,9 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
 
+                //  We set the application title to the name of the Z2X file.
+                ApplicationTitle = "Z2X-Programmer";
+
                 UndoRedoManager.Reset();
 
             }
@@ -419,7 +422,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = result.FullPath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = "Z2X-Programmer - " + Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
@@ -507,7 +510,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = fileSaveResult.FilePath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = "Z2X-Programmer - " + Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
 
                         return;
                     }
@@ -993,14 +996,17 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// The OnLocoSelectedMessage message handler is called when the LocoSelectedMessage message has been received.
+        /// The OnLocoSelectedMessage message handler is called when the LocoSelectedMessage
+        /// message has been received. This message is typically sent by the PopUp PopUpLocoList
+        /// when the OK button is pressed.
         /// </summary>
-        /// <param name="value"></param>
-        internal void OnLocoSelectedMessage(LocoListType value)
+        /// <param name="locomotive">Contains the data of the selected locomotive.</param>
+        internal void OnLocoSelectedMessage(LocoListType locomotive)
         {
             try
             {
-                //  Check if we have a matching Z2X file.
+                //  Check if we have a matching Z2X file. We search the Z2X file directory.
+                //  We search until we have found the corresponding Z2X file.
                 string[] fileEntries = Directory.GetFiles(LocoList.Z2XFileFolder);
                 foreach (string fileEntry in fileEntries)
                 {
@@ -1012,27 +1018,41 @@ namespace Z2XProgrammer.ViewModel
                         // Call the Deserialize method and cast to the object type.
                         myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
 
-                        if (myFile.LocomotiveAddress == value.LocomotiveAddress)
+                        if (myFile.LocomotiveAddress == locomotive.LocomotiveAddress)
                         {
-                            value.FilePath = fileEntry;
+                            locomotive.FilePath = fileEntry;
                             break;
                         }
+
                     }
                 }
 
-                if (File.Exists(value.FilePath))
+                //  If we have found a Z2X file, we load it. Otherwise we create a new project.
+                if (File.Exists(locomotive.FilePath))
                 {
-                    using (Stream fs = File.OpenRead(value.FilePath))
+                    using (Stream fs = File.OpenRead(locomotive.FilePath))
                     {
                         Z2XReaderWriter.ReadFile(fs);
                         DecoderConfiguration.IsValid = true;
+
+                        //  We set property BackupDataFromDecoderIsValid to FALSE to signal that the backup data was loaded from a Z2X file.    
+                        DecoderConfiguration.BackupDataFromDecoderIsValid = false;
+
+                        //  We set the path to the Z2X file.
+                        DecoderConfiguration.Z2XFilePath = locomotive.FilePath;
+            
+                        //  We set the application title to the name of the Z2X file.
+                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+
+                        UndoRedoManager.Reset();
                     }
                 }
                 else
                 {
-                    DecoderConfiguration.Init(value.LocomotiveAddress, value.UserDefindedDecoderDescription);
+                    DecoderConfiguration.Init(locomotive.LocomotiveAddress, locomotive.UserDefindedDecoderDescription);
                     WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                     DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
                     WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
