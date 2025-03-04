@@ -102,13 +102,15 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X, "119", "120", "35","36","37", "38", "39", "40", "41","42", "43", "44", "45", "46", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
                                 };
 
-        static readonly string[,] DOEHLERHAASFeatures = new string[6, 29] {
+        static readonly string[,] DOEHLERHAASFeatures = new string[7, 29] {
                                   {DeqSpecReader.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49, "49", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, "261", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAAS_FIRMWAREVERSION_CV262x, "262", "264", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137, "137", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133, "133", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
-                                  {DeqSpecReader.DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132, "132", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" }
+                                  {DeqSpecReader.DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132, "132", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
+                                  {DeqSpecReader.DOEHLERANDHAASS_MAXIMALSPEED_CV5, "5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" }
+
                               };
         
         //  The name of the decoder specification

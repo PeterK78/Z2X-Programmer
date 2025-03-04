@@ -1693,4 +1693,16 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
     <value>Taste umkehren</value>
   </data>
+  <data name="FrameMotorCharacteristicsDHImpulswidthTitle" xml:space="preserve">
+    <value>Impulsbreite</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" xml:space="preserve">
+    <value>Höchstgeschwindigkeit (CV5)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" xml:space="preserve">
+    <value>Höchstgeschwindigkeit</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled" xml:space="preserve">
+    <value>Standardwert des Decoders für die Höchstgeschwindigkeit verwenden</value>
+  </data>
 </root>

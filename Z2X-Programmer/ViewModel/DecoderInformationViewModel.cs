@@ -63,12 +63,6 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_DECODERTYPE_CV250;
 
-        [ObservableProperty]
-        bool dOEHLERANDHAAS_DECODERTYPE_CV261;
-
-        [ObservableProperty]
-        bool dOEHLERANDHAAS_FIRMWAREVERSION_CV262x;
-
         
         [ObservableProperty]
         bool zIMO_DECODERID_CV25X;
@@ -79,11 +73,40 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_SOUNDPROJECTNR_CV254;
 
+        // Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
+        [ObservableProperty]
+        bool dOEHLERANDHAAS_DECODERTYPE_CV261 = false;
+
+        // Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
+        [ObservableProperty]
+        bool dOEHLERANDHAAS_FIRMWAREVERSION_CV262x = false;
 
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
-      
+
+        #region Doehler & Haass
+
+        // Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
+        [ObservableProperty]
+        internal string doehlerAndHaasDecoderType = string.Empty;
+
+        [ObservableProperty]   
+        string cV261Configuration = Subline.Create(new List<uint>{261});
+
+        // Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
+        [ObservableProperty]
+        internal string doehlerAndHaasFirmwareVersion = string.Empty;
+
+        [ObservableProperty]   
+        string haasFirmwareVersionConfiguration = Subline.Create(new List<uint>{261});
+        
+        [ObservableProperty]   
+        string cV262To264Configuration = Subline.Create(new List<uint>{262,264});
+
+
+        #endregion
+
         // RCN225: Manufacturer
         [ObservableProperty]
         internal string manufacturer = string.Empty;
@@ -101,19 +124,6 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]   
         string cV7Configuration = Subline.Create(new List<uint>{7});
         
-        // Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
-        [ObservableProperty]
-        internal string doehlerAndHaasDecoderType = string.Empty;
-
-        [ObservableProperty]   
-        string cV261Configuration = Subline.Create(new List<uint>{261});
-
-
-        [ObservableProperty]
-        internal string doehlerAndHaasFirmwareVersion = string.Empty;
-
-        [ObservableProperty]   
-        string haasFirmwareVersionConfiguration = Subline.Create(new List<uint>{261});
 
         //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
         [ObservableProperty]
@@ -267,10 +277,7 @@ namespace Z2XProgrammer.ViewModel
 
             UserDefindedNotes = DecoderConfiguration.UserDefindedNotes;
 
-            //  Doehler & Haass specific settings
-            DoehlerAndHaasDecoderType = DoehlerAndHaass.GetDecoderTypeDesciption(DecoderConfiguration.DoehlerHaas.DecoderType);
-            DoehlerAndHaasFirmwareVersion = DecoderConfiguration.DoehlerHaas.FirmwareVersion;
-
+           
             if (DecoderConfiguration.UserDefindedImage != null)
             {
                 LocomotiveImageSource = Base64StringToImage.ConvertBase64String2ImageSource(DecoderConfiguration.UserDefindedImage);
@@ -279,9 +286,28 @@ namespace Z2XProgrammer.ViewModel
             {
                 LocomotiveImageSource = ImageSource.FromFile("ic_fluent_image_add_24_regular.png");
             }
+
+            #region Doehler & Haass
+
+            //  Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
+            DecoderName = DeqSpecReader.GetDecoderName(DecoderSpecification.DeqSpecName, DecoderConfiguration.DoehlerHaas.DecoderType, ApplicationFolders.DecSpecsFolderPath);
+            if(DecoderName != "")
+            {
+                DoehlerAndHaasDecoderType = DecoderName;
+            }
+            else
+            {
+                DoehlerAndHaasDecoderType = DecoderConfiguration.DoehlerHaas.DecoderType.ToString();
+            }
+
+            //  Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
+            DoehlerAndHaasFirmwareVersion = DecoderConfiguration.DoehlerHaas.FirmwareVersion;
+
+            #endregion
+
         }
 
-        
+
         #endregion
 
         #region REGION: COMMANDS

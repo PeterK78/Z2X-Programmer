@@ -2625,6 +2625,42 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Impuls width.
+        /// </summary>
+        public static string FrameMotorCharacteristicsDHImpulswidthTitle {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsDHImpulswidthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the decoder&apos;s default value for the maximum speed.
+        /// </summary>
+        public static string FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum speed (CV5).
+        /// </summary>
+        public static string FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum speed.
+        /// </summary>
+        public static string FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EMK measurement gap (CV9).
         /// </summary>
         public static string FrameMotorCharacteristicsEMKGap {

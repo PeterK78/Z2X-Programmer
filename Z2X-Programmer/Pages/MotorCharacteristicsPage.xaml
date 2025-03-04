@@ -122,8 +122,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VerticalStackLayout>
                     </Grid>
 
-                    <!-- Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
-                    <Grid Margin="0,20,0,0">
+                    <!-- RCN225: Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
+                    <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MAXIMALSPEED_CV5}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -133,6 +133,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
+                                                    
                         <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
@@ -145,11 +146,43 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="{Binding LimitMinimumMaxSpeedCV5}"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                         </HorizontalStackLayout>
                         
                     </Grid>
+                    
+                    <!-- DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)-->
+                    <Grid Margin="0,20,0,0" IsVisible="{Binding DOEHLERANDHAASS_MAXIMALSPEED_CV5}">
+                     <Grid.ColumnDefinitions>
+                         <ColumnDefinition Width="*"></ColumnDefinition>
+                         <ColumnDefinition Width="Auto"></ColumnDefinition>
+                     </Grid.ColumnDefinitions>
+                     <Grid.RowDefinitions>
+                         <RowDefinition Height="*"></RowDefinition>
+                         <RowDefinition Height="*"></RowDefinition>
+                         <RowDefinition Height="*"></RowDefinition>
+                     </Grid.RowDefinitions>
+                                 
+                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                     <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                     <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
+                         <HorizontalStackLayout >
+                             <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                             <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                         </HorizontalStackLayout>
+                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                     </VerticalStackLayout>
+
+                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
+                         <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                         <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                     </HorizontalStackLayout>
+     
+                 </Grid>
+                   
+                    
                 </VerticalStackLayout>
             </Border>
 
@@ -543,19 +576,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Border>
 
             <!-- DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49) -->
+            <Label IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidthTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <VerticalStackLayout Grid.Column="0" >
-                        <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    </VerticalStackLayout>
-                    <VerticalStackLayout>
-                        <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>  
+                    </Grid.RowDefinitions>
+                        
+                    <Label x:Name="FrameMotorCharacteristicsDHImpulswidth" Grid.Column="0" Grid.Row="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
+                        <HorizontalStackLayout HorizontalOptions="End">
                             <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                            <Label WidthRequest="100" Text="{Binding ImpulsWidthTime}" VerticalOptions="Center" Margin="10,0,0,0" ></Label>
+                            <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="100" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>

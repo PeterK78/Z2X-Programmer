@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[87, 3] {
+        static readonly string[,] SearchDatabase = new string[89, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
@@ -58,7 +58,7 @@ namespace Z2XProgrammer.Helper
                                                                         { "DecoderInformationPage","FrameDecoderPersonalNotesTitle", "" },
                                                                         { "MotorCharacteristicsPage","FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle", "" },
                                                                         { "MotorCharacteristicsPage","FrameMotorCharacteristicsBasicCurveMediumSpeedTitle", "" },
-                                                                        { "MotorCharacteristicsPage","FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle", "" },
+                                                                        { "MotorCharacteristicsPage","FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle", "RCN225_MAXIMALSPEED_CV5" },
                                                                         { "MotorCharacteristicsPage","FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67", "" },
                                                                         { "MotorCharacteristicsPage","FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68", "" },
                                                                         { "MotorCharacteristicsPage","FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69", "" },
@@ -120,7 +120,9 @@ namespace Z2XProgrammer.Helper
                                                                         { "LightPage", "FrameLightEffectFadeInTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
                                                                         { "LightPage", "FrameLightEffectFadeOutTimeLabel", "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
                                                                         { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingTitle", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" },
-                                                                        { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingDescription", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" }
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingDescription", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" },
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDHImpulswidth", "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49" },
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel", "DOEHLERANDHAASS_MAXIMALSPEED_CV5" }
                                                                     };
 
         /// <summary>

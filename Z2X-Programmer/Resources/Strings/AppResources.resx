@@ -1692,4 +1692,16 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
     <value>Reverse key</value>
   </data>
+  <data name="FrameMotorCharacteristicsDHImpulswidthTitle" xml:space="preserve">
+    <value>Impuls width</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" xml:space="preserve">
+    <value>Maximum speed (CV5)</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" xml:space="preserve">
+    <value>Maximum speed</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled" xml:space="preserve">
+    <value>Use the decoder's default value for the maximum speed</value>
+  </data>
 </root>

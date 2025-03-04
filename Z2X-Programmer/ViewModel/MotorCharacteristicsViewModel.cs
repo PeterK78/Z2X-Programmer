@@ -54,8 +54,6 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
-        [ObservableProperty]
-        int limitMinimumMaxSpeedCV5=0;
         
         [ObservableProperty]
         int limitMinimumZIMOMSmotorControlReferenceVoltage = 0;
@@ -70,6 +68,9 @@ namespace Z2XProgrammer.ViewModel
       
         [ObservableProperty]
         bool rCN225_MEDIUMSPEED_CV6;
+
+        [ObservableProperty]
+        bool rCN225_MAXIMALSPEED_CV5;
 
         // RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X
         [ObservableProperty]
@@ -89,6 +90,11 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool dOEHLERHAAS_MOTORIMPULSWIDTH_CV49;
+
+        //  DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
+        [ObservableProperty]
+        bool dOEHLERANDHAASS_MAXIMALSPEED_CV5;
+
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
@@ -710,10 +716,13 @@ namespace Z2XProgrammer.ViewModel
             {
                 MaximumSpeedDefaultUsed = false;
             }
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel();
 
             MinimumSpeed = DecoderConfiguration.RCN225.MinimumSpeed;
-            MediumSpeed = DecoderConfiguration.RCN225.MediumSpeed;
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel();
 
+            MediumSpeed = DecoderConfiguration.RCN225.MediumSpeed;
+            MediumSpeedValueDescription = GetMediumSpeedLabel();
 
             ImpulsWidthValue = DecoderConfiguration.DoehlerHaas.MotorImpulsWidth;
             UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
@@ -835,14 +844,23 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         public void OnGetDataFromDecoderSpecification()
         {
+
+            //  RCN225
+            RCN225_MAXIMALSPEED_CV5 = DecoderSpecification.RCN225_MAXIMALSPEED_CV5;
             RCN225_MEDIUMSPEED_CV6 = DecoderSpecification.RCN225_MEDIUMSPEED_CV6;
-            DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = DecoderSpecification.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49;
             RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = DecoderSpecification.RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X;
+            RCN225_SPEEDTABLE_CV29_4 = DecoderSpecification.RCN225_SPEEDTABLE_CV29_4;
+
+            //  DOEHLER AND HAAS
+            DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = DecoderSpecification.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49;
+            DOEHLERANDHAASS_MAXIMALSPEED_CV5 = DecoderSpecification.DOEHLERANDHAASS_MAXIMALSPEED_CV5;
+
+            //  ZIMO
             ZIMO_MXMOTORCONTROLFREQUENCY_CV9 = DecoderSpecification.ZIMO_MXMOTORCONTROLFREQUENCY_CV9;
             ZIMO_MXMOTORCONTROLPID_CV56 = DecoderSpecification.ZIMO_MXMOTORCONTROLPID_CV56;
             ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57;
             ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57;
-            RCN225_SPEEDTABLE_CV29_4 = DecoderSpecification.RCN225_SPEEDTABLE_CV29_4;
+
         }
         
         private void UpdateImpulsWidthTime(byte value)

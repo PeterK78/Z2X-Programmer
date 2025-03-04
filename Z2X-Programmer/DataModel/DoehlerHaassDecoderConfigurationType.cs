@@ -68,7 +68,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Returns the decoder firmware version (CV262 + 264)
+        /// Returns the decoder firmware version (CV262 + 264).
         /// </summary>
         public string FirmwareVersion
         {
@@ -79,7 +79,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        ///  The type of the function mapping in CV137 bit 4
+        ///  The type of the function mapping in CV137 bit 4.
         /// </summary>
         public bool ExtendedFunctionKeyMappingEnabled
         {

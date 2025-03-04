@@ -67,7 +67,6 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string RCN225_ABC_CV27_X = "RCN225_ABC_CV27_X";
         public const string RCN225_OPERATINGMODES_CV12 = "RCN225_OPERATINGMODES_CV12";
 
-
         //
         //  ZIMO specific features.   
         //
@@ -114,6 +113,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 = "DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137";
         public const string DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 = "DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133";
         public const string DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 = "DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132";
+        public const string DOEHLERANDHAASS_MAXIMALSPEED_CV5 = "DOEHLERANDHAASS_MAXIMALSPEED_CV5";
 
         private const string UNKNOWN_DECDODER_EN = "Unknown decoder";
         private const string UNKNOWN_DECDODER_DE = "Unbekannter Decoder";
@@ -1011,7 +1011,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19X support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
-
  
     <!-- Supported ZIMO features -->
     <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
@@ -1040,5 +1039,39 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 
  </decoderseries>";
 
+
+public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file for Doehler &amp; Haass PD decoders -->
+<decoderseries description_en=""Doehler &amp; Haass PD series"" description_de=""Doehler &amp; Haass PD Serie"" manufacturerid=""97"" decspecversion=""1"" notes_de=""ZIMO MX Sounddecoder"" notes_en=""ZIMO MX sound decoders"">
+
+    <!-- Supported decoders -->
+    <decoder decoderid=""130"" decodername=""PD12A"" />
+    <decoder decoderid=""131"" decodername=""PD05A"" />
+    <decoder decoderid=""132"" decodername=""PD06A"" />
+    <decoder decoderid=""133"" decodername=""PD21A"" />
+    <decoder decoderid=""134"" decodername=""PD18A"" /> 
+
+    <!-- Supported RCN225 features -->
+	<RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_ACCELERATIONFACTOR_CV3 support=""yes"" writeable=""yes""/>
+    <RCN225_DECELERATIONFACTOR_CV4 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
+    <RCN225_SPEEDSTEPS_CV29_1 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+
+    <!-- Supported Döhler and Haass features -->                
+    <DOEHLERANDHAAS_DECODERTYPE_CV261 support=""yes"" writeable=""no""/>
+    <DOEHLERANDHAAS_FIRMWAREVERSION_CV262x support=""yes"" writeable=""no""/>
+    <DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 support=""yes"" writeable=""yes""/>
+    <DOEHLERANDHAASS_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+
+ </decoderseries>";
+    
     }
 }
+

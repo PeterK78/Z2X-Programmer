@@ -48,6 +48,8 @@ namespace Z2XProgrammer.ViewModel
 
         #region #region REGION: DECODER FEATURES
     
+        [ObservableProperty]
+        bool anyDecoderFeatureAvailable;
 
         [ObservableProperty]
         bool rCN225_DECODERLOCK_CV15X;
@@ -210,6 +212,15 @@ namespace Z2XProgrammer.ViewModel
         {
             RCN225_DECODERLOCK_CV15X = DecoderSpecification.RCN225_DECODERLOCK_CV15X;
             ZIMO_MXUPDATELOCK_CV144 = DecoderSpecification.ZIMO_MXUPDATELOCK_CV144;
+
+            if ((RCN225_DECODERLOCK_CV15X == true) || (ZIMO_MXUPDATELOCK_CV144 == true))
+            {
+                AnyDecoderFeatureAvailable = true;
+            }
+            else
+            {
+                AnyDecoderFeatureAvailable = false;
+            }
             
         }
 

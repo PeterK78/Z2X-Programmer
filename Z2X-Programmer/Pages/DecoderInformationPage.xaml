@@ -144,7 +144,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label x:Name="FrameDecoderDoehlerAndHaassInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,10,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaassInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" />
                             <VerticalStackLayout  Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" >
                                 <Label Text="{Binding DoehlerAndHaasFirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="End" />
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV261Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV262To264Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
 
