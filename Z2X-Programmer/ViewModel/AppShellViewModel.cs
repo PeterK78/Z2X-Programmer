@@ -69,6 +69,10 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool undoAvailable = false;
+        partial void OnUndoAvailableChanged(bool value)
+        {
+            ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), UndoAvailable);
+        }
 
         [ObservableProperty]
         bool redoAvailable = false;
@@ -281,10 +285,11 @@ namespace Z2XProgrammer.ViewModel
                 DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
                 DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
                 DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
+                DecoderConfiguration.Z2XFilePath = "";
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
 
                 //  We set the application title to the name of the Z2X file.
-                ApplicationTitle = "Z2X-Programmer";
+                ApplicationTitle = GUI.GetWindowTitle("", false);
 
                 UndoRedoManager.Reset();
 
@@ -422,7 +427,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = result.FullPath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+                        ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
@@ -473,7 +478,12 @@ namespace Z2XProgrammer.ViewModel
                     x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
                     streamWriter.Flush();
                     streamWriter.Close();
+
+                    //  We set the application title to the name of the Z2X file - and remove the asterisk.
+                    ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+
                 }
+        
                 catch (Exception ex)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
@@ -510,7 +520,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = fileSaveResult.FilePath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+                        ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         return;
                     }
@@ -838,10 +848,13 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PRIVATE FUNCTIONS
 
+        /// <summary>
+        /// Receives the UndoRedoManager property changes and updates the Undo and Redo buttons.
+        /// </summary>
         private void OnUndoRedoManagerPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UndoAvailable = UndoRedoManager.UndoAvailable;
-            RedoAvailable = UndoRedoManager.RedoAvailable; 
+            RedoAvailable = UndoRedoManager.RedoAvailable;            
         }
 
         /// <summary>
@@ -866,7 +879,6 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
-
         /// <summary>
         /// Starts the blue blinking of the command station status label.
         /// </summary>
@@ -883,7 +895,6 @@ namespace Z2XProgrammer.ViewModel
                 CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206); // BLUE
             }
         }
-
 
         /// <summary>
         /// Stops the blinking of the command station status label.
@@ -954,7 +965,6 @@ namespace Z2XProgrammer.ViewModel
                 CommandStationState = AppResources.CommandStationStateNotConnected;
             }
         }
-
 
         /// <summary>
         /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
@@ -1069,10 +1079,6 @@ namespace Z2XProgrammer.ViewModel
             }
 
         }
-
-
-
-
 
         #endregion
 

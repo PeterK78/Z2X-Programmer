@@ -22,9 +22,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using System.Globalization;
+using System.Xml.Serialization;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
+using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
+using Z2XProgrammer.Model;
 using Z2XProgrammer.Pages;
 
 namespace Z2XProgrammer
@@ -65,15 +69,37 @@ namespace Z2XProgrammer
             //  and so other clean up stuff.
             _MainWindow.Destroying += (s, e) =>
             {
-                //  Disconnect the digital command station.
-                CommandStation.Disconnect();
+                try
+                { 
+                    //  We save the Z2X file before we exit the program.
+                    if ((DecoderConfiguration.Z2XFilePath != "") && (File.Exists(DecoderConfiguration.Z2XFilePath) == true))
+                    {
+                        XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
+                        if (File.Exists(DecoderConfiguration.Z2XFilePath) == true) File.Delete(DecoderConfiguration.Z2XFilePath);
+                        using FileStream outputStream = System.IO.File.OpenWrite(DecoderConfiguration.Z2XFilePath);
+                        using StreamWriter streamWriter = new StreamWriter(outputStream);
+                        x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
 
-                //  We save the position and size of the main window.
-                //  This allows us to restore them the next time we start the program.
-                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, _MainWindow.Width.ToString());
-                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, _MainWindow.Height.ToString());
-                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSX_KEY, _MainWindow.X.ToString());
-                Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSY_KEY, _MainWindow.Y.ToString());
+                    //  Disconnect the digital command station.
+                    CommandStation.Disconnect();
+
+                    //  We save the position and size of the main window.
+                    //  This allows us to restore them the next time we start the program.
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, _MainWindow.Width.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, _MainWindow.Height.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSX_KEY, _MainWindow.X.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSY_KEY, _MainWindow.Y.ToString());
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.PrintDevConsole("App.CreateWindow:" + ex.Message);
+                }
+
+
             };
 
             return _MainWindow!;

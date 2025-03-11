@@ -1,4 +1,4 @@
-﻿/*
+﻿/*  
 
 Z2X-Programmer
 Copyright (C) 2024
@@ -60,5 +60,15 @@ namespace Z2XProgrammer.Helper
             window.Height = height;
         }
 
+        /// <summary>
+        /// Returns the window title text.
+        /// </summary>
+        public static string GetWindowTitle(string z2xFilePath, bool unsavedChanges)
+        {
+            if ((z2xFilePath == null) || (z2xFilePath == "")) return "Z2X-Programmer";
+               
+            if ((unsavedChanges == false)) return Path.GetFileNameWithoutExtension(z2xFilePath);
+            else return Path.GetFileNameWithoutExtension(z2xFilePath) + "*";
+        }
     }
 }
