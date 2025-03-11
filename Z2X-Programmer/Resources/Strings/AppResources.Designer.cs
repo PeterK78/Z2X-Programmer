@@ -112,14 +112,27 @@ namespace Z2XProgrammer.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Check the following settings:
         ///
-        ///•  Vehicle address correct?
         ///•  Is there a network connection to your digital central unit?
-        ///•  Programming method correctly selected?
-        ///•  Is the locomotive at a standstill?.
+        ///•  Programming method correctly selected?.
         /// </summary>
-        public static string AlertDecoderUploadErrorPart2 {
+        public static string AlertDecoderUploadErrorPart2Direct {
             get {
-                return ResourceManager.GetString("AlertDecoderUploadErrorPart2", resourceCulture);
+                return ResourceManager.GetString("AlertDecoderUploadErrorPart2Direct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check the following settings:
+        ///
+        ///- Programming method selected correctly?
+        ///- Vehicle address correct?
+        ///- Railcom activated in the decoder?
+        ///- Is there a network connection to your digital control center?
+        ///- Is the locomotive at a standstill?.
+        /// </summary>
+        public static string AlertDecoderUploadErrorPart2POM {
+            get {
+                return ResourceManager.GetString("AlertDecoderUploadErrorPart2POM", resourceCulture);
             }
         }
         

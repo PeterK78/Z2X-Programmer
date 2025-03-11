@@ -1449,13 +1449,11 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameSettingsQuitOnReadError" xml:space="preserve">
     <value>Das Auslesen eines Decoders abbrechen, wenn eine CV nicht gelesen werden kann</value>
   </data>
-  <data name="AlertDecoderUploadErrorPart2" xml:space="preserve">
+  <data name="AlertDecoderUploadErrorPart2Direct" xml:space="preserve">
     <value>Prüfen Sie folgende Einstellungen:
 
-• Fahrzeugadresse korrekt?
-• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
 • Programmiermethode korrekt ausgewählt?
-• Die Lokomotive befindet sich im Stillstand?</value>
+• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?</value>
   </data>
   <data name="FrameExpertSettingsEnableDisableCV" xml:space="preserve">
     <value>Aktivieren / Deaktivieren</value>
@@ -1704,5 +1702,14 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled" xml:space="preserve">
     <value>Standardwert des Decoders für die Höchstgeschwindigkeit verwenden</value>
+  </data>
+  <data name="AlertDecoderUploadErrorPart2POM" xml:space="preserve">
+    <value>Prüfen Sie folgende Einstellungen:
+
+• Programmiermethode korrekt ausgewählt?
+• Fahrzeugadresse korrekt?
+• Railcom im Decoder aktiviert?
+• Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
+• Die Lokomotive befindet sich im Stillstand?</value>
   </data>
 </root>

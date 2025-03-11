@@ -656,7 +656,15 @@ namespace Z2XProgrammer.ViewModel
                 //  Display an error message and return if the upload has failed.
                 if (success == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2, AppResources.OK);
+                    //  Depending on the programming mode we display an error message.
+                    if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2POM, AppResources.OK);
+                    }
+                    else
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2Direct, AppResources.OK);
+                    }   
                     return;
                 }
                 else
