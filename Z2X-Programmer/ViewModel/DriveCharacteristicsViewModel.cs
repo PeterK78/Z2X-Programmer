@@ -48,21 +48,6 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        #region REGION: LIMITS FOR ENTRY VALIDATION
-        [ObservableProperty]
-        int limitMinimumAccelerationRateCV3 = 0;
-
-        [ObservableProperty]
-        int limitMaximumAccelerationRateCV3 = 255;
-
-        [ObservableProperty]
-        int limitMinimumDecelerationRateCV4 = 0;
-
-        [ObservableProperty]
-        int limitMaximumDecelerationRateCV4 = 255;
-
-        #endregion
-
         #region REGION: DECODER FEATURES
 
         //  RCN225: Drive direction in CV29.0 (RCN225_DIRECTION_CV29_0)
@@ -327,7 +312,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void DecreaseAccelarationRateCV3()
         {
-            if (AccelerationRate > LimitMinimumAccelerationRateCV3) AccelerationRate--;
+            if (AccelerationRate > 0) AccelerationRate--;
         }
 
         /// <summary>
@@ -336,7 +321,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void IncreaseAccelarationRateCV3()
         {
-            if (AccelerationRate < LimitMaximumAccelerationRateCV3) AccelerationRate++;
+            if (AccelerationRate < 255) AccelerationRate++;
         }
 
         /// <summary>
@@ -345,7 +330,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void DecreaseDecelerationRateCV4()
         {
-            if (DecelerationRate > LimitMinimumDecelerationRateCV4) DecelerationRate--;
+            if (DecelerationRate > 0) DecelerationRate--;
         }
 
         /// <summary>
@@ -354,7 +339,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void IncreaseDecelerationRateCV4()
         {
-            if (DecelerationRate < LimitMaximumDecelerationRateCV4) DecelerationRate++;
+            if (DecelerationRate < 255) DecelerationRate++;
         }
 
         #endregion

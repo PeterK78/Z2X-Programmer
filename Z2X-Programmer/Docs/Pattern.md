@@ -1,6 +1,13 @@
 # Pattern
 
 
+>NOTE:
+>For whatever reason, using variables to set the Maximum and Minimum limit properties of a slider XAML element leads to unpredictable behavior. For this reason, always use fixed, static values for the Maximum and Minimum properties:
+```
+<Slider Margin="20,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSliderToolTip}"   Value="{Binding DecelerationRate}" WidthRequest="350" MinimumWidthRequest="350" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+```
+
+
 ## Slider and Switch Pattern
 ### Description
 The slider and switch pattern is used if a CV value is to be configured
