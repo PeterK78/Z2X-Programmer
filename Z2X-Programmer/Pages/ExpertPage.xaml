@@ -133,8 +133,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </HorizontalStackLayout>
                     
                         <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
-                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
-                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_dark.png , Dark=ic_fluent_arrow_download_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_dark.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
                         </HorizontalStackLayout>
                     </Grid>
             </Border>
@@ -174,7 +174,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Border>
 
                     <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
-                        <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ></Button>
+                        <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_toggle_multiple_24_dark.png, Dark=ic_fluent_toggle_multiple_24_dark.png}"></Button>
                     </HorizontalStackLayout>
                     
                 </VerticalStackLayout>

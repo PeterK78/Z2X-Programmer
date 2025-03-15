@@ -70,7 +70,7 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <Button Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="200" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionOutputsViewModel}}, Path=EditFunctionOutputNameCommand}"  ></Button>
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_dark.png}" Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="250" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionOutputsViewModel}}, Path=EditFunctionOutputNameCommand}"  ></Button>
 
                         </Grid>
                     </VerticalStackLayout>

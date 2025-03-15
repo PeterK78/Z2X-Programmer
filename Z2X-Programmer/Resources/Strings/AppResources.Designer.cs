@@ -1809,7 +1809,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit ....
+        ///   Looks up a localized string similar to Change description ....
         /// </summary>
         public static string FrameFunctionKeysZIMOInputMappingEdit {
             get {

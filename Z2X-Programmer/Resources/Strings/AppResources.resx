@@ -1391,7 +1391,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping.</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
-    <value>Edit ...</value>
+    <value>Change description ...</value>
   </data>
   <data name="FrameFunctionKeysZIMONoMappingSelected" xml:space="preserve">
     <value>No function key selected.</value>

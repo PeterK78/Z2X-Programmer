@@ -1392,7 +1392,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Durch das Ändern der Tastenbelegung kann eine Funktionstaste eine beliebige andere Funktionstaste auslösen. Diese Funktion wird auch Eingangs-Mapping genannt.</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
-    <value>Ändern ...</value>
+    <value>Beschreibung ändern ...</value>
   </data>
   <data name="FrameFunctionKeysZIMONoMappingSelected" xml:space="preserve">
     <value>Keine Taste ausgewählt.</value>
