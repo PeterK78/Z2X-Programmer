@@ -168,6 +168,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnUserDefindedNotesChanged(string value)
         {
             if (value == null) return;
+            if (value != DecoderConfiguration.UserDefindedNotes) WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
             DecoderConfiguration.UserDefindedNotes = value;
         }
 
@@ -180,6 +181,7 @@ namespace Z2XProgrammer.ViewModel
         {
             if (DataStoreDataValid == true)
             {
+                if(value != DecoderConfiguration.UserDefindedDecoderDescription)  WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
                 DecoderConfiguration.UserDefindedDecoderDescription = value;
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
             }
@@ -348,6 +350,9 @@ namespace Z2XProgrammer.ViewModel
                 LocomotiveImageSource = Base64StringToImage.ConvertBase64String2ImageSource(DecoderConfiguration.UserDefindedImage);
 
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+
+                WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
+
             }
             catch (Exception ex)
             {

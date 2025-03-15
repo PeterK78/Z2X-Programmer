@@ -197,6 +197,14 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            WeakReferenceMessenger.Default.Register<SomethingChangedMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnSomethingChangedMessage();
+                });
+            });
+
             //  Setup the UndoRedo manager. 
             UndoRedoManager.Reset();
             UndoRedoManager.PropertyChanged += OnUndoRedoManagerPropertyChanged;
@@ -1011,6 +1019,15 @@ namespace Z2XProgrammer.ViewModel
                 LocomotiveAddress = "-";
             }
 
+        }
+
+        /// <summary>
+        ///  The OnSomethingChangedMessage message handler is called when the SomethingChangedMessage
+        ///  message has been received.
+        /// </summary>        
+        internal void OnSomethingChangedMessage()
+        {
+             ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);                
         }
 
         /// <summary>
