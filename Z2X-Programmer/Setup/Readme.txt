@@ -1,12 +1,33 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.8
-Date:         23.02.2025
+Version:      0.1.2.0-beta.9
+Date:         15.03.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.9 / 15.03.2025
+------------------------------------------------------------------
+
+Note: 
+
+* Ninth beta version (Beta Version 9, V0.1.2.0)
+
+New features:
+
+1. A decoder specification for  Doehler & Haass PD series decoder
+   has been added
+
+2. Z2X projects are automatically saved when the application
+   is closed
+
+Bug fixes:
+
+1. Sporadically, the sliders for CV3 and CV4 were set to the
+   value 1 after reading out a decoder.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.8 / 25.02.2025
