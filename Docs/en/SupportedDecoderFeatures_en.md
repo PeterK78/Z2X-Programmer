@@ -28,6 +28,14 @@
 |RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X	| 	CV67, CV94		| The characteristic curve points of the extended speed characteristic curve.		| Motor characteristics |
 |RCN225_OPERATINGMODES_CV12 | CV12 | Defines the operating modes in which the decoder may operate. | Protocols |
 
+## Doehler & Haass
+| Keyword |	Configuration Value	| Description | 	Tab |
+| :----------- | :--------------: | :-------------------------: |:-------------------------: |
+| DOEHLERHAAS_MOTORIMPULSWIDTH_CV49	 | CV49	 | Impulse width setting of the motor.	 | Motor characteristics | 
+| DOEHLERANDHAAS_DECODERTYPE_CV261	 | CV261	 | The decoder identifier.	 | Decoder information | 
+| DOEHLERANDHAAS_FIRMWAREVERSION_CV262x	 | CV262, CV264	 | The firmware version.	 | Decoder information | 
+| DOEHLERANDHAASS_MAXIMALSPEED_CV5	 | CV5	 | The maximum speed.	 | Motor characteristics | 
+
 ## ZIMO
 | Keyword |	Configuration Value	| Description | 	Tab |
 | :----------- | :--------------: | :-------------------------: |:-------------------------: |
