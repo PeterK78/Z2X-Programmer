@@ -101,6 +101,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The information has been copied to the clipboard..
+        /// </summary>
+        public static string AlertDecoderInfoCopySuccessFull {
+            get {
+                return ResourceManager.GetString("AlertDecoderInfoCopySuccessFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not read configuration variable.
         /// </summary>
         public static string AlertDecoderUploadErrorPart1 {

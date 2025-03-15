@@ -1714,4 +1714,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameRailComDescription" xml:space="preserve">
     <value>RailCom® is a protocol for bidirectional communication between the decoder and the digital central unit. It enables, for example, programming on the main track (POM), recognition of the direction of travel or automatic log-on to the digital control center.</value>
   </data>
+  <data name="AlertDecoderInfoCopySuccessFull" xml:space="preserve">
+    <value>The information has been copied to the clipboard.</value>
+  </data>
 </root>

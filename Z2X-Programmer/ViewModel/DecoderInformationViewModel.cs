@@ -314,16 +314,37 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: COMMANDS
 
+        /// <summary>
+        /// Copies the decoder information to the clipboard.
+        /// </summary>            
         [RelayCommand]
         async Task CopyClipboard()
         {
             try
             {
-                await Clipboard.Default.SetTextAsync(Manufacturer + " " + ZimoDecoderType + " " + ZimoSWVersion + " " + ZimoDecoderID + " " + ZimoBootloaderVersion);
+                // Depending on the manufacturer, we create different character strings. 
+                switch (DecoderConfiguration.ConfigurationVariables[8].Value )
+                {
+                    case 97:    //  Doehler & Haass
+                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version + " " +  DoehlerAndHaasDecoderType + " " + DoehlerAndHaasFirmwareVersion);
+                                break;
+
+                    case 145:   //  ZIMO
+                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + ZimoDecoderType + " " + ZimoSWVersion + " " + ZimoDecoderID + " " + ZimoBootloaderVersion);
+                                break;
+
+                    default:    //  All other manufacturers
+                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version);
+                                break;
+                }
+
+                //  Inform the user that the information has been copied to the clipboard.
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderInfoCopySuccessFull, AppResources.OK);
+
             }
             catch (Exception ex)
             {
-                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+                await MessageBox.Show(AppResources.AlertInformation, ex.Message, AppResources.OK);
             }
         }
 

@@ -1715,4 +1715,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameRailComDescription" xml:space="preserve">
     <value>RailCom® ist ein Protokoll zur bi-direktionalen Kommunikation zwischen Decoder und Digitalzentrale. Es ermöglicht z. B. die Programmierung am Hauptgleis (POM), die Erkennung der Fahrtrichtung oder die automatische Anmeldung an der Digitalzentrale.</value>
   </data>
+  <data name="AlertDecoderInfoCopySuccessFull" xml:space="preserve">
+    <value>Die Informationen wurden in die Zwischenablage kopiert.</value>
+  </data>
 </root>
