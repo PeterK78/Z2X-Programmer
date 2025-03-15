@@ -3360,7 +3360,16 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable RailCom bidirectional communication (CV29.3).
+        ///   Looks up a localized string similar to RailCom® is a protocol for bidirectional communication between the decoder and the digital central unit. It enables, for example, programming on the main track (POM), recognition of the direction of travel or automatic log-on to the digital control center..
+        /// </summary>
+        public static string FrameRailComDescription {
+            get {
+                return ResourceManager.GetString("FrameRailComDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable RailCom® bidirectional communication (CV29.3).
         /// </summary>
         public static string FrameRailComEnableDisableRailCom {
             get {
@@ -3369,7 +3378,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RailCom.
+        ///   Looks up a localized string similar to RailCom®.
         /// </summary>
         public static string FrameRailComEnableDisableTitle {
             get {

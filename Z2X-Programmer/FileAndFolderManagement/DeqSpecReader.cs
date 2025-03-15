@@ -1063,6 +1063,9 @@ public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+
 
     <!-- Supported Döhler and Haass features -->                
     <DOEHLERANDHAAS_DECODERTYPE_CV261 support=""yes"" writeable=""no""/>

@@ -177,10 +177,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-
-                        <!-- Switching Railcom on and off in CV29 bit 3 (RCN225_RAILCOMENABLED_CV29_3) -->
-                        <Label x:Name="FrameRailComEnableDisableRailCom" Grid.Row="0"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComEnableDisableRailCom}" VerticalOptions="Center" />
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                        
+                        <Label Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComDescription}" VerticalOptions="Center" />
+                        
+                        <!-- RCN225: Switching Railcom on and off in CV29 bit 3 (RCN225_RAILCOMENABLED_CV29_3) -->
+                        <Label Margin="0,20,0,0" x:Name="FrameRailComEnableDisableRailCom" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComEnableDisableRailCom}" VerticalOptions="Center" />
+                        <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=RailComEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch IsToggled="{Binding RailComEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
@@ -188,26 +190,39 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
 
-                        <!-- Railcom broadcast on channel 1 in CV28 bit 0 (RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0) -->
-                        <Label x:Name="FrameRailComConfigurationAddressBroadCast" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationAddressBroadCast}" VerticalOptions="Center" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}">
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding Path=RailComChannel1AdrBroadcast,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding RailComEnabled}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                        <!-- Railcom broadcast on channel 2 in CV28 bit 1 (RCN225_RAILCOMCHANNEL2DATA_CV28_1) -->
-                        <Label x:Name="FrameRailComConfigurationDataChannel2" Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationDataChannel2}" VerticalOptions="Center" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}">
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding Path=RailComChannel2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
-                    </Grid>
+                            <!-- RCN225: Railcom broadcast on channel 1 in CV28 bit 0 (RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0) -->
+                            <Label Margin="0,20,0,0" x:Name="FrameRailComConfigurationAddressBroadCast" Grid.Row="0" Grid.Column="0" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationAddressBroadCast}" VerticalOptions="Center" />
+                            <VerticalStackLayout Margin="0,20,0,0" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Path=RailComChannel1AdrBroadcast,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+
+                            <!-- RCN225: Railcom broadcast on channel 2 in CV28 bit 1 (RCN225_RAILCOMCHANNEL2DATA_CV28_1) -->
+                            <Label Margin="0,20,0,0" x:Name="FrameRailComConfigurationDataChannel2" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComConfigurationDataChannel2}" VerticalOptions="Center" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}" />
+                            <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Path=RailComChannel2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                                
+                            </Grid>
+                       
+                        </Grid>
                 </Border>
 
              

@@ -909,10 +909,10 @@ Frequency type = Low frequency</value>
     <value>RailCom configuration</value>
   </data>
   <data name="FrameRailComEnableDisableRailCom" xml:space="preserve">
-    <value>Enable RailCom bidirectional communication (CV29.3)</value>
+    <value>Enable RailCom® bidirectional communication (CV29.3)</value>
   </data>
   <data name="FrameRailComEnableDisableTitle" xml:space="preserve">
-    <value>RailCom</value>
+    <value>RailCom®</value>
   </data>
   <data name="FrameSearchNothingFound" xml:space="preserve">
     <value>No settings were found</value>
@@ -1710,5 +1710,8 @@ The application is aimed at beginners who want to configure the most important f
 - Railcom activated in the decoder?
 - Is there a network connection to your digital control center?
 - Is the locomotive at a standstill?</value>
+  </data>
+  <data name="FrameRailComDescription" xml:space="preserve">
+    <value>RailCom® is a protocol for bidirectional communication between the decoder and the digital central unit. It enables, for example, programming on the main track (POM), recognition of the direction of travel or automatic log-on to the digital control center.</value>
   </data>
 </root>

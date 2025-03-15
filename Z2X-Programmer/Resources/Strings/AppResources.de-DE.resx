@@ -910,10 +910,10 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>RailCom Konfiguration</value>
   </data>
   <data name="FrameRailComEnableDisableRailCom" xml:space="preserve">
-    <value>Bidirektionale Kommunikation RailCom aktivieren (CV29.3)</value>
+    <value>Bidirektionale Kommunikation RailCom® aktivieren (CV29.3)</value>
   </data>
   <data name="FrameRailComEnableDisableTitle" xml:space="preserve">
-    <value>RailCom</value>
+    <value>RailCom®</value>
   </data>
   <data name="FrameSearchNothingFound" xml:space="preserve">
     <value>Es wurden keine Einstellungen gefunden</value>
@@ -1711,5 +1711,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
 • Railcom im Decoder aktiviert?
 • Netzwerkverbindung zu Ihrer Digitalzentrale vorhanden?
 • Die Lokomotive befindet sich im Stillstand?</value>
+  </data>
+  <data name="FrameRailComDescription" xml:space="preserve">
+    <value>RailCom® ist ein Protokoll zur bi-direktionalen Kommunikation zwischen Decoder und Digitalzentrale. Es ermöglicht z. B. die Programmierung am Hauptgleis (POM), die Erkennung der Fahrtrichtung oder die automatische Anmeldung an der Digitalzentrale.</value>
   </data>
 </root>
