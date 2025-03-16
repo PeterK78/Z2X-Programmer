@@ -562,7 +562,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         
                         <Label    Grid.Row="18" Grid.Column="17" Text="{Binding CV46Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <HorizontalStackLayout Grid.Row="19" Grid.Column="10" Margin="0,20,0,0" Grid.ColumnSpan="8" HorizontalOptions="EndAndExpand">
+                         <HorizontalStackLayout Grid.Row="19" Grid.Column="9" Margin="0,20,0,0" Grid.ColumnSpan="9" HorizontalOptions="EndAndExpand">
                              <Button CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=DeleteOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_dark.png}"></Button>
                              <Button Margin="20,0,0,0" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingResetConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_dark.png}"></Button>
                          </HorizontalStackLayout>
