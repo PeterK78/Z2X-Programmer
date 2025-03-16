@@ -19,10 +19,10 @@ Note:
 New features:
 
 1. A decoder specification for  Doehler & Haass PD series decoder
-   has been added
+   has been added.
 
 2. Z2X projects are automatically saved when the application
-   is closed
+   is closed.
 
 Bug fixes:
 
