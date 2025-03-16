@@ -62,10 +62,21 @@ The installation is now complete.
 
 ## Android
 
-> [!IMPORTANT]
-> Only landscape format is currently supported.
+> [!CAUTION]
+>Only landscape format is currently supported.
+
+> [!CAUTION]
+>At least Android 9 is required.
+
+> [!CAUTION]
+>The minimum resolution is 1920 x 1200 pixel.
 
 ### Step 1: Enable the installation of unknown apps on your Android device
+Due to security concerns, Android prevents the installation of apps that are offered via APK files by default. In order for Z2X-Programmer to be installed via APK file, this security function must be deactivated on the Android device. Deactivating this security function varies from manufacturer to manufacturer. Please refer to the manual of your device for detailed instructions.
+
+> [!NOTE]
+> It is planned that Z2X-Programmer will be made available via the Google Appstore in the future. The prerequisite is that the current beta phase is successfully completed.
+
 
 ### Step 2: Download the Z2X-Programmer installation files
 The Z2X-Programmer installation files are currently provided in the form of a ZIP archive. This ZIP archive can be found in the `Releases` section of the following GitHub page:
@@ -79,8 +90,15 @@ To install the Android version, first select the desired version (release) and t
 ![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-SelectZIPArchive-Android.png)
 
 ### Step 3: Extract the APK file
+![Start the application](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidExtractAPK.png)
 
 ### Step 4: Run the APK file
+
+![Run the APK file](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidRunAPK.png)
+
+![Allow the installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidAllowInstallation.png)
+
+![Start the installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidStartInstallation.png)
 
 ### Step 5: Start the application
 ![Start the application](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-AndroidIcon.png)
