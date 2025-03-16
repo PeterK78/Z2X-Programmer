@@ -131,16 +131,16 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Button>
 
             <!-- Programming mode selection -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}"  WidthRequest="180" >
+            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
                 <Picker.WidthRequest>
-                    <OnIdiom Default="220" Phone="170"></OnIdiom>                    
+                    <OnIdiom Default="160" Phone="170"></OnIdiom>                    
                 </Picker.WidthRequest>
             </Picker>
 
             <!-- Decoder specification selection -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}" WidthRequest="250" ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
+            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
                 <Picker.WidthRequest>
-                    <OnIdiom Default="300" Phone="240"></OnIdiom>
+                    <OnIdiom Default="270" Phone="240"></OnIdiom>
                 </Picker.WidthRequest>
             </Picker>
 
