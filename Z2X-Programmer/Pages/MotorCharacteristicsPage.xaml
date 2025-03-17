@@ -591,7 +591,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
                         <HorizontalStackLayout HorizontalOptions="End">
                             <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                            <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="100" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
+                            <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="50" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
