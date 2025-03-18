@@ -1391,7 +1391,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping.</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
-    <value>Change description ...</value>
+    <value>Change assignment ...</value>
   </data>
   <data name="FrameFunctionKeysZIMONoMappingSelected" xml:space="preserve">
     <value>No function key selected.</value>
@@ -1716,5 +1716,8 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertDecoderInfoCopySuccessFull" xml:space="preserve">
     <value>The information has been copied to the clipboard.</value>
+  </data>
+  <data name="FrameFunctionKeysZIMOOutputNamingEdit" xml:space="preserve">
+    <value>Change description ...</value>
   </data>
 </root>

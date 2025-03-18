@@ -168,16 +168,16 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                      <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
                      <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
                          <HorizontalStackLayout >
-                             <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                             <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                             <Label Text="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                             <Switch  IsToggled="{Binding MaximumSpeedDoehlerAndHaasDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
                          </HorizontalStackLayout>
                          <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                      </VerticalStackLayout>
 
-                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                         <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
-                         <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" >
+                         <Slider Value="{Binding MaximumDoehlerAndHaasSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                         <Label  Text="{Binding MaximumSpeedDoehlerAndHaasValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
                      </HorizontalStackLayout>
      
                  </Grid>

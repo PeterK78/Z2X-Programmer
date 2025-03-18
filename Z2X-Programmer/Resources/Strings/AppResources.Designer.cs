@@ -1809,7 +1809,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change description ....
+        ///   Looks up a localized string similar to Change assignment ....
         /// </summary>
         public static string FrameFunctionKeysZIMOInputMappingEdit {
             get {
@@ -1869,6 +1869,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysZIMONoMappingSelected {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysZIMONoMappingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change description ....
+        /// </summary>
+        public static string FrameFunctionKeysZIMOOutputNamingEdit {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysZIMOOutputNamingEdit", resourceCulture);
             }
         }
         

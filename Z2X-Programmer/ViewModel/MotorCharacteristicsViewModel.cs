@@ -25,6 +25,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using System.Security.AccessControl;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
@@ -98,6 +99,37 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        // DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
+        [ObservableProperty]
+        internal string maximumSpeedDoehlerAndHaasValueDescription = "";
+
+        [ObservableProperty]
+        internal bool maximumSpeedDoehlerAndHaasDefaultUsed;
+        partial void OnMaximumSpeedDoehlerAndHaasDefaultUsedChanged(bool value)
+        {
+            if(value == false)
+            {
+                if(DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
+                MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
+                CV5Configuration = Subline.Create(new List<uint> { 5 });
+            }
+            else
+            {
+                MaximumSpeed = 0;
+                MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
+                CV5Configuration = Subline.Create(new List<uint> { 5 });
+            }
+        }
+
+        [ObservableProperty]
+        internal byte maximumDoehlerAndHaasSpeed;
+        partial void OnMaximumDoehlerAndHaasSpeedChanged(byte value)
+        {
+            DecoderConfiguration.RCN225.MaximumSpeed = value;
+            MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
+            CV5Configuration = Subline.Create(new List<uint> { 5 });
+        }
 
         // RCN225: Maximum speed in CV5
         [ObservableProperty]
@@ -697,6 +729,15 @@ namespace Z2XProgrammer.ViewModel
             return MaximumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumSpeed, 255) + " %)";
         }
 
+        /// <summary>
+        /// Returns the label for the maximum speed.
+        /// </summary>
+        /// <returns></returns>
+        private string GetDoehlerAndHaasMaximumSpeedLabel()
+        {
+            return MaximumDoehlerAndHaasSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumDoehlerAndHaasSpeed, 255) + " %)";
+        }
+
 
         /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
@@ -707,6 +748,7 @@ namespace Z2XProgrammer.ViewModel
             DataStoreDataValid = DecoderConfiguration.IsValid;
             ExtendedSpeedCurveEnabled = DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled;
 
+            // RCN225: Maximum speed in CV5
             MaximumSpeed = DecoderConfiguration.RCN225.MaximumSpeed;
             if ((DecoderConfiguration.RCN225.MaximumSpeed == 0) || (DecoderConfiguration.RCN225.MaximumSpeed == 1))
             {
@@ -718,6 +760,19 @@ namespace Z2XProgrammer.ViewModel
             }
             MaximumSpeedValueDescription = GetMaximumSpeedLabel();
 
+            // DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
+            MaximumDoehlerAndHaasSpeed = DecoderConfiguration.RCN225.MaximumSpeed;
+            if ((DecoderConfiguration.RCN225.MaximumSpeed == 0) || (DecoderConfiguration.RCN225.MaximumSpeed == 1))
+            {
+                MaximumSpeedDoehlerAndHaasDefaultUsed = true;                
+            }
+            else
+            {
+                MaximumSpeedDoehlerAndHaasDefaultUsed = false;
+            }
+            MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
+
+            //  RCN225: Medium speed in CV6
             MinimumSpeed = DecoderConfiguration.RCN225.MinimumSpeed;
             MinimumSpeedValueDescription = GetMinimumSpeedLabel();
 
