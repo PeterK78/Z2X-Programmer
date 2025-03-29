@@ -1720,4 +1720,16 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionKeysZIMOOutputNamingEdit" xml:space="preserve">
     <value>Change description ...</value>
   </data>
+  <data name="ControlPanelOpen" xml:space="preserve">
+    <value> Open control panel ...</value>
+  </data>
+  <data name="ControlPanelClose" xml:space="preserve">
+    <value>Close control panel ...</value>
+  </data>
+  <data name="FlyoutItemControllerText" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="OpenControllerWindowNewWindow" xml:space="preserve">
+    <value>Open in a new window ...</value>
+  </data>
 </root>

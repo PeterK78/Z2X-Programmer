@@ -66,14 +66,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_LOGGING_DEFAULT = "0";
         internal const string PREFERENCES_LICENSE_KEY = "PREFERENCES_LICENSE_KEY";
         internal const string PREFERENCES_LICENSE_DEFAULT = "0";
-        internal const string PREFERENCES_WINDOWWIDTH_KEY = "WINDOWWIDTH";
-        internal const string PREFERENCES_WINDOWWIDTH_DEFAULT = "1024";
-        internal const string PREFERENCES_WINDOWHEIGHT_KEY = "WINDOWHEIGHT";
-        internal const string PREFERENCES_WINDOWHEIGHT_DEFAULT = "600";
-        internal const string PREFERENCES_WINDOWPOSX_KEY = "WINDOWPOSX";
-        internal const string PREFERENCES_WINDOWPOSX_DEFAULT = "-1";
-        internal const string PREFERENCES_WINDOWPOSY_KEY = "WINDOWPOSY";
-        internal const string PREFERENCES_WINDOWPOSY_DEFAULT = "-1";
         internal const string PREFERENCES_LANGUAGE_KEY = "PREFERENCES_LANGUAGE_KEY";
         internal const string PREFERENCES_LANGUAGE_KEY_DEFAULT = PREFERENCES_LANGUAGE_KEY_GERMAN;
         internal const string PREFERENCES_LANGUAGE_KEY_GERMAN = "GERMAN";
@@ -84,5 +76,27 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE = "0";
         internal const string PREFERENCES_USERSPECIFICDECSPECFOLDER_KEY = "USERSPECIFICDECSPECFOLDER";
         internal const string PREFERENCES_USERSPECIFICDECSPECFOLDER_VALUE = "";
+
+        //  Size and position of the main window.
+        internal const string PREFERENCES_WINDOW_MAIN_WIDTH_KEY = "MAINWINDOWWIDTH";
+        internal const string PREFERENCES_WINDOW_MAINWIDTH_DEFAULT = "1024";
+        internal const string PREFERENCES_WINDOW_MAIN_HEIGHT_KEY = "MAINWINDOWHEIGHT";
+        internal const string PREFERENCES_WINDOW_MAIN_HEIGHT_DEFAULT = "600";
+        internal const string PREFERENCES_WINDOW_MAIN_POSX_KEY = "MAINWINDOWPOSX";
+        internal const string PREFERENCES_WINDOW_MAIN_POSX_DEFAULT = "-1";
+        internal const string PREFERENCES_WINDOW_MAIN_POSY_KEY = "MAINWINDOWPOSY";
+        internal const string PREFERENCES_WINDOW_MAIN_POSY_DEFAULT = "-1";
+
+        //  Size and position of the controller window.
+        internal const string PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY = "CONTROLLERWINDOWWIDTH";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT = "480";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY = "CONTROLLERWINDOWHEIGHT";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT = "750";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_POSX_KEY = "CONTROLLERWINDOWPOSX";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_POSX_DEFAULT = "-1";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_KEY = "CONTROLLERWINDOWPOSY";
+        internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT = "-1";
+        
+
     }
 }

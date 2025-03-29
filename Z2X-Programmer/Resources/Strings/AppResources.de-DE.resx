@@ -1721,4 +1721,16 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysZIMOOutputNamingEdit" xml:space="preserve">
     <value>Beschreibung ändern ...</value>
   </data>
+  <data name="ControlPanelOpen" xml:space="preserve">
+    <value>Fahrpult öffnen ...</value>
+  </data>
+  <data name="ControlPanelClose" xml:space="preserve">
+    <value>Fahrpult schließen ...</value>
+  </data>
+  <data name="FlyoutItemControllerText" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="OpenControllerWindowNewWindow" xml:space="preserve">
+    <value>In einem neuen Fenster öffnen ...</value>
+  </data>
 </root>

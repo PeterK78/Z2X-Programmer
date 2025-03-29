@@ -44,6 +44,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         Title="{Binding ApplicationTitle}"
         >
     
+    <!-- The flyout header with the command station state and the locomotive image -->
     <Shell.FlyoutHeader>
         <VerticalStackLayout>
 
@@ -70,7 +71,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Grid>
             
             <Label Margin="0,2,0,0" HorizontalOptions="Center" Text="{Binding LocomotiveDescription}" Style="{StaticResource Z2XProgrammerLabelLocoInfoStyle}"></Label>
-            <HorizontalStackLayout Margin="0,0,0,20" HorizontalOptions="Center" HeightRequest="20" >
+            <HorizontalStackLayout Margin="0,0,0,20" HorizontalOptions="Center" HeightRequest="20" >                
                 <Image Margin="2,0,0,0" IsVisible="{Binding DataStoreDataValid}" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                 <Label IsVisible="{Binding DataStoreDataValid}" Margin="2,0,0,0" Text="{Binding LocomotiveAddress}" FontSize="10" VerticalOptions="Center" ></Label>
             </HorizontalStackLayout>
@@ -129,7 +130,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
-
+            
+            
             <!-- Programming mode selection (Programming track, Main track)
             
                  Note:
@@ -220,6 +222,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemSoundText}" Icon="{AppThemeBinding Light=ic_fluent_speaker_2_24_regular.png, Dark=ic_fluent_speaker_2_24_dark.png}" >
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:SoundPage}"  Route="SoundPage"/>
+        </Tab>
+    </FlyoutItem>
+    
+     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemControllerText}" Icon="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" >
+        <Tab>
+             <ShellContent ContentTemplate="{DataTemplate pages:ControllerPage}" Route="ControllerPage" />
         </Tab>
     </FlyoutItem>
 

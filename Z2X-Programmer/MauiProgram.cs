@@ -75,6 +75,9 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<FunctionKeysSecondaryAddressPage>();
             builder.Services.AddSingleton<FunctionKeysSecondaryAddressViewModel>();
 
+            builder.Services.AddSingleton<ControllerPage>();
+            builder.Services.AddSingleton<ControllerViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -91,7 +94,7 @@ namespace Z2XProgrammer
 
             Logger.LogInformation(" ... waiting for InitialSetup.DoFirstSetup() to complete ...");
             Logger.LogInformation("... InitialSetup.DoFirstSetup() has completed.");
-            
+
             return builder.Build();
         }
     }

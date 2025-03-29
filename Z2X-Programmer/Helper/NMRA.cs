@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
         /// </summary>
         internal enum DCCProgrammingModes { DirectProgrammingTrack = 0, POMMainTrack = 1 };
         internal enum DCCAddressModes { Short = 0, Extended = 1 };
-        internal enum DCCSpeedStepsModes { Steps14 = 0, Step28to128 = 1};
+        public enum DCCSpeedStepsModes { Steps14 = 0, Step28to128 = 1};
         internal enum DCCABCBreakModes { Off = 0, RightTrack = 1, LeftTrack=2};
 
         //  Valid ranges for vehicle addresses according to RCN225.

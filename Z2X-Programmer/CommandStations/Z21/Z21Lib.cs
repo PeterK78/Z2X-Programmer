@@ -23,7 +23,6 @@ Credits to Jakob-Eichberger z21Client https://github.com/Jakob-Eichberger/z21Cli
 
 */
 
-using System.Diagnostics;
 using System.Net.Sockets;
 using System.Net;
 using System.Timers;
@@ -68,10 +67,13 @@ namespace Z21Lib
 
         #region REGION: PUBLIC DELEGATES
 
-        //  Will be called if a CV values has been programmed
+        //  Will be called if a CV values has been programmed.
         public event EventHandler<ProgramEventArgs> OnProgramResultReceived = default!;
 
-        //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.)
+        //  Will be called if we receive locomotive info from the Z21.
+        public event EventHandler<LocoInfoEventArgs> OnLocoInfoReceived = default!;
+
+        //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.).
         public event EventHandler<StateEventArgs> OnStatusChanged = default!;
 
         /// <summary>
@@ -161,6 +163,138 @@ namespace Z21Lib
 
         #region REGION: PUBLIC FUNCTIONS
 
+
+
+
+        /// <summary>
+        /// Change the speed and direction of a locomotive.
+        /// </summary>
+        /// <param name="locomotiveAddress">The locomotive address.</param>
+        /// <param name="speed">The speed setting according to the Z21 protocoll section "LAN_X_SET_LOCO_DRIVE".</param>
+        /// <param name="realSpeedSteps">The real speed steps (according to the Z21).</param>
+        /// <param name="direction">1 = Forward, 0 = Backward.</param>
+        public void SetLocoDrive(ushort locomotiveAddress, int speed, byte realSpeedSteps, int direction)
+        {
+            Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) address:" + locomotiveAddress + " speed: " + speed + " realSpeedSteps: " + realSpeedSteps + " direction: " + direction);
+
+            //  We must prevent the speedstep from being set to 1. This would trigger an emergency stop. 
+            if (speed > 0) speed++;
+
+            //  Create the DB0 settings and a limit the speed.           
+            byte DB0 = 0;
+            switch (realSpeedSteps)
+            {
+                case 14:
+                    DB0 = 0x10;
+                    if (speed > 15) speed = 15;
+                    break;
+                case 28:
+                    DB0 = 0x12;
+                    if (speed > 31) speed = 31;
+                    break;
+                case 128:
+                    DB0 = 0x13;
+                    if (speed > 127) speed = 127;
+                    break;
+                default:
+                    Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) wrond speed steps = " + realSpeedSteps);
+                    return;
+            }
+
+            byte DB3 = 0;
+            if (direction == 1) DB3 = 128;
+            DB3 = (byte)(DB3 + speed);                
+
+
+            byte[] bytes = new byte[10];
+            bytes[0] = 0x0A;
+            bytes[1] = 0;
+            bytes[2] = 0x40;
+            bytes[3] = 0;
+            bytes[4] = 0xE4;
+            bytes[5] = DB0;
+            bytes[6] = MSB(locomotiveAddress);
+            bytes[7] = LSB(locomotiveAddress);
+            bytes[8] = DB3;
+            bytes[9] = (byte)(bytes[4] ^ bytes[5] ^ bytes[6] ^ bytes[7] ^ bytes[8]);
+
+            Sending(bytes);
+            
+        }
+
+        /// <summary>
+        /// The following command can be used to poll the status of a locomotive. At the same time,
+        /// the client also "subscribes" to the locomotive information for this locomotive address.
+        /// </summary>
+        /// <param name="locomotiveAddress">The address of the locomotive.</param>
+        public void GetLocoInfo(ushort locomotiveAddress)
+        {
+            Logger.PrintDevConsole("Z21Lib:GetLocoInfo (LAN_X_GET_LOCO_INFO) address:" + locomotiveAddress);
+
+            byte[] bytes = new byte[9];
+            bytes[0] = 0x09;
+            bytes[1] = 0;
+            bytes[2] = 0x40;
+            bytes[3] = 0;
+            bytes[4] = 0xE3;
+            bytes[5] = 0xF0;
+            bytes[6] = MSB(locomotiveAddress);
+            bytes[7] = LSB(locomotiveAddress);
+            bytes[8] = (byte)(bytes[4] ^ bytes[5] ^ bytes[6] ^ bytes[7]);
+
+            Sending(bytes);
+
+        }
+
+        /// <summary>
+        /// Setting a locomotive function (e.g. F0, F1, etc.).
+        /// 
+        /// Z21 commando: LAN_X_SET_LOCO_FUNCTION
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="locomotiveAddress">The address of the locomotive.</param>
+        /// <param name="switchType">The switch type (Off, On, Toggle).</param>
+        /// <param name="functionNumber">The number of the function (0, 1 .. 31).</param>
+        public void SetLocoFunction(ushort locomotiveAddress, SwitchType switchType, byte functionNumber)
+        {
+            Logger.PrintDevConsole("Z21Lib:SetLocoFunction (LAN_X_SET_LOCO_FUNCTION) address:" + locomotiveAddress + " switchType:" + switchType + " function number:" + functionNumber);
+
+            if (functionNumber > 31) return;
+
+            //   Setup the DB3 byte according to the protocoll specification.
+            byte dB3 = functionNumber;
+            switch (switchType)
+            {
+                case SwitchType.Off:            dB3 = Bit.Set(dB3, 7, false);
+                                                dB3 = Bit.Set(dB3, 6, false);
+                                                break;      
+                case SwitchType.On:             dB3 = Bit.Set(dB3, 7, false);
+                                                dB3 = Bit.Set(dB3, 6, true);
+                                                break;
+                case SwitchType.Toggle:         dB3 = Bit.Set(dB3, 7, true);
+                                                dB3 = Bit.Set(dB3, 6, false);
+                                                break;
+            }
+
+            byte[] bytes = new byte[10];
+            bytes[0] = 0x0A;
+            bytes[1] = 0;
+            bytes[2] = 0x40;
+            bytes[3] = 0;
+            bytes[4] = 0xE4;
+            bytes[5] = 0xF8;
+            bytes[6] = MSB(locomotiveAddress);
+            bytes[7] = LSB(locomotiveAddress);
+            bytes[8] = dB3;
+            bytes[9] = (byte)(bytes[4] ^ bytes[5] ^ bytes[6] ^ bytes[7] ^ bytes[8]);
+
+            Sending(bytes);
+
+        }
+
+
+
         /// <summary>
         /// Logging off the client from the Z21.
         /// 
@@ -221,7 +355,7 @@ namespace Z21Lib
             // * LAN_X_BC_PROGRAMMING_MODE
             // * LAN_X_BC_TRACK_SHORT_CIRCUIT
             // * LAN_X_BC_STOPPED
-            //
+            // * LAN_X_LOCO_INFO
             byte[] bytes = new byte[8];
             bytes[0] = 0x08;
             bytes[1] = 0;
@@ -705,6 +839,79 @@ namespace Z21Lib
                             }
                             break;
 
+                        //  LAN_X_LOCO_INFO
+                        case 0xEF:
+
+                            Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response LAN_X_LOCO_INFO");
+
+                            // Parsing DB0 and DB1.
+                            ushort locomotiveAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[6]);
+
+                            // Parsing DB2.
+                            int speedSteps = 0;
+                            switch (receivedBytes[7] & 0x7)
+                            {
+                                case 0: speedSteps = 14; break;
+                                case 2: speedSteps = 28; break;     
+                                case 4: speedSteps = 128; break;
+                                default: speedSteps = 0; break;
+                            }
+
+                            // Parsing DB3.
+                            int direction = Bit.IsSet(receivedBytes[8], 7) == true ? 1 : 0;
+                            int speed = receivedBytes[8] & 0x127;                               
+
+                            // Parsing DB4.
+                            bool[] functionStates  = new bool[31];
+                            functionStates[0] = (Bit.IsSet(receivedBytes[9], 4));
+                            functionStates[4] = (Bit.IsSet(receivedBytes[9], 3));
+                            functionStates[3] = (Bit.IsSet(receivedBytes[9], 2));
+                            functionStates[2] = (Bit.IsSet(receivedBytes[9], 1));   
+                            functionStates[1] = (Bit.IsSet(receivedBytes[9], 0));
+
+                            //  Parsing DB5.
+                            functionStates[5] = (Bit.IsSet(receivedBytes[10], 0));
+                            functionStates[6] = (Bit.IsSet(receivedBytes[10], 1));
+                            functionStates[7] = (Bit.IsSet(receivedBytes[10], 2));
+                            functionStates[8] = (Bit.IsSet(receivedBytes[10], 3));
+                            functionStates[9] = (Bit.IsSet(receivedBytes[10], 4));
+                            functionStates[10] = (Bit.IsSet(receivedBytes[10], 5));
+                            functionStates[11] = (Bit.IsSet(receivedBytes[10], 6));     
+                            functionStates[12] = (Bit.IsSet(receivedBytes[10], 7));
+
+                            //  Parsing DB6.
+                            functionStates[13] = (Bit.IsSet(receivedBytes[11], 0));
+                            functionStates[14] = (Bit.IsSet(receivedBytes[11], 1));
+                            functionStates[15] = (Bit.IsSet(receivedBytes[11], 2));
+                            functionStates[16] = (Bit.IsSet(receivedBytes[11], 3));
+                            functionStates[17] = (Bit.IsSet(receivedBytes[11], 4));
+                            functionStates[18] = (Bit.IsSet(receivedBytes[11], 5));
+                            functionStates[19] = (Bit.IsSet(receivedBytes[11], 6));     
+                            functionStates[20] = (Bit.IsSet(receivedBytes[11], 7));
+
+                            //  Parsing DB7.
+                            functionStates[21] = (Bit.IsSet(receivedBytes[12], 0));
+                            functionStates[22] = (Bit.IsSet(receivedBytes[12], 1));
+                            functionStates[23] = (Bit.IsSet(receivedBytes[12], 2));
+                            functionStates[24] = (Bit.IsSet(receivedBytes[12], 3));
+                            functionStates[25] = (Bit.IsSet(receivedBytes[12], 4));
+                            functionStates[26] = (Bit.IsSet(receivedBytes[12], 5));
+                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
+                            functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
+
+                            //  Parsing DB8.
+                            functionStates[21] = (Bit.IsSet(receivedBytes[12], 0));
+                            functionStates[22] = (Bit.IsSet(receivedBytes[12], 1));
+                            functionStates[23] = (Bit.IsSet(receivedBytes[12], 2));
+                            functionStates[24] = (Bit.IsSet(receivedBytes[12], 3));
+                            functionStates[25] = (Bit.IsSet(receivedBytes[12], 4));
+                            functionStates[26] = (Bit.IsSet(receivedBytes[12], 5));
+                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
+                            functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
+
+                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, speedSteps, direction, speed));
+
+                            break;
                     }
 
                     break;

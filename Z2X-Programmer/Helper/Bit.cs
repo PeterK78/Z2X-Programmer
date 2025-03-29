@@ -34,12 +34,15 @@ namespace Z2XProgrammer.Helper
         /// <summary>
         /// Returns a byte where the bit in position pos of the value value has been set to 1 or 0.
         /// </summary>
-        /// <param name="b"></param>
-        /// <param name="pos"></param>
-        /// <param name="value"></param>
+        /// <param name="b">The variable in which the bit is to be set.</param>
+        /// <param name="pos">The number of the bit to be set (0 - 7).</param>
+        /// <param name="value">The state of the bit (True = 1, False = 0).</param>
         /// <returns></returns>
         public static byte Set(byte b, int pos, bool value)
         {
+            //  Check the desired position of the bit.
+            if(pos > 7) throw new ArgumentOutOfRangeException("pos", "The position must be between 0 and 7.");
+
             if (value == true)
             {
                 return  (byte)(b | (1 << pos));              

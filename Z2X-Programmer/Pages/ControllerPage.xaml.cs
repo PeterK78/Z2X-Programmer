@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 Z2X-Programmer
 Copyright (C) 2024
@@ -20,23 +20,15 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
+using Z2XProgrammer.ViewModel;
 
-namespace Z21Lib.Enums
+namespace Z2XProgrammer.Pages;
+
+public partial class ControllerPage : ContentPage
 {
-    public enum TrackPower
-    {
-        OFF = 0,
-        ON = 1,
-        Short = 2,
-        Programing = 3,
-        Unknown = 0xFF
-    }
-
-    public enum SwitchType
-    {
-        Off = 0,
-        On = 1,
-        Toggle = 2
-    }
-
+	public ControllerPage(ControllerViewModel vm)
+	{
+	    InitializeComponent();
+		BindingContext = vm;
+	}
 }

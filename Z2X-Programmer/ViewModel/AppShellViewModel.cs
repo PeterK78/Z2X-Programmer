@@ -42,10 +42,14 @@ using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
 using System.ComponentModel;
+using Z2XProgrammer.Pages;
 
 
 namespace Z2XProgrammer.ViewModel
 {
+    /// <summary>
+    /// ViewModel for the main application shell.
+    /// </summary>
     public partial class AppShellViewModel: ObservableObject
     {
 
@@ -211,11 +215,22 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
-        
-
         #endregion
 
         #region REGION: COMMANDS
+
+        /// <summary>
+        /// Closes the controller window.
+        /// </summary>
+        [RelayCommand]
+        void CloseControllerWindow()
+        {
+            if(GUI.ControllerWindow != null)
+            {
+                Application.Current?.CloseWindow(GUI.ControllerWindow);
+            }
+        }
+      
 
         /// <summary>
         /// Reads the locomotive list from the train controller software and presents

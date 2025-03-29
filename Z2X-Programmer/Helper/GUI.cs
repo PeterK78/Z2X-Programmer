@@ -29,8 +29,32 @@ using System.Threading.Tasks;
 
 namespace Z2XProgrammer.Helper
 {
+
+    /// <summary>
+    /// The GUI class contains methods for the graphical user interface.
+    /// </summary>
     public static class GUI
     {
+
+        /// <summary>
+        /// The window object for the main window.
+        /// <remarks>
+        /// The main window is created in the App class and saved in this field so that it can be accessed later. See the function CreateWindow in the App class.
+        /// </remarks>
+        /// </summary>
+        public static Window? MainWindow;
+
+
+        /// <summary>
+        /// Is TRUE if the controller window is shown.
+        /// </summary>
+        public static bool ControllerWindowShown = false;
+
+        /// <summary>
+        /// The window object for the controller window.
+        /// </summary>
+        public static Window? ControllerWindow;
+
         /// <summary>
         /// Centers the given window.
         /// </summary>

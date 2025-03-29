@@ -21,7 +21,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System.Globalization;
 using System.Xml.Serialization;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -35,16 +34,20 @@ namespace Z2XProgrammer
 {
     public partial class App : Application
     {
-        /// <summary>
-        /// The window object for the main window.
-        /// </summary>
-        private Window? _MainWindow;
+      
 
+        /// <summary>
+        /// The constructor of the App class.
+        /// </summary>
         public App()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Creates and takes care of the positioning and size of the main window.
+        /// </summary>  
+        /// <param name="activationState">The activation state of the window.</param>
         protected override Window CreateWindow(IActivationState? activationState)
         {
             // We check whether the user has already confirmed the license dialog.
@@ -52,22 +55,22 @@ namespace Z2XProgrammer
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LICENSE_KEY, AppConstants.PREFERENCES_LICENSE_DEFAULT) == "0")
             {
                 // We create the main window and save the object in a field so that we can also access it later.
-                _MainWindow = new Window(new LicensePage());
-                GUI.ResizeWindow(_MainWindow,800, 600);
-                GUI.CenterWindow(_MainWindow);
+                GUI.MainWindow = new Window(new LicensePage());
+                GUI.ResizeWindow(GUI.MainWindow,800, 600);
+                GUI.CenterWindow(GUI.MainWindow);
             }
             else
             {
                 // We create the main window and save the object in a field so that we can also access it later.
-                _MainWindow = new Window(new AppShell(new ViewModel.AppShellViewModel()));
-                ResizeMainWindow(_MainWindow);
-                PlaceMainWindow(_MainWindow);
+                GUI.MainWindow = new Window(new AppShell(new ViewModel.AppShellViewModel()));
+                ResizeMainWindow(GUI.MainWindow);
+                PlaceMainWindow(GUI.MainWindow);
             }
 
             //  We register a handler that is called when the window is destroyed.
             //  This allows us to save the current position and size of the window before exiting the program,
             //  and so other clean up stuff.
-            _MainWindow.Destroying += (s, e) =>
+            GUI.MainWindow.Destroying += (s, e) =>
             {
                 try
                 { 
@@ -86,13 +89,16 @@ namespace Z2XProgrammer
                     //  Disconnect the digital command station.
                     CommandStation.Disconnect();
 
+                    //  We check if the controller window is currently open. If so, we close the window.
+                    //  Note: The position and size are saved automatically when the window object is closed (see GUI.ControllerWindow.Destroying).
+                    if (GUI.ControllerWindow != null) Application.Current?.CloseWindow(GUI.ControllerWindow);
+
                     //  We save the position and size of the main window.
                     //  This allows us to restore them the next time we start the program.
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, _MainWindow.Width.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, _MainWindow.Height.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSX_KEY, _MainWindow.X.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOWPOSY_KEY, _MainWindow.Y.ToString());
-
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_MAIN_WIDTH_KEY, GUI.MainWindow.Width.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_MAIN_HEIGHT_KEY, GUI.MainWindow.Height.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_MAIN_POSX_KEY, GUI.MainWindow.X.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_MAIN_POSY_KEY, GUI.MainWindow.Y.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -102,7 +108,7 @@ namespace Z2XProgrammer
 
             };
 
-            return _MainWindow!;
+            return GUI.MainWindow!;
         }
     
         /// <summary>
@@ -113,8 +119,8 @@ namespace Z2XProgrammer
         {
             try
             {
-                window.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWWIDTH_KEY, AppConstants.PREFERENCES_WINDOWWIDTH_DEFAULT));
-                window.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWHEIGHT_KEY, AppConstants.PREFERENCES_WINDOWHEIGHT_DEFAULT));
+                window.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_WIDTH_KEY, AppConstants.PREFERENCES_WINDOW_MAINWIDTH_DEFAULT));
+                window.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_HEIGHT_KEY, AppConstants.PREFERENCES_WINDOW_MAIN_HEIGHT_DEFAULT));
             }
             catch (FormatException)
             {
@@ -136,15 +142,15 @@ namespace Z2XProgrammer
             try
             { 
                 // We use the user-specific positions if they are available. Otherwise we will center the window.
-                if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT)) == "-1")
+                if ((Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_POSX_KEY, AppConstants.PREFERENCES_WINDOW_MAIN_POSX_DEFAULT) == "-1") && (Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_POSY_KEY, AppConstants.PREFERENCES_WINDOW_MAIN_POSY_DEFAULT)) == "-1")
                 {
                     window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
                     window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
                 }
                 else
                 {
-                    window.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSX_KEY, AppConstants.PREFERENCES_WINDOWPOSX_DEFAULT));
-                    window.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOWPOSY_KEY, AppConstants.PREFERENCES_WINDOWPOSY_DEFAULT));
+                    window.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_POSX_KEY, AppConstants.PREFERENCES_WINDOW_MAIN_POSX_DEFAULT));
+                    window.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_MAIN_POSY_KEY, AppConstants.PREFERENCES_WINDOW_MAIN_POSY_DEFAULT));
                 }
             
             }

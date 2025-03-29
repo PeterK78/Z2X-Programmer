@@ -630,6 +630,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close control panel ....
+        /// </summary>
+        public static string ControlPanelClose {
+            get {
+                return ResourceManager.GetString("ControlPanelClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Open control panel ....
+        /// </summary>
+        public static string ControlPanelOpen {
+            get {
+                return ResourceManager.GetString("ControlPanelOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop at higher voltage on left-hand track.
         /// </summary>
         public static string DCCABCBreakModeLeftTrack {
@@ -896,6 +914,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FlyoutItemAddressText {
             get {
                 return ResourceManager.GetString("FlyoutItemAddressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller.
+        /// </summary>
+        public static string FlyoutItemControllerText {
+            get {
+                return ResourceManager.GetString("FlyoutItemControllerText", resourceCulture);
             }
         }
         
@@ -4445,6 +4472,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in a new window ....
+        /// </summary>
+        public static string OpenControllerWindowNewWindow {
+            get {
+                return ResourceManager.GetString("OpenControllerWindowNewWindow", resourceCulture);
             }
         }
         

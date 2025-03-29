@@ -21,19 +21,29 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using Z21Lib.Model;
-
 namespace Z21Lib.Events
 {
-    public class ProgramEventArgs: EventArgs
+    /// <summary>
+    /// Event arguments for LocoInfo event.
+    /// </summary>
+    public class LocoInfoEventArgs: EventArgs
     {
-        public DCCConfigurationVariable CV;
-        public bool Success;
+        public ushort Address { get; set; } = 0;
+        public bool[] FunctionStates { get; set; } = new bool[31];
+        public int SpeedSteps { get; set; } = 0;
+        public int Direction { get; set; } = 0;
+        public int Speed { get; set; } = 0;
 
-        public ProgramEventArgs(DCCConfigurationVariable cv, bool success) : base()
+        public LocoInfoEventArgs(ushort address, bool[] functionStates, int speedSteps, int direction, int speed)
         {
-            this.CV = cv;
-            this.Success = success;
+            Address = address;
+            FunctionStates = functionStates;
+            SpeedSteps = speedSteps;
+            Direction = direction;
+            Speed = speed;
         }
+
     }
 }
+
+

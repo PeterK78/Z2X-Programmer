@@ -23,7 +23,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 namespace Z2XProgrammer.Helper
 {
-  
+    /// <summary>
+    /// Contains the implementation of the MessageBox package.
+    /// </summary>
     internal static class MessageBox
     {
 
