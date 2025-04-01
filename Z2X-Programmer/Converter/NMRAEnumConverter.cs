@@ -112,6 +112,28 @@ namespace Z2XProgrammer.Helper
             return NMRA.DCCAddressModes.Short;
         }
 
+        /// <summary>
+        /// Returns a list with function outputs.
+        /// </summary>
+        /// <param name="min">The minimum function output number.</param>
+        /// <param name="max">The maximum function output number.</param>
+        /// <param name="addNotDefined">If TRUE a "Not defined" function output will be added.</param>
+        /// <returns></returns>
+        internal static List<string> GetAvailableFunctionOutputs (int min, int max, bool addNotDefined)
+        {
+            List<string> FunctionOutputs = new List<string>();
+
+            if (addNotDefined) { FunctionOutputs.Add(AppResources.FunctionOutputNotDefined); }
+
+            for (int i = min; i <= max; i++)
+            {
+                string newItem = "FA" + i.ToString();
+                FunctionOutputs.Add(newItem);
+            }
+            return FunctionOutputs;
+        }
+
+
         internal static List<string> GetAvailableFunctionKeys(bool addNotDefined)
         {
             List<string> FunctionKeys = new List<string>();

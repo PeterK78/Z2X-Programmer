@@ -59,7 +59,7 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: DECODER FEATURES
-
+        
         //  Any sound function keys supported?
         [ObservableProperty]
         bool soundFunctionKeysSupported = false;
@@ -69,6 +69,9 @@ namespace Z2XProgrammer.ViewModel
         bool rCN225_FUNCTIONKEYMAPPING_CV3346;
 
         //  ZIMO features
+        [ObservableProperty]
+        bool zIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = false;
+
         [ObservableProperty]
         bool zIMO_INPUTMAPPING_CV4XX;
         
@@ -1390,6 +1393,225 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV396Configuration = Subline.Create(new List<uint>{396});
 
+
+        // ZIMO: Light suppression            
+        [ObservableProperty]
+        internal ObservableCollection<string> availableFunctionOutputsLightSuppress;
+
+        // ZIMO: Light suppression on the driver's cab side 1 (forward) in
+        // CV107 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X).
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide1;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide1Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
+
+                //  We mask out the current function key number. We leave the
+                //  current function output number untouched. 
+                currentSetting = (byte)(currentSetting & 0xE0);
+
+                //  Now we add the new function key number.
+                currentSetting += (byte)value;
+
+                //  We write the new value to the configuration.
+                DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward = currentSetting;
+
+            }
+            CV107And109Configuration = Subline.Create(new List<uint>{107,109});  
+        }
+        
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide1Output;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide1OutputChanged(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0x1F);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)(value * 32);
+
+                //  We write the new value to the configuration.
+                DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward = currentSetting;
+            }
+            CV107And109Configuration = Subline.Create(new List<uint> { 107, 109 });
+        }
+
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide1Output3;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide1Output3Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0xF8);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)value;
+
+                DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward = (byte)currentSetting;
+            }
+            CV107And109Configuration = Subline.Create(new List<uint>{107,109});
+        }
+
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide1Output4;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide1Output4Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0xC7);
+
+                currentSetting += (byte)(value * 8);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)value;
+
+                DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward = (byte)currentSetting;
+            }
+            CV107And109Configuration = Subline.Create(new List<uint>{107,109});
+        }
+
+        [ObservableProperty]
+        string cV107And109Configuration = Subline.Create(new List<uint>{107,109});
+
+
+        // ZIMO: Light suppression on the driver's cab side 2 (backward) in
+        // CV108 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X).
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide2;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide2Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
+
+                //  We mask out the current function key number. We leave the
+                //  current function output number untouched. 
+                currentSetting = (byte)(currentSetting & 0xE0);
+
+                //  Now we add the new function key number.
+                currentSetting += (byte)value;
+
+                //  We write the new value to the configuration.
+                DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward = currentSetting;
+
+            }
+            CV108And110Configuration = Subline.Create(new List<uint>{108,110});  
+        }
+        
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide2Output;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide2OutputChanged(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0x1F);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)(value * 32);
+
+                //  We write the new value to the configuration.
+                DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward = currentSetting;
+            }
+            CV108And110Configuration = Subline.Create(new List<uint> { 108, 110 });
+        }
+
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide2Output3;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide2Output3Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0xF8);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)value;
+
+                DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward = (byte)currentSetting;
+            }
+            CV108And110Configuration = Subline.Create(new List<uint>{108,110});
+        }
+
+        [ObservableProperty]
+        int zIMOFuncKeyLightSuppresionCabSide2Output4;
+        partial void OnZIMOFuncKeyLightSuppresionCabSide2Output4Changed(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte currentSetting = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
+
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                currentSetting = (byte)(currentSetting & 0xC7);
+
+                currentSetting += (byte)(value * 8);
+
+                //  Now we add the new function output number.  
+                currentSetting += (byte)value;
+
+                DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward = (byte)currentSetting;
+            }
+            CV108And110Configuration = Subline.Create(new List<uint>{108,110});
+        }
+
+        [ObservableProperty]
+        string cV108And110Configuration = Subline.Create(new List<uint>{108,110});
+
+
         // ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308)
         [ObservableProperty]
         int zIMOFuncKeysCurveSqueal;
@@ -1419,6 +1641,8 @@ namespace Z2XProgrammer.ViewModel
         public FunctionKeysViewModel()
         {
             AvailableFunctionKeys = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableFunctionKeys(true));
+            AvailableFunctionOutputsLightSuppress = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableFunctionOutputs(1, 7, true));
+
             ZIMOInputMappingCVs = _ZIMOInputMappingCVs;
 
             OnGetDecoderConfiguration();
@@ -1717,6 +1941,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_INPUTMAPPING_CV4XX = DecoderSpecification.ZIMO_INPUTMAPPING_CV4XX;
             ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346;
             ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DecoderSpecification.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X;
+            ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = DecoderSpecification.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X;
         }
 
         /// <summary>
@@ -1773,9 +1998,34 @@ namespace Z2XProgrammer.ViewModel
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
             ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
-            
-            
-            if(DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
+        
+            byte tempfunctionKey = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
+            ZIMOFuncKeyLightSuppresionCabSide1 = tempfunctionKey &= 0x1F;
+
+            byte tempFunctionOutput = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
+            ZIMOFuncKeyLightSuppresionCabSide1Output = (tempFunctionOutput &= 0xE0) >> 5;
+
+            tempFunctionOutput = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
+            ZIMOFuncKeyLightSuppresionCabSide1Output3 = tempFunctionOutput &= 0x07;
+
+            tempFunctionOutput = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
+            ZIMOFuncKeyLightSuppresionCabSide1Output4 = (tempFunctionOutput &= 0xF8) >> 3;
+
+
+            byte tempfunctionKey2 = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
+            ZIMOFuncKeyLightSuppresionCabSide2 = tempfunctionKey2 &= 0x1F;
+
+            byte tempFunctionOutput2 = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
+            ZIMOFuncKeyLightSuppresionCabSide2Output = (tempFunctionOutput2 &= 0xE0) >> 5;
+
+            tempFunctionOutput2 = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
+            ZIMOFuncKeyLightSuppresionCabSide2Output3 = tempFunctionOutput2 &= 0x07;
+
+            tempFunctionOutput2 = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
+            ZIMOFuncKeyLightSuppresionCabSide2Output4 = (tempFunctionOutput2 &= 0xF8) >> 3;
+
+
+            if (DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
             {
                 ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
                 ZIMOFuncKeysMuteInverted = true;

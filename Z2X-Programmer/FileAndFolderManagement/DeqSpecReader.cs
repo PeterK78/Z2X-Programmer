@@ -104,6 +104,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = "ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X";
         public const string ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         public const string ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346";
+        public const string ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X";
         
 
         //  Döhler & Haass specific features
@@ -134,6 +135,29 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 return false;
             }
             catch   { return false; } 
+        }
+
+        /// <summary>   
+        /// Returns TRUE if the given decoder specification supports any light
+        /// function keys.
+        /// </summary> 
+        public static bool AnyLightFunctionKeysSupported(string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X",
+                " ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
         }
 
         /// <summary>   
@@ -823,6 +847,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -883,6 +908,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -1036,6 +1062,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 

@@ -1117,7 +1117,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Fahrstufensystem</value>
   </data>
   <data name="FunctionKeysNotDefined" xml:space="preserve">
-    <value>Keine Taste ausgewählt</value>
+    <value>Keine</value>
   </data>
   <data name="FyoutItemMotorCharacteristicsText" xml:space="preserve">
     <value>Motoreigenschaften</value>
@@ -1732,5 +1732,23 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="OpenControllerWindowNewWindow" xml:space="preserve">
     <value>In einem neuen Fenster öffnen ...</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabTitle" xml:space="preserve">
+    <value>Führerstandsseitige Lichtunterdrückung</value>
+  </data>
+  <data name="FrameFunctionKeysSectionLight" xml:space="preserve">
+    <value>Lichtfunktionen</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabDescription" xml:space="preserve">
+    <value>Mit dieser Funktion können Sie per Tastendruck alle Lichter auf einer Führerstandsseite aus- und einschalten.</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab1Label" xml:space="preserve">
+    <value>Führerstand 1, vorwärts (CV107, CV109)</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab2Label" xml:space="preserve">
+    <value>Führerstand 2, rückwärts (CV108, CV110)</value>
+  </data>
+  <data name="FunctionOutputNotDefined" xml:space="preserve">
+    <value>Ungenutzt</value>
   </data>
 </root>

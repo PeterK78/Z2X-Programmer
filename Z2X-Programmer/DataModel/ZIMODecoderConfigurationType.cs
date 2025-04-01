@@ -1266,7 +1266,72 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// The number of the function key (F1-F28) to turn on and off the curve squeal sound CV308
+        /// The configuration of the function key to suppress the light on
+        /// driver cab 1 (forward) in CV107. 
+        /// </summary>
+        public byte FuncKeyNrSuppressLightDriverCab1Forward
+        {
+            get
+            {
+                return configurationVariables[107].Value;
+            }
+            set
+            {
+                configurationVariables[107].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// The configuration of the additonal function outputs
+        /// in CV109 suppressed by the function key (see CV107).
+        /// </summary>
+        public byte AddOutputsSuppressedLightDriverCab1Forward
+        {
+            get
+            {
+                return configurationVariables[109].Value;
+            }
+            set
+            {
+                configurationVariables[109].Value = value;
+            }
+        }
+
+
+        /// <summary>
+        /// The configuration of the function key to suppress the light on
+        /// driver cab 2 (backward) in CV108. 
+        /// </summary>
+        public byte FuncKeyNrSuppressLightDriverCab2Forward
+        {
+            get
+            {
+                return configurationVariables[108].Value;
+            }
+            set
+            {
+                configurationVariables[108].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// The configuration of the additonal function outputs
+        /// in CV110 suppressed by the function key (see CV108).
+        /// </summary>
+        public byte AddOutputsSuppressedLightDriverCab2Forward
+        {
+            get
+            {
+                return configurationVariables[110].Value;
+            }
+            set
+            {
+                configurationVariables[110].Value = value;
+            }
+        }
+
+        /// <summary>
+        /// The number of the function key (F1-F28) to turn on and off the curve squeal sound CV308.
         /// </summary>
         public byte FuncKeyNrCurveSqueal
         {

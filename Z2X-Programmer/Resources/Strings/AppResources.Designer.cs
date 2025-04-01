@@ -1593,6 +1593,42 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Driver&apos;s cab 1, forward (CV107, CV109).
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabCab1Label {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabCab1Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver&apos;s cab 2, backwards (CV108, CV110).
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabCab2Label {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabCab2Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This function allows you to switch all the lights on one side of the driver&apos;s cab on and off at the touch of a button..
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light suppression on the driver&apos;s cab side.
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backward.
         /// </summary>
         public static string FrameFunctionKeysMappingBackward {
@@ -1715,6 +1751,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysMappingTitle {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysMappingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light functions.
+        /// </summary>
+        public static string FrameFunctionKeysSectionLight {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSectionLight", resourceCulture);
             }
         }
         
@@ -4217,7 +4262,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No key selected.
+        ///   Looks up a localized string similar to None.
         /// </summary>
         public static string FunctionKeysNotDefined {
             get {
@@ -4240,6 +4285,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FunctionKeysVehicleAddressTabTitle {
             get {
                 return ResourceManager.GetString("FunctionKeysVehicleAddressTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused.
+        /// </summary>
+        public static string FunctionOutputNotDefined {
+            get {
+                return ResourceManager.GetString("FunctionOutputNotDefined", resourceCulture);
             }
         }
         
