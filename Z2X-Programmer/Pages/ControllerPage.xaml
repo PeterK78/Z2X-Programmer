@@ -59,7 +59,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemControllerText}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
             
-            <Button Margin="0,5,0,10" ToolTipProperties.Text="{x:Static strings:AppResources.OpenControllerWindowNewWindow}" VerticalOptions="Center"  HeightRequest="40" WidthRequest="40" IsVisible="{Binding ExternalControllerWindowAllowed}"  ImageSource="{AppThemeBinding Light=ic_fluent_open_24_regular.png, Dark=ic_fluent_open_24_dark.png}"   Grid.Row="0" Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=OpenInExternalWindowCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"></Button>
+            <Button Margin="0,5,0,10" IsEnabled="{OnIdiom false, Desktop=true}" ToolTipProperties.Text="{x:Static strings:AppResources.OpenControllerWindowNewWindow}" VerticalOptions="Center"  HeightRequest="40" WidthRequest="40" IsVisible="{Binding ExternalControllerWindowAllowed}"  ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}"   Grid.Row="0" Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=OpenInExternalWindowCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"></Button>
             
         </Grid>
              
@@ -274,7 +274,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         <Button Grid.Row="7" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF28,Converter={StaticResource boolToBackgroundConverter}}" Text="F28" CommandParameter="28" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>          
 
         <!-- Speed Slider and Speed Buttons -->
-        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,40,0,40">
+        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,20,0,20">
              <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -297,9 +297,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Button>
             
             <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Margin="5,0,5,0">
-                <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="15" Style="{StaticResource Z2XSlider}"></Slider>
-                <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="31" Style="{StaticResource Z2XSlider}"></Slider>
-                <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="127" Style="{StaticResource Z2XSlider}"></Slider>
+                <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="15" Style="{StaticResource Z2XSlider}"></Slider>
+                <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="31" Style="{StaticResource Z2XSlider}"></Slider>
+                <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="CenterAndExpand" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="127" Style="{StaticResource Z2XSlider}"></Slider>
                 <Label Text="{Binding Speed}" IsVisible="{Binding AdditionalDisplayOfCVValues}" IsEnabled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="Center" VerticalOptions="End" ></Label>   
             </VerticalStackLayout>
             
