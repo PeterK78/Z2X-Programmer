@@ -6,8 +6,6 @@
 [![Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-GettingStarted.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
 [![FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-FAQ.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
 
-
-
 Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco / Fleischmann Z21 compatible digital command station. 
 The application is aimed at beginner level users who want to configure the most essential functions of their decoders in a simple and intuitive way. 
 
@@ -30,18 +28,13 @@ The application provides the following features:
 *  Maintenance functions
 *  etc.
 
-
-
 > A detailed list of all supported functions can be found on the following page: [List of supported decoder features](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/SupportedDecoderFeatures_en.md).
-
-
 
 User-friendliness is supported with the following functions:
 
 * The user interface can switch to dark mode
 * The user interface language is available in German and English
 * A search function helps you to find the functions you need
-
 
 ## Supported decoder manufacturers
 Z2X-Programmer is universal and not limited to a specific decoder manufacturer. The application offers a wide range of configuration options that are available for all decoders. Which configuration options are used by a decoder is defined in a decoder specification file. The following decoder specification files are currently available:
@@ -50,12 +43,14 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 * ZIMO MS sound decoder
 * ZIMO MX sound decoder
 * ZIMO MX function decoder
+* ZIMO MN decoder
+* Doehler & Haass PD series
 * etc.
 
 You can create your own decoder specification file at any time.
 
 >[!NOTE]
-> At the moment the focus is on Z21 digital command stations and ZIMO decoders - this is the hardware I currently own 😉.
+> At the moment the focus is on Z21 digital command stations and ZIMO decoders - this is the hardware I currently own.
 
 ## Screenshots
 ![Changing the motor characteristics](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-MotorCharacteristics.png "Changing the motor characteristics")
@@ -68,7 +63,9 @@ You can create your own decoder specification file at any time.
 
 ![Android](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Android.png "Android")
 
+## Z2X-Programmer in the press
 
+* [Digitale Modellbahn 2-2025](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/DiMo_2025_02_014-015_HH_Z2X-Programmer.pdf)
 
 ## Documentation
 
@@ -86,7 +83,7 @@ You can create your own decoder specification file at any time.
 ## Supported operating systems and languages
 * Z2X-Programmer is currently available for Microsoft Windows 11 and Android.
 * Further ports are possible (iOS, MacOS etc.), but not currently planned.
-* The software offers multilingual support, but so far only German and English are available..
+* The software offers multilingual support, but so far only German and English are available.
 
 ## Technical stuff
 
