@@ -1661,10 +1661,16 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameLightEffectsTimingTitle" xml:space="preserve">
     <value>Hier können Sie Aufblend- und Abblendzeiten für den Lichteffekt „Auf- und Abblenden“ einstellen.</value>
   </data>
+  <data name="FrameLightEffectsTimingTitleMX" xml:space="preserve">
+    <value>Hier können Sie Aufblend- und Abblendzeiten für den Lichteffekt „Auf- und Abblenden“ einstellen.</value>
+  </data>
   <data name="FrameLightEffectFadeInTimeLabel" xml:space="preserve">
     <value>Aufblendzeit (CV190)</value>
   </data>
   <data name="FrameLightEffectFadeOutTimeLabel" xml:space="preserve">
+    <value>Abblendzeit (CV191)</value>
+  </data>
+  <data name="FrameLightEffectFadeOutTimeLabelMX" xml:space="preserve">
     <value>Abblendzeit (CV191)</value>
   </data>
   <data name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS" xml:space="preserve">
@@ -1750,5 +1756,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FunctionOutputNotDefined" xml:space="preserve">
     <value>Ungenutzt</value>
+  </data>
+  <data name="FrameLightEffectFadeInTimeLabelMX" xml:space="preserve">
+    <value>Aufblendzeit (CV190)</value>
   </data>
 </root>

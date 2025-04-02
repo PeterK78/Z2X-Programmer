@@ -57,9 +57,13 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_LIGHT_DIM_CV60;
 
-        // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+        // ZIMO: Time settings for light effetcs in CV190 and CV191 MS/MN decoder (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
         [ObservableProperty]
         bool zIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = false;
+
+        // ZIMO: Time settings for light effetcs in CV190 and CV191 MX decoder (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+        [ObservableProperty]
+        bool zIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = false;
 
         #endregion
 
@@ -73,8 +77,8 @@ namespace Z2XProgrammer.ViewModel
         byte zIMOLightEffectFadeInTime;
         partial void OnZIMOLightEffectFadeInTimeChanged(byte value)
         {
-            DecoderConfiguration.ZIMO.MSMNLightEffectFadeInTime = value;
-            ZIMOLightEffectFadeInTimeLabelText = GetFadeInOutTimeLabelText(value);
+            DecoderConfiguration.ZIMO.LightEffectFadeInTime = value;
+            ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(value);
             CV190Configuration = Subline.Create(new List<uint>{190});
         }
 
@@ -88,8 +92,8 @@ namespace Z2XProgrammer.ViewModel
         byte zIMOLightEffectFadeOutTime;
         partial void OnZIMOLightEffectFadeOutTimeChanged(byte value)
         {
-            DecoderConfiguration.ZIMO.MSMNLightEffectFadeOutTime = value;
-            ZIMOLightEffectFadeOutTimeLabelText = GetFadeInOutTimeLabelText(value);
+            DecoderConfiguration.ZIMO.LightEffectFadeOutTime = value;
+            ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(value);
             CV191Configuration = Subline.Create(new List<uint>{191});
         }
 
@@ -98,6 +102,33 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         string zIMOLightEffectFadeOutTimeLabelText = string.Empty;
+
+        // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+        [ObservableProperty]
+        byte zIMOLightEffectFadeInTimeMX;
+        partial void OnZIMOLightEffectFadeInTimeMXChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.LightEffectFadeInTime = value;
+            ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(value);
+            CV190Configuration = Subline.Create(new List<uint>{190});
+        }
+        
+        [ObservableProperty]
+        string zIMOLightEffectFadeInTimeMXLabelText = string.Empty;
+
+        [ObservableProperty]
+        byte zIMOLightEffectFadeOutTimeMX;
+        partial void OnZIMOLightEffectFadeOutTimeMXChanged(byte value)
+        {
+            DecoderConfiguration.ZIMO.LightEffectFadeOutTime = value;
+            ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(value);
+            CV191Configuration = Subline.Create(new List<uint>{191});
+        }
+        
+        [ObservableProperty]
+        string zIMOLightEffectFadeOutTimeMXLabelText = string.Empty;
+        
+
 
 
         //  ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
@@ -534,10 +565,11 @@ namespace Z2XProgrammer.ViewModel
 
         /// <summary>
         /// Converts the given light effect fade in/out time to a label text.
+        /// Note: This function is only valid for ZIMO MS/MN decoder.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">The CV value.</param>
         /// <returns></returns>
-        private string GetFadeInOutTimeLabelText(int value)
+        private string GetZIMOMSFadeInOutTimeLabelText(int value)
         {
             try
             {
@@ -552,6 +584,40 @@ namespace Z2XProgrammer.ViewModel
                 else if ((value >= 201) && (value <= 255))
                 {
                     return string.Format("{0:N0}", Mathematics.ScaleRange(value, 201, 255, 100, 320)) + " s";
+                }
+                else
+                {
+                    return "? s";
+                }
+            }
+            catch (Exception)
+            {
+                return "? s";
+            }
+
+        }
+
+        /// <summary>
+        /// Converts the given light effect fade in/out time to a label text.
+        /// Note: This function is only valid for ZIMO MX decoder.
+        /// </summary>
+        /// <param name="value">The CV value.</param>
+        /// <returns></returns>
+        private string GetZIMOMXFadeInOutTimeLabelText(int value)
+        {
+            try
+            {
+                if (value == 0)
+                {
+                    return ("0,5 s");
+                }
+                else if (value == 1)
+                {
+                    return ("1 s");
+                }
+                else if ((value >= 2) && (value <= 255))
+                {
+                    return string.Format("{0:N0}", Mathematics.ScaleRange(value, 2, 255,2 , 320)) + " s";
                 }
                 else
                 {
@@ -618,11 +684,16 @@ namespace Z2XProgrammer.ViewModel
 
 
             // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
-            ZIMOLightEffectFadeInTime = DecoderConfiguration.ZIMO.MSMNLightEffectFadeInTime;
-            ZIMOLightEffectFadeInTimeLabelText = GetFadeInOutTimeLabelText(ZIMOLightEffectFadeInTime);
-            ZIMOLightEffectFadeOutTime = DecoderConfiguration.ZIMO.MSMNLightEffectFadeOutTime;
-            ZIMOLightEffectFadeOutTimeLabelText = GetFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTime);
+            ZIMOLightEffectFadeInTime = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
+            ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeInTime);
+            ZIMOLightEffectFadeOutTime = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
+            ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTime);
 
+            // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+            ZIMOLightEffectFadeInTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
+            ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeInTimeMX);
+            ZIMOLightEffectFadeOutTimeMX =  DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
+            ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTimeMX);
 
         }
 
@@ -635,9 +706,10 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_LIGHT_DIM_CV60 = DecoderSpecification.ZIMO_LIGHT_DIM_CV60;
             ZIMO_LIGHT_EFFECTS_CV125X = DecoderSpecification.ZIMO_LIGHT_EFFECTS_CV125X;
             ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X;
+            ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X;
 
 
-            if ((ZIMO_LIGHT_DIM_CV60 == true) || (ZIMO_LIGHT_EFFECTS_CV125X == true) || (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X == true))
+            if ((ZIMO_LIGHT_DIM_CV60 == true) || (ZIMO_LIGHT_EFFECTS_CV125X == true) || (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X == true) || (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X == true))
             {
                 AnyDecoderFeatureAvailable = true;
             }

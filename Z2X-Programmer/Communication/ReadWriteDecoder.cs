@@ -65,7 +65,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.RCN225_OPERATINGMODES_CV12, "12", "0", "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"}
                                 };
 
-        static readonly string[,] ZIMOFeatures = new string[35, 29] {
+        static readonly string[,] ZIMOFeatures = new string[36, 29] {
                                   {DeqSpecReader.ZIMO_SUBVERSIONNR_CV65, "65", "0", "0" ,"0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_DECODERTYPE_CV250, "250", "0", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_DECODERID_CV25X, "250", "251", "252", "253","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
@@ -100,7 +100,8 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X, "190", "191","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346, "33", "34", "35","36","37", "38", "39", "40", "41","42", "43", "44", "45", "46", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
                                   {DeqSpecReader.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X, "119", "120", "35","36","37", "38", "39", "40", "41","42", "43", "44", "45", "46", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
-                                  {DeqSpecReader.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X, "107", "108", "109","110","0", "0", "0", "0", "0","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" }
+                                  {DeqSpecReader.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X, "107", "108", "109","110","0", "0", "0", "0", "0","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
+                                  {DeqSpecReader.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X, "190", "191","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"}
                                 };
 
         static readonly string[,] DOEHLERHAASFeatures = new string[7, 29] {

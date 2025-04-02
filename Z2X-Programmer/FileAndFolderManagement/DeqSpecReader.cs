@@ -105,6 +105,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         public const string ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346";
         public const string ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X";
+        public const string ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         
 
         //  Döhler & Haass specific features
@@ -1063,6 +1064,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_MUTE_CV313 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
+    <ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 

@@ -2503,11 +2503,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fade-In time (CV190).
+        /// </summary>
+        public static string FrameLightEffectFadeInTimeLabelMX {
+            get {
+                return ResourceManager.GetString("FrameLightEffectFadeInTimeLabelMX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fade-Out time (CV191).
         /// </summary>
         public static string FrameLightEffectFadeOutTimeLabel {
             get {
                 return ResourceManager.GetString("FrameLightEffectFadeOutTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade-Out time (CV191).
+        /// </summary>
+        public static string FrameLightEffectFadeOutTimeLabelMX {
+            get {
+                return ResourceManager.GetString("FrameLightEffectFadeOutTimeLabelMX", resourceCulture);
             }
         }
         
@@ -2526,6 +2544,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameLightEffectsTimingTitle {
             get {
                 return ResourceManager.GetString("FrameLightEffectsTimingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can set fade-in and fade-out times for the “Fade in and fade out” light effect..
+        /// </summary>
+        public static string FrameLightEffectsTimingTitleMX {
+            get {
+                return ResourceManager.GetString("FrameLightEffectsTimingTitleMX", resourceCulture);
             }
         }
         

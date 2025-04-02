@@ -956,7 +956,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the fade in time for various light effects in CV190.
         /// </summary>  
-        public byte MSMNLightEffectFadeInTime
+        public byte LightEffectFadeInTime
         {
             get
             {
@@ -971,7 +971,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the fade out time for various light effects in CV191.
         /// </summary>  
-        public byte MSMNLightEffectFadeOutTime
+        public byte LightEffectFadeOutTime
         {
             get
             {

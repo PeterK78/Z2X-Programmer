@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[89, 3] {
+        static readonly string[,] SearchDatabase = new string[91, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
@@ -122,7 +122,9 @@ namespace Z2XProgrammer.Helper
                                                                         { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingTitle", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" },
                                                                         { "FunctionKeysPage", "FrameFunctionKeysHighBeamDimmingDescription", "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X" },
                                                                         { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDHImpulswidth", "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49" },
-                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel", "DOEHLERANDHAASS_MAXIMALSPEED_CV5" }
+                                                                        { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel", "DOEHLERANDHAASS_MAXIMALSPEED_CV5" },
+                                                                        { "LightPage", "FrameLightEffectFadeInTimeLabelMX", "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
+                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabelMX", "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X" }
                                                                     };
 
         /// <summary>
