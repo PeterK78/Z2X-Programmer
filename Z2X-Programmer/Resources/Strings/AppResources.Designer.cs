@@ -1539,15 +1539,6 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Braking and acceleration times can be deactivated by pressing a function button..
-        /// </summary>
-        public static string FrameFunctionKeysDeactivateAccDecTimeDescription {
-            get {
-                return ResourceManager.GetString("FrameFunctionKeysDeactivateAccDecTimeDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Function key for deactivating the braking and acceleration time (CV156).
         /// </summary>
         public static string FrameFunctionKeysDeactivateAccDecTimeLabel {
@@ -1557,20 +1548,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deactivate braking and acceleration time.
-        /// </summary>
-        public static string FrameFunctionKeysDeactivateAccDecTimeTitle {
-            get {
-                return ResourceManager.GetString("FrameFunctionKeysDeactivateAccDecTimeTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Function button for deactivating the braking and acceleration time (CV133).
         /// </summary>
         public static string FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use the following function buttons to influence the motor and driving characteristics..
+        /// </summary>
+        public static string FrameFunctionKeysEngineAndDrivingCharacteristicsDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysEngineAndDrivingCharacteristicsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine and driving characteristics.
+        /// </summary>
+        public static string FrameFunctionKeysEngineAndDrivingCharacteristicsTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysEngineAndDrivingCharacteristicsTitle", resourceCulture);
             }
         }
         
@@ -1787,6 +1787,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysShuntingKeyLabel {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysShuntingKeyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function key for activating the shunting gear (CV155).
+        /// </summary>
+        public static string FrameFunctionKeysShuntingLabel {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysShuntingLabel", resourceCulture);
             }
         }
         

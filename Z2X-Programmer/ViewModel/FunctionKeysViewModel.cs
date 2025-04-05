@@ -64,6 +64,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool soundFunctionKeysSupported = false;
 
+        //  Any drive- an motor characeteristics related keys supported?
+        [ObservableProperty]
+        bool driveAndMotorCharacteristicsKeysSupported = false;
+
         //  RCN225 features
         [ObservableProperty]
         bool rCN225_FUNCTIONKEYMAPPING_CV3346;
@@ -95,6 +99,10 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool zIMO_FUNCKEY_CURVESQUEAL_CV308;
+
+        //  ZIMO: Shunting function key
+        [ObservableProperty]
+        bool zIMO_FUNCKEY_SHUNTINGKEY_CV155 = false;
 
         //  ZIMO: Function keys for high beam and dimming in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X)
         [ObservableProperty]
@@ -1213,7 +1221,36 @@ namespace Z2XProgrammer.ViewModel
         }
         [ObservableProperty]
         string cV61Configuration = Subline.Create(new List<uint>{61});
-        
+
+
+        // ZIMO: SHUNTING key in CV155 (ZIMO_FUNCKEY_SHUNTINGKEY_CV155)
+        [ObservableProperty]
+        int zIMOFuncKeysShuntingKeyNumber = 0;
+        partial void OnZIMOFuncKeysShuntingKeyNumberChanged(int value)
+        {
+            if (value == -1)
+            {
+                return;
+            }
+            else
+            {
+                byte tempValue = DataStore.DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed;
+                
+                //  We mask out the current function output number. We leave the
+                //  current function key number untouched. 
+                tempValue = (byte)(tempValue & 0xE0);
+
+                //  Now we add the new function output number.  
+                tempValue += (byte)value;
+
+                DataStore.DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed = (byte)tempValue;
+            }
+            CV155Configuration = Subline.Create(new List<uint> { 155 });
+        }
+        [ObservableProperty]
+        string cV155Configuration = Subline.Create(new List<uint>{155});
+
+
 
         // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
         [ObservableProperty]
@@ -1927,6 +1964,8 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDataFromDecoderSpecification()
         {
             SoundFunctionKeysSupported = DeqSpecReader.AnySoundFunctionKeysSupported(DecoderSpecification.DeqSpecName);
+            DriveAndMotorCharacteristicsKeysSupported = DeqSpecReader.AnyDriveAndMotorCharacteristicKeysSupported(DecoderSpecification.DeqSpecName);
+
             ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156 = DecoderSpecification.ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156;
             RCN225_FUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.RCN225_FUNCTIONKEYMAPPING_CV3346;
             ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 = DecoderSpecification.ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61;
@@ -1942,6 +1981,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DecoderSpecification.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346;
             ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DecoderSpecification.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X;
             ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = DecoderSpecification.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X;
+            ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = DecoderSpecification.ZIMO_FUNCKEY_SHUNTINGKEY_CV155;
         }
 
         /// <summary>
@@ -1998,7 +2038,7 @@ namespace Z2XProgrammer.ViewModel
             ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
             ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
             ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
-        
+
             byte tempfunctionKey = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
             ZIMOFuncKeyLightSuppresionCabSide1 = tempfunctionKey &= 0x1F;
 
@@ -2010,7 +2050,6 @@ namespace Z2XProgrammer.ViewModel
 
             tempFunctionOutput = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
             ZIMOFuncKeyLightSuppresionCabSide1Output4 = (tempFunctionOutput &= 0xF8) >> 3;
-
 
             byte tempfunctionKey2 = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
             ZIMOFuncKeyLightSuppresionCabSide2 = tempfunctionKey2 &= 0x1F;
@@ -2024,6 +2063,8 @@ namespace Z2XProgrammer.ViewModel
             tempFunctionOutput2 = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
             ZIMOFuncKeyLightSuppresionCabSide2Output4 = (tempFunctionOutput2 &= 0xF8) >> 3;
 
+            tempfunctionKey = DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed;
+            ZIMOFuncKeysShuntingKeyNumber = tempfunctionKey & 0x1F;
 
             if (DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
             {

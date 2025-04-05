@@ -465,14 +465,8 @@ The following error has occurred:</value>
   <data name="FrameFunctionKeysCurveSquealLabel" xml:space="preserve">
     <value>Function key for switching the curve squeal on and off (CV308)</value>
   </data>
-  <data name="FrameFunctionKeysDeactivateAccDecTimeDescription" xml:space="preserve">
-    <value>Braking and acceleration times can be deactivated by pressing a function button.</value>
-  </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Function key for deactivating the braking and acceleration time (CV156)</value>
-  </data>
-  <data name="FrameFunctionKeysDeactivateAccDecTimeTitle" xml:space="preserve">
-    <value>Deactivate braking and acceleration time</value>
   </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Function button for deactivating the braking and acceleration time (CV133)</value>
@@ -1758,5 +1752,14 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameLightEffectFadeInTimeLabelMX" xml:space="preserve">
     <value>Fade-In time (CV190)</value>
+  </data>
+  <data name="FrameFunctionKeysEngineAndDrivingCharacteristicsTitle" xml:space="preserve">
+    <value>Engine and driving characteristics</value>
+  </data>
+  <data name="FrameFunctionKeysEngineAndDrivingCharacteristicsDescription" xml:space="preserve">
+    <value>You can use the following function buttons to influence the motor and driving characteristics.</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingLabel" xml:space="preserve">
+    <value>Function key for activating the shunting gear (CV155)</value>
   </data>
 </root>

@@ -93,6 +93,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X, decSpecFolder);
                 ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X, decSpecFolder);
                 ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X, decSpecFolder);
+                ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_SHUNTINGKEY_CV155, decSpecFolder);
 
                 
                 //  DOEHLER AND HAAS
@@ -201,6 +202,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X { get; set; }
         internal static bool ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X { get; set; }
         internal static bool ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X { get; set; }
+        internal static bool ZIMO_FUNCKEY_SHUNTINGKEY_CV155 { get; set ; }
 
     }
 }

@@ -106,6 +106,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346";
         public const string ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X";
         public const string ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X";
+        public const string ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = "ZIMO_FUNCKEY_SHUNTINGKEY_CV155";
         
 
         //  Döhler & Haass specific features
@@ -159,6 +160,33 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
             }
             return false;
+        }
+
+
+        /// <summary>   
+        /// Returns TRUE if the given decoder specification supports any function keys
+        /// to configure the drive and motor characteristics.
+        /// </summary> 
+        public static bool AnyDriveAndMotorCharacteristicKeysSupported(string decSpecName)
+        {
+             if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+            "ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156",
+            "DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133",
+            "ZIMO_FUNCKEY_SHUNTINGKEY_CV155",
+            "DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132",
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
         }
 
         /// <summary>   
@@ -849,6 +877,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -910,6 +939,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -1065,6 +1095,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_CURVESQUEAL_CV308 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 
@@ -1101,6 +1132,9 @@ public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file
     <DOEHLERANDHAAS_FIRMWAREVERSION_CV262x support=""yes"" writeable=""no""/>
     <DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 support=""yes"" writeable=""yes""/>
     <DOEHLERANDHAASS_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 support=""yes"" writeable=""yes""/>
+    <DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 support=""yes"" writeable=""yes""/>
+    <DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
     

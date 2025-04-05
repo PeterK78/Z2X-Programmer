@@ -1363,6 +1363,23 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
+        /// The number of the shunting function key (F1-F28) and the
+        /// shunting speed in CV155.
+        /// </summary>
+        public byte ShuntingKeyAndShuntingSpeed
+        {
+            get
+            {
+                return configurationVariables[155].Value;
+            }
+            set
+            {
+                configurationVariables[155].Value = value;
+            }
+
+        }
+
+        /// <summary>
         /// The number of the function key (F1-F28) to disable the accerleration and deceleration times
         /// in CV156.
         /// </summary>

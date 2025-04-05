@@ -466,14 +466,8 @@ Folgender Fehler ist aufgetreten:
   <data name="FrameFunctionKeysCurveSquealLabel" xml:space="preserve">
     <value>Funktionstaste zum Ein- und Ausschalten des Kurvenquietschens (CV308)</value>
   </data>
-  <data name="FrameFunctionKeysDeactivateAccDecTimeDescription" xml:space="preserve">
-    <value>Durch das Drücken einer Funktionstaste können Brems- und Beschleunigungszeiten deaktiviert werden.</value>
-  </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV156)</value>
-  </data>
-  <data name="FrameFunctionKeysDeactivateAccDecTimeTitle" xml:space="preserve">
-    <value>Brems- und Beschleunigungszeit deaktivieren</value>
   </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV133)</value>
@@ -1759,5 +1753,14 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameLightEffectFadeInTimeLabelMX" xml:space="preserve">
     <value>Aufblendzeit (CV190)</value>
+  </data>
+  <data name="FrameFunctionKeysEngineAndDrivingCharacteristicsTitle" xml:space="preserve">
+    <value>Motor- und Fahreigenschaften</value>
+  </data>
+  <data name="FrameFunctionKeysEngineAndDrivingCharacteristicsDescription" xml:space="preserve">
+    <value>Mit den folgenden Funktionstasten können Sie die Motor- und Fahreigenschaften beeinflussen.</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingLabel" xml:space="preserve">
+    <value>Funktionstaste zum Aktivieren des Rangiergangs (CV155)</value>
   </data>
 </root>
