@@ -84,6 +84,44 @@
     </Setter>
     </Style>
 
+    <!-- The Z2XBorderClickableFrame style represents the style of a clickable frame from .NET MAUI 8 and before.
+        This Border style is used to visually group controls that have a dependency on each other.-->
+    <Style x:Key="Z2XBorderClickableFrame" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"></Setter>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
+        <Setter Property="StrokeThickness" Value="0.5"></Setter>
+        <Setter Property="Padding" Value="20,20,20,20"></Setter>
+        <Setter Property="Stroke" Value="#ACACAC"></Setter>
+         <Setter Property="VisualStateManager.VisualStateGroups">
+         <VisualStateGroupList>
+             <VisualStateGroup x:Name="CommonStates">
+                 <VisualState x:Name="Normal">
+                     <VisualState.Setters>
+                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
+                         <Setter Property="Scale" Value="1.0" />
+                     </VisualState.Setters>
+                 </VisualState>
+                 <VisualState x:Name="Disabled">
+                     <VisualState.Setters>
+                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                     </VisualState.Setters>
+                 </VisualState>
+                 <VisualState x:Name="PointerOver">
+                     <VisualState.Setters>
+                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundPointerOverColor_Light}, Dark={StaticResource FrameBackgroundPointerOverColor_Dark}}" />
+                     </VisualState.Setters>
+                 </VisualState>
+                 <VisualState x:Name="Pressed">
+                     <VisualState.Setters>
+                         <Setter Property="Scale" Value="0.95" />
+                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+                     </VisualState.Setters>
+                 </VisualState>
+             </VisualStateGroup>
+         </VisualStateGroupList>
+        </Setter>
+    </Style>
+    
     
     <!-- The Z2XBorderFrame style represents the style of a frame from .NET MAUI 8 and before.
          This Border style is used to visually group controls that have a dependency on each other.-->
@@ -94,14 +132,7 @@
         <Setter Property="Padding" Value="20,20,20,20"></Setter>
         <Setter Property="Stroke" Value="#ACACAC"></Setter>
     </Style>
-
-    <!-- No longer allowed since .NET 9. Should be replaced by Z2XBorderFrame.#
-         Is currently still used until all frame elements have been converted. -->
-    <Style x:Key="Z2XProgrammerFrame" TargetType="Frame">
-        <Setter Property="Margin" Value="0,0,0,10"></Setter>
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
-    </Style>
-
+    
     <!-- The Z2XProgrammerLabelAdditionalCVValuesStyle  style is used to display the additional
          current CV values.-->
     <Style x:Key="Z2XProgrammerLabelAdditionalCVValuesStyle" TargetType="Label">
@@ -194,7 +225,40 @@
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="Margin" Value="0,5,0,10"></Setter>
     </Style>
-
+    
+    <Style x:Key="Z2XProgrammerLabelHeading1ClickableStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="Margin" Value="0,5,0,10"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="PointerOver">
+                    <VisualState.Setters>
+                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading1Color_Light}, Dark={StaticResource LabelHeading1Color_Dark}}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Selected">
+                <VisualState.Setters>
+                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Focused">
+                    <VisualState.Setters>
+                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </Setter>
+    </Style>
+    
     <Style x:Key="Z2XProgrammerLabelHeading2Style" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading2Color_Light}, Dark={StaticResource LabelHeading2Color_Dark}}"></Setter>
         <Setter Property="FontSize" Value="17"></Setter>

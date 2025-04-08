@@ -70,7 +70,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_MXMOTORCONTROLPID_CV56 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXMOTORCONTROLPID_CV56, decSpecFolder);
                 ZIMO_SOUND_VOLUME_GENERIC_C266 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUND_VOLUME_GENERIC_C266, decSpecFolder);
                 ZIMO_BRAKESQUEAL_CV287 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_BRAKESQUEAL_CV287, decSpecFolder);
-                ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61, decSpecFolder);
+                ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61, decSpecFolder);
                 ZIMO_LIGHT_EFFECTS_CV125X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_LIGHT_EFFECTS_CV125X, decSpecFolder);
                 ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397, decSpecFolder);
                 ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396, decSpecFolder);
@@ -89,7 +89,6 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_INPUTMAPPING_CV4XX = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, decSpecFolder);
                 ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, decSpecFolder);
                 ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X, decSpecFolder);
-                ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346, decSpecFolder);
                 ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X, decSpecFolder);
                 ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X, decSpecFolder);
                 ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X, decSpecFolder);
@@ -100,7 +99,7 @@ namespace Z2XProgrammer.DataStore
                 DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49, decSpecFolder);
                 DOEHLERANDHAAS_DECODERTYPE_CV261 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, decSpecFolder);
                 DOEHLERANDHAAS_FIRMWAREVERSION_CV262x = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, decSpecFolder);
-                DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137, decSpecFolder);
+                DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137, decSpecFolder);
                 DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133, decSpecFolder);
                 DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132, decSpecFolder);
                 DOEHLERANDHAASS_MAXIMALSPEED_CV5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_MAXIMALSPEED_CV5, decSpecFolder); 
@@ -115,7 +114,7 @@ namespace Z2XProgrammer.DataStore
                 RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X, decSpecFolder);
                 RCN225_ANALOGMODE_CV29_2 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_ANALOGMODE_CV29_2, decSpecFolder);
                 RCN225_DECODERRESET_CV8 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_DECODERRESET_CV8, decSpecFolder);
-                RCN225_FUNCTIONKEYMAPPING_CV3346 =  DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_FUNCTIONKEYMAPPING_CV3346, decSpecFolder);
+                RCN225_FUNCTIONOUTPUTMAPPING_CV3346 =  DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_FUNCTIONOUTPUTMAPPING_CV3346, decSpecFolder);
                 RCN225_CONSISTADDRESS_CV19X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_CONSISTADDRESS_CV19X, decSpecFolder);
                 RCN225_AUTOMATICREGISTRATION_CV28_7 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_AUTOMATICREGISTRATION_CV28_7, decSpecFolder);
                 RCN225_HLU_CV27_2 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_HLU_CV27_2, decSpecFolder);
@@ -147,7 +146,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool RCN225_ANALOGMODE_CV29_2 { get; set; }
         internal static bool RCN225_DECODERRESET_CV8 { get; set; }
         internal static bool RCN225_CONSISTADDRESS_CV19X  { get; set; }
-        internal static bool RCN225_FUNCTIONKEYMAPPING_CV3346 { get; set; }
+        internal static bool RCN225_FUNCTIONOUTPUTMAPPING_CV3346 { get; set; }
         internal static bool RCN225_AUTOMATICREGISTRATION_CV28_7 { get; set; }
         internal static bool RCN225_HLU_CV27_2 { get; set; }
         internal static bool RCN225_ABC_CV27_X { get; set; }
@@ -160,7 +159,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool DOEHLERANDHAASS_MAXIMALSPEED_CV5 { get; set; }
         internal static bool DOEHLERANDHAAS_DECODERTYPE_CV261 { get; set; }
         internal static bool DOEHLERANDHAAS_FIRMWAREVERSION_CV262x { get; set; }
-        internal static bool DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 { get; set; }
+        internal static bool DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 { get; set; }
         internal static bool DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 { get; set; }
         internal static bool DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 { get; set; }
         
@@ -179,7 +178,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_MXMOTORCONTROLPID_CV56 { get; set; }
         internal static bool ZIMO_SOUND_VOLUME_GENERIC_C266 { get; set; }
         internal static bool ZIMO_BRAKESQUEAL_CV287 { get; set; }
-        internal static bool ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 { get; set; }
+        internal static bool ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 { get; set; }
         internal static bool ZIMO_LIGHT_EFFECTS_CV125X { get; set; }
         internal static bool ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 { get; set; }
         internal static bool ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 { get; set; }

@@ -476,7 +476,7 @@ Folgender Fehler ist aufgetreten:
     <value>Rückwärts</value>
   </data>
   <data name="FrameFunctionKeysMappingDescription" xml:space="preserve">
-    <value>In der folgenden Tabelle können Sie festlegen, welche Funktionstaste welchen Funktionsausgang ein- und auschaltet.</value>
+    <value>Ordnen Sie den Funktionstasten Funktionsausgänge zu. Wird eine Funktionstaste gedrückt, so wird der zugeordnete Funktionsausgang geschaltet.</value>
   </data>
   <data name="FrameFunctionKeysMappingForward" xml:space="preserve">
     <value>Vorwärts</value>
@@ -1414,7 +1414,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Es sind keine geänderten Einstellungen vorhanden. Der Download wird nicht durchgeführt.</value>
   </data>
   <data name="FrameFunctionsKeysZIMOMappingTypeLabel" xml:space="preserve">
-    <value>ZIMO Decoder bieten eine erweiterte Variante der Funktionszuordnung an. Anhand dieser erweiterten Variante können höhere Funktionstasten auch niedrigere Funktionsausgänge schalten.</value>
+    <value>Ordnen Sie den Funktionstasten Funktionsausgänge zu. Wird eine Funktionstaste gedrückt, so wird der zugeordnete Funktionsausgang geschaltet. Zusätzlich können Sie auch eine erweiterte Variante der Zuordnung aktivieren. Bei dieser erweiterten Variante können höhere Funktionstasten auch niedrigere Funktionsausgänge schalten.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
     <value>Ausgang</value>
@@ -1762,5 +1762,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameFunctionKeysShuntingLabel" xml:space="preserve">
     <value>Funktionstaste zum Aktivieren des Rangiergangs (CV155)</value>
+  </data>
+  <data name="FlyoutItemFunctionKeysFunctionOutputsTitle" xml:space="preserve">
+    <value>Funktionsausgänge</value>
   </data>
 </root>

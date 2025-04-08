@@ -92,17 +92,17 @@ namespace Z2XProgrammer.ViewModel
         internal string doehlerAndHaasDecoderType = string.Empty;
 
         [ObservableProperty]   
-        string cV261Configuration = Subline.Create(new List<uint>{261});
+        string cV261Configuration = Subline.Create([261]);
 
         // Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
         [ObservableProperty]
         internal string doehlerAndHaasFirmwareVersion = string.Empty;
 
         [ObservableProperty]   
-        string haasFirmwareVersionConfiguration = Subline.Create(new List<uint>{261});
+        string haasFirmwareVersionConfiguration = Subline.Create([261]);
         
         [ObservableProperty]   
-        string cV262To264Configuration = Subline.Create(new List<uint>{262,264});
+        string cV262To264Configuration = Subline.Create([262,264]);
 
 
         #endregion
@@ -115,14 +115,14 @@ namespace Z2XProgrammer.ViewModel
         internal string manufacturerID = string.Empty;
 
         [ObservableProperty]
-        string cV8Configuration = Subline.Create(new List<uint>{8});
+        string cV8Configuration = Subline.Create([8]);
 
         // RCN225: Software version
         [ObservableProperty]
         internal string version = string.Empty;
 
         [ObservableProperty]   
-        string cV7Configuration = Subline.Create(new List<uint>{7});
+        string cV7Configuration = Subline.Create([7]);
         
 
         //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
@@ -130,28 +130,28 @@ namespace Z2XProgrammer.ViewModel
         internal string zimoSWVersion = string.Empty;
         [ObservableProperty]   
 
-        string cV65and7Configuration = Subline.Create(new List<uint>{7,65});
+        string cV65and7Configuration = Subline.Create([7,65]);
 
         //  ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250)
         [ObservableProperty]
         internal string zimoDecoderType = string.Empty;
 
         [ObservableProperty]   
-        string cV250Configuration = Subline.Create(new List<uint>{250});
+        string cV250Configuration = Subline.Create([250]);
         
         // ZIMO: Decoder ID (ZIMO_DECODERID_CV25X)
         [ObservableProperty]
         internal string zimoDecoderID = string.Empty;
 
         [ObservableProperty]   
-        string cVDecoderIDConfiguration = Subline.Create(new List<uint>{250,251,252,253});
+        string cVDecoderIDConfiguration = Subline.Create([250,251,252,253]);
         
         // ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X)
         [ObservableProperty]
         internal string zimoBootloaderVersion = string.Empty;
 
         [ObservableProperty]   
-        string cVBootloaderVersionConfiguration = Subline.Create(new List<uint>{248,249});
+        string cVBootloaderVersionConfiguration = Subline.Create([248,249]);
 
         [ObservableProperty]
         internal bool zimoBootloaderIsFailSafe = false;
@@ -161,7 +161,7 @@ namespace Z2XProgrammer.ViewModel
         internal string zimoSoundProjectNumber = string.Empty;
 
         [ObservableProperty]   
-        string cV254Configuration = Subline.Create(new List<uint>{254});
+        string cV254Configuration = Subline.Create([254]);
 
         [ObservableProperty]
         internal string userDefindedNotes = string.Empty;

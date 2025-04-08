@@ -34,7 +34,7 @@
     <Color x:Key="ButtonBackground_Light_Disabled">#f3f3f3</Color>
     <Color x:Key="ButtonBackground_Dark">#2b2b2b</Color>
     <Color x:Key="ButtonBackground_Dark_Disabled">#636363</Color>
-    <Color x:Key="ButtonText_Light">#Black</Color>
+    <Color x:Key="ButtonText_Light">Black</Color>
     <Color x:Key="ButtonText_Dark">White</Color>
     <Color x:Key="ButtonHighlight_Light">#f3f3f3</Color>
     <Color x:Key="ButtonHighlight_Dark">#202020</Color>
@@ -62,10 +62,14 @@
     <Color x:Key="LabelHeading1Color_Light">Black</Color>
     <Color x:Key="LabelHeading1Color_Dark">White</Color>
 
-
-    <!-- The background color of a frame -->
+    
+    <!-- Frame colors -->
     <Color x:Key="FrameBackgroundColor_Light">#fafcfd</Color>
     <Color x:Key="FrameBackgroundColor_Dark">#202020</Color>
+    <Color x:Key="FrameBackgroundPointerOverColor_Light">#f3f3f3</Color>
+    <Color x:Key="FrameBackgroundPointerOverColor_Dark">#636363</Color>
+    
+    
 
     <!-- The background color of a picker -->
     <Color x:Key="PickerBackgroundColor_Light">#fefefe</Color>

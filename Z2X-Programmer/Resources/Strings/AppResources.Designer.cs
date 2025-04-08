@@ -954,6 +954,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function outputs.
+        /// </summary>
+        public static string FlyoutItemFunctionKeysFunctionOutputsTitle {
+            get {
+                return ResourceManager.GetString("FlyoutItemFunctionKeysFunctionOutputsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function keys.
         /// </summary>
         public static string FlyoutItemFunctionKeysTitle {
@@ -1647,7 +1656,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the following table, you can specify which function button switches which function output on and off..
+        ///   Looks up a localized string similar to Assign function outputs to the function keys. If a function key is pressed, the assigned function output is switched..
         /// </summary>
         public static string FrameFunctionKeysMappingDescription {
             get {
@@ -2053,7 +2062,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ZIMO decoders offer an extended version of the function assignment. Using this extended variant, higher function keys can also switch lower function outputs..
+        ///   Looks up a localized string similar to Assign function outputs to the function keys. If a function key is pressed, the assigned function output is switched. You can also activate an extended version of the assignment. With this extended version, higher function keys can also switch lower function outputs..
         /// </summary>
         public static string FrameFunctionsKeysZIMOMappingTypeLabel {
             get {

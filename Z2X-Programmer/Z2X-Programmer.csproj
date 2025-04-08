@@ -189,6 +189,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\FunctionKeys\RCN225FunctionKeysFunctionOutputsPage.xaml.cs">
+	    <DependentUpon>RCN225FunctionKeysFunctionOutputsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\FunctionKeys\DoehlerAndHaassFunctionKeysFunctionOutputsPage.xaml.cs">
+	    <DependentUpon>DoehlerAndHaassFunctionKeysFunctionOutputsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\FunctionKeys\ZIMOFunctionKeysFunctionOutputsPage.xaml.cs">
+	    <DependentUpon>ZIMOFunctionKeysFunctionOutputsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\FunctionKeysSecondaryAddressPage.xaml.cs">
 	    <DependentUpon>FunctionKeysSecondaryAddressPage.xaml</DependentUpon>
 	  </Compile>
@@ -240,10 +249,19 @@
 	  <MauiXaml Update="Pages\ExpertPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\FunctionKeys\RCN225FunctionKeysFunctionOutputsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FunctionKeys\DoehlerAndHaassFunctionKeysFunctionOutputsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FunctionKeys\ZIMOFunctionKeysFunctionOutputsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\FunctionKeysSecondaryAddressPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\FunctionKeysPage.xaml">
+	  <MauiXaml Update="Pages\FunctionKeys\FunctionKeysPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FunctionOutputsPage.xaml">
@@ -314,6 +332,14 @@
 
 <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
   <AndroidPackageFormat>apk</AndroidPackageFormat>
+</PropertyGroup>
+
+<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+  <NoWarn>MVVMTK0045</NoWarn>
+</PropertyGroup>
+
+<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+  <NoWarn>MVVMTK0045</NoWarn>
 </PropertyGroup>
 
 </Project>

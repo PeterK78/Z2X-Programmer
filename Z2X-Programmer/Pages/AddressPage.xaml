@@ -69,9 +69,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="0,10,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Label Grid.Row="1" Grid.Column="0" x:Name="FrameAddressVehicleAddressLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="FrameAddressVehicleAddressLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
                     <VerticalStackLayout Grid.Row="1" Grid.Column="1">
-                        <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding VehicleAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
+                        <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding VehicleAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
                             <Entry.Behaviors>
                                 <toolkit:NumericValidationBehavior                                     
                                     BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
@@ -101,7 +101,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="0,10,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameAddressModeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Label x:Name="FrameAddressVehicleAddressModeLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="StartAndExpand" />
+                    <Label x:Name="FrameAddressVehicleAddressModeLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                         <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
@@ -142,7 +142,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <!-- RCN225: The consist address in CV19 and CV20 (RCN225_CONSISTADDRESS_CV19) -->
                         <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}">
-                            <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
+                            <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
                                             BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
@@ -160,7 +160,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Border>
 
                 <!-- ZIMO: Secondary address for function decoders CV64, CV67, CV68 and CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressTitle}" VerticalOptions="Center" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}" />
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressTitle}" VerticalOptions="Center" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXFX_SECONDADDRESS_CV64}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -173,12 +173,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="0,10,0,20" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressDescription}" VerticalOptions="Center" />
+                        <Label Grid.Row="0" Grid.Column="0" Margin="0,10,0,20" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressDescription}" VerticalOptions="Center" />
 
                         <!-- ZIMO: The secondary address in CV64, CV67 and CV68 (ZIMO_MXFX_SECONDADDRESS_CV64)-->
-                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressLabel}" VerticalOptions="Center" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
-                            <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressLabel}" VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
                                         BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
@@ -194,8 +194,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VerticalStackLayout>
 
                         <!-- ZIMO: The secondary address mode in CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
-                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameAddressSecondAddressModeLabel}" VerticalOptions="Center" Margin="0,20,0,0" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand"  Margin="0,20,0,0" >
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressModeLabel}" VerticalOptions="Center" Margin="0,20,0,0" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End"  Margin="0,20,0,0" >
                             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesSecondaryAdr}" SelectedItem="{Binding SelectedDCCAddressModeSecondaryAdr}" HorizontalOptions="End" WidthRequest="350" HorizontalTextAlignment="End"  VerticalOptions="End"></Picker>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeSecondaryAdrCVValues}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>

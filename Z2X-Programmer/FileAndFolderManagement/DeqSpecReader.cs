@@ -60,7 +60,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = "RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X";
         public const string RCN225_ANALOGMODE_CV29_2 = "RCN225_ANALOGMODE_CV29_2";
         public const string RCN225_DECODERRESET_CV8 = "RCN225_DECODERRESET_CV8";
-        public const string RCN225_FUNCTIONKEYMAPPING_CV3346 = "RCN225_FUNCTIONKEYMAPPING_CV3346";
+        public const string RCN225_FUNCTIONOUTPUTMAPPING_CV3346 = "RCN225_FUNCTIONOUTPUTMAPPING_CV3346";
         public const string RCN225_CONSISTADDRESS_CV19X = "RCN225_CONSISTADDRESS_CV19X";        
         public const string RCN225_AUTOMATICREGISTRATION_CV28_7 = "RCN225_AUTOMATICREGISTRATION_CV28_7";
         public const string RCN225_HLU_CV27_2 = "RCN225_HLU_CV27_2";
@@ -70,6 +70,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         //
         //  ZIMO specific features.   
         //
+        public const string ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 = "ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61";
         public const string ZIMO_LIGHT_EFFECTS_CV125X = "ZIMO_LIGHT_EFFECTS_CV125X";
         public const string ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 = "ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396";
         public const string ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 = "ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397";
@@ -89,7 +90,6 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_MXFX_SECONDADDRESS_CV64 = "ZIMO_MXFX_SECONDADDRESS_CV64";
         public const string ZIMO_MXMOTORCONTROLPID_CV56 = "ZIMO_MXMOTORCONTROLPID_CV56";
         public const string ZIMO_BRAKESQUEAL_CV287 = "ZIMO_BRAKESQUEAL_CV287";
-        public const string ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 = "ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61";
         public const string ZIMO_SOUND_VOLUME_GENERIC_C266 = "ZIMO_SOUND_VOLUME_GENERIC_C266";
         public const string ZIMO_SOUND_VOLUME_STEAM_CV27X = "ZIMO_SOUND_VOLUME_STEAM_CV27X";
         public const string ZIMO_SOUND_VOLUME_DIESELELEC_CV29X = "ZIMO_SOUND_VOLUME_DIESELELEC_CV29X";
@@ -103,7 +103,6 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_INPUTMAPPING_CV4XX = "ZIMO_INPUTMAPPING_CV4XX";
         public const string ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = "ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X";
         public const string ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X";
-        public const string ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346";
         public const string ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X";
         public const string ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         public const string ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = "ZIMO_FUNCKEY_SHUNTINGKEY_CV155";
@@ -113,7 +112,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49";
         public const string DOEHLERANDHAAS_DECODERTYPE_CV261 = "DOEHLERANDHAAS_DECODERTYPE_CV261";
         public const string DOEHLERANDHAAS_FIRMWAREVERSION_CV262x = "DOEHLERANDHAAS_FIRMWAREVERSION_CV262x";
-        public const string DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 = "DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137";
+        public const string DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 = "DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137";
         public const string DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 = "DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133";
         public const string DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 = "DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132";
         public const string DOEHLERANDHAASS_MAXIMALSPEED_CV5 = "DOEHLERANDHAASS_MAXIMALSPEED_CV5";
@@ -160,6 +159,34 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
             }
             return false;
+        }
+
+        /// <summary>
+        /// This function returns TRUE if the selected DecoderSpecification contains functions
+        /// for mapping of function outputs
+        /// </summary>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
+        /// <returns></returns>
+        public static bool AnyFunctionOuputMappingSupported (string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+            "RCN225_FUNCTIONOUTPUTMAPPING_CV3346",
+            "ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61",
+            "DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137",
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
+
         }
 
 
@@ -759,7 +786,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONOUTPUTMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19X support=""yes"" writeable=""yes""/>
     <RCN225_AUTOMATICREGISTRATION_CV27_5 support=""yes"" writeable=""yes""/>
     <RCN225_HLU_CV27_2 support=""yes"" writeable=""yes""/>
@@ -790,8 +817,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
 
     <!-- Supported ZIMO features -->
     <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes"" writeable=""yes""/>
-    <ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_SUBVERSIONNR_CV65 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERTYPE_CV250 support=""yes"" writeable=""no""/>
     <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
@@ -838,7 +863,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
     <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
     <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONOUTPUTMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19X support=""yes"" writeable=""yes""/>
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
@@ -857,7 +882,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_VOLUME_GENERIC_C266 support=""yes"" writeable=""yes""/>
     <ZIMO_BRAKESQUEAL_CV287 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SOUNDALLOFF_CV310 support=""yes"" writeable=""yes""/>
@@ -878,6 +902,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -912,7 +937,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
     <RCN225_SPEEDTABLE_CV29_4 support=""yes"" writeable=""yes""/>
     <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONOUTPUTMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19X support=""yes"" writeable=""yes""/>
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
@@ -929,7 +954,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_DECODERID_CV25X support=""yes"" writeable=""no""/>
     <ZIMO_BOOTLOADER_VERSION_24X support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_DIM_CV60 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_SELFTEST_CV30 support=""yes"" writeable=""yes""/>
     <ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 support=""yes"" writeable=""yes""/>
     <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
@@ -940,6 +964,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -1065,7 +1090,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X support=""yes"" writeable=""yes""/>
     <RCN225_ANALOGMODE_CV29_2 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONOUTPUTMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_CONSISTADDRESS_CV19X support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
  
@@ -1081,7 +1106,6 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MXMOTORCONTROLPID_CV56 support =""yes""/>
     <ZIMO_VOLUME_CV266 support=""yes"" writeable=""yes""/>
     <ZIMO_BRAKESQUEAL_CV287 support=""yes"" writeable=""yes""/>
-    <ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 support=""yes"" writeable=""yes""/>
@@ -1096,6 +1120,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
+    <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 
@@ -1121,7 +1146,7 @@ public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file
     <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
     <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
-    <RCN225_FUNCTIONKEYMAPPING_CV3346 support=""yes"" writeable=""yes""/>
+    <RCN225_FUNCTIONOUTPUTMAPPING_CV3346 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
     <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
@@ -1134,7 +1159,7 @@ public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file
     <DOEHLERANDHAASS_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
     <DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 support=""yes"" writeable=""yes""/>
     <DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133 support=""yes"" writeable=""yes""/>
-    <DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137 support=""yes"" writeable=""yes""/>
+    <DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
     

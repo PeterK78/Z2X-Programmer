@@ -174,7 +174,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                             <!-- User defined short note -->
                             <Label x:Name="FrameDecoderDescriptionLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Entry Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="StartAndExpand" Placeholder="{x:Static strings:AppResources.FrameDecoderDescriptionPlaceholder}" Text="{Binding UserDefindedDecoderDescription}"/>
+                            <Entry Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Start" Placeholder="{x:Static strings:AppResources.FrameDecoderDescriptionPlaceholder}" Text="{Binding UserDefindedDecoderDescription}"/>
 
                             <!-- User defined image -->
                             <Label x:Name="FrameDecoderInfoPictureTitle" Grid.Row="2" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -186,7 +186,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- User defined notes -->
                             <Label x:Name="FrameDecoderPersonalNotesTitle" Grid.Row="5" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPersonalNotesTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
-                                <Editor HorizontalOptions="FillAndExpand"  Text="{Binding UserDefindedNotes}" HeightRequest="200" Placeholder="{x:Static strings:AppResources.UserDefinedNotesPlaceholder}" ></Editor>
+                                <Editor HorizontalOptions="Fill"  Text="{Binding UserDefindedNotes}" HeightRequest="200" Placeholder="{x:Static strings:AppResources.UserDefinedNotesPlaceholder}" ></Editor>
                             </Border>
 
                         </Grid>

@@ -78,6 +78,15 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<ControllerPage>();
             builder.Services.AddSingleton<ControllerViewModel>();
 
+            builder.Services.AddSingleton<ZIMOFunctionKeysFunctionOutputsPage>();
+            builder.Services.AddSingleton<ZIMOFunctionKeysFunctionOutputsViewModel>();
+
+            builder.Services.AddSingleton<DoehlerAndHaassFunctionKeysFunctionOutputsPage>();
+            builder.Services.AddSingleton<DoehlerAndHaassFunctionKeysFunctionOutputsViewModel>();
+
+            builder.Services.AddSingleton<RCN225FunctionKeysFunctionOutputsPage>();
+            builder.Services.AddSingleton<RCN225FunctionKeysFunctionOutputsViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -94,6 +103,11 @@ namespace Z2XProgrammer
 
             Logger.LogInformation(" ... waiting for InitialSetup.DoFirstSetup() to complete ...");
             Logger.LogInformation("... InitialSetup.DoFirstSetup() has completed.");
+
+
+            Routing.RegisterRoute("ZIMOFunctionKeysFunctionOutputsPage", typeof(ZIMOFunctionKeysFunctionOutputsPage));
+            Routing.RegisterRoute("RCN225FunctionKeysFunctionOutputsPage", typeof(RCN225FunctionKeysFunctionOutputsPage));
+            Routing.RegisterRoute("DoehlerAndHaassFunctionKeysFunctionOutputsPage", typeof(DoehlerAndHaassFunctionKeysFunctionOutputsPage));
 
             return builder.Build();
         }

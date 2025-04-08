@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->    
+    
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Pages.DoehlerAndHaassFunctionKeysFunctionOutputsPage"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             x:DataType="viewmodel:DoehlerAndHaassFunctionKeysFunctionOutputsViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Padding="40,40,5,20"
+             Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}">
+    
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+        <converter:ZIMOInputMappingConverter x:Key="ZIMOInputMappingConverter" />
+        <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
+    </ContentPage.Resources>
+    
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+    
+        <VerticalStackLayout>
+        
+                  <!-- Page Title -->
+                   <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                       <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_keyboard_123_24_regular.png, Dark=ic_fluent_keyboard_123_24_dark.png}" Margin="0,0,10,0" ></Image>
+                       <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading1ClickableStyle}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}" VerticalOptions="Center"  HorizontalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoBackCommand}"/>                        
+                            </Label.GestureRecognizers>                        
+                       </Label>
+                       <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
+                       <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                   </Grid>
+           
+            
+                <!-- No data available information -->
+                <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                    <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                </HorizontalStackLayout>
+            
+                 <!-- Page sheet content -->
+                <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" IsEnabled="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}">
+                    
+                    <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+          
+                    <!--Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137)--> 
+                    <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                        
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1"   HorizontalOptions="End">
+                             <HorizontalStackLayout >
+                                 <Label Text="{Binding Path=DoehlerAndHaassExtendedFunctionMappingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                 <Switch Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
+                             </HorizontalStackLayout>
+                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV137Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                    
+                </VerticalStackLayout>
+        </VerticalStackLayout>
+    
+    </ScrollView>
+    
+</ContentPage>
