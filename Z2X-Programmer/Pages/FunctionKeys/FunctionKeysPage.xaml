@@ -59,42 +59,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </HorizontalStackLayout>
 
             <!-- Page sheet content -->
-            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
-                
-                <!-- Section: Function output mapping -->  
-                <Border Style="{StaticResource Z2XBorderClickableFrame}" IsVisible="{Binding FunctionOuputMappingSupported}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                    
-                        <!-- The function output icon -->
-                        <Image Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Source="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
-                        
-                        <!-- The title and description -->
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Margin="10,0,0,0" >
-                             <Label x:Name="FrameFunctionKeysMappingTitle"  IsVisible="{Binding RCN225_FUNCTIONOUTPUTMAPPING_CV3346}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                             <Label x:Name="FrameFunctionKeysMappingTitleDoehlerAndHaass" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleDoehlerAndHaass}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                             <Label x:Name="FrameFunctionKeysMappingTitleZIMO" IsVisible="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleZIMO}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                             <Label Style="{StaticResource Z2XProgrammerLabelSublineStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                        </VerticalStackLayout>
-                        
-                        <!-- The right arrow icon -->
-                        <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
-                        
-                    </Grid>
-                    
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToFunctionOutputsPageCommand}"/>                        
-                    </Border.GestureRecognizers>
-                    
-                </Border>                    
-                
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">                
+                 
                 <!-- ZIMO: ZIMO input mapping in CV400 - CV428 (ZIMO_INPUTMAPPING_CV4XX) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}">
@@ -443,6 +409,42 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     
 
                 </VerticalStackLayout>
+                
+                <!-- Section: Function output mapping -->  
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding FunctionOuputMappingSupported}" />
+                <Border Style="{StaticResource Z2XBorderClickableFrame}" IsVisible="{Binding FunctionOuputMappingSupported}">
+                      <Grid>
+                          <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"></ColumnDefinition>
+                              <ColumnDefinition Width="Auto"></ColumnDefinition>
+                              <ColumnDefinition Width="*"></ColumnDefinition>
+                          </Grid.ColumnDefinitions>
+                          <Grid.RowDefinitions>
+                              <RowDefinition Height="Auto"></RowDefinition>
+                          </Grid.RowDefinitions>
+      
+                          <!-- The function output icon -->
+                          <Image Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Source="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
+          
+                          <!-- The title and description -->
+                          <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Margin="10,0,0,0" >
+                               <Label x:Name="FrameFunctionKeysMappingTitle"  IsVisible="{Binding RCN225_FUNCTIONOUTPUTMAPPING_CV3346}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                               <Label x:Name="FrameFunctionKeysMappingTitleDoehlerAndHaass" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleDoehlerAndHaass}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                               <Label x:Name="FrameFunctionKeysMappingTitleZIMO" IsVisible="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleZIMO}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                               <Label Style="{StaticResource Z2XProgrammerLabelSublineStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                          </VerticalStackLayout>
+          
+                          <!-- The right arrow icon -->
+                          <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
+          
+                      </Grid>
+      
+                      <Border.GestureRecognizers>
+                          <TapGestureRecognizer Command="{Binding GoToFunctionOutputsPageCommand}"/>                        
+                      </Border.GestureRecognizers>
+      
+                  </Border>                    
+            
                 
             </VerticalStackLayout>
 
