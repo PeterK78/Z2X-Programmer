@@ -26,7 +26,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.FileAndFolderManagement;
@@ -459,15 +458,26 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool zIMOFuncKeysMuteInverted;
-
         partial void OnZIMOFuncKeysMuteInvertedChanged(bool value)
         {
-            if(value == true)            
+            //  If the Mute key is disabled we will not turn on the inversion.
+            if (DecoderConfiguration.ZIMO.FuncKeyNrMute == 0) return;
+
+            //  Do we need to turn on the inversion?
+            if (value == true)
             {
-                DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)(ZIMOFuncKeysMute + 100);
+                //  Check if we have already enabled the inversion. If yes, just return.
+                if (DecoderConfiguration.ZIMO.FuncKeyNrMute >= 101) return;                
+
+                //  We enable the inversion by adding 100 to the currently configured function key nunber.                    
+                DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)(DecoderConfiguration.ZIMO.FuncKeyNrMute + 100);
             }
             else
             {
+                //  Check if we already have disabled the inversion. If yes, just return.
+                if (DecoderConfiguration.ZIMO.FuncKeyNrMute < 100) return;                
+
+                //  We disable the inversion by writing just the number of the function key.
                 DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)ZIMOFuncKeysMute;
             }
             CV313Configuration = Subline.Create(new List<uint> { 313 });
@@ -968,16 +978,18 @@ namespace Z2XProgrammer.ViewModel
             tempfunctionKey = DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed;
             ZIMOFuncKeysShuntingKeyNumber = tempfunctionKey & 0x1F;
 
+            //  ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313)
             if (DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
             {
-                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
                 ZIMOFuncKeysMuteInverted = true;
+                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
             }
             else
             {
-                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
                 ZIMOFuncKeysMuteInverted = false;
+                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
             }
+
             UpdateZIMOInputMappingList();
         }
 
