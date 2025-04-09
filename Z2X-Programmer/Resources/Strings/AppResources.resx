@@ -499,7 +499,7 @@ The following error has occurred:</value>
     <value>Mapping of the function outputs</value>
   </data>
   <data name="FrameFunctionKeysMappingTitle" xml:space="preserve">
-    <value>Function outputs</value>
+    <value>Function outputs (CV33 - CV46)</value>
   </data>
   <data name="FrameFunctionKeysShuntingKey" xml:space="preserve">
     <value>Shunting key</value>
@@ -1764,5 +1764,11 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FlyoutItemFunctionKeysFunctionOutputsTitle" xml:space="preserve">
     <value>Function outputs</value>
+  </data>
+  <data name="FrameFunctionKeysMappingTitleZIMO" xml:space="preserve">
+    <value>Function outputs (CV33 - CV46, CV61)</value>
+  </data>
+  <data name="FrameFunctionKeysMappingTitleDoehlerAndHaass" xml:space="preserve">
+    <value>Function outputs (CV33 - CV46, CV61)</value>
   </data>
 </root>

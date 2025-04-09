@@ -114,8 +114,12 @@ namespace Z2XProgrammer.Helper
                 return;
             }
 
+
             //  Add the undo information to the list.
             AddUndoInformation(cvModifiedInfo);
+
+            Logger.PrintDevConsole("UndoRedoManager: New undo information available (CV:" + cvModifiedInfo.CVNumber + " Old value:" + cvModifiedInfo.OldValue + " New value:" + cvModifiedInfo.NewValue + ")");
+
         }
 
         /// <summary>

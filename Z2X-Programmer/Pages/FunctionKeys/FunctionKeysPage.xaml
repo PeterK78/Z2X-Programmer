@@ -73,13 +73,18 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                     
+                        <!-- The function output icon -->
                         <Image Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Source="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
                         
+                        <!-- The title and description -->
                         <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Margin="10,0,0,0" >
-                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                             <Label x:Name="FrameFunctionKeysMappingTitle"  IsVisible="{Binding RCN225_FUNCTIONOUTPUTMAPPING_CV3346}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                             <Label x:Name="FrameFunctionKeysMappingTitleDoehlerAndHaass" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleDoehlerAndHaass}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                             <Label x:Name="FrameFunctionKeysMappingTitleZIMO" IsVisible="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleZIMO}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                              <Label Style="{StaticResource Z2XProgrammerLabelSublineStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                         </VerticalStackLayout>
                         
+                        <!-- The right arrow icon -->
                         <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
                         
                     </Grid>

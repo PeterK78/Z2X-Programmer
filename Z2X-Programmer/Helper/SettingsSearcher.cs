@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     /// </summary>
     internal static class SettingsSearcher
     {
-        static readonly string[,] SearchDatabase = new string[91, 3] {
+        static readonly string[,] SearchDatabase = new string[93, 3] {
                                                                         { "AddressPage", "FrameAddressVehicleAddressLabel", "" },
                                                                         { "AddressPage", "FrameAddressVehicleAddressModeLabel", "" },
                                                                         { "AddressPage", "FrameLocomotiveAddressUseConsistAddressLabel", "RCN225_CONSISTADDRESS_CV19X" },
@@ -94,7 +94,6 @@ namespace Z2XProgrammer.Helper
                                                                         { "RailComPage","FrameRailComEnableDisableRailCom", "RCN225_RAILCOMENABLED_CV29_3" },
                                                                         { "RailComPage","FrameRailComConfigurationAddressBroadCast", "RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0" },
                                                                         { "RailComPage","FrameRailComConfigurationDataChannel2", "RCN225_RAILCOMCHANNEL2DATA_CV28_1" },
-                                                                        { "FunctionKeysPage","FrameFunctionsKeysZIMOMappingType", "ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysSoundVolumeOnOffLabel", "ZIMO_FUNCKEY_SOUNDALLOFF_CV310" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysSoundVolumeQuieterLabel", "ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysSoundVolumeLouderLabel", "ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397" },
@@ -124,7 +123,10 @@ namespace Z2XProgrammer.Helper
                                                                         { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDHImpulswidth", "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49" },
                                                                         { "MotorCharacteristicsPage", "FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel", "DOEHLERANDHAASS_MAXIMALSPEED_CV5" },
                                                                         { "LightPage", "FrameLightEffectFadeInTimeLabelMX", "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
-                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabelMX", "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X" }
+                                                                        { "LightPage", "FrameLightEffectFadeOutTimeLabelMX", "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X" },
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysMappingTitle", "RCN225_FUNCTIONOUTPUTMAPPING_CV3346" },
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysMappingTitleDoehlerAndHaass", "RCN225_FUNCTIONOUTPUTMAPPING_CV3346" },
+                                                                        { "FunctionKeysPage", "FrameFunctionKeysMappingTitleZIMO", "ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61" },
                                                                     };
 
         /// <summary>

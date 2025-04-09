@@ -72,23 +72,36 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool functionOuputMappingSupported = false;
 
-        //   Döhler & Haass
+        #region Döhler & Haass
+
+        //  Döhler & Haass: The extended function output mapping in CV137
+        //[ObservableProperty]
+        //bool dOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137;
+
         [ObservableProperty]
-        bool dOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137;
+        bool dOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 = false;
 
+        [ObservableProperty]
+        bool dOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133;
 
-        //  RCN225 features
+        [ObservableProperty]
+        bool dOEHLERANDHAASS_FUNCKEYSHUNTING_CV132;
+
+        #endregion
+
+        #region RCN225
 
         //  RCN225: Standard function key mapping in CV33 to CV46
         [ObservableProperty]
         bool rCN225_FUNCTIONOUTPUTMAPPING_CV3346 = false;
-        
-        //  ZIMO features
+
+        #endregion
+
+        #region ZIMO
 
         //  ZIMO: The standard and extended function output mapping (CV61)
         [ObservableProperty]
         bool zIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61;
-
 
         [ObservableProperty]
         bool zIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = false;
@@ -127,15 +140,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_MXFXFUNCTIONKEYMAPPING_CV3346 = false;
 
-        //   Döhler & Haass
-        [ObservableProperty]
-        bool dOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 = false;
-
-        [ObservableProperty]
-        bool dOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133;
-
-        [ObservableProperty]
-        bool dOEHLERANDHAASS_FUNCKEYSHUNTING_CV132;
+        #endregion        
 
 #region FUNCTION OUTPUT DESCRIPTION
         [ObservableProperty]
@@ -337,7 +342,6 @@ namespace Z2XProgrammer.ViewModel
         // Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137)
         [ObservableProperty]
         bool doehlerAndHaassExtendedFunctionMappingEnabled;
-        
 
         // ZIMO: SHUNTING key in CV155 (ZIMO_FUNCKEY_SHUNTINGKEY_CV155)
         [ObservableProperty]
@@ -365,8 +369,6 @@ namespace Z2XProgrammer.ViewModel
         }
         [ObservableProperty]
         string cV155Configuration = Subline.Create([155]);
-
-
 
         // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
         [ObservableProperty]
@@ -436,7 +438,6 @@ namespace Z2XProgrammer.ViewModel
             if (value == -1)
             {
                 DecoderConfiguration.ZIMO.FuncKeyNrMute = 0;
-
             }
             else
             {
@@ -806,8 +807,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         #endregion
-
-        // Opens a pop-up window so that the user can configure the input mapping of the function keys.
+       
         #region REGION: COMMANDS
 
         /// <summary>
@@ -834,6 +834,10 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
+        /// <summary>
+        /// // Opens a pop-up window so that the user can configure the input mapping of the function keys.
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         async Task EditInputMapping()
         {

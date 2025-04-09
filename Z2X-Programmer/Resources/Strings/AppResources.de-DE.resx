@@ -500,7 +500,7 @@ Folgender Fehler ist aufgetreten:
     <value>Zuordnung laut RCN-225</value>
   </data>
   <data name="FrameFunctionKeysMappingTitle" xml:space="preserve">
-    <value>Funktionsausgänge</value>
+    <value>Funktionsausgänge (CV33 - CV46)</value>
   </data>
   <data name="FrameFunctionKeysShuntingKey" xml:space="preserve">
     <value>Rangiertaste</value>
@@ -1765,5 +1765,11 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FlyoutItemFunctionKeysFunctionOutputsTitle" xml:space="preserve">
     <value>Funktionsausgänge</value>
+  </data>
+  <data name="FrameFunctionKeysMappingTitleZIMO" xml:space="preserve">
+    <value>Funktionsausgänge (CV33 - CV46, CV61)</value>
+  </data>
+  <data name="FrameFunctionKeysMappingTitleDoehlerAndHaass" xml:space="preserve">
+    <value>Funktionsausgänge (CV33 - CV46, CV137)</value>
   </data>
 </root>

@@ -1755,11 +1755,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function outputs.
+        ///   Looks up a localized string similar to Function outputs (CV33 - CV46).
         /// </summary>
         public static string FrameFunctionKeysMappingTitle {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysMappingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function outputs (CV33 - CV46, CV61).
+        /// </summary>
+        public static string FrameFunctionKeysMappingTitleDoehlerAndHaass {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingTitleDoehlerAndHaass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function outputs (CV33 - CV46, CV61).
+        /// </summary>
+        public static string FrameFunctionKeysMappingTitleZIMO {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysMappingTitleZIMO", resourceCulture);
             }
         }
         
