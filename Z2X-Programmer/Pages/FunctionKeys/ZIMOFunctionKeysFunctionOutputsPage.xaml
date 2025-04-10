@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-    
+
 <!--
 
 Z2X-Programmer
-Copyright (C) 2024
+Copyright (C) 2025
 PeterK78
 
 This program is free software: you can redistribute it and/or modify
@@ -21,9 +21,9 @@ along with this program. If not, see:
 
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
--->    
-    
-    
+-->
+
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Z2XProgrammer.Pages.ZIMOFunctionKeysFunctionOutputsPage"
@@ -36,48 +36,48 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Padding="40,40,5,20"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}">
-    
+
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
         <converter:ZIMOInputMappingConverter x:Key="ZIMOInputMappingConverter" />
         <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
-    
+
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
-    
+
         <VerticalStackLayout>
-        
-               <!-- Page Title -->
-               <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                   <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_keyboard_123_24_regular.png, Dark=ic_fluent_keyboard_123_24_dark.png}" Margin="0,0,10,0" ></Image>
-                   <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading1ClickableStyle}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}" VerticalOptions="Center"  HorizontalOptions="Start">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoBackCommand}"/>                        
-                        </Label.GestureRecognizers>                        
-                   </Label>
-                   <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
-                   <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-               </Grid>
-            
-                <!-- No data available information -->
-                <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
-                   <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
-                   <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                </HorizontalStackLayout>
-            
-                <!-- Page sheet content -->
-                <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" IsEnabled="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}">
-            
+
+            <!-- Page Title -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_keyboard_123_24_regular.png, Dark=ic_fluent_keyboard_123_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading1ClickableStyle}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}" VerticalOptions="Center"  HorizontalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
+                <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemFunctionKeysFunctionOutputsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </Grid>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- Page sheet content -->
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}" IsEnabled="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}">
+
                 <!-- RCN225 and ZIMO function output mapping: Standard function mapping in CV33 to CV46 (RCN225_FUNCTIONKEYMAPPING_CV3346) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                 <Border Style="{StaticResource Z2XBorderFrame}">
@@ -101,7 +101,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -128,7 +127,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <!-- The description text -->
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="18" Margin="0,10,0,0" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingTypeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        
+
                         <!-- The setting for the extended variant -->
                         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="12" Margin="0,20,0,40" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysZIMOMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <VerticalStackLayout  Grid.Row="1" Grid.Column="13" Grid.ColumnSpan="5" HorizontalOptions="End"  Margin="0,20,0,40">
@@ -138,7 +137,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV61Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
-                   
+
                         <BoxView  Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
                         <BoxView  Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
                         <BoxView  Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
@@ -151,7 +150,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label  Grid.Row="3" Grid.Column="3"  Grid.ColumnSpan="14" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeOutput}" VerticalOptions="Center"  HorizontalOptions="Center"/>
                         <Label Grid.Row="3" Grid.Column="17" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeValue}" VerticalOptions="Center"  HorizontalOptions="Center"/>
 
-                         <!--The header of the function mapping: The name of the different function outputs--> 
+                        <!--The header of the function mapping: The name of the different function outputs-->
                         <Label Grid.Row="4" Grid.Column="3" Text="{Binding Output0vDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="4" Grid.Column="4" Text="{Binding Output0rDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         <Label Grid.Row="4" Grid.Column="5" Text="{Binding Output1Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
@@ -167,7 +166,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Grid.Row="4" Grid.Column="15" Text="{Binding Output11Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         <Label Grid.Row="4" Grid.Column="16" Text="{Binding Output12Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
 
-                         <!--Key F0 foward mapping in CV33-->
+                        <!--Key F0 foward mapping in CV33-->
                         <Label Grid.Row="5" Grid.Column="0" Text="F0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="5" Grid.Column="1" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingForward}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="5" Grid.Column="2" Text="33" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
@@ -181,7 +180,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <CheckBox Grid.Row="5" Grid.Column="10" IsChecked="{Binding CV33ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
                         <Label   Grid.Row="5" Grid.Column="17" Text="{Binding CV33Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Key F0 backward mapping in CV34-->
+                        <!--Key F0 backward mapping in CV34-->
                         <Label Grid.Row="6" Grid.Column="0" Text="F0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="6" Grid.Column="1" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingBackward}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="6" Grid.Column="2" Text="34" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
@@ -196,7 +195,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label  Grid.Row="6" Grid.Column="17" Text="{Binding CV34Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
 
-                         <!--Key F1 mapping in CV35-->
+                        <!--Key F1 mapping in CV35-->
                         <Label  Grid.Row="7" Grid.Column="0" Text="F1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="7" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="7" Grid.Column="2" Text="35" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
@@ -210,7 +209,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <CheckBox  Grid.Row="7" Grid.Column="10" IsChecked="{Binding CV35ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
                         <Label  Grid.Row="7" Grid.Column="17" Text="{Binding CV35Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Key F2 mapping in CV36-->
+                        <!--Key F2 mapping in CV36-->
                         <Label  Grid.Row="8" Grid.Column="0" Text="F2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="8" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="8" Grid.Column="2" Text="36" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
@@ -224,289 +223,289 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <CheckBox  Grid.Row="8" Grid.Column="10" IsChecked="{Binding CV36ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
                         <Label  Grid.Row="8" Grid.Column="17" Text="{Binding CV36Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F3 mapping in CV37--> 
+                        <!--Function key F3 mapping in CV37-->
                         <Label  Grid.Row="9" Grid.Column="0" Text="F3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="9" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="9" Grid.Column="2" Text="37" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F3-->                         
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="3" IsChecked="{Binding CV37ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="4" IsChecked="{Binding CV37ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="5" IsChecked="{Binding CV37ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="6" IsChecked="{Binding CV37ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="7" IsChecked="{Binding CV37ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="8" IsChecked="{Binding CV37ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="9" IsChecked="{Binding CV37ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="10" IsChecked="{Binding CV37ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                             <!--The RCN225 mapping of key F3--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="6" IsChecked="{Binding CV37ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="7" IsChecked="{Binding CV37ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="8" IsChecked="{Binding CV37ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="9" IsChecked="{Binding CV37ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="10" IsChecked="{Binding CV37ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="11" IsChecked="{Binding CV37ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="12" IsChecked="{Binding CV37ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="13" IsChecked="{Binding CV37ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+                        <!--The extended ZIMO mapping of key F3-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="3" IsChecked="{Binding CV37ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="4" IsChecked="{Binding CV37ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="5" IsChecked="{Binding CV37ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="6" IsChecked="{Binding CV37ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="7" IsChecked="{Binding CV37ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="8" IsChecked="{Binding CV37ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="9" IsChecked="{Binding CV37ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="9" Grid.Column="10" IsChecked="{Binding CV37ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F3-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="6" IsChecked="{Binding CV37ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="7" IsChecked="{Binding CV37ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="8" IsChecked="{Binding CV37ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="9" IsChecked="{Binding CV37ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="10" IsChecked="{Binding CV37ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="11" IsChecked="{Binding CV37ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="12" IsChecked="{Binding CV37ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="9" Grid.Column="13" IsChecked="{Binding CV37ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label  Grid.Row="9" Grid.Column="17" Text="{Binding CV37Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F4 mapping in CV38--> 
+                        <!--Function key F4 mapping in CV38-->
                         <Label  Grid.Row="10" Grid.Column="0" Text="F4" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="10" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="10" Grid.Column="2" Text="38" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                             <!--The extended ZIMO mapping of key F4--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="3" IsChecked="{Binding CV38ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="4" IsChecked="{Binding CV38ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="5" IsChecked="{Binding CV38ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="6" IsChecked="{Binding CV38ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="7" IsChecked="{Binding CV38ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="8" IsChecked="{Binding CV38ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="9" IsChecked="{Binding CV38ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="10" IsChecked="{Binding CV38ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <!--The extended ZIMO mapping of key F4-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="3" IsChecked="{Binding CV38ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="4" IsChecked="{Binding CV38ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="5" IsChecked="{Binding CV38ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="6" IsChecked="{Binding CV38ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="7" IsChecked="{Binding CV38ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="8" IsChecked="{Binding CV38ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="9" IsChecked="{Binding CV38ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="10" Grid.Column="10" IsChecked="{Binding CV38ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                             <!--The RCN225 mapping of key F4--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="6" IsChecked="{Binding CV38ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="7" IsChecked="{Binding CV38ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="8" IsChecked="{Binding CV38ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="9" IsChecked="{Binding CV38ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="10" IsChecked="{Binding CV38ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="11" IsChecked="{Binding CV38ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="12" IsChecked="{Binding CV38ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="13" IsChecked="{Binding CV38ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+                        <!--The RCN225 mapping of key F4-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="6" IsChecked="{Binding CV38ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="7" IsChecked="{Binding CV38ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="8" IsChecked="{Binding CV38ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="9" IsChecked="{Binding CV38ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="10" IsChecked="{Binding CV38ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="11" IsChecked="{Binding CV38ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="12" IsChecked="{Binding CV38ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="10" Grid.Column="13" IsChecked="{Binding CV38ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label  Grid.Row="10" Grid.Column="17" Text="{Binding CV38Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F5 mapping in CV39--> 
+                        <!--Function key F5 mapping in CV39-->
                         <Label  Grid.Row="11" Grid.Column="0" Text="F5" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="11" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="11" Grid.Column="2" Text="39" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                             <!--The extended ZIMO mapping of key F5--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="3" IsChecked="{Binding CV39ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="4" IsChecked="{Binding CV39ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="5" IsChecked="{Binding CV39ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="6" IsChecked="{Binding CV39ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="7" IsChecked="{Binding CV39ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="8" IsChecked="{Binding CV39ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="9" IsChecked="{Binding CV39ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="10" IsChecked="{Binding CV39ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <!--The extended ZIMO mapping of key F5-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="3" IsChecked="{Binding CV39ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="4" IsChecked="{Binding CV39ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="5" IsChecked="{Binding CV39ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="6" IsChecked="{Binding CV39ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="7" IsChecked="{Binding CV39ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="8" IsChecked="{Binding CV39ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="9" IsChecked="{Binding CV39ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="11" Grid.Column="10" IsChecked="{Binding CV39ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                             <!--The RCN225 mapping of key F5--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="6" IsChecked="{Binding CV39ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="7" IsChecked="{Binding CV39ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="8" IsChecked="{Binding CV39ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="9" IsChecked="{Binding CV39ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="10" IsChecked="{Binding CV39ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="11" IsChecked="{Binding CV39ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="12" IsChecked="{Binding CV39ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="13" IsChecked="{Binding CV39ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <!--The RCN225 mapping of key F5-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="6" IsChecked="{Binding CV39ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="7" IsChecked="{Binding CV39ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="8" IsChecked="{Binding CV39ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="9" IsChecked="{Binding CV39ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="10" IsChecked="{Binding CV39ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="11" IsChecked="{Binding CV39ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="12" IsChecked="{Binding CV39ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="11" Grid.Column="13" IsChecked="{Binding CV39ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
 
                         <Label  Grid.Row="11" Grid.Column="17" Text="{Binding CV39Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F6 mapping in CV40--> 
+                        <!--Function key F6 mapping in CV40-->
                         <Label  Grid.Row="12" Grid.Column="0" Text="F6" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="12" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label  Grid.Row="12" Grid.Column="2" Text="40" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F6--> 
-                            <CheckBox  IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="12" Grid.Column="3" IsChecked="{Binding CV40ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="4" IsChecked="{Binding CV40ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="5" IsChecked="{Binding CV40ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="6" IsChecked="{Binding CV40ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="7" IsChecked="{Binding CV40ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="8" IsChecked="{Binding CV40ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="9" IsChecked="{Binding CV40ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="10" IsChecked="{Binding CV40ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                             <!--The RCN225 mapping of key F6--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"  Grid.Row="12" Grid.Column="6" IsChecked="{Binding CV40ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="7" IsChecked="{Binding CV40ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="8" IsChecked="{Binding CV40ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="9" IsChecked="{Binding CV40ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="10" IsChecked="{Binding CV40ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="11" IsChecked="{Binding CV40ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="12" IsChecked="{Binding CV40ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="13" IsChecked="{Binding CV40ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+
+                        <!--The extended ZIMO mapping of key F6-->
+                        <CheckBox  IsVisible="{Binding ZIMOExtendedFunctionMapping}" Grid.Row="12" Grid.Column="3" IsChecked="{Binding CV40ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="4" IsChecked="{Binding CV40ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="5" IsChecked="{Binding CV40ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="6" IsChecked="{Binding CV40ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="7" IsChecked="{Binding CV40ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="8" IsChecked="{Binding CV40ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="9" IsChecked="{Binding CV40ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"  Grid.Row="12" Grid.Column="10" IsChecked="{Binding CV40ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F6-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"  Grid.Row="12" Grid.Column="6" IsChecked="{Binding CV40ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="7" IsChecked="{Binding CV40ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="8" IsChecked="{Binding CV40ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="9" IsChecked="{Binding CV40ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="10" IsChecked="{Binding CV40ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="11" IsChecked="{Binding CV40ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="12" IsChecked="{Binding CV40ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}" Grid.Row="12" Grid.Column="13" IsChecked="{Binding CV40ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label  Grid.Row="12" Grid.Column="17" Text="{Binding CV40Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F7 mapping in CV41--> 
+                        <!--Function key F7 mapping in CV41-->
                         <Label Grid.Row="13" Grid.Column="0" Text="F7" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="13" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="13" Grid.Column="2" Text="41" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                            <!-- The extended ZIMO mapping of key F7--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="3" IsChecked="{Binding CV41ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="4" IsChecked="{Binding CV41ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="5" IsChecked="{Binding CV41ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="6" IsChecked="{Binding CV41ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="7" IsChecked="{Binding CV41ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="8" IsChecked="{Binding CV41ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="9" IsChecked="{Binding CV41ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="10" IsChecked="{Binding CV41ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                             <!--The RCN225 mapping of key F7--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="9" IsChecked="{Binding CV41ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="10" IsChecked="{Binding CV41ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="11" IsChecked="{Binding CV41ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="12" IsChecked="{Binding CV41ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="13" IsChecked="{Binding CV41ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="14" IsChecked="{Binding CV41ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="15" IsChecked="{Binding CV41ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="16" IsChecked="{Binding CV41ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                      
+
+                        <!-- The extended ZIMO mapping of key F7-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="3" IsChecked="{Binding CV41ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="4" IsChecked="{Binding CV41ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="5" IsChecked="{Binding CV41ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="6" IsChecked="{Binding CV41ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="7" IsChecked="{Binding CV41ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="8" IsChecked="{Binding CV41ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="9" IsChecked="{Binding CV41ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="13" Grid.Column="10" IsChecked="{Binding CV41ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F7-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="9" IsChecked="{Binding CV41ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="10" IsChecked="{Binding CV41ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="11" IsChecked="{Binding CV41ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="12" IsChecked="{Binding CV41ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="13" IsChecked="{Binding CV41ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="14" IsChecked="{Binding CV41ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="15" IsChecked="{Binding CV41ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="13" Grid.Column="16" IsChecked="{Binding CV41ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label  Grid.Row="13" Grid.Column="17" Text="{Binding CV41Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F8 mapping in CV42--> 
+                        <!--Function key F8 mapping in CV42-->
                         <Label Grid.Row="14" Grid.Column="0" Text="F8" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="14" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="14" Grid.Column="2" Text="42" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                             <!--The extended ZIMO mapping of key F8--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="3" IsChecked="{Binding CV42ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="4" IsChecked="{Binding CV42ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="5" IsChecked="{Binding CV42ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="6" IsChecked="{Binding CV42ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="7" IsChecked="{Binding CV42ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="8" IsChecked="{Binding CV42ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="9" IsChecked="{Binding CV42ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="10" IsChecked="{Binding CV42ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                            <!--The RCN225 mapping of key F8--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="9" IsChecked="{Binding CV42ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="10" IsChecked="{Binding CV42ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="11" IsChecked="{Binding CV42ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="12" IsChecked="{Binding CV42ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="13" IsChecked="{Binding CV42ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="14" IsChecked="{Binding CV42ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="15" IsChecked="{Binding CV42ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="16" IsChecked="{Binding CV42ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                            <Label Grid.Row="14" Grid.Column="17" Text="{Binding CV42Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                        <!--The extended ZIMO mapping of key F8-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="3" IsChecked="{Binding CV42ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="4" IsChecked="{Binding CV42ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="5" IsChecked="{Binding CV42ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="6" IsChecked="{Binding CV42ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="7" IsChecked="{Binding CV42ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="8" IsChecked="{Binding CV42ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="9" IsChecked="{Binding CV42ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="14" Grid.Column="10" IsChecked="{Binding CV42ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                         <!--Function key F9 mapping in CV43--> 
+                        <!--The RCN225 mapping of key F8-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="9" IsChecked="{Binding CV42ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="10" IsChecked="{Binding CV42ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="11" IsChecked="{Binding CV42ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="12" IsChecked="{Binding CV42ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="13" IsChecked="{Binding CV42ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="14" IsChecked="{Binding CV42ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="15" IsChecked="{Binding CV42ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"    Grid.Row="14" Grid.Column="16" IsChecked="{Binding CV42ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <Label Grid.Row="14" Grid.Column="17" Text="{Binding CV42Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+
+                        <!--Function key F9 mapping in CV43-->
                         <Label Grid.Row="15" Grid.Column="0" Text="F9" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="15" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="15" Grid.Column="2" Text="43" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F9--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="3" IsChecked="{Binding CV43ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="4" IsChecked="{Binding CV43ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="5" IsChecked="{Binding CV43ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="6" IsChecked="{Binding CV43ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="7" IsChecked="{Binding CV43ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="8" IsChecked="{Binding CV43ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="9" IsChecked="{Binding CV43ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="10" IsChecked="{Binding CV43ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                            <!--The RCN225 mapping of key F9--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="9" IsChecked="{Binding CV43ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="10" IsChecked="{Binding CV43ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="11" IsChecked="{Binding CV43ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="12" IsChecked="{Binding CV43ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="13" IsChecked="{Binding CV43ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="14" IsChecked="{Binding CV43ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="15" IsChecked="{Binding CV43ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="16" IsChecked="{Binding CV43ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+                        <!--The extended ZIMO mapping of key F9-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="3" IsChecked="{Binding CV43ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="4" IsChecked="{Binding CV43ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="5" IsChecked="{Binding CV43ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="6" IsChecked="{Binding CV43ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="7" IsChecked="{Binding CV43ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="8" IsChecked="{Binding CV43ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="9" IsChecked="{Binding CV43ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="15" Grid.Column="10" IsChecked="{Binding CV43ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F9-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="9" IsChecked="{Binding CV43ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="10" IsChecked="{Binding CV43ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="11" IsChecked="{Binding CV43ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="12" IsChecked="{Binding CV43ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="13" IsChecked="{Binding CV43ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="14" IsChecked="{Binding CV43ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="15" IsChecked="{Binding CV43ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="15" Grid.Column="16" IsChecked="{Binding CV43ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label   Grid.Row="15" Grid.Column="17" Text="{Binding CV43Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F10 mapping in CV44--> 
+                        <!--Function key F10 mapping in CV44-->
                         <Label Grid.Row="16" Grid.Column="0" Text="F10" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="16" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="16" Grid.Column="2" Text="44" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F10--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="3" IsChecked="{Binding CV44ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="4" IsChecked="{Binding CV44ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="5" IsChecked="{Binding CV44ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="6" IsChecked="{Binding CV44ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="7" IsChecked="{Binding CV44ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="8" IsChecked="{Binding CV44ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="9" IsChecked="{Binding CV44ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="10" IsChecked="{Binding CV44ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
 
-                             <!--The RCN225 mapping of key F10--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="9" IsChecked="{Binding CV44ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="10" IsChecked="{Binding CV44ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="11" IsChecked="{Binding CV44ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="12" IsChecked="{Binding CV44ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="13" IsChecked="{Binding CV44ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="14" IsChecked="{Binding CV44ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="15" IsChecked="{Binding CV44ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="16" IsChecked="{Binding CV44ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+                        <!--The extended ZIMO mapping of key F10-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="3" IsChecked="{Binding CV44ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="4" IsChecked="{Binding CV44ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="5" IsChecked="{Binding CV44ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="6" IsChecked="{Binding CV44ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="7" IsChecked="{Binding CV44ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="8" IsChecked="{Binding CV44ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="9" IsChecked="{Binding CV44ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="16" Grid.Column="10" IsChecked="{Binding CV44ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F10-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="9" IsChecked="{Binding CV44ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="10" IsChecked="{Binding CV44ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="11" IsChecked="{Binding CV44ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="12" IsChecked="{Binding CV44ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="13" IsChecked="{Binding CV44ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="14" IsChecked="{Binding CV44ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="15" IsChecked="{Binding CV44ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="16" Grid.Column="16" IsChecked="{Binding CV44ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label  Grid.Row="16" Grid.Column="17" Text="{Binding CV44Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F11 mapping in CV45--> 
+                        <!--Function key F11 mapping in CV45-->
                         <Label Grid.Row="17" Grid.Column="0" Text="F11" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="17" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="17" Grid.Column="2" Text="45" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F11--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="3" IsChecked="{Binding CV45ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="4" IsChecked="{Binding CV45ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="5" IsChecked="{Binding CV45ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="6" IsChecked="{Binding CV45ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="7" IsChecked="{Binding CV45ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="8" IsChecked="{Binding CV45ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="9" IsChecked="{Binding CV45ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="10" IsChecked="{Binding CV45ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                             <!--The RCN225 mapping of key F11--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="9" IsChecked="{Binding CV45ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="10" IsChecked="{Binding CV45ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="11" IsChecked="{Binding CV45ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="12" IsChecked="{Binding CV45ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="13" IsChecked="{Binding CV45ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="14" IsChecked="{Binding CV45ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="15" IsChecked="{Binding CV45ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="16" IsChecked="{Binding CV45ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                            <Label Grid.Row="17" Grid.Column="17" Text="{Binding CV45Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <!--Function key F12 mapping in CV46--> 
+                        <!--The extended ZIMO mapping of key F11-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="3" IsChecked="{Binding CV45ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="4" IsChecked="{Binding CV45ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="5" IsChecked="{Binding CV45ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="6" IsChecked="{Binding CV45ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="7" IsChecked="{Binding CV45ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="8" IsChecked="{Binding CV45ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="9" IsChecked="{Binding CV45ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="17" Grid.Column="10" IsChecked="{Binding CV45ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The RCN225 mapping of key F11-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="9" IsChecked="{Binding CV45ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="10" IsChecked="{Binding CV45ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="11" IsChecked="{Binding CV45ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="12" IsChecked="{Binding CV45ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="13" IsChecked="{Binding CV45ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="14" IsChecked="{Binding CV45ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="15" IsChecked="{Binding CV45ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="17" Grid.Column="16" IsChecked="{Binding CV45ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <Label Grid.Row="17" Grid.Column="17" Text="{Binding CV45Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+
+                        <!--Function key F12 mapping in CV46-->
                         <Label Grid.Row="18" Grid.Column="0" Text="F12" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="18" Grid.Column="1" Text="-" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
                         <Label Grid.Row="18" Grid.Column="2" Text="46" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        
-                             <!--The extended ZIMO mapping of key F12--> 
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="3" IsChecked="{Binding CV46ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="4" IsChecked="{Binding CV46ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="5" IsChecked="{Binding CV46ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="6" IsChecked="{Binding CV46ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="7" IsChecked="{Binding CV46ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="8" IsChecked="{Binding CV46ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="9" IsChecked="{Binding CV46ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="10" IsChecked="{Binding CV46ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
-                             <!--The extended ZIMO mapping of key F12--> 
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="9" IsChecked="{Binding CV46ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="10" IsChecked="{Binding CV46ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="11" IsChecked="{Binding CV46ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="12" IsChecked="{Binding CV46ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="13" IsChecked="{Binding CV46ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="14" IsChecked="{Binding CV46ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="15" IsChecked="{Binding CV46ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                            <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="16" IsChecked="{Binding CV46ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        
+
+                        <!--The extended ZIMO mapping of key F12-->
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="3" IsChecked="{Binding CV46ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="4" IsChecked="{Binding CV46ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="5" IsChecked="{Binding CV46ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="6" IsChecked="{Binding CV46ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="7" IsChecked="{Binding CV46ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="8" IsChecked="{Binding CV46ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="9" IsChecked="{Binding CV46ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding ZIMOExtendedFunctionMapping}"   Grid.Row="18" Grid.Column="10" IsChecked="{Binding CV46ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
+                        <!--The extended ZIMO mapping of key F12-->
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="9" IsChecked="{Binding CV46ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="10" IsChecked="{Binding CV46ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="11" IsChecked="{Binding CV46ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="12" IsChecked="{Binding CV46ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="13" IsChecked="{Binding CV46ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="14" IsChecked="{Binding CV46ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="15" IsChecked="{Binding CV46ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                        <CheckBox IsVisible="{Binding RCN225StandardFunctionMapping}"   Grid.Row="18" Grid.Column="16" IsChecked="{Binding CV46ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+
                         <Label Grid.Row="18" Grid.Column="17" Text="{Binding CV46Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
 
-                         <HorizontalStackLayout Grid.Row="19" Grid.Column="9" Margin="0,20,0,0" Grid.ColumnSpan="9" HorizontalOptions="End">
-                             <Button CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=DeleteOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_dark.png}"></Button>
-                             <Button Margin="20,0,0,0" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingResetConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_dark.png}"></Button>
-                         </HorizontalStackLayout>
-                       
+                        <HorizontalStackLayout Grid.Row="19" Grid.Column="0" Margin="0,20,0,0" Grid.ColumnSpan="18" HorizontalOptions="End">
+                            <Button CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=DeleteOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_dark.png}"></Button>
+                            <Button Margin="20,0,0,0" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetOutputMappingCV33CV46Command}" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingResetConfig}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_dark.png}"></Button>
+                        </HorizontalStackLayout>
+
                     </Grid>
                 </Border>
-                    
+
             </VerticalStackLayout>
-            
+
         </VerticalStackLayout>
-    
+
     </ScrollView>
-    
+
 </ContentPage>
