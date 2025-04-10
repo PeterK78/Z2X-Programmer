@@ -814,6 +814,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
     <RCN225_DECODERRESET_CV8 support=""yes"" writeable=""no""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+    <RCN225_DIRECTION_CV29_0 support=""yes"" writeable=""yes""/>
 
     <!-- Supported ZIMO features -->
     <ZIMO_MXFX_SECONDADDRESS_CV64 support=""yes"" writeable=""yes""/>

@@ -22,7 +22,7 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
 -->
-    
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Z2XProgrammer.Pages.ExpertPage"
@@ -67,7 +67,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.RowDefinitions>
 
                     <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" IsVisible="{Binding ActivityReadWriteCVOngoing}" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
-                    
+
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" WidthRequest="200" MinimumWidthRequest="200" Text="{Binding CvNumber}" HorizontalOptions="End" HorizontalTextAlignment="Center" VerticalOptions="Center" Keyboard="Numeric"  >
                         <Entry.Behaviors>
@@ -81,7 +81,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 MaximumDecimalPlaces="0" />
                         </Entry.Behaviors>
                     </Entry>
-                    
+
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVValue}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" MinimumWidthRequest="200" WidthRequest="200" Text="{Binding Value}" HorizontalOptions="End" HorizontalTextAlignment="Center" IsPassword="{Binding Path=DataValid,Converter={StaticResource boolInvert}}" VerticalOptions="Center" Keyboard="Numeric" >
                         <Entry.Behaviors>
@@ -95,48 +95,48 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 MaximumDecimalPlaces="0" />
                         </Entry.Behaviors>
                     </Entry>
-                    
+
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVBits}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End">
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit7}"></CheckBox>
-                                <Label Text="Bit 7"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit6}"></CheckBox>
-                                <Label Text="Bit 6"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit5}"></CheckBox>
-                                <Label Text="Bit 5"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit4}"></CheckBox>
-                                <Label Text="Bit 4"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit3}"></CheckBox>
-                                <Label Text="Bit 3"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit2}"></CheckBox>
-                                <Label Text="Bit 2"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit1}"></CheckBox>
-                                <Label Text="Bit 1"></Label>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <CheckBox IsChecked="{Binding Bit0}" ></CheckBox>
-                                <Label Text="Bit 0"></Label>
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
-                    
-                        <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_dark.png , Dark=ic_fluent_arrow_download_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_dark.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
-                        </HorizontalStackLayout>
-                    </Grid>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit7}"></CheckBox>
+                            <Label Text="Bit 7"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit6}"></CheckBox>
+                            <Label Text="Bit 6"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit5}"></CheckBox>
+                            <Label Text="Bit 5"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit4}"></CheckBox>
+                            <Label Text="Bit 4"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit3}"></CheckBox>
+                            <Label Text="Bit 3"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit2}"></CheckBox>
+                            <Label Text="Bit 2"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit1}"></CheckBox>
+                            <Label Text="Bit 1"></Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <CheckBox IsChecked="{Binding Bit0}" ></CheckBox>
+                            <Label Text="Bit 0"></Label>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
+                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_dark.png , Dark=ic_fluent_arrow_download_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
+                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_dark.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
+                    </HorizontalStackLayout>
+                </Grid>
             </Border>
 
             <!-- CV list -->
@@ -170,17 +170,18 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </CollectionView.ItemTemplate>
 
                         </CollectionView>
-                        
+
                     </Border>
 
                     <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
+                        <Button Margin="0,0,20,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableAllCVs}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableAllCVsCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_select_all_on_24_dark.png, Dark=ic_fluent_select_all_on_24_dark.png}"></Button>
                         <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_toggle_multiple_24_dark.png, Dark=ic_fluent_toggle_multiple_24_dark.png}"></Button>
                     </HorizontalStackLayout>
-                    
+
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
-       
+
 
     </ScrollView>
 </ContentPage>

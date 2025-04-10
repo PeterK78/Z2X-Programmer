@@ -1772,4 +1772,19 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysMappingTitleDoehlerAndHaass" xml:space="preserve">
     <value>Funktionsausgänge (CV33 - CV46, CV137)</value>
   </data>
+  <data name="FrameControllerButtonFasterDescription" xml:space="preserve">
+    <value>Schneller</value>
+  </data>
+  <data name="FrameControllerButtonSlowerDescription" xml:space="preserve">
+    <value>Langsamer</value>
+  </data>
+  <data name="FrameControllerButtonForwardDescription" xml:space="preserve">
+    <value>Vorwärts</value>
+  </data>
+  <data name="FrameControllerButtonBackwardDescription" xml:space="preserve">
+    <value>Rückwärts</value>
+  </data>
+  <data name="FrameExpertSettingsEnableAllCVs" xml:space="preserve">
+    <value>Alle aktivieren</value>
+  </data>
 </root>

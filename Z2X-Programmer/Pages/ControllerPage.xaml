@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-    
+
 <!--
 
 Z2X-Programmer
@@ -21,7 +21,7 @@ along with this program. If not, see:
 
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
--->    
+-->
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -35,329 +35,329 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              Padding="40,40,5,20"
              x:Name="ThisPage"
              >
-       
+
     <ContentPage.Resources>
         <converter:BoolToBackgroundColor x:Key="boolToBackgroundConverter" />
     </ContentPage.Resources>
-    
+
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
-        
-         <VerticalStackLayout>
-             
-        <!-- Page Title -->
-        <Grid>
-            <Grid.ColumnDefinitions>
+
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <Grid>
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Grid.Column="0">
-                <Image Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" Margin="0,0,10,0" ></Image>
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemControllerText}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            </HorizontalStackLayout>
-            
-            <Button Margin="0,5,0,10" IsEnabled="{OnIdiom false, Desktop=true}" ToolTipProperties.Text="{x:Static strings:AppResources.OpenControllerWindowNewWindow}" VerticalOptions="Center"  HeightRequest="40" WidthRequest="40" IsVisible="{Binding ExternalControllerWindowAllowed}"  ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}"   Grid.Row="0" Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=OpenInExternalWindowCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"></Button>
-            
-        </Grid>
-             
-        <Border Style="{StaticResource Z2XBorderFrame}" Padding="20,20,20,20" WidthRequest="400" MinimumWidthRequest="400" HorizontalOptions="Center" >
-    
-         <Grid>
-         <Grid.ColumnDefinitions>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
-             <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
 
-         </Grid.ColumnDefinitions>
-         <Grid.RowDefinitions>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="*"></RowDefinition>
-         </Grid.RowDefinitions>
-     
-         <!-- Button F0 -->
-         <Button Grid.Row="0" ImageSource="{AppThemeBinding Light=ic_fluent_lightbulb_24_dark.png, Dark=ic_fluent_lightbulb_24_dark.png}" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF0,Converter={StaticResource boolToBackgroundConverter}}" Text="F0" CommandParameter="0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}">
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="0">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                                        <KeyboardAccelerator Key="0" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
-         
-         <!-- Button F1 -->
-         <Button Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF1,Converter={StaticResource boolToBackgroundConverter}}" Text="F1" CommandParameter="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="1">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="1" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
-         
-         <!-- Button F2 -->
-         <Button Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF2,Converter={StaticResource boolToBackgroundConverter}}" Text="F2" CommandParameter="2" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}"  >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F2" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="2">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="2" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
-         
-         <!-- Button F3 -->
-         <Button Grid.Row="1" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF3,Converter={StaticResource boolToBackgroundConverter}}" Text="F3" CommandParameter="3" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F3" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="3">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="3" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
-     
-         <!-- Button F4 -->
-         <Button Grid.Row="1" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF4,Converter={StaticResource boolToBackgroundConverter}}" Text="F4" CommandParameter="4" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F4" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="4">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="4" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
-         
-         <!-- Button F5 -->
-         <Button Grid.Row="2" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF5,Converter={StaticResource boolToBackgroundConverter}}" Text="F5" CommandParameter="5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-         <FlyoutBase.ContextFlyout>
-           <MenuFlyout>
-               <MenuFlyoutItem Text="F5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="5">
-                   <MenuFlyoutItem.KeyboardAccelerators>
-                       <KeyboardAccelerator Key="5" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                   </MenuFlyoutItem.KeyboardAccelerators>
-               </MenuFlyoutItem>
-           </MenuFlyout>
-          </FlyoutBase.ContextFlyout>
-         </Button>         
-    
-         <!-- Button F6 -->
-         <Button Grid.Row="2" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF6,Converter={StaticResource boolToBackgroundConverter}}" Text="F6" CommandParameter="6" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-         <FlyoutBase.ContextFlyout>
-           <MenuFlyout>
-               <MenuFlyoutItem Text="F6" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="6">
-                   <MenuFlyoutItem.KeyboardAccelerators>
-                       <KeyboardAccelerator Key="6" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                   </MenuFlyoutItem.KeyboardAccelerators>
-               </MenuFlyoutItem>
-           </MenuFlyout>
-          </FlyoutBase.ContextFlyout>
-         </Button>
-         
-         <!-- Button F7 -->
-         <Button Grid.Row="2" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF7,Converter={StaticResource boolToBackgroundConverter}}" Text="F7" CommandParameter="7" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-         <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Text="F7" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="7">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="7" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuFlyout>
-           </FlyoutBase.ContextFlyout>
-          </Button>
- 
-        <!-- Button F8 -->
-        <Button Grid.Row="2" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF8,Converter={StaticResource boolToBackgroundConverter}}" Text="F8" CommandParameter="8" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-        <FlyoutBase.ContextFlyout>
-           <MenuFlyout>
-               <MenuFlyoutItem Text="F8" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="8">
-                   <MenuFlyoutItem.KeyboardAccelerators>
-                       <KeyboardAccelerator Key="8" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                   </MenuFlyoutItem.KeyboardAccelerators>
-               </MenuFlyoutItem>
-           </MenuFlyout>
-          </FlyoutBase.ContextFlyout>
-         </Button>
-          
-         <!-- Button F9 -->
-        <Button Grid.Row="3" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF9,Converter={StaticResource boolToBackgroundConverter}}" Text="F9" CommandParameter="9" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="F9" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="9">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="9" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-        </Button>
-         
-        <!-- Button F10 -->
-        <Button Grid.Row="3" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF10,Converter={StaticResource boolToBackgroundConverter}}" Text="F10" CommandParameter="10" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-   
-        <!-- Button F11 -->
-        <Button Grid.Row="3" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF11,Converter={StaticResource boolToBackgroundConverter}}" Text="F11" CommandParameter="11" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+                <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Grid.Column="0">
+                    <Image Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" Margin="0,0,10,0" ></Image>
+                    <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemControllerText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                </HorizontalStackLayout>
 
-        <!-- Button F12 -->
-        <Button Grid.Row="3" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF12,Converter={StaticResource boolToBackgroundConverter}}" Text="F12" CommandParameter="12" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F13 -->
-        <Button Grid.Row="4" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF13,Converter={StaticResource boolToBackgroundConverter}}" Text="F13" CommandParameter="13" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>         
-         
-        <!-- Button F14 -->
-        <Button Grid.Row="4" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF14,Converter={StaticResource boolToBackgroundConverter}}" Text="F14" CommandParameter="14" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>         
-    
-        <!-- Button F15 -->
-        <Button Grid.Row="4" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF15,Converter={StaticResource boolToBackgroundConverter}}" Text="F15" CommandParameter="15" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>         
+                <Button Margin="0,5,0,10" IsEnabled="{OnIdiom false, Desktop=true}" ToolTipProperties.Text="{x:Static strings:AppResources.OpenControllerWindowNewWindow}" VerticalOptions="Center"  HeightRequest="40" WidthRequest="40" IsVisible="{Binding ExternalControllerWindowAllowed}"  ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}"   Grid.Row="0" Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=OpenInExternalWindowCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"></Button>
 
-        <!-- Button F16 -->
-        <Button Grid.Row="4" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF16,Converter={StaticResource boolToBackgroundConverter}}" Text="F16" CommandParameter="16" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>           
-         
-        <!-- Button F17 -->
-        <Button Grid.Row="5" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF17,Converter={StaticResource boolToBackgroundConverter}}" Text="F17" CommandParameter="17" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+            </Grid>
 
-        <!-- Button F18 -->
-        <Button Grid.Row="5" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF18,Converter={StaticResource boolToBackgroundConverter}}" Text="F18" CommandParameter="18" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+            <Border Style="{StaticResource Z2XBorderFrame}" Padding="20,20,20,20" WidthRequest="400" MinimumWidthRequest="400" HorizontalOptions="Center" >
 
-        <!-- Button F19 -->
-        <Button Grid.Row="5" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF19,Converter={StaticResource boolToBackgroundConverter}}" Text="F19" CommandParameter="19" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
 
-        <!-- Button F20 -->
-        <Button Grid.Row="5" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF20,Converter={StaticResource boolToBackgroundConverter}}" Text="F20" CommandParameter="20" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F21 -->
-        <Button Grid.Row="6" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF21,Converter={StaticResource boolToBackgroundConverter}}" Text="F21" CommandParameter="21" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F22 -->
-        <Button Grid.Row="6" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF22,Converter={StaticResource boolToBackgroundConverter}}" Text="F22" CommandParameter="22" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F23 -->
-        <Button Grid.Row="6" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF23,Converter={StaticResource boolToBackgroundConverter}}" Text="F23" CommandParameter="23" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button> 
-     
-        <!-- Button F24 -->
-        <Button Grid.Row="6" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF24,Converter={StaticResource boolToBackgroundConverter}}" Text="F24" CommandParameter="24" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F25 -->
-        <Button Grid.Row="7" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF25,Converter={StaticResource boolToBackgroundConverter}}" Text="F25" CommandParameter="25" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F26 -->
-        <Button Grid.Row="7" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF26,Converter={StaticResource boolToBackgroundConverter}}" Text="F26" CommandParameter="26" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F27 -->
-        <Button Grid.Row="7" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF27,Converter={StaticResource boolToBackgroundConverter}}" Text="F27" CommandParameter="27" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
-         
-        <!-- Button F28 -->
-        <Button Grid.Row="7" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF28,Converter={StaticResource boolToBackgroundConverter}}" Text="F28" CommandParameter="28" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>          
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-        <!-- Speed Slider and Speed Buttons -->
-        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,20,0,20">
-             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>     
-            </Grid.RowDefinitions>
-            
-            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="-" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=DecreaseSpeedCommand}"  Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="Down" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=DecreaseSpeedCommand}">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="Down" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-            </Button>
-            
-            <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Margin="5,0,5,0">
-                <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="15" Style="{StaticResource Z2XSlider}"></Slider>
-                <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="31" Style="{StaticResource Z2XSlider}"></Slider>
-                <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="127" Style="{StaticResource Z2XSlider}"></Slider>
-                <Label Text="{Binding Speed}" IsVisible="{Binding AdditionalDisplayOfCVValues}" IsEnabled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="Center" VerticalOptions="End" ></Label>   
-            </VerticalStackLayout>
-            
-            <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="+" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=IncreaseSpeedCommand}" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
-              <FlyoutBase.ContextFlyout>
-                 <MenuFlyout>
-                     <MenuFlyoutItem Text="Up" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=IncreaseSpeedCommand}">
-                         <MenuFlyoutItem.KeyboardAccelerators>
-                             <KeyboardAccelerator Key="Up" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                         </MenuFlyoutItem.KeyboardAccelerators>
-                     </MenuFlyoutItem>
-                 </MenuFlyout>
-             </FlyoutBase.ContextFlyout>
-         </Button> 
-            
-        </Grid>             
-         
-         <!-- Button Left -->
-         <Button BackgroundColor="{Binding Path=DirectionBackward,Converter={StaticResource boolToBackgroundConverter}}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_left_24_dark.png, Dark=ic_fluent_arrow_left_24_dark.png}" Grid.Row="9" Grid.Column="0" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionBackwardCommand}" HeightRequest="20" WidthRequest="80" >
-             <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="Left" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionBackwardCommand}" CommandParameter="{Binding .}">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="Left" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-         </Button>
+                    <!-- Button F0 -->
+                    <Button Grid.Row="0" ImageSource="{AppThemeBinding Light=ic_fluent_lightbulb_24_dark.png, Dark=ic_fluent_lightbulb_24_dark.png}" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF0,Converter={StaticResource boolToBackgroundConverter}}" Text="F0" CommandParameter="0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}">
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="0">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="0" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
 
-         <!-- Button Stop -->
-         <Button Margin="5,0,5,0" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="Stop" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=StopLocoCommand}" HeightRequest="20" >
-            <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Text="Stop" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=StopLocoCommand}" CommandParameter="{Binding .}">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="Space" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuFlyout>
-            </FlyoutBase.ContextFlyout>                  
-         </Button>
-         
-         <!-- Button Right -->
-         <Button BackgroundColor="{Binding Path=DirectionForward,Converter={StaticResource boolToBackgroundConverter}}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_right_24_dark.png, Dark=ic_fluent_arrow_right_24_dark.png}" Grid.Row="9" Grid.Column="3" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionForwardCommand}" HeightRequest="20" WidthRequest="80" >
-            <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Text="Right" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionForwardCommand}" CommandParameter="{Binding .}">
-                    <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="Right" Modifiers="Ctrl"></KeyboardAccelerator>                              
-                    </MenuFlyoutItem.KeyboardAccelerators>
-                </MenuFlyoutItem>
-            </MenuFlyout>
-            </FlyoutBase.ContextFlyout>                  
-         </Button>
-         
-        </Grid>
+                    <!-- Button F1 -->
+                    <Button Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF1,Converter={StaticResource boolToBackgroundConverter}}" Text="F1" CommandParameter="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="1">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="1" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F2 -->
+                    <Button Grid.Row="1" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF2,Converter={StaticResource boolToBackgroundConverter}}" Text="F2" CommandParameter="2" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}"  >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F2" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="2">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="2" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F3 -->
+                    <Button Grid.Row="1" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF3,Converter={StaticResource boolToBackgroundConverter}}" Text="F3" CommandParameter="3" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F3" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="3">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="3" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F4 -->
+                    <Button Grid.Row="1" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF4,Converter={StaticResource boolToBackgroundConverter}}" Text="F4" CommandParameter="4" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F4" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="4">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="4" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F5 -->
+                    <Button Grid.Row="2" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF5,Converter={StaticResource boolToBackgroundConverter}}" Text="F5" CommandParameter="5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="5">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="5" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F6 -->
+                    <Button Grid.Row="2" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF6,Converter={StaticResource boolToBackgroundConverter}}" Text="F6" CommandParameter="6" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F6" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="6">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="6" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F7 -->
+                    <Button Grid.Row="2" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF7,Converter={StaticResource boolToBackgroundConverter}}" Text="F7" CommandParameter="7" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F7" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="7">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="7" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F8 -->
+                    <Button Grid.Row="2" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF8,Converter={StaticResource boolToBackgroundConverter}}" Text="F8" CommandParameter="8" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F8" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="8">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="8" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F9 -->
+                    <Button Grid.Row="3" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF9,Converter={StaticResource boolToBackgroundConverter}}" Text="F9" CommandParameter="9" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="F9" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" CommandParameter="9">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="9" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button F10 -->
+                    <Button Grid.Row="3" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF10,Converter={StaticResource boolToBackgroundConverter}}" Text="F10" CommandParameter="10" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F11 -->
+                    <Button Grid.Row="3" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF11,Converter={StaticResource boolToBackgroundConverter}}" Text="F11" CommandParameter="11" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F12 -->
+                    <Button Grid.Row="3" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF12,Converter={StaticResource boolToBackgroundConverter}}" Text="F12" CommandParameter="12" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F13 -->
+                    <Button Grid.Row="4" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF13,Converter={StaticResource boolToBackgroundConverter}}" Text="F13" CommandParameter="13" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F14 -->
+                    <Button Grid.Row="4" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF14,Converter={StaticResource boolToBackgroundConverter}}" Text="F14" CommandParameter="14" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F15 -->
+                    <Button Grid.Row="4" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF15,Converter={StaticResource boolToBackgroundConverter}}" Text="F15" CommandParameter="15" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F16 -->
+                    <Button Grid.Row="4" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF16,Converter={StaticResource boolToBackgroundConverter}}" Text="F16" CommandParameter="16" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F17 -->
+                    <Button Grid.Row="5" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF17,Converter={StaticResource boolToBackgroundConverter}}" Text="F17" CommandParameter="17" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F18 -->
+                    <Button Grid.Row="5" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF18,Converter={StaticResource boolToBackgroundConverter}}" Text="F18" CommandParameter="18" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F19 -->
+                    <Button Grid.Row="5" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF19,Converter={StaticResource boolToBackgroundConverter}}" Text="F19" CommandParameter="19" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F20 -->
+                    <Button Grid.Row="5" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF20,Converter={StaticResource boolToBackgroundConverter}}" Text="F20" CommandParameter="20" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F21 -->
+                    <Button Grid.Row="6" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF21,Converter={StaticResource boolToBackgroundConverter}}" Text="F21" CommandParameter="21" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F22 -->
+                    <Button Grid.Row="6" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF22,Converter={StaticResource boolToBackgroundConverter}}" Text="F22" CommandParameter="22" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F23 -->
+                    <Button Grid.Row="6" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF23,Converter={StaticResource boolToBackgroundConverter}}" Text="F23" CommandParameter="23" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F24 -->
+                    <Button Grid.Row="6" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF24,Converter={StaticResource boolToBackgroundConverter}}" Text="F24" CommandParameter="24" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F25 -->
+                    <Button Grid.Row="7" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF25,Converter={StaticResource boolToBackgroundConverter}}" Text="F25" CommandParameter="25" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F26 -->
+                    <Button Grid.Row="7" Grid.Column="1" BackgroundColor="{Binding Path=FunctionF26,Converter={StaticResource boolToBackgroundConverter}}" Text="F26" CommandParameter="26" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F27 -->
+                    <Button Grid.Row="7" Grid.Column="2" BackgroundColor="{Binding Path=FunctionF27,Converter={StaticResource boolToBackgroundConverter}}" Text="F27" CommandParameter="27" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Button F28 -->
+                    <Button Grid.Row="7" Grid.Column="3" BackgroundColor="{Binding Path=FunctionF28,Converter={StaticResource boolToBackgroundConverter}}" Text="F28" CommandParameter="28" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" ></Button>
+
+                    <!-- Speed Slider and Speed Buttons -->
+                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,20,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="-" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=DecreaseSpeedCommand}"  Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{x:Static strings:AppResources.FrameControllerButtonSlowerDescription}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=DecreaseSpeedCommand}">
+                                        <MenuFlyoutItem.KeyboardAccelerators>
+                                            <KeyboardAccelerator Key="Down" Modifiers="Ctrl"></KeyboardAccelerator>
+                                        </MenuFlyoutItem.KeyboardAccelerators>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Button>
+
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Margin="5,0,5,0">
+                            <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="15" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="31" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="127" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label Text="{Binding Speed}" IsVisible="{Binding AdditionalDisplayOfCVValues}" IsEnabled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="Center" VerticalOptions="End" ></Label>
+                        </VerticalStackLayout>
+
+                        <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="+" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=IncreaseSpeedCommand}" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{x:Static strings:AppResources.FrameControllerButtonFasterDescription}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=IncreaseSpeedCommand}">
+                                        <MenuFlyoutItem.KeyboardAccelerators>
+                                            <KeyboardAccelerator Key="Up" Modifiers="Ctrl"></KeyboardAccelerator>
+                                        </MenuFlyoutItem.KeyboardAccelerators>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Button>
+
+                    </Grid>
+
+                    <!-- Button Left -->
+                    <Button BackgroundColor="{Binding Path=DirectionBackward,Converter={StaticResource boolToBackgroundConverter}}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_left_24_dark.png, Dark=ic_fluent_arrow_left_24_dark.png}" Grid.Row="9" Grid.Column="0" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionBackwardCommand}" HeightRequest="20" WidthRequest="80" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="{x:Static strings:AppResources.FrameControllerButtonBackwardDescription}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionBackwardCommand}" CommandParameter="{Binding .}">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="Left" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button Stop -->
+                    <Button Margin="5,0,5,0" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="Stop" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=StopLocoCommand}" HeightRequest="20" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Stop" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=StopLocoCommand}" CommandParameter="{Binding .}">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="End" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                    <!-- Button Right -->
+                    <Button BackgroundColor="{Binding Path=DirectionForward,Converter={StaticResource boolToBackgroundConverter}}" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_right_24_dark.png, Dark=ic_fluent_arrow_right_24_dark.png}" Grid.Row="9" Grid.Column="3" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionForwardCommand}" HeightRequest="20" WidthRequest="80" >
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="{x:Static strings:AppResources.FrameControllerButtonForwardDescription}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=SetDirectionForwardCommand}" CommandParameter="{Binding .}">
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator Key="Right" Modifiers="Ctrl"></KeyboardAccelerator>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+
+                </Grid>
             </Border>
-        </VerticalStackLayout>                
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

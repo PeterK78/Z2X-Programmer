@@ -1116,6 +1116,42 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backward.
+        /// </summary>
+        public static string FrameControllerButtonBackwardDescription {
+            get {
+                return ResourceManager.GetString("FrameControllerButtonBackwardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faster.
+        /// </summary>
+        public static string FrameControllerButtonFasterDescription {
+            get {
+                return ResourceManager.GetString("FrameControllerButtonFasterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forward.
+        /// </summary>
+        public static string FrameControllerButtonForwardDescription {
+            get {
+                return ResourceManager.GetString("FrameControllerButtonForwardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slower.
+        /// </summary>
+        public static string FrameControllerButtonSlowerDescription {
+            get {
+                return ResourceManager.GetString("FrameControllerButtonSlowerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user-specific information such as a short description, any notes or an image here..
         /// </summary>
         public static string FrameDecoderDescriptionDescription {
@@ -1508,6 +1544,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameExpertSettingsCVReadWriteTitle {
             get {
                 return ResourceManager.GetString("FrameExpertSettingsCVReadWriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate all.
+        /// </summary>
+        public static string FrameExpertSettingsEnableAllCVs {
+            get {
+                return ResourceManager.GetString("FrameExpertSettingsEnableAllCVs", resourceCulture);
             }
         }
         

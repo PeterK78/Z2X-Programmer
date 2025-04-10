@@ -159,7 +159,18 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS
-    
+
+        //  This command is used to enable all configuration variables. 
+        [RelayCommand]
+        private void EnableAllCVs()
+        {
+            foreach (ConfigurationVariableType item in DecoderConfiguration.ConfigurationVariables)
+            {
+                item.Enabled = true;
+            }
+        }
+
+
         //  Reads out the value and the number of the selected configuration variable and updates the GUI.
         [RelayCommand]
         private void CVSelected()
