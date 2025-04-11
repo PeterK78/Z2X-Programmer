@@ -180,7 +180,7 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, "Testing ...");
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, "Testing ...", "");
 
                 //  Application.Current.MainPage.ShowPopup(pop);
 

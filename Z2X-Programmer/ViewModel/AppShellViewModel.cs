@@ -629,8 +629,13 @@ namespace Z2XProgrammer.ViewModel
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = cancelTokenSource.Token;
 
-            //  Setup the popup window
-            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder);
+            //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
+            //  are currently be disabled.
+            string note = "";
+            if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledUpload;    
+
+            //  Setup the popup window.
+            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder,note);
             
             try
             {
@@ -759,7 +764,12 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder);
+                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
+                //  are currently be disabled.
+                string note = "";
+                if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledDownload;    
+
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
@@ -835,8 +845,13 @@ namespace Z2XProgrammer.ViewModel
                 //  Setup the cancellation token.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
+
+                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
+                //  are currently be disabled.
+                string note = "";
+                if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledDownload;    
               
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder);
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 

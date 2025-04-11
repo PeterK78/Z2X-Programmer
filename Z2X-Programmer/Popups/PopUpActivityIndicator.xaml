@@ -30,28 +30,45 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              CanBeDismissedByTappingOutsideOfPopup="False"
              >
     <Border>
-    <VerticalStackLayout>
-        <Grid MinimumWidthRequest="500" MinimumHeightRequest="150" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Source="badgeicon.png" HeightRequest="40" WidthRequest="40" Margin="10,20,10,10" VerticalOptions="Center" HorizontalOptions="Center" ></Image>
-            <Label Margin="20,20,20,20" Grid.Row="1" Grid.Column="0" x:Name="ProgressDialogMessage" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
-            <Label Grid.Row="2" Grid.Column="0" x:Name="ProgressLabelPercentage" Text="Init" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" FontSize="60" FontAttributes="Bold" ></Label>
-                <Label Grid.Row="3" Margin="0,5,0,5" Grid.Column="0" x:Name="ProgressLabelCV" Text="" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ></Label>
-            <ProgressBar Grid.Row="4" Grid.Column="0" x:Name="MyProgressBar" Margin="20,0,20,0"></ProgressBar>
-            <Button Grid.Row="5" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,20" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-        </Grid>
-        
-    </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Grid MinimumWidthRequest="500" MinimumHeightRequest="150" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <!-- The Z2X programmer icon -->                    
+                <Image Grid.Row="0" Grid.Column="0" Source="badgeicon.png" HeightRequest="40" WidthRequest="40" Margin="10,20,10,10" VerticalOptions="Center" HorizontalOptions="Center" ></Image>
+                
+                <!-- The main information (Data is loaded, Data is saved ...) -->
+                <Label Margin="20,20,20,20" Grid.Row="1" Grid.Column="0" x:Name="ProgressDialogMessage" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                
+                <!-- An important remark -->
+                <Label Margin="20,20,20,20" Grid.Row="2" Grid.Column="0" x:Name="RemarkMessage" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                
+                <!-- The percentage information -->
+                <Label Grid.Row="3" Grid.Column="0" x:Name="ProgressLabelPercentage" Text="Init" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" FontSize="60" FontAttributes="Bold" ></Label>
+                
+                <!-- The currently processed CV -->
+                <Label Grid.Row="4" Margin="0,5,0,5" Grid.Column="0" x:Name="ProgressLabelCV" Text="" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ></Label>
+                
+                <!-- The progress bar -->
+                <ProgressBar Grid.Row="5" Grid.Column="0" x:Name="MyProgressBar" Margin="20,0,20,0"></ProgressBar>
+                
+                <!-- The cancel button -->
+                <Button Grid.Row="6" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,20" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                
+            </Grid>
+
+        </VerticalStackLayout>
     </Border>
 
 </mct:Popup>

@@ -27,6 +27,11 @@ using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.Popups;
 
+
+/// <summary>
+/// This class implements a popup that shows an activity indicator. Typically this popup is used during
+/// up - and download of configuration values.
+/// </summary>
 public partial class PopUpActivityIndicator : Popup
 {
 
@@ -38,16 +43,26 @@ public partial class PopUpActivityIndicator : Popup
     /// The constructor.
     /// </summary>
     /// <param name="tokenSource">The token to signal that the user has canceled the process.</param>
-    /// <param name="textMessage">A  string that describes the process. This is displayed in the dialog.</param>
-    public PopUpActivityIndicator(CancellationTokenSource tokenSource, string textMessage)
+    /// <param name="processDescription">A string that describes the process. This is displayed in the dialog.</param>
+    /// <param name="note">The note that is displayed in the dialog.</param>
+    public PopUpActivityIndicator(CancellationTokenSource tokenSource, string processDescription, string note)
 	{
 		InitializeComponent();
 
-        ProgressDialogMessage.Text = textMessage;
+        ProgressDialogMessage.Text = processDescription;
         ProgressLabelPercentage.Text = "0 %";
         MyProgressBar.Progress = 0;
         ProgressLabelCV.Text = "";
-        
+        if (note == "")
+        {
+            RemarkMessage.IsVisible = false;
+        }
+        else
+        { 
+            RemarkMessage.Text = note;
+            RemarkMessage.IsVisible = true;
+        }   
+
         _cancelTokenSource = tokenSource;
 
         WeakReferenceMessenger.Default.Register<ProgressUpdateMessagePercentage>(this, (r, m) =>

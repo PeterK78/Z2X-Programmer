@@ -1786,4 +1786,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameExpertSettingsEnableAllCVs" xml:space="preserve">
     <value>Activate all</value>
   </data>
+  <data name="AlertSomeCVsAreDisabledUpload" xml:space="preserve">
+    <value>Some CVs are currently deactivated and are not loaded.</value>
+  </data>
+  <data name="AlertSomeCVsAreDisabledDownload" xml:space="preserve">
+    <value>Some CVs are currently deactivated, these are not written.</value>
+  </data>
 </root>

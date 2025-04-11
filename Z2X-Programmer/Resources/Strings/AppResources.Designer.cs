@@ -430,6 +430,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some CVs are currently deactivated, these are not written..
+        /// </summary>
+        public static string AlertSomeCVsAreDisabledDownload {
+            get {
+                return ResourceManager.GetString("AlertSomeCVsAreDisabledDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some CVs are currently deactivated and are not loaded..
+        /// </summary>
+        public static string AlertSomeCVsAreDisabledUpload {
+            get {
+                return ResourceManager.GetString("AlertSomeCVsAreDisabledUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configuration variable could not be written. .
         /// </summary>
         public static string AlertWriteCVError {
