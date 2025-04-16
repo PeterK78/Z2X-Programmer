@@ -1,12 +1,40 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.9
-Date:         15.03.2025
+Version:      0.1.2.0-beta.10
+Date:         16.04.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.10 / 16.04.2025
+------------------------------------------------------------------
+
+Note:
+
+* Tenth beta version (Beta Version 10, V0.1.2.0)
+
+New features:
+
+1. A controller has been added.
+2. A note is shown, if CVs are disabled during up- and download.
+3. A new button "Enable all CVs" has been added to the
+   "Expert functions" page.
+4. The feature RCN225_DIRECTION_CV29_0 for ZIMO FX decoder has
+   been added.
+5. The layout of the function keys page has been updated.
+6. The feature ZIMO_FUNCKEY_SHUNTINGKEY_CV155 has been added.
+7. The feature ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X has
+   been added.
+8. The feature ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X
+   has been added.
+
+Bug fixes:
+
+1. The configuration of the mute function key no longer triggers
+   the Undo Manager.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.9 / 15.03.2025
