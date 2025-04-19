@@ -30,6 +30,7 @@ using Z21Lib.Enums;
 using Z21Lib.Events;
 using Z21Lib.Model;
 using Z2XProgrammer.Helper;
+using Microsoft.Maui.Handlers;
 
 namespace Z21Lib
 {
@@ -149,7 +150,7 @@ namespace Z21Lib
                 _udpClient.BeginReceive(new AsyncCallback(ReceivingRawZ21Data), null);
 
                 //OnReceive?.Invoke(this, new DataEventArgs(received));
-                Logger.PrintDevConsole($"Z21Lib:ReceivingRawZ21Data  {BitConverter.ToString(received)}");
+                //Logger.PrintDevConsole($"Z21Lib:ReceivingRawZ21Data  {BitConverter.ToString(received)}");
 
                 ParseRawZ21Data(received);
             }
@@ -670,7 +671,7 @@ namespace Z21Lib
         {
             try
             {
-                Logger.PrintDevConsole($"Z21Lib:Sending {BitConverter.ToString(bytes)}");
+                //Logger.PrintDevConsole($"Z21Lib:Sending {BitConverter.ToString(bytes)}");
                 await _udpClient.SendAsync(bytes, bytes?.GetLength(0) ?? 0);
             }
             catch
@@ -710,7 +711,7 @@ namespace Z21Lib
         /// <param name="bytes"></param>
         private void ParseRawZ21Data(byte[] bytes)
         {
-            Logger.PrintDevConsole($"Z21Lib:ParseRawZ21Data : {BitConverter.ToString(bytes)}");
+            //Logger.PrintDevConsole($"Z21Lib:ParseRawZ21Data : {BitConverter.ToString(bytes)}");
 
             if (bytes == null) return;
             int z = 0;
@@ -739,7 +740,7 @@ namespace Z21Lib
         /// <param name="receivedBytes"></param>
         private void EvaluateZ21DataRecord(byte[] receivedBytes)
         {
-            Logger.PrintDevConsole($"Z21Lib:EvaluateZ21Response data record {BitConverter.ToString(receivedBytes)}");
+            //Logger.PrintDevConsole($"Z21Lib:EvaluateZ21Response data record {BitConverter.ToString(receivedBytes)}");
 
             //  Check the Header
             switch (receivedBytes[2])
@@ -842,24 +843,124 @@ namespace Z21Lib
                         //  LAN_X_LOCO_INFO
                         case 0xEF:
 
-                            Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response LAN_X_LOCO_INFO");
+                            byte DB3 = receivedBytes[8];
 
-                            // Parsing DB0 and DB1.
+                            // Parsing DB0 and DB1 (Byte 5 + 6)
                             ushort locomotiveAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[6]);
 
-                            // Parsing DB2.
-                            int speedSteps = 0;
+                            // Parsing DB2 (Byte 7)
+                            int maxSpeedSteps = 0;
                             switch (receivedBytes[7] & 0x7)
                             {
-                                case 0: speedSteps = 14; break;
-                                case 2: speedSteps = 28; break;     
-                                case 4: speedSteps = 128; break;
-                                default: speedSteps = 0; break;
+                                case 0: maxSpeedSteps = 14; break;
+                                case 2: maxSpeedSteps = 28; break;     
+                                case 4: maxSpeedSteps = 128; break;
+                                default: maxSpeedSteps = 0; break;
                             }
 
-                            // Parsing DB3.
+                            // Parsing DB3 (Byte 8) - Direction 
                             int direction = Bit.IsSet(receivedBytes[8], 7) == true ? 1 : 0;
-                            int speed = receivedBytes[8] & 0x127;                               
+
+                            // Parsing DB3 (Byte 8) - Speed 
+                            byte currentZ21SpeedValue = 0;
+                            byte currentSpeedStep = 0;
+                            bool stop = false;
+                            bool eStop = false;
+
+                            switch (maxSpeedSteps)
+                            {
+                                case 14:
+                                    // 14 speed steps
+                                    currentZ21SpeedValue = (byte)(receivedBytes[8] & 0x0F);
+
+                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
+                                    if (currentZ21SpeedValue == 0)
+                                    {
+                                        stop = true;
+                                        eStop = false;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else if (currentZ21SpeedValue == 1)
+                                    {
+                                        stop = false;
+                                        eStop = true;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else
+                                    {
+                                        stop = false;
+                                        eStop = false;
+                                     
+                                        //  Grab the current speed step value.  
+                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1);
+                                    }
+                                    break;
+                                case 28:
+
+                                    // 28 speed steps
+
+                                    //  Grab the current reported speed value in the first 4 bits of DB3.
+                                    currentZ21SpeedValue = (byte)(receivedBytes[8] & 0x0F);
+
+                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
+                                    if (currentZ21SpeedValue == 0)
+                                    {
+                                        stop = true;
+                                        eStop = false;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else if (currentZ21SpeedValue == 1)
+                                    {
+                                        stop = false;
+                                        eStop = true;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else
+                                    {
+                                        stop = false;
+                                        eStop = false;
+
+                                        //  Grab the intermediate speed step flag.
+                                        bool intermediateSpeedStep = Bit.IsSet(receivedBytes[8], 4);
+
+                                        //  Grab the current speed step value.  
+                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1) ;
+
+                                        //  Check if the intermediate speed step flag is set. If so, we have to increase the current speed step by 1.
+                                        if (intermediateSpeedStep == true)
+                                        {
+                                            currentSpeedStep = (byte)(currentSpeedStep + 1);
+                                        }
+                                    }
+                                    break;
+                                case 128:
+
+                                     //  Grab the current reported speed value in the first 7 bits of DB3.
+                                    currentZ21SpeedValue = Bit.Set(receivedBytes[8], 7, false);
+
+                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
+                                    if (currentZ21SpeedValue == 0)
+                                    {
+                                        stop = true;
+                                        eStop = false;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else if (currentZ21SpeedValue == 1)
+                                    {
+                                        stop = false;
+                                        eStop = true;
+                                        currentSpeedStep = 0;
+                                    }
+                                    else
+                                    {
+                                        stop = false;
+                                        eStop = false;
+                                        
+                                        //  Grab the current speed step value.  
+                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1) ;
+                                    }
+                                    break;
+                            }
 
                             // Parsing DB4.
                             bool[] functionStates  = new bool[31];
@@ -909,7 +1010,9 @@ namespace Z21Lib
                             functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
                             functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
 
-                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, speedSteps, direction, speed));
+                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep,stop,eStop));
+
+                            Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_X_LOCO_INFO) locoAddress:" + locomotiveAddress + " DB3:" + DB3 + " speedSteps:" + maxSpeedSteps + " currentSpeedStep:" + currentSpeedStep + " direction:" + direction);
 
                             break;
                     }

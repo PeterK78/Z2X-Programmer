@@ -30,17 +30,21 @@ namespace Z21Lib.Events
     {
         public ushort Address { get; set; } = 0;
         public bool[] FunctionStates { get; set; } = new bool[31];
-        public int SpeedSteps { get; set; } = 0;
+        public int MaxSpeedSteps { get; set; } = 0;
         public int Direction { get; set; } = 0;
-        public int Speed { get; set; } = 0;
+        public int CurrentSpeedStep { get; set; } = 0;
+        public bool Stop { get; set; } = false;
+        public bool EStop { get; set; } = false;
 
-        public LocoInfoEventArgs(ushort address, bool[] functionStates, int speedSteps, int direction, int speed)
+        public LocoInfoEventArgs(ushort address, bool[] functionStates, int maxSpeedSteps, int direction, int currentSpeedStep, bool stop, bool eStop)
         {
             Address = address;
             FunctionStates = functionStates;
-            SpeedSteps = speedSteps;
+            MaxSpeedSteps = maxSpeedSteps;
             Direction = direction;
-            Speed = speed;
+            CurrentSpeedStep = currentSpeedStep;
+            Stop = stop;
+            EStop = eStop;
         }
 
     }

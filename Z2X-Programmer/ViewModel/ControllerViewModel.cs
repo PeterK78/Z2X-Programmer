@@ -37,6 +37,9 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class ControllerViewModel : ObservableObject
     {
+
+        byte _currentLocoSpeedStep = 0;
+
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
         [ObservableProperty]
@@ -52,11 +55,14 @@ namespace Z2XProgrammer.ViewModel
         //  Speed
         [ObservableProperty]
         ushort speed = 0;
-        partial void OnSpeedChanged(ushort oldValue, ushort newValue)
+        partial void OnSpeedChanged(ushort value)
         {
-            SetLocoSpeed(newValue,(DirectionForward == true) ? 1 : 0);            
+            if (value != _currentLocoSpeedStep)
+            {
+                _currentLocoSpeedStep = (byte)value;
+                SetLocoSpeed(_currentLocoSpeedStep, (DirectionForward == true) ? 1 : 0);
+            }
         }
-
         //  Direction Backward
         [ObservableProperty]
         bool directionBackward = false;
@@ -218,7 +224,6 @@ namespace Z2XProgrammer.ViewModel
         }
         #endregion
 
-
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
@@ -241,8 +246,8 @@ namespace Z2XProgrammer.ViewModel
             if (SpeedStep14 == true) realSpeedSteps = 14;
             if (SpeedStep28 == true) realSpeedSteps = 28;
             if (SpeedStep128 == true) realSpeedSteps = 128;
-            
-            CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.LocomotiveAddress, speed,  realSpeedSteps, direction);
+
+            CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.LocomotiveAddress, speed, realSpeedSteps, direction);
         }
 
         #endregion
@@ -441,9 +446,9 @@ namespace Z2XProgrammer.ViewModel
 
                 //  Update the speed steps. 
                 SpeedStep14 = false; SpeedStep28 = false; SpeedStep128 = false;
-                if (e.SpeedSteps == 14) SpeedStep14 = true;
-                if (e.SpeedSteps == 28) SpeedStep28 = true;
-                if (e.SpeedSteps == 128) SpeedStep128 = true;
+                if (e.MaxSpeedSteps == 14) SpeedStep14 = true;
+                if (e.MaxSpeedSteps == 28) SpeedStep28 = true;
+                if (e.MaxSpeedSteps == 128) SpeedStep128 = true;
 
                 //  Update the direction.
                 if (e.Direction == 1)
@@ -456,6 +461,10 @@ namespace Z2XProgrammer.ViewModel
                     DirectionForward = false;
                     DirectionBackward = true;
                 }
+
+                //  Grab the current speed step of the locomotive.
+                _currentLocoSpeedStep = (byte)e.CurrentSpeedStep;
+                Speed = _currentLocoSpeedStep;
 
             }
             catch (Exception ex)
