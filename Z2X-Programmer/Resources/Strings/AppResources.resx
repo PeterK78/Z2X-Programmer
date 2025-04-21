@@ -1101,7 +1101,7 @@ Frequency type = Low frequency</value>
     <value>The value 64 corresponds to 100 % volume. Be careful if you use higher values.</value>
   </data>
   <data name="FrameSpeedStepsSystemDescription" xml:space="preserve">
-    <value>The higher the number of speed steps, the more sensitively a locomotive can be controlled. Make sure that your control center and the decoder use the same number of speed steps.</value>
+    <value>The speed step system determines the maximum number of possible speed steps. The higher the maximum number of speed steps, the more sensitively a locomotive can be controlled.</value>
   </data>
   <data name="FrameSpeedStepsSystemLabel" xml:space="preserve">
     <value>Speed step system (CV29.1)</value>
@@ -1791,5 +1791,11 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertSomeCVsAreDisabledDownload" xml:space="preserve">
     <value>Some CVs are currently deactivated, these are not written.</value>
+  </data>
+  <data name="FrameSpeedStepsCurrentValueLabel" xml:space="preserve">
+    <value>The number of speed steps actually used is configured in your digital central unit for each locomotive. Current setting for this locomotive:</value>
+  </data>
+  <data name="FrameSpeedStepsCurrentValueNotAvailable" xml:space="preserve">
+    <value>Decoder readout required</value>
   </data>
 </root>

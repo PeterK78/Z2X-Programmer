@@ -4352,7 +4352,25 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The higher the number of speed steps, the more sensitively a locomotive can be controlled. Make sure that your control center and the decoder use the same number of speed steps..
+        ///   Looks up a localized string similar to The number of speed steps actually used is configured in your digital central unit for each locomotive. Current setting for this locomotive:.
+        /// </summary>
+        public static string FrameSpeedStepsCurrentValueLabel {
+            get {
+                return ResourceManager.GetString("FrameSpeedStepsCurrentValueLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoder readout required.
+        /// </summary>
+        public static string FrameSpeedStepsCurrentValueNotAvailable {
+            get {
+                return ResourceManager.GetString("FrameSpeedStepsCurrentValueNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The speed step system determines the maximum number of possible speed steps. The higher the maximum number of speed steps, the more sensitively a locomotive can be controlled..
         /// </summary>
         public static string FrameSpeedStepsSystemDescription {
             get {

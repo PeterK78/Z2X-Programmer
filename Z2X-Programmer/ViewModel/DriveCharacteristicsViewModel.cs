@@ -25,6 +25,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using Z21Lib.Events;
+using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
@@ -100,8 +102,12 @@ namespace Z2XProgrammer.ViewModel
             if ((value == null) || (value == "")) return;
             DecoderConfiguration.RCN225.SpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepsModeFromDescription(value);
             AccelerationRateTime = GetAccelerationRateTimeLabel();
-            CV29Configuration = Subline.Create(new List<uint>{29});
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
         }
+
+        [ObservableProperty]
+        internal string currentlySelectedSpeedSteps = "";
+
 
         // RCN225: Acceleration rate in CV3.
         [ObservableProperty]
@@ -208,6 +214,8 @@ namespace Z2XProgrammer.ViewModel
             AvailableSpeedStepModes = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCSpeedStepModes());
             AvailableABCBreakModes = new ObservableCollection<string>(NMRAEnumConverter.GetAvailableDCCABCBreakModes());
 
+            CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived; 
+
             OnGetDataFromDecoderSpecification();
             OnGetDataFromDataStore();
             
@@ -231,6 +239,23 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// Event handler for the OnLocoInfoReceived event of the Z21 library.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLocoInfoReceived(object? sender, LocoInfoEventArgs e)
+        {
+            try
+            {
+                CurrentlySelectedSpeedSteps = e.MaxSpeedSteps.ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("DriveCharacteristicsViewModel.OnLocoInfoReceived: " + ex.Message);
+            }
+        }
 
         /// <summary>
         /// Returns the label for the acceleration rate.

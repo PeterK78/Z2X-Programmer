@@ -1102,7 +1102,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Der Wert 64 entspricht 100 % Lautstärke. Seien Sie vorsichtig, wenn Sie höhere Werte verwenden.</value>
   </data>
   <data name="FrameSpeedStepsSystemDescription" xml:space="preserve">
-    <value>Desto höher die Anzahl der Fahrstufen ist, desto feinfühliger lässt sich eine Lokomotive steuern. Stellen Sie sicher, dass Ihre Zentrale und der Decoder die idente Anzahl an Fahrstufen verwenden.</value>
+    <value>Das Fahrstufensystem bestimmt die maximale Anzahl der möglichen Fahrstufen. Je höher die maximale Anzahl der Fahrstufen ist, desto feinfühliger kann eine Lokomotive gesteuert werden.</value>
   </data>
   <data name="FrameSpeedStepsSystemLabel" xml:space="preserve">
     <value>Fahrstufensystem (CV29.1)</value>
@@ -1792,5 +1792,11 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="AlertSomeCVsAreDisabledDownload" xml:space="preserve">
     <value>Einige CVs sind aktuell deaktiviert, diese werden nicht geschrieben.</value>
+  </data>
+  <data name="FrameSpeedStepsCurrentValueLabel" xml:space="preserve">
+    <value>Die Anzahl der tatsächlich verwendeten Fahrstufen wird in Ihrer Digitalzentrale pro Lokomotive konfiguriert. Aktuelle Einstellung dieser Lokomotive:</value>
+  </data>
+  <data name="FrameSpeedStepsCurrentValueNotAvailable" xml:space="preserve">
+    <value>Decoder auslesen erforderlich</value>
   </data>
 </root>

@@ -510,6 +510,12 @@ namespace Z2XProgrammer.Communication
                     return Task.FromResult(false);
                 }
             }
+
+            //  Request the locomotive information for the current locomotive address. With this function call,
+            //  we can receive the current speed steps used by the locomotive.
+            CommandStation.Z21.GetLocoInfo(locomotiveAddress);
+
+            // Finally we report the percentage as 100% - this is important for the progress bar
             progressPercentage.Report(100);
 
 
