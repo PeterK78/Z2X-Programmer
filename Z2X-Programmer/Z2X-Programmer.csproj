@@ -40,6 +40,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
+		<Platforms>AnyCPU;x86</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -61,12 +62,6 @@
 	  <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
-	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
-	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
-	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
@@ -77,15 +72,6 @@
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
-	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
-	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
-	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
@@ -97,10 +83,48 @@
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+        <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+          <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android35.0|AnyCPU'">
+	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
+	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
+	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+          <NoWarn>MVVMTK0045</NoWarn>		
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
+	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+          <NoWarn>MVVMTK0045</NoWarn>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|x86'">
+	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
+	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+    	  <Platforms>x86</Platforms>
+          <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+          <NoWarn>MVVMTK0045</NoWarn>
+        </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|x86'">
+	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
+	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
+    	  <Platforms>x86</Platforms>
+          <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+          <NoWarn>MVVMTK0045</NoWarn>
+        </PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -322,24 +346,6 @@
   <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 </PropertyGroup>
 
-<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
-  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-</PropertyGroup>
 
-<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
-  <AndroidPackageFormat>apk</AndroidPackageFormat>
-</PropertyGroup>
-
-<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
-  <AndroidPackageFormat>apk</AndroidPackageFormat>
-</PropertyGroup>
-
-<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
-  <NoWarn>MVVMTK0045</NoWarn>
-</PropertyGroup>
-
-<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
-  <NoWarn>MVVMTK0045</NoWarn>
-</PropertyGroup>
 
 </Project>
