@@ -12,6 +12,9 @@ The application is aimed at beginner level users who want to configure the most 
 >[!NOTE]
 >The application is currently in a beta state.
 
+## Z2X-Programmer in the press
+* [Digitale Modellbahn 2-2025](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/DiMo_2025_02_014-015_HH_Z2X-Programmer.pdf)
+
 ## Overview
 
 The application provides the following features:
@@ -62,10 +65,6 @@ You can create your own decoder specification file at any time.
 ![Search](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Search.png "Search")
 
 ![Android](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-Android.png "Android")
-
-## Z2X-Programmer in the press
-
-* [Digitale Modellbahn 2-2025](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/DiMo_2025_02_014-015_HH_Z2X-Programmer.pdf)
 
 ## Documentation
 
