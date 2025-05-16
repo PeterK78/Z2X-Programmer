@@ -26,12 +26,12 @@ using static Z2XProgrammer.Helper.ZIMO;
 namespace Z2XProgrammer.DataModel
 {
     /// <summary>
-    /// This class contains the light effects for the ZIMO decoder.
+    /// This class contains the light effect direction for the ZIMO decoder.
     /// </summary>
-    internal class ZIMOLightEffectType
+    internal class ZIMOEffectDirectionType
     {
         internal string? Description { get; set; }
-        internal LightEffects EffectType{ get; set; }
-        internal ZIMOLightEffectDirectionType ?Direction { get; set; }
+        internal EffectDirection Direction { get; set; }
     }
+
 }

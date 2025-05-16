@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2025
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             x:Class="Z2XProgrammer.Pages.FunctionConfigurationPage"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:FunctionConfigurationViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             Padding="40,40,5,20"
+             x:Name="ThisPage"
+             Title="{x:Static strings:AppResources.FlyoutItemAddressText}">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="boolInvert" />
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+
+        <VerticalStackLayout>
+
+            <!-- Page Title -->
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_arrow_up_square_settings_24_regular.png, Dark=ic_fluent_arrow_up_square_settings_24_dark.png}" Margin="0,0,10,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemFunctionConfigurationTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- No data available information -->
+            <HorizontalStackLayout IsVisible="{Binding Path=DataStoreDataValid,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
+            <!-- NOTE:
+                    As a rule, all visual controls are only displayed once the datastore has been filled. Exceptions are the controls
+                    for the vehicle address and the address type. These controls must always be visible, as it would not be possible
+                    to read out a decoder without these controls.
+            -->
+
+            <!-- Page sheet content -->
+            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+
+
+                <!-- ZIMO: Electric uncoupler configuration in CV115x (ZIMO_ELECTRIC_UNCOUPLER_CV115X) -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="8" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="0,0,0,0" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerForwardLabel}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+
+                        <Label  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8" Margin="0,10,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                        <BoxView Grid.Row="2"  Grid.Column="0"  Grid.ColumnSpan="8"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>
+
+                        <Label  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerFunctionOutputSelectionTableTitle}" VerticalOptions="Center"  HorizontalOptions="Center" />
+                        <BoxView Grid.Row="3"  Grid.Column="0"  Grid.RowSpan="4" Grid.ColumnSpan="8"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}"  />
+
+                        <Label Grid.Row="3" Grid.Column="0" Text="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output1Description}" ></Label>
+                        <Label Grid.Row="3" Grid.Column="1" Text="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output2Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="2" Text="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output3Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="3" Text="4" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output4Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="4" Text="5" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output5Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="5" Text="6" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output6Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="6" Text="7" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output7Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="7" Text="8" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output8Description}"></Label>
+
+
+                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Output1Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output1Description}" ></Label>
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Output2Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output2Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="2" Text="{Binding Output3Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output3Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="3" Text="{Binding Output4Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output4Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="4" Text="{Binding Output5Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output5Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="5" Text="{Binding Output6Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output6Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="6" Text="{Binding Output7Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output7Description}"></Label>
+                        <Label Grid.Row="4" Grid.Column="7" Text="{Binding Output8Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="5,10,5,10" LineBreakMode="WordWrap" ToolTipProperties.Text="{Binding Output8Description}"></Label>
+
+                        <Picker Grid.Row="5" Grid.Column="0" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput1Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput1}"  HorizontalTextAlignment="End" WidthRequest="85" ></Picker>
+                        <Label Grid.Row="5" Grid.Column="0" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput1Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center" ></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput2Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput2}" HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="1" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput2Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="2" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput3Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput3}" HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="2" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput3Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="3" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput4Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput4}" HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="3" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput4Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="4" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput5Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput5}" HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="4" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput5Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="5" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput6Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput6}"  HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="5" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput6Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="6" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput7Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput7}"  HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="6" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput7Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                        <Picker  Grid.Row="5" Grid.Column="7" VerticalOptions="Center" IsVisible="{Binding ZIMOFunctionOutput8Enabled}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecouplerSettings}" SelectedItem="{Binding ZIMOUncouplerSettingOutput8}"  HorizontalTextAlignment="End" WidthRequest="85"></Picker>
+                        <Label Grid.Row="5" Grid.Column="7" Text="⛔" IsVisible="{Binding Path=ZIMOFunctionOutput8Enabled,Converter={StaticResource boolInvert}}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                    </Grid>
+
+                </Border>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

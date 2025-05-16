@@ -141,7 +141,7 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion        
 
-#region FUNCTION OUTPUT DESCRIPTION
+        #region FUNCTION OUTPUT DESCRIPTION
         [ObservableProperty]
         string output0vDescription = string.Empty;
 

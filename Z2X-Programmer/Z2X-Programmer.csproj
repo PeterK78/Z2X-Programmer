@@ -213,6 +213,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\FunctionConfigurationPage.xaml.cs">
+	    <DependentUpon>FunctionConfigurationPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\FunctionKeys\RCN225FunctionKeysFunctionOutputsPage.xaml.cs">
 	    <DependentUpon>RCN225FunctionKeysFunctionOutputsPage.xaml</DependentUpon>
 	  </Compile>
@@ -258,6 +261,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\FunctionConfigurationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddressPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -337,6 +343,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Z2XProgrammerStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UserControls\Z2XLightEffectsUserControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

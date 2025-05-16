@@ -629,10 +629,11 @@ namespace Z2XProgrammer.ViewModel
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = cancelTokenSource.Token;
 
-            //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
-            //  are currently be disabled.
-            string note = "";
-            if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledUpload;    
+            //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
+            // supported by the selected decoder specification are currently be disabled.
+            string note = string.Empty;
+            if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
+
 
             //  Setup the popup window.
             PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder,note);
@@ -903,10 +904,11 @@ namespace Z2XProgrammer.ViewModel
             RedoAvailable = UndoRedoManager.RedoAvailable;            
         }
 
+        
         /// <summary>
-        /// Activates a newly selected decoder specification
+        /// Activates the selected decoder specification.
         /// </summary>
-        /// <param name="decSpecName">The name of the new decoder specification.</param>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
         private void SwitchDecoderSpecification(string decSpecName)
         {
             //  First, the new decoder specification is set. Afterwards we read the the notes from the decoder specification.
@@ -918,7 +920,8 @@ namespace Z2XProgrammer.ViewModel
             //  specification, then we activate all supported CVs.
             DecoderConfiguration.SetDecoderSpecification(SelectedDecSpeq);
 
-            //DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
+            //  We enable configuration variables of the selected decoder specification.                
+            DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
             
             //  Inform the application that a new decoder specification has been selected.
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));

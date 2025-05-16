@@ -34,8 +34,11 @@ namespace Z2XProgrammer.Helper
         internal enum MotorControlFrequencyTypes { HighFrequency = 0, LowFrequency = 1 };
         internal enum MotorControlPIDMotorTypes { Normal  = 0, BellAnchor = 1 };
         internal enum FunctionMappingTypes { RCN225 = 0, ExtendedMapping = 1};
-        internal enum LightEffects { Unknown = 252, NoEffect = 0, DimmingUpAndDown = 88, SinglePulseStrobe = 16, DoublePulseStrobe = 22, RotaryBeacon = 24, Decoupler=48, SoftStart = 52, FunctionOutputTurnsOffAtSpeed = 60, FluorescentTubeEffect = 92 };
-        internal enum LightEffectDirection { DirectionIndependend = 0, Forward = 1, Backward = 2};
+        internal enum ZIMOEffects { Unknown = 252, NoEffect = 0, DimmingUpAndDown = 88, SinglePulseStrobe = 16, DoublePulseStrobe = 22, RotaryBeacon = 24, Decoupler=48, SoftStart = 52, FunctionOutputTurnsOffAtSpeed = 60, FluorescentTubeEffect = 92 };
+        internal enum EffectDirection { DirectionIndependend = 0, Forward = 1, Backward = 2};
+        internal enum FunctionEffects { Unknown = 252, NoEffect = 0, Decoupler = 48 };
+        internal enum ZIMOEffectCategory { Unknown = 0, Light = 1, Function = 2 };
+
 
         // The differet modes of the SUSI function output pins. Defined in CV201 and CV202.
         internal enum SUSIPinModeType { Unknown = 0, LogicLevelOutput = 1, LogicLevelInput = 2, ServoControlLine = 3, SUSI = 4, I2C = 5 };

@@ -87,6 +87,9 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<RCN225FunctionKeysFunctionOutputsPage>();
             builder.Services.AddSingleton<RCN225FunctionKeysFunctionOutputsViewModel>();
 
+            builder.Services.AddSingleton<FunctionConfigurationPage>();
+            builder.Services.AddSingleton<FunctionConfigurationViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

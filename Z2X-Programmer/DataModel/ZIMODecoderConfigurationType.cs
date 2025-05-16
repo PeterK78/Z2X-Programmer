@@ -300,7 +300,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput 0 front in CV125.
         /// </summary>
-        public LightEffects LightEffectOutput0v
+        public ZIMOEffects LightEffectOutput0v
         {
             get
             {
@@ -315,7 +315,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput 0 front in CV125.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutput0v
+        public EffectDirection LightEffectDirectionOutput0v
         {
             get
             {
@@ -331,7 +331,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput 0 rear in CV126.
         /// </summary>
-        public LightEffects LightEffectOutput0r
+        public ZIMOEffects LightEffectOutput0r
         {
             get
             {
@@ -346,7 +346,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput 0 rear in CV126.
         /// </summary>  
-        public LightEffectDirection LightEffectDirectionOutput0r
+        public EffectDirection LightEffectDirectionOutput0r
         {
             get
             {
@@ -361,7 +361,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA1 in CV127.
         /// </summary>
-        public LightEffects LightEffectOutputFA1
+        public ZIMOEffects LightEffectOutputFA1
         {
             get
             {
@@ -376,7 +376,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA1 in CV127.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA1
+        public EffectDirection LightEffectDirectionOutputFA1
         {
             get
             {
@@ -391,7 +391,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA2 in CV128.
         /// </summary>
-        public LightEffects LightEffectOutputFA2
+        public ZIMOEffects LightEffectOutputFA2
         {
             get
             {
@@ -406,7 +406,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA2 in CV128.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA2
+        public EffectDirection LightEffectDirectionOutputFA2
         {
             get
             {
@@ -421,7 +421,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA3 in CV129.
         /// </summary>
-        public LightEffects LightEffectOutputFA3
+        public ZIMOEffects LightEffectOutputFA3
         {
             get
             {
@@ -436,7 +436,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA3 in CV129.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA3
+        public EffectDirection LightEffectDirectionOutputFA3
         {
             get
             {
@@ -451,7 +451,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA4 in CV130.
         /// </summary>
-        public LightEffects LightEffectOutputFA4
+        public ZIMOEffects LightEffectOutputFA4
         {
             get
             {
@@ -466,7 +466,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA4 in CV130.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA4
+        public EffectDirection LightEffectDirectionOutputFA4
         {
             get
             {
@@ -481,7 +481,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA5 in CV131.
         /// </summary>
-        public LightEffects LightEffectOutputFA5
+        public ZIMOEffects LightEffectOutputFA5
         {
             get
             {
@@ -496,7 +496,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA5 in CV131.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA5
+        public EffectDirection LightEffectDirectionOutputFA5
         {
             get
             {
@@ -511,7 +511,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA6 in CV132.
         /// </summary>
-        public LightEffects LightEffectOutputFA6
+        public ZIMOEffects LightEffectOutputFA6
         {
             get
             {
@@ -526,7 +526,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA6 in CV132.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA6
+        public EffectDirection LightEffectDirectionOutputFA6
         {
             get
             {
@@ -541,7 +541,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA7 in CV159.
         /// </summary>
-        public LightEffects LightEffectOutputFA7
+        public ZIMOEffects LightEffectOutputFA7
         {
             get
             {
@@ -556,7 +556,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA7 in CV159.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA7
+        public EffectDirection LightEffectDirectionOutputFA7
         {
             get
             {
@@ -571,7 +571,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect for ouput FA8 in CV160.
         /// </summary>
-        public LightEffects LightEffectOutputFA8
+        public ZIMOEffects LightEffectOutputFA8
         {
             get
             {
@@ -586,7 +586,7 @@ namespace Z2XProgrammer.DataModel
         /// <summary>
         /// Sets or gets the light effect direction for ouput FA8 in CV160.
         /// </summary>
-        public LightEffectDirection LightEffectDirectionOutputFA8
+        public EffectDirection LightEffectDirectionOutputFA8
         {
             get
             {
@@ -1250,6 +1250,78 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
+        /// The number of the function output (1 - 8) of the first electric uncoupler.
+        /// </summary>
+        public byte ElectricUncoupler1FunctionOutput
+        {
+            get
+            {
+                List<int> functionOutputsList = GetConfiguredUncouplerFunctionOuputs();
+                if (functionOutputsList.Count == 0) return 0;
+                return (byte)functionOutputsList[0];
+            }
+            set
+            {
+                if(value >= 1 && value <= 6)
+                {
+                    configurationVariables[126 + value].Value = 48;
+                }
+                else if (value >= 7 && value <= 8)
+                {
+                    configurationVariables[158 + value-6].Value = 48;
+                }
+            }   
+        }
+
+        /// <summary>
+        /// The number of the function output (1 - 8) of the first electric uncoupler.
+        /// </summary>
+        public byte ElectricUncoupler2FunctionOutput
+        {
+            get
+            {
+                List<int> functionOutputsList = GetConfiguredUncouplerFunctionOuputs();
+                if (functionOutputsList.Count == 0) return 0;
+                if (functionOutputsList.Count < 2) return 0;    
+                return (byte)functionOutputsList[1];
+            }
+            set
+            {
+                if(value >= 1 && value <= 6)
+                {
+                    configurationVariables[126 + value].Value = 48;
+                }
+                else if (value >= 7 && value <= 8)
+                {
+                    configurationVariables[158 + value-6].Value = 48;
+                }
+            } 
+        }
+
+        /// <summary>
+        /// Returns a list with function outputs configured as electric decoupler.
+        /// </summary>
+        /// <returns></returns>
+        private List<int> GetConfiguredUncouplerFunctionOuputs()
+        {
+            List<int> functionOutputsList = new List<int>();
+
+            //  Check the CVs 127 to 132 (FA1 to FA6) for the electric uncoupler function output.
+            for (int i = 127; i <= 132; i++)
+            {
+                if (configurationVariables[i].Value == 48) functionOutputsList.Add(i - 126);
+            }
+
+            //  Check the CVs 159 to 160 (FA7 to FA8) for the electric uncoupler function output.
+            for (int i = 159; i <= 160; i++)
+            {
+                if (configurationVariables[i].Value == 48) functionOutputsList.Add(i - 158);
+            }
+
+            return functionOutputsList;
+        }
+
+        /// <summary>
         /// The number of the function key (F1-F28) to set the sound volume louder in CV397
         /// </summary>
         public byte FuncKeyNrSoundVolumeLouder
@@ -1737,7 +1809,7 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         /// <param name="cvNumber">A ZIMO light effect CV number e.g. 125</param>
         /// <returns></returns>
-        internal ZIMO.LightEffects GetLighEffect(int cvNumber)
+        internal ZIMO.ZIMOEffects GetLighEffect(int cvNumber)
         {
             //  We grab the value of CV125 and mask out the direction bits.
             byte effect = configurationVariables[cvNumber].Value;
@@ -1745,17 +1817,17 @@ namespace Z2XProgrammer.DataModel
             effect = Bit.Set(effect, 1, false);
 
             //  Check the value and return the corresponding enum.
-            if (effect == 0) return LightEffects.NoEffect;
-            if (effect == 16) return LightEffects.SinglePulseStrobe;
-            if (effect == 20) return LightEffects.DoublePulseStrobe;
-            if (effect == 24) return LightEffects.RotaryBeacon;
-            if (effect == 48) return LightEffects.Decoupler;
-            if (effect == 52) return LightEffects.SoftStart;
-            if (effect == 60) return LightEffects.FunctionOutputTurnsOffAtSpeed;
-            if (effect == 88) return LightEffects.DimmingUpAndDown;
-            if (effect == 92) return LightEffects.FluorescentTubeEffect;
+            if (effect == 0) return ZIMOEffects.NoEffect;
+            if (effect == 16) return ZIMOEffects.SinglePulseStrobe;
+            if (effect == 20) return ZIMOEffects.DoublePulseStrobe;
+            if (effect == 24) return ZIMOEffects.RotaryBeacon;
+            if (effect == 48) return ZIMOEffects.Decoupler;
+            if (effect == 52) return ZIMOEffects.SoftStart;
+            if (effect == 60) return ZIMOEffects.FunctionOutputTurnsOffAtSpeed;
+            if (effect == 88) return ZIMOEffects.DimmingUpAndDown;
+            if (effect == 92) return ZIMOEffects.FluorescentTubeEffect;
 
-            return LightEffects.Unknown;
+            return ZIMOEffects.Unknown;
         }
 
         /// <summary>
@@ -1763,15 +1835,15 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         /// <param name="cvNumber">A ZIMO light effect CV number e.g. 125</param>
         /// <returns></returns>
-        internal LightEffectDirection GetLightEffectDirection (int cvNumber)
+        internal EffectDirection GetLightEffectDirection (int cvNumber)
         {
             bool forward =  Bit.IsSet(configurationVariables[cvNumber].Value, 0);
             bool backward = Bit.IsSet(configurationVariables[cvNumber].Value, 1);
 
-            if ((forward == false) && (backward == false)) return LightEffectDirection.DirectionIndependend;
-            if ((forward == true) && (backward == false)) return LightEffectDirection.Forward;
-            if ((forward == false) && (backward == true)) return LightEffectDirection.Backward;
-            return LightEffectDirection.DirectionIndependend;
+            if ((forward == false) && (backward == false)) return EffectDirection.DirectionIndependend;
+            if ((forward == true) && (backward == false)) return EffectDirection.Forward;
+            if ((forward == false) && (backward == true)) return EffectDirection.Backward;
+            return EffectDirection.DirectionIndependend;
         }
 
         /// <summary>
@@ -1779,19 +1851,19 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         /// <param name="cvNumber">The desired CV number.</param>
         /// <param name="direction">The desired direciton.</param>
-        internal void SetLightEffectDirection (int cvNumber, LightEffectDirection direction)
+        internal void SetLightEffectDirection (int cvNumber, EffectDirection direction)
         {
-            if(direction == LightEffectDirection.DirectionIndependend)
+            if(direction == EffectDirection.DirectionIndependend)
             {
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, false);
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, false);
             }
-            if(direction == LightEffectDirection.Forward)
+            if(direction == EffectDirection.Forward)
             {
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, true);
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, false);
             }
-            if(direction == LightEffectDirection.Backward)
+            if(direction == EffectDirection.Backward)
             {
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 0, false);
                 configurationVariables[cvNumber].Value = Bit.Set(configurationVariables[cvNumber].Value, 1, true);
@@ -1803,21 +1875,21 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         /// <param name="cvNumber">The desired CV number.</param>
         /// <param name="effect">The desired effect.</param>
-        internal void SetLightEffect(int cvNumber, ZIMO.LightEffects effect)
+        internal void SetLightEffect(int cvNumber, ZIMO.ZIMOEffects effect)
         {
             //  Save the current direction bits.
-            LightEffectDirection currentDirection = GetLightEffectDirection(cvNumber);
+            EffectDirection currentDirection = GetLightEffectDirection(cvNumber);
 
             //  Set the effect bits.
-            if (effect == LightEffects.NoEffect) configurationVariables[cvNumber].Value = 0;
-            if (effect == LightEffects.DimmingUpAndDown) configurationVariables[cvNumber].Value = 88;
-            if (effect == LightEffects.SinglePulseStrobe) configurationVariables[cvNumber].Value = 16;
-            if (effect == LightEffects.DoublePulseStrobe) configurationVariables[cvNumber].Value = 22;
-            if (effect == LightEffects.RotaryBeacon) configurationVariables[cvNumber].Value = 24;
-            if (effect == LightEffects.Decoupler) configurationVariables[cvNumber].Value = 48;
-            if (effect == LightEffects.SoftStart) configurationVariables[cvNumber].Value = 52;
-            if (effect == LightEffects.FunctionOutputTurnsOffAtSpeed) configurationVariables[cvNumber].Value = 60;
-            if (effect == LightEffects.FluorescentTubeEffect) configurationVariables[cvNumber].Value = 92;
+            if (effect == ZIMOEffects.NoEffect) configurationVariables[cvNumber].Value = 0;
+            if (effect == ZIMOEffects.DimmingUpAndDown) configurationVariables[cvNumber].Value = 88;
+            if (effect == ZIMOEffects.SinglePulseStrobe) configurationVariables[cvNumber].Value = 16;
+            if (effect == ZIMOEffects.DoublePulseStrobe) configurationVariables[cvNumber].Value = 22;
+            if (effect == ZIMOEffects.RotaryBeacon) configurationVariables[cvNumber].Value = 24;
+            if (effect == ZIMOEffects.Decoupler) configurationVariables[cvNumber].Value = 48;
+            if (effect == ZIMOEffects.SoftStart) configurationVariables[cvNumber].Value = 52;
+            if (effect == ZIMOEffects.FunctionOutputTurnsOffAtSpeed) configurationVariables[cvNumber].Value = 60;
+            if (effect == ZIMOEffects.FluorescentTubeEffect) configurationVariables[cvNumber].Value = 92;
 
             //  Restore the direction bits.
             SetLightEffectDirection(cvNumber, currentDirection);

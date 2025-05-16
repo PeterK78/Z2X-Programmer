@@ -481,7 +481,7 @@ The following error has occurred:</value>
     <value>Forward</value>
   </data>
   <data name="FrameFunctionKeysMappingHeadeOutput" xml:space="preserve">
-    <value>Function output</value>
+    <value>Function outputs</value>
   </data>
   <data name="FrameFunctionKeysMappingHeaderCV" xml:space="preserve">
     <value>CV</value>
@@ -637,10 +637,10 @@ The following error has occurred:</value>
     <value>Dimming</value>
   </data>
   <data name="FrameLightEffectsDescription" xml:space="preserve">
-    <value>A light effect can be assigned to each function output. You can also set the direction of travel in which the effect is active.</value>
+    <value>Each function output can be assigned an individual light effect. If a function output cannot be configured ⛔, this output is already assigned to another function or effect.</value>
   </data>
   <data name="FrameLightEffectsTitle" xml:space="preserve">
-    <value>Effects</value>
+    <value>Light effects</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrDescription" xml:space="preserve">
     <value>Consist addresses are used when two or more locomotives are running in a group. The additional locomotives receive the vehicle address of the leading locomotive as the consist address. Addresses from 1 to 10239 are possible.</value>
@@ -1123,7 +1123,7 @@ Dimmung up and down = 88
   <data name="LightEffectTypeDimmingUpAndDown" xml:space="preserve">
     <value>Dimming up and down</value>
   </data>
-  <data name="LightEffectTypeNoEffect" xml:space="preserve">
+  <data name="ZIMOEffectTypeNoEffect" xml:space="preserve">
     <value>No effect</value>
   </data>
   <data name="NO" xml:space="preserve">
@@ -1313,7 +1313,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>This list shows the value and status of all configuration variables that are supported by the selected decoder specification. </value>
   </data>
   <data name="FrameExpertCVHeaderCVNumber" xml:space="preserve">
-    <value>Number</value>
+    <value>Configuration variable</value>
   </data>
   <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
     <value>Value</value>
@@ -1416,13 +1416,13 @@ The application is aimed at beginners who want to configure the most important f
     <value>Assign function outputs to the function keys. If a function key is pressed, the assigned function output is switched. You can also activate an extended version of the assignment. With this extended version, higher function keys can also switch lower function outputs.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
-    <value>Output</value>
+    <value>Function output</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="FrameFunctionOutputsNamingTitle" xml:space="preserve">
-    <value>Naming</value>
+    <value>Description</value>
   </data>
   <data name="FrameFunctionOutputsNamingDescription" xml:space="preserve">
     <value>In the following table, you can assign any description to each function output.</value>
@@ -1431,7 +1431,8 @@ The application is aimed at beginners who want to configure the most important f
     <value>Function output</value>
   </data>
   <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
-    <value>Enter any description:</value>
+    <value>Enter any description:
+</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
     <value>Would you now like to transfer all known settings to the decoder?</value>
@@ -1452,7 +1453,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Activate / Deactivate</value>
   </data>
   <data name="FrameExpertSettingsNoCVSelected" xml:space="preserve">
-    <value>Es ist keine Konfigurationsvariable ausgewählt.</value>
+    <value>No configuration variable is selected. </value>
   </data>
   <data name="FrameSecondaryAddressPlaceholder" xml:space="preserve">
     <value>Secondary address</value>
@@ -1797,5 +1798,44 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameSpeedStepsCurrentValueNotAvailable" xml:space="preserve">
     <value>Decoder readout required</value>
+  </data>
+  <data name="FlyoutItemFunctionConfigurationTitle" xml:space="preserve">
+    <value>Function settings</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerTitle" xml:space="preserve">
+    <value>Automatic uncoupling</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription" xml:space="preserve">
+    <value>Use up to 2 function outputs as decouplers. If a function output cannot be configured ⛔, this output is already assigned to another function or effect.</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerForwardLabel" xml:space="preserve">
+    <value>Assignment of the function outputs</value>
+  </data>
+  <data name="ZIMOEffectTypeDecoupler" xml:space="preserve">
+    <value>Decoupler</value>
+  </data>
+  <data name="ZIMOEffectTypeNoFunctionEffect" xml:space="preserve">
+    <value>No function</value>
+  </data>
+  <data name="ZIMODecouplerEffectEnabled" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ZIMODecouplerEffectDisabled" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionTableTitle" xml:space="preserve">
+    <value>Function outputs</value>
+  </data>
+  <data name="AlertTooManyDecouplerOutputs" xml:space="preserve">
+    <value>Only a maximum of 2 function outputs may be used for decouplers.</value>
+  </data>
+  <data name="FrameLightEffectsTableHeaderFunctionOutput" xml:space="preserve">
+    <value>Function output</value>
+  </data>
+  <data name="FrameLightEffectsTableHeaderEffectAndDirection" xml:space="preserve">
+    <value>Light effect and Direction</value>
+  </data>
+  <data name="FrameExpertCVListNote" xml:space="preserve">
+    <value>⚠ All configuration variables are activated automatically when the decoder specification is changed.</value>
   </data>
 </root>

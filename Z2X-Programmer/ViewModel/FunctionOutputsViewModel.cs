@@ -156,13 +156,8 @@ namespace Z2XProgrammer.ViewModel
                     string Result = await Application.Current.Windows[0].Page!.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.ID, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.Description);
                     if (Result != null) SelectedFunctionOutput.Description = Result;
 
-                    OnPropertyChanged(nameof(FunctionOutputs));
-
                     WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 
-                    _functionOutputs = FunctionOutputs;
-                    FunctionOutputs = null;
-                    FunctionOutputs = _functionOutputs;
                 }
             }
             catch (Exception ex)

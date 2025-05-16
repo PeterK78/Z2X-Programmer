@@ -79,7 +79,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.ZIMO_MXMOTORCONTROLPID_CV56, "56", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_SOUND_VOLUME_GENERIC_C266, "266", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_BRAKESQUEAL_CV287, "287", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                                  {DeqSpecReader.ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61, "61", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
+                                  {DeqSpecReader.ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61, "33", "34", "35","36","37", "38", "39", "40", "41","42", "43", "44", "45", "46", "61", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
                                   {DeqSpecReader.ZIMO_LIGHT_EFFECTS_CV125X, "125", "126","127","128" ,"129","130","131","132","159","160","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396, "396", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397, "397", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
@@ -108,7 +108,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49, "49", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAAS_DECODERTYPE_CV261, "261", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAAS_FIRMWAREVERSION_CV262x, "262", "264", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
-                                  {DeqSpecReader.DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137, "137", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
+                                  {DeqSpecReader.DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137, "33", "34", "35","36","37", "38", "39", "40", "41","42", "43", "44", "45", "46", "137", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
                                   {DeqSpecReader.DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133, "133", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132, "132", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.DOEHLERANDHAASS_MAXIMALSPEED_CV5, "5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" }
@@ -308,41 +308,59 @@ namespace Z2XProgrammer.Communication
         /// <returns>Returns a list of configuration variable numbers.</returns>
         public static List<int> GetAllReadableConfigurationVariables(string decSpecName)
         {
+
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Enter ...");
+
             List<int> ConfigVariablesToRead = new List<int>();
 
             //
-            //  Read the RCN compatible features
+            //  Read the RCN compatible features.
             //
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling RCN compatible features ...");
-            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling RCN compatible configuration variables ...");
+
+            int rcnCount = RCNFeatures.GetLength(0);
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of RCN features: " + rcnCount);
+            for (int i = 0; i <= rcnCount -1; i++)
             {
-               
-                if (DeqSpecReader.FeatureSupported(decSpecName, RCNFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                string featureNameRCN = RCNFeatures[i, 0];
+                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameRCN);
+                if (DeqSpecReader.FeatureSupported(decSpecName, featureNameRCN, ApplicationFolders.DecSpecsFolderPath) == true)
                 {
-                    for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) -1; cvIndex++)
+                    int rcnFeatureCVAmount = RCNFeatures.GetLength(1);
+                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking x CVs: " + rcnFeatureCVAmount);
+                    for (int cvIndex = 1; cvIndex <= rcnFeatureCVAmount -1; cvIndex++)
                     {
-                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
+                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);                        
                         if (nextCV != 0)
                         {
                             //  Check if we have already read this CV. If so, skip this CV
                             if (ConfigVariablesToRead.Contains(nextCV) == false)
                             {
                                 ConfigVariablesToRead.Add(nextCV);
+                                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                             }
                         }
                     }                                    
+                }
+                else
+                {
+                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameRCN);
                 }
             }
 
             //
             //  Do we have a ZIMO decoder? If yes, read the ZIMO specific features
             //
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling ZIMO compatible features ...");
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling ZIMO compatible configuration variables ...");
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo) || (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
-                for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
+                int ZIMOcount = ZIMOFeatures.GetLength(0);
+                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of ZIMO features: " + ZIMOcount);
+                for (int i = 0; i <= ZIMOcount - 1; i++)
                 {
-                    if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    string featureNameZIMO = ZIMOFeatures[i, 0];
+                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameZIMO);
+                    if (DeqSpecReader.FeatureSupported(decSpecName, featureNameZIMO, ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
                         {
@@ -353,24 +371,34 @@ namespace Z2XProgrammer.Communication
                                 if (ConfigVariablesToRead.Contains(nextCV) == false)
                                 {
                                     ConfigVariablesToRead.Add(nextCV);
+                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                                 }
                             }
                         }
                     }
-                }
+                    else
+                    {
+                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameZIMO);
+                    }
+                }               
             }
             
             //
             // Do we have a Doehler & Haas decoder? If yes, read the Doehler & Hass specific features
             //
-            Logger.PrintDevConsole("ReadWriteDecoder: Assembling Trix and Döhler and Haass compatible features ...");
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling Döhler and Haas compatible configuration variables ...");
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
             (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass) ||
             (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
-                for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
+
+                int DOEHLERHAASCount = DOEHLERHAASFeatures.GetLength(0);
+                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of ZIMO features: " + DOEHLERHAASCount);
+                for (int i = 0; i <= DOEHLERHAASCount - 1; i++)
                 {
-                    if (DeqSpecReader.FeatureSupported(decSpecName, DOEHLERHAASFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    string featureNameDOEHLERHAAS = DOEHLERHAASFeatures[i, 0];
+                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameDOEHLERHAAS);
+                    if (DeqSpecReader.FeatureSupported(decSpecName, featureNameDOEHLERHAAS, ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
                         {
@@ -381,9 +409,14 @@ namespace Z2XProgrammer.Communication
                                 if (ConfigVariablesToRead.Contains(nextCV) == false)
                                 {
                                     ConfigVariablesToRead.Add(nextCV);
+                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameDOEHLERHAAS);
                     }
                 }
             }

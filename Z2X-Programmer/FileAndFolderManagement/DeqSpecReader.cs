@@ -106,6 +106,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X = "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X";
         public const string ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         public const string ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = "ZIMO_FUNCKEY_SHUNTINGKEY_CV155";
+        public const string ZIMO_ELECTRIC_UNCOUPLER_CV115X = "ZIMO_ELECTRIC_UNCOUPLER_CV115X";
         
 
         //  Döhler & Haass specific features
@@ -903,6 +904,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -964,6 +966,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -1119,6 +1122,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
+    <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 

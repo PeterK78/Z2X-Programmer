@@ -9,6 +9,7 @@
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              Padding="40,40,5,20"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}">
 
     <ContentPage.Resources>
@@ -49,21 +50,31 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-
-                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionOutputs}" SelectedItem="{Binding SelectedFunctionOutput}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                            
+                            <!-- The description -->
+                            <Image Margin="0,0,0,30" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_developer_board_edit_name_24_regular.png, Dark=ic_fluent_developer_board_edit_name_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label Margin="50,0,0,30"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                            
+                            <!--<BoxView Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>-->
+                            
+                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionOutputs}" SelectedItem="{Binding SelectedFunctionOutput}" HeightRequest="300" Margin="0,0,0,0" SelectionMode="Single" >                                
                                 <CollectionView.Header>
-                                    <Grid ColumnDefinitions="100,*">
-                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleID}" Grid.Column="0"/>
-                                        <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleDescription}" Grid.Column="1"/>
+                                    <Grid ColumnDefinitions="150,*">
+                                        <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleID}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" HorizontalTextAlignment="Start" Grid.Column="0"/>
+                                        <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleDescription}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" HorizontalTextAlignment="Start" Grid.Column="1"/>
                                     </Grid>
                                 </CollectionView.Header>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="datamodel:FunctionOutputType">
-                                        <Grid ColumnDefinitions="100,*">
-                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ID}" HorizontalTextAlignment="Start" />
-                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Description}" HorizontalTextAlignment="Start" />
+                                        <Grid ColumnDefinitions="150,*">
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding ID}" HorizontalTextAlignment="Start" Margin="10,0,0,0" Padding="0,0,0,0"/>
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding Description}" HorizontalTextAlignment="Start" />
+                                            
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:FunctionOutputsViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" Command="{Binding EditFunctionOutputNameCommand}"/>  
+                                            </Grid.GestureRecognizers>
+                                            
                                         </Grid>
                                     </DataTemplate>
 

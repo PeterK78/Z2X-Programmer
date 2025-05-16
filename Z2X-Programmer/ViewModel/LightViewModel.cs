@@ -24,6 +24,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using System.Reflection;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
@@ -45,10 +46,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
-        #endregion        
+        #endregion
 
         #region REGION: DECODER FEATURES
-        
+
         // ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X).
         [ObservableProperty]
         bool zIMO_LIGHT_EFFECTS_CV125X;
@@ -70,6 +71,9 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PUBLIC PROPERTIES
 
         [ObservableProperty]
+        ObservableCollection<string> functionOutputNames = new ObservableCollection<string>();
+
+        [ObservableProperty]
         bool anyDecoderFeatureAvailable;
 
         // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
@@ -79,11 +83,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ZIMO.LightEffectFadeInTime = value;
             ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(value);
-            CV190Configuration = Subline.Create(new List<uint>{190});
+            CV190Configuration = Subline.Create(new List<uint> { 190 });
         }
 
         [ObservableProperty]
-        string cV190Configuration = Subline.Create(new List<uint>{190});
+        string cV190Configuration = Subline.Create(new List<uint> { 190 });
 
         [ObservableProperty]
         string zIMOLightEffectFadeInTimeLabelText = string.Empty;
@@ -94,11 +98,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ZIMO.LightEffectFadeOutTime = value;
             ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(value);
-            CV191Configuration = Subline.Create(new List<uint>{191});
+            CV191Configuration = Subline.Create(new List<uint> { 191 });
         }
 
         [ObservableProperty]
-        string cV191Configuration = Subline.Create(new List<uint>{191});
+        string cV191Configuration = Subline.Create(new List<uint> { 191 });
 
         [ObservableProperty]
         string zIMOLightEffectFadeOutTimeLabelText = string.Empty;
@@ -110,9 +114,9 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ZIMO.LightEffectFadeInTime = value;
             ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(value);
-            CV190Configuration = Subline.Create(new List<uint>{190});
+            CV190Configuration = Subline.Create(new List<uint> { 190 });
         }
-        
+
         [ObservableProperty]
         string zIMOLightEffectFadeInTimeMXLabelText = string.Empty;
 
@@ -122,13 +126,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ZIMO.LightEffectFadeOutTime = value;
             ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(value);
-            CV191Configuration = Subline.Create(new List<uint>{191});
+            CV191Configuration = Subline.Create(new List<uint> { 191 });
         }
-        
+
         [ObservableProperty]
         string zIMOLightEffectFadeOutTimeMXLabelText = string.Empty;
-        
-
 
 
         //  ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
@@ -137,12 +139,12 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         internal ObservableCollection<string> availableZIMOLightEffectsDirections = new ObservableCollection<string>();
-        
+
         // ZIMO: Light effects in CV125 for function output F0 (front headlight)
         [ObservableProperty]
         internal string selectedZIMOLightEffect0v = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0v);
         partial void OnSelectedZIMOLightEffect0vChanged(string value)
-        {       
+        {
             DecoderConfiguration.ZIMO.LightEffectOutput0v = ZIMOEnumConverter.GetLightEffectType(value);
             CV125Configuration = Subline.Create(new List<uint> { 125 });
         }
@@ -155,7 +157,10 @@ namespace Z2XProgrammer.ViewModel
         }
 
         [ObservableProperty]
-        string cV125Configuration = Subline.Create(new List<uint>{125});
+        string cV125Configuration = Subline.Create(new List<uint> { 125 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffect0vEnabled = false;
 
         // ZIMO: Light effects in CV126 for rear headlight (default F0 reverse)
         [ObservableProperty]
@@ -170,12 +175,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirection0r = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutput0r);
         partial void OnSelectedZIMOLightEffectDirection0rChanged(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutput0r = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutput0r = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV126Configuration = Subline.Create(new List<uint> { 126 });
         }
 
         [ObservableProperty]
-        string cV126Configuration = Subline.Create(new List<uint>{126});
+        string cV126Configuration = Subline.Create(new List<uint> { 126 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffect0rEnabled = false;
 
         // ZIMO: Light effects in CV127 for FA1
         [ObservableProperty]
@@ -190,12 +198,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA1 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA1);
         partial void OnSelectedZIMOLightEffectDirectionFA1Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA1  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA1 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV127Configuration = Subline.Create(new List<uint> { 127 });
         }
 
         [ObservableProperty]
-        string cV127Configuration = Subline.Create(new List<uint>{127});
+        string cV127Configuration = Subline.Create(new List<uint> { 127 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA1Enabled = false;
 
         // ZIMO: Light effects in CV128 for FA2
         [ObservableProperty]
@@ -210,12 +221,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA2 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA2);
         partial void OnSelectedZIMOLightEffectDirectionFA2Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA2  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA2 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV128Configuration = Subline.Create(new List<uint> { 128 });
         }
 
         [ObservableProperty]
-        string cV128Configuration = Subline.Create(new List<uint>{128});
+        string cV128Configuration = Subline.Create(new List<uint> { 128 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA2Enabled = false;
 
         // ZIMO: Light effects in CV129 for FA3
         [ObservableProperty]
@@ -230,12 +244,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA3 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA3);
         partial void OnSelectedZIMOLightEffectDirectionFA3Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA3  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA3 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV129Configuration = Subline.Create(new List<uint> { 129 });
         }
 
         [ObservableProperty]
-        string cV129Configuration = Subline.Create(new List<uint>{129});
+        string cV129Configuration = Subline.Create(new List<uint> { 129 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA3Enabled = false;
 
         // ZIMO: Light effects in CV130 for FA4
         [ObservableProperty]
@@ -250,12 +267,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA4 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA4);
         partial void OnSelectedZIMOLightEffectDirectionFA4Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA4  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA4 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV130Configuration = Subline.Create(new List<uint> { 130 });
         }
 
         [ObservableProperty]
-        string cV130Configuration = Subline.Create(new List<uint>{130});
+        string cV130Configuration = Subline.Create(new List<uint> { 130 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA4Enabled = false;
 
         // ZIMO: Light effects in CV131 for FA5
         [ObservableProperty]
@@ -270,12 +290,16 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA5 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA5);
         partial void OnSelectedZIMOLightEffectDirectionFA5Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA5  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA5 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV131Configuration = Subline.Create(new List<uint> { 131 });
         }
 
         [ObservableProperty]
-        string cV131Configuration = Subline.Create(new List<uint>{131});
+        string cV131Configuration = Subline.Create(new List<uint> { 131 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA5Enabled = false;
+
 
         // ZIMO: Light effects in CV132 for FA6
         [ObservableProperty]
@@ -290,12 +314,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA6 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA6);
         partial void OnSelectedZIMOLightEffectDirectionFA6Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA6  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA6 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV132Configuration = Subline.Create(new List<uint> { 132 });
         }
 
         [ObservableProperty]
-        string cV132Configuration = Subline.Create(new List<uint>{132});
+        string cV132Configuration = Subline.Create(new List<uint> { 132 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA6Enabled = false;
 
         // ZIMO: Light effects in CV159 for FA7
         [ObservableProperty]
@@ -310,12 +337,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA7 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA7);
         partial void OnSelectedZIMOLightEffectDirectionFA7Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA7  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA7 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV159Configuration = Subline.Create(new List<uint> { 159 });
         }
 
         [ObservableProperty]
-        string cV159Configuration = Subline.Create(new List<uint>{159});
+        string cV159Configuration = Subline.Create(new List<uint> { 159 });
+
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA7Enabled = false;
 
         // ZIMO: Light effects in CV160 for FA8
         [ObservableProperty]
@@ -330,15 +360,15 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedZIMOLightEffectDirectionFA8 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA8);
         partial void OnSelectedZIMOLightEffectDirectionFA8Changed(string value)
         {
-            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA8  = ZIMOEnumConverter.GetLightEffectDirectionType(value);  
+            DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA8 = ZIMOEnumConverter.GetLightEffectDirectionType(value);
             CV160Configuration = Subline.Create(new List<uint> { 160 });
         }
 
         [ObservableProperty]
-        string cV160Configuration = Subline.Create(new List<uint>{160});
+        string cV160Configuration = Subline.Create(new List<uint> { 160 });
 
-
-
+        [ObservableProperty]
+        internal bool zIMOLightEffectFA8Enabled = false;
 
 
 
@@ -359,11 +389,11 @@ namespace Z2XProgrammer.ViewModel
                 // The user would like to disable the dimming function. We set the brightness to 0.
                 Brightness = 0;
             }
-            CV60Configuration = Subline.Create(new List<uint>{60});
+            CV60Configuration = Subline.Create(new List<uint> { 60 });
         }
 
         [ObservableProperty]
-        string cV60Configuration = Subline.Create(new List<uint>{60});
+        string cV60Configuration = Subline.Create(new List<uint> { 60 });
 
         [ObservableProperty]
         bool dimmingOutput0frontEnabled;
@@ -372,10 +402,10 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 0, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
         [ObservableProperty]
-        string cV114Configuration = Subline.Create(new List<uint>{114});
+        string cV114Configuration = Subline.Create(new List<uint> { 114 });
 
 
         [ObservableProperty]
@@ -385,7 +415,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 1, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -395,7 +425,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 2, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -405,7 +435,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 3, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -415,7 +445,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 4, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -425,7 +455,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 5, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -435,7 +465,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 6, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -445,7 +475,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 7, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled = temp;
-            CV114Configuration = Subline.Create(new List<uint>{114});
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
         }
 
         [ObservableProperty]
@@ -455,10 +485,10 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 0, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
         [ObservableProperty]
-        string cV152Configuration = Subline.Create(new List<uint>{152});
+        string cV152Configuration = Subline.Create(new List<uint> { 152 });
 
         [ObservableProperty]
         bool dimmingOutput8Enabled;
@@ -467,7 +497,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 1, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
 
         [ObservableProperty]
@@ -477,7 +507,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 2, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
 
         [ObservableProperty]
@@ -487,7 +517,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 3, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
 
         [ObservableProperty]
@@ -497,7 +527,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 4, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
 
         [ObservableProperty]
@@ -507,7 +537,7 @@ namespace Z2XProgrammer.ViewModel
             byte temp = DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled;
             temp = Bit.Set(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 5, !value);
             DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled = temp;
-            CV152Configuration = Subline.Create(new List<uint>{152});
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
         }
 
 
@@ -552,13 +582,116 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PRIVATE FUNCTIONS
 
+
+        /// <summary>
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
+        /// </summary>
+        private void OnGetDecoderConfiguration()
+        {
+            DataStoreDataValid = DecoderConfiguration.IsValid;
+            DimmingEnabled = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 0 ? false : true;
+            Brightness = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue;
+            BrightnessLabelText = GetBrightnessLabelText();
+            DimmingOutput0frontEnabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 0);
+            DimmingOutput0rearEnabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 1);
+            DimmingOutput1Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 2);
+            DimmingOutput2Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 3);
+            DimmingOutput3Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 4);
+            DimmingOutput4Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 5);
+            DimmingOutput5Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 6);
+            DimmingOutput6Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 7);
+            DimmingOutput7Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 0);
+            DimmingOutput8Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 1);
+            DimmingOutput9Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 2);
+            DimmingOutput10Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 3);
+            DimmingOutput11Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 4);
+            DimmingOutput12Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 5);
+
+
+            // ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
+            AvailableZIMOLightEffects = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableLightEffects());
+            AvailableZIMOLightEffectsDirections = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableLightEffectDirections());
+
+            SelectedZIMOLightEffect0v = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0v);
+            SelectedZIMOLightEffect0r = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0r);
+            SelectedZIMOLightEffectFA1 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA1);
+            SelectedZIMOLightEffectFA2 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA2);
+            SelectedZIMOLightEffectFA3 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA3);
+            SelectedZIMOLightEffectFA4 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA4);
+            SelectedZIMOLightEffectFA5 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA5);
+            SelectedZIMOLightEffectFA6 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA6);
+            SelectedZIMOLightEffectFA7 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA7);
+            SelectedZIMOLightEffectFA8 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA8);
+
+            SelectedZIMOLightEffectDirection0v = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutput0v);
+            SelectedZIMOLightEffectDirection0r = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutput0r);
+            SelectedZIMOLightEffectDirectionFA1 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA1);
+            SelectedZIMOLightEffectDirectionFA2 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA2);
+            SelectedZIMOLightEffectDirectionFA3 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA3);
+            SelectedZIMOLightEffectDirectionFA4 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA4);
+            SelectedZIMOLightEffectDirectionFA5 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA5);
+            SelectedZIMOLightEffectDirectionFA6 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA6);
+            SelectedZIMOLightEffectDirectionFA7 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA7);
+            SelectedZIMOLightEffectDirectionFA8 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA8);
+
+            ZIMOLightEffect0rEnabled = IsFunctionOutputAvailable(0,true);
+            ZIMOLightEffect0vEnabled = IsFunctionOutputAvailable(0, false);
+            ZIMOLightEffectFA1Enabled = IsFunctionOutputAvailable(1,true);
+            ZIMOLightEffectFA2Enabled = IsFunctionOutputAvailable(2, true);
+            ZIMOLightEffectFA3Enabled = IsFunctionOutputAvailable(3, true);
+            ZIMOLightEffectFA4Enabled = IsFunctionOutputAvailable(4, true);
+            ZIMOLightEffectFA5Enabled = IsFunctionOutputAvailable(5, true);
+            ZIMOLightEffectFA6Enabled = IsFunctionOutputAvailable(6, true);
+            ZIMOLightEffectFA7Enabled = IsFunctionOutputAvailable(7, true);
+            ZIMOLightEffectFA8Enabled = IsFunctionOutputAvailable(8, true);
+
+
+            // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+            ZIMOLightEffectFadeInTime = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
+            ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeInTime);
+            ZIMOLightEffectFadeOutTime = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
+            ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTime);
+
+            // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
+            ZIMOLightEffectFadeInTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
+            ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeInTimeMX);
+            ZIMOLightEffectFadeOutTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
+            ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTimeMX);
+
+            FunctionOutputNames = Helper.FunctionOutputs.GetNames(false);
+
+        }
+
+        /// <summary>
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
+        /// </summary>
+        private void OnGetDataFromDecoderSpecification()
+        {
+            ZIMO_LIGHT_DIM_CV60 = DecoderSpecification.ZIMO_LIGHT_DIM_CV60;
+            ZIMO_LIGHT_EFFECTS_CV125X = DecoderSpecification.ZIMO_LIGHT_EFFECTS_CV125X;
+            ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X;
+            ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X;
+
+
+            if ((ZIMO_LIGHT_DIM_CV60 == true) || (ZIMO_LIGHT_EFFECTS_CV125X == true) || (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X == true) || (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X == true))
+            {
+                AnyDecoderFeatureAvailable = true;
+            }
+            else
+            {
+                AnyDecoderFeatureAvailable = false;
+            }
+        }
+
         /// <summary>
         /// Converts the current brightness value of CV60 to a label text (value + percentage).
         /// </summary>
         /// <returns></returns>
         private string GetBrightnessLabelText()
         {
-        
+
             float percentage = ((float)100 / (float)255) * (float)Brightness;
             return Brightness.ToString() + " (" + string.Format("{0:N0}", percentage) + " %)";
         }
@@ -617,7 +750,7 @@ namespace Z2XProgrammer.ViewModel
                 }
                 else if ((value >= 2) && (value <= 255))
                 {
-                    return string.Format("{0:N0}", Mathematics.ScaleRange(value, 2, 255,2 , 320)) + " s";
+                    return string.Format("{0:N0}", Mathematics.ScaleRange(value, 2, 255, 2, 320)) + " s";
                 }
                 else
                 {
@@ -631,93 +764,57 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
-
         /// <summary>
-        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
-        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
+        /// Returns TRUE if the function output is available for a light effect. The function output is available if the function effect is "NoEffect" and not "Decoupler".
         /// </summary>
-        private void OnGetDecoderConfiguration()
+        /// <param name="functionOutputNumber">A function number between 1 and 8. Only function numbers between 1 and 8 are supporting the decoupler function.</param>
+        /// <returns></returns>
+        private bool IsFunctionOutputAvailable(int functionOutputNumber, bool forward)
         {
-            DataStoreDataValid = DecoderConfiguration.IsValid;
-            DimmingEnabled = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 0 ? false : true;
-            Brightness = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue;
-            BrightnessLabelText = GetBrightnessLabelText();
-            DimmingOutput0frontEnabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 0);
-            DimmingOutput0rearEnabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 1);
-            DimmingOutput1Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 2);
-            DimmingOutput2Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 3);
-            DimmingOutput3Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 4);
-            DimmingOutput4Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 5);
-            DimmingOutput5Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 6);
-            DimmingOutput6Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA0FA06OutputsEnabled, 7);
-            DimmingOutput7Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 0);
-            DimmingOutput8Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 1);
-            DimmingOutput9Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 2);
-            DimmingOutput10Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 3);
-            DimmingOutput11Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 4);
-            DimmingOutput12Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 5);
+            if (functionOutputNumber < 0 || functionOutputNumber > 8) return false;
 
-            AvailableZIMOLightEffects = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableLightEffects());
-            AvailableZIMOLightEffectsDirections = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableLightEffectDirections());
-
-            SelectedZIMOLightEffect0v = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0v);
-            SelectedZIMOLightEffect0r = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutput0r);
-            SelectedZIMOLightEffectFA1 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA1);
-            SelectedZIMOLightEffectFA2 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA2);
-            SelectedZIMOLightEffectFA3 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA3);
-            SelectedZIMOLightEffectFA4 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA4);
-            SelectedZIMOLightEffectFA5 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA5);
-            SelectedZIMOLightEffectFA6 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA6);
-            SelectedZIMOLightEffectFA7 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA7);
-            SelectedZIMOLightEffectFA8 = ZIMOEnumConverter.GetLightEffectDescription(DecoderConfiguration.ZIMO.LightEffectOutputFA8);
-
-            SelectedZIMOLightEffectDirection0v = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutput0v);
-            SelectedZIMOLightEffectDirection0r = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutput0r);
-            SelectedZIMOLightEffectDirectionFA1 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA1);
-            SelectedZIMOLightEffectDirectionFA2 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA2);
-            SelectedZIMOLightEffectDirectionFA3 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA3);
-            SelectedZIMOLightEffectDirectionFA4 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA4);
-            SelectedZIMOLightEffectDirectionFA5 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA5);
-            SelectedZIMOLightEffectDirectionFA6 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA6);
-            SelectedZIMOLightEffectDirectionFA7 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA7);
-            SelectedZIMOLightEffectDirectionFA8 = ZIMOEnumConverter.GetLightEffectDirectionDescription(DecoderConfiguration.ZIMO.LightEffectDirectionOutputFA8);
-
-
-            // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
-            ZIMOLightEffectFadeInTime = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
-            ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeInTime);
-            ZIMOLightEffectFadeOutTime = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
-            ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTime);
-
-            // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
-            ZIMOLightEffectFadeInTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
-            ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeInTimeMX);
-            ZIMOLightEffectFadeOutTimeMX =  DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
-            ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTimeMX);
-
+            switch (functionOutputNumber)
+            {
+                case 0:
+                    if (forward == true)
+                    {
+                        if ((DecoderConfiguration.ZIMO.LightEffectOutput0v == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutput0v != ZIMO.ZIMOEffects.Decoupler)) return true;
+                        return false;
+                    }
+                    else
+                    {
+                        if ((DecoderConfiguration.ZIMO.LightEffectOutput0r == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutput0r != ZIMO.ZIMOEffects.Decoupler)) return true;
+                        return false;
+                    }
+                case 1:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA1 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA1 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 2:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA2 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA2 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 3:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA3 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA3 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 4:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA4 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA4 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 5:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA5 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA5 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 6:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA6 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA6 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 7:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA7 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA7 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+                case 8:
+                    if ((DecoderConfiguration.ZIMO.LightEffectOutputFA8 == ZIMO.ZIMOEffects.NoEffect) || (DecoderConfiguration.ZIMO.LightEffectOutputFA8 != ZIMO.ZIMOEffects.Decoupler)) return true;
+                    return false;
+            }
+            return true;
         }
 
-        /// <summary>
-        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
-        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
-        /// </summary>
-        private void OnGetDataFromDecoderSpecification()
-        {
-            ZIMO_LIGHT_DIM_CV60 = DecoderSpecification.ZIMO_LIGHT_DIM_CV60;
-            ZIMO_LIGHT_EFFECTS_CV125X = DecoderSpecification.ZIMO_LIGHT_EFFECTS_CV125X;
-            ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X;
-            ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DecoderSpecification.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X;
 
-
-            if ((ZIMO_LIGHT_DIM_CV60 == true) || (ZIMO_LIGHT_EFFECTS_CV125X == true) || (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X == true) || (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X == true))
-            {
-                AnyDecoderFeatureAvailable = true;
-            }
-            else
-            {
-                AnyDecoderFeatureAvailable = false;
-            }
-        }
 
         #endregion
     }

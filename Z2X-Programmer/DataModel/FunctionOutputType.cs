@@ -21,11 +21,32 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 namespace Z2XProgrammer.DataModel
 {
-    public class FunctionOutputType
+    public class FunctionOutputType: INotifyPropertyChanged
     {
+        //  Private field variables.
+        private string _Description = string.Empty;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)    
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public string ID { get; set; } = string.Empty; 
-        public string Description { get; set; } = string.Empty;
+        public string Description
+        {
+            get => _Description;
+            set
+            {
+                _Description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
     }
 }

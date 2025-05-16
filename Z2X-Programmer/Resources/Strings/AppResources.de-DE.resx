@@ -629,19 +629,19 @@ Folgender Fehler ist aufgetreten:
     <value>Helligkeit</value>
   </data>
   <data name="FrameLightDimmingOutputFA0r" xml:space="preserve">
-    <value>Effekt, Ausgang 0 hinten (CV126)</value>
+    <value>Lichteffekt für Ausgang 0 hinten (CV126)</value>
   </data>
   <data name="FrameLightDimmingOutputFA0v" xml:space="preserve">
-    <value>Effekt, Ausgang 0 vorne (CV125)</value>
+    <value>Lichteffekt für Ausgang 0 vorne (CV125)</value>
   </data>
   <data name="FrameLightDimmingTitle" xml:space="preserve">
     <value>Dimmen</value>
   </data>
   <data name="FrameLightEffectsDescription" xml:space="preserve">
-    <value>Jedem Funktionsausgang kann ein Lichteffekt zugewiesen werden. Sie können auch die Fahrtrichtung einstellen, in welcher der Effekt aktiv ist.</value>
+    <value>Jeder Funktionsausgang kann mit einem individuellen Lichteffekt belegt werden. Falls ein Funktionsausgang nicht konfiguriert werden kann ⛔, so ist dieser Ausgang bereits mit einer weiteren Funktion oder Effekt belegt.</value>
   </data>
   <data name="FrameLightEffectsTitle" xml:space="preserve">
-    <value>Effekte</value>
+    <value>Lichteffekte</value>
   </data>
   <data name="FrameLocomotiveAddressConsistAdrDescription" xml:space="preserve">
     <value>Verbundadressen werden verwendet, wenn zwei oder mehrere Lokomotiven im Verbund fahren. Die zusätzlichen Lokomotiven erhalten als Verbundadresse die Fahrzeugadresse der führenden Lokomotive. Adressen von 1 bis 10239 sind möglich.</value>
@@ -1123,7 +1123,7 @@ Auf- und Abblenden = 88</value>
   <data name="LightEffectTypeDimmingUpAndDown" xml:space="preserve">
     <value>Auf- und Abblenden</value>
   </data>
-  <data name="LightEffectTypeNoEffect" xml:space="preserve">
+  <data name="ZIMOEffectTypeNoEffect" xml:space="preserve">
     <value>Kein Effekt</value>
   </data>
   <data name="NO" xml:space="preserve">
@@ -1314,7 +1314,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>In dieser Liste werden Wert und Status aller Konfigurationsvariablen dargestellt, welche von der gewählten Decoder-Spezifikation unterstützt werden. </value>
   </data>
   <data name="FrameExpertCVHeaderCVNumber" xml:space="preserve">
-    <value>Nummer</value>
+    <value>Konfigurationsvariable</value>
   </data>
   <data name="FrameExpertCVHeaderCVValue" xml:space="preserve">
     <value>Wert</value>
@@ -1417,13 +1417,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Ordnen Sie den Funktionstasten Funktionsausgänge zu. Wird eine Funktionstaste gedrückt, so wird der zugeordnete Funktionsausgang geschaltet. Zusätzlich können Sie auch eine erweiterte Variante der Zuordnung aktivieren. Bei dieser erweiterten Variante können höhere Funktionstasten auch niedrigere Funktionsausgänge schalten.</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleID" xml:space="preserve">
-    <value>Ausgang</value>
+    <value>Funktionsausgang</value>
   </data>
   <data name="FrameFunctionOutputsNamingHeaderTitleDescription" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
   <data name="FrameFunctionOutputsNamingTitle" xml:space="preserve">
-    <value>Namensgebung</value>
+    <value>Beschreibung</value>
   </data>
   <data name="FrameFunctionOutputsNamingDescription" xml:space="preserve">
     <value>In der folgenden Tabelle können Sie jedem Funktionsausgang eine beliebige Beschreibung zuweisen.</value>
@@ -1432,7 +1432,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Funktionsausgang</value>
   </data>
   <data name="FrameFunctionOutputsGetNamingDescription" xml:space="preserve">
-    <value>Geben Sie eine beliebige Beschreibung ein:</value>
+    <value>Geben Sie eine beliebige Beschreibung ein:
+</value>
   </data>
   <data name="DownloadAllSettingsYesNo" xml:space="preserve">
     <value>Möchten Sie nun alle bekannten Einstellungen auf den Decoder übertragen?</value>
@@ -1453,7 +1454,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Aktivieren / Deaktivieren</value>
   </data>
   <data name="FrameExpertSettingsNoCVSelected" xml:space="preserve">
-    <value>No configuration variable is selected.</value>
+    <value>Es ist keine Konfigurationsvariable ausgewählt.</value>
   </data>
   <data name="FrameSecondaryAddressPlaceholder" xml:space="preserve">
     <value>Zweitadresse</value>
@@ -1605,31 +1606,31 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Leuchtstoffröhre</value>
   </data>
   <data name="FrameLightDimmingOutputFA1" xml:space="preserve">
-    <value>Effekt, Ausgang FA1 (CV127)</value>
+    <value>Lichteffekt für Ausgang FA1 (CV127)</value>
   </data>
   <data name="LightEffectTypeFunctionOutputUnknown" xml:space="preserve">
     <value>Unbekannter Effekt</value>
   </data>
   <data name="FrameLightDimmingOutputFA2" xml:space="preserve">
-    <value>Effekt, Ausgang FA2 (CV128)</value>
+    <value>Lichteffekt für Ausgang FA2 (CV128)</value>
   </data>
   <data name="FrameLightDimmingOutputFA3" xml:space="preserve">
-    <value>Effekt, Ausgang FA3 (CV129)</value>
+    <value>Lichteffekt für Ausgang FA3 (CV129)</value>
   </data>
   <data name="FrameLightDimmingOutputFA4" xml:space="preserve">
-    <value>Effekt, Ausgang FA4 (CV130)</value>
+    <value>Lichteffekt für Ausgang FA4 (CV130)</value>
   </data>
   <data name="FrameLightDimmingOutputFA5" xml:space="preserve">
-    <value>Effekt, Ausgang FA5 (CV131)</value>
+    <value>Lichteffekt für Ausgang FA5 (CV131)</value>
   </data>
   <data name="FrameLightDimmingOutputFA6" xml:space="preserve">
-    <value>Effekt, Ausgang FA6 (CV132)</value>
+    <value>Lichteffekt für Ausgang FA6 (CV132)</value>
   </data>
   <data name="FrameLightDimmingOutputFA7" xml:space="preserve">
-    <value>Effekt, Ausgang FA7 (CV133)</value>
+    <value>Lichteffekt für Ausgang FA7 (CV133)</value>
   </data>
   <data name="FrameLightDimmingOutputFA8" xml:space="preserve">
-    <value>Effekt, Ausgang FA8 (CV134)</value>
+    <value>Lichteffekt für Ausgang FA8 (CV134)</value>
   </data>
   <data name="LocoListColumnHeaderZ2XAvailable" xml:space="preserve">
     <value>Z2X-Datei</value>
@@ -1798,5 +1799,44 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameSpeedStepsCurrentValueNotAvailable" xml:space="preserve">
     <value>Decoder auslesen erforderlich</value>
+  </data>
+  <data name="FlyoutItemFunctionConfigurationTitle" xml:space="preserve">
+    <value>Funktionseinstellungen</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerTitle" xml:space="preserve">
+    <value>Automatisches Entkuppeln</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription" xml:space="preserve">
+    <value>Verwenden Sie bis zu 2 Funktionsausgänge als Entkuppler. Falls ein Funktionsausgang nicht konfiguriert werden kann ⛔, so ist dieser Ausgang bereits mit einer weiteren Funktion oder Effekt belegt.</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerForwardLabel" xml:space="preserve">
+    <value>Zuordnung der Funktionsausgänge</value>
+  </data>
+  <data name="ZIMOEffectTypeDecoupler" xml:space="preserve">
+    <value>Entkuppler</value>
+  </data>
+  <data name="ZIMOEffectTypeNoFunctionEffect" xml:space="preserve">
+    <value>Keine Funktion</value>
+  </data>
+  <data name="ZIMODecouplerEffectEnabled" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="ZIMODecouplerEffectDisabled" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionTableTitle" xml:space="preserve">
+    <value>Funktionsausgänge</value>
+  </data>
+  <data name="AlertTooManyDecouplerOutputs" xml:space="preserve">
+    <value>Es dürfen maximal nur 2 Funktionsausgänge für Entkuppler verwendet werden.</value>
+  </data>
+  <data name="FrameLightEffectsTableHeaderFunctionOutput" xml:space="preserve">
+    <value>Funktionsausgang</value>
+  </data>
+  <data name="FrameLightEffectsTableHeaderEffectAndDirection" xml:space="preserve">
+    <value>Lichteffekt und Richtung</value>
+  </data>
+  <data name="FrameExpertCVListNote" xml:space="preserve">
+    <value>⚠ Beim Wechseln der Decoder-Spezifikation werden alle Konfigurationsvariablen automatisch aktiviert.</value>
   </data>
 </root>

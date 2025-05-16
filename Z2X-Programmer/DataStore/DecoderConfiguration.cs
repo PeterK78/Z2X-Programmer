@@ -218,6 +218,22 @@ namespace Z2XProgrammer.DataStore
         }
 
         /// <summary>
+        ///  Returns TRUE if all configuration variables are enabled and supported by the current decoder specification.
+        ///  </summary>
+        public static bool AllSupportedCVsEnabled()
+        {
+            foreach (ConfigurationVariableType item in ConfigurationVariables)
+            {
+                if (item.DeqSecSupported == true && item.Enabled == false)
+                {
+                    Logger.LogInformation("DecoderConfiguration.AllSupportedCVsEnabled disabled CV found:" + item.Number.ToString());
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Marks each configuration variable with the information whether it is supported by the current decoder specification.
         /// </summary>
         /// <param name="decSpecName">The name of the decoder specification.</param>

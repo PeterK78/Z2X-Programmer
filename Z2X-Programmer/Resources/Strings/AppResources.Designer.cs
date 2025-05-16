@@ -448,6 +448,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only a maximum of 2 function outputs may be used for decouplers..
+        /// </summary>
+        public static string AlertTooManyDecouplerOutputs {
+            get {
+                return ResourceManager.GetString("AlertTooManyDecouplerOutputs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configuration variable could not be written. .
         /// </summary>
         public static string AlertWriteCVError {
@@ -972,6 +981,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Function settings.
+        /// </summary>
+        public static string FlyoutItemFunctionConfigurationTitle {
+            get {
+                return ResourceManager.GetString("FlyoutItemFunctionConfigurationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function outputs.
         /// </summary>
         public static string FlyoutItemFunctionKeysFunctionOutputsTitle {
@@ -1476,7 +1494,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number.
+        ///   Looks up a localized string similar to Configuration variable.
         /// </summary>
         public static string FrameExpertCVHeaderCVNumber {
             get {
@@ -1499,6 +1517,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameExpertCVListDescription {
             get {
                 return ResourceManager.GetString("FrameExpertCVListDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⚠ All configuration variables are activated automatically when the decoder specification is changed..
+        /// </summary>
+        public static string FrameExpertCVListNote {
+            get {
+                return ResourceManager.GetString("FrameExpertCVListNote", resourceCulture);
             }
         }
         
@@ -1584,11 +1611,47 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es ist keine Konfigurationsvariable ausgewählt..
+        ///   Looks up a localized string similar to No configuration variable is selected. .
         /// </summary>
         public static string FrameExpertSettingsNoCVSelected {
             get {
                 return ResourceManager.GetString("FrameExpertSettingsNoCVSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assignment of the function outputs.
+        /// </summary>
+        public static string FrameFunctionConfigurationUncouplerForwardLabel {
+            get {
+                return ResourceManager.GetString("FrameFunctionConfigurationUncouplerForwardLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use up to 2 function outputs as decouplers. If a function output cannot be configured ⛔, this output is already assigned to another function or effect..
+        /// </summary>
+        public static string FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function outputs.
+        /// </summary>
+        public static string FrameFunctionConfigurationUncouplerFunctionOutputSelectionTableTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionConfigurationUncouplerFunctionOutputSelectionTableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic uncoupling.
+        /// </summary>
+        public static string FrameFunctionConfigurationUncouplerTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionConfigurationUncouplerTitle", resourceCulture);
             }
         }
         
@@ -1737,7 +1800,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function output.
+        ///   Looks up a localized string similar to Function outputs.
         /// </summary>
         public static string FrameFunctionKeysMappingHeadeOutput {
             get {
@@ -2053,7 +2116,8 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter any description:.
+        ///   Looks up a localized string similar to Enter any description:
+        ///.
         /// </summary>
         public static string FrameFunctionOutputsGetNamingDescription {
             get {
@@ -2089,7 +2153,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Output.
+        ///   Looks up a localized string similar to Function output.
         /// </summary>
         public static string FrameFunctionOutputsNamingHeaderTitleID {
             get {
@@ -2098,7 +2162,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naming.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string FrameFunctionOutputsNamingTitle {
             get {
@@ -2629,11 +2693,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A light effect can be assigned to each function output. You can also set the direction of travel in which the effect is active..
+        ///   Looks up a localized string similar to Each function output can be assigned an individual light effect. If a function output cannot be configured ⛔, this output is already assigned to another function or effect..
         /// </summary>
         public static string FrameLightEffectsDescription {
             get {
                 return ResourceManager.GetString("FrameLightEffectsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light effect and Direction.
+        /// </summary>
+        public static string FrameLightEffectsTableHeaderEffectAndDirection {
+            get {
+                return ResourceManager.GetString("FrameLightEffectsTableHeaderEffectAndDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function output.
+        /// </summary>
+        public static string FrameLightEffectsTableHeaderFunctionOutput {
+            get {
+                return ResourceManager.GetString("FrameLightEffectsTableHeaderFunctionOutput", resourceCulture);
             }
         }
         
@@ -2656,7 +2738,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effects.
+        ///   Looks up a localized string similar to Light effects.
         /// </summary>
         public static string FrameLightEffectsTitle {
             get {
@@ -4566,15 +4648,6 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No effect.
-        /// </summary>
-        public static string LightEffectTypeNoEffect {
-            get {
-                return ResourceManager.GetString("LightEffectTypeNoEffect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rotary beacon.
         /// </summary>
         public static string LightEffectTypeRotaryBeacon {
@@ -4769,6 +4842,51 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ZIMOBootloaderNotFailSafe {
             get {
                 return ResourceManager.GetString("ZIMOBootloaderNotFailSafe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ZIMODecouplerEffectDisabled {
+            get {
+                return ResourceManager.GetString("ZIMODecouplerEffectDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string ZIMODecouplerEffectEnabled {
+            get {
+                return ResourceManager.GetString("ZIMODecouplerEffectEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoupler.
+        /// </summary>
+        public static string ZIMOEffectTypeDecoupler {
+            get {
+                return ResourceManager.GetString("ZIMOEffectTypeDecoupler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No effect.
+        /// </summary>
+        public static string ZIMOEffectTypeNoEffect {
+            get {
+                return ResourceManager.GetString("ZIMOEffectTypeNoEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No function.
+        /// </summary>
+        public static string ZIMOEffectTypeNoFunctionEffect {
+            get {
+                return ResourceManager.GetString("ZIMOEffectTypeNoFunctionEffect", resourceCulture);
             }
         }
         

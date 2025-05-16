@@ -29,17 +29,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
               xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:usercontrols="clr-namespace:Z2XProgrammer.UserControls"
              x:DataType="viewmodel:LightViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Padding="40,40,5,20"
+             x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemLightText}">
 
     <ContentPage.Resources>
         <converter:InverseBooleanConverter x:Key="boolInvert" />
         <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
     </ContentPage.Resources>
-
+    
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
         <VerticalStackLayout>
 
@@ -64,353 +66,314 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-            <!-- ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60) -->
-            <Label IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                         
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,100,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <!-- ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60) -->
+                <Label IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_LIGHT_DIM_CV60}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV60Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,100,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
-                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingMasterValue}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" />
-                <VerticalStackLayout Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20">
-                    <HorizontalStackLayout  >
-                        <Slider Value="{Binding Brightness}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" IsVisible="{Binding DimmingEnabled}" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Text="{Binding BrightnessLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV60Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV60Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}"/>
-                <VerticalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" >
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput0frontEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput0frontEnabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingMasterValue}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" Margin="0,0,0,20">
+                            <HorizontalStackLayout  >
+                                <Slider Value="{Binding Brightness}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" IsVisible="{Binding DimmingEnabled}" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding BrightnessLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV60Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput0rearEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput0rearEnabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}"/>
+                        <VerticalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" >
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput0frontEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput0frontEnabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA1}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="5" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput1Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput1Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput0rearEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput0rearEnabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA2}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="6" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput2Enabled}"  HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA1}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="5" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput1Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput1Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA3}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="7" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput3Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput3Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA2}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="6" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput2Enabled}"  HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA4}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="8" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput4Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput4Enabled}"  HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA3}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="7" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput3Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput3Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="9" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA5}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="9" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput5Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput5Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA4}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="8" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput4Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput4Enabled}"  HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA6}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="10" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput6Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput6Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="9" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA5}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="9" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput5Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput5Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA7}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="11" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput7Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput7Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA6}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="10" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput6Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput6Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="12" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA8}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="12" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput8Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding DimmingOutput8Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA7}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="11" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput7Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput7Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA9}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="13" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput9Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput9Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="12" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA8}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="12" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput8Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch  IsToggled="{Binding DimmingOutput8Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="14" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA10}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout  Grid.Row="14" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Path=DimmingOutput10Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput10Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA9}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="13" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput9Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput9Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="15" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA11}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="15" Grid.Column="1"    HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput11Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput11Enabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
+                        <Label Grid.Row="14" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA10}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout  Grid.Row="14" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Path=DimmingOutput10Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput10Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                <Label Grid.Row="16" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA12}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
-                <VerticalStackLayout Grid.Row="16" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
-                    <HorizontalStackLayout >
-                        <Label Text="{Binding Path=DimmingOutput12Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding DimmingOutput12Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                </VerticalStackLayout>
-                    
-            </Grid>
-            
-            </Border>
+                        <Label Grid.Row="15" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA11}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="15" Grid.Column="1"    HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput11Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput11Enabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-            <!-- ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X) -->
-            <Label IsVisible="{Binding ZIMO_LIGHT_EFFECTS_CV125X}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightEffectsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_LIGHT_EFFECTS_CV125X}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
+                        <Label Grid.Row="16" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightBrigthnessOutputFA12}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DimmingEnabled}" />
+                        <VerticalStackLayout Grid.Row="16" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Path=DimmingOutput12Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                <Switch IsToggled="{Binding DimmingOutput12Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
+                    </Grid>
 
-                    <!-- ZIMO: Light effects in CV125 for function output F0 (front headlight) -->
-                    <Label Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0" >
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}"  ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffect0v}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300"  HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirection0v}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV125Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                </Border>
 
-                    <!-- ZIMO: Light effects in CV126 for rear headlight (default F0 reverse) -->
-                    <Label Grid.Row="2" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout >
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffect0r}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirection0r}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV126Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                    
-                    <!-- ZIMO: Light effects in CV127 for FA1 -->
-                    <Label Grid.Row="3" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA1}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                        <VerticalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA1}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA1}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV127Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                <!-- ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X) -->
+                <Label IsVisible="{Binding ZIMO_LIGHT_EFFECTS_CV125X}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLightEffectsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_LIGHT_EFFECTS_CV125X}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <!-- ZIMO: Light effects in CV128 for FA2 -->
-                    <Label Grid.Row="4" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA2}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA2}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA2}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV128Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- The description -->
+                        <Image Margin="0,0,0,30" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_lightbulb_filament_24_regular.png, Dark=ic_fluent_lightbulb_filament_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                        <Label Margin="50,0,0,30"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameLightEffectsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
 
-                    <!-- ZIMO: Light effects in CV129 for FA3 -->
-                    <Label Grid.Row="5" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA3}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="5" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA3}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA3}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV129Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- The heading of the table -->
+                        <BoxView Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectsTableHeaderFunctionOutput}" VerticalOptions="Center"  HorizontalOptions="Center" />
+                        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectsTableHeaderEffectAndDirection}" VerticalOptions="Center"  HorizontalOptions="Center" />
+                        
+                        <BoxView Grid.Row="2"  Grid.Column="0"  Grid.RowSpan="10" Grid.ColumnSpan="3"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}"  />
+                        
+                        <!-- ZIMO: Light effects in CV125 for function output F0 (front headlight) -->
+                        <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0v}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[0]}" VerticalOptions="Center"  HorizontalOptions="Center" />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="2" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffect0vEnabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffect0v}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirection0v}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV125Configuration}"/>
+                        
+                        <!-- ZIMO: Light effects in CV126 for rear headlight (default F0 reverse) -->
+                        <Label Grid.Row="3" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA0r}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[1]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="3" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffect0rEnabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffect0r}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirection0r}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV126Configuration}"/>
+                        
+                        <!-- ZIMO: Light effects in CV127 for FA1 -->
+                        <Label Grid.Row="4" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA1}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="4" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[2]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="4" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA1Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA1}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA1}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV127Configuration}"/>
+                        
+                        <!-- ZIMO: Light effects in CV128 for FA2 -->
+                        <Label Grid.Row="5" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA2}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="5" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[3]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="5" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA2Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA2}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA2}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV128Configuration}"/>
 
-                    <!-- ZIMO: Light effects in CV130 for FA4 -->
-                    <Label Grid.Row="6" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA4}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="6" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA4}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA4}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV130Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- ZIMO: Light effects in CV129 for FA3 -->
+                        <Label Grid.Row="6" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA3}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="6" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[4]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="6" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA3Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA3}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA3}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV129Configuration}"/>
+                        
+                        <!-- ZIMO: Light effects in CV130 for FA4 -->
+                        <Label Grid.Row="7" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA4}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="7" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[5]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="7" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA4Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA4}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA4}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV130Configuration}"/>
 
-                    <!-- ZIMO: Light effects in CV131 for FA5 -->
-                    <Label Grid.Row="7" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA5}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="7" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA5}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA5}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV131Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- ZIMO: Light effects in CV131 for FA5 -->
+                        <Label Grid.Row="8" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA5}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="8" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[6]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="8" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA5Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA5}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA5}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV131Configuration}"/>
+                        
+                        <!-- ZIMO: Light effects in CV132 for FA6 -->
+                        <Label Grid.Row="9" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA6}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="9" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[7]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="9" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA6Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA6}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA6}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV132Configuration}"/>
 
-                    <!-- ZIMO: Light effects in CV132 for FA6 -->
-                    <Label Grid.Row="8" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA6}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA6}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA6}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV132Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                    
-                    <!-- ZIMO: Light effects in CV159 for FA7 -->
-                    <Label Grid.Row="9" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA7}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="9" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA7}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA7}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV159Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- ZIMO: Light effects in CV159 for FA7 -->
+                        <Label Grid.Row="10" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA7}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="10" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[8]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="10" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA7Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA7}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA7}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV159Configuration}"/>
 
-                    <!-- ZIMO: Light effects in CV160 for FA8 -->
-                    <Label Grid.Row="10" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA8}" VerticalOptions="Center"  HorizontalOptions="Start"  />
-                    <VerticalStackLayout Grid.Row="10" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
-                        <HorizontalStackLayout>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" ToolTipProperties.Text="{x:Static strings:AppResources.LightEffectTooltip}" ItemsSource="{Binding AvailableZIMOLightEffects}" SelectedItem="{Binding SelectedZIMOLightEffectFA8}" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalOptions="End" VerticalOptions="Center"/>
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableZIMOLightEffectsDirections}" SelectedItem="{Binding SelectedZIMOLightEffectDirectionFA8}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV160Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- ZIMO: Light effects in CV160 for FA8 -->
+                        <Label Grid.Row="11" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightDimmingOutputFA8}" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                        <Label Grid.Row="11" Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding FunctionOutputNames[9]}" VerticalOptions="Center"  HorizontalOptions="Center"  />
+                        <usercontrols:Z2XLightEffectsUserControl Grid.Row="11" Grid.Column="2" FunctionOutputAvailable="{Binding ZIMOLightEffectFA8Enabled}" ItemsSourceEffects="{Binding AvailableZIMOLightEffects}" SelectedItemEffect="{Binding SelectedZIMOLightEffectFA8}" ItemsSourceDirection="{Binding AvailableZIMOLightEffectsDirections}" SelectedItemDirection="{Binding SelectedZIMOLightEffectDirectionFA8}"   HorizontalOptions="End" Margin="0,20,0,0" AdditionalCVValuesVisible="{Binding AdditionalDisplayOfCVValues}" CVValue="{Binding CV160Configuration}"/>
+                        
+                        <!-- ZIMO MS/MN: Timing setting for the effect number 88 in CV190 and CV191  (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X) -->
+                        <Label Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,60,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsTimingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}"  />
+                        <Label x:Name="FrameLightEffectFadeInTimeLabel" Grid.Row="13" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeInTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                        <VerticalStackLayout Grid.Row="13" Grid.Column="2" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding ZIMOLightEffectFadeInTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding ZIMOLightEffectFadeInTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV190Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                    <!-- ZIMO MS/MN: Timing setting for the effect number 88 in CV190 and CV191  (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X) -->
-                    <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,60,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsTimingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}"  />
-                    <Label x:Name="FrameLightEffectFadeInTimeLabel" Grid.Row="12" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeInTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
-                    <VerticalStackLayout Grid.Row="12" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
-                        <HorizontalStackLayout>
-                            <Slider Value="{Binding ZIMOLightEffectFadeInTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding ZIMOLightEffectFadeInTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
-                        </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV190Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <Label x:Name="FrameLightEffectFadeOutTimeLabel" Grid.Row="14" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeOutTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                        <VerticalStackLayout Grid.Row="14" Grid.Column="2" Margin="0,20,0,0"  HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding ZIMOLightEffectFadeOutTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding ZIMOLightEffectFadeOutTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV191Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                    <Label x:Name="FrameLightEffectFadeOutTimeLabel" Grid.Row="13" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeOutTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
-                    <VerticalStackLayout Grid.Row="13" Grid.Column="1" Margin="0,20,0,0"  HorizontalOptions="End" IsVisible="{Binding ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
-                    <HorizontalStackLayout>
-                        <Slider Value="{Binding ZIMOLightEffectFadeOutTime}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Text="{Binding ZIMOLightEffectFadeOutTimeLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV191Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                    
-                    <!-- ZIMO MX: Timing setting for the effect number 88 in CV190 and CV191  (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X) -->
-                    <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,60,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsTimingTitleMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}"  />
-                    <Label x:Name="FrameLightEffectFadeInTimeLabelMX" Grid.Row="12" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeInTimeLabelMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
-                    <VerticalStackLayout Grid.Row="12" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
-                        <HorizontalStackLayout>
-                            <Slider Value="{Binding ZIMOLightEffectFadeInTimeMX}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding ZIMOLightEffectFadeInTimeMXLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
-                        </HorizontalStackLayout>
-                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV190Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                        <!-- ZIMO MX: Timing setting for the effect number 88 in CV190 and CV191  (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X) -->
+                        <Label Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,60,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLightEffectsTimingTitleMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}"  />
+                        <Label x:Name="FrameLightEffectFadeInTimeLabelMX" Grid.Row="13" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeInTimeLabelMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                        <VerticalStackLayout Grid.Row="13" Grid.Column="2" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding ZIMOLightEffectFadeInTimeMX}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding ZIMOLightEffectFadeInTimeMXLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV190Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
 
-                    <Label x:Name="FrameLightEffectFadeOutTimeLabelMX" Grid.Row="13" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeOutTimeLabelMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
-                    <VerticalStackLayout Grid.Row="13" Grid.Column="1" Margin="0,20,0,0"  HorizontalOptions="End" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
-                    <HorizontalStackLayout>
-                        <Slider Value="{Binding ZIMOLightEffectFadeOutTimeMX}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Text="{Binding ZIMOLightEffectFadeOutTimeMXLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV191Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                    
-                </Grid>
-            </Border>
+                        <Label x:Name="FrameLightEffectFadeOutTimeLabelMX" Grid.Row="14" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLightEffectFadeOutTimeLabelMX}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}" />
+                        <VerticalStackLayout Grid.Row="14" Grid.Column="2" Margin="0,20,0,0"  HorizontalOptions="End" IsVisible="{Binding ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X}">
+                            <HorizontalStackLayout>
+                                <Slider Value="{Binding ZIMOLightEffectFadeOutTimeMX}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding ZIMOLightEffectFadeOutTimeMXLabelText}" VerticalOptions="Center" MinimumWidthRequest="100" WidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,0,0" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV191Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+
+                    </Grid>
+                </Border>
 
             </VerticalStackLayout>
         </VerticalStackLayout>
