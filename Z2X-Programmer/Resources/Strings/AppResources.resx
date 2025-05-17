@@ -240,10 +240,10 @@ The following error has occurred:</value>
   <data name="DCCABCBreakModeRightTrack" xml:space="preserve">
     <value>Stop at higher voltage on right-hand track</value>
   </data>
-  <data name="DCCAddressModeLong" xml:space="preserve">
-    <value>Short locomotive addresses (1 - 237)</value>
-  </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
+    <value>Short locomotive addresses (1 - 127)</value>
+  </data>
+  <data name="DCCAddressModeLong" xml:space="preserve">
     <value>Long locomotive addresses (128 - 10239)</value>
   </data>
   <data name="DCCProgrammingModePOM" xml:space="preserve">
