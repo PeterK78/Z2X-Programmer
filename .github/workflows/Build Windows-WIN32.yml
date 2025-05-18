@@ -1,4 +1,4 @@
-name: Build Z2X-Programmer-Windows-WIN32 (Test - do not use)
+name: Build Z2X-Programmer-Windows-WIN32
 
 on:
   push:
