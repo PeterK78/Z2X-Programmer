@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Build Z2X-Programmer-Windows-WIN64
 
 on:
@@ -23,7 +20,7 @@ jobs:
     - name: Install MAUI workload
       run: dotnet workload install maui
     - name: Build
-      run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-windows10.0.19041.0
+      run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-windows10.0.19041.0 /p:Platform=AnyCPU
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
