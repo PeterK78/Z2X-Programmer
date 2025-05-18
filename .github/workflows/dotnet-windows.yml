@@ -24,3 +24,8 @@ jobs:
       run: dotnet workload install maui
     - name: Build
       run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-windows10.0.19041.0
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+            path: .\**\Release\net9.0-windows10.0.19041.0\win10-x64\**\*.*
+            
