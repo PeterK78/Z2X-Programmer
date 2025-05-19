@@ -134,7 +134,7 @@ namespace Z2XProgrammer.Helper
         }
 
         /// <summary>
-        /// Returns the long (or extended) consist address contained in CV19 and CV20
+        /// Returns the long (or extended) consist address contained in CV19 and CV20.
         /// </summary>
         /// <param name="cv19"></param>
         /// <param name="cv20"></param>
@@ -146,23 +146,20 @@ namespace Z2XProgrammer.Helper
         }
 
         /// <summary>
-        /// Returns the long (or extended) locomotive address contained in CV17 and CV18.
+        /// Returns the long (or extended) vehicle address contained in CV17 and CV18.
         /// </summary>
-        /// <param name="cv17"></param>
-        /// <param name="cv18"></param>
-        /// <returns></returns>
+        /// <param name="cv17">The value of CV17.</param>
+        /// <param name="cv18">The value of CV18</param>
+        /// <returns>Returns the long DCC adress. If the long address is not valid 0 will be returned.</returns>
         public static ushort GetExtendedDCCAddress (byte cv17, byte cv18)
         {
             ushort CV17 = cv17;
             ushort CV18 = cv18;
             int address = 0;
 
-
             if (CV17 >= 192 && CV17 <= 231 && CV18 >= 0 && CV18 <= 255)
             {
-                address = ((cv17 - 192) << 8) + cv18;
-                
-
+                address = ((CV17 - 192) << 8) + CV18;
             }
             else
             {

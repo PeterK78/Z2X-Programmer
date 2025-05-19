@@ -113,7 +113,7 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedDecSpeq = string.Empty;
         partial void OnSelectedDecSpeqChanged(string? oldValue, string newValue)
         {
-            SwitchDecoderSpecification(newValue);
+            if (oldValue != newValue) SwitchDecoderSpecification(newValue);
         }
 
         [ObservableProperty]
@@ -229,8 +229,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 Application.Current?.CloseWindow(GUI.ControllerWindow);
             }
-        }
-      
+        }      
 
         /// <summary>
         /// Reads the locomotive list from the train controller software and presents
@@ -752,7 +751,6 @@ namespace Z2XProgrammer.ViewModel
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
-
                 
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
@@ -765,10 +763,10 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
-                //  are currently be disabled.
-                string note = "";
-                if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledDownload;    
+                 //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
+                // supported by the selected decoder specification are currently be disabled.
+                string note = string.Empty;
+                if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
 
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
@@ -825,7 +823,7 @@ namespace Z2XProgrammer.ViewModel
                 List<int> ListOfWritableConfigVariables = ReadWriteDecoder.GetAllWritableConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
                 if (ListOfWritableConfigVariables.Count == 0)
                 {
-                    //  Somethin happed - we did not find any valid CV value.
+                    //  Something happed - we did not find any valid CV value.
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
                     return;
                 }
@@ -847,10 +845,10 @@ namespace Z2XProgrammer.ViewModel
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables
-                //  are currently be disabled.
-                string note = "";
-                if (DecoderConfiguration.ConfigurationVariables.Any(value => value.Enabled == false) == true) note = AppResources.AlertSomeCVsAreDisabledDownload;    
+                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
+                // supported by the selected decoder specification are currently be disabled.
+                string note = string.Empty;
+                if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; };    
               
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
@@ -1021,7 +1019,10 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDataFromDecoderSpecification(bool updateGUI)
         {
-            if (updateGUI) SelectedDecSpeq = DecoderSpecification.DeqSpecName;
+            if (updateGUI)
+            {
+                    if(SelectedDecSpeq != DecoderSpecification.DeqSpecName) SelectedDecSpeq = DecoderSpecification.DeqSpecName;
+            }
         }
 
         /// <summary>

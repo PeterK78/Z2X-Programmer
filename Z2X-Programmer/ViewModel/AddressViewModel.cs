@@ -115,8 +115,9 @@ namespace Z2XProgrammer.ViewModel
             //  We need to make sure that we are using valid vehicle and consist addresses.
             if (DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Extended)
             {
-                //  Lets check if a valid long vehicle address has already been configured.
-                if ((DecoderConfiguration.RCN225.LocomotiveAddress > NMRA.LongAddressMinimum) && (DecoderConfiguration.RCN225.LocomotiveAddress < NMRA.LongAddressMaximum))
+                //  Lets check if a valid long vehicle address has already been configured. A valid long adress is in the range between 128 and 10239.
+                ushort longAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                if ((longAddress>= NMRA.LongAddressMinimum) && (longAddress <= NMRA.LongAddressMaximum))
                 {
                     //  A valid long vehicle address is already available - let's use it.
                     VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
@@ -260,6 +261,58 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
+        /// </summary>
+        public void OnGetDataFromDecoderSpecification()
+        {
+            ZIMO_MXFX_SECONDADDRESS_CV64 = DecoderSpecification.ZIMO_MXFX_SECONDADDRESS_CV64;
+            RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
+        }
+
+        /// <summary>
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
+        /// </summary>
+        public void OnGetDecoderConfiguration()
+        {
+            DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            //  RCN225
+
+            //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
+            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+            VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
+
+            //  RCN225: DCC address mode CV29.5 (RCN225_LONGSHORTADDRESS_CV29_5)
+            SelectedDCCAddressModeVehicleAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr);
+            SelectedDCCAddressModeVehicleAddrCVConfiguration = Subline.Create(new List<uint> { 29 });
+
+            // RCN225: Consist address CV19 and CV20 (RCN225_CONSISTADDRESS_CV19X)
+            ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
+            if (DecoderConfiguration.RCN225.ConsistAddress == 0)
+            {
+                ConsistAddressEnabled = false;
+            }
+            else
+            {
+                ConsistAddressEnabled = true;
+            }
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
+
+            //  ZIMO
+
+            // ZIMO: Secondary address for function decoders CV64 (ZIMO_MXFX_SECONDADDRESS_CV64)
+            SecondaryAddress = DecoderConfiguration.ZIMO.SecondaryAddress;
+            SecondaryAddressCVConfiguration = Subline.Create(new List<uint> { 64, 67, 68 });
+
+            // ZIMO: Secondary address mode for function decoders CV112 (ZIMO_MXFX_SECONDADDRESS_CV64)
+            SelectedDCCAddressModeSecondaryAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr);
+            SelectedDCCAddressModeSecondaryAdrCVValues = Subline.Create(new List<uint> { 112 });
+
+        }
+
+        /// <summary>
         /// Updates the limits in the GUI.
         /// </summary>
         public void SetGUILimits()
@@ -287,48 +340,7 @@ namespace Z2XProgrammer.ViewModel
                 LimitZimoSecondAddressMaximum = 10239;
             }
             
-        }
-
-        /// <summary>
-        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
-        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
-        /// </summary>
-        public void OnGetDataFromDecoderSpecification()
-        {
-            ZIMO_MXFX_SECONDADDRESS_CV64 = DecoderSpecification.ZIMO_MXFX_SECONDADDRESS_CV64;
-            RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
-        }
-
-        /// <summary>
-        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
-        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
-        /// </summary>
-        public void OnGetDecoderConfiguration()
-        {
-
-            DataStoreDataValid = DecoderConfiguration.IsValid;
-
-            //  Update the vehicle address.
-            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
-
-            SelectedDCCAddressModeVehicleAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr);
-
-            //  Update the ZIMO specific secondary address
-            SecondaryAddress = DecoderConfiguration.ZIMO.SecondaryAddress;
-            SelectedDCCAddressModeSecondaryAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr);
-
-            ConsistAddress = DecoderConfiguration.RCN225.ConsistAddress;
-            if(DecoderConfiguration.RCN225.ConsistAddress == 0)
-            {
-                ConsistAddressEnabled = false;
-
-            }
-            else
-            {
-                ConsistAddressEnabled = true;
-            } 
-
-        }
+        }              
         #endregion
         
     }

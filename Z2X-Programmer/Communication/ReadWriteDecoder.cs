@@ -466,8 +466,9 @@ namespace Z2XProgrammer.Communication
         {
             _mode = mode;
             _decSpecName = decSpecName;
+            bool newDecoderSpecificationFound = false;
 
-            Logger.PrintDevConsole("ReadWriteDecoder: Enter UploadDecoderData");
+            Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Enter ...");
 
             List<int> ConfigVariablesToRead = new List<int>();
 
@@ -478,23 +479,42 @@ namespace Z2XProgrammer.Communication
             //  Turn the track power ON if we are in POM mode
             if (mode == NMRA.DCCProgrammingModes.POMMainTrack)
             {
-                Logger.PrintDevConsole("ReadWriteDecoder: CommandStation.SetTrackPowerON()");
+                Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: CommandStation.SetTrackPowerON()");
                 SetTrackPowerON();
             }
 
             //   Is the automatic decoder detection activated? If yes - try to detect the decoder automatically
             if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_AUTODECODER_DETECT_KEY, AppConstants.PREFERENCES_AUTODECODER_DETECT_DEFAULT)) == 1)
             {
-                _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
-                DecoderSpecification.DeqSpecName = _decSpecName;
-                DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
-                //DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
-                WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+                Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Detecting the decoder specification ...");
+
+                //  Run the decoder specification detection.
+                string decSpecTempName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
+                
+                //  If this decoder specification is not yet activated - if not, we will activate it now.
+                if(decSpecTempName != DecoderSpecification.DeqSpecName)
+                {
+                    _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
+
+                    Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Decoder specification found " + _decSpecName);
+                    DecoderSpecification.DeqSpecName = _decSpecName;
+                    DecoderConfiguration.SetDecoderSpecification(DecoderSpecification.DeqSpecName);
+                    DecoderConfiguration.EnableAllCVsSupportedByDecSpec(DecoderSpecification.DeqSpecName);
+
+                    //
+                    // IMPORTANT:
+                    // We will not yet inform the GUI that we want to use a new decoder specification. If we were to do this now,
+                    // the GUI would adapt the GUI to the new decoder specification at the same time as uploading the data. 
+                    // This would lead to problems.For this reason, we set the variable newDecoderSpecificationFound to TRUE and inform the GUI
+                    // at the end of this function.
+                    newDecoderSpecificationFound = true;
+                }
+                            
             }
 
             if (cancelToken.IsCancellationRequested == true)
             {
-                Logger.PrintDevConsole("ReadWriteDecoder: The user has cancelled the operation ... returning");
+                Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: The user has cancelled the operation ... returning");
                 CommandStation.Z21.SetTrackPowerOn();
                 return Task.FromResult(false);
             }
@@ -504,7 +524,7 @@ namespace Z2XProgrammer.Communication
 
             //  The required configuration variables have now been collected.
             //  We can now read out the configuration variables.
-            Logger.PrintDevConsole("ReadWriteDecoder: Reading the features from the decoder ...");
+            Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Reading the features from the decoder ...");
             for (int i = 0; i<= ConfigVariablesToRead.Count -1; i++)
             {
                 // Before uploading, we need to check whether this variable is enabled.
@@ -528,12 +548,12 @@ namespace Z2XProgrammer.Communication
                 else
                 {
                     //  Just skip the CV variable - nothing to do
-                    int o = 0; o++;
+                    Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Skipped CV:" + ConfigVariablesToRead[i]);
                 }
 
                 //  Reporting the current percentage value.
                 int percent = (int)(((double)100 / (double)ConfigVariablesToRead.Count) * (double)i);
-                Logger.PrintDevConsole("UploadDecoderData: Percentage:" + percent);
+                Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Percentage:" + percent);
                 progressPercentage.Report(percent);
 
                 //  Check if the cancel token has been set.  
@@ -551,12 +571,17 @@ namespace Z2XProgrammer.Communication
             // Finally we report the percentage as 100% - this is important for the progress bar
             progressPercentage.Report(100);
 
-
             // We turn the power on to stop the programming mode
-            Logger.PrintDevConsole("ReadWriteDecoder: Turning on the track power (to disable programming mode) ...");
+            Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Turning on the track power (to disable programming mode) ...");
             CommandStation.Z21.SetTrackPowerOn();
 
-            Logger.PrintDevConsole("ReadWriteDecoder: Leave UploadDecoderData");
+            if (newDecoderSpecificationFound == true)
+            {
+                Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: We have set a new decoder specification - inform the GUI");
+                WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+            }
+
+            Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Leave UploadDecoderData");
             return Task.FromResult(true);
 
         }
