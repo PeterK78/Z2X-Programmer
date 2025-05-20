@@ -99,7 +99,7 @@ namespace Z2XProgrammer.ViewModel
         internal string doehlerAndHaasFirmwareVersion = string.Empty;
 
         [ObservableProperty]   
-        string haasFirmwareVersionConfiguration = Subline.Create([261]);
+        string haasFirmwareVersionConfiguration = Subline.Create([262, 264]);
         
         [ObservableProperty]   
         string cV262To264Configuration = Subline.Create([262,264]);
@@ -107,7 +107,7 @@ namespace Z2XProgrammer.ViewModel
 
         #endregion
 
-        // RCN225: Manufacturer
+        // RCN225: Manufacturer in CV8
         [ObservableProperty]
         internal string manufacturer = string.Empty;
 
@@ -117,7 +117,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV8Configuration = Subline.Create([8]);
 
-        // RCN225: Software version
+        // RCN225: Software version in CV7
         [ObservableProperty]
         internal string version = string.Empty;
 
@@ -254,11 +254,33 @@ namespace Z2XProgrammer.ViewModel
         public void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            // User defined settings
+            UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
+            UserDefindedNotes = DecoderConfiguration.UserDefindedNotes;
+            if (DecoderConfiguration.UserDefindedImage != null)
+            {
+                LocomotiveImageSource = Base64StringToImage.ConvertBase64String2ImageSource(DecoderConfiguration.UserDefindedImage);
+            }
+            else
+            {
+                LocomotiveImageSource = ImageSource.FromFile("ic_fluent_image_add_24_regular.png");
+            }
+
+            // RCN225
+
+            // RCN225: Manufacturer in CV8
             Manufacturer = DecoderConfiguration.RCN225.Manufacturer;
             ManufacturerID = "ID = " + DecoderConfiguration.RCN225.ManufacturerID.ToString();
+            CV8Configuration = Subline.Create([8]);
+            
+            // RCN225: Software version in CV7
             Version = DecoderConfiguration.RCN225.Version;
+            CV7Configuration = Subline.Create([7]);
 
-            //  ZIMO specific settings
+            // ZIMO
+
+            //  ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250)
             string DecoderName = DeqSpecReader.GetDecoderName(DecoderSpecification.DeqSpecName, DecoderConfiguration.ZIMO.DecoderType, ApplicationFolders.DecSpecsFolderPath);
             if (DecoderName != "")
             {
@@ -268,26 +290,25 @@ namespace Z2XProgrammer.ViewModel
             {
                 ZimoDecoderType = DecoderConfiguration.ZIMO.DecoderType.ToString();
             }
+            CV250Configuration = Subline.Create([250]);
 
+            //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
             ZimoSWVersion = DecoderConfiguration.ZIMO.SoftwareVersion;
+            CV65and7Configuration = Subline.Create([7,65]);
+
+            // ZIMO: Decoder ID (ZIMO_DECODERID_CV25X)
             ZimoDecoderID = DecoderConfiguration.ZIMO.DecoderID;
-            UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
+            CVDecoderIDConfiguration = Subline.Create([250,251,252,253]);
+
+            // ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X)
             ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion.ToString() + "." + DecoderConfiguration.ZIMO.BootloaderSubVersion.ToString();
-            ZimoBootloaderIsFailSafe = ZIMO.IsBootloaderVersionFailSafe(DecoderConfiguration.ZIMO.BootloaderVersion, DecoderConfiguration.ZIMO.BootloaderSubVersion);
+            CVBootloaderVersionConfiguration = Subline.Create([248,249]);
+
+            // ZIMO: Sound project number (ZIMO_SOUNDPROJECTNR_CV254) 
             ZimoSoundProjectNumber = DecoderConfiguration.ZIMO.SoundProjectNumber.ToString();
+            CV254Configuration = Subline.Create([254]);
 
-
-            UserDefindedNotes = DecoderConfiguration.UserDefindedNotes;
-
-           
-            if (DecoderConfiguration.UserDefindedImage != null)
-            {
-                LocomotiveImageSource = Base64StringToImage.ConvertBase64String2ImageSource(DecoderConfiguration.UserDefindedImage);
-            }
-            else
-            {
-                LocomotiveImageSource = ImageSource.FromFile("ic_fluent_image_add_24_regular.png");
-            }
+            ZimoBootloaderIsFailSafe = ZIMO.IsBootloaderVersionFailSafe(DecoderConfiguration.ZIMO.BootloaderVersion, DecoderConfiguration.ZIMO.BootloaderSubVersion);
 
             #region Doehler & Haass
 
@@ -301,9 +322,11 @@ namespace Z2XProgrammer.ViewModel
             {
                 DoehlerAndHaasDecoderType = DecoderConfiguration.DoehlerHaas.DecoderType.ToString();
             }
+            CV261Configuration = Subline.Create([261]);
 
             //  Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
             DoehlerAndHaasFirmwareVersion = DecoderConfiguration.DoehlerHaas.FirmwareVersion;
+            HaasFirmwareVersionConfiguration = Subline.Create([262,264]);
 
             #endregion
 
