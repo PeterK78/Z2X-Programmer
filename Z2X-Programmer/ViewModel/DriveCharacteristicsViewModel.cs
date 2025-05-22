@@ -80,7 +80,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV29Configuration = Subline.Create(new List<uint>{29});
 
-        //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19X) -->
+        //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19X)
         [ObservableProperty]
         bool directionConsistModeReveral;
         partial void OnDirectionConsistModeReveralChanged(bool value)
@@ -297,7 +297,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
+            //  RCN225: Speed steps mode in CV29.0 (RCN225_SPEEDSTEPSMODE_CV29_0)
             SelectedSpeedStepsMode = NMRAEnumConverter.GetDCCSpeedStepModeDescription(DecoderConfiguration.RCN225.SpeedStepsMode);
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
+
+            // RCN225: Acceleration rate in CV3
             AccelerationRate = DecoderConfiguration.RCN225.AccelerationRate;
             if(AccelerationRate == 0)
             {
@@ -309,7 +313,9 @@ namespace Z2XProgrammer.ViewModel
 
             }
             AccelerationRateTime = GetAccelerationRateTimeLabel();
+            CV3Configuration = Subline.Create(new List<uint>{3});
 
+            // RCN225: Decleration rate CV4.
             DecelerationRate = DecoderConfiguration.RCN225.DecelerationRate;
             if(DecelerationRate == 0)
             {
@@ -320,11 +326,35 @@ namespace Z2XProgrammer.ViewModel
                 DecelerationRateEnabled = true;
             }
             DecelerationRateTime = GetDecelerationRateTimeLabel();
-            
-            if(RCN225_DIRECTION_CV29_0  == true) DirectionReversal = DecoderConfiguration.RCN225.DirectionReversal;
-            if(RCN225_HLU_CV27_2 == true) HluEnabled = DecoderConfiguration.RCN225.HLUEnabled;
-            if(RCN225_ABC_CV27_X == true) SelectedABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeDescription(DecoderConfiguration.RCN225.ABCBreakMode);
-            if(RCN225_CONSISTADDRESS_CV19X == true) DirectionConsistModeReveral = DecoderConfiguration.RCN225.DirectionReversalConsistMode;
+            CV4Configuration = Subline.Create(new List<uint> { 4 });
+
+            //  RCN225: Drive direction in CV29.0 (RCN225_DIRECTION_CV29_0)
+            if (RCN225_DIRECTION_CV29_0 == true)
+            {
+                DirectionReversal = DecoderConfiguration.RCN225.DirectionReversal;
+                CV29Configuration = Subline.Create(new List<uint>{29});
+            }
+
+            // RCN225: HLU function in CV27 (RCN225_HLU_CV27_2)
+            if (RCN225_HLU_CV27_2 == true)
+            {
+                HluEnabled = DecoderConfiguration.RCN225.HLUEnabled;
+                CV27Configuration = Subline.Create(new List<uint> { 27 });
+            }
+
+            // RCN225: ABC breaking track function in CV27 (RCN225_ABC_CV27_X)
+            if (RCN225_ABC_CV27_X == true)
+            {
+                SelectedABCBreakMode = NMRAEnumConverter.GetDCCABCBreakModeDescription(DecoderConfiguration.RCN225.ABCBreakMode);
+                CV27Configuration = Subline.Create(new List<uint> { 27 });
+            }
+
+            //  RCN225: Drive direction for consist mode in CV19 (RCN225_CONSISTADDRESS_CV19X)
+            if (RCN225_CONSISTADDRESS_CV19X == true)
+            {
+                DirectionConsistModeReveral = DecoderConfiguration.RCN225.DirectionReversalConsistMode;
+                CV19Configuration = Subline.Create(new List<uint> { 19 }); 
+            }
 
         }
 
