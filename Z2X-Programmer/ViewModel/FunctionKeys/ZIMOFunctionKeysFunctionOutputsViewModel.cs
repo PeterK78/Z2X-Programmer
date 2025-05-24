@@ -1083,7 +1083,7 @@ namespace Z2XProgrammer.ViewModel
             Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description;
             Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description;
 
-            //  RCN 225
+            //  RCN225
             CV33Value = DecoderConfiguration.RCN225.FunctionMappingF0Forward;
             CV34Value = DecoderConfiguration.RCN225.FunctionMappingF0Backward;
             CV35Value = DecoderConfiguration.RCN225.FunctionMappingF1;
@@ -1100,9 +1100,11 @@ namespace Z2XProgrammer.ViewModel
             CV46Value = DecoderConfiguration.RCN225.FunctionMappingF12;
             for (byte cv = 33; cv <= 46; cv++) SetBitsOfCV(cv);
 
-            //  ZIMO
+            // ZIMO: Extended function key mapping - without left-shift (ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61)
             ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping;
-        }   
+            CV61Configuration = Subline.Create(new List<uint> { 61 });
+
+        }
 
         /// <summary>
         /// Sets the the bit properties of the given configuration variable number.

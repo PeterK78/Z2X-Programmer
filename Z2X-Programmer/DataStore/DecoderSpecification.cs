@@ -94,6 +94,7 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X, decSpecFolder);
                 ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_SHUNTINGKEY_CV155, decSpecFolder);
                 ZIMO_ELECTRIC_UNCOUPLER_CV115X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_ELECTRIC_UNCOUPLER_CV115X, decSpecFolder);
+                ZIMO_SOUND_VOLUME_FUNCKEY_CV395 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUND_VOLUME_FUNCKEY_CV395, decSpecFolder);
 
                 
                 //  DOEHLER AND HAAS
@@ -204,5 +205,6 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X { get; set; }
         internal static bool ZIMO_FUNCKEY_SHUNTINGKEY_CV155 { get; set ; }
         internal static bool ZIMO_ELECTRIC_UNCOUPLER_CV115X { get; set; }
+        internal static bool ZIMO_SOUND_VOLUME_FUNCKEY_CV395 { get; set; }
     }
 }

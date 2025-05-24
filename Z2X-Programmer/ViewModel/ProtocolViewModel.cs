@@ -77,7 +77,7 @@ namespace Z2XProgrammer.ViewModel
         bool rCN225_AUTOMATICREGISTRATION_CV28_7;
 
         #endregion
-
+    
         #region REGION: PUBLIC PROPERTIES
 
         // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
@@ -173,8 +173,9 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         string cV28Configuration = string.Empty;
-       
 
+
+        // RCN225: Automatic registration in CV28.7 (RCN225_AUTOMATICREGISTRATION_CV28_7)
         [ObservableProperty]
         bool automaticRegistrationEnabled;
         partial void OnAutomaticRegistrationEnabledChanged(bool value)
@@ -188,14 +189,14 @@ namespace Z2XProgrammer.ViewModel
         # region REGION: CONSTRUCTOR
         public ProtocolViewModel()
         {
-            OnGetDataFromDataStore();
+            OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    OnGetDataFromDataStore();
+                    OnGetDecoderConfiguration();
                 });
             });
 
@@ -213,22 +214,57 @@ namespace Z2XProgrammer.ViewModel
         # region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
-        /// This event handler reacts to the DataStoreUpdatedMessage message. It will fetch
-        /// the current data from the data store and update the local properties in this view model.
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
         /// </summary>
-        private void OnGetDataFromDataStore()
+        private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            // RCN225: Railcom configuration in CV29.3 (RCN225_RAILCOMENABLED_CV29_3)
             RailComEnabled = DecoderConfiguration.RCN225.RailComEnabled;
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
+
+            // RCN225: Railcom channel 1 address broadcast in CV28.0 (RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0)
             RailComChannel1AdrBroadcast = DecoderConfiguration.RCN225.RailComChannel1AdrBroadcast;
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
+
+            // RCN225: Railcom channel 2 in CV28  
             RailComChannel2Enabled = DecoderConfiguration.RCN225.RailComChannel2Enabled;
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
+
+            // RCN225: AC mode enabled in CV29 bit 2
             AcModeEnabled = DecoderConfiguration.RCN225.ACModeEnabled;
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
+
+            // RCN225: Automatic registration in CV28.7 (RCN225_AUTOMATICREGISTRATION_CV28_7)
             AutomaticRegistrationEnabled = DecoderConfiguration.RCN225.AutomaticRegistrationEnabled;
+            CV28Configuration = Subline.Create(new List<uint> { 28 });
+
+            // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+            // DC analog mode in CV12 Bit 0
             AnalogOperationDCEnabled = DecoderConfiguration.RCN225.OperatingModeAnalogDCEnabled;
+            CV12Configuration = Subline.Create(new List<uint> { 12 });
+
+            // RCN225: Analog operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+            // AC analog mode in CV12 Bit 4
             AnalogOperationACEnabled = DecoderConfiguration.RCN225.OperatingModeAnalogACEnabled;
+            CV12Configuration = Subline.Create(new List<uint>{12});
+
+            // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+            // DCC in CV12 Bit 2
             DccOperationEnabled = DecoderConfiguration.RCN225.OperatingModeDCCEnabled;
+            CV12Configuration = Subline.Create(new List<uint>{12});
+
+            // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+            // Motorola MM in CV12 Bit 5
             MMOperationEnabled = DecoderConfiguration.RCN225.OperatingModeMMEnabled;
+            CV12Configuration = Subline.Create(new List<uint>{12});
+
+            // RCN225: Digital operating modes in CV12 (RCN225_OPERATINGMODES_CV12)
+            // MFX in CV12 Bit 6
             MFXOperationEnabled = DecoderConfiguration.RCN225.OperatingModeMFXEnabled;
+            CV12Configuration = Subline.Create(new List<uint>{12});
         }
 
         /// <summary>

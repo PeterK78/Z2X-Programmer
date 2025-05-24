@@ -1100,7 +1100,6 @@ namespace Z2XProgrammer.ViewModel
             Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description;
 
 
-
             //  RCN 225
             CV33Value = DecoderConfiguration.RCN225.FunctionMappingF0Forward;
             CV34Value = DecoderConfiguration.RCN225.FunctionMappingF0Backward;

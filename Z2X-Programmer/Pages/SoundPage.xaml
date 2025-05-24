@@ -64,7 +64,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-                <!-- ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266) -->
+                <!-- ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266) and the maximum volume if the volume is controlled by the function key in CV395 (ZIMO_SOUND_VOLUME_FUNCKEY_CV395) -->
                 <Label IsVisible="{Binding ZIMO_SOUND_VOLUME_GENERIC_C266}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundVolumeTitle}" VerticalOptions="Center" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SOUND_VOLUME_GENERIC_C266}" >
                 <Grid>
@@ -103,7 +103,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label  Text="{Binding OverallVolumeText}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
                         </HorizontalStackLayout>
 
-                        <!-- ZIMO: SoundMaxVolumeFuncKeys CV395 -->
+                        <!-- ZIMO: The maximum volume if the volume is controlled by the function key in CV395 (ZIMO_SOUND_VOLUME_FUNCKEY_CV395) -->
                         <VerticalStackLayout Grid.Row="3" Grid.Column="0" Margin="0,20,0,0">
                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}"  HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundMaxVolumeFuncKeysLabel}" VerticalOptions="Center" />
                             <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSoundMaxVolumeFuncKeysTooltip}" VerticalOptions="Center" />

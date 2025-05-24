@@ -391,7 +391,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV156Configuration = Subline.Create([156]);
 
-        // Döhler & Haass: Shunting key in CV133 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132)
+        // Döhler & Haass: Shunting key in CV132 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132)
         [ObservableProperty]
         int doehlerAndHaassFuncKeysShuntingFuncKeyNumber;
         partial void OnDoehlerAndHaassFuncKeysShuntingFuncKeyNumberChanged(int value)
@@ -548,8 +548,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal ObservableCollection<string> availableFunctionOutputsLightSuppress;
 
-        // ZIMO: Light suppression on the driver's cab side 1 (forward) in
-        // CV107 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X).
+        // ZIMO: Light suppression on the driver's cab side 1 (forward) in CV107 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X)
         [ObservableProperty]
         int zIMOFuncKeyLightSuppresionCabSide1;
         partial void OnZIMOFuncKeyLightSuppresionCabSide1Changed(int value)
@@ -939,20 +938,30 @@ namespace Z2XProgrammer.ViewModel
             Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description;
             Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description;
 
-            //  Döhler and Haass
-            DoehlerAndHaassExtendedFunctionMappingEnabled = DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled;
-            DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber = DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber;
-            DoehlerAndHaassFuncKeysShuntingFuncKeyNumber = DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber;
-
-            //  ZIMO
+            // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
             ZIMOFuncKeysAccDecDisableFuncKeyNumber = DecoderConfiguration.ZIMO.FuncKeysAccDecDisableFuncKeyNumber;
-            ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
-            ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
-            ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
-            ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
+            CV156Configuration = Subline.Create(new List<uint> { 156 });
 
+            // ZIMO: Sound louder in CV397 (ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397)
+            ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
+            CV397Configuration = Subline.Create(new List<uint>{397});
+
+            // ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396
+            ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
+            CV396Configuration = Subline.Create(new List<uint>{396});
+
+            // ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310)
+            ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
+            CV310Configuration = Subline.Create(new List<uint>{310});
+
+            // ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308)
+            ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
+            CV308Configuration = Subline.Create(new List<uint>{308});
+
+            // ZIMO: Light suppression on the driver's cab side 1 (forward) in CV107 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X)
             byte tempfunctionKey = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
             ZIMOFuncKeyLightSuppresionCabSide1 = tempfunctionKey &= 0x1F;
+            CV107And109Configuration = Subline.Create([107, 109]); 
 
             byte tempFunctionOutput = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
             ZIMOFuncKeyLightSuppresionCabSide1Output = (tempFunctionOutput &= 0xE0) >> 5;
@@ -963,8 +972,10 @@ namespace Z2XProgrammer.ViewModel
             tempFunctionOutput = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab1Forward;
             ZIMOFuncKeyLightSuppresionCabSide1Output4 = (tempFunctionOutput &= 0xF8) >> 3;
 
+            // ZIMO: Light suppression on the driver's cab side 2 (backward) in CV108 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X).
             byte tempfunctionKey2 = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
             ZIMOFuncKeyLightSuppresionCabSide2 = tempfunctionKey2 &= 0x1F;
+            CV108And110Configuration = Subline.Create([108, 110]);  
 
             byte tempFunctionOutput2 = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward;
             ZIMOFuncKeyLightSuppresionCabSide2Output = (tempFunctionOutput2 &= 0xE0) >> 5;
@@ -989,8 +1000,22 @@ namespace Z2XProgrammer.ViewModel
                 ZIMOFuncKeysMuteInverted = false;
                 ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
             }
+            CV313Configuration = Subline.Create(new List<uint> { 313 });
 
             UpdateZIMOInputMappingList();
+
+            // Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137)
+            DoehlerAndHaassExtendedFunctionMappingEnabled = DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled;
+
+            // Döhler & Haass: ABV key in CV133 (DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133)
+            DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber = DecoderConfiguration.DoehlerHaas.FuncKeysAccDecDisableFuncKeyNumber;
+            CV133Configuration = Subline.Create(new List<uint> { 133 });
+
+            // Döhler & Haass: Shunting key in CV132 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132)
+            DoehlerAndHaassFuncKeysShuntingFuncKeyNumber = DecoderConfiguration.DoehlerHaas.FuncKeysShuntingFuncKeyNumber;
+            CV132Configuration = Subline.Create(new List<uint> { 132 });
+
+         
         }
 
         /// <summary>

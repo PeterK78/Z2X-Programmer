@@ -107,7 +107,9 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X = "ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X";
         public const string ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = "ZIMO_FUNCKEY_SHUNTINGKEY_CV155";
         public const string ZIMO_ELECTRIC_UNCOUPLER_CV115X = "ZIMO_ELECTRIC_UNCOUPLER_CV115X";
-        
+        public const string ZIMO_SOUND_VOLUME_FUNCKEY_CV395 = "ZIMO_SOUND_VOLUME_FUNCKEY_CV395";
+
+
 
         //  Döhler & Haass specific features
         public const string DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49";
@@ -905,6 +907,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_FUNCKEY_CV395 support=""yes"" writeable=""yes""/>
 
 </decoderseries>";
 
@@ -1123,6 +1126,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCKEY_SHUNTINGKEY_CV155 support=""yes"" writeable=""yes""/>
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUND_VOLUME_FUNCKEY_CV395 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
 

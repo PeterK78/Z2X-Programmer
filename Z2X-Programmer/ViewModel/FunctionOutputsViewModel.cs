@@ -93,14 +93,14 @@ namespace Z2XProgrammer.ViewModel
 
             _functionOutputs = FunctionOutputs;
 
-            OnGetDataFromDataStore();
+            OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    OnGetDataFromDataStore();
+                    OnGetDecoderConfiguration();
                 });
             });
 
@@ -114,21 +114,28 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
+        #endregion
+
+        #region REGION: PRIVATE FUNCTIONS
+
         /// <summary>
-        /// This event handler reacts to the DataStoreUpdatedMessage message. It will fetch
-        /// the current data from the data store and update the local properties in this view model.
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
         /// </summary>
-        private void OnGetDataFromDataStore()
+        private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            //  ZIMO: ZIMO SUSI Configuration in CV201 (ZIMO_SUSIPORT1CONFIG_CV201)
             SelectedSUSIInterface1PinMode = ZIMOEnumConverter.GetSUSIInterface1PinModeDescription(DecoderConfiguration.ZIMO.SUSIInterface1PinMode);
+            CV201Configuration = Subline.Create(new List<uint>{201});
+
             FunctionOutputs = new ObservableCollection<FunctionOutputType>(DecoderConfiguration.UserDefinedFunctionOutputNames);
         }
 
         /// <summary>
-        /// This event handler reacts to the DecoderSpecificationUpdatedMessage message. It will fetch
-        /// the supported features of the currently selected decode specification and update the local properties
-        /// in this view model.
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
         /// </summary>
         private void OnGetDataFromDecoderSpecification()
         {

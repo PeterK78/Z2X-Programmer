@@ -52,6 +52,7 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: DECODER FEATURES
 
+        // ZIMO_SELFTEST_CV30;
         [ObservableProperty]
         bool zIMO_SELFTEST_CV30;
 
@@ -106,7 +107,10 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            // ZIMO: ZIMO_SELFTEST_CV30;
             ZIMODecoderErrorState = ZIMO.GetSelfTestResult(DecoderConfiguration.ZIMO.SelfTest);
+            CV30Configuration = Subline.Create(new List<uint>{30});
         }
 
         /// <summary>

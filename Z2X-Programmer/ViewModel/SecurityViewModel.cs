@@ -186,13 +186,17 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
             
+            // RCN225: Decoder lock configuration in CV15 and CV16 (RCN225_DECODERLOCK_CV15X)
             if(RCN225_DECODERLOCK_CV15X == true)
             {
                 DecoderLockPasswordCV16 = DecoderConfiguration.RCN225.DecoderLockPasswordCV16;
                 DecoderLockPasswordCV15 = DecoderConfiguration.RCN225.DecoderLockPasswordCV15;
                 DecoderLockCV1516Activated = DecoderLockPasswordCV16 == DecoderLockPasswordCV15 ? false : true;
+                CV15Configuration = Subline.Create(new List<uint> {15});
+                CV16Configuration = Subline.Create(new List<uint>{16});
             }
 
+            // ZIMO: Zimo specific update configuration in CV144 for MX decoder (ZIMO_MXUPDATELOCK_CV144)
             if(ZIMO_MXUPDATELOCK_CV144 == true)
             {
                 LockWritingCVsInServiceMode = DecoderConfiguration.ZIMO.LockWritingCVsOnProgramTrack;
@@ -200,6 +204,7 @@ namespace Z2XProgrammer.ViewModel
                 LockWritingCVsOnMainTrack = DecoderConfiguration.ZIMO.LockWritingCVsOnMainTrack;
                 LockUpdatingDecoderFirmware = DecoderConfiguration.ZIMO.LockUpatingDecoderFirmware;
                 PlaySoundWhenProgrammingCV = DecoderConfiguration.ZIMO.PlaySoundWhenProgrammingCV;
+                CV144Configuration = Subline.Create(new List<uint>{144});
             }
             
         }

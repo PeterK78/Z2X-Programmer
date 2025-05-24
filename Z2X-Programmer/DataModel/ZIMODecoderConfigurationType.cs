@@ -85,13 +85,10 @@ namespace Z2XProgrammer.DataModel
             {
                 configurationVariables[144].Value = Bit.Set(configurationVariables[144].Value, 3, value);
             }
-        }
-
-
-        
+        }        
 
         /// <summary>
-        /// The maximum volume if the volume is controlled by the function key in CV397.
+        /// The maximum volume if the volume is controlled by the function key in CV395.
         /// </summary>
         public byte MaximumVolumeForFuncKeysControl
         {

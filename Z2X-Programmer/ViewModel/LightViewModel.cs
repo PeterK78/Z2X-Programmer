@@ -590,6 +590,8 @@ namespace Z2XProgrammer.ViewModel
         private void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            // ZIMO: Light dimming in CV60 (ZIMO_LIGHT_DIM_CV60)
             DimmingEnabled = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue == 0 ? false : true;
             Brightness = DecoderConfiguration.ZIMO.DimmingFunctionOutputMasterValue;
             BrightnessLabelText = GetBrightnessLabelText();
@@ -607,7 +609,9 @@ namespace Z2XProgrammer.ViewModel
             DimmingOutput10Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 3);
             DimmingOutput11Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 4);
             DimmingOutput12Enabled = !Bit.IsSet(DecoderConfiguration.ZIMO.DimmingFunctionFA7FA12OutputsEnabled, 5);
-
+            CV114Configuration = Subline.Create(new List<uint> { 114 });
+            CV152Configuration = Subline.Create(new List<uint> { 152 });
+            CV60Configuration = Subline.Create(new List<uint> { 60 });
 
             // ZIMO: Light effects in CV125 and CV126 (ZIMO_LIGHT_EFFECTS_CV125X)
             AvailableZIMOLightEffects = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableLightEffects());
@@ -646,18 +650,34 @@ namespace Z2XProgrammer.ViewModel
             ZIMOLightEffectFA7Enabled = IsFunctionOutputAvailable(7, true);
             ZIMOLightEffectFA8Enabled = IsFunctionOutputAvailable(8, true);
 
+            CV125Configuration = Subline.Create(new List<uint> { 125 });
+            CV126Configuration = Subline.Create(new List<uint> { 126 });
+            CV127Configuration = Subline.Create(new List<uint> { 127 });
+            CV128Configuration = Subline.Create(new List<uint> { 128 });
+            CV129Configuration = Subline.Create(new List<uint> { 129 });
+            CV130Configuration = Subline.Create(new List<uint> { 130 });
+            CV131Configuration = Subline.Create(new List<uint> { 131 });
+            CV132Configuration = Subline.Create(new List<uint> { 132 });
+            CV159Configuration = Subline.Create(new List<uint> { 159 });
+            CV160Configuration = Subline.Create(new List<uint> { 160 });
 
             // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MSMNBRIGHTENINGUPANDIMMINGTIMES_CV190X).
             ZIMOLightEffectFadeInTime = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
             ZIMOLightEffectFadeInTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeInTime);
+            CV190Configuration = Subline.Create(new List<uint> { 190 });
+
             ZIMOLightEffectFadeOutTime = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
             ZIMOLightEffectFadeOutTimeLabelText = GetZIMOMSFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTime);
+            CV191Configuration = Subline.Create(new List<uint> { 191 });
 
             // ZIMO: Time settings for light effetcs in CV190 and CV191 (ZIMO_MXBRIGHTENINGUPANDIMMINGTIMES_CV190X).
             ZIMOLightEffectFadeInTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeInTime;
             ZIMOLightEffectFadeInTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeInTimeMX);
+            CV190Configuration = Subline.Create(new List<uint> { 190 });
+
             ZIMOLightEffectFadeOutTimeMX = DecoderConfiguration.ZIMO.LightEffectFadeOutTime;
             ZIMOLightEffectFadeOutTimeMXLabelText = GetZIMOMXFadeInOutTimeLabelText(ZIMOLightEffectFadeOutTimeMX);
+            CV191Configuration = Subline.Create(new List<uint> { 191 });
 
             FunctionOutputNames = Helper.FunctionOutputs.GetNames(false);
 

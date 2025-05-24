@@ -36,7 +36,7 @@ using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.ViewModel
 {
-   
+
 
     public partial class MotorCharacteristicsViewModel : ObservableObject
     {
@@ -55,10 +55,10 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: LIMITS FOR ENTRY VALIDATION
-        
+
         [ObservableProperty]
         int limitMinimumZIMOMSmotorControlReferenceVoltage = 0;
-        
+
         #endregion
 
         #region REGION: DECODER FEATURES
@@ -66,7 +66,7 @@ namespace Z2XProgrammer.ViewModel
         //  RCN225_SPEEDTABLE_CV29_4
         [ObservableProperty]
         bool rCN225_SPEEDTABLE_CV29_4;
-      
+
         [ObservableProperty]
         bool rCN225_MEDIUMSPEED_CV6;
 
@@ -108,9 +108,9 @@ namespace Z2XProgrammer.ViewModel
         internal bool maximumSpeedDoehlerAndHaasDefaultUsed;
         partial void OnMaximumSpeedDoehlerAndHaasDefaultUsedChanged(bool value)
         {
-            if(value == false)
+            if (value == false)
             {
-                if(DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
+                if (DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
                 MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
@@ -139,9 +139,9 @@ namespace Z2XProgrammer.ViewModel
         internal bool maximumSpeedDefaultUsed;
         partial void OnMaximumSpeedDefaultUsedChanged(bool value)
         {
-            if(value == false)
+            if (value == false)
             {
-                if(DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
+                if (DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
                 MaximumSpeedValueDescription = GetMaximumSpeedLabel();
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
@@ -163,7 +163,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         [ObservableProperty]
-        string cV5Configuration = Subline.Create(new List<uint>{5});
+        string cV5Configuration = Subline.Create(new List<uint> { 5 });
 
 
         // RCN225: Medium speed in CV6
@@ -176,11 +176,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.MediumSpeed = value;
             MediumSpeedValueDescription = GetMediumSpeedLabel();
-            CV6Configuration = Subline.Create(new List<uint>{6});
+            CV6Configuration = Subline.Create(new List<uint> { 6 });
         }
 
         [ObservableProperty]
-        string cV6Configuration = Subline.Create(new List<uint>{6});
+        string cV6Configuration = Subline.Create(new List<uint> { 6 });
 
 
         // RCN225: Minimum speed in CV2
@@ -193,11 +193,11 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.MinimumSpeed = value;
             MinimumSpeedValueDescription = GetMinimumSpeedLabel();
-            CV2Configuration = Subline.Create(new List<uint>{2});
+            CV2Configuration = Subline.Create(new List<uint> { 2 });
         }
         [ObservableProperty]
-        string cV2Configuration = Subline.Create(new List<uint>{2});
-        
+        string cV2Configuration = Subline.Create(new List<uint> { 2 });
+
 
         // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
         [ObservableProperty]
@@ -205,11 +205,11 @@ namespace Z2XProgrammer.ViewModel
         partial void OnExtendedSpeedCurveEnabledChanged(bool value)
         {
             DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled = value;
-            CV29Configuration = Subline.Create(new List<uint>{29});
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
         }
         [ObservableProperty]
-        string cV29Configuration = Subline.Create(new List<uint>{29});
-        
+        string cV29Configuration = Subline.Create(new List<uint> { 29 });
+
 
         [ObservableProperty]
         internal byte extendedSpeedCurveValue67;
@@ -413,7 +413,7 @@ namespace Z2XProgrammer.ViewModel
         {
             SetExtendedSpeedCurveValue(94, value);
         }
-        
+
 
         // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
         [ObservableProperty]
@@ -437,7 +437,7 @@ namespace Z2XProgrammer.ViewModel
                 IsHighFrequencySelected = true;
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 55;
             }
-            CV9Configuration = Subline.Create(new List<uint>{9});
+            CV9Configuration = Subline.Create(new List<uint> { 9 });
         }
 
         [ObservableProperty]
@@ -448,14 +448,14 @@ namespace Z2XProgrammer.ViewModel
             if (useDefaultMotorControlFrequency == true)
             {
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
-                return; 
+                return;
             }
 
             // Check the range of the slider, just in case ...
             if (value < 176) return;
             if (value > 255) return;
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)value;
-            CV9Configuration = Subline.Create(new List<uint>{9});
+            CV9Configuration = Subline.Create(new List<uint> { 9 });
         }
 
         [ObservableProperty]
@@ -469,14 +469,14 @@ namespace Z2XProgrammer.ViewModel
             if (useDefaultMotorControlFrequency == true)
             {
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
-                return; 
+                return;
             }
 
             if (ZIMOEnumConverter.GetMotorControlFrequencyType(value) == ZIMO.MotorControlFrequencyTypes.HighFrequency)
             {
                 // We use the default settings 55 for CV9 as suggested by ZIMO.
                 // CV55 equals to High frequency,medium scanning rate
-                 IsHighFrequencySelected = true;
+                IsHighFrequencySelected = true;
                 EMKRate = 5;
                 EMKGap = 5;
                 SelectedMotorControlFrequqencyType = ZIMOEnumConverter.GetMotorControlFrequencyTypeDescription(MotorControlFrequencyTypes.HighFrequency);
@@ -489,7 +489,7 @@ namespace Z2XProgrammer.ViewModel
                 LowFrequency = 127;
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)LowFrequency;
             }
-            CV9Configuration = Subline.Create(new List<uint>{9});
+            CV9Configuration = Subline.Create(new List<uint> { 9 });
         }
 
         [ObservableProperty]
@@ -503,11 +503,11 @@ namespace Z2XProgrammer.ViewModel
             if (useDefaultMotorControlFrequency == true)
             {
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
-                return; 
+                return;
             }
 
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-            CV9Configuration = Subline.Create(new List<uint>{9});
+            CV9Configuration = Subline.Create(new List<uint> { 9 });
         }
 
         [ObservableProperty]
@@ -518,15 +518,15 @@ namespace Z2XProgrammer.ViewModel
             if (useDefaultMotorControlFrequency == true)
             {
                 DecoderConfiguration.ZIMO.MotorFrequencyControl = 0;
-                return; 
+                return;
             }
 
             DecoderConfiguration.ZIMO.MotorFrequencyControl = (byte)PlaceValue.SetPlaceValues(EMKGap, EMKRate, 0);
-            CV9Configuration = Subline.Create(new List<uint>{9});
+            CV9Configuration = Subline.Create(new List<uint> { 9 });
         }
 
         [ObservableProperty]
-        string cV9Configuration = Subline.Create(new List<uint>{9});
+        string cV9Configuration = Subline.Create(new List<uint> { 9 });
 
 
         // ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57
@@ -547,8 +547,9 @@ namespace Z2XProgrammer.ViewModel
             }
             else
             {
-                DecoderConfiguration.ZIMO.MotorReferenceVoltage = 0 ;
+                DecoderConfiguration.ZIMO.MotorReferenceVoltage = 0;
             }
+            CV57Configuration = Subline.Create(new List<uint> { 57 });
         }
 
         // ZIMO: MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
@@ -567,7 +568,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 ZIMOMSmotorControlReferenceValue = 0;
             }
-            CV57Configuration = Subline.Create(new List<uint>{57});
+            CV57Configuration = Subline.Create(new List<uint> { 57 });
         }
 
         [ObservableProperty]
@@ -586,11 +587,11 @@ namespace Z2XProgrammer.ViewModel
             {
                 DecoderConfiguration.ZIMO.MotorReferenceVoltage = 0;
             }
-            CV57Configuration = Subline.Create(new List<uint>{57});
+            CV57Configuration = Subline.Create(new List<uint> { 57 });
         }
 
         [ObservableProperty]
-        string cV57Configuration = Subline.Create(new List<uint>{57});
+        string cV57Configuration = Subline.Create(new List<uint> { 57 });
 
 
         // ZIMO: MX decoder motor control PID settings CV56
@@ -619,7 +620,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMotorControlPIDIntegralValueChanged(int value)
         {
             int MotorType = 0;
-            if(SelectedMotorControlPIDMotorType == ZIMOEnumConverter.GetMotorControlPIDMotorTypeDescription(ZIMO.MotorControlPIDMotorTypes.Normal))
+            if (SelectedMotorControlPIDMotorType == ZIMOEnumConverter.GetMotorControlPIDMotorTypeDescription(ZIMO.MotorControlPIDMotorTypes.Normal))
             {
                 MotorType = 0;
             }
@@ -645,12 +646,12 @@ namespace Z2XProgrammer.ViewModel
                 MotorType = 1;
             }
             DecoderConfiguration.ZIMO.MotorPIDSettings = (byte)PlaceValue.SetPlaceValues(MotorControlPIDIntegralValue, MotorControlPIDProportionalValue, MotorType);
-            CV56Configuration = Subline.Create(new List<uint>{56});
+            CV56Configuration = Subline.Create(new List<uint> { 56 });
         }
 
         [ObservableProperty]
-        string cV56Configuration = Subline.Create(new List<uint>{56});
-        
+        string cV56Configuration = Subline.Create(new List<uint> { 56 });
+
 
         // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
         [ObservableProperty]
@@ -659,19 +660,19 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.DoehlerHaas.MotorImpulsWidth = value;
             UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
-            CV49Configuration = Subline.Create(new List<uint>{49});
+            CV49Configuration = Subline.Create(new List<uint> { 49 });
         }
 
         [ObservableProperty]
         internal string impulsWidthTime = "";
 
         [ObservableProperty]
-        string cV49Configuration = Subline.Create(new List<uint>{49});
-        
+        string cV49Configuration = Subline.Create(new List<uint> { 49 });
 
-        
+
+
         #endregion
-        
+
         #region REGION: CONSTRUCTOR
         public MotorCharacteristicsViewModel()
         {
@@ -680,7 +681,7 @@ namespace Z2XProgrammer.ViewModel
 
             OnGetDataFromDecoderSpecification();
             OnGetDecoderConfiguration();
-            
+
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -703,84 +704,39 @@ namespace Z2XProgrammer.ViewModel
         # region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
-        /// Returns the label for the mimum speed.
-        /// </summary>
-        /// <returns></returns>
-        private string GetMinimumSpeedLabel()
-        {
-            return MinimumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MinimumSpeed, 255) + " %)";
-        }
-
-        /// <summary>
-        /// Returns the label for the medium speed.
-        /// </summary>
-        /// <returns></returns>
-        private string GetMediumSpeedLabel()
-        {
-            return MediumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MediumSpeed, 255) + " %)";
-        }
-
-        /// <summary>
-        /// Returns the label for the maximum speed.
-        /// </summary>
-        /// <returns></returns>
-        private string GetMaximumSpeedLabel()
-        {
-            return MaximumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumSpeed, 255) + " %)";
-        }
-
-        /// <summary>
-        /// Returns the label for the maximum speed.
-        /// </summary>
-        /// <returns></returns>
-        private string GetDoehlerAndHaasMaximumSpeedLabel()
-        {
-            return MaximumDoehlerAndHaasSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumDoehlerAndHaasSpeed, 255) + " %)";
-        }
-
-
-        /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
         /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
         /// </summary>
         public void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
-            ExtendedSpeedCurveEnabled = DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled;
 
             // RCN225: Maximum speed in CV5
             MaximumSpeed = DecoderConfiguration.RCN225.MaximumSpeed;
             if ((DecoderConfiguration.RCN225.MaximumSpeed == 0) || (DecoderConfiguration.RCN225.MaximumSpeed == 1))
             {
-                MaximumSpeedDefaultUsed = true;                
+                MaximumSpeedDefaultUsed = true;
             }
             else
             {
                 MaximumSpeedDefaultUsed = false;
             }
             MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+            CV5Configuration = Subline.Create(new List<uint> { 5 });
 
-            // DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
-            MaximumDoehlerAndHaasSpeed = DecoderConfiguration.RCN225.MaximumSpeed;
-            if ((DecoderConfiguration.RCN225.MaximumSpeed == 0) || (DecoderConfiguration.RCN225.MaximumSpeed == 1))
-            {
-                MaximumSpeedDoehlerAndHaasDefaultUsed = true;                
-            }
-            else
-            {
-                MaximumSpeedDoehlerAndHaasDefaultUsed = false;
-            }
-            MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
-
-            //  RCN225: Medium speed in CV6
+            // RCN225: Minimum speed in CV2
             MinimumSpeed = DecoderConfiguration.RCN225.MinimumSpeed;
             MinimumSpeedValueDescription = GetMinimumSpeedLabel();
+            CV2Configuration = Subline.Create(new List<uint> { 2 });
 
+            // RCN225: Medium speed in CV6
             MediumSpeed = DecoderConfiguration.RCN225.MediumSpeed;
             MediumSpeedValueDescription = GetMediumSpeedLabel();
+            CV6Configuration = Subline.Create(new List<uint> { 6 });
 
-            ImpulsWidthValue = DecoderConfiguration.DoehlerHaas.MotorImpulsWidth;
-            UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
+            // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
+            ExtendedSpeedCurveEnabled = DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled;
+            CV29Configuration = Subline.Create(new List<uint> { 29 });
             ExtendedSpeedCurveValue67 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[0].Value;
             ExtendedSpeedCurveValue68 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[1].Value;
             ExtendedSpeedCurveValue69 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[2].Value;
@@ -843,6 +799,7 @@ namespace Z2XProgrammer.ViewModel
                         LowFrequency = DecoderConfiguration.ZIMO.MotorFrequencyControl;
                     }
                 }
+                CV9Configuration = Subline.Create(new List<uint> { 9 });
             }
 
             // ZIMO: MX decoder motor control reference voltage in CV57 (ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57)
@@ -858,12 +815,13 @@ namespace Z2XProgrammer.ViewModel
                 {
                     MotorControlReferenceVoltageAutomaticMode = false;
                 }
+                CV57Configuration = Subline.Create(new List<uint> { 57 });
             }
 
             // ZIMOs MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57)
             if (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 == true)
             {
-                if(DecoderConfiguration.ZIMO.MotorReferenceVoltage < 100)
+                if (DecoderConfiguration.ZIMO.MotorReferenceVoltage < 100)
                 {
                     ZIMOMSMotorControlReferenceVoltageAutomaticMode = true;
                     ZIMOMSmotorControlReferenceValue = 1;
@@ -874,9 +832,10 @@ namespace Z2XProgrammer.ViewModel
                     ZIMOMSMotorControlReferenceVoltageAutomaticMode = false;
                 }
                 ZIMOMSmotorControlReferenceVoltage = (DecoderConfiguration.ZIMO.MotorReferenceVoltage / 10).ToString() + " V (" + DecoderConfiguration.ZIMO.MotorReferenceVoltage.ToString() + ")";
+                CV57Configuration = Subline.Create(new List<uint> { 57 });
             }
 
-
+            // ZIMO: MX decoder motor control PID settings CV56
             if (DecoderConfiguration.ZIMO.MotorPIDSettings < 100)
             {
                 SelectedMotorControlPIDMotorType = ZIMOEnumConverter.GetMotorControlPIDMotorTypeDescription(ZIMO.MotorControlPIDMotorTypes.Normal);
@@ -884,13 +843,33 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 SelectedMotorControlPIDMotorType = ZIMOEnumConverter.GetMotorControlPIDMotorTypeDescription(ZIMO.MotorControlPIDMotorTypes.BellAnchor);
-            }        
+            }
             int pValue, iValue, motorType;
             PlaceValue.GetPlaceValues(DecoderConfiguration.ZIMO.MotorPIDSettings, out iValue, out pValue, out motorType);
             MotorControlPIDProportionalValue = pValue;
             MotorControlPIDIntegralValue = iValue;
+            CV56Configuration = Subline.Create(new List<uint> { 56 });
 
-    }
+            // DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
+            MaximumDoehlerAndHaasSpeed = DecoderConfiguration.RCN225.MaximumSpeed;
+            if ((DecoderConfiguration.RCN225.MaximumSpeed == 0) || (DecoderConfiguration.RCN225.MaximumSpeed == 1))
+            {
+                MaximumSpeedDoehlerAndHaasDefaultUsed = true;
+            }
+            else
+            {
+                MaximumSpeedDoehlerAndHaasDefaultUsed = false;
+            }
+            MaximumSpeedDoehlerAndHaasValueDescription = GetDoehlerAndHaasMaximumSpeedLabel();
+            CV5Configuration = Subline.Create(new List<uint> { 5 });
+
+            // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
+            ImpulsWidthValue = DecoderConfiguration.DoehlerHaas.MotorImpulsWidth;
+            UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
+            CV49Configuration = Subline.Create(new List<uint> { 49 });
+
+
+        }
 
         /// <summary>
         /// This event handler reacts to the DecoderSpecificationUpdatedMessage message. It will fetch
@@ -917,7 +896,46 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57;
 
         }
-        
+
+        /// <summary>
+        /// Returns the label for the mimum speed.
+        /// </summary>
+        /// <returns></returns>
+        private string GetMinimumSpeedLabel()
+        {
+            return MinimumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MinimumSpeed, 255) + " %)";
+        }
+
+        /// <summary>
+        /// Returns the label for the medium speed.
+        /// </summary>
+        /// <returns></returns>
+        private string GetMediumSpeedLabel()
+        {
+            return MediumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MediumSpeed, 255) + " %)";
+        }
+
+        /// <summary>
+        /// Returns the label for the maximum speed.
+        /// </summary>
+        /// <returns></returns>
+        private string GetMaximumSpeedLabel()
+        {
+            return MaximumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumSpeed, 255) + " %)";
+        }
+
+        /// <summary>
+        /// Returns the label for the maximum speed.
+        /// </summary>
+        /// <returns></returns>
+        private string GetDoehlerAndHaasMaximumSpeedLabel()
+        {
+            return MaximumDoehlerAndHaasSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumDoehlerAndHaasSpeed, 255) + " %)";
+        }
+
+
+
+
         private void UpdateImpulsWidthTime(byte value)
         {
             switch (value)
@@ -942,14 +960,14 @@ namespace Z2XProgrammer.ViewModel
             if (cvNumber < 67) return false;
 
             ExtendedSpeedCurveType tempSpeedSettings = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues;
-            
+
             tempSpeedSettings.CV[cvNumber - 67].Value = value;
 
             DecoderConfiguration.RCN225.ExtendedSpeedCurveValues = tempSpeedSettings;
 
             return true;
         }
-        
+
         #endregion
 
     }

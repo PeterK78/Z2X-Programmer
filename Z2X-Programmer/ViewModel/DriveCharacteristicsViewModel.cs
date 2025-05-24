@@ -217,13 +217,13 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived; 
 
             OnGetDataFromDecoderSpecification();
-            OnGetDataFromDataStore();
+            OnGetDecoderConfiguration();
             
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    OnGetDataFromDataStore();
+                    OnGetDecoderConfiguration();
                 });
             });
 
@@ -289,11 +289,12 @@ namespace Z2XProgrammer.ViewModel
         }
 
 
+        
         /// <summary>
-        /// This event handler reacts to the weak DataStoreUpdatedMessage message. It will fetch
-        /// the current data from the data store.
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
         /// </summary>
-        public void OnGetDataFromDataStore()
+        public void OnGetDecoderConfiguration()
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
@@ -398,7 +399,6 @@ namespace Z2XProgrammer.ViewModel
         }
 
         #endregion
-
 
     }
 }

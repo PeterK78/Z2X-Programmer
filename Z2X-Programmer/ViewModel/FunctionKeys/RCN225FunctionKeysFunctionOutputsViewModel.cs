@@ -39,7 +39,7 @@ using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
-    public partial class RCN225FunctionKeysFunctionOutputsViewModel: ObservableObject
+    public partial class RCN225FunctionKeysFunctionOutputsViewModel : ObservableObject
     {
 
         #region REGION: DATASTORE & SETTINGS
@@ -49,7 +49,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool dataStoreDataValid;
 
-         // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
+        // additionalDisplayOfCVValues is true if the user-specific option xxx is activated.
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1;
 
@@ -81,10 +81,10 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         string output2Description = string.Empty;
-        
+
         [ObservableProperty]
         string output3Description = string.Empty;
-                
+
         [ObservableProperty]
         string output4Description = string.Empty;
 
@@ -126,7 +126,7 @@ namespace Z2XProgrammer.ViewModel
         {
             RCN225StandardFunctionMapping = !value;
             DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping = value;
-            CV61Configuration = Subline.Create(new List<uint>{61});
+            CV61Configuration = Subline.Create(new List<uint> { 61 });
         }
         [ObservableProperty]
         string cV61Configuration = Subline.Create([61]);
@@ -134,7 +134,7 @@ namespace Z2XProgrammer.ViewModel
         #region CV33 FUNCTION OUTPUT MAPPING OF KEY F0 (FORWARD)
         [ObservableProperty]
         ushort cV33Value;
-        
+
         [ObservableProperty]
         bool cV33ValueBit0;
         partial void OnCV33ValueBit0Changed(bool value)
@@ -190,7 +190,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV33ValueBit7Changed(bool value)
         {
             CV33Value = Bit.Set((byte)CV33Value, 7, value);
-                DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;     
+            DecoderConfiguration.RCN225.FunctionMappingF0Forward = (byte)CV33Value;
         }
         #endregion
 
@@ -392,7 +392,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV37ValueBit0Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
 
         [ObservableProperty]
@@ -400,49 +400,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV37ValueBit1Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit2;
         partial void OnCV37ValueBit2Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit3;
         partial void OnCV37ValueBit3Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit4;
         partial void OnCV37ValueBit4Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit5;
         partial void OnCV37ValueBit5Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit6;
         partial void OnCV37ValueBit6Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         [ObservableProperty]
         bool cV37ValueBit7;
         partial void OnCV37ValueBit7Changed(bool value)
         {
             CV37Value = Bit.Set((byte)CV37Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte) CV37Value;
+            DecoderConfiguration.RCN225.FunctionMappingF3 = (byte)CV37Value;
         }
         #endregion
 
@@ -455,7 +455,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV38ValueBit0Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
 
         [ObservableProperty]
@@ -463,49 +463,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV38ValueBit1Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit2;
         partial void OnCV38ValueBit2Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit3;
         partial void OnCV38ValueBit3Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit4;
         partial void OnCV38ValueBit4Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit5;
         partial void OnCV38ValueBit5Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit6;
         partial void OnCV38ValueBit6Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         [ObservableProperty]
         bool cV38ValueBit7;
         partial void OnCV38ValueBit7Changed(bool value)
         {
             CV38Value = Bit.Set((byte)CV38Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte) CV38Value;
+            DecoderConfiguration.RCN225.FunctionMappingF4 = (byte)CV38Value;
         }
         #endregion
 
@@ -518,7 +518,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV39ValueBit0Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
 
         [ObservableProperty]
@@ -526,49 +526,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV39ValueBit1Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit2;
         partial void OnCV39ValueBit2Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit3;
         partial void OnCV39ValueBit3Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit4;
         partial void OnCV39ValueBit4Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit5;
         partial void OnCV39ValueBit5Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit6;
         partial void OnCV39ValueBit6Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         [ObservableProperty]
         bool cV39ValueBit7;
         partial void OnCV39ValueBit7Changed(bool value)
         {
             CV39Value = Bit.Set((byte)CV39Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF5 =(byte) CV39Value;
+            DecoderConfiguration.RCN225.FunctionMappingF5 = (byte)CV39Value;
         }
         #endregion
 
@@ -694,7 +694,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV41ValueBit7Changed(bool value)
         {
             CV41Value = Bit.Set((byte)CV41Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;        
+            DecoderConfiguration.RCN225.FunctionMappingF7 = (byte)CV41Value;
         }
         #endregion
 
@@ -707,7 +707,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit0Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
         }
 
         [ObservableProperty]
@@ -715,7 +715,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit1Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -723,7 +723,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit2Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -731,7 +731,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit3Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -739,7 +739,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit4Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -747,7 +747,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit5Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -755,7 +755,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit6Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         [ObservableProperty]
@@ -763,7 +763,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV42ValueBit7Changed(bool value)
         {
             CV42Value = Bit.Set((byte)CV42Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF8 =(byte)CV42Value;
+            DecoderConfiguration.RCN225.FunctionMappingF8 = (byte)CV42Value;
 
         }
         #endregion
@@ -840,7 +840,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV44ValueBit0Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
 
         [ObservableProperty]
@@ -848,49 +848,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV44ValueBit1Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit2;
         partial void OnCV44ValueBit2Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit3;
         partial void OnCV44ValueBit3Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit4;
         partial void OnCV44ValueBit4Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit5;
         partial void OnCV44ValueBit5Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit6;
         partial void OnCV44ValueBit6Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         [ObservableProperty]
         bool cV44ValueBit7;
         partial void OnCV44ValueBit7Changed(bool value)
         {
             CV44Value = Bit.Set((byte)CV44Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte) CV44Value;
+            DecoderConfiguration.RCN225.FunctionMappingF10 = (byte)CV44Value;
         }
         #endregion
 
@@ -903,7 +903,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV45ValueBit0Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 0, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
 
         [ObservableProperty]
@@ -911,49 +911,49 @@ namespace Z2XProgrammer.ViewModel
         partial void OnCV45ValueBit1Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 1, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit2;
         partial void OnCV45ValueBit2Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 2, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit3;
         partial void OnCV45ValueBit3Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 3, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit4;
         partial void OnCV45ValueBit4Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 4, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit5;
         partial void OnCV45ValueBit5Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 5, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit6;
         partial void OnCV45ValueBit6Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 6, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         [ObservableProperty]
         bool cV45ValueBit7;
         partial void OnCV45ValueBit7Changed(bool value)
         {
             CV45Value = Bit.Set((byte)CV45Value, 7, value);
-            DecoderConfiguration.RCN225.FunctionMappingF11= (byte) CV45Value;
+            DecoderConfiguration.RCN225.FunctionMappingF11 = (byte)CV45Value;
         }
         #endregion
 
@@ -1069,7 +1069,6 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDecoderConfiguration()
         {
-
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
             // We configure the descriptions of the function outputs. If user-specific names are available, these are used.
@@ -1088,7 +1087,6 @@ namespace Z2XProgrammer.ViewModel
             Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description;
             Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description;
 
-
             //  RCN 225
             CV33Value = DecoderConfiguration.RCN225.FunctionMappingF0Forward;
             CV34Value = DecoderConfiguration.RCN225.FunctionMappingF0Backward;
@@ -1105,14 +1103,15 @@ namespace Z2XProgrammer.ViewModel
             CV45Value = DecoderConfiguration.RCN225.FunctionMappingF11;
             CV46Value = DecoderConfiguration.RCN225.FunctionMappingF12;
             for (byte cv = 33; cv <= 46; cv++) SetBitsOfCV(cv);
-            
-            
+
+            // ZIMO: Extended function key mapping - without left-shift (ZIMO_FUNCTIONKEYMAPPINGTYPE_CV61)
+            ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping;
+            CV61Configuration = Subline.Create([61]);
+
             //  Döhler and Haass
             //DoehlerAndHaassExtendedFunctionMappingEnabled = DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled;
 
-            //  ZIMO
-            ZIMOExtendedFunctionMapping = DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping;
-        }   
+        }
 
         /// <summary>
         /// Sets the the bit properties of the given configuration variable number.
@@ -1130,9 +1129,9 @@ namespace Z2XProgrammer.ViewModel
                 Logger.PrintDevConsole("GetBitsOfCV: Unable to get the property CV" + number.ToString() + "Value");
                 return;
             }
-            
+
             //  Get the current value of the desired configuration variable.
-            ushort ValueCV = (ushort)prop.GetValue(this, null)!; 
+            ushort ValueCV = (ushort)prop.GetValue(this, null)!;
 
             //  Loop trough all 8 bits of the desired configuration variable.
             for (int i = 0; i <= 7; i++)
@@ -1143,15 +1142,15 @@ namespace Z2XProgrammer.ViewModel
                 PropertyInfo propInfo = type.GetProperty(BitsPropertyName)!;
                 if (propInfo == null)
                 {
-                    Logger.PrintDevConsole("GetBitsOfCV: Unable to get the property " +  BitsPropertyName);
+                    Logger.PrintDevConsole("GetBitsOfCV: Unable to get the property " + BitsPropertyName);
                     return;
                 }
 
                 //  Set the state of the desired bit in the configuration variable.
                 Logger.PrintDevConsole("GetBitsOfCV: Setting property CV" + number.ToString() + "Value to value " + ValueCV.ToString());
-                propInfo.SetValue(this, Bit.IsSet(ValueCV , i), null);
+                propInfo.SetValue(this, Bit.IsSet(ValueCV, i), null);
             }
-        
+
         }
 
         #endregion
@@ -1183,7 +1182,7 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 //  We delete the configuration.
-                CV33ValueBit0 = false; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false; 
+                CV33ValueBit0 = false; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false;
                 CV34ValueBit0 = false; CV34ValueBit1 = false; CV34ValueBit2 = false; CV34ValueBit3 = false; CV34ValueBit4 = false; CV34ValueBit5 = false; CV34ValueBit6 = false; CV34ValueBit7 = false;
                 CV35ValueBit0 = false; CV35ValueBit1 = false; CV35ValueBit2 = false; CV35ValueBit3 = false; CV35ValueBit4 = false; CV35ValueBit5 = false; CV35ValueBit6 = false; CV35ValueBit7 = false;
                 CV36ValueBit0 = false; CV36ValueBit1 = false; CV36ValueBit2 = false; CV36ValueBit3 = false; CV36ValueBit4 = false; CV36ValueBit5 = false; CV36ValueBit6 = false; CV36ValueBit7 = false;
@@ -1219,7 +1218,7 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 //  We delete the configuration.
-                CV33ValueBit0 = true; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false; 
+                CV33ValueBit0 = true; CV33ValueBit1 = false; CV33ValueBit2 = false; CV33ValueBit3 = false; CV33ValueBit4 = false; CV33ValueBit5 = false; CV33ValueBit6 = false; CV33ValueBit7 = false;
                 CV34ValueBit0 = false; CV34ValueBit1 = true; CV34ValueBit2 = false; CV34ValueBit3 = false; CV34ValueBit4 = false; CV34ValueBit5 = false; CV34ValueBit6 = false; CV34ValueBit7 = false;
                 CV35ValueBit0 = false; CV35ValueBit1 = false; CV35ValueBit2 = true; CV35ValueBit3 = false; CV35ValueBit4 = false; CV35ValueBit5 = false; CV35ValueBit6 = false; CV35ValueBit7 = false;
                 CV36ValueBit0 = false; CV36ValueBit1 = false; CV36ValueBit2 = false; CV36ValueBit3 = true; CV36ValueBit4 = false; CV36ValueBit5 = false; CV36ValueBit6 = false; CV36ValueBit7 = false;

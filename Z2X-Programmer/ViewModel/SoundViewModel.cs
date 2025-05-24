@@ -49,6 +49,10 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: DECODER FEATURES
 
+        // ZIMO_SOUND_VOLUME_FUNCKEY_CV395
+        [ObservableProperty]
+        bool zIMO_SOUND_VOLUME_FUNCKEY_CV395 = false;
+
         [ObservableProperty]
         bool zIMO_BRAKESQUEAL_CV287;
 
@@ -217,7 +221,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV285Configuration = Subline.Create(new List<uint>{285});
 
-
+        // ZIMO: ZIMO_BRAKESQUEAL_CV287  
         [ObservableProperty]
         int breakSquealLevel;
         partial void OnBreakSquealLevelChanged(int value)
@@ -264,6 +268,107 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
+        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
+        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
+        /// </summary>
+        private void OnGetDecoderConfiguration()
+        {
+            DataStoreDataValid = DecoderConfiguration.IsValid;
+
+            // ZIMO: Generic sound volume in CV266 (ZIMO_SOUND_VOLUME_GENERIC_C266)
+            OverallVolume = DecoderConfiguration.ZIMO.OverallVolume;
+            OverallVolumeText = GetOverallVolumeText();
+            CV266Configuration = Subline.Create(new List<uint>{266});
+
+            // ZIMO: ZIMO_BRAKESQUEAL_CV287  
+            BreakSquealLevel = DecoderConfiguration.ZIMO.BreakSquealLevel;
+            CV287Configuration = Subline.Create(new List<uint> { 287 });
+
+            // ZIMO: ZIMO_SOUND_STARTUPDELAY_CV273
+            SoundStartUpDelay = DecoderConfiguration.ZIMO.SoundStartUpDelay;
+            CV273Configuration = Subline.Create(new List<uint>{273});
+            SoundStartUpDelayText = GetSoundStartUpDelayLabel();
+
+            // ZIMO: ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285
+            SoundDurationNoiseReduction = DecoderConfiguration.ZIMO.SoundDurationNoiseReduction;
+            SoundDurationNoiseReductionText = GetSoundDurationNoiseReductionLabel();
+            CV285Configuration = Subline.Create(new List<uint> { 285 });
+
+            // ZIMO: Steam sounds in CV27X (ZIMO_SOUND_VOLUME_STEAM_CV27X)
+            SoundVolumeSlowSpeedNoLoad = DecoderConfiguration.ZIMO.SoundVolumeSlowSpeedNoLoad;
+            CV275Configuration = Subline.Create(new List<uint>{275});
+
+            // ZIMO: ZIMO_SOUND_VOLUME_FASTSPEEDNOLOAD_CV276
+            SoundVolumeFastSpeedNoLoad = DecoderConfiguration.ZIMO.SoundVolumeFastSpeedNoLoad;
+            CV276Configuration = Subline.Create(new List<uint>{276});
+
+            // ZIMO: ZIMO_SOUND_VOLUME_ACCELERATION_CV283
+            SoundVolumeAcceleration = DecoderConfiguration.ZIMO.SoundVolumeAcceleration;
+            CV283Configuration = Subline.Create(new List<uint>{283});
+
+            // ZIMO: ZIMO_SOUND_VOLUME_DECELERATION_CV286
+            SoundVolumeDeceleration = DecoderConfiguration.ZIMO.SoundVolumeDeceleration;
+            CV286Configuration = Subline.Create(new List<uint> { 286 });
+
+            //  ZIMO: CV296
+            SoundEMotorVolume = DecoderConfiguration.ZIMO.SoundEMotorVolume;
+            CV296Configuration = Subline.Create(new List<uint>{296});
+
+            //  ZIMO: CV298
+            SoundEMotorVolumeDependedSpeed = DecoderConfiguration.ZIMO.SoundEMotorVolumeDependedSpeed;
+            CV298Configuration = Subline.Create(new List<uint> { 298 });
+
+            // ZIMO: ZIMO_SOUND_VOLUME_DIESELELEC_CV29X
+            MaximumVolumeForFunctionKeys = DecoderConfiguration.ZIMO.MaximumVolumeForFuncKeysControl;           
+            MaximumVolumeForFunctionKeysText = GetMaximumVolumeForFunctionKeysText();
+            CV395Configuration = Subline.Create(new List<uint> { 395 });
+
+        }
+
+        /// <summary>
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
+        /// </summary>
+        private void OnGetDataFromDecoderSpecification()
+        {
+            ZIMO_SOUND_VOLUME_GENERIC_C266 = DecoderSpecification.ZIMO_SOUND_VOLUME_GENERIC_C266;
+            ZIMO_BRAKESQUEAL_CV287 = DecoderSpecification.ZIMO_BRAKESQUEAL_CV287;
+            ZIMO_SOUND_STARTUPDELAY_CV273 = DecoderSpecification.ZIMO_SOUND_STARTUPDELAY_CV273;
+            ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = DecoderSpecification.ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285;
+            ZIMO_SOUND_VOLUME_STEAM_CV27X = DecoderSpecification.ZIMO_SOUND_VOLUME_STEAM_CV27X;
+            ZIMO_SOUND_VOLUME_DIESELELEC_CV29X = DecoderSpecification.ZIMO_SOUND_VOLUME_DIESELELEC_CV29X;
+            ZIMO_SOUND_VOLUME_FUNCKEY_CV395 = DecoderSpecification.ZIMO_SOUND_VOLUME_FUNCKEY_CV395;
+
+
+
+            if  ((ZIMO_SOUND_VOLUME_GENERIC_C266 == true)   ||
+                 (ZIMO_BRAKESQUEAL_CV287 == true) ||
+                 (ZIMO_SOUND_STARTUPDELAY_CV273 == true) ||
+                (ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 == true) ||
+                (ZIMO_SOUND_VOLUME_STEAM_CV27X == true) ||
+                (ZIMO_SOUND_VOLUME_DIESELELEC_CV29X == true))
+            {
+                AnyDecoderFeatureAvailable = true;
+            }
+            else
+            {
+                AnyDecoderFeatureAvailable = false;
+            }
+
+            if ((ZIMO_SOUND_STARTUPDELAY_CV273 == true) ||
+                             (ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 == true))
+            {
+                AnyZIMOSoundTimesFeaturesAvailable = true;
+            }
+            else
+            {
+                AnyZIMOSoundTimesFeaturesAvailable = false;
+            }
+
+            
+        }
+
+        /// <summary>
         /// Returns the label text for GetSoundStartUpDelay.
         /// </summary>
         /// <returns></returns>
@@ -293,69 +398,7 @@ namespace Z2XProgrammer.ViewModel
             return MaximumVolumeForFunctionKeys.ToString() + " (" + string.Format("{0:N0}", percentage) + " %)";
         }
 
-        /// <summary>
-        /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
-        /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
-        /// </summary>
-        private void OnGetDecoderConfiguration()
-        {
-            DataStoreDataValid = DecoderConfiguration.IsValid;
-            OverallVolume = DecoderConfiguration.ZIMO.OverallVolume;
-            OverallVolumeText = GetOverallVolumeText();
-            BreakSquealLevel = DecoderConfiguration.ZIMO.BreakSquealLevel;
-            SoundStartUpDelay = DecoderConfiguration.ZIMO.SoundStartUpDelay;
-            SoundStartUpDelayText = GetSoundStartUpDelayLabel();
-            SoundDurationNoiseReduction = DecoderConfiguration.ZIMO.SoundDurationNoiseReduction;
-            SoundDurationNoiseReductionText = GetSoundDurationNoiseReductionLabel();
-            SoundVolumeSlowSpeedNoLoad = DecoderConfiguration.ZIMO.SoundVolumeSlowSpeedNoLoad;
-            SoundVolumeFastSpeedNoLoad = DecoderConfiguration.ZIMO.SoundVolumeFastSpeedNoLoad;
-            SoundVolumeAcceleration = DecoderConfiguration.ZIMO.SoundVolumeAcceleration;
-            SoundVolumeDeceleration = DecoderConfiguration.ZIMO.SoundVolumeDeceleration;
-            SoundEMotorVolume = DecoderConfiguration.ZIMO.SoundEMotorVolume;
-            SoundEMotorVolumeDependedSpeed = DecoderConfiguration.ZIMO.SoundEMotorVolumeDependedSpeed;
-            MaximumVolumeForFunctionKeys = DecoderConfiguration.ZIMO.MaximumVolumeForFuncKeysControl;
-            MaximumVolumeForFunctionKeysText = GetMaximumVolumeForFunctionKeysText();
-        }
-
-        /// <summary>
-        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
-        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
-        /// </summary>
-        private void OnGetDataFromDecoderSpecification()
-        {
-            ZIMO_SOUND_VOLUME_GENERIC_C266 = DecoderSpecification.ZIMO_SOUND_VOLUME_GENERIC_C266;
-            ZIMO_BRAKESQUEAL_CV287 = DecoderSpecification.ZIMO_BRAKESQUEAL_CV287;
-            ZIMO_SOUND_STARTUPDELAY_CV273 = DecoderSpecification.ZIMO_SOUND_STARTUPDELAY_CV273;
-            ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = DecoderSpecification.ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285;
-            ZIMO_SOUND_VOLUME_STEAM_CV27X = DecoderSpecification.ZIMO_SOUND_VOLUME_STEAM_CV27X;
-            ZIMO_SOUND_VOLUME_DIESELELEC_CV29X = DecoderSpecification.ZIMO_SOUND_VOLUME_DIESELELEC_CV29X;
-
-            if  ((ZIMO_SOUND_VOLUME_GENERIC_C266 == true)   ||
-                 (ZIMO_BRAKESQUEAL_CV287 == true) ||
-                 (ZIMO_SOUND_STARTUPDELAY_CV273 == true) ||
-                (ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 == true) ||
-                (ZIMO_SOUND_VOLUME_STEAM_CV27X == true) ||
-                (ZIMO_SOUND_VOLUME_DIESELELEC_CV29X == true))
-            {
-                AnyDecoderFeatureAvailable = true;
-            }
-            else
-            {
-                AnyDecoderFeatureAvailable = false;
-            }
-
-            if ((ZIMO_SOUND_STARTUPDELAY_CV273 == true) ||
-                             (ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 == true))
-            {
-                AnyZIMOSoundTimesFeaturesAvailable = true;
-            }
-            else
-            {
-                AnyZIMOSoundTimesFeaturesAvailable = false;
-            }
-
-            
-        }
+       
 
         #endregion
 
