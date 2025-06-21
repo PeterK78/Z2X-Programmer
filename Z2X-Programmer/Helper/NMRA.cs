@@ -42,7 +42,8 @@ namespace Z2XProgrammer.Helper
         public const int LongAddressMinimum = 128;
         public const int LongAddressMaximum = 10239;
 
-        public const byte NumberOfFunctionKeys = 28;
+        //  The maximum number of function keys according to RCN225 (F0 → F28).
+        public const byte NumberOfFunctionKeys = 29;
         public const byte NumberOfExtendedSpeedSteps = 28;
 
         //  The standard locomotive address

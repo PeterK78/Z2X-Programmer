@@ -241,11 +241,11 @@ Folgender Fehler ist aufgetreten:
   <data name="DCCABCBreakModeRightTrack" xml:space="preserve">
     <value>Halt bei höherer Spannung auf rechtem Gleis</value>
   </data>
-  <data name="DCCAddressModeLong" xml:space="preserve">
-    <value>Lange Adressen verwenden (128 - 10239)</value>
-  </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
     <value>Kurze Adressen verwenden (1 - 127)</value>
+  </data>
+  <data name="DCCAddressModeLong" xml:space="preserve">
+    <value>Lange Adressen verwenden (128 - 10239)</value>
   </data>
   <data name="DCCProgrammingModePOM" xml:space="preserve">
     <value>Hauptgleis</value>
@@ -468,6 +468,9 @@ Folgender Fehler ist aufgetreten:
   </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV156)</value>
+  </data>
+  <data name="FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc" xml:space="preserve">
+    <value>Deaktivieren der Brems- und Beschleunigungszeit</value>
   </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV133)</value>
@@ -1383,7 +1386,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Tastenbelegung</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingDescription" xml:space="preserve">
-    <value>Durch das Ändern der Tastenbelegung kann eine Funktionstaste eine beliebige andere Funktionstaste auslösen. Diese Funktion wird auch Eingangs-Mapping genannt.</value>
+    <value>Durch die Anpassung der Tastenbelegung am Steuergerät kann eine Funktionstaste eine beliebige interne Taste des Decoders aktivieren.</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
     <value>Belegung ändern ...</value>
@@ -1395,10 +1398,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Wählen Sie die gewünschte Tastenbelegung aus.</value>
   </data>
   <data name="ZIMOInputMappingDirectMapping" xml:space="preserve">
-    <value>Idente Taste wie am Steuergerät</value>
+    <value>Ident mit Decoder</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleController" xml:space="preserve">
-    <value>Steuergerät
+    <value>Funktionstaste am Steuergerät
 (z. B. multiMAUS, ᴡʟᴀɴMAUS etc.)</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
@@ -1684,10 +1687,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Zuordnung zurücksetzen</value>
   </data>
   <data name="FrameFunctionKeysHighBeamDimmingTitle" xml:space="preserve">
-    <value>Fernlicht- und Abblendtaste</value>
+    <value>Abblendtaste</value>
   </data>
   <data name="FrameFunctionKeysHighBeamDimmingDescription" xml:space="preserve">
-    <value>Konfigurieren Sie hier jene Funktionsausgänge, welche beim Drücken der Taste F6 oder F7 in den gedimmeten Zustand wechseln (CV119, CV120).</value>
+    <value>Konfigurieren Sie hier jene Funktionsausgänge, welche beim Drücken der Tasten F6 oder F7 in den gedimmeten Zustand wechseln (CV119, CV120).</value>
   </data>
   <data name="FrameFunctionKeyHighDippedBeamInvertedLabel" xml:space="preserve">
     <value>Taste umkehren</value>
@@ -1746,6 +1749,12 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysLightSuppressionDriverCabCab1Label" xml:space="preserve">
     <value>Führerstand 1, vorwärts (CV107, CV109)</value>
   </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab1Desc" xml:space="preserve">
+    <value>💡 Lichtunterdrückung Führerstand 1, vorwärts</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab2Desc" xml:space="preserve">
+    <value>💡 Lichtunterdrückung Führerstand 2, rückwärts</value>
+  </data>
   <data name="FrameFunctionKeysLightSuppressionDriverCabCab2Label" xml:space="preserve">
     <value>Führerstand 2, rückwärts (CV108, CV110)</value>
   </data>
@@ -1763,6 +1772,24 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameFunctionKeysShuntingLabel" xml:space="preserve">
     <value>Funktionstaste zum Aktivieren des Rangiergangs (CV155)</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingKeyDesc" xml:space="preserve">
+    <value>🐌 Aktivieren des Rangiergangs</value>
+  </data>
+  <data name="FrameFunctionKeysSoundLouderDesc" xml:space="preserve">
+    <value>🎵 Sound lauter</value>
+  </data>
+  <data name="FrameFunctionKeysSoundMuteDesc" xml:space="preserve">
+    <value>🎵 Sound ein-/ausblenden</value>
+  </data>
+  <data name="FrameFunctionKeysSoundQuieterDesc" xml:space="preserve">
+    <value>🎵 Sound leiser</value>
+  </data>
+  <data name="FrameFunctionKeysSoundOnOff" xml:space="preserve">
+    <value>🎵 Fahr- und Zufallssounds ein/aus</value>
+  </data>
+  <data name="FrameFunctionKeysSoundCurveSquealOnOff" xml:space="preserve">
+    <value>🎵 Kurvenquietschen ein/aus</value>
   </data>
   <data name="FlyoutItemFunctionKeysFunctionOutputsTitle" xml:space="preserve">
     <value>Funktionsausgänge</value>
@@ -1838,5 +1865,83 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FrameExpertCVListNote" xml:space="preserve">
     <value>⚠ Beim Wechseln der Decoder-Spezifikation werden alle Konfigurationsvariablen automatisch aktiviert.</value>
+  </data>
+  <data name="FrameFunctionKeysSummaryTitle" xml:space="preserve">
+    <value>Zusammenfassung</value>
+  </data>
+  <data name="FrameFunctionKeysSummaryDescription" xml:space="preserve">
+    <value>Hier sehen Sie die die aktuelle Konfiguration Ihrer Funktionstasten.</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleController" xml:space="preserve">
+    <value>Steuergerät</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleDecoder" xml:space="preserve">
+    <value>Decoder</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleFunctions" xml:space="preserve">
+    <value>Funktionen</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc" xml:space="preserve">
+    <value>💡 Abblendtaste 1</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc" xml:space="preserve">
+    <value>💡 Abblendtaste 2</value>
+  </data>
+  <data name="FrameFunctionKeysOutput1Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 1</value>
+  </data>
+  <data name="FrameFunctionKeysOutput2Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 2</value>
+  </data>
+  <data name="FrameFunctionKeysOutput3Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 3</value>
+  </data>
+  <data name="FrameFunctionKeysOutput4Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 4</value>
+  </data>
+  <data name="FrameFunctionKeysOutput5Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 5</value>
+  </data>
+  <data name="FrameFunctionKeysOutput6Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 6</value>
+  </data>
+  <data name="FrameFunctionKeysOutput7Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 7</value>
+  </data>
+  <data name="FrameFunctionKeysOutput8Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 8</value>
+  </data>
+  <data name="FrameFunctionKeysOutput9Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 9</value>
+  </data>
+  <data name="FrameFunctionKeysOutput10Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 10</value>
+  </data>
+  <data name="FrameFunctionKeysOutput11Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 11</value>
+  </data>
+  <data name="FrameFunctionKeysOutput12Desc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 12</value>
+  </data>
+  <data name="FrameFunctionKeysOutput0vDesc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 0 - Vorne</value>
+  </data>
+  <data name="FrameFunctionKeysOutput0rDesc" xml:space="preserve">
+    <value>🔌 Funktionsausgang 0 - Hinten</value>
+  </data>
+  <data name="FrameFunctionKeysRefreshOverview" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="FrameFunctionKeysDescriptionDirectionForward" xml:space="preserve">
+    <value>(Vorwärts)</value>
+  </data>
+  <data name="FrameFunctionKeysDescriptionDirectionBackward" xml:space="preserve">
+    <value>(Rückwärts)</value>
+  </data>
+  <data name="FunctionOutputFront" xml:space="preserve">
+    <value>Vorne</value>
+  </data>
+  <data name="FunctionOutputRear" xml:space="preserve">
+    <value>Hinten</value>
   </data>
 </root>

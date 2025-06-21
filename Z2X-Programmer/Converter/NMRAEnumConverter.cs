@@ -133,14 +133,18 @@ namespace Z2XProgrammer.Helper
             return FunctionOutputs;
         }
 
-
+        /// <summary>
+        /// Returns a list of strings with all available function keys (F0 → F28)
+        /// </summary>
+        /// <param name="addNotDefined"></param>
+        /// <returns></returns>
         internal static List<string> GetAvailableFunctionKeys(bool addNotDefined)
         {
             List<string> FunctionKeys = new List<string>();
 
             if (addNotDefined) { FunctionKeys.Add(AppResources.FunctionKeysNotDefined); }
 
-            for (int i = 1; i <= NumberOfFunctionKeys; i++)
+            for (int i = 1; i < NumberOfFunctionKeys; i++)
             {
                 string newItem = "F" + i.ToString();
                 FunctionKeys.Add(newItem);

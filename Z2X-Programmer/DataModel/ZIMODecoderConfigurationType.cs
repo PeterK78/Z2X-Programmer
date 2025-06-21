@@ -606,7 +606,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[400].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[400].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -621,7 +621,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[401].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[401].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -636,7 +636,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[402].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[402].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -651,7 +651,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[403].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[403].Value = (byte)value.ExternalFunctionKeyNumber;
             }
 
         }
@@ -667,7 +667,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[404].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[404].Value = (byte)value.ExternalFunctionKeyNumber;
             }
 
         }
@@ -683,7 +683,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[405].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[405].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -698,7 +698,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[406].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[406].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -713,7 +713,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[407].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[407].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -729,7 +729,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[408].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[408].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -744,7 +744,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[409].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[409].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -759,7 +759,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[410].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[410].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -774,7 +774,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[411].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[411].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -789,7 +789,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[412].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[412].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -804,7 +804,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[413].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[413].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -819,7 +819,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[414].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[414].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -834,7 +834,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[415].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[415].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -849,7 +849,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[416].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[416].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -864,7 +864,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[417].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[417].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -879,7 +879,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[418].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[418].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -894,7 +894,7 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[419].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[419].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
@@ -909,44 +909,165 @@ namespace Z2XProgrammer.DataModel
             }
             set
             {
-                configurationVariables[420].Value = (byte)value.InternalFunctionKeyNumber;
+                configurationVariables[420].Value = (byte)value.ExternalFunctionKeyNumber;
             }
         }
 
         /// <summary>
-        /// 
+        /// Returns the input mapping for the external function key F21 (CV421).
         /// </summary>
-        /// <param name="externalFunctionKeyNumber"></param>
+        public ZIMOInputMappingType InputMappingF21
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(21);
+            }
+            set
+            {
+                configurationVariables[421].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F22 (CV422).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF22
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(22);
+            }
+            set
+            {
+                configurationVariables[422].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F23 (CV423).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF23
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(23);
+            }
+            set
+            {
+                configurationVariables[423].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F24 (CV424).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF24
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(24);
+            }
+            set
+            {
+                configurationVariables[424].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F25 (CV425).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF25
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(25);
+            }
+            set
+            {
+                configurationVariables[425].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F26 (CV426).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF26
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(26);
+            }
+            set
+            {
+                configurationVariables[426].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F27 (CV427).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF27
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(27);
+            }
+            set
+            {
+                configurationVariables[427].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Returns the input mapping for the external function key F28 (CV428).
+        /// </summary>
+        public ZIMOInputMappingType InputMappingF28
+        {
+            get
+            {
+                return GetInputMappingInternalFunctionKeyNumber(28);
+            }
+            set
+            {
+                configurationVariables[428].Value = (byte)value.ExternalFunctionKeyNumber;
+            }
+        }
+
+        /// <summary>
+        /// Grabs the function key mapping for the given internal function key number.
+        /// </summary>
+        /// <param name="internalFunctionKeyNr">A number between 0 and 28</param>
         /// <returns></returns>
-        private ZIMOInputMappingType GetInputMappingInternalFunctionKeyNumber (int externalFunctionKeyNumber)
+        private ZIMOInputMappingType GetInputMappingInternalFunctionKeyNumber (int internalFunctionKeyNr)
         {
                 ZIMOInputMappingType item = new ZIMOInputMappingType();
                 item.ExternalFunctionKeyNumber = -1;
                 item.InternalFunctionKeyNumber = -1;
 
-                if (externalFunctionKeyNumber < 0) return item;
-                if (externalFunctionKeyNumber > 28) return item;
+                if (internalFunctionKeyNr < 0) return item;
+                if (internalFunctionKeyNr > NMRA.NumberOfFunctionKeys) return item;
 
-                item.ExternalFunctionKeyNumber = externalFunctionKeyNumber;
-                item.ExternalFunctionKeyDescription = "F" + externalFunctionKeyNumber;
-                item.CVNumber = 400 + externalFunctionKeyNumber;
-                
+                item.InternalFunctionKeyNumber = internalFunctionKeyNr;
+                item.CVNumber = 400 + internalFunctionKeyNr;
+                item.CVValue = configurationVariables[internalFunctionKeyNr + 400].Value;
+
                 // 0 = NO MAPPING -> 1:1 CONNECTION
-                if (configurationVariables[externalFunctionKeyNumber+400].Value == 0)
+                if (configurationVariables[internalFunctionKeyNr+400].Value == 0)
                 {
-                    item.InternalFunctionKeyNumber = 0;
+                    item.ExternalFunctionKeyNumber = 0;
                 }
                 // 1 ... 28 => F1 ... F28, 29 ... F0
-                else if ((configurationVariables[externalFunctionKeyNumber+400].Value > 0) && (configurationVariables[externalFunctionKeyNumber+400].Value < 30))
+                else if ((configurationVariables[internalFunctionKeyNr+400].Value > 0) && (configurationVariables[internalFunctionKeyNr+400].Value < 30))
                 {
-                    item.InternalFunctionKeyNumber = configurationVariables[externalFunctionKeyNumber+400].Value;
+                    item.ExternalFunctionKeyNumber = configurationVariables[internalFunctionKeyNr+400].Value;
                 }
                 // UNKNOWN CONFIGURATION
                 else
                 {
-                    item.InternalFunctionKeyNumber = -1;
+                    item.ExternalFunctionKeyNumber = -1;
                 }
-                return item;
+
+            return item;
 
         }
 

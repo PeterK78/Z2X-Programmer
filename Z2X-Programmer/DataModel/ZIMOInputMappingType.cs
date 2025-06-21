@@ -21,13 +21,90 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 namespace Z2XProgrammer.DataModel
 {
-    public class ZIMOInputMappingType
+    public partial class ZIMOInputMappingType: INotifyPropertyChanged
     {
-        public int ExternalFunctionKeyNumber { get; set; }
-        public string ExternalFunctionKeyDescription { get; set; } = string.Empty;
-        public int InternalFunctionKeyNumber { get; set; }
-        public int CVNumber{ get; set; }
+        #region REGION: PRIVATE FIELDS    
+
+        private int _externalFunctionKeyNumber = 0;
+        private string _externalFunctionKeyDescription = string.Empty;
+        private int _internalFunctionKeyNumber = 0;
+        private string _internalFunctionKeyDescription = string.Empty;
+        private int _cvNumber = 0;
+        private byte _cvValue = 0;
+
+        #endregion
+
+        #region REGION: PUBLIC DELEGATES
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion region
+
+        #region REGION: PUBLIC PROPERTIES
+        public int ExternalFunctionKeyNumber
+        {
+            get => _externalFunctionKeyNumber;
+            set
+            {
+                _externalFunctionKeyNumber = value;
+                _externalFunctionKeyDescription = "F" + value.ToString();
+                OnPropertyChanged(nameof(ExternalFunctionKeyNumber));
+                OnPropertyChanged(nameof(ExternalFunctionKeyDescription));
+            }
+        }
+
+        public string ExternalFunctionKeyDescription
+        {
+            get => _externalFunctionKeyDescription;
+        }
+
+        public int InternalFunctionKeyNumber
+        {
+            get => _internalFunctionKeyNumber;
+            set
+            {
+                _internalFunctionKeyNumber = value;
+                _internalFunctionKeyDescription = "F" + value.ToString();
+                OnPropertyChanged(nameof(InternalFunctionKeyNumber));
+                OnPropertyChanged(nameof(InternalFunctionKeyDescription));
+            }
+        }
+
+        public string InternalFunctionKeyDescription
+        {
+            get => _internalFunctionKeyDescription;
+        }
+
+        public int CVNumber
+        {
+            get => _cvNumber;
+            set
+            {
+                _cvNumber = value;
+                OnPropertyChanged(nameof(CVNumber));
+            }
+        }
+
+        public byte CVValue
+        {
+            get => _cvValue;
+            set
+            {
+                _cvValue = value;
+                OnPropertyChanged(nameof(CVValue));
+            }
+        }
+
+        #endregion region
     }
 }

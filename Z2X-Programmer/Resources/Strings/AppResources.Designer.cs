@@ -1674,11 +1674,38 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deactivating the braking and acceleration time.
+        /// </summary>
+        public static string FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function key for deactivating the braking and acceleration time (CV156).
         /// </summary>
         public static string FrameFunctionKeysDeactivateAccDecTimeLabel {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysDeactivateAccDecTimeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Backward).
+        /// </summary>
+        public static string FrameFunctionKeysDescriptionDirectionBackward {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysDescriptionDirectionBackward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Forward).
+        /// </summary>
+        public static string FrameFunctionKeysDescriptionDirectionForward {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysDescriptionDirectionForward", resourceCulture);
             }
         }
         
@@ -1710,6 +1737,33 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Control unit.
+        /// </summary>
+        public static string FrameFunctionKeysHeaderTitleController {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHeaderTitleController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoder.
+        /// </summary>
+        public static string FrameFunctionKeysHeaderTitleDecoder {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHeaderTitleDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functions.
+        /// </summary>
+        public static string FrameFunctionKeysHeaderTitleFunctions {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHeaderTitleFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed (CV119, CV120)..
         /// </summary>
         public static string FrameFunctionKeysHighBeamDimmingDescription {
@@ -1719,11 +1773,38 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High beam and dipped beam button.
+        ///   Looks up a localized string similar to 💡 Dipped beam function key 1.
+        /// </summary>
+        public static string FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 💡 Dipped beam function key 2.
+        /// </summary>
+        public static string FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dipped beam function key.
         /// </summary>
         public static string FrameFunctionKeysHighBeamDimmingTitle {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysHighBeamDimmingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 💡 Light suppression driver&apos;s cab 1, forward.
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabCab1Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabCab1Desc", resourceCulture);
             }
         }
         
@@ -1733,6 +1814,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysLightSuppressionDriverCabCab1Label {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabCab1Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 💡 Light suppression driver&apos;s cab 2, backward.
+        /// </summary>
+        public static string FrameFunctionKeysLightSuppressionDriverCabCab2Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysLightSuppressionDriverCabCab2Desc", resourceCulture);
             }
         }
         
@@ -1908,6 +1998,141 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 0 - Back.
+        /// </summary>
+        public static string FrameFunctionKeysOutput0rDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput0rDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 0 - Front.
+        /// </summary>
+        public static string FrameFunctionKeysOutput0vDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput0vDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 10.
+        /// </summary>
+        public static string FrameFunctionKeysOutput10Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput10Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 11.
+        /// </summary>
+        public static string FrameFunctionKeysOutput11Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput11Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 12.
+        /// </summary>
+        public static string FrameFunctionKeysOutput12Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput12Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 1.
+        /// </summary>
+        public static string FrameFunctionKeysOutput1Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput1Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 2.
+        /// </summary>
+        public static string FrameFunctionKeysOutput2Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput2Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 3.
+        /// </summary>
+        public static string FrameFunctionKeysOutput3Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput3Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 4.
+        /// </summary>
+        public static string FrameFunctionKeysOutput4Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput4Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 5.
+        /// </summary>
+        public static string FrameFunctionKeysOutput5Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput5Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 6.
+        /// </summary>
+        public static string FrameFunctionKeysOutput6Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput6Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 7.
+        /// </summary>
+        public static string FrameFunctionKeysOutput7Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput7Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 8.
+        /// </summary>
+        public static string FrameFunctionKeysOutput8Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput8Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔌 Function output 9.
+        /// </summary>
+        public static string FrameFunctionKeysOutput9Desc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysOutput9Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string FrameFunctionKeysRefreshOverview {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysRefreshOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light functions.
         /// </summary>
         public static string FrameFunctionKeysSectionLight {
@@ -1922,6 +2147,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysShuntingKey {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysShuntingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🐌 Activating the shunting gear.
+        /// </summary>
+        public static string FrameFunctionKeysShuntingKeyDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysShuntingKeyDesc", resourceCulture);
             }
         }
         
@@ -1971,6 +2205,33 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 🎵 Cornering squeal on/off.
+        /// </summary>
+        public static string FrameFunctionKeysSoundCurveSquealOnOff {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundCurveSquealOnOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎵 Sound louder.
+        /// </summary>
+        public static string FrameFunctionKeysSoundLouderDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundLouderDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎵 Sound fade in/off.
+        /// </summary>
+        public static string FrameFunctionKeysSoundMuteDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundMuteDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The function of the function button for fading in and out is inverted (CV313).
         /// </summary>
         public static string FrameFunctionKeysSoundMuteInvertLabel {
@@ -1985,6 +2246,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameFunctionKeysSoundMuteLabel {
             get {
                 return ResourceManager.GetString("FrameFunctionKeysSoundMuteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎵 Driving and random sounds on/off.
+        /// </summary>
+        public static string FrameFunctionKeysSoundOnOff {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundOnOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎵 Sound quieter.
+        /// </summary>
+        public static string FrameFunctionKeysSoundQuieterDesc {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSoundQuieterDesc", resourceCulture);
             }
         }
         
@@ -2034,7 +2313,25 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping..
+        ///   Looks up a localized string similar to Here you can see the current configuration of your function keys..
+        /// </summary>
+        public static string FrameFunctionKeysSummaryDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSummaryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string FrameFunctionKeysSummaryTitle {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysSummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By adapting the key assignment on the control unit, a function button can activate any internal button on the decoder..
         /// </summary>
         public static string FrameFunctionKeysZIMOInputMappingDescription {
             get {
@@ -2052,7 +2349,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Control device
+        ///   Looks up a localized string similar to Function key on the control unit
         ///(e.g. multiMAUS, ᴡʟᴀɴMAUS, etc.).
         /// </summary>
         public static string FrameFunctionKeysZIMOInputMappingHeaderTitleController {
@@ -4515,11 +4812,29 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Front.
+        /// </summary>
+        public static string FunctionOutputFront {
+            get {
+                return ResourceManager.GetString("FunctionOutputFront", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unused.
         /// </summary>
         public static string FunctionOutputNotDefined {
             get {
                 return ResourceManager.GetString("FunctionOutputNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rear.
+        /// </summary>
+        public static string FunctionOutputRear {
+            get {
+                return ResourceManager.GetString("FunctionOutputRear", resourceCulture);
             }
         }
         
@@ -5008,7 +5323,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Same button as on the control unit.
+        ///   Looks up a localized string similar to Ident with decoder.
         /// </summary>
         public static string ZIMOInputMappingDirectMapping {
             get {

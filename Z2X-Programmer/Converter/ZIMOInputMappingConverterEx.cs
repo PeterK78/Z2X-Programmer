@@ -21,6 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using System.Globalization;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Resources.Strings;
 
@@ -29,28 +30,28 @@ namespace Z2XProgrammer.Converter
     /// <summary>
     /// This class implements an IValueConverter to convert ZIMO input mapping values to user-friendly strings.
     /// </summary>       
-    public class ZIMOInputMappingConverter : IValueConverter
+    public class ZIMOInputMappingConverterEx : IMultiValueConverter
     {
-        public object Convert(object? value, Type targetType, object? parameter, System.Globalization.CultureInfo culture)
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (targetType != typeof(string)) throw new InvalidOperationException("The target must be a string");
-
-            if (value == null) return string.Empty;
+            if ((values[0] == null) || (values[1] == null)) return "Wrong input parameters (both null).";
 
             //  0 = 1:1 DIRECT MAPPING
-            if ((int)value == 0) return AppResources.ZIMOInputMappingDirectMapping;
-            
-            // 29 = F0
-            if ((int)value == 29) return "F0";
+            if ((int)values[0] == 0) return "F" + values[1].ToString();
 
-            if (((int)value > 0) && ((int)value < NMRA.NumberOfFunctionKeys)) return "F" + value.ToString();
-            
+            // 29 = F0
+            if ((int)values[0] == 29) return "F0";
+
+            if (((int)values[0] > 0) && ((int)values[0] < NMRA.NumberOfFunctionKeys)) return "F" + values[0].ToString();
+
             return "Unknown Mapping";
         }
 
-        public object ConvertBack(object? value, Type targetType, object? parameter,System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
 }

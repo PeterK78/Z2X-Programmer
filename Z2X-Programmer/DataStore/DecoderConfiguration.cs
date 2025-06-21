@@ -37,6 +37,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Messages;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Communication;
+using System.Collections.Immutable;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.DataStore
 {
@@ -46,6 +48,22 @@ namespace Z2XProgrammer.DataStore
     /// </summary>
     internal static class DecoderConfiguration
     {
+        /// <summary>
+        /// A synchronization object used to ensure thread-safe access to operations related to enabling all CVs
+        /// supported by DecSpec.
+        /// </summary>
+        /// <remarks>This object is intended for use as a lock to protect shared resources or critical
+        /// sections of code that involve enabling all CVs supported by DecSpec. It ensures that only one thread can
+        /// execute the protected code at a time.</remarks>
+        private static readonly object _EnableAllCVsSupportedByDecSpecLock = new();
+
+        /// <summary>
+        /// A synchronization object used to ensure thread-safe access to operations related to setting the decoder specification.
+        /// </summary>
+        /// <remarks>This object is intended for use as a lock to protect shared resources or critical
+        /// sections of code that involve setting the decoder speficiation. It ensures that only one thread can
+        /// execute the protected code at a time.</remarks>
+        private static readonly object _SetDecoderSpecificationLock = new();
 
         /// <summary>
         /// Returns TRUE if the decoder configuration contains valid data either by loading from a Z2X file
@@ -68,7 +86,7 @@ namespace Z2XProgrammer.DataStore
         /// upload of the data from the decoder
         /// </summary>
         public static List<ConfigurationVariableType> BackupCVs = new List<ConfigurationVariableType>();
-        
+
         /// <summary>
         /// The RCN225 specific decoder settings
         /// </summary>
@@ -117,7 +135,12 @@ namespace Z2XProgrammer.DataStore
         /// A list of user defined function output names.
         /// </summary>
         public static List<FunctionOutputType> UserDefinedFunctionOutputNames = new List<FunctionOutputType>();
-       
+
+        /// <summary>
+        /// A list of function keys that are available for the decoder.
+        /// </summary>
+        public static ObservableCollection<FunctionKeyType> FunctionKeys = new ObservableCollection<FunctionKeyType>();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -143,11 +166,11 @@ namespace Z2XProgrammer.DataStore
             }
 
             //  Setup the list of function outputs.
-            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0v" }); 
-            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0r" }); 
-            for (int i = 0; i<= Helper.NMRA.MaxFunctionOutputs-1;i++ )
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0 (" + AppResources.FunctionOutputFront + ")" });
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0 (" + AppResources.FunctionOutputRear + ")" });
+            for (int i = 0; i <= Helper.NMRA.MaxFunctionOutputs - 1; i++)
             {
-                UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i+1).ToString() }); 
+                UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i + 1).ToString() });
             }
 
             //  Reset the user defined settings.
@@ -165,6 +188,12 @@ namespace Z2XProgrammer.DataStore
             //  The backup data has not been read from the decoder.
             BackupDataFromDecoderIsValid = false;
 
+            //  Initialize the function keys.
+            for (int i = 0; i < NMRA.NumberOfFunctionKeys; i++)
+            {
+                FunctionKeys.Add(new FunctionKeyType());
+            }
+
         }
 
         /// <summary>
@@ -172,7 +201,7 @@ namespace Z2XProgrammer.DataStore
         /// </summary>
         public static void ClearBackupCVs()
         {
-            
+
             foreach (ConfigurationVariableType v in BackupCVs)
             {
                 v.Value = 0;
@@ -195,7 +224,7 @@ namespace Z2XProgrammer.DataStore
             }
             return true;
         }
-    
+
         /// <summary>
         /// Enable each configuration variable if its supported by the given decoder specification.
         /// </summary>
@@ -204,11 +233,14 @@ namespace Z2XProgrammer.DataStore
         {
             try
             {
-                DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.Enabled = false; });
-                foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                lock (_EnableAllCVsSupportedByDecSpecLock)
                 {
-                    ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
-                    variable.Enabled = true;
+                    DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.Enabled = false; });
+                    foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                    {
+                        ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                        variable.Enabled = true;
+                    }
                 }
             }
             catch (Exception e)
@@ -237,23 +269,75 @@ namespace Z2XProgrammer.DataStore
         /// Marks each configuration variable with the information whether it is supported by the current decoder specification.
         /// </summary>
         /// <param name="decSpecName">The name of the decoder specification.</param>
-        public static void SetDecoderSpecification (string decSpecName)
+        public static void SetDecoderSpecification(string decSpecName)
         {
             try
             {
-                DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.DeqSecSupported = false; });
-                foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                lock (_SetDecoderSpecificationLock)
                 {
-                    ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
-                    variable.DeqSecSupported = true;
+                    DecoderConfiguration.ConfigurationVariables.ForEach(c => { c.DeqSecSupported = false; });
+                    foreach (int CVNumber in ReadWriteDecoder.GetAllReadableConfigurationVariables(decSpecName))
+                    {
+                        ConfigurationVariableType variable = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == CVNumber);
+                        variable.DeqSecSupported = true;
+                    }
                 }
             }
             catch (Exception e)
             {
                 Logger.PrintDevConsole(e.Message);
             }
-            
         }
-        
+
+        /// <summary>
+        /// Updates the function key function descriptions for the given function key number.
+        /// </summary>
+        public static void SetFunctionKeyFunctionDescription(bool enable,bool atomic,  int functionKeyNumber, string functionName)
+        {
+            if (enable)
+            {
+                for (int i = 0; i < FunctionKeys.Count; i++)
+                {
+                    if (i != functionKeyNumber)
+                    {
+                        if (atomic == true)
+                        {
+                            if (FunctionKeys[i].FunctionDescriptions.Contains(functionName))
+                            {
+                                FunctionKeys[i].FunctionDescriptions.Remove(functionName);
+                            }    
+                        }   
+                    }
+                    else
+                    {
+                        if (FunctionKeys[i].FunctionDescriptions.Contains(functionName) == false) FunctionKeys[i].FunctionDescriptions.Add(functionName);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < FunctionKeys.Count; i++)
+                {
+                    if (i != functionKeyNumber)
+                    {
+                        if (atomic == true)
+                        {
+                            //  Remove the function name from all other function keys.  
+                            if (FunctionKeys[i].FunctionDescriptions.Contains(functionName))
+                            {
+                                FunctionKeys[i].FunctionDescriptions.Remove(functionName);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (FunctionKeys[i].FunctionDescriptions.Contains(functionName))
+                        {
+                            FunctionKeys[i].FunctionDescriptions.Remove(functionName);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

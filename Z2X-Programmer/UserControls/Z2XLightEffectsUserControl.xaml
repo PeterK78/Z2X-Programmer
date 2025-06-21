@@ -8,8 +8,8 @@
     <VerticalStackLayout HorizontalOptions="Center">
         <VerticalStackLayout>
             <HorizontalStackLayout HorizontalOptions="End">
-                <Picker x:Name="PickerEffect" IsVisible="False" Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300"  HorizontalOptions="End" VerticalOptions="Center"/>
-                <Picker x:Name="PickerDirection" IsVisible="False" Style="{StaticResource Z2XProgrammerPickerStyle}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
+                <Picker x:Name="PickerEffect" SelectedIndexChanged="PickerEffect_SelectedIndexChanged" IsVisible="False" Style="{StaticResource Z2XProgrammerPickerStyle}" Margin="0,0,20,0" HorizontalTextAlignment="End" MinimumWidthRequest="300" WidthRequest="300"  HorizontalOptions="End" VerticalOptions="Center"/>
+                <Picker x:Name="PickerDirection" SelectedIndexChanged="PickerDirection_SelectedIndexChanged" IsVisible="False" Style="{StaticResource Z2XProgrammerPickerStyle}" HorizontalTextAlignment="End" MinimumWidthRequest="250" WidthRequest="250"  HorizontalOptions="End" VerticalOptions="Center"/>
             </HorizontalStackLayout>
             <Label x:Name="LabelFunctionOutputNotAvailable" IsVisible="True" Text="⛔" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="580" MinimumWidthRequest="580" ></Label>
         </VerticalStackLayout>

@@ -468,6 +468,9 @@ The following error has occurred:</value>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Function key for deactivating the braking and acceleration time (CV156)</value>
   </data>
+  <data name="FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc" xml:space="preserve">
+    <value>Deactivating the braking and acceleration time</value>
+  </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
     <value>Function button for deactivating the braking and acceleration time (CV133)</value>
   </data>
@@ -1382,7 +1385,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Function key assignment </value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingDescription" xml:space="preserve">
-    <value>By changing the key assignment, a function key can trigger any other function key. This function is also known as input mapping.</value>
+    <value>By adapting the key assignment on the control unit, a function button can activate any internal button on the decoder.</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingEdit" xml:space="preserve">
     <value>Change assignment ...</value>
@@ -1394,10 +1397,10 @@ The application is aimed at beginners who want to configure the most important f
     <value>Select the desired button assignment.</value>
   </data>
   <data name="ZIMOInputMappingDirectMapping" xml:space="preserve">
-    <value>Same button as on the control unit</value>
+    <value>Ident with decoder</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleController" xml:space="preserve">
-    <value>Control device
+    <value>Function key on the control unit
 (e.g. multiMAUS, ᴡʟᴀɴMAUS, etc.)</value>
   </data>
   <data name="FrameFunctionKeysZIMOInputMappingHeaderTitleCV" xml:space="preserve">
@@ -1683,7 +1686,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Reset Mapping</value>
   </data>
   <data name="FrameFunctionKeysHighBeamDimmingTitle" xml:space="preserve">
-    <value>High beam and dipped beam button</value>
+    <value>Dipped beam function key</value>
   </data>
   <data name="FrameFunctionKeysHighBeamDimmingDescription" xml:space="preserve">
     <value>Configure here the function outputs that switch to the dimmed state when the F6 or F7 button is pressed (CV119, CV120).</value>
@@ -1745,6 +1748,12 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameFunctionKeysLightSuppressionDriverCabCab1Label" xml:space="preserve">
     <value>Driver's cab 1, forward (CV107, CV109)</value>
   </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab1Desc" xml:space="preserve">
+    <value>💡 Light suppression driver's cab 1, forward</value>
+  </data>
+  <data name="FrameFunctionKeysLightSuppressionDriverCabCab2Desc" xml:space="preserve">
+    <value>💡 Light suppression driver's cab 2, backward</value>
+  </data>
   <data name="FrameFunctionKeysLightSuppressionDriverCabCab2Label" xml:space="preserve">
     <value>Driver's cab 2, backwards (CV108, CV110)</value>
   </data>
@@ -1762,6 +1771,24 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameFunctionKeysShuntingLabel" xml:space="preserve">
     <value>Function key for activating the shunting gear (CV155)</value>
+  </data>
+  <data name="FrameFunctionKeysShuntingKeyDesc" xml:space="preserve">
+    <value>🐌 Activating the shunting gear</value>
+  </data>
+  <data name="FrameFunctionKeysSoundLouderDesc" xml:space="preserve">
+    <value>🎵 Sound louder</value>
+  </data>
+  <data name="FrameFunctionKeysSoundMuteDesc" xml:space="preserve">
+    <value>🎵 Sound fade in/off</value>
+  </data>
+  <data name="FrameFunctionKeysSoundQuieterDesc" xml:space="preserve">
+    <value>🎵 Sound quieter</value>
+  </data>
+  <data name="FrameFunctionKeysSoundOnOff" xml:space="preserve">
+    <value>🎵 Driving and random sounds on/off</value>
+  </data>
+  <data name="FrameFunctionKeysSoundCurveSquealOnOff" xml:space="preserve">
+    <value>🎵 Cornering squeal on/off</value>
   </data>
   <data name="FlyoutItemFunctionKeysFunctionOutputsTitle" xml:space="preserve">
     <value>Function outputs</value>
@@ -1837,5 +1864,83 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="FrameExpertCVListNote" xml:space="preserve">
     <value>⚠ All configuration variables are activated automatically when the decoder specification is changed.</value>
+  </data>
+  <data name="FrameFunctionKeysSummaryTitle" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="FrameFunctionKeysSummaryDescription" xml:space="preserve">
+    <value>Here you can see the current configuration of your function keys.</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleController" xml:space="preserve">
+    <value>Control unit</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleDecoder" xml:space="preserve">
+    <value>Decoder</value>
+  </data>
+  <data name="FrameFunctionKeysHeaderTitleFunctions" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc" xml:space="preserve">
+    <value>💡 Dipped beam function key 1</value>
+  </data>
+  <data name="FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc" xml:space="preserve">
+    <value>💡 Dipped beam function key 2</value>
+  </data>
+  <data name="FrameFunctionKeysOutput1Desc" xml:space="preserve">
+    <value>🔌 Function output 1</value>
+  </data>
+  <data name="FrameFunctionKeysOutput2Desc" xml:space="preserve">
+    <value>🔌 Function output 2</value>
+  </data>
+  <data name="FrameFunctionKeysOutput3Desc" xml:space="preserve">
+    <value>🔌 Function output 3</value>
+  </data>
+  <data name="FrameFunctionKeysOutput4Desc" xml:space="preserve">
+    <value>🔌 Function output 4</value>
+  </data>
+  <data name="FrameFunctionKeysOutput5Desc" xml:space="preserve">
+    <value>🔌 Function output 5</value>
+  </data>
+  <data name="FrameFunctionKeysOutput6Desc" xml:space="preserve">
+    <value>🔌 Function output 6</value>
+  </data>
+  <data name="FrameFunctionKeysOutput7Desc" xml:space="preserve">
+    <value>🔌 Function output 7</value>
+  </data>
+  <data name="FrameFunctionKeysOutput8Desc" xml:space="preserve">
+    <value>🔌 Function output 8</value>
+  </data>
+  <data name="FrameFunctionKeysOutput9Desc" xml:space="preserve">
+    <value>🔌 Function output 9</value>
+  </data>
+  <data name="FrameFunctionKeysOutput10Desc" xml:space="preserve">
+    <value>🔌 Function output 10</value>
+  </data>
+  <data name="FrameFunctionKeysOutput11Desc" xml:space="preserve">
+    <value>🔌 Function output 11</value>
+  </data>
+  <data name="FrameFunctionKeysOutput12Desc" xml:space="preserve">
+    <value>🔌 Function output 12</value>
+  </data>
+  <data name="FrameFunctionKeysOutput0vDesc" xml:space="preserve">
+    <value>🔌 Function output 0 - Front</value>
+  </data>
+  <data name="FrameFunctionKeysOutput0rDesc" xml:space="preserve">
+    <value>🔌 Function output 0 - Back</value>
+  </data>
+  <data name="FrameFunctionKeysRefreshOverview" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="FrameFunctionKeysDescriptionDirectionForward" xml:space="preserve">
+    <value>(Forward)</value>
+  </data>
+  <data name="FrameFunctionKeysDescriptionDirectionBackward" xml:space="preserve">
+    <value>(Backward)</value>
+  </data>
+  <data name="FunctionOutputFront" xml:space="preserve">
+    <value>Front</value>
+  </data>
+  <data name="FunctionOutputRear" xml:space="preserve">
+    <value>Rear</value>
   </data>
 </root>

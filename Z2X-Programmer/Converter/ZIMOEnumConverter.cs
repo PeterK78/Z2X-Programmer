@@ -119,7 +119,7 @@ namespace Z2XProgrammer.Converter
         internal static void InitializeEffects()
         {
             //  
-            //  Setup the three differen light effect directions
+            //  Setup the three different light effect directions
             //
 
             //  Independend = 0.
@@ -141,7 +141,7 @@ namespace Z2XProgrammer.Converter
             _ZIMOLightEffectDirections.Add(directionBackward);
 
             //
-            //  Setup the 9 supported light effects.
+            //  Setup the 7 supported light effects, and 1 function effect.
             //
 
             //  No effect = 0.
@@ -190,7 +190,7 @@ namespace Z2XProgrammer.Converter
             ZIMOEffectType singlePulseStrobe = new ZIMOEffectType();
             singlePulseStrobe.Description = GetLightEffectDescription(ZIMOEffects.SinglePulseStrobe);
             singlePulseStrobe.Name = ZIMOEffects.SinglePulseStrobe;
-            
+            singlePulseStrobe.Category = ZIMOEffectCategory.Light;
             _ZIMOEffects.Add(singlePulseStrobe);
 
             //  Rotary beacon = 24. 
@@ -277,7 +277,7 @@ namespace Z2XProgrammer.Converter
             List<string> Effect = new List<string>();
             foreach (ZIMOEffectType item in _ZIMOEffects)
             {
-                if ((item.Description != null) && (item.Category == ZIMOEffectCategory.Light))  Effect.Add(item.Description);
+                if (  (item.Description != null) && ((item.Category == ZIMOEffectCategory.Light) || (item.Category == ZIMOEffectCategory.Unknown)))  Effect.Add(item.Description);
             }
             return Effect;
         }

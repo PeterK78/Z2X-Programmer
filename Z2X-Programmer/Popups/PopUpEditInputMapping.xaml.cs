@@ -40,20 +40,21 @@ public partial class PopUpEditInputMapping : Popup
         _cancelTokenSource = tokenSource;
         _Mapping = mapping;
 
-        ExternalFunctionKeyLabel.Text = _Mapping.ExternalFunctionKeyDescription;
-        InternalFunctionKeyMapping.ItemsSource = GetAvailableInputMappingTypes();
 
-        if (_Mapping.InternalFunctionKeyNumber == 0)
+        InternalFunctionKeyLabel.Text = _Mapping.InternalFunctionKeyDescription; 
+        ExternalFunctionKeyMapping.ItemsSource = GetAvailableInputMappingTypes();
+
+        if (_Mapping.ExternalFunctionKeyNumber == 0)
         {
-            InternalFunctionKeyMapping.SelectedIndex = 0;
+            ExternalFunctionKeyMapping.SelectedIndex = 0;
         }
-        else if (_Mapping.InternalFunctionKeyNumber == 29)
+        else if (_Mapping.ExternalFunctionKeyNumber == 29)
         {
-            InternalFunctionKeyMapping.SelectedIndex = 1;
+            ExternalFunctionKeyMapping.SelectedIndex = 1;
         }
         else
         {
-            InternalFunctionKeyMapping.SelectedIndex = _Mapping.InternalFunctionKeyNumber + 1;
+            ExternalFunctionKeyMapping.SelectedIndex = _Mapping.ExternalFunctionKeyNumber + 1;
         }
     }
 
@@ -93,7 +94,7 @@ public partial class PopUpEditInputMapping : Popup
     }
 
     /// <summary>
-    /// Handles the button clicked event of the cancel button
+    /// Handles the button clicked event of the cancel button. It will close the popup without saving changes.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -102,26 +103,27 @@ public partial class PopUpEditInputMapping : Popup
         this.Close();
     }
 
-    
+
     /// <summary>
-    /// Handles the button clicked event of the OK button
+    /// Handles the button clicked event of the OK button. It will set the selected external function key number.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void OKButtonClicked(object sender, EventArgs e)
     {
-        if(InternalFunctionKeyMapping.SelectedIndex == 0)
+        if(ExternalFunctionKeyMapping.SelectedIndex == 0)
         {
-            _Mapping.InternalFunctionKeyNumber = 0;
+            _Mapping.ExternalFunctionKeyNumber = 0;
         }
-        else if(InternalFunctionKeyMapping.SelectedIndex == 1)
+        else if(ExternalFunctionKeyMapping.SelectedIndex == 1)
         {
-            _Mapping.InternalFunctionKeyNumber = 29;
+            _Mapping.ExternalFunctionKeyNumber = 29;
         }
         else
         {
-            _Mapping.InternalFunctionKeyNumber = InternalFunctionKeyMapping.SelectedIndex - 1;
+            _Mapping.ExternalFunctionKeyNumber = ExternalFunctionKeyMapping.SelectedIndex - 1;
         }
+        _Mapping.CVValue = (byte)_Mapping.ExternalFunctionKeyNumber;
 
         this.Close();   
     }   

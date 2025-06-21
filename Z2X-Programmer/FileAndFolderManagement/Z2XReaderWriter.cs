@@ -134,8 +134,10 @@ namespace Z2XProgrammer.FileAndFolderManagement
             //  For this reason, we check whether descriptions exist - if not, we create new empty descriptions.
             if ((myFile.UserDefinedFunctionOutputNames != null) && (myFile.UserDefinedFunctionOutputNames.Count == 14))
             {
-                //  We have found names for the function outputs in the Z2X project file. 
-                DecoderConfiguration.UserDefinedFunctionOutputNames = myFile.UserDefinedFunctionOutputNames;
+                for (int i = 0; i< myFile.UserDefinedFunctionOutputNames.Count;i++)
+                {
+                    DecoderConfiguration.UserDefinedFunctionOutputNames[i].Description = myFile.UserDefinedFunctionOutputNames[i].Description;
+                }   
             }
             else
             {

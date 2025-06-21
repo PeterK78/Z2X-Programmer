@@ -118,4 +118,24 @@ public partial class Z2XLightEffectsUserControl : ContentView
         get => (bool)GetValue(AdditionalCVValuesVisibleProperty);
         set => SetValue(AdditionalCVValuesVisibleProperty, value);
     }
+
+    private void PickerEffect_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        int selectedIndex = picker.SelectedIndex;
+        if (selectedIndex != -1)
+        {
+            SelectedItemEffect = (string)picker.ItemsSource[selectedIndex]!;
+        }
+    }
+
+    private void PickerDirection_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        int selectedIndex = picker.SelectedIndex;
+        if (selectedIndex != -1)
+        {
+            SelectedItemDirection = (string)picker.ItemsSource[selectedIndex]!;
+        }
+    }
 }
