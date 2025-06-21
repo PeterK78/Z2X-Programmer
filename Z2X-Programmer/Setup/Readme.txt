@@ -1,12 +1,41 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.10
-Date:         16.04.2025
+Version:      0.1.2.0-beta.11
+Date:         21.06.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version
 information on the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.11 / 21.06.2025
+------------------------------------------------------------------
+
+Note:
+
+* Eleventh beta version (Beta Version 11, V0.1.2.0)
+
+New features:
+
+1. Assigned functions of the function keys are now displayed.
+2. New ZIMO feature ZIMO_SOUND_VOLUME_FUNCKEY_CV395 added.
+2. New ZIMO feature ZIMO_ELECTRIC_UNCOUPLER_CV115X added.
+3. An automatic build system has been set up for Z2X-Programmer.
+   The latest version can be found on GitHub Actions.
+4. A Windows 32 Bit Legacy build has been added to the
+   automatic build system. This allows Z2X-Programmer
+   to run on older Windows systems. Only available via
+   GitHub Actions (no releases available).
+
+Bug fixes:
+
+1. Fix wrong text for short address range (akuhtz).
+2. Various bugs in the area of function keys and function outputs.
+3. The additional current CV variables were not updated correctly
+   in some cases.
+4. Fixed the checking of long DCC addresses.
+5. Fixed some bugs in the controller.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.10 / 16.04.2025
