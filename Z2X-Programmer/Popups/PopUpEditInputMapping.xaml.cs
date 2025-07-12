@@ -100,7 +100,7 @@ public partial class PopUpEditInputMapping : Popup
     /// <param name="e"></param>
     void CancelButtonClicked(object sender, EventArgs e)
     {
-        this.Close();
+        this.CloseAsync(new CancellationToken());
     }
 
 
@@ -125,7 +125,7 @@ public partial class PopUpEditInputMapping : Popup
         }
         _Mapping.CVValue = (byte)_Mapping.ExternalFunctionKeyNumber;
 
-        this.Close();   
+        this.CloseAsync(new CancellationToken());   
     }   
   
 }

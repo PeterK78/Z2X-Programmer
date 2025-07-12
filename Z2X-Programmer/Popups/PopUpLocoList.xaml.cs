@@ -53,7 +53,7 @@ public partial class PopUpLocoList : Popup
     /// <param name="e"></param>
     void CancelButton_Clicked(object sender, EventArgs e)
     {
-        this.Close();
+        this.CloseAsync(new CancellationToken());
     }
 
     
@@ -67,7 +67,7 @@ public partial class PopUpLocoList : Popup
         if (LocoListCollectionView.SelectedItem != null)
         {
             WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem));
-            this.Close();
+            _ = this.CloseAsync(new CancellationToken());
         }
         else
         {

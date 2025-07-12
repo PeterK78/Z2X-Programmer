@@ -21,19 +21,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
-using Z2XProgrammer.Helper;
-using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.Popups;
 
 // This pop-up shows the user a list of configuration variables.
 // It is typically displayed before downloading new data to a decoder.
-public partial class PopUpDownloadData : Popup
+public partial class PopUpDownloadData
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="PopUpDownloadData"/> class.
@@ -111,7 +107,7 @@ public partial class PopUpDownloadData : Popup
     /// <param name="e"></param>
     void CancelButton_Clicked(object sender, EventArgs e)
     {
-        this.Close(false);
+        _ = CloseAsync("CANCEL");
     }
 
     
@@ -122,6 +118,6 @@ public partial class PopUpDownloadData : Popup
     /// <param name="e"></param>
     private void OKButton_Clicked(object sender, EventArgs e)
     {
-        this.Close(true);
+        _ = CloseAsync("OK");
     }   
 }

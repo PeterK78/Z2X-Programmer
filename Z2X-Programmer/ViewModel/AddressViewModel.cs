@@ -37,6 +37,7 @@ using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
@@ -50,6 +51,9 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1;
+
+        [ObservableProperty]
+        bool activityReadCVOngoing = false;
 
         #endregion
 
@@ -340,8 +344,78 @@ namespace Z2XProgrammer.ViewModel
                 LimitZimoSecondAddressMaximum = 10239;
             }
             
-        }              
+        }
         #endregion
+
+        #region REGION: COMMANDS
+
+        /// <summary>
+        /// Reads the vehicle address from the decoder. This command is only available in direct programming mode.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        private async Task DetectVehicleAddress()
+        {
         
+            try
+            {
+                ushort[] cVValuesToRead = new ushort[] { 1, 17, 18, 29 };
+
+            //  Check if we are in direct programming mode.
+            if (DecoderConfiguration.ProgrammingMode != NMRA.DCCProgrammingModes.DirectProgrammingTrack)
+            {
+                await MessageBox.Show(AppResources.AlertError,AppResources.FrameAddressVehicleAddressDetectNotProgTrack, AppResources.OK);
+                return;
+            }
+
+            ActivityReadCVOngoing = true;
+
+            CancellationToken cancelToken = new CancellationTokenSource().Token;
+
+            //  Check if we are connected to the command station.
+            if (CommandStation.Connect(cancelToken, 5000) == false)
+            {
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
+                ActivityReadCVOngoing = false;
+                return;
+            }
+            
+            await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
+
+            // Read each CV value from the decoder.
+            bool readSuccessFull = false;
+            foreach (ushort cV in cVValuesToRead)
+            {
+                //  Read the CV value from the decoder.
+                readSuccessFull = false;
+                await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+                if (readSuccessFull == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertAddressNotRead, AppResources.OK);
+                    break;
+                }
+            }
+
+            WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+          
+            //  After reading the CV on the programming track, we must switch the track power on.
+            //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+            if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+
+            ActivityReadCVOngoing = false;
+
+
+            }
+            catch (Exception)
+            {
+               ActivityReadCVOngoing = false;
+            }
+
+            
+        }
+
+
+        #endregion
+
     }
 }

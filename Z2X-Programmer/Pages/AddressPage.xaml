@@ -67,6 +67,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!-- The description -->                        
@@ -90,6 +91,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Entry>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding VehicleAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
+                    
+                    <Grid Grid.Row="2" Grid.Column="1" Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button  ImageSource="{AppThemeBinding Light=ic_fluent_slide_search_24_dark.png , Dark=ic_fluent_slide_search_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressDetect}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=DetectVehicleAddressCommand}" WidthRequest="300" ToolTipProperties.Text="{x:Static strings:AppResources.ReadVehicleAddressTooltip}" ></Button>
+                        <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ActivityReadCVOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityReadCVOngoing}"></ActivityIndicator>
+                    </Grid>
                 </Grid>
             </Border>
 

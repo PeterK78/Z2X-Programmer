@@ -28,8 +28,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              CanBeDismissedByTappingOutsideOfPopup="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              >
-    <Border>
     <VerticalStackLayout>
         <Grid MinimumWidthRequest="500" MinimumHeightRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
             <Grid.ColumnDefinitions>
@@ -47,6 +47,4 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Button Grid.Row="3" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,20" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
         </Grid>
     </VerticalStackLayout>
-    </Border>
-
 </mct:Popup>

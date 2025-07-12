@@ -108,7 +108,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
             myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(z2xFileStream)!;
 
             //  Check if the decoder specification file is available.
-            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException(AppResources.AlertDecSpecNotFound + myFile.DeqSpecName);
+            if (DeqSpecReader.IsDecoderSpecificationAvailable(myFile.DeqSpecName) == false) throw new FileNotFoundException(AppResources.AlertDecSpecNotFound + " " + myFile.DeqSpecName);
           
 
             DecoderConfiguration.ClearBackupCVs();

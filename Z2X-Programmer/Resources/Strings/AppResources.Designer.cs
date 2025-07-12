@@ -61,6 +61,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The vehicle address could not be read out..
+        /// </summary>
+        public static string AlertAddressNotRead {
+            get {
+                return ResourceManager.GetString("AlertAddressNotRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention!.
         /// </summary>
         public static string AlertAttention {
@@ -1121,6 +1130,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameAddressSecondAddressTitle {
             get {
                 return ResourceManager.GetString("FrameAddressSecondAddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read vehicle address.
+        /// </summary>
+        public static string FrameAddressVehicleAddressDetect {
+            get {
+                return ResourceManager.GetString("FrameAddressVehicleAddressDetect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reading out the vehicle address only works on the programming track..
+        /// </summary>
+        public static string FrameAddressVehicleAddressDetectNotProgTrack {
+            get {
+                return ResourceManager.GetString("FrameAddressVehicleAddressDetectNotProgTrack", resourceCulture);
             }
         }
         
@@ -5103,6 +5130,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string PopUpMessageUploadDecoder {
             get {
                 return ResourceManager.GetString("PopUpMessageUploadDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reads out the vehicle address of a decoder on the programming track..
+        /// </summary>
+        public static string ReadVehicleAddressTooltip {
+            get {
+                return ResourceManager.GetString("ReadVehicleAddressTooltip", resourceCulture);
             }
         }
         

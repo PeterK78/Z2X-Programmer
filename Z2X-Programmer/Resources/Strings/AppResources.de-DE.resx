@@ -1576,7 +1576,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Der ausgewählte Ordner ist für Z2X-Programmer nicht zugänglich. Bitte wählen Sie einen anderen Ordner.</value>
   </data>
   <data name="AlertDecSpecNotFound" xml:space="preserve">
-    <value>Die Decoder-Spezifikation wurde nicht gefunden:</value>
+    <value>Die folgende Decoder-Spezifikation wurde nicht gefunden:</value>
   </data>
   <data name="LightEffectDirectionTypeIndepend" xml:space="preserve">
     <value>Richtungsunabhängig</value>
@@ -1943,5 +1943,17 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="FunctionOutputRear" xml:space="preserve">
     <value>Hinten</value>
+  </data>
+  <data name="FrameAddressVehicleAddressDetect" xml:space="preserve">
+    <value>Fahrzeugadresse auslesen</value>
+  </data>
+  <data name="FrameAddressVehicleAddressDetectNotProgTrack" xml:space="preserve">
+    <value>Das Auslesen der Fahrzeugadresse funktioniert nur am Programmiergleis.</value>
+  </data>
+  <data name="AlertAddressNotRead" xml:space="preserve">
+    <value>Die Fahrzeugadresse konnte nicht ausgelesen werden.</value>
+  </data>
+  <data name="ReadVehicleAddressTooltip" xml:space="preserve">
+    <value>Liest die Fahrzeugadresse eines Decoders am Programmiergleis aus.</value>
   </data>
 </root>

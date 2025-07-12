@@ -43,6 +43,8 @@ using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
 using System.ComponentModel;
 using Z2XProgrammer.Pages;
+using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Core;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -751,12 +753,16 @@ namespace Z2XProgrammer.ViewModel
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
                 }
-                
-                //  We show the user which variables are changed. We then ask whether they want to download these values
-                //  - if so, we start the download. Otherwise we return.
+
+                ////  We show the user which variables are changed. We then ask whether they want to download these values
+                ////  - if so, we start the download. Otherwise we return.
+                //CommunityToolkit.Maui.Sample.Views.Popups.ReturnResultPopup x = new CommunityToolkit.Maui.Sample.Views.Popups.ReturnResultPopup(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);;
+                //IPopupResult<bool> pipResult = await Shell.Current.CurrentPage.ShowPopupAsync<bool>(x); 
+
+
                 PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
-                var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
-                if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
+                IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData);
+                if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
                 
 
                 //  Setup the cancellation token.
@@ -831,8 +837,8 @@ namespace Z2XProgrammer.ViewModel
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
                 PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_24_regular.png",DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
-                var startDownbload = await Shell.Current.CurrentPage.ShowPopupAsync(popupDownloadData);
-                if ((startDownbload != null) && (Convert.ToBoolean(startDownbload) == false)) return;
+                IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData);
+                if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
                 
                 //  Check the locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
@@ -1135,6 +1141,10 @@ namespace Z2XProgrammer.ViewModel
             {
                 //  Somtimes the message ProgressUpdateMessage is delayed. So it can happen,
                 //  that this popup is already disposed. So this exception can be thrown.
+            }
+            catch (FileNotFoundException ex)
+            {
+                _ = MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
 
         }
