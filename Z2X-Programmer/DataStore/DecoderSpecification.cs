@@ -84,7 +84,6 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_SOUND_VOLUME_DIESELELEC_CV29X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUND_VOLUME_DIESELELEC_CV29X, decSpecFolder);
                 ZIMO_FUNCKEY_MUTE_CV313 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_MUTE_CV313, decSpecFolder);
                 ZIMO_MSOPERATINGMODES_CV12= DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_MSOPERATINGMODES_CV12, decSpecFolder);
-                ZIMO_SOUNDPROJECTNR_CV254 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUNDPROJECTNR_CV254, decSpecFolder);
                 ZIMO_SUSIPORT1CONFIG_CV201 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SUSIPORT1CONFIG_CV201, decSpecFolder);
                 ZIMO_INPUTMAPPING_CV4XX = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, decSpecFolder);
                 ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, decSpecFolder);
@@ -95,7 +94,8 @@ namespace Z2XProgrammer.DataStore
                 ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_FUNCKEY_SHUNTINGKEY_CV155, decSpecFolder);
                 ZIMO_ELECTRIC_UNCOUPLER_CV115X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_ELECTRIC_UNCOUPLER_CV115X, decSpecFolder);
                 ZIMO_SOUND_VOLUME_FUNCKEY_CV395 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUND_VOLUME_FUNCKEY_CV395, decSpecFolder);
-
+                ZIMO_SOUNDPROJECTMANUFACTURER_CV105X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUNDPROJECTMANUFACTURER_CV105X, decSpecFolder);
+                ZIMO_SOUNDPROJECTVERSIONINFO_CV25X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.ZIMO_SOUNDPROJECTVERSIONINFO_CV25X, decSpecFolder);
                 
                 //  DOEHLER AND HAAS
                 DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERHAAS_MOTORIMPULSWIDTH_CV49, decSpecFolder);
@@ -194,7 +194,8 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_SOUND_VOLUME_DIESELELEC_CV29X { get; set; }
         internal static bool ZIMO_FUNCKEY_MUTE_CV313 { get; set; }
         internal static bool ZIMO_MSOPERATINGMODES_CV12 { get; set; }
-        internal static bool ZIMO_SOUNDPROJECTNR_CV254 { get; set; }
+        internal static bool ZIMO_SOUNDPROJECTVERSIONINFO_CV25X { get; set; }
+        internal static bool ZIMO_SOUNDPROJECTMANUFACTURER_CV105X { get; set; }
         internal static bool ZIMO_SUSIPORT1CONFIG_CV201 { get ; set; }
         internal static bool ZIMO_INPUTMAPPING_CV4XX { get; set; }
         internal static bool ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X { get; set; }

@@ -1340,7 +1340,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>The fail-safe function is fully supported by this bootloader version.</value>
   </data>
   <data name="FrameDecoderZIMOInfoSoundProjectNr" xml:space="preserve">
-    <value>Sound project number (CV254)</value>
+    <value>Sound project number (CV254, CV255, CV256, CV257)</value>
   </data>
   <data name="AlertReadCVError" xml:space="preserve">
     <value>The configuration variable could not be read. </value>
@@ -1954,5 +1954,11 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="ReadVehicleAddressTooltip" xml:space="preserve">
     <value>Reads out the vehicle address of a decoder on the programming track.</value>
+  </data>
+  <data name="FrameDecoderZIMOInfoSoundManufacturer" xml:space="preserve">
+    <value>Sound project manufacturer (CV105, CV106)</value>
+  </data>
+  <data name="SoundProjectAuthorID" xml:space="preserve">
+    <value>Author-ID</value>
   </data>
 </root>

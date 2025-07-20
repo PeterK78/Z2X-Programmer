@@ -22,6 +22,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using Z2XProgrammer.Helper;
+using Z2XProgrammer.Resources.Strings;
 using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.DataModel
@@ -1307,13 +1308,36 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Returns the sound project number in CV254.
+        /// Returns the sound project number in CV254 and CV255.
         /// </summary>
-        public byte SoundProjectNumber
+        public string SoundProjectNumber
         {
             get
             {
-                return configurationVariables[254].Value;
+                return configurationVariables[254].Value.ToString() + "." + configurationVariables[255].Value.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Returns the sound project number in CV255 and CV256.
+        /// </summary>
+        public float SoundProjectVersion
+        {
+            get
+            {
+                return (float)configurationVariables[255].Value + ((float)configurationVariables[256].Value) / 10;
+            }
+        }
+
+        /// <summary>
+        /// Retusn the sound project manufacturer in CV105 and CV106
+        /// </summary>
+        public string SoundProjectManufacturer
+        {
+            get
+            {
+                string manufacturerName = NMRA.GetManufacturerName(configurationVariables[105].Value);
+                return manufacturerName + " (" + AppResources.SoundProjectAuthorID + ": " + configurationVariables[106].Value.ToString() + ")";
             }
         }
 

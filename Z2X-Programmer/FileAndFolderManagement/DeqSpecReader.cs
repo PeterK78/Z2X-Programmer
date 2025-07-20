@@ -97,8 +97,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X = "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X";
         public const string ZIMO_SOUND_STARTUPDELAY_CV273 = "ZIMO_SOUND_STARTUPDELAY_CV273";
         public const string ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 = "ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285";
-        public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";
-        public const string ZIMO_SOUNDPROJECTNR_CV254 = "ZIMO_SOUNDPROJECTNR_CV254";
+        public const string ZIMO_MSOPERATINGMODES_CV12 = "ZIMO_MSOPERATINGMODES_CV12";        
         public const string ZIMO_SUSIPORT1CONFIG_CV201 = "ZIMO_SUSIPORT1CONFIG_CV201";
         public const string ZIMO_INPUTMAPPING_CV4XX = "ZIMO_INPUTMAPPING_CV4XX";
         public const string ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X = "ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X";
@@ -108,8 +107,8 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string ZIMO_FUNCKEY_SHUNTINGKEY_CV155 = "ZIMO_FUNCKEY_SHUNTINGKEY_CV155";
         public const string ZIMO_ELECTRIC_UNCOUPLER_CV115X = "ZIMO_ELECTRIC_UNCOUPLER_CV115X";
         public const string ZIMO_SOUND_VOLUME_FUNCKEY_CV395 = "ZIMO_SOUND_VOLUME_FUNCKEY_CV395";
-
-
+        public const string ZIMO_SOUNDPROJECTVERSIONINFO_CV25X = "ZIMO_SOUNDPROJECTVERSIONINFO_CV25X";
+        public const string ZIMO_SOUNDPROJECTMANUFACTURER_CV105X = "ZIMO_SOUNDPROJECTMANUFACTURER_CV105X";
 
         //  Döhler & Haass specific features
         public const string DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 = "DOEHLERHAAS_MOTORIMPULSWIDTH_CV49";
@@ -896,8 +895,7 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_SOUND_DURATIONNOISEREDUCTION_CV285 support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_VOLUME_STEAM_CV27X support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_VOLUME_DIESELELEC_CV29X support=""yes"" writeable=""yes""/>
-    <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>
-    <ZIMO_SOUNDPROJECTNR_CV254 support=""yes"" writeable=""yes""/>
+    <ZIMO_MSOPERATINGMODES_CV12 support=""yes"" writeable=""yes""/>  
     <ZIMO_SUSIPORT1CONFIG_CV201 support=""yes"" writeable=""yes""/>
     <ZIMO_INPUTMAPPING_CV4XX support=""yes"" writeable=""yes""/>
     <ZIMO_LIGHT_EFFECTS_CV125X support=""yes"" writeable=""yes""/>
@@ -908,6 +906,8 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_VOLUME_FUNCKEY_CV395 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUNDPROJECTVERSIONINFO_CV25X support=""yes"" writeable=""no""/>
+    <ZIMO_SOUNDPROJECTMANUFACTURER_CV105X support=""yes"" writeable=""no""/>
 
 </decoderseries>";
 
@@ -1127,6 +1127,8 @@ public static string RCN225Spec =@"<!-- Specification file for a RCN225 compatib
     <ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61 support=""yes"" writeable=""yes""/>
     <ZIMO_ELECTRIC_UNCOUPLER_CV115X support=""yes"" writeable=""yes""/>
     <ZIMO_SOUND_VOLUME_FUNCKEY_CV395 support=""yes"" writeable=""yes""/>
+    <ZIMO_SOUNDPROJECTVERSIONINFO_CV25X support=""yes"" writeable=""no""/>
+    <ZIMO_SOUNDPROJECTMANUFACTURER_CV105X support=""yes"" writeable=""no""/>
 
  </decoderseries>";
 

@@ -109,7 +109,7 @@ namespace Z2XProgrammer.Helper
                                                                         { "RailComPage","FrameProtocolMMModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
                                                                         { "RailComPage","FrameProtocolMFXModeLabel", "ZIMO_MSOPERATINGMODES_CV12" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysDeactivateAccDecTimeLabel", "ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156" },
-                                                                        { "DecoderInformationPage","FrameDecoderZIMOInfoSoundProjectNr", "ZIMO_SOUNDPROJECTNR_CV254" },
+                                                                        { "DecoderInformationPage","FrameDecoderZIMOInfoSoundProjectNr", "ZIMO_SOUNDPROJECTVERSIONINFO_CV25X" },
                                                                         { "FunctionOutputsPage","FrameProtocolZIMOSUSIPinClockLabel", "ZIMO_SUSIPORT1CONFIG_CV201" },
                                                                         { "FunctionKeysPage","FrameFunctionKeysZIMOInputMappingDescription", "ZIMO_INPUTMAPPING_CV4XX" },
                                                                         { "FunctionKeysSecondaryAddressPage", "FrameFunctionKeysMappingSecondaryAddressTitle","ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X"},

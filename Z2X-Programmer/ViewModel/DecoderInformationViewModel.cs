@@ -70,8 +70,13 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_BOOTLOADER_VERSION_24X;
 
+        // ZIMO_SOUNDPROJECTVERSIONINFO_CV25X
         [ObservableProperty]
-        bool zIMO_SOUNDPROJECTNR_CV254;
+        bool zIMO_SOUNDPROJECTVERSIONINFO_CV25X;
+
+        // ZIMO_SOUNDPROJECTMANUFACTURER_CV105X
+        [ObservableProperty]
+        bool zIMO_SOUNDPROJECTMANUFACTURER_CV105X;
 
         // Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
         [ObservableProperty]
@@ -156,12 +161,19 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal bool zimoBootloaderIsFailSafe = false;
 
-        // ZIMO: Sound project number (ZIMO_SOUNDPROJECTNR_CV254) 
+        // ZIMO: Sound project manufacturer (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X)
+        [ObservableProperty]
+        internal string zimoSoundProjectManufacturer = string.Empty;
+                    
+        [ObservableProperty]
+        string cV105XConfiguraion = Subline.Create([105, 106]);
+
+        // ZIMO: Sound project number (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) 
         [ObservableProperty]
         internal string zimoSoundProjectNumber = string.Empty;
-
+        
         [ObservableProperty]   
-        string cV254Configuration = Subline.Create([254]);
+        string cV25XConfiguration = Subline.Create([254, 255, 256, 257]);
 
         [ObservableProperty]
         internal string userDefindedNotes = string.Empty;
@@ -244,7 +256,8 @@ namespace Z2XProgrammer.ViewModel
                 ManufacturerZIMO = false;
             }
             ZIMO_BOOTLOADER_VERSION_24X = DecoderSpecification.ZIMO_BOOTLOADER_VERSION_24X;
-            ZIMO_SOUNDPROJECTNR_CV254 = DecoderSpecification.ZIMO_SOUNDPROJECTNR_CV254;
+            ZIMO_SOUNDPROJECTVERSIONINFO_CV25X = DecoderSpecification.ZIMO_SOUNDPROJECTVERSIONINFO_CV25X;
+            ZIMO_SOUNDPROJECTMANUFACTURER_CV105X = DecoderSpecification.ZIMO_SOUNDPROJECTMANUFACTURER_CV105X;
         }
 
         /// <summary>
@@ -304,9 +317,14 @@ namespace Z2XProgrammer.ViewModel
             ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion.ToString() + "." + DecoderConfiguration.ZIMO.BootloaderSubVersion.ToString();
             CVBootloaderVersionConfiguration = Subline.Create([248,249]);
 
-            // ZIMO: Sound project number (ZIMO_SOUNDPROJECTNR_CV254) 
+            // ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) 
             ZimoSoundProjectNumber = DecoderConfiguration.ZIMO.SoundProjectNumber.ToString();
-            CV254Configuration = Subline.Create([254]);
+            CV25XConfiguration = Subline.Create([254, 255, 256, 257]);
+
+            // ZIMO: Sound project manufacturer (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X)
+            ZimoSoundProjectManufacturer = DecoderConfiguration.ZIMO.SoundProjectManufacturer;
+            CV105XConfiguraion = Subline.Create([105, 106]);
+
 
             ZimoBootloaderIsFailSafe = ZIMO.IsBootloaderVersionFailSafe(DecoderConfiguration.ZIMO.BootloaderVersion, DecoderConfiguration.ZIMO.BootloaderSubVersion);
 

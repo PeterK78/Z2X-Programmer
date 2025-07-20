@@ -1341,7 +1341,16 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sound project number (CV254).
+        ///   Looks up a localized string similar to Sound project manufacturer (CV105, CV106).
+        /// </summary>
+        public static string FrameDecoderZIMOInfoSoundManufacturer {
+            get {
+                return ResourceManager.GetString("FrameDecoderZIMOInfoSoundManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound project number (CV254, CV255, CV256, CV257).
         /// </summary>
         public static string FrameDecoderZIMOInfoSoundProjectNr {
             get {
@@ -5139,6 +5148,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ReadVehicleAddressTooltip {
             get {
                 return ResourceManager.GetString("ReadVehicleAddressTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author-ID.
+        /// </summary>
+        public static string SoundProjectAuthorID {
+            get {
+                return ResourceManager.GetString("SoundProjectAuthorID", resourceCulture);
             }
         }
         
