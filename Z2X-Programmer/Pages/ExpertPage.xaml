@@ -139,6 +139,32 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Grid>
             </Border>
 
+
+            <!-- Read CV-Set -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertReadCVSetTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            <Border Style="{StaticResource Z2XBorderFrame}" IsEnabled="{Binding Path=ActivityReadWriteCVOngoing,Converter={StaticResource boolInvert}}" >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!-- The description -->
+                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static strings:AppResources.FrameExpertReadCVSetDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                    <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalOptions="End">
+                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_document_bullet_list_arrow_left_24_dark.png , Dark=ic_fluent_document_bullet_list_arrow_left_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadCVSetButton}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ImportCVSetFileCommand}" WidthRequest="200" ></Button>
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+            </Border>
+
             <!-- List of configuration variables -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameExpertCVListTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
             <Border Style="{StaticResource Z2XBorderFrame}">
@@ -150,7 +176,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <!-- The warning -->
                     <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameExpertCVListNote}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,10" />
-                    
+
                     <!-- The table -->
                     <Border Padding="5,5,5,5" Margin="0,20,0,0">
 

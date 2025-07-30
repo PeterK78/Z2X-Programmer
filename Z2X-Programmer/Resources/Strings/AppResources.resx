@@ -1961,4 +1961,25 @@ The application is aimed at beginners who want to configure the most important f
   <data name="SoundProjectAuthorID" xml:space="preserve">
     <value>Author-ID</value>
   </data>
+  <data name="FrameExpertReadCVSetTitle" xml:space="preserve">
+    <value>CV-Set</value>
+  </data>
+  <data name="FrameExpertSettingsCVReadCVSetButton" xml:space="preserve">
+    <value>Read CV set</value>
+  </data>
+  <data name="FilePickerOpenCVSetTitle" xml:space="preserve">
+    <value>Select the CV set</value>
+  </data>
+  <data name="AlertNoCSVFileType" xml:space="preserve">
+    <value>The file type of the selected file is unknown or is not CSV. The file will not be opened.</value>
+  </data>
+  <data name="FrameExpertReadCVSetDescription" xml:space="preserve">
+    <value>CV sets are simple CSV files that contain simple commands for configuring CVs. You can use this function to read out these CV sets.</value>
+  </data>
+  <data name="DisplayAlertUseCVSet" xml:space="preserve">
+    <value>Do you want to read in the settings from the CV set? Existing values are overwritten.</value>
+  </data>
+  <data name="DisplayAlertCVSetUsedSuccessfully" xml:space="preserve">
+    <value>The CV set was successfully read out.</value>
+  </data>
 </root>

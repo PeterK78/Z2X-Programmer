@@ -35,6 +35,7 @@ using System.Threading.Tasks;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
@@ -51,7 +52,7 @@ namespace Z2XProgrammer.ViewModel
 
         [ObservableProperty]
         internal ConfigurationVariableType? selectedConfigurationVariable;
-    
+
         [ObservableProperty]
         bool dataValid;
 
@@ -193,7 +194,7 @@ namespace Z2XProgrammer.ViewModel
                     await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
                     return;
                 }
-                
+
                 // We search for the required configuration variable and toggle the Enabled property.
                 ConfigurationVariableType result = DecoderConfiguration.ConfigurationVariables.Single(s => s.Number == SelectedConfigurationVariable.Number);
                 result.Enabled = !result.Enabled;
@@ -228,8 +229,8 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 bool WriteSuccessFull = false;
-    
-                await Task.Run(() => WriteSuccessFull =  ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken));
+
+                await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken));
 
                 if (WriteSuccessFull == true)
                 {
@@ -261,6 +262,87 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
+        /// <summary>
+        /// This command imports the values of an CV-Set file.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task ImportCVSetFile()
+        {
+            PickOptions options;
+
+            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+            {
+                options = new()
+                {
+                    PickerTitle = AppResources.FilePickerOpenCVSetTitle,
+                };
+
+            }
+            else
+            {
+                //  Define the custom file type "CSV". The configuration is platform specific
+                var customFileType = new FilePickerFileType(
+                            new Dictionary<DevicePlatform, IEnumerable<string>>
+                            {
+                             { DevicePlatform.WinUI, new[] { ".csv" } },
+                             { DevicePlatform.Android, new[] { "application/csv" } },
+                            });
+
+                options = new()
+                {
+                    PickerTitle = AppResources.FilePickerOpenCVSetTitle,
+                    FileTypes = customFileType
+                };
+            }
+
+
+            try
+            {
+                var result = await FilePicker.Default.PickAsync(options);
+                if (result != null)
+                {
+                    if (result.FileName.EndsWith("csv", StringComparison.OrdinalIgnoreCase) == true)
+                    {
+                        //  We ask the user if he really wan to import a CV-Set file.
+                        if (await MessageBox.Show(AppResources.AlertAttention, AppResources.DisplayAlertUseCVSet, AppResources.YES, AppResources.NO) == false) return;
+
+                        using var stream = await result.OpenReadAsync();
+                        CSVReader.ReadFile(stream, ';');
+
+                        WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));
+
+                        //  Inform the user that the CV-Set file has been successfully imported.
+                        await MessageBox.Show(AppResources.AlertInformation, AppResources.DisplayAlertCVSetUsedSuccessfully, AppResources.YES);
+
+                    }
+                    else
+                    {
+                        //  The file is not a CSV file. We inform the user that the file type is not correct.
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoCSVFileType, AppResources.OK);
+                        return;
+                    }
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                //  We do not have the permission to read the Z2X file. The user needs to grant permission to Z2X-Programmer.
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoReadAccessToFilesAndFolders, AppResources.OK);
+            }
+            catch (FormatException ex)
+            {
+                //  The file format is not correct.
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+            catch (Exception ex)
+            {
+                //  An unknown error occurred while reading the file.
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotRead + ex.Message, AppResources.OK);
+            }
+
+        }
+
         [RelayCommand]
         async Task ReadCV()
         {
@@ -283,7 +365,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
                 }
-         
+
                 bool readSuccessFull = false;
                 await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 
@@ -325,13 +407,13 @@ namespace Z2XProgrammer.ViewModel
         {
             if (ConfigurationVariables == null) return;
             ConfigurationVariables.Clear();
-            foreach(ConfigurationVariableType item in DecoderConfiguration.ConfigurationVariables)
+            foreach (ConfigurationVariableType item in DecoderConfiguration.ConfigurationVariables)
             {
                 if (item.DeqSecSupported == true) ConfigurationVariables.Add(item);
 
             }
         }
-        
+
         /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
         /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.

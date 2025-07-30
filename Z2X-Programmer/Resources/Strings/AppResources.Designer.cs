@@ -340,6 +340,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file type of the selected file is unknown or is not CSV. The file will not be opened..
+        /// </summary>
+        public static string AlertNoCSVFileType {
+            get {
+                return ResourceManager.GetString("AlertNoCSVFileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Z2X project is open. The project cannot be saved..
         /// </summary>
         public static string AlertNoDataToSave {
@@ -765,6 +774,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The CV set was successfully read out..
+        /// </summary>
+        public static string DisplayAlertCVSetUsedSuccessfully {
+            get {
+                return ResourceManager.GetString("DisplayAlertCVSetUsedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to read in the settings from the CV set? Existing values are overwritten..
+        /// </summary>
+        public static string DisplayAlertUseCVSet {
+            get {
+                return ResourceManager.GetString("DisplayAlertUseCVSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extended.
         /// </summary>
         public static string DoehlerHaassMappingTypeExtended {
@@ -932,6 +959,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FarmeSettingsZ21TimeOut {
             get {
                 return ResourceManager.GetString("FarmeSettingsZ21TimeOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the CV set.
+        /// </summary>
+        public static string FilePickerOpenCVSetTitle {
+            get {
+                return ResourceManager.GetString("FilePickerOpenCVSetTitle", resourceCulture);
             }
         }
         
@@ -1571,6 +1607,33 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameExpertCVListTitle {
             get {
                 return ResourceManager.GetString("FrameExpertCVListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CV sets are simple CSV files that contain simple commands for configuring CVs. You can use this function to read out these CV sets..
+        /// </summary>
+        public static string FrameExpertReadCVSetDescription {
+            get {
+                return ResourceManager.GetString("FrameExpertReadCVSetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CV-Set.
+        /// </summary>
+        public static string FrameExpertReadCVSetTitle {
+            get {
+                return ResourceManager.GetString("FrameExpertReadCVSetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read CV set.
+        /// </summary>
+        public static string FrameExpertSettingsCVReadCVSetButton {
+            get {
+                return ResourceManager.GetString("FrameExpertSettingsCVReadCVSetButton", resourceCulture);
             }
         }
         

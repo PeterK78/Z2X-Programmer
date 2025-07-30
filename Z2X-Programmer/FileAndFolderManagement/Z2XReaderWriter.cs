@@ -31,7 +31,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
 {
 
     /// <summary>
-    /// This class implements the functions to read and write z2x files
+    /// This class implements the functions to read and write z2x files.
     /// </summary>
     internal static class Z2XReaderWriter
     {
