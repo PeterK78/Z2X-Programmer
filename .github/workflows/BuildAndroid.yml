@@ -26,7 +26,7 @@ jobs:
     - name: Build
       run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-android35.0 /p:AndroidSigningKeyStore=myapp.keystore /p:AndroidSigningKeyAlias=Z2X-Programmer /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ secrets.KEYSTORE_PASSWORD_ALIAS }}" --no-restore
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@v4.6.2
       with:
         path: |
           ./**/*.apk
