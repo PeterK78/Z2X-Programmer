@@ -23,6 +23,8 @@ jobs:
         dotnet-version: 9.0.x
     - name: Install MAUI workload
       run: dotnet workload install maui
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
       run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-android35.0 /p:AndroidSigningKeyStore=myapp.keystore /p:AndroidSigningKeyAlias=Z2X-Programmer /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ secrets.KEYSTORE_PASSWORD_ALIAS }}" --no-restore
     - name: Upload a Build Artifact
