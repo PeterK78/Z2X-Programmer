@@ -30,7 +30,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: Z2X-Programmer-Android.zip
+        name: Z2X-Programmer-Android
         path: ./**/com.peterk78.z2xprogrammer-Signed.apk
           
 
