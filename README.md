@@ -1,7 +1,7 @@
 <img src="https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/appiconfg.svg" width="100"/>
 
 # Z2X-Programmer
-[![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.svg)](https://github.com/PeterK78/Z2X-Programmer/releases)
+[![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.svg)](https://github.com/PeterK78/Z2X-Programmer/actions)
 [![Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-InstallationInstruction.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
 [![Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-GettingStarted.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
 [![FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-FAQ.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
