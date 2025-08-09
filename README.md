@@ -1,4 +1,4 @@
-![Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X-Programmer-AppIcon.png "Z2X-Programmer")
+<img src="https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/appiconfg.svg" width="100"/>
 
 # Z2X-Programmer
 [![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.png)](https://github.com/PeterK78/Z2X-Programmer/releases)
