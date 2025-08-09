@@ -1,0 +1,37 @@
+name: Build Z2X-Programmer-Android
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Keystore File
+      run: |
+        echo "${{ secrets.KEYSTORE_FILE }}" > myapp.keystore.asc
+        gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD_GPG }}" --batch myapp.keystore.asc > myapp.keystore
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Install MAUI workload
+      run: dotnet workload install maui
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build Z2X-Programmer/Z2X-Programmer.csproj -c Release -f net9.0-android35.0 /p:AndroidSigningKeyStore=myapp.keystore /p:AndroidSigningKeyAlias=Z2X-Programmer /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ secrets.KEYSTORE_PASSWORD_ALIAS }}" --no-restore
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: Z2X-Programmer-Android
+        path: ./**/com.peterk78.z2xprogrammer-Signed.apk
+          
+
+
