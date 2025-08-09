@@ -1,10 +1,10 @@
 <img src="https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/appiconfg.svg" width="100"/>
 
 # Z2X-Programmer
-[![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.png)](https://github.com/PeterK78/Z2X-Programmer/releases)
-[![Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-InstallationInstruction.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
-[![Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-GettingStarted.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
-[![FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-FAQ.png)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
+[![Download Z2X-Programmer](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-Download.svg)](https://github.com/PeterK78/Z2X-Programmer/releases)
+[![Installation instructions](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-InstallationInstruction.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/InstallationInstructions_en.md)
+[![Getting started](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-GettingStarted.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/GettingStarted_en.md)
+[![FAQ](https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/Z2X_Programmer-Badge-FAQ.svg)](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/FAQ_en.md)
 
 Z2X-Programmer is an application to configure locomotive and function decoders by using a Roco / Fleischmann Z21 compatible digital command station. 
 The application is aimed at beginner level users who want to configure the most essential functions of their decoders in a simple and intuitive way. 
