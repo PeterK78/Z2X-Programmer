@@ -59,7 +59,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label x:Name="FrameSecurityDecoderResetLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetLabel}" VerticalOptions="Center" />
-                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_dark.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0"  Grid.Column="1" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetButtonLabel}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=ResetDecoderCommand}"  WidthRequest="200" VerticalOptions="End" ></Button>
+                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0"  Grid.Column="1" Text="{x:Static strings:AppResources.FrameSecurityDecoderResetButtonLabel}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MaintenanceViewModel}}, Path=ResetDecoderCommand}"  WidthRequest="200" VerticalOptions="End" ></Button>
                     </Grid>
                 </Border>
 

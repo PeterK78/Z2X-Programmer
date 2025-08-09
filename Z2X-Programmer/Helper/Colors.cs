@@ -33,7 +33,7 @@ namespace Z2XProgrammer.Helper
     {
 
         /// <summary>
-        /// Returns a color object for the given ressource identifiers.
+        /// Returns a color object for the given ressource identifiers.The currently active theme is taken into account.
         /// </summary>
         /// <param name="colorKeyLight">Resource identifier for the light theme.</param>
         /// <param name="colorKeyDark">Resource identifier for the dark theme.</param>

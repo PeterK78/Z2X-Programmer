@@ -82,7 +82,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Entry.Behaviors>
                         </Entry>
                         
-                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_network_check_24_dark.png, Dark=ic_fluent_network_check_24_dark.png}" Grid.Row="2" Grid.Column="1" WidthRequest="250" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonConnectLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ConnectCommand}" HorizontalOptions="End" ></Button>
+                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_network_check_24_dark.png, Dark=ic_fluent_network_check_24_regular.png}" Grid.Row="2" Grid.Column="1" WidthRequest="250" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonConnectLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ConnectCommand}" HorizontalOptions="End" ></Button>
                         
                     </Grid>
                 </VerticalStackLayout>
@@ -104,7 +104,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsDecoderDetectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                         <Label Text="{Binding Path=AutomaticDecoderDetection,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding AutomaticDecoderDetection}" HorizontalOptions="End"></Switch>
+                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AutomaticDecoderDetection}" HorizontalOptions="End"></Switch>
                     </HorizontalStackLayout>
                 </Grid>
             </Border>
@@ -133,7 +133,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <!-- Z2X files folder -->
                     <Label Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemFolderLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Placeholder="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemFolderPlaceHolder}" Text="{Binding LocoListSystemFolder}" ClearButtonVisibility="WhileEditing"/>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_folder_search_24_dark.png, Dark=ic_fluent_folder_search_24_dark.png}" Grid.Row="3" Grid.Column="1" WidthRequest="250" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Text="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemSelectFolder}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=SelectZ2XFolderCommand}" HorizontalOptions="End" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_folder_search_24_dark.png, Dark=ic_fluent_folder_search_24_regular.png}" Grid.Row="3" Grid.Column="1" WidthRequest="250" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Text="{x:Static strings:AppResources.FrameSettingsAppLocoListFileSystemSelectFolder}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=SelectZ2XFolderCommand}" HorizontalOptions="End" ></Button>
                     
                     <!-- Train controller software -->
                     <Label Grid.Row="4" Grid.Column="0" Margin="0,20,0,0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLocoListLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -195,7 +195,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAdditionalDisplayOfCVValues}"  HorizontalOptions="Start" Margin="0,20,0,0" />
                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
                         <Label Text="{Binding Path=AdditionalDisplayOfCVValues,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="End"></Switch>
+                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="End"></Switch>
                     </HorizontalStackLayout>
 
                 </Grid>
@@ -207,8 +207,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <VerticalStackLayout>
                     <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDecSpecFolderDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <Entry Text="{Binding UserSpecificDecoderSpecificationFolder}" IsReadOnly="True" IsEnabled="True" Margin="0,10,0,0" ></Entry>
-                    <Button WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_folder_search_24_dark.png, Dark=ic_fluent_folder_search_24_dark.png}" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsAppUserDecSpecFolderSelectFolder}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=SelectUserSpecificDeqSpecFolderCommand}" HorizontalOptions="End"></Button>
-                    <Button WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_document_heart_pulse_24_dark.png, Dark=ic_fluent_document_heart_pulse_24_dark.png}" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=CheckDecoderSpecificationsCommand}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecTooltip}"  ></Button>
+                    <Button WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_folder_search_24_dark.png, Dark=ic_fluent_folder_search_24_regular.png}" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsAppUserDecSpecFolderSelectFolder}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=SelectUserSpecificDeqSpecFolderCommand}" HorizontalOptions="End"></Button>
+                    <Button WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_document_heart_pulse_24_dark.png, Dark=ic_fluent_document_heart_pulse_24_regular.png}" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=CheckDecoderSpecificationsCommand}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameSettingsButtonCheckDeqSpecTooltip}"  ></Button>
                 </VerticalStackLayout>
             </Border>
 
@@ -226,7 +226,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsLoggingEnableDisable}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
                         <Label Text="{Binding Path=EnableLogging,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
+                        <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
                     </HorizontalStackLayout>
                 </Grid>
             </Border>
@@ -247,7 +247,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsQuitOnReadError}"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
                         <Label Text="{Binding Path=QuitOnReadError,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
+                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
                     </HorizontalStackLayout>
 
                 </Grid>
@@ -265,7 +265,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsResetLabel}"  HorizontalOptions="Start" />
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_dark.png}" Grid.Row="2" Grid.Column="1" WidthRequest="250"  VerticalOptions="Center"  Text="{x:Static strings:AppResources.FrameSettingsResetButtonLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ResetZ2XProgrammerCommand}" HorizontalOptions="End" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_regular.png}" Grid.Row="2" Grid.Column="1" WidthRequest="250"  VerticalOptions="Center"  Text="{x:Static strings:AppResources.FrameSettingsResetButtonLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ResetZ2XProgrammerCommand}" HorizontalOptions="End" ></Button>
                 </Grid>
             </Border>
             

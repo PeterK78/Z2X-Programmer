@@ -100,7 +100,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV60Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -118,7 +118,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}" >
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput0frontEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput0frontEnabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput0frontEnabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -127,7 +127,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput0rearEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput0rearEnabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput0rearEnabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -136,7 +136,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="5" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput1Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput1Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput1Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -145,7 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="6" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput2Enabled}"  HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput2Enabled}"  HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -154,7 +154,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="7" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput3Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput3Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput3Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -163,7 +163,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="8" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput4Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput4Enabled}"  HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput4Enabled}"  HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -172,7 +172,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="9" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput5Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput5Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput5Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -181,7 +181,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="10" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput6Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput6Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput6Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV114Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -190,7 +190,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="11" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput7Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput7Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput7Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -199,7 +199,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="12" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput8Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding DimmingOutput8Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput8Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -208,7 +208,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="13" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput9Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput9Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput9Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -217,7 +217,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout  Grid.Row="14" Grid.Column="1"   HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=DimmingOutput10Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput10Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput10Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -226,7 +226,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="15" Grid.Column="1"    HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput11Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput11Enabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput11Enabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -235,7 +235,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="16" Grid.Column="1"  HorizontalOptions="End" IsVisible="{Binding DimmingEnabled}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DimmingOutput12Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DimmingOutput12Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DimmingOutput12Enabled}" IsVisible="{Binding DimmingEnabled}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV152Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>

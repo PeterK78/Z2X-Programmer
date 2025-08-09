@@ -96,7 +96,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1"   HorizontalOptions="End">
                              <HorizontalStackLayout >
                                  <Label Text="{Binding Path=DoehlerAndHaassExtendedFunctionMappingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                 <Switch Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
+                                 <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
                              </HorizontalStackLayout>
                              <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV137Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>

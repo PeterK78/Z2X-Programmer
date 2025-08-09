@@ -11,8 +11,8 @@
     <CollectionView x:Name="MainCollectionView" ItemsLayout="HorizontalList">
         <CollectionView.ItemTemplate >
             <DataTemplate x:DataType="{x:Type sys:String}">
-                <Border Stroke="White" StrokeThickness="1" StrokeShape="RoundRectangle 2,2,2,2" Background="#f3f3f3" Padding="5,0" HorizontalOptions="Center" HeightRequest="25">
-                    <Label Text="{Binding .}" FontSize="10" FontAttributes="None" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Padding="0,0" />
+                <Border Stroke="White" StrokeThickness="1" StrokeShape="RoundRectangle 2,2,2,2" Background="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HorizontalOptions="Center" HeightRequest="25">
+                    <Label Text="{Binding .}" FontSize="10" FontAttributes="None" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Padding="2,2,2,2" TextColor="{AppThemeBinding Light=White, Dark=Black}" />
                 </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>

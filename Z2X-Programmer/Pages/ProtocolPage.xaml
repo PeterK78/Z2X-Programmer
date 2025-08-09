@@ -85,7 +85,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" IsEnabled="{Binding Path=ZIMO_MSOPERATINGMODES_CV12,Converter={StaticResource boolInvert}}" HorizontalOptions="EndAndExpand" >
                             <HorizontalStackLayout HorizontalOptions="End" >
                                 <Label Text="{Binding Path=DccOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameProtocolDCCModeZIMOTooltip}"  IsToggled="{Binding DccOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV12Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -95,7 +95,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand">
                             <HorizontalStackLayout  HorizontalOptions="End">
                                 <Label Text="{Binding Path=MMOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding MMOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MMOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV12Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -105,7 +105,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=MFXOperationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding MFXOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MFXOperationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV12Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -136,7 +136,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
                                 <HorizontalStackLayout >
                                     <Label Text="{Binding Path=AcModeEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AcModeEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -146,7 +146,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}">
                                 <HorizontalStackLayout >
                                     <Label Text="{Binding Path=AnalogOperationDCEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch  IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AnalogOperationDCEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV12Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -156,7 +156,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout  Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand" IsVisible="{Binding ZIMO_MSOPERATINGMODES_CV12}" IsEnabled="{Binding AcModeEnabled}" >
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=AnalogOperationACEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AnalogOperationACEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV12Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -185,7 +185,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=RailComEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding RailComEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding RailComEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -205,7 +205,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Margin="0,20,0,0" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0}">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=RailComChannel1AdrBroadcast,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding RailComChannel1AdrBroadcast}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -215,7 +215,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsEnabled="{Binding RailComEnabled}" IsVisible="{Binding RCN225_RAILCOMCHANNEL2DATA_CV28_1}">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=RailComChannel2Enabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding RailComChannel2Enabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -244,7 +244,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout  Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=AutomaticRegistrationEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch   IsToggled="{Binding AutomaticRegistrationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+                                    <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AutomaticRegistrationEnabled}" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>

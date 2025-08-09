@@ -29,6 +29,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              CanBeDismissedByTappingOutsideOfPopup="True"
+             Padding="0,0,0,0"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              >
 

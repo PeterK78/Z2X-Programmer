@@ -145,7 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                         <HorizontalStackLayout >
                             <Label Text="{Binding Path=LockWritingCVsInServiceMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  IsToggled="{Binding LockWritingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                            <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding LockWritingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
@@ -155,7 +155,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                         <HorizontalStackLayout >
                             <Label Text="{Binding Path=LockReadingCVsInServiceMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  IsToggled="{Binding LockReadingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                            <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding LockReadingCVsInServiceMode}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
@@ -165,7 +165,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Row="2" Grid.Column="1">
                         <HorizontalStackLayout >
                             <Label Text="{Binding Path=LockWritingCVsOnMainTrack,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  IsToggled="{Binding LockWritingCVsOnMainTrack}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                            <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding LockWritingCVsOnMainTrack}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
@@ -175,7 +175,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Row="3" Grid.Column="1">
                         <HorizontalStackLayout >
                             <Label Text="{Binding Path=LockUpdatingDecoderFirmware,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch  IsToggled="{Binding LockUpdatingDecoderFirmware}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                            <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}"  IsToggled="{Binding LockUpdatingDecoderFirmware}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>
@@ -185,7 +185,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout Grid.Row="4" Grid.Column="1">
                         <HorizontalStackLayout>
                             <Label Text="{Binding Path=PlaySoundWhenProgrammingCV,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                            <Switch IsToggled="{Binding PlaySoundWhenProgrammingCV}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
+                            <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding PlaySoundWhenProgrammingCV}" VerticalOptions="Center" Margin="10,0,0,0" ></Switch>
                         </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV144Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     </VerticalStackLayout>

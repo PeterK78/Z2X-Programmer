@@ -92,7 +92,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
             VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
-            WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
+            WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
         }
 
         [ObservableProperty]

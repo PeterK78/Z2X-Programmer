@@ -6,11 +6,14 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#012460</Color>
-    <Color x:Key="PrimaryDark">#012460</Color>
+    <!-- Note: The dark blue of the Windows 11 standard colors is used as the primary color (dark and regular). -->        
+    <Color x:Key="Primary">#0063b1</Color>
+    <Color x:Key="PrimaryDark">#40bdff</Color>
     <Color x:Key="PrimaryDarkText">White</Color>
-    <Color x:Key="Secondary">#fabb00</Color>
-    <Color x:Key="SecondaryDarkText">#fabb00</Color>
+    
+    <Color x:Key="Secondary">#1875c5</Color>
+    <Color x:Key="SecondaryDark">#3cade8</Color>
+    <Color x:Key="SecondaryDarkText">White</Color>
     <Color x:Key="Tertiary">#012460</Color>
 
     <!-- The background color of the app -->
@@ -20,11 +23,7 @@
     <!-- The background color of the fly out -->
     <Color x:Key="FlyOutBackgroundColor_Light">#f3f3f3</Color>
     <Color x:Key="FlyOutBackgroundColor_Dark">#202020</Color>
-
-    <!-- The color of the hamburger menu icon -->
-    <Color x:Key="FlyOutHamburgerIconColor_Light">#012460</Color>
-    <Color x:Key="FlyOutHamburgerIconColor_Dark">#fabb00</Color>
-
+   
     <!-- The background color of the title bar -->
     <Color x:Key="TitleBarBackground_Light">#f9f9f9</Color>
     <Color x:Key="TitleBarBackground_Dark">#2b2b2b</Color>
@@ -50,15 +49,15 @@
     <Color x:Key="EntryBackground_Light">White</Color>
     <Color x:Key="EntryBackground_Dark">#2b2b2b</Color>
 
-
     <!-- The font color of Heading 1 -->
     <Color x:Key="LabelHeadingColor_Light">Black</Color>
     <Color x:Key="LabelHeadingColor_Dark">White</Color>
 
     <!-- The font color of Heading 2 -->
-    <Color x:Key="LabelHeading2Color_Light">#012460</Color>
-    <Color x:Key="LabelHeading2Color_Dark">#fabb00</Color>
+    <Color x:Key="LabelHeading2Color_Light">Black</Color>
+    <Color x:Key="LabelHeading2Color_Dark">White</Color>
 
+    <!-- The font color of Heading 3 -->
     <Color x:Key="LabelHeading1Color_Light">Black</Color>
     <Color x:Key="LabelHeading1Color_Dark">White</Color>
 

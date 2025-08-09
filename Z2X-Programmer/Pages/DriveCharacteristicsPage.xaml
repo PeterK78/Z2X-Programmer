@@ -79,7 +79,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=DirectionReversal,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <VerticalStackLayout>
-                                    <Switch IsToggled="{Binding DirectionReversal}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DirectionReversal}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
                                 </VerticalStackLayout>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
@@ -90,7 +90,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=DirectionConsistModeReveral,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding DirectionConsistModeReveral}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DirectionConsistModeReveral}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV19Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -145,7 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=AccelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch IsToggled="{Binding AccelerationRateEnabled}" HorizontalOptions="End"></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding AccelerationRateEnabled}" HorizontalOptions="End"></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV3Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -178,7 +178,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout  Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=DecelerationRateEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                    <Switch ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSwitchToolTip}" IsToggled="{Binding DecelerationRateEnabled}" HorizontalOptions="End" ></Switch>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDecTimeSwitchToolTip}" IsToggled="{Binding DecelerationRateEnabled}" HorizontalOptions="End" ></Switch>
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV4Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
@@ -227,7 +227,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding RCN225_HLU_CV27_2}">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=HluEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding HluEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding HluEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV27Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>

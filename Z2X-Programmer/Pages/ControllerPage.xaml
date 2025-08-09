@@ -99,6 +99,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </MenuFlyout>
                         </FlyoutBase.ContextFlyout>
                     </Button>
+                    
+                    <!-- The currently selected address -->
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" >
+                        <Image Margin="2,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
+                        <Label Text="{Binding VehicleAddress}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
+                    </HorizontalStackLayout>
 
                     <!-- Button F1 -->
                     <Button Grid.Row="1" Grid.Column="0" BackgroundColor="{Binding Path=FunctionF1,Converter={StaticResource boolToBackgroundConverter}}" Text="F1" CommandParameter="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=ActivateLocoFunctionCommand}" HeightRequest="20" WidthRequest="80" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >
@@ -356,11 +362,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </MenuFlyout>
                         </FlyoutBase.ContextFlyout>
                     </Button>
-                    
+
                     <!-- Button description -->
                     <Label Grid.Row="10" Grid.Column="0" Text="{x:Static strings:AppResources.FrameControllerButtonBackwardDescription}" HorizontalOptions="Center" Style="{StaticResource Z2XProgrammerLabelSublineStyle}"  ></Label>
                     <Label Grid.Row="10" Grid.Column="3" Text="{x:Static strings:AppResources.FrameControllerButtonForwardDescription}" HorizontalOptions="Center" Style="{StaticResource Z2XProgrammerLabelSublineStyle}" ></Label>
-                    
+
                 </Grid>
             </Border>
         </VerticalStackLayout>

@@ -37,10 +37,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         Shell.FlyoutBackgroundColor = "{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}"
         Shell.NavBarHasShadow="True"
         Shell.NavBarIsVisible="True"
-        Shell.TabBarTitleColor= "{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
+        Shell.TabBarTitleColor= "{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
         Shell.TabBarForegroundColor= "{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Primary}}"
         Shell.TabBarUnselectedColor = "{AppThemeBinding Light={StaticResource ButtonText_Light}, Dark={StaticResource ButtonText_Dark}}"
-        Shell.ForegroundColor ="{AppThemeBinding Light={StaticResource FlyOutHamburgerIconColor_Light}, Dark={StaticResource FlyOutHamburgerIconColor_Dark}}"
+        Shell.ForegroundColor ="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
         Title="{Binding ApplicationTitle}"
         >
     
@@ -66,7 +66,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ImageButton Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLocoListButtonStyle}" HorizontalOptions="Center" Source="{Binding LocomotiveImageSource}" HeightRequest="80" Aspect="AspectFit" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=GetLocomotiveListCommand}"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLocoListButtonStyle}" HorizontalOptions="Center" Source="{Binding LocomotiveImageSource}" HeightRequest="80" MinimumWidthRequest="80" Aspect="AspectFit" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=GetLocomotiveListCommand}"></ImageButton>
                 <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ActivityReadWriteCVOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
             </Grid>
             

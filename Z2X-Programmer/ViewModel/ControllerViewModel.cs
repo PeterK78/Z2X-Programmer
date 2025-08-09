@@ -43,7 +43,7 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
         [ObservableProperty]
-        bool externalControllerWindowAllowed = GUI.ControllerWindowShown == true ? false: true;
+        bool externalControllerWindowAllowed = GUI.ControllerWindowShown == true ? false : true;
 
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
@@ -51,6 +51,10 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        // Vehicle address
+        [ObservableProperty]
+        ushort vehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
 
         //  Speed
         [ObservableProperty]
@@ -69,7 +73,7 @@ namespace Z2XProgrammer.ViewModel
 
         //  Direction Forward
         [ObservableProperty]
-        bool directionForward = false;        
+        bool directionForward = false;
 
         //  Function F0
         [ObservableProperty]
@@ -210,7 +214,7 @@ namespace Z2XProgrammer.ViewModel
         {
             OnGetDecoderConfiguration();
 
-            CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived; 
+            CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
@@ -233,7 +237,9 @@ namespace Z2XProgrammer.ViewModel
         public void OnGetDecoderConfiguration()
         {
             //  Request the locomotive information for the current locomotive address.
-            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);            
+            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
+
+            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
         }
 
         /// <summary>
@@ -250,147 +256,6 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.LocomotiveAddress, speed, realSpeedSteps, direction);
         }
 
-        #endregion
-
-        #region REGION: COMMANDS
-
-        [RelayCommand]
-        void OpenInExternalWindow()
-        {
-            if (DeviceInfo.Platform != DevicePlatform.WinUI) return;
-
-            //  We check, if the controller window is already opened. If so, we close the window and return.
-            if (GUI.ControllerWindow != null)
-            {
-                Application.Current?.ActivateWindow(GUI.ControllerWindow);
-                return;
-            }
-
-            //  We set the controller window shown flag to true.
-            GUI.ControllerWindowShown = true;
-
-            //  We create a new controller page and a new controller window.
-            ControllerPage controllerPage = new ControllerPage(new ControllerViewModel());
-            GUI.ControllerWindow = new Window(controllerPage);
-
-            //  Configure the new window.                
-            GUI.ControllerWindow.Parent = Shell.Current.CurrentPage;
-            GUI.ControllerWindow.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT));
-            GUI.ControllerWindow.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT));
-            GUI.ControllerWindow.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_DEFAULT));
-            GUI.ControllerWindow.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT));
-            GUI.ControllerWindow.MinimumHeight = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT);
-            GUI.ControllerWindow.MinimumWidth = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT);
-
-
-            Shell.Current.GoToAsync("ControllerPage");
-
-            //  Open the new controller window
-            App.Current?.OpenWindow(GUI.ControllerWindow);
-
-            //  We register a handler that is called when the window is destroyed.
-            //  This allows us to save the current position and size of the window before exiting the program.
-            GUI.ControllerWindow.Destroying += (s, e) =>
-            {
-                try
-                {
-                    //  We save the position and size of the main window.
-                    //  This allows us to restore them the next time we start the program.
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY, GUI.ControllerWindow.Width.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY, GUI.ControllerWindow.Height.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_KEY, GUI.ControllerWindow.X.ToString());
-                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_KEY, GUI.ControllerWindow.Y.ToString());
-
-                    //  We set the controller window object to null.
-                    GUI.ControllerWindow = null;
-                }
-                catch (Exception ex)
-                {
-                    Logger.PrintDevConsole("App.CreateWindow:" + ex.Message);
-                }
-            };
-        }
-
-
-        [RelayCommand]
-        void IncreaseSpeed()
-        {
-            if(SpeedStep14 == true && Speed < 14) Speed++;
-            if (SpeedStep28 == true && Speed < 28) Speed++;
-            if (SpeedStep128 == true && Speed < 128) Speed++;
-        }
-        
-        [RelayCommand]
-        void DecreaseSpeed()
-        {
-            if (Speed > 0) Speed--;
-        }
-
-        [RelayCommand]
-        void SetDirectionForward()
-        {
-            DirectionForward = true;
-            DirectionBackward = false;
-            SetLocoSpeed(Speed,(DirectionForward == true) ? 1 : 0);  
-        }
-
-
-        [RelayCommand]
-        void SetDirectionBackward()
-        {
-            DirectionForward = false;
-            DirectionBackward = true;
-            SetLocoSpeed(Speed,(DirectionForward == true) ? 1 : 0);  
-        }
-
-
-        /// <summary>
-        /// Stops the locomotive.
-        /// </summary>
-        /// <returns></returns>
-        [RelayCommand]
-        void StopLoco()
-        {
-            Speed = 0;
-            SetLocoSpeed(Speed,(DirectionForward == true) ? 1 : 0);  
-        }
-
-        /// <summary>
-        /// Activates a loco function.
-        /// </summary>
-        /// <param name="functionNumber">The function number to be activated.</param>
-        [RelayCommand]
-        async Task ActivateLocoFunction(string functionNumber)
-        {
-            try
-            {
-                //  We connect to the command station. If we are not able to connect,
-                //  we show an error message and return.
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken cancelToken = cancelTokenSource.Token;
-                if (CommandStation.Connect(cancelToken,2000) == false)
-                { 
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
-                    return;                    
-                }
-
-                if (Byte.TryParse(functionNumber, out byte fnNumber) == true)
-                {
-                    if (fnNumber > 31) throw new ArgumentException("Function number is out of range.");
-
-                    CommandStation.Z21.SetLocoFunction(DecoderConfiguration.RCN225.LocomotiveAddress, Z21Lib.Enums.SwitchType.Toggle, fnNumber);
-                }
-                else
-                {
-                    throw new ArgumentException("Function number is not a byte.");
-                }
-                }
-                catch (Exception ex)
-                {
-                    Logger.PrintDevConsole("ControllerViewModel.ActivateLocoFunction: " + ex.Message);
-                }
-        }
-
         /// <summary>
         /// The event OnCommandStationStatusChanged is raised when the command station switch it status.
         /// </summary>
@@ -398,7 +263,7 @@ namespace Z2XProgrammer.ViewModel
         /// <param name="e"></param>
         private void OnCommandStationStatusChanged(object? sender, StateEventArgs e)
         {
-             CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
+            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
         }
 
         /// <summary>
@@ -474,6 +339,144 @@ namespace Z2XProgrammer.ViewModel
         }
 
         #endregion
+
+        #region REGION: COMMANDS
+
+        [RelayCommand]
+        void OpenInExternalWindow()
+        {
+            if (DeviceInfo.Platform != DevicePlatform.WinUI) return;
+
+            //  We check, if the controller window is already opened. If so, we close the window and return.
+            if (GUI.ControllerWindow != null)
+            {
+                Application.Current?.ActivateWindow(GUI.ControllerWindow);
+                return;
+            }
+
+            //  We set the controller window shown flag to true.
+            GUI.ControllerWindowShown = true;
+
+            //  We create a new controller page and a new controller window.
+            ControllerPage controllerPage = new ControllerPage(new ControllerViewModel());
+            GUI.ControllerWindow = new Window(controllerPage);
+
+            //  Configure the new window.                
+            GUI.ControllerWindow.Parent = Shell.Current.CurrentPage;
+            GUI.ControllerWindow.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT));
+            GUI.ControllerWindow.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT));
+            GUI.ControllerWindow.X = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_DEFAULT));
+            GUI.ControllerWindow.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT));
+            GUI.ControllerWindow.MinimumHeight = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT);
+            GUI.ControllerWindow.MinimumWidth = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT);
+
+
+            Shell.Current.GoToAsync("ControllerPage");
+
+            //  Open the new controller window
+            App.Current?.OpenWindow(GUI.ControllerWindow);
+
+            //  We register a handler that is called when the window is destroyed.
+            //  This allows us to save the current position and size of the window before exiting the program.
+            GUI.ControllerWindow.Destroying += (s, e) =>
+            {
+                try
+                {
+                    //  We save the position and size of the main window.
+                    //  This allows us to restore them the next time we start the program.
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY, GUI.ControllerWindow.Width.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY, GUI.ControllerWindow.Height.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSX_KEY, GUI.ControllerWindow.X.ToString());
+                    Preferences.Default.Set(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_KEY, GUI.ControllerWindow.Y.ToString());
+
+                    //  We set the controller window object to null.
+                    GUI.ControllerWindow = null;
+                }
+                catch (Exception ex)
+                {
+                    Logger.PrintDevConsole("App.CreateWindow:" + ex.Message);
+                }
+            };
+        }
+
+        [RelayCommand]
+        void IncreaseSpeed()
+        {
+            if (SpeedStep14 == true && Speed < 14) Speed++;
+            if (SpeedStep28 == true && Speed < 28) Speed++;
+            if (SpeedStep128 == true && Speed < 128) Speed++;
+        }
+
+        [RelayCommand]
+        void DecreaseSpeed()
+        {
+            if (Speed > 0) Speed--;
+        }
+
+        [RelayCommand]
+        void SetDirectionForward()
+        {
+            DirectionForward = true;
+            DirectionBackward = false;
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
+        }
+
+        [RelayCommand]
+        void SetDirectionBackward()
+        {
+            DirectionForward = false;
+            DirectionBackward = true;
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
+        }
+
+        /// <summary>
+        /// Stops the locomotive.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        void StopLoco()
+        {
+            Speed = 0;
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
+        }
+
+        /// <summary>
+        /// Activates a loco function.
+        /// </summary>
+        /// <param name="functionNumber">The function number to be activated.</param>
+        [RelayCommand]
+        async Task ActivateLocoFunction(string functionNumber)
+        {
+            try
+            {
+                //  We connect to the command station. If we are not able to connect,
+                //  we show an error message and return.
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+                if (CommandStation.Connect(cancelToken, 2000) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2, AppResources.OK);
+                    return;
+                }
+
+                if (Byte.TryParse(functionNumber, out byte fnNumber) == true)
+                {
+                    if (fnNumber > 31) throw new ArgumentException("Function number is out of range.");
+
+                    CommandStation.Z21.SetLocoFunction(DecoderConfiguration.RCN225.LocomotiveAddress, Z21Lib.Enums.SwitchType.Toggle, fnNumber);
+                }
+                else
+                {
+                    throw new ArgumentException("Function number is not a byte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("ControllerViewModel.ActivateLocoFunction: " + ex.Message);
+            }
+        }
+
+        #endregion
     }
-        
+
 }

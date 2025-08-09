@@ -9,8 +9,28 @@
     <x:String x:Key="ButtonTitleViewSaveFileDark">ic_fluent_save_24_dark.svg</x:String>
     
     <!-- Styles -->
+    <Style x:Key="Z2XProgrammerSwitchStyle"  TargetType="Switch">
+        <Setter Property="OnColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="On">
+                <VisualState.Setters>
+                    <Setter Property="ThumbColor" Value="White" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Off">
+                <VisualState.Setters>
+                    <Setter Property="ThumbColor" Value="DarkSlateGray" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+                </VisualStateGroupList>
+    </Setter>
+
+    </Style>   
     
-     <!-- The Z2XProgrammerStandardButtonStyle style is used for standard buttons in the application.-->
+     <!-- The Z2XProgrammerControllerButtonStyle style is used for the buttons of the controller.-->
      <Style x:Key="Z2XProgrammerControllerButtonStyle"  TargetType="Button">
      <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"></Setter>
      <Setter Property="BorderWidth" Value="0"></Setter>
@@ -33,7 +53,7 @@
                  </VisualState>
                  <VisualState x:Name="PointerOver">
                      <VisualState.Setters>
-                         <Setter Property="BackgroundColor" Value="#fabb00"></Setter>
+                          <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
                          <Setter Property="BorderWidth" Value="2"></Setter>
                      </VisualState.Setters>
                  </VisualState>
@@ -50,7 +70,7 @@
     
     <!-- The Z2XProgrammerStandardButtonStyle style is used for standard buttons in the application.-->
     <Style x:Key="Z2XProgrammerStandardButtonStyle"  TargetType="Button">
-    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"></Setter>
+    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"></Setter>
     <Setter Property="BorderWidth" Value="0"></Setter>
     <Setter Property="Margin" Value="0,1,0,1"></Setter>
     <Setter Property="VisualStateManager.VisualStateGroups">
@@ -58,7 +78,7 @@
             <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Normal">
                     <VisualState.Setters>
-                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
                         <Setter Property="Scale" Value="1.0" />
                     </VisualState.Setters>
                 </VisualState>
@@ -149,9 +169,9 @@
     </Style>
 
     <Style x:Key="Z2XSlider" TargetType="Slider">
-        <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" />
-        <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
-        <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource FlyOutBackgroundColor_Light}}" />
+        <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray100}}" />
     </Style>
     
     <Style x:Key="Z2XInvalidEntry" TargetType="Entry">
@@ -207,8 +227,8 @@
 
     <Style x:Key="Z2XProgrammerLabelLocoInfoStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading1Color_Light}, Dark={StaticResource LabelHeading1Color_Dark}}"></Setter>
-        <Setter Property="FontSize" Value="17"></Setter>
-        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="None"></Setter>
         <Setter Property="Margin" Value="0,25,0,15"></Setter>
     </Style>
 
@@ -280,6 +300,7 @@
     </Style>
 
     <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
+        <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">

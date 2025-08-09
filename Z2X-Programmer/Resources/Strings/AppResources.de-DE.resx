@@ -164,7 +164,7 @@
     <value>Dieser Decoder unterstützt keine Funktionen auf dieser Registerkarte.</value>
   </data>
   <data name="AlertNoInformationAvailable" xml:space="preserve">
-    <value>Es wurden noch keine Daten geladen. Öffnen Sie eine Z2X-Datei oder Lesen Sie einen Decoder aus.</value>
+    <value>Es wurden noch keine Daten geladen. Öffnen Sie eine Z2X-Datei oder lesen Sie einen Decoder aus.</value>
   </data>
   <data name="AlertNoReadAccessToFilesAndFolders" xml:space="preserve">
     <value>Die Datei konnte nicht gelesen werden, da der Zugriff verweigert wurde. Stellen Sie sicher, dass Z2X-Programmer die benötigten Zugriffsberechtigungen besitzt.</value>
@@ -1211,7 +1211,7 @@ Auf- und Abblenden = 88</value>
     <value>Die Funktionsweise der Funktionstaste zum Ein- und Ausblenden wird invertiert (CV313)</value>
   </data>
   <data name="LocoListTitle" xml:space="preserve">
-    <value>Lokomotiven Liste</value>
+    <value>Lokomotiven-Liste</value>
   </data>
   <data name="FrameSettingsAppLocoListTitle" xml:space="preserve">
     <value>Lokomotiven-Liste</value>

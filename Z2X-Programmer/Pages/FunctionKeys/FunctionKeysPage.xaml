@@ -113,7 +113,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         </CollectionView>
                         
-                        <Button Grid.Row="2" Grid.Column="0" HorizontalOptions="End" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_clockwise_24_dark.png, Dark=ic_fluent_arrow_clockwise_24_dark.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=UpdateFunctionKeysOverviewCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysRefreshOverview}" ></Button>
+                        <Button Grid.Row="2" Grid.Column="0" HorizontalOptions="End" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_clockwise_24_dark.png, Dark=ic_fluent_arrow_clockwise_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=UpdateFunctionKeysOverviewCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysRefreshOverview}" ></Button>
 
                     </Grid>
                 </Border>
@@ -188,8 +188,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </CollectionView>
 
                         <HorizontalStackLayout Grid.Row="2" Grid.Column="0" HorizontalOptions="End" Margin="0,20,0,0">
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_dark.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetInputMappingCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ></Button>
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_dark.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" Margin="20,0,0,0"  WidthRequest="250" HorizontalOptions="End"></Button>
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetInputMappingCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ></Button>
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" Margin="20,0,0,0"  WidthRequest="250" HorizontalOptions="End"></Button>
                         </HorizontalStackLayout>
 
                     </Grid>
@@ -467,7 +467,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label Grid.Row="4" Grid.Column="0"  IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteInvertLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <HorizontalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}">
                                 <Label Text="{Binding Path=ZIMOFuncKeysMuteInverted,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding ZIMOFuncKeysMuteInverted}" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ZIMOFuncKeysMuteInverted}" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
 
                         </Grid>

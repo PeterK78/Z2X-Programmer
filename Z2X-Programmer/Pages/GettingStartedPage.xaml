@@ -55,7 +55,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Label Margin="0,40,0,0" Text="{x:Static strings:AppResources.FrameGettingStartedIntroduction}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"></Label>
             
             <!-- The step by step guide -->
-            <Grid Margin="0,0,0,20">
+            <Grid Margin="0,0,0,0">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>

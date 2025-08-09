@@ -31,10 +31,11 @@ namespace Z2XProgrammer.Converter
         {
             if(value is bool)
             {
-                if ((bool)value == true) return Color.Parse("#73e085");
-                return Color.Parse("#012460"); 
+                // If the value is true, return a green color, otherwise return the primary color
+                if ((bool)value == true) return Color.Parse("#00a86b");
+                return Z2XProgrammer.Helper.Colors.GetColor("Primary", "PrimaryDark");
             }
-            return Color.Parse("#012460");     
+            return Z2XProgrammer.Helper.Colors.GetColor("Primary", "PrimaryDark");     
         }
   
         public object ConvertBack(object? value, Type targetType, object? parameter,System.Globalization.CultureInfo culture)

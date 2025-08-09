@@ -45,6 +45,8 @@ using System.ComponentModel;
 using Z2XProgrammer.Pages;
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Core;
+using Microsoft.Maui.Controls.Shapes;
+using CommunityToolkit.Maui;
 
 
 namespace Z2XProgrammer.ViewModel
@@ -52,7 +54,7 @@ namespace Z2XProgrammer.ViewModel
     /// <summary>
     /// ViewModel for the main application shell.
     /// </summary>
-    public partial class AppShellViewModel: ObservableObject
+    public partial class AppShellViewModel : ObservableObject
     {
 
         #region REGION: PRIVATE FIELDS
@@ -77,7 +79,7 @@ namespace Z2XProgrammer.ViewModel
         bool undoAvailable = false;
         partial void OnUndoAvailableChanged(bool value)
         {
-            ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), UndoAvailable);
+            ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), UndoAvailable);
         }
 
         [ObservableProperty]
@@ -109,7 +111,7 @@ namespace Z2XProgrammer.ViewModel
 
 
         [ObservableProperty]
-        internal ObservableCollection<string>?availableDecSpecs;
+        internal ObservableCollection<string>? availableDecSpecs;
 
         [ObservableProperty]
         internal string selectedDecSpeq = string.Empty;
@@ -130,7 +132,7 @@ namespace Z2XProgrammer.ViewModel
         {
             DecoderConfiguration.ProgrammingMode = CommandStation.GetProgrammingModeFromDescription(newValue);
             int mode = (int)DecoderConfiguration.ProgrammingMode;
-            Preferences.Default.Set(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY,mode.ToString());
+            Preferences.Default.Set(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY, mode.ToString());
         }
 
         #endregion
@@ -143,7 +145,7 @@ namespace Z2XProgrammer.ViewModel
         public AppShellViewModel()
         {
             AvailableProgrammingModes = new ObservableCollection<String>(CommandStation.GetAvailableProgrammingModeNames());
-         
+
             int mode = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY, AppConstants.PREFERENCES_PROGRAMMINGMODE_DEFAULT));
             SelectedProgrammingMode = CommandStation.GetProgrammingModeDescription((NMRA.DCCProgrammingModes)mode);
 
@@ -155,13 +157,13 @@ namespace Z2XProgrammer.ViewModel
             SelectedDecSpeq = "";
 
             //  At first we add the internal decoder specification files.
-            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out  errorFilename, out errorMessage) == true)
+            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out errorFilename, out errorMessage) == true)
             {
                 foreach (string item in DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) AvailableDecSpecs.Add(item);
                 SelectedDecSpeq = DeqSpecReader.GetDefaultDecSpecName();
             }
             //  Now we add the user specific decoder specification files.
-            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out  errorFilename, out  errorMessage) == true)
+            if (DeqSpecReader.CheckDecSpecsFormatValid(FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, out errorFilename, out errorMessage) == true)
             {
                 foreach (string item in DeqSpecReader.GetAvailableDecSpecs(FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) AvailableDecSpecs.Add(item);
                 SelectedDecSpeq = DeqSpecReader.GetDefaultDecSpecName();
@@ -170,8 +172,8 @@ namespace Z2XProgrammer.ViewModel
 
             SelectedDecSpecNotes = DeqSpecReader.GetDecSpecNotes(SelectedDecSpeq, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath, Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
 
-            locomotiveImageSource = "badgeicon.png";
-            LocomotiveDescription = "Z2X-Programmer";
+            LocomotiveImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_locomotive_list_64_dark.png" : "ic_fluent_locomotive_list_64_regular.png";
+            LocomotiveDescription = AppResources.LocoListTitle;
             LocomotiveAddress = "-";
             commandStationState = AppResources.CommandStationStateNotConnected;
 
@@ -227,11 +229,11 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void CloseControllerWindow()
         {
-            if(GUI.ControllerWindow != null)
+            if (GUI.ControllerWindow != null)
             {
                 Application.Current?.CloseWindow(GUI.ControllerWindow);
             }
-        }      
+        }
 
         /// <summary>
         /// Reads the locomotive list from the train controller software and presents
@@ -246,13 +248,13 @@ namespace Z2XProgrammer.ViewModel
                 List<LocoListType> locoList = new List<LocoListType>();
 
                 //  Check if the Z2X files folder is available.
-                if(LocoList.Z2XFileFolder == "")
+                if (LocoList.Z2XFileFolder == "")
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
                     return;
                 }
 
-                if(Directory.Exists(LocoList.Z2XFileFolder) == false)
+                if (Directory.Exists(LocoList.Z2XFileFolder) == false)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Z2XFileFolder, AppResources.OK);
                     return;
@@ -264,17 +266,17 @@ namespace Z2XProgrammer.ViewModel
 
                 ActivityReadWriteCVOngoing = false;
 
-                //if (locoList.Count == 0)
-                //{
-                //    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListEmpty, AppResources.OK);
-                //    return;
-                //}
-
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
                 PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList);
 
-                Shell.Current.CurrentPage.ShowPopup(pop);
+                Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
 
             }
             catch (Exception ex)
@@ -347,17 +349,17 @@ namespace Z2XProgrammer.ViewModel
                     //  We are now trying to establish a new connection to the digital command station.                    
                     bool ConnectionSuccess = false;
                     await Task.Run(() => ConnectionSuccess = CommandStation.Connect(cancelToken, 5000));
-                
+
                     //  We hide the ActivityIndicator.
                     ConnectingOngoing = false;
-                
+
                     // We will inform the user if we are unable to establish a connection.
-                    if(ConnectionSuccess == false) await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
+                    if (ConnectionSuccess == false) await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2, AppResources.OK);
                 }
                 else
                 {
                     //  The command station is already connected. Therefore we just toggle the track power.
-                    if(_commandStationOperationMode == Z21Lib.Enums.TrackPower.OFF)
+                    if (_commandStationOperationMode == Z21Lib.Enums.TrackPower.OFF)
                     {
                         CommandStation.Z21.SetTrackPowerOn();
                     }
@@ -366,10 +368,10 @@ namespace Z2XProgrammer.ViewModel
                         CommandStation.Z21.SetTrackPowerOff();
                     }
                 }
-            }   
+            }
             catch (System.FormatException)
             {
-               await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertWrongIPAddressFormat, AppResources.OK);
             }
             catch (Exception ex)
             {
@@ -384,7 +386,7 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         async Task Undo()
         {
-            await Task.Run(() =>  UndoRedoManager.UndoLastCVChange());
+            await Task.Run(() => UndoRedoManager.UndoLastCVChange());
             WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
         }
 
@@ -451,13 +453,13 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = result.FullPath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                        ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));                        
+                        WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));
 
                         UndoRedoManager.Reset();
-                        
+
                     }
                     else
                     {
@@ -487,7 +489,7 @@ namespace Z2XProgrammer.ViewModel
             try
             {
                 //  If we do not have a Z2X file path, we open the SaveAsZ2XFile dialog.
-                if (DecoderConfiguration.Z2XFilePath == "") 
+                if (DecoderConfiguration.Z2XFilePath == "")
                 {
                     await SaveAsZ2XFile();
                     return;
@@ -496,7 +498,7 @@ namespace Z2XProgrammer.ViewModel
                 XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
                 try
                 {
-                    if (File.Exists(DecoderConfiguration.Z2XFilePath) ==  true) File.Delete(DecoderConfiguration.Z2XFilePath);
+                    if (File.Exists(DecoderConfiguration.Z2XFilePath) == true) File.Delete(DecoderConfiguration.Z2XFilePath);
                     using FileStream outputStream = System.IO.File.OpenWrite(DecoderConfiguration.Z2XFilePath);
                     using StreamWriter streamWriter = new StreamWriter(outputStream);
                     x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
@@ -504,10 +506,10 @@ namespace Z2XProgrammer.ViewModel
                     streamWriter.Close();
 
                     //  We set the application title to the name of the Z2X file - and remove the asterisk.
-                    ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                    ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                 }
-        
+
                 catch (Exception ex)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertZ2XFileNotSaved + " (Exception message: " + ex.Message + ").", AppResources.OK);
@@ -527,7 +529,7 @@ namespace Z2XProgrammer.ViewModel
         async Task SaveAsZ2XFile()
         {
             if (DataStoreDataValid == false) return;
-            
+
             CancellationToken cancelToken = new CancellationToken();
             XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
             using MemoryStream outputStream = new MemoryStream();
@@ -544,7 +546,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = fileSaveResult.FilePath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                        ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         return;
                     }
@@ -578,7 +580,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  Present the the action sheet to the user.
                 if (Application.Current == null) return;
-                string action = await Application.Current.Windows[0].Page!.DisplayActionSheet(AppResources.ExtendedMenuItemTitle,null, null, menuItems.ToArray());
+                string action = await Application.Current.Windows[0].Page!.DisplayActionSheet(AppResources.ExtendedMenuItemTitle, null, null, menuItems.ToArray());
 
                 //  Execute the selected action.
                 if (action == AppResources.ExtendedMenuItemSaveAs)
@@ -606,7 +608,7 @@ namespace Z2XProgrammer.ViewModel
                 else if (action == AppResources.ExtendedMenuItemReportProblem)
                 {
                     await Browser.OpenAsync("https://github.com/PeterK78/Z2X-Programmer/issues");
-                }   
+                }
 
 
             }
@@ -637,8 +639,8 @@ namespace Z2XProgrammer.ViewModel
 
 
             //  Setup the popup window.
-            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder,note);
-            
+            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder, note);
+
             try
             {
 
@@ -652,18 +654,31 @@ namespace Z2XProgrammer.ViewModel
                 //  If the digital command center is actually not reachable, we try to create a connection.
                 if (CommandStation.Z21.IsReachable == false)
                 {
-                    PopUpConnectCommandStation popupConnectCommandSation = new PopUpConnectCommandStation(cancelTokenSource, AppResources.InfoConnectionToDigitalCommandStation + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + ")." );
-                    Shell.Current.CurrentPage.ShowPopup(popupConnectCommandSation);
+                    PopUpConnectCommandStation popupConnectCommandSation = new PopUpConnectCommandStation(cancelTokenSource, AppResources.InfoConnectionToDigitalCommandStation + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + ").");
+                    Shell.Current.CurrentPage.ShowPopup(popupConnectCommandSation, new PopupOptions
+                    {
+                        Shape = new RoundRectangle
+                        {
+                            CornerRadius = new CornerRadius(12)
+                        }
+                    });
+
                     bool ConnectSuccess = await Task.Run(() => CommandStation.Connect(cancelToken, 10000));
                     await popupConnectCommandSation.CloseAsync();
                     if (ConnectSuccess == false)
                     {
-                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2 , AppResources.OK);
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertDigitalCommandStationNoReachablePart1 + " " + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + " " + AppResources.AlertDigitalCommandStationNoReachablePart2, AppResources.OK);
                         return;
                     }
                 }
 
-                Shell.Current.CurrentPage.ShowPopup(pop);
+                Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
 
                 // Initializes the ProgressPercentage Progress object with the specified callback.
                 // This means that percentage changes can be received and forwarded during the upload. 
@@ -694,7 +709,7 @@ namespace Z2XProgrammer.ViewModel
                     else
                     {
                         await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderUploadErrorPart1 + " CV" + CurrentlyUploadedCV.ToString() + ".\n\n" + AppResources.AlertDecoderUploadErrorPart2Direct, AppResources.OK);
-                    }   
+                    }
                     return;
                 }
                 else
@@ -736,7 +751,7 @@ namespace Z2XProgrammer.ViewModel
             try
             {
                 if (Application.Current == null) return;
-                
+
                 //  We create a list of configuration values for which the current value is different from the backup value.
                 string ModifiedCVValues = String.Empty;
                 List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
@@ -760,23 +775,34 @@ namespace Z2XProgrammer.ViewModel
                 //IPopupResult<bool> pipResult = await Shell.Current.CurrentPage.ShowPopupAsync<bool>(x); 
 
 
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
-                IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo, AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
+                IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
                 if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
-                
 
                 //  Setup the cancellation token.
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
 
-                 //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
+                //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
                 // supported by the selected decoder specification are currently be disabled.
                 string note = string.Empty;
                 if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
 
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
-                Shell.Current.CurrentPage.ShowPopup(pop);
+                Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
 
                 var ProgressPercentage = new Progress<int>(value =>
                 {
@@ -788,7 +814,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage,false,ProgressCV, ModifiedConfigVariables));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, false, ProgressCV, ModifiedConfigVariables));
 
                 await pop.CloseAsync();
 
@@ -836,10 +862,10 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo,  AppResources.DownloadDataTitle, "ic_fluent_arrow_download_24_regular.png",DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo, AppResources.DownloadDataTitle, "ic_fluent_arrow_download_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
                 IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData);
                 if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
-                
+
                 //  Check the locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
                 {
@@ -854,8 +880,9 @@ namespace Z2XProgrammer.ViewModel
                 //  Setup the popup indicator remark. We will show an info, if one or more configuration variables 
                 // supported by the selected decoder specification are currently be disabled.
                 string note = string.Empty;
-                if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; };    
-              
+                if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
+                ;
+
                 PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
@@ -870,7 +897,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true,ProgressCV, ListOfWritableConfigVariables));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true, ProgressCV, ListOfWritableConfigVariables));
 
                 await pop.CloseAsync();
 
@@ -905,10 +932,10 @@ namespace Z2XProgrammer.ViewModel
         private void OnUndoRedoManagerPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UndoAvailable = UndoRedoManager.UndoAvailable;
-            RedoAvailable = UndoRedoManager.RedoAvailable;            
+            RedoAvailable = UndoRedoManager.RedoAvailable;
         }
 
-        
+
         /// <summary>
         /// Activates the selected decoder specification.
         /// </summary>
@@ -926,7 +953,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  We enable configuration variables of the selected decoder specification.                
             DecoderConfiguration.EnableAllCVsSupportedByDecSpec(SelectedDecSpeq);
-            
+
             //  Inform the application that a new decoder specification has been selected.
             WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
 
@@ -964,7 +991,7 @@ namespace Z2XProgrammer.ViewModel
         /// <param name="e"></param>
         private void OnCommandStationStatusChanged(object? sender, StateEventArgs e)
         {
-            
+
             switch (e.TrackPower)
             {
                 case Z21Lib.Enums.TrackPower.Short:
@@ -990,7 +1017,7 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateStopMode;
                     CommandStationConnectionStateColor = Color.FromRgb(33, 130, 206);   // BLUE
                     StartBlinkingCommandStateLabel();
-                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.OFF; 
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.OFF;
                     break;
 
                 case Z21Lib.Enums.TrackPower.Programing:
@@ -999,10 +1026,10 @@ namespace Z2XProgrammer.ViewModel
                     CommandStationState = AppResources.CommandStationStateProgrammingMode;
                     CommandStationConnectionStateColor = Color.FromRgb(27, 135, 85); // GREEN
                     StopBlinkingCommandStateLabel();
-                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.Programing; 
+                    _commandStationOperationMode = Z21Lib.Enums.TrackPower.Programing;
                     break;
             }
-            
+
         }
 
         /// <summary>
@@ -1027,7 +1054,7 @@ namespace Z2XProgrammer.ViewModel
         {
             if (updateGUI)
             {
-                    if(SelectedDecSpeq != DecoderSpecification.DeqSpecName) SelectedDecSpeq = DecoderSpecification.DeqSpecName;
+                if (SelectedDecSpeq != DecoderSpecification.DeqSpecName) SelectedDecSpeq = DecoderSpecification.DeqSpecName;
             }
         }
 
@@ -1039,13 +1066,14 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
+            // We update the locomotive image. If we do not find a valid locomotive image, we use the default image ( => locomotive list icon).
             if ((DecoderConfiguration.UserDefindedImage != null) && (DecoderConfiguration.UserDefindedImage != ""))
             {
                 LocomotiveImageSource = Base64StringToImage.ConvertBase64String2ImageSource(DecoderConfiguration.UserDefindedImage);
             }
             else
             {
-                LocomotiveImageSource = "badgeicon.png";
+                LocomotiveImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_locomotive_list_64_dark.png" : "ic_fluent_locomotive_list_64_regular.png";
             }
 
             if (DataStoreDataValid == true)
@@ -1055,8 +1083,8 @@ namespace Z2XProgrammer.ViewModel
             }
             else
             {
-                LocomotiveDescription = "Z2X-Programmer";
-                LocomotiveAddress = "-";
+                LocomotiveDescription = AppResources.LocoListTitle;
+                LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress.ToString();
             }
 
         }
@@ -1067,7 +1095,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>        
         internal void OnSomethingChangedMessage()
         {
-             ApplicationTitle = GUI.GetWindowTitle(Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);                
+            ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);
         }
 
         /// <summary>
@@ -1080,29 +1108,34 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                //  Check if we have a matching Z2X file. We search the Z2X file directory.
-                //  We search until we have found the corresponding Z2X file.
-                string[] fileEntries = Directory.GetFiles(LocoList.Z2XFileFolder);
-                foreach (string fileEntry in fileEntries)
+                // We check if we have received a valid Z2X file path. If not, we try to find a matching Z2X file in
+                // the Z2X file directory.
+                if (File.Exists(locomotive.FilePath) == false)
                 {
-                    using (Stream fs = File.OpenRead(fileEntry))
+                    //  Check if we have a matching Z2X file. We search the Z2X file directory.
+                    //  We search until we have found the corresponding Z2X file.
+                    string[] fileEntries = Directory.GetFiles(LocoList.Z2XFileFolder);
+                    foreach (string fileEntry in fileEntries)
                     {
-                        Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
-                        var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
-
-                        // Call the Deserialize method and cast to the object type.
-                        myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
-
-                        if (myFile.LocomotiveAddress == locomotive.LocomotiveAddress)
+                        using (Stream fs = File.OpenRead(fileEntry))
                         {
-                            locomotive.FilePath = fileEntry;
-                            break;
-                        }
+                            Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
+                            var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
 
+                            // Call the Deserialize method and cast to the object type.
+                            myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
+
+                            if (myFile.LocomotiveAddress == locomotive.LocomotiveAddress)
+                            {
+                                locomotive.FilePath = fileEntry;
+                                break;
+                            }
+
+                        }
                     }
                 }
 
-                //  If we have found a Z2X file, we load it. Otherwise we create a new project.
+                //  If we have found a Z2X file, we load it. Otherwise we create a new Z2X project.
                 if (File.Exists(locomotive.FilePath))
                 {
                     using (Stream fs = File.OpenRead(locomotive.FilePath))
@@ -1115,9 +1148,9 @@ namespace Z2XProgrammer.ViewModel
 
                         //  We set the path to the Z2X file.
                         DecoderConfiguration.Z2XFilePath = locomotive.FilePath;
-            
+
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
+                        ApplicationTitle = System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
@@ -1132,8 +1165,8 @@ namespace Z2XProgrammer.ViewModel
                     DecoderSpecification.DeqSpecName = DeqSpecReader.GetDefaultDecSpecName();
                     WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
                 }
-                 
-                 Shell.Current.GoToAsync("//AddressPage");
+
+                Shell.Current.GoToAsync("//AddressPage");
 
 
             }

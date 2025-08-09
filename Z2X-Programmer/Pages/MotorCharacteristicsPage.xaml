@@ -76,7 +76,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="0"  HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -139,7 +139,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch  IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -169,7 +169,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                      <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
                          <HorizontalStackLayout >
                              <Label Text="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                             <Switch  IsToggled="{Binding MaximumSpeedDoehlerAndHaasDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                             <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDoehlerAndHaasDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
                          </HorizontalStackLayout>
                          <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                      </VerticalStackLayout>
@@ -313,7 +313,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <!-- RCN225: Extended speed curve in CV84 -->
                     <HorizontalStackLayout>
                         <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84}" VerticalOptions="Center" WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue84}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" ></Slider>
+                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue84}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                         <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue84}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
                     </HorizontalStackLayout>
 
@@ -409,7 +409,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
                     <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                         <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
                     </HorizontalStackLayout>
 
                     <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -442,7 +442,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
                             </HorizontalStackLayout>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV57Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
@@ -478,7 +478,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
+                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
                             </HorizontalStackLayout>
                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV9Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
