@@ -475,6 +475,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following vehicle address was read:.
+        /// </summary>
+        public static string AlertVehicleAddressRead {
+            get {
+                return ResourceManager.GetString("AlertVehicleAddressRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The configuration variable could not be written. .
         /// </summary>
         public static string AlertWriteCVError {

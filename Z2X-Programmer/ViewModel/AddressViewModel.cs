@@ -396,6 +396,8 @@ namespace Z2XProgrammer.ViewModel
                 }
             }
 
+            await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressRead + " " + DecoderConfiguration.RCN225.LocomotiveAddress , AppResources.OK);
+
             WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
           
             //  After reading the CV on the programming track, we must switch the track power on.

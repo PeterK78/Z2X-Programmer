@@ -137,7 +137,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                  Note:
                  Desktop: The minimum width must not be less than the value 180. Otherwise the German text “Programmiergleis” will be cut off.
             -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
+            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
                 <Picker.WidthRequest>
                     <OnIdiom Default="180" Desktop="180" Tablet="180" Phone="170"></OnIdiom>                    
                 </Picker.WidthRequest>
@@ -149,7 +149,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                  Desktop: The minimum width must not be less than the value 270. Otherwise the German text “RCN 225 Standard decoder” will be cut off.
             
             -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
+            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
                 <Picker.WidthRequest>
                     <OnIdiom Default="265" Desktop="270" Tablet="260" Phone="240"></OnIdiom>
                 </Picker.WidthRequest>

@@ -1983,4 +1983,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="DisplayAlertCVSetUsedSuccessfully" xml:space="preserve">
     <value>Das CV-Set wurde erfolgreich ausgelesen.</value>
   </data>
+  <data name="AlertVehicleAddressRead" xml:space="preserve">
+    <value>Die folgende Fahrzeugadresse wurde ausgelesen:</value>
+  </data>
 </root>
