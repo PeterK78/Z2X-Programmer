@@ -1,12 +1,32 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.11
-Date:         21.06.2025
+Version:      0.1.2.0-beta.12
+Date:         15.08.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
-Below you will find a brief description and version
-information on the software supplied.
+Below you will find a brief description and version information
+for the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.12 / 15.08.2025
+------------------------------------------------------------------
+
+Note:
+
+* Twelfth beta version (Beta Version 12, V0.1.2.0)
+
+New features:
+
+1. Features ZIMO_SOUNDPROJECTVERSIONINFO_CV25X and
+   ZIMO_SOUNDPROJECTMANUFACTURER_CV105X have been added.
+2. The import of CV sets has been added.
+3. An Android build has been added to the automatic build system.
+4. Redesign of the graphical user interface.
+
+Bug fixes:
+
+1. Various bug fixes to improve stability and performance.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.11 / 21.06.2025
