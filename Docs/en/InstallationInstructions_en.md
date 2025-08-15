@@ -1,17 +1,24 @@
-# Installation instructions
+<img src="https://github.com/PeterK78/Z2X-Programmer/blob/master/Assets/appiconfg.svg" width="100"/>
 
-The following operating systems are supported:
+# Installation Guide
 
-1. [Windows](#windows)
+Z2X Programmer is available for download in two different versions: stable and developer. A stable version has been tested and documented, but these versions are only updated every few months. Stable versions are available for the following operating systems:
+
+1. [Windows 11 x64 devices](#windows)
 2. [Android](#android)
 
-## Windows
+Developer versions are automatically created as soon as a change is made to the code. These versions can be downloaded in the GitHub Actions section and are available for the following operating systems:
+
+1. Windows 11 x64 devices
+2. Android
+3. Windows 10/11 x32 devices
+
+This guide describes how to install the stable versions.
+
+## Windows 11 x64 devices
 
 >[!NOTE]
 >No installation program is provided for Z2X programmer during the beta phase. Only the files from the ZIP archive need to be unpacked.
-
-### Supported Windows versions
-* Windows 11
 
 ### Step 1: Download the Z2X-Programmer installation files
 The Z2X-Programmer installation files are currently provided in the form of a ZIP archive. This ZIP archive can be found in the `Releases` section of the following GitHub page:
