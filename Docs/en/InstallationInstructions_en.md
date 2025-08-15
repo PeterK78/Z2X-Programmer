@@ -4,7 +4,7 @@
 
 Z2X Programmer is available for download in two different versions: stable and developer. A stable version has been tested and documented, but these versions are only updated every few months. Stable versions are available for the following operating systems:
 
-1. [Windows 11 x64 devices](#windows)
+1. [Windows 11 x64 devices](#windows-11-x64-devices)
 2. [Android](#android)
 
 Developer versions are automatically created as soon as a change is made to the code. These versions can be downloaded in the GitHub Actions section and are available for the following operating systems:
@@ -12,6 +12,8 @@ Developer versions are automatically created as soon as a change is made to the 
 1. Windows 11 x64 devices
 2. Android
 3. Windows 10/11 x32 devices
+
+Development versions are available here: https://github.com/PeterK78/Z2X-Programmer/actions
 
 This guide describes how to install the stable versions.
 
@@ -29,19 +31,23 @@ The Z2X-Programmer installation files are currently provided in the form of a ZI
 
 To install the Microsoft Windows version, first select the desired version (release) and then download the following ZIP archive to your Windows PC:
 
+>[!NOTE]
+>It is best to use the latest version of Z2X-Programmer. The following screenshot most likely shows an outdated version.
+
 ![Releases section](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-GitHub-SelectZIPArchive-Windows.png)
 
-### Step 2: Create a folder for Z2X programmer
-Now create a new folder for Z2X-Programmer. For example `C\Users\YourName\Z2X-Programmer`.
+### Step 2: Copy the ZIP archive to the destination folder
+You can copy Z2X-Programmer into any directory on your PC. In this description, we use the Windows `Documents` folder.
 
-> [!IMPORTANT]
-> Make sure that you do not create the new folder in a protected windows folder.
+![Copy to documents folder](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2XProgrammer-Copy2Documents.png)
 
 ### Step 3: Unpacking the ZIP archive
-Unpack the ZIP archive into the newly created folder.
+Extract the ZIP archive. A new folder with the files of Z2X-Programmer will be created.
+
+![Extract ZIP archive](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2XProgrammer-ExtractZIP.png)
 
 ### Step 4: Start
-Start the Z2X-Programmer.exe file.
+Open the newly created folder and start the Z2X-Programmer.exe file.
 
 ![Run the Z2X-Programmer.exe](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-DoubleClickZ2XExe.png)
 
@@ -50,7 +56,18 @@ If the .NET Desktop Runtime is missing on your system, it must be installed. The
 
 ![.NET Runtime installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-InstallNetDesktopRunTime.png)
 
-After clicking on `Download it now`, your browser will open. Download the .NET Desktop Runtime from the Microsoft webpage and install it on your system.
+After clicking on `Download it now`, your browser will open. The .NET Desktop Runtime download usually starts automatically. If not, click on the correct download link.
+
+>[!NOTE]
+>It is best to use the latest version of .NET Desktop Runtime. The following screenshot most likely shows an outdated version.
+
+![Your Browser opens](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2XProgrammer-WebBrowser.png)
+
+Start the EXE file to start the installation of the .NET Desktop Runtime:
+
+![Start the .NET Runtime installation](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2XProgrammer-NETRuntimeDownload.png)
+
+If the runtime has been installed correctly, the following dialog box appears
 
 ![.NET Runtime installation finished](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-NetDesktopRunTime.png)
 
@@ -65,7 +82,9 @@ Run the Z2X-Programmer.exe file again.
 
 ![Accept the license agreemen](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2X-Programmer-LicenseAgreement.png)
 
-The installation is now complete.
+The installation is now complete. Z2X Programmer will start with a setup wizard.
+
+![The setup wizard starts](https://github.com/PeterK78/Z2X-Programmer/blob/master/Docs/en/Assets/Z2XProgrammer-FirstStartWizard.png)
 
 ## Android
 
