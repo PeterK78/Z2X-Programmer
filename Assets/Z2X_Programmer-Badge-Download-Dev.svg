@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="193"
+   width="225"
    height="20"
-   viewBox="0 0 51.064575 5.2916666"
+   viewBox="0 0 59.531231 5.2916666"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="5.6542353"
-     inkscape:cx="86.041697"
-     inkscape:cy="57.744325"
+     inkscape:zoom="3.9981481"
+     inkscape:cx="103.42288"
+     inkscape:cy="58.402038"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -110,9 +110,9 @@
          x="2.7868698"
          y="3.6965866">Download</tspan></text>
     <rect
-       style="fill:#0063b1;fill-opacity:1;stroke-width:1.24296;stroke-dasharray:none"
+       style="fill:#0063b1;fill-opacity:1;stroke-width:1.61347;stroke-dasharray:none"
        id="rect1"
-       width="20"
+       width="33.700005"
        height="5.2916665"
        x="17"
        y="0"
@@ -122,7 +122,7 @@
        id="rect1-4"
        width="15"
        height="5.2916665"
-       x="36.099998"
+       x="44.5"
        y="7.9472862e-08"
        ry="0.58872128" />
     <text
@@ -135,6 +135,6 @@
          id="tspan2-5"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;stroke-width:1.678"
          x="18.217318"
-         y="3.6469772">Z2X-Programmer - Stable</tspan></text>
+         y="3.6469772">Z2X-Programmer - Development</tspan></text>
   </g>
 </svg>
