@@ -140,6 +140,112 @@ namespace Z2XProgrammer.FileAndFolderManagement
             catch   { return false; } 
         }
 
+        /// <summary>
+        ///  Returns TRUE if the given decoder specification supports any maintenance features (e.g. reset)
+        /// </summary>
+        /// <param name="decSpecName"></param>
+        /// <returns></returns>
+        public static bool AnyMaintenanceSettingsSupported (string decSpecName)
+        {
+
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "ZIMO_SELFTEST_CV30",
+                "RCN225_DECODERRESET_CV8"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
+        }
+
+
+        /// <summary>
+        /// Returns TRUE if the given deocder specification supports any protocol settings (e.g. RailCom, ABC, HLU etc.).
+        /// </summary>
+        /// <param name="decSpecName"></param>
+        /// <returns></returns>
+        public static bool AnyProtocollSettingsSupported (string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "RCN225_RAILCOMENABLED_CV29_3",
+                "RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0",
+                "RCN225_RAILCOMCHANNEL2DATA_CV28_1",
+                "RCN225_ANALOGMODE_CV29_2",
+                "RCN225_AUTOMATICREGISTRATION_CV28_7",
+                "RCN225_OPERATINGMODES_CV12",
+                "ZIMO_MSOPERATINGMODES_CV12"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
+        }
+
+        /// <summary>
+        /// Returns TRUE if the given decoder specification supports any function settings (e.g. uncoupler configuration etc..).
+        /// </summary>
+        /// <param name="decSpecName"></param>
+        /// <returns></returns>
+        public static bool AnyFunctionSettingsSupported (string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "ZIMO_ELECTRIC_UNCOUPLER_CV115X"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
+        }
+
+        /// <summary>
+        /// Returns TRUE if the given decoder specification supports any braking systems (ABC, HLU etc.).
+        /// </summary>
+        /// <param name="decSpecName"></param>
+        /// <returns></returns>
+        public static bool AnyBrakingFunctionKeysSupported(string decSpecName)
+        {
+            if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "RCN225_HLU_CV27_2",
+                "RCN225_ABC_CV27_X"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+
+        }
+
         /// <summary>   
         /// Returns TRUE if the given decoder specification supports any light
         /// function keys.
@@ -1169,7 +1275,31 @@ public static string DoehlerAndHaassPDLocomotiveSpec = @"<!-- Specification file
     <DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137 support=""yes"" writeable=""yes""/>
 
  </decoderseries>";
+
+
+public static string MinitrixDeqSpec = @"<!-- Specification file for Minitrix decoders -->
+<decoderseries description_en=""Minitrix"" description_de=""Minitrix"" manufacturerid=""131"" decspecversion=""1"" notes_de=""Lokdecoder für mTc14-Schnittstelle"" notes_en=""Locomotive decoder for mTc14 interface"">
+
+    <!-- Supported decoders -->
+    <decoder decoderid=""141"" decodername=""66857 (DH14B)"" />
+    
+    <!-- Supported RCN225 features -->
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <RCN225_MAXIMALSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>    
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_CONSISTADDRESS_CV19X support=""no"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+
+    <!-- Supported Döhler and Haass features (Döhler und Haass is the manufacturer of the Minitrix decoder) -->
+    <DOEHLERANDHAAS_DECODERTYPE_CV261 support=""yes"" writeable=""no""/>
+    <DOEHLERANDHAAS_FIRMWAREVERSION_CV262x support=""yes"" writeable=""no""/>
+
+ </decoderseries>";
     
     }
 }
+
 

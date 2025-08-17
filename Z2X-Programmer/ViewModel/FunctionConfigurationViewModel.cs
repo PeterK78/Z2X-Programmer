@@ -26,6 +26,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Resources.Strings;
@@ -51,6 +52,9 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: DECODER FEATURES
         #region ZIMO
+
+        [ObservableProperty]
+        bool anyFunctionSettingsSupported;
 
         //  ZIMO: ZIMO_ELECTRIC_UNCOUPLER_CV115X
         [ObservableProperty]
@@ -357,6 +361,8 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDataFromDecoderSpecification()
         {
+            AnyFunctionSettingsSupported = DeqSpecReader.AnyFunctionSettingsSupported(DecoderSpecification.DeqSpecName);
+
             //  ZIMO
             ZIMO_ELECTRIC_UNCOUPLER_CV115X = DecoderSpecification.ZIMO_ELECTRIC_UNCOUPLER_CV115X;
 

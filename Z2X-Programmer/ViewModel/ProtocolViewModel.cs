@@ -30,6 +30,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
@@ -52,6 +53,9 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: DECODER FEATURES
+
+        [ObservableProperty]
+        bool anyProtocollSettingsSupported;
       
         // ZIMO: The DCC operating mode cannot be deactivated (ZIMO_MSOPERATINGMODES_CV12)
         [ObservableProperty]
@@ -229,11 +233,11 @@ namespace Z2XProgrammer.ViewModel
             RailComChannel1AdrBroadcast = DecoderConfiguration.RCN225.RailComChannel1AdrBroadcast;
             CV28Configuration = Subline.Create(new List<uint> { 28 });
 
-            // RCN225: Railcom channel 2 in CV28  
+            // RCN225: Railcom channel 2 in CV28 (RCN225_RAILCOMCHANNEL2DATA_CV28_1)
             RailComChannel2Enabled = DecoderConfiguration.RCN225.RailComChannel2Enabled;
             CV28Configuration = Subline.Create(new List<uint> { 28 });
 
-            // RCN225: AC mode enabled in CV29 bit 2
+            // RCN225: AC mode enabled in CV29 bit 2 (
             AcModeEnabled = DecoderConfiguration.RCN225.ACModeEnabled;
             CV29Configuration = Subline.Create(new List<uint> { 29 });
 
@@ -281,6 +285,8 @@ namespace Z2XProgrammer.ViewModel
             RCN225_AUTOMATICREGISTRATION_CV28_7 = DecoderSpecification.RCN225_AUTOMATICREGISTRATION_CV28_7;
             RCN225_OPERATINGMODES_CV12 = DecoderSpecification.RCN225_OPERATINGMODES_CV12;
             ZIMO_MSOPERATINGMODES_CV12 = DecoderSpecification.ZIMO_MSOPERATINGMODES_CV12;
+
+            AnyProtocollSettingsSupported = DeqSpecReader.AnyProtocollSettingsSupported(DecoderSpecification.DeqSpecName);
         }
         #endregion
 

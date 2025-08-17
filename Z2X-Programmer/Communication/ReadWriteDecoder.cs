@@ -92,7 +92,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.ZIMO_SOUND_VOLUME_STEAM_CV27X, "275", "276","283","286" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_SOUND_VOLUME_DIESELELEC_CV29X, "296", "298","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_FUNCKEY_MUTE_CV313, "313", "298","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                                  {DeqSpecReader.ZIMO_MSOPERATINGMODES_CV12, "12", "298","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},                                  
+                                  {DeqSpecReader.ZIMO_MSOPERATINGMODES_CV12, "12", "298","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_SUSIPORT1CONFIG_CV201, "201", "0","0","0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_INPUTMAPPING_CV4XX, "400", "401","402","403" ,"404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","0","0","0","0","0","0","0"},
                                   {DeqSpecReader.ZIMO_FUNCTIONMAPPING_SECONDARYADDR_CV69X, "69", "70","71","72" ,"73","74","75","76","77","78","79","80","81","82","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
@@ -116,7 +116,7 @@ namespace Z2XProgrammer.Communication
                                   {DeqSpecReader.DOEHLERANDHAASS_MAXIMALSPEED_CV5, "5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" }
 
                               };
-        
+
         //  The name of the decoder specification
         private static string _decSpecName = "";
 
@@ -132,7 +132,7 @@ namespace Z2XProgrammer.Communication
         /// </summary>
         static ReadWriteDecoder()
         {
-            CommandStation.Z21.OnProgramResultReceived += OnProgramResultReceived;            
+            CommandStation.Z21.OnProgramResultReceived += OnProgramResultReceived;
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Z2XProgrammer.Communication
             _decSpecName = decSpecName;
 
             //  We check if we can reach the command station
-            if (CommandStation.Connect(cancelToken,5000) == false) { return Task.FromResult(false); }
+            if (CommandStation.Connect(cancelToken, 5000) == false) { return Task.FromResult(false); }
 
             //  Turn the track power ON if we are in POM mode
             if (mode == NMRA.DCCProgrammingModes.POMMainTrack) SetTrackPowerON();
@@ -186,7 +186,7 @@ namespace Z2XProgrammer.Communication
                         DecoderConfiguration.BackupCVs[configVariablesToWrite[i]].Enabled = true;
                     }
                 }
-              
+
                 //  Reporting the current percentage value.
                 int percent = (int)(((double)100 / (double)configVariablesToWrite.Count) * (double)i);
                 Logger.PrintDevConsole("DownloadDecoderData: Percentage:" + percent);
@@ -233,12 +233,12 @@ namespace Z2XProgrammer.Communication
                     {
                         ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
                         if (nextCV != 0)
-                        {                         
+                        {
                             //  Check if we have already written this CV. If so, skip this CV.
                             if (SupportConfigVariables.Contains(nextCV) == false)
                             {
                                 //  Add this CV if it's enabled.
-                                if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
+                                if (DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                             }
                         }
                     }
@@ -266,7 +266,7 @@ namespace Z2XProgrammer.Communication
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
                                     //  Add this CV if it's enabled.
-                                    if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
+                                    if (DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                                 }
                             }
                         }
@@ -278,7 +278,7 @@ namespace Z2XProgrammer.Communication
             if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo)
             {
                 for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
-                {                    
+                {
                     if (DeqSpecReader.FeatureSupported(decSpecName, ZIMOFeatures[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         //  We check whether we are allowed to describe the configuration variables belonging to the feature.
@@ -293,7 +293,7 @@ namespace Z2XProgrammer.Communication
                                 if (SupportConfigVariables.Contains(nextCV) == false)
                                 {
                                     //  Add this CV if it's enabled.
-                                    if(DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
+                                    if (DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
                                 }
                             }
                         }
@@ -301,9 +301,9 @@ namespace Z2XProgrammer.Communication
                 }
             }
 
-            return SupportConfigVariables;            
+            return SupportConfigVariables;
         }
-  
+
         /// <summary>
         /// Returns a list with configuration variables which can be read by the given decoder specification.
         /// </summary>
@@ -322,7 +322,7 @@ namespace Z2XProgrammer.Communication
 
             int rcnCount = RCNFeatures.GetLength(0);
             Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of RCN features: " + rcnCount);
-            for (int i = 0; i <= rcnCount -1; i++)
+            for (int i = 0; i <= rcnCount - 1; i++)
             {
                 string featureNameRCN = RCNFeatures[i, 0];
                 Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameRCN);
@@ -330,9 +330,9 @@ namespace Z2XProgrammer.Communication
                 {
                     int rcnFeatureCVAmount = RCNFeatures.GetLength(1);
                     //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking x CVs: " + rcnFeatureCVAmount);
-                    for (int cvIndex = 1; cvIndex <= rcnFeatureCVAmount -1; cvIndex++)
+                    for (int cvIndex = 1; cvIndex <= rcnFeatureCVAmount - 1; cvIndex++)
                     {
-                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);                        
+                        ushort nextCV = ushort.Parse(RCNFeatures[i, cvIndex]);
                         if (nextCV != 0)
                         {
                             //  Check if we have already read this CV. If so, skip this CV
@@ -342,7 +342,7 @@ namespace Z2XProgrammer.Communication
                                 Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                             }
                         }
-                    }                                    
+                    }
                 }
                 else
                 {
@@ -382,9 +382,9 @@ namespace Z2XProgrammer.Communication
                     {
                         Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameZIMO);
                     }
-                }               
+                }
             }
-            
+
             //
             // Do we have a Doehler & Haas decoder? If yes, read the Doehler & Hass specific features
             //
@@ -423,7 +423,7 @@ namespace Z2XProgrammer.Communication
                 }
             }
 
-            return ConfigVariablesToRead;            
+            return ConfigVariablesToRead;
         }
 
         /// <summary>
@@ -437,7 +437,7 @@ namespace Z2XProgrammer.Communication
 
             //  Create a list of CV variables which can be safely written to.
             SupportConfigVariables = GetAllWritableConfigurationVariables(decSpecName, mode);
-      
+
             //  We now check whether the content of a variable is different. Only such variables are reported back.
             for (int i = 0; i <= SupportConfigVariables.Count - 1; i++)
             {
@@ -476,7 +476,7 @@ namespace Z2XProgrammer.Communication
 
             //  We check if we can reach the command station
             Logger.PrintDevConsole("ReadWriteDecoder: CommandStation.Connect()");
-            if (CommandStation.Connect(cancelToken,5000) == false) { return Task.FromResult(false); }
+            if (CommandStation.Connect(cancelToken, 5000) == false) { return Task.FromResult(false); }
 
             //  Turn the track power ON if we are in POM mode
             if (mode == NMRA.DCCProgrammingModes.POMMainTrack)
@@ -492,9 +492,9 @@ namespace Z2XProgrammer.Communication
 
                 //  Run the decoder specification detection.
                 string decSpecTempName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
-                
+
                 //  If this decoder specification is not yet activated - if not, we will activate it now.
-                if(decSpecTempName != DecoderSpecification.DeqSpecName)
+                if (decSpecTempName != DecoderSpecification.DeqSpecName)
                 {
                     _decSpecName = DetectDecoderDeqSpec(cancelToken, locomotiveAddress);
 
@@ -511,7 +511,7 @@ namespace Z2XProgrammer.Communication
                     // at the end of this function.
                     newDecoderSpecificationFound = true;
                 }
-                            
+
             }
 
             if (cancelToken.IsCancellationRequested == true)
@@ -527,7 +527,7 @@ namespace Z2XProgrammer.Communication
             //  The required configuration variables have now been collected.
             //  We can now read out the configuration variables.
             Logger.PrintDevConsole("ReadWriteDecoder.UploadDecoderData: Reading the features from the decoder ...");
-            for (int i = 0; i<= ConfigVariablesToRead.Count -1; i++)
+            for (int i = 0; i <= ConfigVariablesToRead.Count - 1; i++)
             {
                 // Before uploading, we need to check whether this variable is enabled.
                 if (DecoderConfiguration.IsCVEnabled((ushort)ConfigVariablesToRead[i]) == true)
@@ -666,7 +666,7 @@ namespace Z2XProgrammer.Communication
 
             //  Now we are reading the data from the given cv
             _waitingForResultReceived = true; _commandSuccessFull = false;
-         
+
 
             bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.WriteCVBytePOM(cv, locomotiveAddress, value) : CommandStation.Z21.WriteCVProgramTrack(cv, value);
 
@@ -738,12 +738,12 @@ namespace Z2XProgrammer.Communication
         private static string DetectDecoderDeqSpec(CancellationToken cancelToken, ushort locomotiveAddress)
         {
             //  First we read the manufacturer of CV8
-            _waitingForResultReceived = true; _commandSuccessFull = false;  
+            _waitingForResultReceived = true; _commandSuccessFull = false;
             bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(8, locomotiveAddress) : CommandStation.Z21.ReadCVProgramTrack(8);
 
             if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
 
-            //  Automatic detection of ZIMO decoder
+            //  Automatic detection of ZIMO decoder.
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_Zimo)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
@@ -754,7 +754,7 @@ namespace Z2XProgrammer.Communication
                 return FileAndFolderManagement.DeqSpecReader.GetDecoderDecSpeqName(DecoderConfiguration.BackupCVs[8].Value, DecoderConfiguration.BackupCVs[250].Value);
             }
 
-            //  Automatic detection of Minitrix decoder
+            //  Automatic detection of Minitrix decoder.
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_Trix)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
@@ -766,7 +766,7 @@ namespace Z2XProgrammer.Communication
             }
 
 
-            //  Automatic detection of Doehler & Haass 
+            //  Automatic detection of Doehler & Haass .
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_DoehlerAndHaass)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
@@ -803,12 +803,12 @@ namespace Z2XProgrammer.Communication
 
         }
 
-        public static bool AllCVsEnabled (string featureName)
+        public static bool AllCVsEnabled(string featureName)
         {
             //  Search the RCN225 features     
-            for (int i = 0; i<= RCNFeatures.GetLength(0) - 1; i++)            
+            for (int i = 0; i <= RCNFeatures.GetLength(0) - 1; i++)
             {
-                if(RCNFeatures[i,0] == featureName)
+                if (RCNFeatures[i, 0] == featureName)
                 {
                     for (int cvIndex = 1; cvIndex <= RCNFeatures.GetLength(1) - 1; cvIndex++)
                     {
@@ -822,9 +822,9 @@ namespace Z2XProgrammer.Communication
             }
 
             //  Search the ZIMO features  
-            for (int i = 0; i<= ZIMOFeatures.GetLength(0) - 1; i++)            
+            for (int i = 0; i <= ZIMOFeatures.GetLength(0) - 1; i++)
             {
-                if(ZIMOFeatures[i,0] == featureName)
+                if (ZIMOFeatures[i, 0] == featureName)
                 {
                     for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
                     {
@@ -838,9 +838,9 @@ namespace Z2XProgrammer.Communication
             }
 
             //  Search the Döhler and Haass features
-            for (int i = 0; i<= DOEHLERHAASFeatures.GetLength(0) - 1; i++)            
+            for (int i = 0; i <= DOEHLERHAASFeatures.GetLength(0) - 1; i++)
             {
-                if(ZIMOFeatures[i,0] == featureName)
+                if (ZIMOFeatures[i, 0] == featureName)
                 {
                     for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
                     {

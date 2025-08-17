@@ -29,6 +29,7 @@ using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
@@ -51,6 +52,9 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: DECODER FEATURES
+
+        [ObservableProperty]
+        bool anyBrakingFunctionKeysSupported;
 
         //  RCN225: Drive direction in CV29.0 (RCN225_DIRECTION_CV29_0)
         [ObservableProperty]
@@ -286,6 +290,7 @@ namespace Z2XProgrammer.ViewModel
             RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
             RCN225_HLU_CV27_2 = DecoderSpecification.RCN225_HLU_CV27_2;
             RCN225_ABC_CV27_X = DecoderSpecification.RCN225_ABC_CV27_X;
+            AnyBrakingFunctionKeysSupported = DeqSpecReader.AnyBrakingFunctionKeysSupported(DecoderSpecification.DeqSpecName);
         }
 
 

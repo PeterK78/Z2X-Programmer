@@ -47,11 +47,11 @@ namespace Z2XProgrammer.Helper
             //  Setup the folder for the decoder specification files.
             SetupDeqSpecFolders();
 
-            //  Setup the folder for the Z2X files
+            //  Setup the folder for the Z2X files.
             SetupZ2XFolder();
             
 
-            //  Copy the decoder specification files
+            //  Copy the decoder specification files.
             DeqSpecReader.WriteDeqSpecFile("Generic.decspec", DeqSpecReader.UnknownDecoderSpec);
             DeqSpecReader.WriteDeqSpecFile("RCN225.decspec", DeqSpecReader.RCN225Spec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-loc.decspec", DeqSpecReader.ZimoMXLocomotiveSpec);
@@ -59,6 +59,8 @@ namespace Z2XProgrammer.Helper
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MX-fx.decspec", DeqSpecReader.ZimoFXFunctionSpec);
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MN-loc.decspec", DeqSpecReader.ZimoMNLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("DoehlerAndHass-PD-loc.decspec", DeqSpecReader.DoehlerAndHaassPDLocomotiveSpec);
+            DeqSpecReader.WriteDeqSpecFile("Minitrix.decspec", DeqSpecReader.MinitrixDeqSpec);
+
 
             //  Automatically setup the the GUI language if we did not before ...
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_KEY, AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_VALUE) != "1")

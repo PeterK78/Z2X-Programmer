@@ -124,8 +124,9 @@ namespace Z2XProgrammer.DataStore
                 RCN225_SPEEDTABLE_CV29_4 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_SPEEDTABLE_CV29_4, decSpecFolder);
                 RCN225_OPERATINGMODES_CV12 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_OPERATINGMODES_CV12, decSpecFolder);
                 RCN225_MAXIMALSPEED_CV5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_MAXIMALSPEED_CV5, decSpecFolder);
+                RCN225_LONGSHORTADDRESS_CV29_5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_LONGSHORTADDRESS_CV29_5, decSpecFolder);
 
-                
+
                 //  Inform the app that we have just read a new decoder specification file
                 //WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
             }
@@ -154,8 +155,9 @@ namespace Z2XProgrammer.DataStore
         internal static bool RCN225_ABC_CV27_X { get; set; }
         internal static bool RCN225_SPEEDTABLE_CV29_4 { get; set; }
         internal static bool RCN225_OPERATINGMODES_CV12 { get ; set; }
-        
-        
+        internal static bool RCN225_LONGSHORTADDRESS_CV29_5 { get; set; }
+
+
         //  DOEHLER AND HAASS
         internal static bool DOEHLERHAAS_MOTORIMPULSWIDTH_CV49 {  get; set; }
         internal static bool DOEHLERANDHAASS_MAXIMALSPEED_CV5 { get; set; }

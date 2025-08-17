@@ -55,6 +55,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
+            
+            <!-- The selected decoder does not support any of the settings provided on this page  -->
+            <HorizontalStackLayout IsVisible="{Binding Path=AnyFunctionSettingsSupported,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoFeatureSupported}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
 
             <!-- NOTE:
                     As a rule, all visual controls are only displayed once the datastore has been filled. Exceptions are the controls
@@ -67,8 +73,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 
                 <!-- ZIMO: Electric uncoupler configuration in CV115x (ZIMO_ELECTRIC_UNCOUPLER_CV115X) -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                <Border Style="{StaticResource Z2XBorderFrame}">
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionConfigurationUncouplerTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_ELECTRIC_UNCOUPLER_CV115X}"/>
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_ELECTRIC_UNCOUPLER_CV115X}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>

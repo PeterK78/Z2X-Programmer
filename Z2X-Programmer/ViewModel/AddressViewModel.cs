@@ -60,6 +60,9 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: DECODER FEATURES
 
         [ObservableProperty]
+        bool rCN225_LONGSHORTADDRESS_CV29_5;
+
+        [ObservableProperty]
         bool rCN225_CONSISTADDRESS_CV19X;
 
         [ObservableProperty]
@@ -272,6 +275,7 @@ namespace Z2XProgrammer.ViewModel
         {
             ZIMO_MXFX_SECONDADDRESS_CV64 = DecoderSpecification.ZIMO_MXFX_SECONDADDRESS_CV64;
             RCN225_CONSISTADDRESS_CV19X = DecoderSpecification.RCN225_CONSISTADDRESS_CV19X;
+            RCN225_LONGSHORTADDRESS_CV29_5 = DecoderSpecification.RCN225_LONGSHORTADDRESS_CV29_5;
         }
 
         /// <summary>

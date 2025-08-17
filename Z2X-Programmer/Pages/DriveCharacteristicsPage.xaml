@@ -200,8 +200,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </Border>
 
                 <!-- RCN225: ABC and HLU brraking track functions (RCN225_ABC_CV27_X) -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                <Border Style="{StaticResource Z2XBorderFrame}">
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsBrakingTrackTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding AnyBrakingFunctionKeysSupported}"/>
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding AnyBrakingFunctionKeysSupported}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>

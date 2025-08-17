@@ -55,6 +55,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
 
+            <!-- The selected decoder does not support any of the settings provided on this page  -->
+            <HorizontalStackLayout IsVisible="{Binding Path=AnyProtocollSettingsSupported,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoFeatureSupported}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
@@ -177,9 +183,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        
+
                         <Label Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComDescription}" VerticalOptions="Center" />
-                        
+
                         <!-- RCN225: Switching Railcom on and off in CV29 bit 3 (RCN225_RAILCOMENABLED_CV29_3) -->
                         <Label Margin="0,20,0,0" x:Name="FrameRailComEnableDisableRailCom" Grid.Row="1"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameRailComEnableDisableRailCom}" VerticalOptions="Center" />
                         <VerticalStackLayout Margin="0,20,0,0" Grid.Row="1" Grid.Column="1" HorizontalOptions="EndAndExpand">
@@ -190,7 +196,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
 
-                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding RailComEnabled}">
+                        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding RailComEnabled}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -219,13 +225,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 </HorizontalStackLayout>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV28Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
-                                
-                            </Grid>
-                       
+
                         </Grid>
+
+                    </Grid>
                 </Border>
 
-             
                 <!-- RCN225 Enable automatic registration in CV 28 bit 7 -->
                 <Label IsVisible="{Binding RCN225_AUTOMATICREGISTRATION_CV28_7}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolDCCATitle}" VerticalOptions="Center" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_AUTOMATICREGISTRATION_CV28_7}">
@@ -251,7 +256,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
-                
+
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

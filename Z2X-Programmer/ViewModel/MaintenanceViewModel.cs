@@ -29,6 +29,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 using Z2XProgrammer.Popups;
@@ -63,7 +64,10 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
-        
+
+        [ObservableProperty]
+        bool anyMaintenanceSettingsSupported;
+
         [ObservableProperty]
         string zIMODecoderErrorState = "";
 
@@ -122,6 +126,8 @@ namespace Z2XProgrammer.ViewModel
         {
             ZIMO_SELFTEST_CV30 = DecoderSpecification.ZIMO_SELFTEST_CV30;
             RCN225_DECODERRESET_CV8 = DecoderSpecification.RCN225_DECODERRESET_CV8;
+
+            AnyMaintenanceSettingsSupported = DeqSpecReader.AnyMaintenanceSettingsSupported(DecoderSpecification.DeqSpecName);
         }
 
         #endregion
