@@ -86,6 +86,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool dOEHLERANDHAAS_FIRMWAREVERSION_CV262x = false;
 
+        // PIKO SmartDecoder 4.1 (PIKOSMARTDECODER_DECODERID_CV26X)
+        [ObservableProperty]
+        bool pIKOSMARTDECODER_DECODERID_CV26X = false;
+
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
@@ -199,6 +203,10 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
+        //  PIKO SmartDecoder V4.1: Decoder ID (PIKOSMARTDECODER_DECODERID_CV26X)
+        [ObservableProperty]
+        internal string pikoDecoderID = string.Empty;
+
         #endregion
 
         #region REGION: CONSTRUCTOR
@@ -258,6 +266,9 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_BOOTLOADER_VERSION_24X = DecoderSpecification.ZIMO_BOOTLOADER_VERSION_24X;
             ZIMO_SOUNDPROJECTVERSIONINFO_CV25X = DecoderSpecification.ZIMO_SOUNDPROJECTVERSIONINFO_CV25X;
             ZIMO_SOUNDPROJECTMANUFACTURER_CV105X = DecoderSpecification.ZIMO_SOUNDPROJECTMANUFACTURER_CV105X;
+
+            // PIKO SmartDecoder 4.1 (PIKOSMARTDECODER_DECODERID_CV26X)        
+            PIKOSMARTDECODER_DECODERID_CV26X = DecoderSpecification.PIKOSMARTDECODER_DECODERID_CV26X;
         }
 
         /// <summary>
@@ -347,6 +358,10 @@ namespace Z2XProgrammer.ViewModel
             HaasFirmwareVersionConfiguration = Subline.Create([262,264]);
 
             #endregion
+
+
+            // PIKO SmartDecoder 4.1: Decoder ID (PIKOSMARTDECODER_DECODERID_CV26X)
+            PikoDecoderID = DecoderConfiguration.PikoSmartDecoderV41.DecoderID;
 
         }
 

@@ -55,6 +55,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1;
 
+        // AnyFunctionOnThisPageSupported is TRUE if the current decoder specification supports any function on this page.
+        [ObservableProperty]
+        bool anyFunctionOnThisPageSupported;
+
         #endregion
 
         #region REGION: DECODER FEATURES
@@ -967,6 +971,8 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetDataFromDecoderSpecification()
         {
+            // We check if the current decoder supports any function keys, any sound function keys, any drive and motor characteristics keys or any function output mapping.
+            AnyFunctionOnThisPageSupported = DeqSpecReader.AnyFunctionKeySupported(DecoderSpecification.DeqSpecName);
             SoundFunctionKeysSupported = DeqSpecReader.AnySoundFunctionKeysSupported(DecoderSpecification.DeqSpecName);
             DriveAndMotorCharacteristicsKeysSupported = DeqSpecReader.AnyDriveAndMotorCharacteristicKeysSupported(DecoderSpecification.DeqSpecName);
             FunctionOuputMappingSupported = DeqSpecReader.AnyFunctionOuputMappingSupported(DecoderSpecification.DeqSpecName);

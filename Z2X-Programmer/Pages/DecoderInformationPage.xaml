@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-    
+
 <!--
 
 Z2X-Programmer
@@ -22,7 +22,7 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
 -->
-    
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Z2XProgrammer.Pages.DecoderInformationPage"
@@ -130,7 +130,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Label  Text="{Binding ZimoSoundProjectManufacturer}" VerticalOptions="Center"  HorizontalOptions="End"  />
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV105XConfiguraion}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
                             </VerticalStackLayout>
-                            
+
                             <!-- ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) -->
                             <Label x:Name="FrameDecoderZIMOInfoSoundProjectNr" Grid.Row="7" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundProjectNr}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}" />
                             <VerticalStackLayout Grid.Row="7" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}">
@@ -150,6 +150,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <VerticalStackLayout  Grid.Row="3" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" >
                                 <Label Text="{Binding DoehlerAndHaasFirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="End" />
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV262To264Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+
+                            <!-- PIKO SmartDecoder V4.1: Decoder ID (PIKOSMARTDECODER_DECODERID_CV26X)-->
+                            <Label x:Name="FrameDecoderPIKOSmartDecoderV41InfoDecoderID" Grid.Row="2" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPIKOSmartDecoderV41InfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}" />
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}">
+                                <Label Text="{Binding PikoDecoderID}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
                             <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="8" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static strings:AppResources.FrameDecoderZIMOCopyClipboard}" HorizontalOptions="End" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=CopyClipboardCommand}" MinimumWidthRequest="200" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_dark.png, Dark=ic_fluent_clipboard_paste_24_regular.png}"></Button>

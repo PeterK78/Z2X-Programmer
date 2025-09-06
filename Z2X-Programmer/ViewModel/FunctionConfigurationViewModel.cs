@@ -48,14 +48,15 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
+        // AnyFunctionSettingsSupported is TRUE if the current decoder specification supports any function on this page.
+        [ObservableProperty]
+        bool anyFunctionSettingsSupported;
+
         #endregion
 
         #region REGION: DECODER FEATURES
         #region ZIMO
-
-        [ObservableProperty]
-        bool anyFunctionSettingsSupported;
-
+      
         //  ZIMO: ZIMO_ELECTRIC_UNCOUPLER_CV115X
         [ObservableProperty]
         internal ObservableCollection<string> availableDecouplerSettings;

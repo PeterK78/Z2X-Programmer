@@ -117,6 +117,13 @@ namespace Z2XProgrammer.Communication
 
                               };
 
+        static readonly string[,] PIKOSmartDecoderV41Features = new string[3, 29] {
+                                  {DeqSpecReader.PIKOSMARTDECODER_DECODERID_CV26X, "261", "262", "263" ,"264","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
+                                  {DeqSpecReader.PIKOSMARTDECODER41_MINIMALSPEED_CV2,"2", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" } ,
+                                  {DeqSpecReader.PIKOSMARTDECODER_MAXIMUMSPEED_CV5,"5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" } 
+                              };
+
+
         //  The name of the decoder specification
         private static string _decSpecName = "";
 
@@ -301,6 +308,35 @@ namespace Z2XProgrammer.Communication
                 }
             }
 
+
+            // PIKO SmartDecoder V4.1
+            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_PIKO)
+            {
+                for (int i = 0; i <= PIKOSmartDecoderV41Features.GetLength(0) - 1; i++)
+                {
+                    if (DeqSpecReader.FeatureSupported(decSpecName, PIKOSmartDecoderV41Features[i, 0], ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        //  We check whether we are allowed to describe the configuration variables belonging to the feature.
+                        if (DeqSpecReader.IsWriteable(decSpecName, PIKOSmartDecoderV41Features[i, 0], ApplicationFolders.DecSpecsFolderPath) == false) continue;
+
+                        for (int cvIndex = 1; cvIndex <= PIKOSmartDecoderV41Features.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(PIKOSmartDecoderV41Features[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  Check if we have already written this CV. If so, skip this CV
+                                if (SupportConfigVariables.Contains(nextCV) == false)
+                                {
+                                    //  Add this CV if it's enabled.
+                                    if (DecoderConfiguration.ConfigurationVariables[nextCV].Enabled == true) SupportConfigVariables.Add(nextCV);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
             return SupportConfigVariables;
         }
 
@@ -395,7 +431,7 @@ namespace Z2XProgrammer.Communication
             {
 
                 int DOEHLERHAASCount = DOEHLERHAASFeatures.GetLength(0);
-                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of ZIMO features: " + DOEHLERHAASCount);
+                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of Doehler & Haas features: " + DOEHLERHAASCount);
                 for (int i = 0; i <= DOEHLERHAASCount - 1; i++)
                 {
                     string featureNameDOEHLERHAAS = DOEHLERHAASFeatures[i, 0];
@@ -419,6 +455,41 @@ namespace Z2XProgrammer.Communication
                     else
                     {
                         Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameDOEHLERHAAS);
+                    }
+                }
+            }
+
+            //
+            // Do we have a PIKO SmartDecoder V4.1 decoder? If yes, read the PIKO SmartDecoder V4.1 specific features
+            //
+            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: PIKO SmartDecoder V4.1 compatible configuration variables ...");
+            if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_PIKO)
+            {
+                int PIKOSmartDecoderCount = PIKOSmartDecoderV41Features.GetLength(0);
+                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of PIKO features: " + PIKOSmartDecoderCount);
+                for (int i = 0; i <= PIKOSmartDecoderCount - 1; i++)
+                {
+                    string featureNamePIKOSmartDecoder = PIKOSmartDecoderV41Features[i, 0];
+                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNamePIKOSmartDecoder);
+                    if (DeqSpecReader.FeatureSupported(decSpecName, featureNamePIKOSmartDecoder, ApplicationFolders.DecSpecsFolderPath) == true)
+                    {
+                        for (int cvIndex = 1; cvIndex <= PIKOSmartDecoderV41Features.GetLength(1) - 1; cvIndex++)
+                        {
+                            ushort nextCV = ushort.Parse(PIKOSmartDecoderV41Features[i, cvIndex]);
+                            if (nextCV != 0)
+                            {
+                                //  Check if we have already read this CV. If so, skip this CV
+                                if (ConfigVariablesToRead.Contains(nextCV) == false)
+                                {
+                                    ConfigVariablesToRead.Add(nextCV);
+                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNamePIKOSmartDecoder);
                     }
                 }
             }
@@ -734,12 +805,14 @@ namespace Z2XProgrammer.Communication
         /// <summary>
         /// Return the decoder specification. If the decoder could not be detected GENERICDECSPEQNAME will be returned
         /// </summary>
+        /// <param name="cancelToken">A cancel token to cancel the execution.</param>
+        /// <param name="vehicleAddress">The address of vehicle address.</param> 
         /// <returns></returns>
-        private static string DetectDecoderDeqSpec(CancellationToken cancelToken, ushort locomotiveAddress)
+        private static string DetectDecoderDeqSpec(CancellationToken cancelToken, ushort vehicleAddress)
         {
             //  First we read the manufacturer of CV8
             _waitingForResultReceived = true; _commandSuccessFull = false;
-            bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(8, locomotiveAddress) : CommandStation.Z21.ReadCVProgramTrack(8);
+            bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(8, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(8);
 
             if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
 
@@ -747,7 +820,7 @@ namespace Z2XProgrammer.Communication
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_Zimo)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
-                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(250, locomotiveAddress) : CommandStation.Z21.ReadCVProgramTrack(250);
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(250, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(250);
 
                 if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
 
@@ -758,7 +831,7 @@ namespace Z2XProgrammer.Communication
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_Trix)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
-                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(261, locomotiveAddress) : CommandStation.Z21.ReadCVProgramTrack(261);
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(261, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(261);
 
                 if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
 
@@ -770,12 +843,37 @@ namespace Z2XProgrammer.Communication
             if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_DoehlerAndHaass)
             {
                 _waitingForResultReceived = true; _commandSuccessFull = false;
-                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(261, locomotiveAddress) : CommandStation.Z21.ReadCVProgramTrack(261);
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(261, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(261);
 
                 if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
 
                 return FileAndFolderManagement.DeqSpecReader.GetDecoderDecSpeqName(DecoderConfiguration.BackupCVs[8].Value, DecoderConfiguration.BackupCVs[261].Value);
             }
+
+            //  Automatic detection of PIKO decoder.
+            if (DecoderConfiguration.BackupCVs[8].Value == NMRA.ManufacturerID_PIKO)
+            {
+                _waitingForResultReceived = true; _commandSuccessFull = false;
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(261, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(261);
+                if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
+
+                _waitingForResultReceived = true; _commandSuccessFull = false;
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(262, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(262);
+                if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
+
+                _waitingForResultReceived = true; _commandSuccessFull = false;
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(263, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(263);
+                if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
+
+                _waitingForResultReceived = true; _commandSuccessFull = false;
+                read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.ReadCVPOM(264, vehicleAddress) : CommandStation.Z21.ReadCVProgramTrack(264);
+                if (WaitForAck(cancelToken) == false) return DeqSpecReader.GetDefaultDecSpecName();
+
+                int pikoDecoderID = (DecoderConfiguration.BackupCVs[264].Value * 16777216) + (DecoderConfiguration.BackupCVs[263].Value * 65536) + (DecoderConfiguration.BackupCVs[262].Value * 256) + DecoderConfiguration.BackupCVs[261].Value;
+
+                return FileAndFolderManagement.DeqSpecReader.GetDecoderDecSpeqName(DecoderConfiguration.BackupCVs[8].Value, pikoDecoderID);
+            }
+
 
             return DeqSpecReader.GetDefaultDecSpecName();
         }

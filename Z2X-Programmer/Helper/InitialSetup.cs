@@ -60,6 +60,7 @@ namespace Z2XProgrammer.Helper
             DeqSpecReader.WriteDeqSpecFile("ZIMO-MN-loc.decspec", DeqSpecReader.ZimoMNLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("DoehlerAndHass-PD-loc.decspec", DeqSpecReader.DoehlerAndHaassPDLocomotiveSpec);
             DeqSpecReader.WriteDeqSpecFile("Minitrix.decspec", DeqSpecReader.MinitrixDeqSpec);
+            DeqSpecReader.WriteDeqSpecFile("PIKOSmartDecoder41.decspec", DeqSpecReader.PikoSmartDecoderSpec);
 
 
             //  Automatically setup the the GUI language if we did not before ...

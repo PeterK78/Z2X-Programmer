@@ -24,6 +24,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System.Windows.Input;
 using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -37,9 +38,6 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class ControllerViewModel : ObservableObject
     {
-
-        byte _currentLocoSpeedStep = 0;
-
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
         [ObservableProperty]
@@ -48,9 +46,12 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool additionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
+        [ObservableProperty]
+        bool controllerWindowEnabled = false;
+
         #endregion
 
-        #region REGION: PUBLIC PROPERTIES
+        #region REGION: PUBLIC PROPERTIES        
 
         // Vehicle address
         [ObservableProperty]
@@ -59,14 +60,7 @@ namespace Z2XProgrammer.ViewModel
         //  Speed
         [ObservableProperty]
         ushort speed = 0;
-        partial void OnSpeedChanged(ushort value)
-        {
-            if (value != _currentLocoSpeedStep)
-            {
-                _currentLocoSpeedStep = (byte)value;
-                SetLocoSpeed(_currentLocoSpeedStep, (DirectionForward == true) ? 1 : 0);
-            }
-        }
+
         //  Direction Backward
         [ObservableProperty]
         bool directionBackward = false;
@@ -225,6 +219,14 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            WeakReferenceMessenger.Default.Register<DecoderSpecificationUpdatedMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnGetDataFromDecoderSpecification();
+                });
+            });
+
         }
         #endregion
 
@@ -240,6 +242,18 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
 
             VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+        }
+
+        /// <summary>
+        /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
+        /// OnGetDataFromDecoderSpecification updates the local variables with the new decoder specification.
+        /// </summary>
+        public void OnGetDataFromDecoderSpecification()
+        {
+            //  A different locomotive or decoder specification has been selected - we will
+            //  deactivate the controller and request the information for the selected locomotive again.
+            ControllerWindowEnabled = false;
+            OnGetDecoderConfiguration();
         }
 
         /// <summary>
@@ -328,8 +342,10 @@ namespace Z2XProgrammer.ViewModel
                 }
 
                 //  Grab the current speed step of the locomotive.
-                _currentLocoSpeedStep = (byte)e.CurrentSpeedStep;
-                Speed = _currentLocoSpeedStep;
+                Speed = (byte)e.CurrentSpeedStep;
+
+                //  We enable the controller window.
+                ControllerWindowEnabled = true;
 
             }
             catch (Exception ex)
@@ -341,6 +357,12 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS
+
+        [RelayCommand]
+        void SliderDragCompleted(object obj)
+        {
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
+        }
 
         [RelayCommand]
         void OpenInExternalWindow()
@@ -402,15 +424,20 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         void IncreaseSpeed()
         {
+            //   The maximum values oare taken from the Z21 protocol description.
+            //   Please refer to the chapter “LAN_X_SET_LOCO_DRIVE” for more information.
             if (SpeedStep14 == true && Speed < 14) Speed++;
             if (SpeedStep28 == true && Speed < 28) Speed++;
-            if (SpeedStep128 == true && Speed < 128) Speed++;
+            if (SpeedStep128 == true && Speed < 126) Speed++;
+
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
         }
 
         [RelayCommand]
         void DecreaseSpeed()
         {
             if (Speed > 0) Speed--;
+            SetLocoSpeed(Speed, (DirectionForward == true) ? 1 : 0);
         }
 
         [RelayCommand]

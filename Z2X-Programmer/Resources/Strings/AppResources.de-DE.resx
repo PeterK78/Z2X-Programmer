@@ -385,6 +385,9 @@ Folgender Fehler ist aufgetreten:
   <data name="FrameDecoderZIMOInfoDecoderType" xml:space="preserve">
     <value>Decoder-Typ (CV250)</value>
   </data>
+  <data name="FrameDecoderPIKOSmartDecoderV41InfoDecoderID" xml:space="preserve">
+    <value>Decoder-ID (CV261, CV262, CV263, CV264)</value>
+  </data>
   <data name="FrameDecoderZIMOInfoSWVersion" xml:space="preserve">
     <value>Software-Version (CV7 + CV65)</value>
   </data>
@@ -683,7 +686,7 @@ Folgender Fehler ist aufgetreten:
     <value>Standardwert des Decoders für die Maximalgeschwindigkeit verwenden</value>
   </data>
   <data name="FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel" xml:space="preserve">
-    <value>Maximalgeschwindigkeit</value>
+    <value>Maximale Geschwindigkeit (CV5)</value>
   </data>
   <data name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" xml:space="preserve">
     <value>Maximalgeschwindigkeit (CV5)</value>
@@ -1985,5 +1988,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="AlertVehicleAddressRead" xml:space="preserve">
     <value>Die folgende Fahrzeugadresse wurde ausgelesen:</value>
+  </data>
+  <data name="FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle" xml:space="preserve">
+    <value>Minimal Geschwindigkeit (CV2)</value>
   </data>
 </root>

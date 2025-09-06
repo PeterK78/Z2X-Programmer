@@ -22,16 +22,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
-using System.Security.AccessControl;
 using Z2XProgrammer.Converter;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
-using Z2XProgrammer.Resources.Strings;
 using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.ViewModel
@@ -73,6 +70,9 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool rCN225_MAXIMALSPEED_CV5;
 
+        [ObservableProperty]
+        bool rCN225_MINIMALSPEED_CV2;
+
         // RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X
         [ObservableProperty]
         bool rCN225_EXTENDEDSPEEDCURVEVALUES_CV67X;
@@ -96,9 +96,33 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool dOEHLERANDHAASS_MAXIMALSPEED_CV5;
 
+        [ObservableProperty]
+        bool pIKOSMARTDECODER_MINIMUMSPEED_CV2;
+
+        [ObservableProperty]
+        bool pIKOSMARTDECODER_MAXIMUMSPEED_CV5;
+
         #endregion
 
         #region REGION: PUBLIC PROPERTIES
+
+        #region Döhler & Haas
+
+        // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
+        [ObservableProperty]
+        internal byte impulsWidthValue;
+        partial void OnImpulsWidthValueChanged(byte value)
+        {
+            DecoderConfiguration.DoehlerHaas.MotorImpulsWidth = value;
+            UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
+            CV49Configuration = Subline.Create(new List<uint> { 49 });
+        }
+
+        [ObservableProperty]
+        internal string impulsWidthTime = "";
+
+        [ObservableProperty]
+        string cV49Configuration = Subline.Create(new List<uint> { 49 });
 
         // DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)
         [ObservableProperty]
@@ -131,6 +155,40 @@ namespace Z2XProgrammer.ViewModel
             CV5Configuration = Subline.Create(new List<uint> { 5 });
         }
 
+        #endregion
+
+        #region Piko SmartDecoder
+
+        // Piko SmartDecoder: Maximum speed in CV5 (PIKOSMARTDECODER_MAXIMUMSPEED_CV5)
+        [ObservableProperty]
+        internal string maximumPikoSmartDecoderSpeedValueDescription = "";
+
+        [ObservableProperty]
+        internal byte maximumPikoSmartDecoderSpeed;
+        partial void OnMaximumPikoSmartDecoderSpeedChanged(byte value)
+        {
+            DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed = value;
+            MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed,63);
+            CV5Configuration = Subline.Create(new List<uint> { 5 });
+        }
+
+        // Piko SmartDecoder: Minimum speed in CV2 (PIKOSMARTDECODER_MINIMUMSPEED_CV2)
+        [ObservableProperty]
+        internal string minimumPikoSmartDecoderSpeedValueDescription = "";
+
+        [ObservableProperty]
+        internal byte minimumPikoSmartDecoderSpeed;
+        partial void OnMinimumPikoSmartDecoderSpeedChanged(byte value)
+        {
+            DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed = value;
+            MinimumPikoSmartDecoderSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed, 63);
+            CV2Configuration = Subline.Create(new List<uint> { 2 });
+        }
+
+        #endregion
+
+        #region RCN225
+
         // RCN225: Maximum speed in CV5
         [ObservableProperty]
         internal string maximumSpeedValueDescription = "";
@@ -142,13 +200,13 @@ namespace Z2XProgrammer.ViewModel
             if (value == false)
             {
                 if (DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
-                MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
             else
             {
                 MaximumSpeed = 0;
-                MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
         }
@@ -158,7 +216,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMaximumSpeedChanged(byte value)
         {
             DecoderConfiguration.RCN225.MaximumSpeed = value;
-            MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
             CV5Configuration = Subline.Create(new List<uint> { 5 });
         }
 
@@ -192,7 +250,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMinimumSpeedChanged(byte value)
         {
             DecoderConfiguration.RCN225.MinimumSpeed = value;
-            MinimumSpeedValueDescription = GetMinimumSpeedLabel();
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed,255);
             CV2Configuration = Subline.Create(new List<uint> { 2 });
         }
         [ObservableProperty]
@@ -414,6 +472,9 @@ namespace Z2XProgrammer.ViewModel
             SetExtendedSpeedCurveValue(94, value);
         }
 
+        #endregion
+
+        #region ZIMO
 
         // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
         [ObservableProperty]
@@ -653,23 +714,9 @@ namespace Z2XProgrammer.ViewModel
         string cV56Configuration = Subline.Create(new List<uint> { 56 });
 
 
-        // DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49)
-        [ObservableProperty]
-        internal byte impulsWidthValue;
-        partial void OnImpulsWidthValueChanged(byte value)
-        {
-            DecoderConfiguration.DoehlerHaas.MotorImpulsWidth = value;
-            UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
-            CV49Configuration = Subline.Create(new List<uint> { 49 });
-        }
+       
 
-        [ObservableProperty]
-        internal string impulsWidthTime = "";
-
-        [ObservableProperty]
-        string cV49Configuration = Subline.Create(new List<uint> { 49 });
-
-
+        #endregion
 
         #endregion
 
@@ -721,12 +768,12 @@ namespace Z2XProgrammer.ViewModel
             {
                 MaximumSpeedDefaultUsed = false;
             }
-            MaximumSpeedValueDescription = GetMaximumSpeedLabel();
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
             CV5Configuration = Subline.Create(new List<uint> { 5 });
 
             // RCN225: Minimum speed in CV2
             MinimumSpeed = DecoderConfiguration.RCN225.MinimumSpeed;
-            MinimumSpeedValueDescription = GetMinimumSpeedLabel();
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed,255);
             CV2Configuration = Subline.Create(new List<uint> { 2 });
 
             // RCN225: Medium speed in CV6
@@ -868,6 +915,23 @@ namespace Z2XProgrammer.ViewModel
             UpdateImpulsWidthTime(DecoderConfiguration.DoehlerHaas.MotorImpulsWidth);
             CV49Configuration = Subline.Create(new List<uint> { 49 });
 
+            // Piko SmartDecoder V4.1: Minimum speed in CV2 (PIKOSMARTDECODER41_MINIMALSPEED_CV2)
+            if (PIKOSMARTDECODER_MINIMUMSPEED_CV2 == true)
+            {
+                MinimumPikoSmartDecoderSpeed = DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed;
+                MinimumPikoSmartDecoderSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed,63);
+                CV2Configuration = Subline.Create(new List<uint> { 2 });
+            }
+
+            // Piko SmartDecoder V4.1: Maximum speed in CV5 (PIKOSMARTDECODER41_MAXIMALSPEED_CV5)
+            if (PIKOSMARTDECODER_MAXIMUMSPEED_CV5 == true)
+            {
+                MaximumPikoSmartDecoderSpeed = DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed;
+                MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed,63);
+                CV5Configuration = Subline.Create(new List<uint> { 5 });
+            }
+
+
 
         }
 
@@ -882,6 +946,7 @@ namespace Z2XProgrammer.ViewModel
             //  RCN225
             RCN225_MAXIMALSPEED_CV5 = DecoderSpecification.RCN225_MAXIMALSPEED_CV5;
             RCN225_MEDIUMSPEED_CV6 = DecoderSpecification.RCN225_MEDIUMSPEED_CV6;
+            RCN225_MINIMALSPEED_CV2 = DecoderSpecification.RCN225_MINIMALSPEED_CV2;
             RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X = DecoderSpecification.RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X;
             RCN225_SPEEDTABLE_CV29_4 = DecoderSpecification.RCN225_SPEEDTABLE_CV29_4;
 
@@ -895,15 +960,19 @@ namespace Z2XProgrammer.ViewModel
             ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57;
             ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57 = DecoderSpecification.ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57;
 
+            // PIKO SmartDecoder V4.1 (PIKOSMARTDECODER41_MINIMALSPEED_CV2)
+            PIKOSMARTDECODER_MINIMUMSPEED_CV2 = DecoderSpecification.PIKOSMARTDECODER_MINIMALSPEED_CV2;
+            PIKOSMARTDECODER_MAXIMUMSPEED_CV5 = DecoderSpecification.PIKOSMARTDECODER_MAXIMUMSPEED_CV5;
+
         }
 
         /// <summary>
-        /// Returns the label for the mimum speed.
+        /// Returns the label for the mimum speed of CV2 (the value and a percentage value).
         /// </summary>
         /// <returns></returns>
-        private string GetMinimumSpeedLabel()
+        private string GetMinimumSpeedLabel(byte speed, byte maxValue)
         {
-            return MinimumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MinimumSpeed, 255) + " %)";
+            return speed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(speed, maxValue) + " %)";
         }
 
         /// <summary>
@@ -916,12 +985,13 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Returns the label for the maximum speed.
+        /// Returns the label for the maximum speed value of CV5 (the value and a percentage value).
         /// </summary>
-        /// <returns></returns>
-        private string GetMaximumSpeedLabel()
+        /// <param name="maxValue">The maximum value of CV5 (e.g. 255)</param>
+        /// <returns>A formated string showing the value of CV5 and a percentage value.</returns>
+        private string GetMaximumSpeedLabel(byte speed, byte maxValue)
         {
-            return MaximumSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumSpeed, 255) + " %)";
+            return speed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(speed, maxValue) + " %)";
         }
 
         /// <summary>

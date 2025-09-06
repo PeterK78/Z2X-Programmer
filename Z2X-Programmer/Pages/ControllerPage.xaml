@@ -40,7 +40,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         <converter:BoolToBackgroundColor x:Key="boolToBackgroundConverter" />
     </ContentPage.Resources>
 
-    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
+    <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0" IsEnabled="{Binding ControllerWindowEnabled}">
 
         <VerticalStackLayout>
 
@@ -56,7 +56,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Grid.Column="0">
                     <Image Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" Margin="0,0,10,0" ></Image>
-                    <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemControllerText}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Label Style="{StaticResource Z2XProgrammerLabelHeading1Style}" Text="{x:Static strings:AppResources.FlyoutItemControllerText}" VerticalOptions="Center"  HorizontalOptions="Start" />                    
                 </HorizontalStackLayout>
 
                 <Button Margin="0,5,0,10" IsEnabled="{OnIdiom false, Desktop=true}" ToolTipProperties.Text="{x:Static strings:AppResources.OpenControllerWindowNewWindow}" VerticalOptions="Center"  HeightRequest="40" WidthRequest="40" IsVisible="{Binding ExternalControllerWindowAllowed}"  ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}"   Grid.Row="0" Grid.Column="1" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=OpenInExternalWindowCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"></Button>
@@ -100,10 +100,16 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </FlyoutBase.ContextFlyout>
                     </Button>
                     
-                    <!-- The currently selected address -->
+                    <!-- The currently selected address and the speed step system -->
                     <HorizontalStackLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" >
                         <Image Margin="2,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                         <Label Text="{Binding VehicleAddress}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
+                        
+                        <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_step_24_regular.png, Dark=ic_fluent_step_24_regular_dark.png}" VerticalOptions="Center" ></Image>
+                        <Label IsVisible="{Binding SpeedStep14}" Text="14" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label IsVisible="{Binding SpeedStep28}" Text="28" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label IsVisible="{Binding SpeedStep128}" Text="128" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        
                     </HorizontalStackLayout>
 
                     <!-- Button F1 -->
@@ -304,10 +310,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </Button>
 
                         <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Margin="5,0,5,0" MinimumWidthRequest="250">
-                            <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="15" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="31" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="127" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label Text="{Binding Speed}" IsVisible="{Binding AdditionalDisplayOfCVValues}" IsEnabled="{Binding AdditionalDisplayOfCVValues}" HorizontalOptions="Center" VerticalOptions="End" ></Label>
+                            
+                             <!--Note:
+                            
+                            The maximum values of the sliders are taken from the Z21 protocol description. Please refer to the chapter
+                            “LAN_X_SET_LOCO_DRIVE” for more information.-->
+                            
+                            <Slider IsVisible="{Binding SpeedStep14}" IsEnabled="{Binding SpeedStep14}"   HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="14" Style="{StaticResource Z2XSlider}" DragCompletedCommand="{Binding SliderDragCompletedCommand}"></Slider>
+                            <Slider IsVisible="{Binding SpeedStep28}" IsEnabled="{Binding SpeedStep28}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="28" Style="{StaticResource Z2XSlider}" DragCompletedCommand="{Binding SliderDragCompletedCommand}"></Slider>
+                            <Slider IsVisible="{Binding SpeedStep128}" IsEnabled="{Binding SpeedStep128}"  HorizontalOptions="Center" Value="{Binding Speed}" MinimumWidthRequest="250" WidthRequest="250" VerticalOptions="Center" Minimum="0" Maximum="126" Style="{StaticResource Z2XSlider}" DragCompletedCommand="{Binding SliderDragCompletedCommand}"></Slider>
+                            
+                            <Label Text="{Binding Speed}" HorizontalOptions="Center" VerticalOptions="Center" ></Label>
                         </VerticalStackLayout>
 
                         <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="+" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ControllerViewModel}}, Path=IncreaseSpeedCommand}" Style="{StaticResource Z2XProgrammerControllerButtonStyle}" >

@@ -20,28 +20,23 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Z2XProgrammer.Converter
 {
-    internal static class CVByteValueToPercentage
+    /// <summary>
+    /// This class implements an IMultiValueConverter to check if all boolean values in a collection are true.
+    /// </summary>       
+    public class AllTrueConverter : IMultiValueConverter
     {
-
-        /// <summary>
-        /// Converts a byte value to a percentage based on the specified maximum value.
-        /// </summary>
-        internal static double ToDouble(byte value, byte maximum)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double val = value;
-            double max = maximum;
-            return (100.0 / max) * val;
+            return values.All(v => v is bool b && b);
         }
 
-
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
     }
 }

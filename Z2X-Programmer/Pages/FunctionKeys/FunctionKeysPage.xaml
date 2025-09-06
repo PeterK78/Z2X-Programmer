@@ -43,6 +43,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         <converter:ZIMOInputMappingConverterEx x:Key="ZIMOInputMappingConverterEx" />
         <converter:ZIMOInputMappingConverter x:Key="ZIMOInputMappingConverter" />
         <converter:SwitchStateToTextConverter x:Key="switchStateConverter" />
+        <converter:AllTrueConverter x:Key="AllTrueConverter" />
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
@@ -60,9 +61,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
+            
+            <!-- The selected decoder does not support any of the settings provided on this page  -->
+            <HorizontalStackLayout IsVisible="{Binding Path=AnyFunctionOnThisPageSupported,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
+                <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
+                <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoFeatureSupported}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            </HorizontalStackLayout>
+            
 
             <!-- Page sheet content -->
-            <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
+            <VerticalStackLayout>
+                
+                <VerticalStackLayout.IsVisible>
+                    <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                        <Binding Path="DataStoreDataValid" />
+                        <Binding Path="AnyFunctionOnThisPageSupported" />
+                    </MultiBinding>
+                </VerticalStackLayout.IsVisible>
 
                 <!-- Overview of the function keys -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSummaryTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}" />

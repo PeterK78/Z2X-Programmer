@@ -107,6 +107,7 @@ namespace Z2XProgrammer.DataStore
                 DOEHLERANDHAASS_MAXIMALSPEED_CV5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.DOEHLERANDHAASS_MAXIMALSPEED_CV5, decSpecFolder); 
                 
                 //  RCN225
+                RCN225_MINIMALSPEED_CV2 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_MINIMALSPEED_CV2, decSpecFolder);
                 RCN225_RAILCOMENABLED_CV29_3 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_RAILCOMENABLED_CV29_3, decSpecFolder);
                 RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0, decSpecFolder);
                 RCN225_RAILCOMCHANNEL2DATA_CV28_1 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_RAILCOMCHANNEL2DATA_CV28_1, decSpecFolder);
@@ -125,7 +126,11 @@ namespace Z2XProgrammer.DataStore
                 RCN225_OPERATINGMODES_CV12 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_OPERATINGMODES_CV12, decSpecFolder);
                 RCN225_MAXIMALSPEED_CV5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_MAXIMALSPEED_CV5, decSpecFolder);
                 RCN225_LONGSHORTADDRESS_CV29_5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.RCN225_LONGSHORTADDRESS_CV29_5, decSpecFolder);
-
+           
+                //  PIKO SmartDecoder 4.1
+                PIKOSMARTDECODER_MINIMALSPEED_CV2 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.PIKOSMARTDECODER41_MINIMALSPEED_CV2, decSpecFolder); 
+                PIKOSMARTDECODER_DECODERID_CV26X = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.PIKOSMARTDECODER_DECODERID_CV26X, decSpecFolder); 
+                PIKOSMARTDECODER_MAXIMUMSPEED_CV5 = DeqSpecReader.FeatureSupported(decSpecName, FileAndFolderManagement.DeqSpecReader.PIKOSMARTDECODER_MAXIMUMSPEED_CV5, decSpecFolder); 
 
                 //  Inform the app that we have just read a new decoder specification file
                 //WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
@@ -156,6 +161,7 @@ namespace Z2XProgrammer.DataStore
         internal static bool RCN225_SPEEDTABLE_CV29_4 { get; set; }
         internal static bool RCN225_OPERATINGMODES_CV12 { get ; set; }
         internal static bool RCN225_LONGSHORTADDRESS_CV29_5 { get; set; }
+        internal static bool RCN225_MINIMALSPEED_CV2 { get; set; }
 
 
         //  DOEHLER AND HAASS
@@ -209,5 +215,12 @@ namespace Z2XProgrammer.DataStore
         internal static bool ZIMO_FUNCKEY_SHUNTINGKEY_CV155 { get; set ; }
         internal static bool ZIMO_ELECTRIC_UNCOUPLER_CV115X { get; set; }
         internal static bool ZIMO_SOUND_VOLUME_FUNCKEY_CV395 { get; set; }
-    }
+
+        // PIKO SmartDecoder 4.1
+        internal static bool PIKOSMARTDECODER_DECODERID_CV26X { get; set; }
+        internal static bool PIKOSMARTDECODER_MINIMALSPEED_CV2 { get; set; }
+        internal static bool PIKOSMARTDECODER_MAXIMUMSPEED_CV5 { get; set; }
+
+
+        }
 }

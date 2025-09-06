@@ -105,6 +105,12 @@ namespace Z2XProgrammer.DataStore
         public static DoehlerHaassDecoderConfigurationType DoehlerHaas = new DoehlerHaassDecoderConfigurationType(ref ConfigurationVariables);
         public static DoehlerHaassDecoderConfigurationType DoehlerHaasBackup = new DoehlerHaassDecoderConfigurationType(ref BackupCVs);
 
+        ///<summary>
+        /// The PIKO SmartDecoder V4.1 specific decoder settings
+        /// </summary>
+        public static PIKOSmartDecoderV41ConfigurationType PikoSmartDecoderV41 = new PIKOSmartDecoderV41ConfigurationType(ref ConfigurationVariables);
+        public static PIKOSmartDecoderV41ConfigurationType PikoSmartDecoderV41Backupp = new PIKOSmartDecoderV41ConfigurationType(ref BackupCVs);
+
         /// <summary>
         /// Stores the user defined decoder description.
         /// </summary>

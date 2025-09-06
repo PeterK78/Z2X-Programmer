@@ -170,42 +170,51 @@ namespace Z21Lib
         /// <summary>
         /// Change the speed and direction of a locomotive.
         /// </summary>
-        /// <param name="locomotiveAddress">The locomotive address.</param>
-        /// <param name="speed">The speed setting according to the Z21 protocoll section "LAN_X_SET_LOCO_DRIVE".</param>
-        /// <param name="realSpeedSteps">The real speed steps (according to the Z21).</param>
+        /// <param name="vehicleAddress">The locomotive address.</param>
+        /// <param name="speedStep">The speed setting according to the Z21 protocoll section "LAN_X_SET_LOCO_DRIVE".</param>
+        /// <param name="maxNumberOfSpeedSteps">14, 28, 128 (depending on the set rail format in the Z21).</param>
         /// <param name="direction">1 = Forward, 0 = Backward.</param>
-        public void SetLocoDrive(ushort locomotiveAddress, int speed, byte realSpeedSteps, int direction)
+        public void SetLocoDrive(ushort vehicleAddress, int speedStep, byte maxNumberOfSpeedSteps, int direction)
         {
-            Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) address:" + locomotiveAddress + " speed: " + speed + " realSpeedSteps: " + realSpeedSteps + " direction: " + direction);
-
-            //  We must prevent the speedstep from being set to 1. This would trigger an emergency stop. 
-            if (speed > 0) speed++;
-
-            //  Create the DB0 settings and a limit the speed.           
+            Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) address:" + vehicleAddress + " new speedstep:" + speedStep + " maxSpeedStep:" + maxNumberOfSpeedSteps + " direction:" + direction);
+       
+            //  DB0: Configure the DCC speed step mode.           
             byte DB0 = 0;
-            switch (realSpeedSteps)
+            switch (maxNumberOfSpeedSteps)
             {
                 case 14:
                     DB0 = 0x10;
-                    if (speed > 15) speed = 15;
                     break;
                 case 28:
                     DB0 = 0x12;
-                    if (speed > 31) speed = 31;
                     break;
                 case 128:
                     DB0 = 0x13;
-                    if (speed > 127) speed = 127;
                     break;
                 default:
-                    Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) wrond speed steps = " + realSpeedSteps);
+                    Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) wrond speed steps = " + maxNumberOfSpeedSteps);
                     return;
             }
 
+            // DB3: Configure the speed step and direction.
             byte DB3 = 0;
-            if (direction == 1) DB3 = 128;
-            DB3 = (byte)(DB3 + speed);                
 
+            //  Set the direction bit.
+            if (direction == 1) DB3 = 128;
+
+            // We now add the speed step information to DB3. 
+            switch (maxNumberOfSpeedSteps)
+            {
+                case 14:
+                    DB3 = (byte)(DB3 + DCC14SpeedStep2SpeedCoding(speedStep));
+                    break;
+                case 28:
+                    DB3 = (byte)(DB3 + DCC28SpeedStep2SpeedCoding(speedStep));
+                    break;
+                case 128:
+                    DB3 = (byte)(DB3 + DCC128SpeedStep2SpeedCoding(speedStep));
+                    break;
+            }
 
             byte[] bytes = new byte[10];
             bytes[0] = 0x0A;
@@ -214,14 +223,216 @@ namespace Z21Lib
             bytes[3] = 0;
             bytes[4] = 0xE4;
             bytes[5] = DB0;
-            bytes[6] = MSB(locomotiveAddress);
-            bytes[7] = LSB(locomotiveAddress);
+            bytes[6] = MSB(vehicleAddress);
+            bytes[7] = LSB(vehicleAddress);
             bytes[8] = DB3;
             bytes[9] = (byte)(bytes[4] ^ bytes[5] ^ bytes[6] ^ bytes[7] ^ bytes[8]);
 
             Sending(bytes);
             
         }
+
+        /// <summary>
+        /// This function checks if the emergency stop is active.
+        /// </summary>
+        /// <param name="speedCoding">The curren speed value encoded according to Z21 protocoll.</param>
+        /// <param name="maxSpeedSteps">The maximum speed steps supported by the decoder.</param>
+        /// <returns></returns>
+        private bool EStopActive(int speedCoding, int maxSpeedSteps)
+        {
+            switch (maxSpeedSteps)
+            {
+                case 14:    if(speedCoding == 0x01) return true; break;
+                case 28:    if ((speedCoding == 0x01) || (speedCoding == 0x11)) return true; break;
+                case 128:   if(speedCoding == 0x01) return true; break;
+                default: return false;
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Convert the given DCC128 speed coding to the DCC128 speed step (0 - 128).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC128 speed step.</param>
+        /// <returns></returns>
+        private byte DCC128SpeedCoding2SpeedStep(int speedCoding)
+        {
+            byte speedStep = 0;
+            if ((speedCoding == 0) || (speedCoding == 1))
+            {
+                speedStep = 0;
+            }
+            else
+            {
+                speedStep = (byte)(speedCoding - 1);
+            }
+            return speedStep;
+        }
+
+        /// <summary>
+        /// This function converts the DCC128 speed step (0 -128) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 128“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC128 speed step (0-128)</param>
+        /// <returns></returns>
+        private byte DCC128SpeedStep2SpeedCoding (int speedStep)
+        {
+            if (speedStep == 0) return 0;
+            return (byte)(speedStep + 1);
+        }
+
+
+        /// <summary>
+        /// Convert the given DCC14 speed coding to the DCC14 speed step (0 - 14).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
+        /// <returns></returns>
+        private byte DCC14SpeedCoding2SpeedStep(byte speedCoding)
+        {
+            switch (speedCoding)
+            {
+
+                case 0x00: return 0;
+                case 0x02: return 1;
+                case 0x03: return 2;
+                case 0x04: return 3;
+                case 0x05: return 4;
+                case 0x06: return 5;
+                case 0x07: return 6;
+                case 0x08: return 7;
+                case 0x09: return 8;
+                case 0x0A: return 9;
+                case 0x0B: return 10;
+                case 0x0C: return 11;
+                case 0x0D: return 12;
+                case 0x0E: return 13;
+                case 0x0F: return 14;
+                default: return 0x00;
+            }
+        
+        }
+
+        /// <summary>
+        /// This function converts the DCC14 speed step (0 - 14) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 14“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC14 speed step (0-14)</param>
+        /// <returns></returns>
+        private byte DCC14SpeedStep2SpeedCoding (int speedStep)
+        {
+            switch (speedStep)
+            {
+                
+                case 0: return 0x00;
+                case 1: return 0x02;
+                case 2: return 0x03;
+                case 3: return 0x04;
+                case 4: return 0x05;
+                case 5: return 0x06;
+                case 6: return 0x07;
+                case 7: return 0x08;
+                case 8: return 0x09;
+                case 9: return 0x0A;
+                case 10: return 0x0B;
+                case 11: return 0x0C;
+                case 12: return 0x0D;
+                case 13: return 0x0E;
+                case 14: return 0x0F;
+                default: return 0x00;
+            }
+
+        }
+
+        /// <summary>
+        /// Convert the given DCC28 speed coding to the DCC28 speed step (0 - 28).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
+        /// <returns></returns>
+        private byte DCC28SpeedCoding2SpeedStep(byte speedCoding)
+        {
+            switch (speedCoding)
+            {
+                case 0x00: return 0;        
+                case 0x01: return 0;
+                case 0x02: return 1;
+                case 0x12: return 2;
+                case 0x03: return 3;
+                case 0x13: return 4;
+                case 0x04: return 5;
+                case 0x14: return 6;
+                case 0x05: return 7;
+                case 0x15: return 8;
+                case 0x06: return 9;
+                case 0x16: return 10;
+                case 0x07: return 11;
+                case 0x17: return 12;
+                case 0x08: return 13;
+                case 0x18: return 14;
+                case 0x09: return 15;
+                case 0x19: return 16;
+                case 0x0A: return 17;
+                case 0x1A: return 18;
+                case 0x0B: return 19;
+                case 0x1B: return 20;
+                case 0x0C: return 21;
+                case 0x1C: return 22;
+                case 0x0D: return 23;
+                case 0x1D: return 24;
+                case 0x0E: return 25;
+                case 0x1E: return 26;
+                case 0x0F: return 27;
+                case 0x1F: return 28;
+                default: return 0x00;
+            }
+        }
+
+
+        /// <summary>
+        /// This function converts the DCC28 speed step (0 - 28) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 28“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC28 speed step (0-28)</param>
+        /// <returns></returns>
+        private byte DCC28SpeedStep2SpeedCoding (int speedStep)
+        {
+            switch (speedStep)
+            {
+                
+                case 0: return 0x00;
+                case 1: return 0x02;
+                case 2: return 0x12;
+                case 3: return 0x03;
+                case 4: return 0x13;
+                case 5: return 0x04;
+                case 6: return 0x14;
+                case 7: return 0x05;
+                case 8: return 0x15;
+                case 9: return 0x06;
+                case 10: return 0x16;
+                case 11: return 0x07;
+                case 12: return 0x17;
+                case 13: return 0x08;
+                case 14: return 0x18;
+                case 15: return 0x09;   
+                case 16: return 0x19;   
+                case 17: return 0x0A;   
+                case 18: return 0x1A;
+                case 19: return 0x0B;
+                case 20: return 0x1B;
+                case 21: return 0x0C;
+                case 22: return 0x1C;
+                case 23: return 0x0D;
+                case 24: return 0x1D;   
+                case 25: return 0x0E;
+                case 26: return 0x1E;   
+                case 27: return 0x0F;
+                case 28: return 0x1F;   
+                default: return 0x00;
+            }
+
+        }
+
 
         /// <summary>
         /// The following command can be used to poll the status of a locomotive. At the same time,
@@ -858,108 +1069,29 @@ namespace Z21Lib
                                 default: maxSpeedSteps = 0; break;
                             }
 
-                            // Parsing DB3 (Byte 8) - Direction 
+                            // Parsing DB3 (Byte 8) - Direction. 
                             int direction = Bit.IsSet(receivedBytes[8], 7) == true ? 1 : 0;
 
-                            // Parsing DB3 (Byte 8) - Speed 
-                            byte currentZ21SpeedValue = 0;
+
+                            // Parsing DB3 (Byte 8) - Emergency stop active.
+                            bool eStopActive = EStopActive((byte)(DB3 & 0x7F), maxSpeedSteps);
+
+                            // Parsing DB3 (Byte 8) - Speed step information. 
                             byte currentSpeedStep = 0;
-                            bool stop = false;
-                            bool eStop = false;
-
-                            switch (maxSpeedSteps)
+                            if(eStopActive == false)
                             {
-                                case 14:
-                                    // 14 speed steps
-                                    currentZ21SpeedValue = (byte)(receivedBytes[8] & 0x0F);
-
-                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
-                                    if (currentZ21SpeedValue == 0)
-                                    {
-                                        stop = true;
-                                        eStop = false;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else if (currentZ21SpeedValue == 1)
-                                    {
-                                        stop = false;
-                                        eStop = true;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else
-                                    {
-                                        stop = false;
-                                        eStop = false;
-                                     
-                                        //  Grab the current speed step value.  
-                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1);
-                                    }
-                                    break;
-                                case 28:
-
-                                    // 28 speed steps
-
-                                    //  Grab the current reported speed value in the first 4 bits of DB3.
-                                    currentZ21SpeedValue = (byte)(receivedBytes[8] & 0x0F);
-
-                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
-                                    if (currentZ21SpeedValue == 0)
-                                    {
-                                        stop = true;
-                                        eStop = false;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else if (currentZ21SpeedValue == 1)
-                                    {
-                                        stop = false;
-                                        eStop = true;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else
-                                    {
-                                        stop = false;
-                                        eStop = false;
-
-                                        //  Grab the intermediate speed step flag.
-                                        bool intermediateSpeedStep = Bit.IsSet(receivedBytes[8], 4);
-
-                                        //  Grab the current speed step value.  
-                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1) ;
-
-                                        //  Check if the intermediate speed step flag is set. If so, we have to increase the current speed step by 1.
-                                        if (intermediateSpeedStep == true)
-                                        {
-                                            currentSpeedStep = (byte)(currentSpeedStep + 1);
-                                        }
-                                    }
-                                    break;
-                                case 128:
-
-                                     //  Grab the current reported speed value in the first 7 bits of DB3.
-                                    currentZ21SpeedValue = Bit.Set(receivedBytes[8], 7, false);
-
-                                    //  Check if the speed is set to 0. If so, we have to set the stop flag.    
-                                    if (currentZ21SpeedValue == 0)
-                                    {
-                                        stop = true;
-                                        eStop = false;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else if (currentZ21SpeedValue == 1)
-                                    {
-                                        stop = false;
-                                        eStop = true;
-                                        currentSpeedStep = 0;
-                                    }
-                                    else
-                                    {
-                                        stop = false;
-                                        eStop = false;
-                                        
-                                        //  Grab the current speed step value.  
-                                        currentSpeedStep = (byte)(currentZ21SpeedValue -1) ;
-                                    }
-                                    break;
+                                switch (maxSpeedSteps)
+                                {
+                                    case 14:
+                                        currentSpeedStep = (byte)DCC14SpeedCoding2SpeedStep((byte)(DB3 & 0x7F));
+                                        break;
+                                    case 28:
+                                        currentSpeedStep = (byte)DCC28SpeedCoding2SpeedStep((byte)(DB3 & 0x7F));
+                                        break;
+                                    case 128:
+                                        currentSpeedStep = (byte)DCC128SpeedCoding2SpeedStep((DB3 & 0x7F));
+                                        break;
+                                }
                             }
 
                             // Parsing DB4.
@@ -1010,7 +1142,7 @@ namespace Z21Lib
                             functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
                             functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
 
-                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep,stop,eStop));
+                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep,(currentSpeedStep == 0) ? true: false,eStopActive));
 
                             Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_X_LOCO_INFO) locoAddress:" + locomotiveAddress + " DB3:" + DB3 + " speedSteps:" + maxSpeedSteps + " currentSpeedStep:" + currentSpeedStep + " direction:" + direction);
 

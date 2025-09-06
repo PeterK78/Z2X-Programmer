@@ -494,7 +494,7 @@ namespace Z2XProgrammer.DataModel
         //}
 
         /// <summary>
-        /// Contains the minimum speed of CV5
+        /// Contains the maximum speed of CV5.
         /// </summary>
         public byte MaximumSpeed
         {

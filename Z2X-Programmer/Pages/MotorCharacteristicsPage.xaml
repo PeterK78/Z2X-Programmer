@@ -41,7 +41,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     </ContentPage.Resources>
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
-        
+
         <VerticalStackLayout>
 
             <!-- Page Title -->
@@ -59,9 +59,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <!-- Page sheet content -->
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
-            <!-- RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4) -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
+                <!-- RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4) -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -81,363 +81,402 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
                     </Grid>
-            </Border>
+                </Border>
 
-            <!-- Basic speed curve with only 3 parameters (CV2, CV5 and CV6) -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
-                <VerticalStackLayout>
-                    <!-- RCN225: Minimum speed in CV2 -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label x:Name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                            <HorizontalStackLayout >
-                                <Slider Value="{Binding MinimumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                <!-- Basic speed curve with only 3 parameters (CV2, CV5 and CV6) -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
+                    <VerticalStackLayout>
+                        <!-- RCN225: Minimum speed in CV2 -->
+                        <Grid IsVisible="{Binding RCN225_MINIMALSPEED_CV2}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <HorizontalStackLayout >
+                                    <Slider Value="{Binding MinimumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
                         </Grid>
 
-                    <!-- RCN225: Medium speed in CV6 -->
-                    <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MEDIUMSPEED_CV6}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMediumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                            <HorizontalStackLayout>
-                                <Slider Value="{Binding MediumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV6Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
-                    </Grid>
+                        <!-- PIKO SMARTDECODER: Minimum speed in CV2 (the upper limit is 63, not 255) -->
+                        <Grid IsVisible="{Binding PIKOSMARTDECODER_MINIMUMSPEED_CV2}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <HorizontalStackLayout >
+                                    <Slider Value="{Binding MinimumPikoSmartDecoderSpeed}" WidthRequest="300" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MinimumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
 
-                    <!-- RCN225: Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
-                    <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MAXIMALSPEED_CV5}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
+                        <!-- RCN225: Medium speed in CV6 -->
+                        <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MEDIUMSPEED_CV6}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMediumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <HorizontalStackLayout>
+                                    <Slider Value="{Binding MediumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV6Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <!-- RCN225: Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
+                        <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MAXIMALSPEED_CV5}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
+                                <HorizontalStackLayout >
+                                    <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+
+                            <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
+                                <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+                        <!-- PIKO SMARTDECODER: Maximum speed in CV5 (the upper limit is 63, not 255) PIKOSMARTDECODER_MAXIMUMSPEED_CV5 -->
+                        <Grid Margin="0,20,0,0" IsVisible="{Binding PIKOSMARTDECODER_MAXIMUMSPEED_CV5}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <HorizontalStackLayout >
+                                    <Slider Value="{Binding MaximumPikoSmartDecoderSpeed}" WidthRequest="300" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MaximumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <!-- DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)-->
+                        <Grid Margin="0,20,0,0" IsVisible="{Binding DOEHLERANDHAASS_MAXIMALSPEED_CV5}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
+                                <HorizontalStackLayout >
+                                    <Label Text="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDoehlerAndHaasDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+
+                            <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" >
+                                <Slider Value="{Binding MaximumDoehlerAndHaasSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding MaximumSpeedDoehlerAndHaasValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- RCN225: Extended speed curve in CV67 to CV94 -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Rotation="270">
+
+                        <!-- RCN225: Extended speed curve in CV67 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67}" VerticalOptions="Center" WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue67}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue67}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV68 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68}" VerticalOptions="Center" WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue68}"  Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue68}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV69 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue69}"  Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue69}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV70 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep4CV70" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep4CV70}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue70}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue70}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV71 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep5CV71" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep5CV71}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue71}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue71}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV72 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep6CV72" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep6CV72}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue72}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue72}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV73 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep7CV73" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep7CV73}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue73}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue73}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV74 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep8CV74" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep8CV74}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue74}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue74}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV75 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep9CV75" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep9CV75}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue75}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue75}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV76 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep10CV76" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep10CV76}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue76}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue76}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV77 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep11CV77" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep11CV77}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue77}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue77}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV78 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep12CV78" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep12CV78}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue78}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue78}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV79 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep13CV79" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep13CV79}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue79}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue79}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV80 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep14CV80" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep14CV80}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue80}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue80}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV81 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep15CV81" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep15CV81}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue81}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue81}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV82 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep16CV82" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep16CV82}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue82}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue82}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV83 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep17CV83" Style="{StaticResource Z2XProgrammerLabelHeading3Style}"   Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep17CV83}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue83}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue83}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV84 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84}" VerticalOptions="Center" WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue84}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue84}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV85 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep19CV85" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep19CV85}" VerticalOptions="Center"  WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue85}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue85}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV86 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep20CV86" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep20CV86}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue86}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue86}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV87 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep21CV87" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep21CV87}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue87}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue87}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV88 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep22CV88" Style="{StaticResource Z2XProgrammerLabelHeading3Style}"  Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep22CV88}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue88}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue88}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV89 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep23CV89"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep23CV89}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue89}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue89}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV90 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep24CV90" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep24CV90}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue90}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue90}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV91 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep25CV91" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep25CV91}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue91}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue91}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV92 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep26CV92" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep26CV92}" VerticalOptions="Center" WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue92}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue92}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV93 -->
+                        <HorizontalStackLayout>
+                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep27CV93" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep27CV93}" VerticalOptions="Center"  WidthRequest="200"></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue93}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue93}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                        <!-- RCN225: Extended speed curve in CV94 -->
+                        <HorizontalStackLayout>
+                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep28CV94" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep28CV94}" VerticalOptions="Center"  WidthRequest="200" ></Label>
+                            <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue94}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue94}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ZIMOs MX specific motor reference voltage feature in CV57-->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}">
+                    <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                                                    
-                        <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
-                            <HorizontalStackLayout >
-                                <Label Text="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                            <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                            <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
                         </HorizontalStackLayout>
-                        
+
+                        <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
+                            <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                            <Label   Text="{Binding MotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
+                        </HorizontalStackLayout>
+
                     </Grid>
-                    
-                    <!-- DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)-->
-                    <Grid Margin="0,20,0,0" IsVisible="{Binding DOEHLERANDHAASS_MAXIMALSPEED_CV5}">
-                     <Grid.ColumnDefinitions>
-                         <ColumnDefinition Width="*"></ColumnDefinition>
-                         <ColumnDefinition Width="Auto"></ColumnDefinition>
-                     </Grid.ColumnDefinitions>
-                     <Grid.RowDefinitions>
-                         <RowDefinition Height="*"></RowDefinition>
-                         <RowDefinition Height="*"></RowDefinition>
-                         <RowDefinition Height="*"></RowDefinition>
-                     </Grid.RowDefinitions>
-                                 
-                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                     <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                     <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
-                         <HorizontalStackLayout >
-                             <Label Text="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                             <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MaximumSpeedDoehlerAndHaasDefaultUsed}" HorizontalOptions="End" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSwitchTooltip}"></Switch>
-                         </HorizontalStackLayout>
-                         <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                     </VerticalStackLayout>
 
-                     <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                     <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" >
-                         <Slider Value="{Binding MaximumDoehlerAndHaasSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
-                         <Label  Text="{Binding MaximumSpeedDoehlerAndHaasValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
-                     </HorizontalStackLayout>
-     
-                 </Grid>
-                   
-                    
-                </VerticalStackLayout>
-            </Border>
+                </Border>
 
-            <!-- RCN225: Extended speed curve in CV67 to CV94 -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
-                <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Rotation="270">
+                <!-- ZIMO: MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57) -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
+                    <Grid Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- RCN225: Extended speed curve in CV67 -->
-                    <HorizontalStackLayout>
-                        <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep1CV67}" VerticalOptions="Center" WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue67}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue67}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
 
-                    <!-- RCN225: Extended speed curve in CV68 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep2CV68}" VerticalOptions="Center" WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue68}"  Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue68}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-                    
-                    <!-- RCN225: Extended speed curve in CV69 -->
-                    <HorizontalStackLayout>
-                        <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep3CV69}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue69}"  Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue69}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV70 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep4CV70" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep4CV70}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue70}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue70}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV71 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep5CV71" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep5CV71}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue71}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue71}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV72 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep6CV72" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep6CV72}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue72}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue72}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV73 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep7CV73" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep7CV73}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue73}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue73}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV74 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep8CV74" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep8CV74}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue74}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue74}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV75 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep9CV75" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep9CV75}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue75}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue75}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV76 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep10CV76" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep10CV76}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue76}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue76}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV77 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep11CV77" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep11CV77}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue77}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue77}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV78 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep12CV78" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep12CV78}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue78}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue78}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV79 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep13CV79" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep13CV79}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue79}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue79}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV80 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep14CV80" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep14CV80}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue80}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue80}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV81 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep15CV81" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep15CV81}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue81}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue81}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV82 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep16CV82" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep16CV82}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue82}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue82}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV83 -->
-                    <HorizontalStackLayout>
-                        <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep17CV83" Style="{StaticResource Z2XProgrammerLabelHeading3Style}"   Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep17CV83}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue83}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue83}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV84 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep18CV84}" VerticalOptions="Center" WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue84}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue84}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV85 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep19CV85" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep19CV85}" VerticalOptions="Center"  WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue85}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue85}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV86 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep20CV86" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep20CV86}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue86}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue86}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV87 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep21CV87" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep21CV87}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue87}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue87}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV88 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep22CV88" Style="{StaticResource Z2XProgrammerLabelHeading3Style}"  Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep22CV88}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue88}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue88}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV89 -->
-                    <HorizontalStackLayout>
-                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep23CV89"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep23CV89}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue89}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue89}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV90 -->
-                    <HorizontalStackLayout>
-                            <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep24CV90" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep24CV90}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue90}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue90}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV91 -->
-                    <HorizontalStackLayout>
-                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep25CV91" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep25CV91}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue91}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue91}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV92 -->
-                    <HorizontalStackLayout>
-                            <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep26CV92" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep26CV92}" VerticalOptions="Center" WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue92}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue92}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV93 -->
-                    <HorizontalStackLayout>
-                        <Label x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep27CV93" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep27CV93}" VerticalOptions="Center"  WidthRequest="200"></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue93}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue93}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                    <!-- RCN225: Extended speed curve in CV94 -->
-                    <HorizontalStackLayout>
-                        <Label  x:Name="FrameMotorCharacteristicsExtendedSpeedCurveStep28CV94" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurveStep28CV94}" VerticalOptions="Center"  WidthRequest="200" ></Label>
-                        <Slider Margin="40,0,0,0" Value="{Binding ExtendedSpeedCurveValue94}" Minimum="0" Maximum="255" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label  Margin="40,0,0,0" Text="{Binding ExtendedSpeedCurveValue94}" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" WidthRequest="100" ></Label>
-                    </HorizontalStackLayout>
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            <!-- ZIMOs MX specific motor reference voltage feature in CV57-->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}">
-                <Grid Margin="0,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                    <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                        <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
-                    </HorizontalStackLayout>
-
-                    <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                        <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                        <Label   Text="{Binding MotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                    </HorizontalStackLayout>
-
-                </Grid>
-
-            </Border>
-
-            <!-- ZIMO: MS specific motor reference voltage feature in CV57 (ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57) -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
-                <Grid Margin="0,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                    
                         <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
                             <HorizontalStackLayout>
@@ -452,151 +491,151 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" Maximum="155" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
                             <Label  Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
                         </HorizontalStackLayout>
-                        
+
                     </Grid>
-            </Border>
+                </Border>
 
-            <!-- ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9) -->
-            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}">
-                <VerticalStackLayout>
-                    <Grid Margin="0,10,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <!-- Description -->
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
-
-                        <!-- Use default motor control frequency -->
-                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
-                            </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV9Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
-
-                        </Grid>
-                        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
-                        <Grid>
+                <!-- ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9) -->
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLFREQUENCY_CV9}">
+                    <VerticalStackLayout>
+                        <Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <!-- Selection: High- or low frequency -->
-                            <Label x:Name="FrameMotorCharacteristicsMotorControlFreqType" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
-                            <Picker Grid.Row="0" Grid.Column="1" Margin="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlFrequencyTypes}" SelectedItem="{Binding SelectedMotorControlFrequqencyType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End"></Picker>
+                            <!-- Description -->
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
 
-                            <!-- EMK Rate -->
-                            <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKRate}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding IsHighFrequencySelected}">
-                                <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Margin ="10,0,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" VerticalOptions="Center" Text="{Binding EMKRate}" MinimumWidthRequest="100" HorizontalTextAlignment="End" ></Label>
-                            </HorizontalStackLayout>
-                            
-                            <!-- Low frequency -->
-                            <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsFrequency}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  >
-                                <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding LowFrequency}" HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Label>
-                            </HorizontalStackLayout>
+                            <!-- Use default motor control frequency -->
+                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
+                                </HorizontalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV9Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
 
-                            <!-- EMK Gap -->
-                            <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKGap}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="2"  Grid.Column="1" IsVisible="{Binding IsHighFrequencySelected}" VerticalOptions="Center" >
-                                <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="1" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}" Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding EMKGap}" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
-                            </HorizontalStackLayout>
-
-                            
                         </Grid>
-                    </Border>
-                </VerticalStackLayout>             
-            </Border>
+                        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
 
-            <!-- ZIMO: MX decoder motor control PID settings CV56 (ZIMO_MXMOTORCONTROLPID_CV56) -->
-            <Label IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
-                <Grid Margin="0,10,0,0">
-                    <Grid.RowDefinitions>
-                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                                <!-- Selection: High- or low frequency -->
+                                <Label x:Name="FrameMotorCharacteristicsMotorControlFreqType" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
+                                <Picker Grid.Row="0" Grid.Column="1" Margin="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlFrequencyTypes}" SelectedItem="{Binding SelectedMotorControlFrequqencyType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End"></Picker>
 
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,10,0,20" />
+                                <!-- EMK Rate -->
+                                <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKRate}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding IsHighFrequencySelected}">
+                                    <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Margin ="10,0,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" VerticalOptions="Center" Text="{Binding EMKRate}" MinimumWidthRequest="100" HorizontalTextAlignment="End" ></Label>
+                                </HorizontalStackLayout>
 
-                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Motor type selection -->
-                    <Label  Grid.Row="1" Grid.Column="0" Margin ="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDMotorType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <VerticalStackLayout Grid.Row="1"  Grid.Column="1" Margin ="0,10,0,20">
-                        <Picker   ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End" ></Picker>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                <!-- Low frequency -->
+                                <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsFrequency}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  >
+                                    <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding LowFrequency}" HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Label>
+                                </HorizontalStackLayout>
+
+                                <!-- EMK Gap -->
+                                <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKGap}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <HorizontalStackLayout Grid.Row="2"  Grid.Column="1" IsVisible="{Binding IsHighFrequencySelected}" VerticalOptions="Center" >
+                                    <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="1" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}" Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding EMKGap}" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
+                                </HorizontalStackLayout>
+
+
+                            </Grid>
+                        </Border>
                     </VerticalStackLayout>
+                </Border>
 
-                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Proportional value -->
-                    <Label Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDPValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <VerticalStackLayout Grid.Row="2" Grid.Column="1">
-                        <HorizontalStackLayout >
-                            <Slider  Value="{Binding MotorControlPIDProportionalValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
+                <!-- ZIMO: MX decoder motor control PID settings CV56 (ZIMO_MXMOTORCONTROLPID_CV56) -->
+                <Label IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLPID_CV56}">
+                    <Grid Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- ZIMO: MX decoder motor control PID settings CV56 - Integral value -->
-                    <Label Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDIValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <VerticalStackLayout Grid.Row="3" Grid.Column="1">
-                        <HorizontalStackLayout >
-                            <Slider  Value="{Binding MotorControlPIDIntegralValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                    
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,10,0,20" />
+
+                        <!-- ZIMO: MX decoder motor control PID settings CV56 - Motor type selection -->
+                        <Label  Grid.Row="1" Grid.Column="0" Margin ="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDMotorType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1"  Grid.Column="1" Margin ="0,10,0,20">
+                            <Picker   ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End" ></Picker>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+
+                        <!-- ZIMO: MX decoder motor control PID settings CV56 - Proportional value -->
+                        <Label Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDPValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                            <HorizontalStackLayout >
+                                <Slider  Value="{Binding MotorControlPIDProportionalValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+
+                        <!-- ZIMO: MX decoder motor control PID settings CV56 - Integral value -->
+                        <Label Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDIValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                            <HorizontalStackLayout >
+                                <Slider  Value="{Binding MotorControlPIDIntegralValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+
                     </Grid>
 
-            </Border>
+                </Border>
 
-            <!-- DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49) -->
-            <Label IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidthTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-            <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>  
-                    </Grid.RowDefinitions>
-                        
-                    <Label x:Name="FrameMotorCharacteristicsDHImpulswidth" Grid.Column="0" Grid.Row="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
-                        <HorizontalStackLayout HorizontalOptions="End">
-                            <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                            <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="50" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
-                        </HorizontalStackLayout>
-                        <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                    </VerticalStackLayout>
-                </Grid>
-            </Border>
+                <!-- DÖHLER & HAAS: Motor impuls width setting in CV49 (DOEHLERHAAS_MOTORIMPULSWIDTH_CV49) -->
+                <Label IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidthTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DOEHLERHAAS_MOTORIMPULSWIDTH_CV49}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="FrameMotorCharacteristicsDHImpulswidth" Grid.Column="0" Grid.Row="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
+                            <HorizontalStackLayout HorizontalOptions="End">
+                                <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
+                                <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="50" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
+                            </HorizontalStackLayout>
+                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
 
             </VerticalStackLayout>
         </VerticalStackLayout>

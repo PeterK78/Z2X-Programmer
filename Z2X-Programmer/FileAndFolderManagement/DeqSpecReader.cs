@@ -119,6 +119,11 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public const string DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132 = "DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132";
         public const string DOEHLERANDHAASS_MAXIMALSPEED_CV5 = "DOEHLERANDHAASS_MAXIMALSPEED_CV5";
 
+        // PIKO SmartDecoder V4.1 specific features
+        public const string PIKOSMARTDECODER41_MINIMALSPEED_CV2 = "PIKOSMARTDECODER_MINIMALSPEED_CV2";
+        public const string PIKOSMARTDECODER_DECODERID_CV26X = "PIKOSMARTDECODER_DECODERID_CV26X";
+        public const string PIKOSMARTDECODER_MAXIMUMSPEED_CV5 = "PIKOSMARTDECODER_MAXIMUMSPEED_CV5";
+
         private const string UNKNOWN_DECDODER_EN = "Unknown decoder";
         private const string UNKNOWN_DECDODER_DE = "Unbekannter Decoder";
 
@@ -196,6 +201,44 @@ namespace Z2XProgrammer.FileAndFolderManagement
             return false;
 
         }
+
+        /// <summary>
+        /// Returns TRUE if the given decoder specification supports any function keys.
+        /// </summary>
+        /// <param name="decSpecName">The name of the decoder specification.</param>
+        /// <returns></returns>
+        public static bool AnyFunctionKeySupported (string decSpecName)
+        {
+             if(decSpecName == "") return false;
+
+            string[] soundFunctionKeysFeatures = new string[]
+            {
+                "RCN225_FUNCTIONOUTPUTMAPPING_CV3346",
+                "ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61",
+                "ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156",
+                "DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133",
+                "DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132",
+                "ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397",
+                "ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396",
+                "ZIMO_FUNCKEY_SOUNDALLOFF_CV310",
+                "ZIMO_FUNCKEY_CURVESQUEAL_CV308",
+                "ZIMO_FUNCKEY_MUTE_CV313",
+                "ZIMO_INPUTMAPPING_CV4XX",
+                "ZIMO_MXFXFUNCTIONKEYMAPPING_CV3346",
+                "ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X",
+                "ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X",
+                "ZIMO_FUNCKEY_SHUNTINGKEY_CV155"
+            };
+
+            //  Loop trough all function keys and check if the feature is supported
+            foreach (string feature in soundFunctionKeysFeatures)
+            {
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.DecSpecsFolderPath)) return true;
+                if (FeatureSupported(decSpecName, feature, FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath)) return true; 
+            }
+            return false;
+        }
+
 
         /// <summary>
         /// Returns TRUE if the given decoder specification supports any function settings (e.g. uncoupler configuration etc..).
@@ -506,7 +549,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
         /// <summary>
         /// Returns a list of strings with all available decoder specification files.
         /// </summary>
-        /// <param name="folder">The path to the deqspeqs folder</param>
+        /// <param name="folder">The path to the deqspeqs folder.</param>
         /// <returns></returns>
         public static List<string> GetAvailableDecSpecs(string folder)
         {
@@ -776,42 +819,52 @@ namespace Z2XProgrammer.FileAndFolderManagement
 
             try
             {
-
-                string[] fileEntries = Directory.GetFiles(ApplicationFolders.DecSpecsFolderPath, "*.decspec");
-                foreach (string fileName in fileEntries)
+                string[] fileEntries = new string[] { };
+                string[] deqSpecDirectories = new string[]
                 {
+                    ApplicationFolders.DecSpecsFolderPath,
+                    ApplicationFolders.UserSpecificDecSpecsFolderPath
+                };
 
-                    XDocument xdoc = XDocument.Load(fileName);
-                    //  Formatting check of the XML file - check if the decoder section is available
-                    if (xdoc.Element("decoderseries") == null) return "";
-                    XElement xDecoderElement = xdoc.Element("decoderseries")!;
-
-                    //  Formatting check of the XML file - check if the manufacturerid attribute is available
-                    if (xDecoderElement.Attribute("manufacturerid") == null) return "";
-                    XAttribute xManufacturerIDAttribute = xDecoderElement.Attribute("manufacturerid")!;
-
-                    if (xManufacturerIDAttribute.Value == manufactuerID.ToString())
+                foreach (string folder in deqSpecDirectories)
+                {
+                    fileEntries = Directory.GetFiles(folder, "*.decspec");
+                    foreach (string fileName in fileEntries)
                     {
-                        //  var query = from c in xdoc.Descendants("decoderseries") select c;
-                        foreach (XElement element in xdoc.Descendants("decoder"))
+
+                        XDocument xdoc = XDocument.Load(fileName);
+                        //  Formatting check of the XML file - check if the decoder section is available
+                        if (xdoc.Element("decoderseries") == null) return "";
+                        XElement xDecoderElement = xdoc.Element("decoderseries")!;
+
+                        //  Formatting check of the XML file - check if the manufacturerid attribute is available
+                        if (xDecoderElement.Attribute("manufacturerid") == null) return "";
+                        XAttribute xManufacturerIDAttribute = xDecoderElement.Attribute("manufacturerid")!;
+
+                        if (xManufacturerIDAttribute.Value == manufactuerID.ToString())
                         {
-                            if (element.Attribute("decoderid") == null) continue;
-                            string decID = element.Attribute("decoderid")!.Value;
-                            if (decID.ToUpper() == decoderID.ToString().ToUpper())
+                            //  var query = from c in xdoc.Descendants("decoderseries") select c;
+                            foreach (XElement element in xdoc.Descendants("decoder"))
                             {
-                                if (xDecoderElement.Attribute("description_de") == null) return "";
-                                if (AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN == Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT))
+                                if (element.Attribute("decoderid") == null) continue;
+                                string decID = element.Attribute("decoderid")!.Value;
+                                if (decID.ToUpper() == decoderID.ToString().ToUpper())
                                 {
-                                    return xDecoderElement.Attribute("description_de")!.Value;
-                                }
-                                else
-                                {
-                                    return xDecoderElement.Attribute("description_en")!.Value;
+                                    if (xDecoderElement.Attribute("description_de") == null) return "";
+                                    if (AppConstants.PREFERENCES_LANGUAGE_KEY_GERMAN == Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT))
+                                    {
+                                        return xDecoderElement.Attribute("description_de")!.Value;
+                                    }
+                                    else
+                                    {
+                                        return xDecoderElement.Attribute("description_en")!.Value;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+           
                 return GetDefaultDecSpecName();
             }
             catch { return string.Empty; }
@@ -1298,6 +1351,29 @@ public static string MinitrixDeqSpec = @"<!-- Specification file for Minitrix de
     <DOEHLERANDHAAS_FIRMWAREVERSION_CV262x support=""yes"" writeable=""no""/>
 
  </decoderseries>";
+
+public static string PikoSmartDecoderSpec = @"<!-- Specification file for Piko SmartDecoder 4.1 decoders -->
+<decoderseries description_en=""PIKO SmartDecoder 4.1"" description_de=""PIKO SmartDecoder 4.1"" manufacturerid=""162"" decspecversion=""1"" notes_de=""Universell einsetzbarer Digitaldecoder"" notes_en=""Universally applicable digital decoder"">
+
+    <!-- Supported decoders -->
+    <decoder decoderid=""691152942"" decodername=""PIKO SmartDecoder 4.1"" />
+    
+    <!-- Supported RCN225 features -->
+    <RCN225_BASEADDRESS_CV1 support=""yes"" writeable=""yes""/>
+    <RCN225_DECODERVERSION_CV7 support=""yes"" writeable=""no""/>    
+    <RCN225_MANUFACTUERID_CV8 support=""yes"" writeable=""no""/>
+    <RCN225_CONSISTADDRESS_CV19X support=""no"" writeable=""yes""/>
+    <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
+    <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+
+    <!-- Supported PIKO features -->
+    <PIKOSMARTDECODER_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
+    <PIKOSMARTDECODER_MAXIMUMSPEED_CV5 support=""yes"" writeable=""yes""/>
+    <PIKOSMARTDECODER_DECODERID_CV26X support=""yes"" writeable=""no""/>
+
+ </decoderseries>";
+
+
     
     }
 }

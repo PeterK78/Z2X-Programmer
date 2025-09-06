@@ -1350,6 +1350,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decoder ID (CV261, CV262, CV263, CV264).
+        /// </summary>
+        public static string FrameDecoderPIKOSmartDecoderV41InfoDecoderID {
+            get {
+                return ResourceManager.GetString("FrameDecoderPIKOSmartDecoderV41InfoDecoderID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string FrameDecoderZIMOCopyClipboard {
@@ -3251,7 +3260,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum speed.
+        ///   Looks up a localized string similar to Maximum speed (CV5).
         /// </summary>
         public static string FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel {
             get {
@@ -3807,6 +3816,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameMotorCharacteristicsPIDTitle {
             get {
                 return ResourceManager.GetString("FrameMotorCharacteristicsPIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum speed (CV2).
+        /// </summary>
+        public static string FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle", resourceCulture);
             }
         }
         
