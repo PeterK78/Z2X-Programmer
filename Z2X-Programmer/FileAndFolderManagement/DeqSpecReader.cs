@@ -1365,6 +1365,10 @@ public static string PikoSmartDecoderSpec = @"<!-- Specification file for Piko S
     <RCN225_CONSISTADDRESS_CV19X support=""no"" writeable=""yes""/>
     <RCN225_LONGSHORTADDRESS_CV29_5 support=""yes"" writeable=""yes""/>
     <RCN225_ABC_CV27_X support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMENABLED_CV29_3 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL1BROADCAST_CV28_0 support=""yes"" writeable=""yes""/>
+    <RCN225_RAILCOMCHANNEL2DATA_CV28_1 support=""yes"" writeable=""yes""/>
+    <RCN225_AUTOMATICREGISTRATION_CV28_7 support=""yes"" writeable=""yes""/>
 
     <!-- Supported PIKO features -->
     <PIKOSMARTDECODER_MINIMALSPEED_CV2 support=""yes"" writeable=""yes""/>
