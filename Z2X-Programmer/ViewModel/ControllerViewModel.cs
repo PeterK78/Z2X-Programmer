@@ -24,7 +24,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System.Windows.Input;
 using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -56,6 +55,14 @@ namespace Z2XProgrammer.ViewModel
         // Vehicle address
         [ObservableProperty]
         ushort vehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+
+        // RailCom Speed
+        [ObservableProperty]
+        ushort railComSpeed = 0;
+
+        // RailCom QOS
+        [ObservableProperty]
+        ushort railComQOS = 0;
 
         //  Speed
         [ObservableProperty]
@@ -210,6 +217,8 @@ namespace Z2XProgrammer.ViewModel
 
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
+            CommandStation.OnRailComInfoReceived += OnRailComInfoReceived; 
+            
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
@@ -253,6 +262,9 @@ namespace Z2XProgrammer.ViewModel
             //  A different locomotive or decoder specification has been selected - we will
             //  deactivate the controller and request the information for the selected locomotive again.
             ControllerWindowEnabled = false;
+
+            RailComSpeed = 0;
+
             OnGetDecoderConfiguration();
         }
 
@@ -268,6 +280,20 @@ namespace Z2XProgrammer.ViewModel
             if (SpeedStep128 == true) realSpeedSteps = 128;
 
             CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.LocomotiveAddress, speed, realSpeedSteps, direction);
+        }
+
+        /// <summary>
+        /// This event OnRailComInfoReceived is raised when the command station receives railcom data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRailComInfoReceived(object? sender, RailComInfoEventArgs e)
+        {
+            if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+            {
+                RailComSpeed = e.Speed;
+                RailComQOS = e.QOS;
+            }
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace Z21Lib
         //  Z21 CentralState states
         private const byte csEmergencyStop = 0x01;
         private const byte csTrackVoltageOff = 0x02;
-        private const byte csShortCircuit  = 0x04;
+        private const byte csShortCircuit = 0x04;
         private const byte csProgrammingModeActive = 0x20;
 
         //  The UDP port (default according to the protocol is 21105)
@@ -62,8 +62,8 @@ namespace Z21Lib
         private System.Timers.Timer _pingZ21Timer = new System.Timers.Timer() { AutoReset = true, Enabled = false, Interval = new TimeSpan(0, 0, 5).TotalMilliseconds, };
 
         //  According to the Z21 protocol specification we have to communicate at least each minute with the Z21. We use the timer _renewZ21SubscriptionTimer.
-        private System.Timers.Timer _renewZ21SubscriptionTimer  = new System.Timers.Timer() { AutoReset = true, Enabled = false, Interval = new TimeSpan(0, 0, 50).TotalMilliseconds, };
-        
+        private System.Timers.Timer _renewZ21SubscriptionTimer = new System.Timers.Timer() { AutoReset = true, Enabled = false, Interval = new TimeSpan(0, 0, 50).TotalMilliseconds, };
+
         #endregion
 
         #region REGION: PUBLIC DELEGATES
@@ -76,6 +76,9 @@ namespace Z21Lib
 
         //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.).
         public event EventHandler<StateEventArgs> OnStatusChanged = default!;
+
+        //  Will be called if we receive railcom data.
+        public event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
 
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
@@ -135,37 +138,7 @@ namespace Z21Lib
 
         #endregion
 
-        #region REGION: PRIVATE FUNCTIONS
-
-        /// <summary>
-        /// Receives the raw data bytes from the UDP socket.
-        /// </summary>
-        /// <param name="res"></param>
-        private void ReceivingRawZ21Data(IAsyncResult res)
-        {
-            try
-            {
-                IPEndPoint RemoteIpEndPoint = null!;
-                byte[] received = _udpClient.EndReceive(res, ref RemoteIpEndPoint!);
-                _udpClient.BeginReceive(new AsyncCallback(ReceivingRawZ21Data), null);
-
-                //OnReceive?.Invoke(this, new DataEventArgs(received));
-                //Logger.PrintDevConsole($"Z21Lib:ReceivingRawZ21Data  {BitConverter.ToString(received)}");
-
-                ParseRawZ21Data(received);
-            }
-            catch (Exception ex)
-            {
-                 Logger.PrintDevConsole("Z21Lib:Error while receiving data (" + ex.Message + ")");
-            }
-        }
-
-        #endregion
-
         #region REGION: PUBLIC FUNCTIONS
-
-
-
 
         /// <summary>
         /// Change the speed and direction of a locomotive.
@@ -177,7 +150,7 @@ namespace Z21Lib
         public void SetLocoDrive(ushort vehicleAddress, int speedStep, byte maxNumberOfSpeedSteps, int direction)
         {
             Logger.PrintDevConsole("Z21Lib:SetLocoDrive (LAN_X_SET_LOCO_DRIVE) address:" + vehicleAddress + " new speedstep:" + speedStep + " maxSpeedStep:" + maxNumberOfSpeedSteps + " direction:" + direction);
-       
+
             //  DB0: Configure the DCC speed step mode.           
             byte DB0 = 0;
             switch (maxNumberOfSpeedSteps)
@@ -229,210 +202,8 @@ namespace Z21Lib
             bytes[9] = (byte)(bytes[4] ^ bytes[5] ^ bytes[6] ^ bytes[7] ^ bytes[8]);
 
             Sending(bytes);
-            
-        }
-
-        /// <summary>
-        /// This function checks if the emergency stop is active.
-        /// </summary>
-        /// <param name="speedCoding">The curren speed value encoded according to Z21 protocoll.</param>
-        /// <param name="maxSpeedSteps">The maximum speed steps supported by the decoder.</param>
-        /// <returns></returns>
-        private bool EStopActive(int speedCoding, int maxSpeedSteps)
-        {
-            switch (maxSpeedSteps)
-            {
-                case 14:    if(speedCoding == 0x01) return true; break;
-                case 28:    if ((speedCoding == 0x01) || (speedCoding == 0x11)) return true; break;
-                case 128:   if(speedCoding == 0x01) return true; break;
-                default: return false;
-            }
-            return false;
-        }
-
-
-        /// <summary>
-        /// Convert the given DCC128 speed coding to the DCC128 speed step (0 - 128).
-        /// </summary>
-        /// <param name="speedCoding">The encoded DCC128 speed step.</param>
-        /// <returns></returns>
-        private byte DCC128SpeedCoding2SpeedStep(int speedCoding)
-        {
-            byte speedStep = 0;
-            if ((speedCoding == 0) || (speedCoding == 1))
-            {
-                speedStep = 0;
-            }
-            else
-            {
-                speedStep = (byte)(speedCoding - 1);
-            }
-            return speedStep;
-        }
-
-        /// <summary>
-        /// This function converts the DCC128 speed step (0 -128) to the Z21 speed coding. The conversion
-        /// is according to 'Fahrstufen-Codierung bei „DCC 128“' from the Z21 protocol specification.
-        /// </summary>
-        /// <param name="speedStep">The DCC128 speed step (0-128)</param>
-        /// <returns></returns>
-        private byte DCC128SpeedStep2SpeedCoding (int speedStep)
-        {
-            if (speedStep == 0) return 0;
-            return (byte)(speedStep + 1);
-        }
-
-
-        /// <summary>
-        /// Convert the given DCC14 speed coding to the DCC14 speed step (0 - 14).
-        /// </summary>
-        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
-        /// <returns></returns>
-        private byte DCC14SpeedCoding2SpeedStep(byte speedCoding)
-        {
-            switch (speedCoding)
-            {
-
-                case 0x00: return 0;
-                case 0x02: return 1;
-                case 0x03: return 2;
-                case 0x04: return 3;
-                case 0x05: return 4;
-                case 0x06: return 5;
-                case 0x07: return 6;
-                case 0x08: return 7;
-                case 0x09: return 8;
-                case 0x0A: return 9;
-                case 0x0B: return 10;
-                case 0x0C: return 11;
-                case 0x0D: return 12;
-                case 0x0E: return 13;
-                case 0x0F: return 14;
-                default: return 0x00;
-            }
-        
-        }
-
-        /// <summary>
-        /// This function converts the DCC14 speed step (0 - 14) to the Z21 speed coding. The conversion
-        /// is according to 'Fahrstufen-Codierung bei „DCC 14“' from the Z21 protocol specification.
-        /// </summary>
-        /// <param name="speedStep">The DCC14 speed step (0-14)</param>
-        /// <returns></returns>
-        private byte DCC14SpeedStep2SpeedCoding (int speedStep)
-        {
-            switch (speedStep)
-            {
-                
-                case 0: return 0x00;
-                case 1: return 0x02;
-                case 2: return 0x03;
-                case 3: return 0x04;
-                case 4: return 0x05;
-                case 5: return 0x06;
-                case 6: return 0x07;
-                case 7: return 0x08;
-                case 8: return 0x09;
-                case 9: return 0x0A;
-                case 10: return 0x0B;
-                case 11: return 0x0C;
-                case 12: return 0x0D;
-                case 13: return 0x0E;
-                case 14: return 0x0F;
-                default: return 0x00;
-            }
 
         }
-
-        /// <summary>
-        /// Convert the given DCC28 speed coding to the DCC28 speed step (0 - 28).
-        /// </summary>
-        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
-        /// <returns></returns>
-        private byte DCC28SpeedCoding2SpeedStep(byte speedCoding)
-        {
-            switch (speedCoding)
-            {
-                case 0x00: return 0;        
-                case 0x01: return 0;
-                case 0x02: return 1;
-                case 0x12: return 2;
-                case 0x03: return 3;
-                case 0x13: return 4;
-                case 0x04: return 5;
-                case 0x14: return 6;
-                case 0x05: return 7;
-                case 0x15: return 8;
-                case 0x06: return 9;
-                case 0x16: return 10;
-                case 0x07: return 11;
-                case 0x17: return 12;
-                case 0x08: return 13;
-                case 0x18: return 14;
-                case 0x09: return 15;
-                case 0x19: return 16;
-                case 0x0A: return 17;
-                case 0x1A: return 18;
-                case 0x0B: return 19;
-                case 0x1B: return 20;
-                case 0x0C: return 21;
-                case 0x1C: return 22;
-                case 0x0D: return 23;
-                case 0x1D: return 24;
-                case 0x0E: return 25;
-                case 0x1E: return 26;
-                case 0x0F: return 27;
-                case 0x1F: return 28;
-                default: return 0x00;
-            }
-        }
-
-
-        /// <summary>
-        /// This function converts the DCC28 speed step (0 - 28) to the Z21 speed coding. The conversion
-        /// is according to 'Fahrstufen-Codierung bei „DCC 28“' from the Z21 protocol specification.
-        /// </summary>
-        /// <param name="speedStep">The DCC28 speed step (0-28)</param>
-        /// <returns></returns>
-        private byte DCC28SpeedStep2SpeedCoding (int speedStep)
-        {
-            switch (speedStep)
-            {
-                
-                case 0: return 0x00;
-                case 1: return 0x02;
-                case 2: return 0x12;
-                case 3: return 0x03;
-                case 4: return 0x13;
-                case 5: return 0x04;
-                case 6: return 0x14;
-                case 7: return 0x05;
-                case 8: return 0x15;
-                case 9: return 0x06;
-                case 10: return 0x16;
-                case 11: return 0x07;
-                case 12: return 0x17;
-                case 13: return 0x08;
-                case 14: return 0x18;
-                case 15: return 0x09;   
-                case 16: return 0x19;   
-                case 17: return 0x0A;   
-                case 18: return 0x1A;
-                case 19: return 0x0B;
-                case 20: return 0x1B;
-                case 21: return 0x0C;
-                case 22: return 0x1C;
-                case 23: return 0x0D;
-                case 24: return 0x1D;   
-                case 25: return 0x0E;
-                case 26: return 0x1E;   
-                case 27: return 0x0F;
-                case 28: return 0x1F;   
-                default: return 0x00;
-            }
-
-        }
-
 
         /// <summary>
         /// The following command can be used to poll the status of a locomotive. At the same time,
@@ -478,15 +249,18 @@ namespace Z21Lib
             byte dB3 = functionNumber;
             switch (switchType)
             {
-                case SwitchType.Off:            dB3 = Bit.Set(dB3, 7, false);
-                                                dB3 = Bit.Set(dB3, 6, false);
-                                                break;      
-                case SwitchType.On:             dB3 = Bit.Set(dB3, 7, false);
-                                                dB3 = Bit.Set(dB3, 6, true);
-                                                break;
-                case SwitchType.Toggle:         dB3 = Bit.Set(dB3, 7, true);
-                                                dB3 = Bit.Set(dB3, 6, false);
-                                                break;
+                case SwitchType.Off:
+                    dB3 = Bit.Set(dB3, 7, false);
+                    dB3 = Bit.Set(dB3, 6, false);
+                    break;
+                case SwitchType.On:
+                    dB3 = Bit.Set(dB3, 7, false);
+                    dB3 = Bit.Set(dB3, 6, true);
+                    break;
+                case SwitchType.Toggle:
+                    dB3 = Bit.Set(dB3, 7, true);
+                    dB3 = Bit.Set(dB3, 6, false);
+                    break;
             }
 
             byte[] bytes = new byte[10];
@@ -547,6 +321,7 @@ namespace Z21Lib
             Sending(bytes);
         }
 
+
         /// <summary>
         /// Setting the broadcast flags in the Z21. These flags are set per client (i.e. per IP + port number)
         /// and must be set again at the next logon.
@@ -558,9 +333,9 @@ namespace Z21Lib
         {
             Logger.PrintDevConsole("Z21Lib:ConfigureBroadCast (LAN_SET_BROADCASTFLAGS)");
 
-            //  
-            // We are setting only the first bit to 1 (0x00000001). So we are able to receive
-            // the following broadcasts:
+            // We activate the following bits:
+            //
+            // Bit 0: We are able to receive the following broadcasts:
             //
             // * LAN_X_BC_TRACK_POWER_OFF
             // * LAN_X_BC_TRACK_POWER_ON
@@ -568,6 +343,10 @@ namespace Z21Lib
             // * LAN_X_BC_TRACK_SHORT_CIRCUIT
             // * LAN_X_BC_STOPPED
             // * LAN_X_LOCO_INFO
+            //
+            // Bit 2: Enables LAN_RAILCOM_DATACHANGED
+            int broadCastFlags = 0b00000000000000000000000000000101;
+
             byte[] bytes = new byte[8];
             bytes[0] = 0x08;
             bytes[1] = 0;
@@ -575,7 +354,7 @@ namespace Z21Lib
             bytes[3] = 0;
 
             //  The flags have to be noted in "little endian" notation (the smallest part is the front)
-            var flags = BitConverter.GetBytes(0x00000001);
+            var flags = BitConverter.GetBytes(broadCastFlags);
             bytes[4] = flags[0];
             bytes[5] = flags[1];
             bytes[6] = flags[2];
@@ -675,7 +454,7 @@ namespace Z21Lib
 
         }
 
-        
+
 
         /// <summary>
         /// This command is used to switch on the track voltage or to end the emergency stop or programming mode.
@@ -770,7 +549,7 @@ namespace Z21Lib
             //  To monitor the connection to the Z21 we will send all 5 seconds a ping to the Z21.
             _pingZ21Timer.Elapsed += Z21PingTimerEllapsed;
             _pingZ21Timer.Enabled = true;
-            
+
         }
 
         /// <summary>
@@ -778,7 +557,7 @@ namespace Z21Lib
         /// </summary>
         public void Disconnect()
         {
-            
+
             //  We stop the cyclic ping timer and remove the event handler.
             _pingZ21Timer.Enabled = false;
             _pingZ21Timer.Elapsed -= Z21PingTimerEllapsed;
@@ -792,9 +571,9 @@ namespace Z21Lib
 
             // We are closing the UDP socket.
             _udpClient.Close();
-            
+
             IsReachable = false;
-            
+
         }
 
         /// <summary>
@@ -836,6 +615,231 @@ namespace Z21Lib
         #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>
+        /// This function checks if the emergency stop is active.
+        /// </summary>
+        /// <param name="speedCoding">The curren speed value encoded according to Z21 protocoll.</param>
+        /// <param name="maxSpeedSteps">The maximum speed steps supported by the decoder.</param>
+        /// <returns></returns>
+        private bool EStopActive(int speedCoding, int maxSpeedSteps)
+        {
+            switch (maxSpeedSteps)
+            {
+                case 14: if (speedCoding == 0x01) return true; break;
+                case 28: if ((speedCoding == 0x01) || (speedCoding == 0x11)) return true; break;
+                case 128: if (speedCoding == 0x01) return true; break;
+                default: return false;
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Convert the given DCC128 speed coding to the DCC128 speed step (0 - 128).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC128 speed step.</param>
+        /// <returns></returns>
+        private byte DCC128SpeedCoding2SpeedStep(int speedCoding)
+        {
+            byte speedStep = 0;
+            if ((speedCoding == 0) || (speedCoding == 1))
+            {
+                speedStep = 0;
+            }
+            else
+            {
+                speedStep = (byte)(speedCoding - 1);
+            }
+            return speedStep;
+        }
+
+        /// <summary>
+        /// This function converts the DCC128 speed step (0 -128) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 128“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC128 speed step (0-128)</param>
+        /// <returns></returns>
+        private byte DCC128SpeedStep2SpeedCoding(int speedStep)
+        {
+            if (speedStep == 0) return 0;
+            return (byte)(speedStep + 1);
+        }
+
+
+        /// <summary>
+        /// Convert the given DCC14 speed coding to the DCC14 speed step (0 - 14).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
+        /// <returns></returns>
+        private byte DCC14SpeedCoding2SpeedStep(byte speedCoding)
+        {
+            switch (speedCoding)
+            {
+
+                case 0x00: return 0;
+                case 0x02: return 1;
+                case 0x03: return 2;
+                case 0x04: return 3;
+                case 0x05: return 4;
+                case 0x06: return 5;
+                case 0x07: return 6;
+                case 0x08: return 7;
+                case 0x09: return 8;
+                case 0x0A: return 9;
+                case 0x0B: return 10;
+                case 0x0C: return 11;
+                case 0x0D: return 12;
+                case 0x0E: return 13;
+                case 0x0F: return 14;
+                default: return 0x00;
+            }
+
+        }
+
+        /// <summary>
+        /// This function converts the DCC14 speed step (0 - 14) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 14“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC14 speed step (0-14)</param>
+        /// <returns></returns>
+        private byte DCC14SpeedStep2SpeedCoding(int speedStep)
+        {
+            switch (speedStep)
+            {
+
+                case 0: return 0x00;
+                case 1: return 0x02;
+                case 2: return 0x03;
+                case 3: return 0x04;
+                case 4: return 0x05;
+                case 5: return 0x06;
+                case 6: return 0x07;
+                case 7: return 0x08;
+                case 8: return 0x09;
+                case 9: return 0x0A;
+                case 10: return 0x0B;
+                case 11: return 0x0C;
+                case 12: return 0x0D;
+                case 13: return 0x0E;
+                case 14: return 0x0F;
+                default: return 0x00;
+            }
+
+        }
+
+        /// <summary>
+        /// Convert the given DCC28 speed coding to the DCC28 speed step (0 - 28).
+        /// </summary>
+        /// <param name="speedCoding">The encoded DCC28 speed step.</param>
+        /// <returns></returns>
+        private byte DCC28SpeedCoding2SpeedStep(byte speedCoding)
+        {
+            switch (speedCoding)
+            {
+                case 0x00: return 0;
+                case 0x01: return 0;
+                case 0x02: return 1;
+                case 0x12: return 2;
+                case 0x03: return 3;
+                case 0x13: return 4;
+                case 0x04: return 5;
+                case 0x14: return 6;
+                case 0x05: return 7;
+                case 0x15: return 8;
+                case 0x06: return 9;
+                case 0x16: return 10;
+                case 0x07: return 11;
+                case 0x17: return 12;
+                case 0x08: return 13;
+                case 0x18: return 14;
+                case 0x09: return 15;
+                case 0x19: return 16;
+                case 0x0A: return 17;
+                case 0x1A: return 18;
+                case 0x0B: return 19;
+                case 0x1B: return 20;
+                case 0x0C: return 21;
+                case 0x1C: return 22;
+                case 0x0D: return 23;
+                case 0x1D: return 24;
+                case 0x0E: return 25;
+                case 0x1E: return 26;
+                case 0x0F: return 27;
+                case 0x1F: return 28;
+                default: return 0x00;
+            }
+        }
+
+
+        /// <summary>
+        /// This function converts the DCC28 speed step (0 - 28) to the Z21 speed coding. The conversion
+        /// is according to 'Fahrstufen-Codierung bei „DCC 28“' from the Z21 protocol specification.
+        /// </summary>
+        /// <param name="speedStep">The DCC28 speed step (0-28)</param>
+        /// <returns></returns>
+        private byte DCC28SpeedStep2SpeedCoding(int speedStep)
+        {
+            switch (speedStep)
+            {
+
+                case 0: return 0x00;
+                case 1: return 0x02;
+                case 2: return 0x12;
+                case 3: return 0x03;
+                case 4: return 0x13;
+                case 5: return 0x04;
+                case 6: return 0x14;
+                case 7: return 0x05;
+                case 8: return 0x15;
+                case 9: return 0x06;
+                case 10: return 0x16;
+                case 11: return 0x07;
+                case 12: return 0x17;
+                case 13: return 0x08;
+                case 14: return 0x18;
+                case 15: return 0x09;
+                case 16: return 0x19;
+                case 17: return 0x0A;
+                case 18: return 0x1A;
+                case 19: return 0x0B;
+                case 20: return 0x1B;
+                case 21: return 0x0C;
+                case 22: return 0x1C;
+                case 23: return 0x0D;
+                case 24: return 0x1D;
+                case 25: return 0x0E;
+                case 26: return 0x1E;
+                case 27: return 0x0F;
+                case 28: return 0x1F;
+                default: return 0x00;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Receives the raw data bytes from the UDP socket.
+        /// </summary>
+        /// <param name="res"></param>
+        private void ReceivingRawZ21Data(IAsyncResult res)
+        {
+            try
+            {
+                IPEndPoint RemoteIpEndPoint = null!;
+                byte[] received = _udpClient.EndReceive(res, ref RemoteIpEndPoint!);
+                _udpClient.BeginReceive(new AsyncCallback(ReceivingRawZ21Data), null);
+
+                //OnReceive?.Invoke(this, new DataEventArgs(received));
+                //Logger.PrintDevConsole($"Z21Lib:ReceivingRawZ21Data  {BitConverter.ToString(received)}");
+
+                ParseRawZ21Data(received);
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("Z21Lib:Error while receiving data (" + ex.Message + ")");
+            }
+        }
+
+        /// <summary>
         /// Sends a ping to the Z21. If we receive a pong, the function returns true. 
         /// </summary>
         /// <returns>Returns true if the client is reachable. False if an error occurs. </returns>
@@ -873,7 +877,7 @@ namespace Z21Lib
             return Convert.ToByte(cvNumber &= 0xFF);
         }
 
-       
+
         /// <summary>
         /// Sends the given bytes to the UDP client.
         /// </summary>
@@ -903,7 +907,7 @@ namespace Z21Lib
             _pingZ21Timer.Enabled = false;
             try
             {
-                
+
                 IsReachable = await PingAsync();
             }
             catch (Exception ex)
@@ -956,6 +960,7 @@ namespace Z21Lib
             //  Check the Header
             switch (receivedBytes[2])
             {
+
                 case 0x40:
 
                     //  Check the X-Header
@@ -977,7 +982,7 @@ namespace Z21Lib
                                     // LAN_X_BC_TRACK_POWER_OFF
                                     Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response LAN_X_BC_TRACK_POWER_OFF");
                                     OnStatusChanged.Invoke(this, new StateEventArgs(TrackPower.OFF));
-                                    break;      
+                                    break;
                                 case 0x01:
                                     // LAN_X_BC_TRACK_POWER_ON
                                     Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response LAN_X_BC_TRACK_POWER_ON");
@@ -1006,8 +1011,8 @@ namespace Z21Lib
                                 case 0x13:
                                     // LAN_X_CV_NACK
                                     Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response LAN_X_CV_NACK");
-                                    OnProgramResultReceived?.Invoke(this, new ProgramEventArgs(new DCCConfigurationVariable(0,0), false));
-                                    break;          
+                                    OnProgramResultReceived?.Invoke(this, new ProgramEventArgs(new DCCConfigurationVariable(0, 0), false));
+                                    break;
 
                                 default:
                                     // UNKNOWN COMMAND        
@@ -1018,7 +1023,7 @@ namespace Z21Lib
 
                         //  LAN_X_STATUS_CHANGED
                         case 0x62:
-                            Logger. PrintDevConsole("Z21Lib:Evaluation - LAN_X_STATUS_CHANGED");
+                            Logger.PrintDevConsole("Z21Lib:Evaluation - LAN_X_STATUS_CHANGED");
                             OnStatusChanged?.Invoke(this, new StateEventArgs(GetCentralStateData(receivedBytes)));
                             break;
 
@@ -1064,7 +1069,7 @@ namespace Z21Lib
                             switch (receivedBytes[7] & 0x7)
                             {
                                 case 0: maxSpeedSteps = 14; break;
-                                case 2: maxSpeedSteps = 28; break;     
+                                case 2: maxSpeedSteps = 28; break;
                                 case 4: maxSpeedSteps = 128; break;
                                 default: maxSpeedSteps = 0; break;
                             }
@@ -1078,7 +1083,7 @@ namespace Z21Lib
 
                             // Parsing DB3 (Byte 8) - Speed step information. 
                             byte currentSpeedStep = 0;
-                            if(eStopActive == false)
+                            if (eStopActive == false)
                             {
                                 switch (maxSpeedSteps)
                                 {
@@ -1095,11 +1100,11 @@ namespace Z21Lib
                             }
 
                             // Parsing DB4.
-                            bool[] functionStates  = new bool[31];
+                            bool[] functionStates = new bool[31];
                             functionStates[0] = (Bit.IsSet(receivedBytes[9], 4));
                             functionStates[4] = (Bit.IsSet(receivedBytes[9], 3));
                             functionStates[3] = (Bit.IsSet(receivedBytes[9], 2));
-                            functionStates[2] = (Bit.IsSet(receivedBytes[9], 1));   
+                            functionStates[2] = (Bit.IsSet(receivedBytes[9], 1));
                             functionStates[1] = (Bit.IsSet(receivedBytes[9], 0));
 
                             //  Parsing DB5.
@@ -1109,7 +1114,7 @@ namespace Z21Lib
                             functionStates[8] = (Bit.IsSet(receivedBytes[10], 3));
                             functionStates[9] = (Bit.IsSet(receivedBytes[10], 4));
                             functionStates[10] = (Bit.IsSet(receivedBytes[10], 5));
-                            functionStates[11] = (Bit.IsSet(receivedBytes[10], 6));     
+                            functionStates[11] = (Bit.IsSet(receivedBytes[10], 6));
                             functionStates[12] = (Bit.IsSet(receivedBytes[10], 7));
 
                             //  Parsing DB6.
@@ -1119,7 +1124,7 @@ namespace Z21Lib
                             functionStates[16] = (Bit.IsSet(receivedBytes[11], 3));
                             functionStates[17] = (Bit.IsSet(receivedBytes[11], 4));
                             functionStates[18] = (Bit.IsSet(receivedBytes[11], 5));
-                            functionStates[19] = (Bit.IsSet(receivedBytes[11], 6));     
+                            functionStates[19] = (Bit.IsSet(receivedBytes[11], 6));
                             functionStates[20] = (Bit.IsSet(receivedBytes[11], 7));
 
                             //  Parsing DB7.
@@ -1129,7 +1134,7 @@ namespace Z21Lib
                             functionStates[24] = (Bit.IsSet(receivedBytes[12], 3));
                             functionStates[25] = (Bit.IsSet(receivedBytes[12], 4));
                             functionStates[26] = (Bit.IsSet(receivedBytes[12], 5));
-                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
+                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));
                             functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
 
                             //  Parsing DB8.
@@ -1139,15 +1144,28 @@ namespace Z21Lib
                             functionStates[24] = (Bit.IsSet(receivedBytes[12], 3));
                             functionStates[25] = (Bit.IsSet(receivedBytes[12], 4));
                             functionStates[26] = (Bit.IsSet(receivedBytes[12], 5));
-                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));     
+                            functionStates[27] = (Bit.IsSet(receivedBytes[12], 6));
                             functionStates[28] = (Bit.IsSet(receivedBytes[12], 7));
 
-                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep,(currentSpeedStep == 0) ? true: false,eStopActive));
+                            OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep, (currentSpeedStep == 0) ? true : false, eStopActive));
 
                             Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_X_LOCO_INFO) locoAddress:" + locomotiveAddress + " DB3:" + DB3 + " speedSteps:" + maxSpeedSteps + " currentSpeedStep:" + currentSpeedStep + " direction:" + direction);
 
                             break;
                     }
+
+                    break;
+
+                case 0x88:
+
+                    ushort locoAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[4]);
+                    byte railComOption = receivedBytes[13];
+                    byte railComSpeed = receivedBytes[14];
+                    byte railComQOS = receivedBytes[15];
+
+                    OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS));
+
+                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComOption.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString());
 
                     break;
 
@@ -1202,8 +1220,8 @@ namespace Z21Lib
                 Logger.PrintDevConsole("Z21Lib:GetCentralStateData - Track power = Programming");
             }
             return state;
-        
-    }
+
+        }
 
         #endregion
     }

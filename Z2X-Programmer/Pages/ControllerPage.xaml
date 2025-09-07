@@ -101,8 +101,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Button>
                     
                     <!-- The currently selected address and the speed step system -->
-                    <HorizontalStackLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" >
-                        <Image Margin="2,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center" >
+                     
+                        <Image Margin="2,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_top_speed_24_regular.png, Dark=ic_fluent_top_speed_24_dark.png}" VerticalOptions="Center" ></Image>
+                        <Label Text="{Binding RailComSpeed}" VerticalOptions="Center" VerticalTextAlignment="Center" MinimumWidthRequest="20"></Label>
+                        
+                        <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                         <Label Text="{Binding VehicleAddress}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
                         
                         <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_step_24_regular.png, Dark=ic_fluent_step_24_regular_dark.png}" VerticalOptions="Center" ></Image>

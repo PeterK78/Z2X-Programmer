@@ -46,6 +46,9 @@ namespace Z2XProgrammer.Communication
         
         //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.)
         public static event EventHandler<StateEventArgs> OnStatusChanged = default!;
+        
+        //  Will be called if we receive railcom data.
+        public static event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
 
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
@@ -73,6 +76,7 @@ namespace Z2XProgrammer.Communication
 
             //  Register the status changed event of the Z21 command station
             CommandStation.Z21.OnStatusChanged += OnZ21StatusChanged;
+            CommandStation.Z21.OnRailComInfoReceived += OnZ21RailComInfoReceived;
             CommandStation.Z21.OnReachabilityChanged += OnZ21ReachabilityChanged;
 
         }
@@ -184,9 +188,19 @@ namespace Z2XProgrammer.Communication
                 return false;
             }
                 
-        }      
+        }
 
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// The event OnRailComInfoReceived is raied when the Z21 receives railcom data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnZ21RailComInfoReceived(object? sender, RailComInfoEventArgs e)
+        {
+            OnRailComInfoReceived.Invoke(sender, e);
+        }
 
         /// <summary>
         /// The event OnZ21StatusChanged is raised when the Z21 changes its operating mode.
