@@ -82,6 +82,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 myZ2XFileContent.UserDefinedNotes = DecoderConfiguration.UserDefindedNotes;
                 myZ2XFileContent.UserDefinedImage = DecoderConfiguration.UserDefindedImage;
                 myZ2XFileContent.UserDefinedFunctionOutputNames = DecoderConfiguration.UserDefinedFunctionOutputNames.ToList();
+                myZ2XFileContent.UserDefinedDecoderManual = DecoderConfiguration.UserDefinedDecoderManual;
                 return myZ2XFileContent;
             }
             catch
@@ -129,6 +130,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
             DecoderConfiguration.UserDefindedDecoderDescription = myFile.UserDefindedDecoderDescription;
             DecoderConfiguration.UserDefindedNotes = myFile.UserDefinedNotes;
             DecoderConfiguration.UserDefindedImage = myFile.UserDefinedImage;
+            DecoderConfiguration.UserDefinedDecoderManual = myFile.UserDefinedDecoderManual;
 
             //  Some older Z2X project files do not contain descriptions for the 14 function outputs.
             //  For this reason, we check whether descriptions exist - if not, we create new empty descriptions.

@@ -40,6 +40,7 @@ namespace Z2XProgrammer.Model
             UserDefindedDecoderDescription = String.Empty;
             DeqSpecName = String.Empty;
             UserDefinedImage = String.Empty;
+            UserDefinedDecoderManual = String.Empty;
         }
 
         /// <summary>
@@ -93,5 +94,12 @@ namespace Z2XProgrammer.Model
         /// </summary>
         [XmlElement(ElementName = "FunctionOutputNames", Order = 8)]
         public List<FunctionOutputType> UserDefinedFunctionOutputNames = new List<FunctionOutputType>();
+
+        /// <summary>
+        /// The user defined path to the decoder manual.
+        /// </summary
+        [XmlElement(ElementName = "DecoderManual", Order = 9)]
+        public string UserDefinedDecoderManual { get; set; }
+
     }
 }

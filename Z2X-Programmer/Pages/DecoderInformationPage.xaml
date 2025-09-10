@@ -182,6 +182,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -189,17 +192,26 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- User defined short note -->
                             <Label x:Name="FrameDecoderDescriptionLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Entry Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Start" Placeholder="{x:Static strings:AppResources.FrameDecoderDescriptionPlaceholder}" Text="{Binding UserDefindedDecoderDescription}"/>
+                            
+                            <!-- User defined path to the decoder manual -->
+                            <Image Margin="0,20,0,0" Grid.Row="2" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_book_24_regular.png, Dark=ic_fluent_book_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label x:Name="FrameDecoderManualLabel" Grid.Row="2" Grid.Column="0" Margin="30,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderManualLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding UserDefinedDecoderManual}" Margin="0,10,0,0"/>
+                            <HorizontalStackLayout Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
+                                <Button ImageSource="{AppThemeBinding Light=ic_fluent_book_search_24_dark.png, Dark=ic_fluent_book_search_24_regular.png}" WidthRequest="250" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Text="{x:Static strings:AppResources.FrameDecoderSearchHandbook}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=SelectDecoderManualCommand}" HorizontalOptions="End" ></Button>
+                                <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_regular.png}" WidthRequest="250" Margin="10,10,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Text="{x:Static strings:AppResources.FrameDecoderOpenHandbook}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=OpenDecoderManualCommand}" HorizontalOptions="End" ></Button>
+                            </HorizontalStackLayout>
 
                             <!-- User defined image -->
-                            <Label x:Name="FrameDecoderInfoPictureTitle" Grid.Row="2" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label x:Name="FrameDecoderInfoPictureTitle" Grid.Row="5" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Image Source="{Binding LocomotiveImageSource}"  Aspect="AspectFit" HeightRequest="200" MaximumHeightRequest="200" ></Image>
                             </Border>
-                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="4" Grid.Column="1" Margin="0,10,0,0" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=SelectImageCommand}" HorizontalOptions="End" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_image_add_24_dark.png, Dark=ic_fluent_image_add_24_regular.png}"></Button>
+                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="7" Grid.Column="1" Margin="0,10,0,0" Text="{x:Static strings:AppResources.FrameDecoderInfoPictureButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=SelectImageCommand}" HorizontalOptions="End" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_image_add_24_dark.png, Dark=ic_fluent_image_add_24_regular.png}"></Button>
 
                             <!-- User defined notes -->
-                            <Label x:Name="FrameDecoderPersonalNotesTitle" Grid.Row="5" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPersonalNotesTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label x:Name="FrameDecoderPersonalNotesTitle" Grid.Row="8" Grid.Column="0" Margin="0,20,0,10" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPersonalNotesTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Editor HorizontalOptions="Fill"  Text="{Binding UserDefindedNotes}" HeightRequest="200" Placeholder="{x:Static strings:AppResources.UserDefinedNotesPlaceholder}" ></Editor>
                             </Border>
 

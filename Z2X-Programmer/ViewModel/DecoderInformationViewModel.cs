@@ -41,7 +41,7 @@ namespace Z2XProgrammer.ViewModel
     {
 
         #region REGION: DATASTORE & SETTINGS
-        
+
         // dataStoreDataValid is TRUE if current decoder settings are available
         // (e.g. a Z2X project has been loaded or a decoder has been read out).
         [ObservableProperty]
@@ -63,7 +63,7 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool zIMO_DECODERTYPE_CV250;
 
-        
+
         [ObservableProperty]
         bool zIMO_DECODERID_CV25X;
 
@@ -100,18 +100,18 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal string doehlerAndHaasDecoderType = string.Empty;
 
-        [ObservableProperty]   
+        [ObservableProperty]
         string cV261Configuration = Subline.Create([261]);
 
         // Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
         [ObservableProperty]
         internal string doehlerAndHaasFirmwareVersion = string.Empty;
 
-        [ObservableProperty]   
+        [ObservableProperty]
         string haasFirmwareVersionConfiguration = Subline.Create([262, 264]);
-        
-        [ObservableProperty]   
-        string cV262To264Configuration = Subline.Create([262,264]);
+
+        [ObservableProperty]
+        string cV262To264Configuration = Subline.Create([262, 264]);
 
 
         #endregion
@@ -130,37 +130,37 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal string version = string.Empty;
 
-        [ObservableProperty]   
+        [ObservableProperty]
         string cV7Configuration = Subline.Create([7]);
-        
+
 
         //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
         [ObservableProperty]
         internal string zimoSWVersion = string.Empty;
-        [ObservableProperty]   
+        [ObservableProperty]
 
-        string cV65and7Configuration = Subline.Create([7,65]);
+        string cV65and7Configuration = Subline.Create([7, 65]);
 
         //  ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250)
         [ObservableProperty]
         internal string zimoDecoderType = string.Empty;
 
-        [ObservableProperty]   
+        [ObservableProperty]
         string cV250Configuration = Subline.Create([250]);
-        
+
         // ZIMO: Decoder ID (ZIMO_DECODERID_CV25X)
         [ObservableProperty]
         internal string zimoDecoderID = string.Empty;
 
-        [ObservableProperty]   
-        string cVDecoderIDConfiguration = Subline.Create([250,251,252,253]);
-        
+        [ObservableProperty]
+        string cVDecoderIDConfiguration = Subline.Create([250, 251, 252, 253]);
+
         // ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X)
         [ObservableProperty]
         internal string zimoBootloaderVersion = string.Empty;
 
-        [ObservableProperty]   
-        string cVBootloaderVersionConfiguration = Subline.Create([248,249]);
+        [ObservableProperty]
+        string cVBootloaderVersionConfiguration = Subline.Create([248, 249]);
 
         [ObservableProperty]
         internal bool zimoBootloaderIsFailSafe = false;
@@ -168,16 +168,25 @@ namespace Z2XProgrammer.ViewModel
         // ZIMO: Sound project manufacturer (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X)
         [ObservableProperty]
         internal string zimoSoundProjectManufacturer = string.Empty;
-                    
+
         [ObservableProperty]
         string cV105XConfiguraion = Subline.Create([105, 106]);
 
         // ZIMO: Sound project number (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) 
         [ObservableProperty]
         internal string zimoSoundProjectNumber = string.Empty;
-        
-        [ObservableProperty]   
+
+        [ObservableProperty]
         string cV25XConfiguration = Subline.Create([254, 255, 256, 257]);
+
+        [ObservableProperty]
+        string userDefinedDecoderManual = String.Empty;
+        partial void OnUserDefinedDecoderManualChanged(string value)
+        {
+            if (value == null) return;
+            if (value != DecoderConfiguration.UserDefinedDecoderManual) WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
+            DecoderConfiguration.UserDefinedDecoderManual = value;
+        }
 
         [ObservableProperty]
         internal string userDefindedNotes = string.Empty;
@@ -197,7 +206,7 @@ namespace Z2XProgrammer.ViewModel
         {
             if (DataStoreDataValid == true)
             {
-                if(value != DecoderConfiguration.UserDefindedDecoderDescription)  WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
+                if (value != DecoderConfiguration.UserDefindedDecoderDescription) WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
                 DecoderConfiguration.UserDefindedDecoderDescription = value;
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
             }
@@ -218,7 +227,7 @@ namespace Z2XProgrammer.ViewModel
 
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
-            
+
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -290,6 +299,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 LocomotiveImageSource = ImageSource.FromFile("ic_fluent_image_add_24_regular.png");
             }
+            UserDefinedDecoderManual = DecoderConfiguration.UserDefinedDecoderManual;
 
             // RCN225
 
@@ -297,7 +307,7 @@ namespace Z2XProgrammer.ViewModel
             Manufacturer = DecoderConfiguration.RCN225.Manufacturer;
             ManufacturerID = "ID = " + DecoderConfiguration.RCN225.ManufacturerID.ToString();
             CV8Configuration = Subline.Create([8]);
-            
+
             // RCN225: Software version in CV7
             Version = DecoderConfiguration.RCN225.Version;
             CV7Configuration = Subline.Create([7]);
@@ -308,7 +318,7 @@ namespace Z2XProgrammer.ViewModel
             string DecoderName = DeqSpecReader.GetDecoderName(DecoderSpecification.DeqSpecName, DecoderConfiguration.ZIMO.DecoderType, ApplicationFolders.DecSpecsFolderPath);
             if (DecoderName != "")
             {
-                ZimoDecoderType = DecoderConfiguration.ZIMO.DecoderType + " = "  + DecoderName;
+                ZimoDecoderType = DecoderConfiguration.ZIMO.DecoderType + " = " + DecoderName;
             }
             else
             {
@@ -318,15 +328,15 @@ namespace Z2XProgrammer.ViewModel
 
             //  ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65)
             ZimoSWVersion = DecoderConfiguration.ZIMO.SoftwareVersion;
-            CV65and7Configuration = Subline.Create([7,65]);
+            CV65and7Configuration = Subline.Create([7, 65]);
 
             // ZIMO: Decoder ID (ZIMO_DECODERID_CV25X)
             ZimoDecoderID = DecoderConfiguration.ZIMO.DecoderID;
-            CVDecoderIDConfiguration = Subline.Create([250,251,252,253]);
+            CVDecoderIDConfiguration = Subline.Create([250, 251, 252, 253]);
 
             // ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X)
             ZimoBootloaderVersion = DecoderConfiguration.ZIMO.BootloaderVersion.ToString() + "." + DecoderConfiguration.ZIMO.BootloaderSubVersion.ToString();
-            CVBootloaderVersionConfiguration = Subline.Create([248,249]);
+            CVBootloaderVersionConfiguration = Subline.Create([248, 249]);
 
             // ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) 
             ZimoSoundProjectNumber = DecoderConfiguration.ZIMO.SoundProjectNumber.ToString();
@@ -343,7 +353,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261)
             DecoderName = DeqSpecReader.GetDecoderName(DecoderSpecification.DeqSpecName, DecoderConfiguration.DoehlerHaas.DecoderType, ApplicationFolders.DecSpecsFolderPath);
-            if(DecoderName != "")
+            if (DecoderName != "")
             {
                 DoehlerAndHaasDecoderType = DecoderName;
             }
@@ -355,7 +365,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x)
             DoehlerAndHaasFirmwareVersion = DecoderConfiguration.DoehlerHaas.FirmwareVersion;
-            HaasFirmwareVersionConfiguration = Subline.Create([262,264]);
+            HaasFirmwareVersionConfiguration = Subline.Create([262, 264]);
 
             #endregion
 
@@ -379,19 +389,19 @@ namespace Z2XProgrammer.ViewModel
             try
             {
                 // Depending on the manufacturer, we create different character strings. 
-                switch (DecoderConfiguration.ConfigurationVariables[8].Value )
+                switch (DecoderConfiguration.ConfigurationVariables[8].Value)
                 {
                     case 97:    //  Doehler & Haass
-                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version + " " +  DoehlerAndHaasDecoderType + " " + DoehlerAndHaasFirmwareVersion);
-                                break;
+                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version + " " + DoehlerAndHaasDecoderType + " " + DoehlerAndHaasFirmwareVersion);
+                        break;
 
                     case 145:   //  ZIMO
-                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + ZimoDecoderType + " " + ZimoSWVersion + " " + ZimoDecoderID + " " + ZimoBootloaderVersion);
-                                break;
+                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + ZimoDecoderType + " " + ZimoSWVersion + " " + ZimoDecoderID + " " + ZimoBootloaderVersion);
+                        break;
 
                     default:    //  All other manufacturers
-                                await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version);
-                                break;
+                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version);
+                        break;
                 }
 
                 //  Inform the user that the information has been copied to the clipboard.
@@ -402,6 +412,56 @@ namespace Z2XProgrammer.ViewModel
             {
                 await MessageBox.Show(AppResources.AlertInformation, ex.Message, AppResources.OK);
             }
+        }
+
+        /// <summary>
+        /// Opens the user-defined decoder manual.
+        /// </summary>
+        [RelayCommand]
+        async Task OpenDecoderManual()
+        {
+          try
+            {
+                if (string.IsNullOrEmpty(UserDefinedDecoderManual)) return;
+                await Launcher.Default.OpenAsync(new OpenFileRequest
+                {
+                    File = new ReadOnlyFile(UserDefinedDecoderManual)
+                });
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
+
+        /// <summary>
+        /// Opens a file picker to select a PDF document as user-defined decoder manual.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        async Task SelectDecoderManual()
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync(new PickOptions
+                {
+                    PickerTitle = "Select a PDF document",
+                    FileTypes = FilePickerFileType.Pdf
+                });
+
+                if (result == null) return;
+
+                UserDefinedDecoderManual = result.FullPath;
+
+                WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+                WeakReferenceMessenger.Default.Send(new SomethingChangedMessage(true));
+
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+
         }
 
 

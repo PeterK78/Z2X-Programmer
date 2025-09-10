@@ -126,6 +126,10 @@ namespace Z2XProgrammer.DataStore
         /// </summary>
         public static string UserDefindedImage { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Stores the user defined decoder manual.
+        /// </summary>
+        public static string UserDefinedDecoderManual { get; set; } = string.Empty;
 
         /// <summary>
         /// The path to the Z2X file.
@@ -183,6 +187,7 @@ namespace Z2XProgrammer.DataStore
             UserDefindedNotes = string.Empty;
             UserDefindedImage = string.Empty;
             UserDefindedDecoderDescription = description;
+            UserDefinedDecoderManual = string.Empty;
 
             //  Set the NMRA default addresses.
             RCN225.LocomotiveAddress = locomotiveAddress;

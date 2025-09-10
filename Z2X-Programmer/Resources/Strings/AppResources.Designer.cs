@@ -1341,6 +1341,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manual.
+        /// </summary>
+        public static string FrameDecoderManualLabel {
+            get {
+                return ResourceManager.GetString("FrameDecoderManualLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Manual ....
+        /// </summary>
+        public static string FrameDecoderOpenHandbook {
+            get {
+                return ResourceManager.GetString("FrameDecoderOpenHandbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal notes.
         /// </summary>
         public static string FrameDecoderPersonalNotesTitle {
@@ -1355,6 +1373,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameDecoderPIKOSmartDecoderV41InfoDecoderID {
             get {
                 return ResourceManager.GetString("FrameDecoderPIKOSmartDecoderV41InfoDecoderID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select manual ....
+        /// </summary>
+        public static string FrameDecoderSearchHandbook {
+            get {
+                return ResourceManager.GetString("FrameDecoderSearchHandbook", resourceCulture);
             }
         }
         

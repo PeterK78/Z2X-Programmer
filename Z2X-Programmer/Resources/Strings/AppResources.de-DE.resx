@@ -1992,4 +1992,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle" xml:space="preserve">
     <value>Minimal Geschwindigkeit (CV2)</value>
   </data>
+  <data name="FrameDecoderManualLabel" xml:space="preserve">
+    <value>Handbuch</value>
+  </data>
+  <data name="FrameDecoderSearchHandbook" xml:space="preserve">
+    <value>Handbuch auswählen ...</value>
+  </data>
+  <data name="FrameDecoderOpenHandbook" xml:space="preserve">
+    <value>Handbuch öffnen ...</value>
+  </data>
 </root>
