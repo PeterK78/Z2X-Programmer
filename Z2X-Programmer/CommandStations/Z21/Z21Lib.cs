@@ -38,24 +38,24 @@ namespace Z21Lib
     public sealed class Client
     {
 
-        //  Z21 CentralState states
+        #region REGION: PRIVATE FIELDS
+
+        //  Z21 CentralState states.
         private const byte csEmergencyStop = 0x01;
         private const byte csTrackVoltageOff = 0x02;
         private const byte csShortCircuit = 0x04;
         private const byte csProgrammingModeActive = 0x20;
 
-        //  The UDP port (default according to the protocol is 21105)
+        //  The UDP port (default according to the protocol is 21105).
         private const int _udpPort = 21105;
-
-        #region REGION: PRIVATE FIELDS
-
-        //  The IP address of the command station
+    
+        //  The IP address of the command station.
         private IPAddress _ipAddress = default!;
 
-        //  A flag to signalize the that the command station is reachable per ping
+        //  A flag to signalize the that the command station is reachable per ping.
         private bool _reachable = false;
 
-        //  A private UDP client object 
+        //  A private UDP client object .
         private UdpClient _udpClient = new();
 
         // _pingClientTimer is used ping the Z21 command station in 5 seconds interval.
@@ -63,6 +63,9 @@ namespace Z21Lib
 
         //  According to the Z21 protocol specification we have to communicate at least each minute with the Z21. We use the timer _renewZ21SubscriptionTimer.
         private System.Timers.Timer _renewZ21SubscriptionTimer = new System.Timers.Timer() { AutoReset = true, Enabled = false, Interval = new TimeSpan(0, 0, 50).TotalMilliseconds, };
+
+        //  RM bus sensor states.
+        private bool[] RMBusSensorStates = new bool[256];
 
         #endregion
 
@@ -79,6 +82,9 @@ namespace Z21Lib
 
         //  Will be called if we receive railcom data.
         public event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
+
+        //  Will be called if we receive rmbus data.
+        public event EventHandler<RmBusInfoEventArgs> OnRmBusInfoReceived = default!;
 
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
@@ -344,8 +350,12 @@ namespace Z21Lib
             // * LAN_X_BC_STOPPED
             // * LAN_X_LOCO_INFO
             //
+            // Bit 1: Enables LAN_RMBUS_DATACHANGED
             // Bit 2: Enables LAN_RAILCOM_DATACHANGED
-            int broadCastFlags = 0b00000000000000000000000000000101;
+            // 
+            int broadCastFlags = 0b00000000000000000000000000000111;
+
+
 
             byte[] bytes = new byte[8];
             bytes[0] = 0x08;
@@ -1149,15 +1159,35 @@ namespace Z21Lib
 
                             OnLocoInfoReceived?.Invoke(this, new LocoInfoEventArgs(locomotiveAddress, functionStates, maxSpeedSteps, direction, currentSpeedStep, (currentSpeedStep == 0) ? true : false, eStopActive));
 
-                            Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_X_LOCO_INFO) locoAddress:" + locomotiveAddress + " DB3:" + DB3 + " speedSteps:" + maxSpeedSteps + " currentSpeedStep:" + currentSpeedStep + " direction:" + direction);
+                            //Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_X_LOCO_INFO) locoAddress:" + locomotiveAddress + " DB3:" + DB3 + " speedSteps:" + maxSpeedSteps + " currentSpeedStep:" + currentSpeedStep + " direction:" + direction);
 
                             break;
                     }
 
                     break;
 
+                case 0x80:
+
+                    //  LAN_RMBUS_DATACHANGED
+                    byte groupIndex = receivedBytes[4];
+                    byte feedbackStatus0 = receivedBytes[5];
+                    byte feedbackStatus1 = receivedBytes[6];
+                    byte feedbackStatus2 = receivedBytes[7];
+                    byte feedbackStatus3 = receivedBytes[8];
+                    byte feedbackStatus4 = receivedBytes[9];
+                    byte feedbackStatus5 = receivedBytes[10];
+                    byte feedbackStatus6 = receivedBytes[11];
+                    byte feedbackStatus7 = receivedBytes[12];
+                    byte feedbackStatus8 = receivedBytes[13];
+                    byte feedbackStatus9 = receivedBytes[14];
+
+                    for (int i = 5; i <= 14; i++) ParseRMBusData(groupIndex, receivedBytes[i], i - 4);
+                    
+                    break;
+
                 case 0x88:
 
+                    // LAN_RAILCOM_DATACHANGED
                     ushort locoAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[4]);
                     byte railComOption = receivedBytes[13];
                     byte railComSpeed = receivedBytes[14];
@@ -1173,6 +1203,38 @@ namespace Z21Lib
                     Logger.PrintDevConsole($"Z21Lib:Unknown telegram " + receivedBytes.ToString());
                     break;
             }
+        }
+
+        /// <summary>
+        /// Parses the RMBus feedback status bytes and raises an event for each changed feedback address.
+        /// </summary>
+        /// <param name="groupIndex">The group index byte according to the Z21 lan protocoll.</param>
+        /// <param name="feedbackStatus">The content of a feedback status according to the Z21 lan protocoll.</param>
+        /// <param name="feedbackStatusIndex">The number of the feedback status byte (1-10).</param>
+        private void ParseRMBusData(byte groupIndex, byte feedbackStatus, int feedbackStatusIndex)
+        {
+            //  Loop through all 8 bits of the feedback status byte.
+            for (int i = 0; i < 8; i++)
+            {
+                // Calculate the feedback input address.
+                int feedbackAddress = (groupIndex * 80) + (i + 1) + (8 * (feedbackStatusIndex - 1));
+
+                // Check is a feedback input bit set?
+                if ((Bit.IsSet(feedbackStatus, i) == true) && (RMBusSensorStates[feedbackAddress] == false))
+                {
+                    RMBusSensorStates[feedbackAddress] = true;
+                    OnRmBusInfoReceived?.Invoke(this, new RmBusInfoEventArgs(feedbackAddress, true));
+                    Logger.PrintDevConsole($"Z21Lib:EvaluateZ21Response (LAN_RMBUS_DATACHANGED) feedbackAddress=" + feedbackAddress.ToString() + " state=TRUE " + "groupIndex=" + groupIndex.ToString() + " feedbackStatus=" + feedbackStatus.ToString() + " feedbackStatusIndex=" + feedbackStatusIndex.ToString());
+                }
+                else if ((Bit.IsSet(feedbackStatus, i) == false) && (RMBusSensorStates[feedbackAddress] == true))
+                {
+                    RMBusSensorStates[feedbackAddress] = false;
+                    OnRmBusInfoReceived?.Invoke(this, new RmBusInfoEventArgs(feedbackAddress, false));
+                    Logger.PrintDevConsole($"Z21Lib:EvaluateZ21Response (LAN_RMBUS_DATACHANGED) feedbackAddress=" + feedbackAddress.ToString() + " state=FALSE " + " groupIndex=" + groupIndex.ToString() + " feedbackStatus=" + feedbackStatus.ToString() + " feedbackStatusIndex=" + feedbackStatusIndex.ToString());
+                }
+
+            }
+
         }
 
         /// <summary>

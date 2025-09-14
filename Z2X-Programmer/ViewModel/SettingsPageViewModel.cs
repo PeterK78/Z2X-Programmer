@@ -147,6 +147,37 @@ namespace Z2XProgrammer.ViewModel
             Preferences.Default.Set(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, value == true ? "1" : "0");
         }
 
+        // Measurement section sensor 1 number
+        [ObservableProperty]
+        internal int measurementSectionSensor1Number = 1;
+        partial void OnMeasurementSectionSensor1NumberChanged(int value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, value.ToString());
+        }
+
+        // Measurement section sensor 2 number
+        [ObservableProperty]
+        internal int measurementSectionSensor2Number = 2;
+        partial void OnMeasurementSectionSensor2NumberChanged(int value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, value.ToString());
+        }
+
+        // Measurement section length in mm
+        [ObservableProperty]    
+        internal int measurementSectionLengthInMM = 1000;
+        partial void OnMeasurementSectionLengthInMMChanged(int value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, value.ToString());
+        }
+
+        // Measurement section scale
+        [ObservableProperty]
+        internal int measurementSectionScale = 160;
+        partial void OnMeasurementSectionScaleChanged(int value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, value.ToString());
+        }
 
         #endregion
 
@@ -203,6 +234,11 @@ namespace Z2XProgrammer.ViewModel
             QuitOnReadError = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1 ? true : false;
             AdditionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;
 
+            // Measurement section
+            MeasurementSectionSensor1Number = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT));
+            MeasurementSectionSensor2Number = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT));
+            MeasurementSectionLengthInMM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT));
+            MeasurementSectionScale = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT)); 
         }
 
         #endregion

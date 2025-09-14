@@ -2001,4 +2001,22 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameDecoderOpenHandbook" xml:space="preserve">
     <value>Handbuch öffnen ...</value>
   </data>
+  <data name="FrameSettingsMeasuringSectionTitle" xml:space="preserve">
+    <value>Messstrecke</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionDescription" xml:space="preserve">
+    <value>Mit einer Messstrecke können Sie reale die Geschwindigkeit eines Fahrzeugs messen.</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionSensor1Label" xml:space="preserve">
+    <value>Sensor 1 Adresse</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionSensor2Label" xml:space="preserve">
+    <value>Sensor 2 Adresse</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionLength" xml:space="preserve">
+    <value>Länge in mm</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionScale" xml:space="preserve">
+    <value>Maßstab</value>
+  </data>
 </root>

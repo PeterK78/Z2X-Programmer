@@ -50,6 +50,9 @@ namespace Z2XProgrammer.Communication
         //  Will be called if we receive railcom data.
         public static event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
 
+        //  Will be called if we receive RM bus data.
+        public static event EventHandler<RmBusInfoEventArgs> OnRmBusInfoReceived = default!;
+
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
         /// </summary>
@@ -78,6 +81,7 @@ namespace Z2XProgrammer.Communication
             CommandStation.Z21.OnStatusChanged += OnZ21StatusChanged;
             CommandStation.Z21.OnRailComInfoReceived += OnZ21RailComInfoReceived;
             CommandStation.Z21.OnReachabilityChanged += OnZ21ReachabilityChanged;
+            CommandStation.Z21.OnRmBusInfoReceived += OnZ21RmBusInfoReceived;
 
         }
 
@@ -192,8 +196,16 @@ namespace Z2XProgrammer.Communication
 
         #region REGION: PRIVATE FUNCTIONS
 
+        /// <summary>   
+        /// The event OnRmBusInfoReceived is raised when the Z21 receives RM bus data.
+        /// </summary>
+        private static void OnZ21RmBusInfoReceived(object? sender, RmBusInfoEventArgs e)
+        {
+            if(OnRmBusInfoReceived != null) OnRmBusInfoReceived.Invoke(sender, e);
+        }
+
         /// <summary>
-        /// The event OnRailComInfoReceived is raied when the Z21 receives railcom data.
+        /// The event OnRailComInfoReceived is raised when the Z21 receives railcom data.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -96,7 +96,18 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_WINDOW_CONTROLLER_POSX_DEFAULT = "-1";
         internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_KEY = "CONTROLLERWINDOWPOSY";
         internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT = "-1";
-        
+
+        // Measurement section
+        internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY = "SENSOR1NR";
+        internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT = "0";
+        internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY = "SENSOR2NR";
+        internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT = "0";
+        internal const string PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY = "LENGTHMM";
+        internal const string PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT = "100";
+        internal const string PREFERENCES_MEASUREMENTSECTION_SCALE_KEY = "SCALE";
+        internal const string PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT = "160";
+
+
 
     }
 }

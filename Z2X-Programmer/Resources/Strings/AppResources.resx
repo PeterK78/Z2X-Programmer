@@ -2000,4 +2000,22 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameDecoderOpenHandbook" xml:space="preserve">
     <value>Open Manual ...</value>
   </data>
+  <data name="FrameSettingsMeasuringSectionTitle" xml:space="preserve">
+    <value>Measuring Section</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionDescription" xml:space="preserve">
+    <value>With a measuring section, you can measure the actual speed of a vehicle.</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionSensor1Label" xml:space="preserve">
+    <value>Sensor 1 Address</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionSensor2Label" xml:space="preserve">
+    <value>Sensor 2 Address</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionLength" xml:space="preserve">
+    <value>Length in mm</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionScale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
 </root>

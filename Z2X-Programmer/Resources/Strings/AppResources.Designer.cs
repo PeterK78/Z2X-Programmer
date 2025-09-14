@@ -4632,6 +4632,60 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to With a measuring section, you can measure the actual speed of a vehicle..
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionDescription {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length in mm.
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionLength {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale.
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionScale {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sensor 1 Address.
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionSensor1Label {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionSensor1Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sensor 2 Address.
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionSensor2Label {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionSensor2Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Measuring Section.
+        /// </summary>
+        public static string FrameSettingsMeasuringSectionTitle {
+            get {
+                return ResourceManager.GetString("FrameSettingsMeasuringSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel the readout of a decoder if a CV cannot be read.
         /// </summary>
         public static string FrameSettingsQuitOnReadError {

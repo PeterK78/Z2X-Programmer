@@ -24,6 +24,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System.Diagnostics;
 using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -37,6 +38,9 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class ControllerViewModel : ObservableObject
     {
+
+        private Stopwatch stopwatch = new Stopwatch();
+
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
         [ObservableProperty]
@@ -51,6 +55,30 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PUBLIC PROPERTIES        
+
+        // Measurement section speed sensor 1 image
+        [ObservableProperty]
+        internal ImageSource sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";        
+
+        // Measurement section speed sensor 2 image
+        [ObservableProperty]
+        internal ImageSource sensor2ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";
+
+        // Measurement section sensor 1 tooltip text
+        [ObservableProperty]
+        internal string sensor1TooltipText = "Sensor " + Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT);
+
+        // Measurement section sensor 2 tooltip text
+        [ObservableProperty]
+        internal string sensor2TooltipText = "Sensor " + Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT);
+
+        // Measurement section busy state.
+        [ObservableProperty]
+        internal bool measurementSectionBusy = false;
+
+        // Measurement section speed.
+        [ObservableProperty]
+        float measurementSectionSpeed = 0;
 
         // Vehicle address
         [ObservableProperty]
@@ -218,7 +246,8 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
             CommandStation.OnRailComInfoReceived += OnRailComInfoReceived; 
-            
+            CommandStation.OnRmBusInfoReceived += OnRailComInfoReceived;
+
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
@@ -295,6 +324,63 @@ namespace Z2XProgrammer.ViewModel
                 RailComQOS = e.QOS;
             }
         }
+
+        /// <summary>
+        /// This event OnRailComInfoReceived is raied when the command station receives RM bus data.
+        /// </summary>
+        private void OnRailComInfoReceived(object? sender, RmBusInfoEventArgs e)
+        {
+            // We read the configured sensor addresses from the preferences.
+            int sensor1ConfiguredAddress = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT));
+            int sensor2ConfiguredAddress = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT));
+
+            // Check if we have received the sensor number 1, if so we start the timer.
+            if ((e.State == true) &&  (e.FeedbackAddress ==  sensor1ConfiguredAddress))
+            {
+                MeasurementSectionBusy = true;
+                Sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_green_24_dark.png" : "ic_fluent_circle_small_green_24_regular.png";
+                
+                if (stopwatch.IsRunning == false)
+                {
+                    stopwatch.Restart();
+                }
+                else
+                {
+                    stopwatch.Start();
+                }
+            }
+            else if ((e.State == false) && (e.FeedbackAddress == sensor1ConfiguredAddress))
+            {
+                Sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";
+            }
+
+            // Check if we have received the sensor number 2, if so we stop the timer and calculate the speed.
+            if ((e.State == true) && (e.FeedbackAddress == sensor2ConfiguredAddress))
+            {
+                Sensor2ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_green_24_dark.png" : "ic_fluent_circle_small_green_24_regular.png";
+
+                if (stopwatch.IsRunning == true)
+                {
+                    MeasurementSectionBusy = false;
+                    stopwatch.Stop();
+                    if (stopwatch.ElapsedMilliseconds > 0)
+                    {
+                        //  We have to convert the speed from m/s to km/h. Therefore we multiply the speed with 3.6.
+                        float measurementSectionLengthCM = (float.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT)))/10;
+                        float measurementSectionScale = float.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT));
+                        MeasurementSectionSpeed = measurementSectionLengthCM * measurementSectionScale * 3600 / stopwatch.ElapsedMilliseconds / 100;
+                    }
+                }
+            }
+            else if ((e.State == false) && (e.FeedbackAddress == sensor2ConfiguredAddress))
+            {
+                MeasurementSectionBusy = false;
+                stopwatch.Stop();
+                Sensor2ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";                
+            }
+
+        }
+
 
         /// <summary>
         /// The event OnCommandStationStatusChanged is raised when the command station switch it status.
@@ -383,6 +469,17 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS
+
+        /// <summary>
+        /// Stops an active calucation in the measurement section.
+        /// </summary>  
+        [RelayCommand]
+        void StopMeasurementSection()
+        {
+            stopwatch.Stop();
+            stopwatch.Reset();
+            MeasurementSectionBusy = false;
+        }
 
         [RelayCommand]
         void SliderDragCompleted(object obj)
