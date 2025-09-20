@@ -2019,4 +2019,46 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameSettingsMeasuringSectionScale" xml:space="preserve">
     <value>Maßstab</value>
   </data>
+  <data name="FrameSettingsZ21FirmwareVersion" xml:space="preserve">
+    <value>Firmware-Version:</value>
+  </data>
+  <data name="FrameSettingsZ21HardwareType" xml:space="preserve">
+    <value>Typ:</value>
+  </data>
+  <data name="FrameSettingsZ21DeviceSpecification" xml:space="preserve">
+    <value>Gerätespezifikation</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Old" xml:space="preserve">
+    <value>Schwarze Z21 (Hardware-Variante ab 2012)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21New" xml:space="preserve">
+    <value>Schwarze Z21 (Hardware-Variante ab 2013)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Small" xml:space="preserve">
+    <value>Weiße z21 Starterset-Variante (ab 2013)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Start" xml:space="preserve">
+    <value>„z21 start” Starterset-Variante (ab 2016)</value>
+  </data>
+  <data name="Z21DeviceTypeSingleBooster" xml:space="preserve">
+    <value>10806 „Z21 Single Booster”</value>
+  </data>
+  <data name="Z21DeviceTypeDualBooster" xml:space="preserve">
+    <value>10807 „Z21 Dual Booster”</value>
+  </data>
+  <data name="Z21DeviceTypeZ21XL" xml:space="preserve">
+    <value>10870 „Z21 XL Series” (ab 2020)</value>
+  </data>
+  <data name="Z21DeviceTypeXLBooster" xml:space="preserve">
+    <value>10869 „Z21 XL Booster” (ab 2021)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21SwitchDecoder" xml:space="preserve">
+    <value>10836 „Z21 SwitchDecoder”</value>
+  </data>
+  <data name="Z21DeviceTypeZ21SignalDecoder" xml:space="preserve">
+    <value>10836 „Z21 SignalDecoder”</value>
+  </data>
+  <data name="Z21DeviceTypeUnknown" xml:space="preserve">
+    <value>Unbekanntes Gerät</value>
+  </data>
 </root>

@@ -25,6 +25,7 @@ using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.FileAndFolderManagement;
@@ -35,7 +36,6 @@ namespace Z2XProgrammer.ViewModel
 {
     public partial class SettingsPageViewModel : ObservableObject
     {
-
         #region REGION: PUBLIC PROPERTIES
 
         [ObservableProperty]
@@ -51,7 +51,7 @@ namespace Z2XProgrammer.ViewModel
             Preferences.Default.Set(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, value);
             LocoListSystemRocrailSelected = LocoList.IsRocrail(value);
         }
-        
+
         [ObservableProperty]
         internal bool locoListSystemRocrailSelected;
 
@@ -80,7 +80,7 @@ namespace Z2XProgrammer.ViewModel
         bool enableLogging;
         partial void OnEnableLoggingChanged(bool value)
         {
-            if (value == true)      
+            if (value == true)
             {
                 Preferences.Default.Set(AppConstants.PREFERENCES_LOGGING_KEY, "1");
             }
@@ -107,6 +107,18 @@ namespace Z2XProgrammer.ViewModel
         {
             Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, value);
         }
+
+        /// <summary>
+        /// The Z21 firmware version.
+        /// </summary>
+        [ObservableProperty]
+        internal string z21FirmwareVersion = "-";
+
+        /// <summary>
+        /// The Z21 hardwware type.
+        /// </summary>
+        [ObservableProperty]
+        internal string z21HardwareType = "-";
 
         [ObservableProperty]
         internal bool automaticDecoderDetection;
@@ -164,7 +176,7 @@ namespace Z2XProgrammer.ViewModel
         }
 
         // Measurement section length in mm
-        [ObservableProperty]    
+        [ObservableProperty]
         internal int measurementSectionLengthInMM = 1000;
         partial void OnMeasurementSectionLengthInMMChanged(int value)
         {
@@ -220,9 +232,9 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 EnableLogging = false;
-            } 
-            
-            if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_AUTODECODER_DETECT_KEY, AppConstants.PREFERENCES_AUTODECODER_DETECT_DEFAULT)) ==  1 )
+            }
+
+            if (int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_AUTODECODER_DETECT_KEY, AppConstants.PREFERENCES_AUTODECODER_DETECT_DEFAULT)) == 1)
             {
                 AutomaticDecoderDetection = true;
             }
@@ -238,7 +250,11 @@ namespace Z2XProgrammer.ViewModel
             MeasurementSectionSensor1Number = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT));
             MeasurementSectionSensor2Number = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT));
             MeasurementSectionLengthInMM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT));
-            MeasurementSectionScale = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT)); 
+            MeasurementSectionScale = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT));
+
+            CommandStation.OnHardwareInfoReceived += OnHardwareInformationReceived;
+            if (CommandStation.IsReachable == true) CommandStation.RequestFirmwareVersion();
+
         }
 
         #endregion
@@ -260,9 +276,9 @@ namespace Z2XProgrammer.ViewModel
                     // Sometimes the FolderPicker returns a folder which is not accessible for Z2X-Programmer.
                     // For this reason, we check access to the selected folder. If it fails we will display
                     // an error message to the user.
-                    if(Directory.Exists(result.Folder.Path.ToString()) == true)
+                    if (Directory.Exists(result.Folder.Path.ToString()) == true)
                     {
-                        UserSpecificDecoderSpecificationFolder = result.Folder.Path.ToString();                        
+                        UserSpecificDecoderSpecificationFolder = result.Folder.Path.ToString();
                     }
                     else
                     {
@@ -306,7 +322,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  Display a message that the decoder specification files are OK.
                 await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecSpecFilesOK, AppResources.OK);
-                            }
+            }
             catch (Exception ex)
             {
                 await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
@@ -329,7 +345,7 @@ namespace Z2XProgrammer.ViewModel
                     // Sometimes the FolderPicker returns a folder which is not accessible for Z2X-Programmer.
                     // For this reason, we check access to the selected folder. If it fails we will display
                     // an error message to the user.
-                    if(Directory.Exists(result.Folder.Path.ToString()) == true)
+                    if (Directory.Exists(result.Folder.Path.ToString()) == true)
                     {
                         LocoListSystemFolder = result.Folder.Path.ToString();
                     }
@@ -366,7 +382,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     return;
                 }
-                
+
                 Preferences.Clear();
 
                 if (Application.Current != null) Application.Current.Quit();
@@ -377,7 +393,7 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-      
+
 
         /// <summary>
         /// This command establishes a connection to your digital command staiton.
@@ -411,7 +427,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
                 }
-                
+
             }
             catch (System.FormatException)
             {
@@ -420,12 +436,49 @@ namespace Z2XProgrammer.ViewModel
             }
             catch (Exception ex)
             {
-                ActivityConnectingOngoing = false;      
+                ActivityConnectingOngoing = false;
                 await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
 
         #endregion
 
+        #region REGION: PRVIVATE FUNCTIONS
+
+        /// <summary>
+        /// This event is raised when the hardware information of the command station is received.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHardwareInformationReceived(object? sender, HardwareInformationEventArgs e)
+        {
+            Z21FirmwareVersion = e.MajorVersion.ToString() + "." + e.MinorVersion.ToString();
+            Z21HardwareType = Z21HardwareDeviceTypeDescription(e.HardwareType);
+        }
+
+        /// <summary>
+        /// Converts an Z21 hardware ID to a description.
+        /// </summary>
+        /// <param name="hardwareType">The Z21 hardware ID.</param>
+        /// <returns></returns>
+        private string Z21HardwareDeviceTypeDescription(uint hardwareType)
+        {
+            switch (hardwareType)
+            {
+                case 0x00000200: return AppResources.Z21DeviceTypeZ21Old;
+                case 0x00000201: return AppResources.Z21DeviceTypeZ21New;
+                case 0x00000202: return AppResources.Z21DeviceTypeZ21Small;
+                case 0x00000204: return AppResources.Z21DeviceTypeZ21Start;
+                case 0x00000205: return AppResources.Z21DeviceTypeSingleBooster;
+                case 0x00000206: return AppResources.Z21DeviceTypeDualBooster;
+                case 0x00000211: return AppResources.Z21DeviceTypeZ21XL;
+                case 0x00000212: return AppResources.Z21DeviceTypeXLBooster;
+                case 0x00000301: return AppResources.Z21DeviceTypeZ21SwitchDecoder;
+                case 0x00000302: return AppResources.Z21DeviceTypeZ21SignalDecoder;
+                default: return AppResources.Z21DeviceTypeUnknown + " (" + hardwareType.ToString() + ")";
+            }
+        }
+
+        #endregion
     }
 }

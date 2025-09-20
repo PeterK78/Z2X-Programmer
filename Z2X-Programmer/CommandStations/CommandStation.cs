@@ -37,15 +37,18 @@ namespace Z2XProgrammer.Communication
         internal static List<ProgrammingModeType> _programmingModes = new List<ProgrammingModeType>();
 
         #region REGION: PUBLIC DELEGATES
-        
-        //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.)
+
+        // Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.)
         public static event EventHandler<StateEventArgs> OnStatusChanged = default!;
-        
-        //  Will be called if we receive railcom data.
+
+        // Will be called if we receive railcom data.
         public static event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
 
-        //  Will be called if we receive RM bus data.
+        // Will be called if we receive RM bus data.
         public static event EventHandler<RmBusInfoEventArgs> OnRmBusInfoReceived = default!;
+
+        // Will be called if we receive a hardware information.
+        public static event EventHandler<HardwareInformationEventArgs> OnHardwareInfoReceived = default!;
 
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
@@ -78,6 +81,7 @@ namespace Z2XProgrammer.Communication
             CommandStation.Z21.OnRailComInfoReceived += OnZ21RailComInfoReceived;
             CommandStation.Z21.OnReachabilityChanged += OnZ21ReachabilityChanged;
             CommandStation.Z21.OnRmBusInfoReceived += OnZ21RmBusInfoReceived;
+            CommandStation.Z21.OnHardwareInfoReceived += OnHardwareInformationReceived;
 
         }
 
@@ -100,7 +104,6 @@ namespace Z2XProgrammer.Communication
         {
             CommandStation.Z21.GetHardwareInformation();
         }
-       
 
         /// <summary>
         /// Returns TRUE if the command station is reachable.
@@ -152,17 +155,17 @@ namespace Z2XProgrammer.Communication
                 Logger.PrintDevConsole("CommandStation.Connect:" + ex.Message);
                 return false;
             }
-                
+
         }
 
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
 
-        internal static NMRA.DCCProgrammingModes GetProgrammingModeFromDescription (string modeDescription)
+        internal static NMRA.DCCProgrammingModes GetProgrammingModeFromDescription(string modeDescription)
         {
 
-            if(String.Compare(modeDescription, AppResources.DCCProgrammngModeProgramTrack) == 0)
+            if (String.Compare(modeDescription, AppResources.DCCProgrammngModeProgramTrack) == 0)
             {
                 return NMRA.DCCProgrammingModes.DirectProgrammingTrack;
             }
@@ -171,15 +174,15 @@ namespace Z2XProgrammer.Communication
                 return NMRA.DCCProgrammingModes.POMMainTrack;
             }
             return NMRA.DCCProgrammingModes.POMMainTrack;
-        }   
+        }
 
-        internal static string GetProgrammingModeDescription (NMRA.DCCProgrammingModes mode)
+        internal static string GetProgrammingModeDescription(NMRA.DCCProgrammingModes mode)
         {
             switch (mode)
             {
-                case NMRA.DCCProgrammingModes.DirectProgrammingTrack:   return AppResources.DCCProgrammngModeProgramTrack; 
-                case NMRA.DCCProgrammingModes.POMMainTrack:             return AppResources.DCCProgrammingModePOM; 
-                default: return "Unknown Programming mode (internal error)"; 
+                case NMRA.DCCProgrammingModes.DirectProgrammingTrack: return AppResources.DCCProgrammngModeProgramTrack;
+                case NMRA.DCCProgrammingModes.POMMainTrack: return AppResources.DCCProgrammingModePOM;
+                default: return "Unknown Programming mode (internal error)";
             }
         }
 
@@ -205,18 +208,27 @@ namespace Z2XProgrammer.Communication
             List<string> Names = new List<string>();
             foreach (ProgrammingModeType item in _programmingModes)
             {
-                if(item.Description != null) Names.Add(item.Description);
+                if (item.Description != null) Names.Add(item.Description);
             }
             return Names;
         }
 
+        /// <summary>
+        /// This event OnHardwareInformationReceived is raised when the Z21 receives hardware information.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnHardwareInformationReceived(object? sender, HardwareInformationEventArgs e)
+        {
+            if (OnHardwareInfoReceived != null) OnHardwareInfoReceived.Invoke(sender, e);
+        }
 
         /// <summary>   
         /// The event OnRmBusInfoReceived is raised when the Z21 receives RM bus data.
         /// </summary>
         private static void OnZ21RmBusInfoReceived(object? sender, RmBusInfoEventArgs e)
         {
-            if(OnRmBusInfoReceived != null) OnRmBusInfoReceived.Invoke(sender, e);
+            if (OnRmBusInfoReceived != null) OnRmBusInfoReceived.Invoke(sender, e);
         }
 
         /// <summary>

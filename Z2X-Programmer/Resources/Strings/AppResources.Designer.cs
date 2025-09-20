@@ -4722,6 +4722,33 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device specification.
+        /// </summary>
+        public static string FrameSettingsZ21DeviceSpecification {
+            get {
+                return ResourceManager.GetString("FrameSettingsZ21DeviceSpecification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firmware version:.
+        /// </summary>
+        public static string FrameSettingsZ21FirmwareVersion {
+            get {
+                return ResourceManager.GetString("FrameSettingsZ21FirmwareVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type:.
+        /// </summary>
+        public static string FrameSettingsZ21HardwareType {
+            get {
+                return ResourceManager.GetString("FrameSettingsZ21HardwareType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the current IP address of your Z21 digital command station. The factory setting is 192.168.0.111..
         /// </summary>
         public static string FrameSettingsZ21IPAddressDescription {
@@ -5364,6 +5391,105 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string YES {
             get {
                 return ResourceManager.GetString("YES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10807 “Z21 Dual Booster”.
+        /// </summary>
+        public static string Z21DeviceTypeDualBooster {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeDualBooster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10806 “Z21 Single Booster”.
+        /// </summary>
+        public static string Z21DeviceTypeSingleBooster {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeSingleBooster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown device.
+        /// </summary>
+        public static string Z21DeviceTypeUnknown {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10869 “Z21 XL Booster” (from 2021).
+        /// </summary>
+        public static string Z21DeviceTypeXLBooster {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeXLBooster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black Z21 (hardware variant from 2013).
+        /// </summary>
+        public static string Z21DeviceTypeZ21New {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black Z21 (hardware variant from 2012).
+        /// </summary>
+        public static string Z21DeviceTypeZ21Old {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21Old", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10836 “Z21 Signal Decoder”.
+        /// </summary>
+        public static string Z21DeviceTypeZ21SignalDecoder {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21SignalDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White z21 starter set variant (from 2013).
+        /// </summary>
+        public static string Z21DeviceTypeZ21Small {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “z21 start” starter set variant (from 2016).
+        /// </summary>
+        public static string Z21DeviceTypeZ21Start {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10836 “Z21 Switch Decoder”.
+        /// </summary>
+        public static string Z21DeviceTypeZ21SwitchDecoder {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21SwitchDecoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10870 “Z21 XL Series” (from 2020).
+        /// </summary>
+        public static string Z21DeviceTypeZ21XL {
+            get {
+                return ResourceManager.GetString("Z21DeviceTypeZ21XL", resourceCulture);
             }
         }
         

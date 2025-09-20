@@ -58,7 +58,7 @@ namespace Z2XProgrammer.ViewModel
 
         // Measurement section speed sensor 1 image
         [ObservableProperty]
-        internal ImageSource sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";        
+        internal ImageSource sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";
 
         // Measurement section speed sensor 2 image
         [ObservableProperty]
@@ -245,7 +245,7 @@ namespace Z2XProgrammer.ViewModel
 
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
-            CommandStation.OnRailComInfoReceived += OnRailComInfoReceived; 
+            CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
             CommandStation.OnRmBusInfoReceived += OnRailComInfoReceived;
 
 
@@ -335,11 +335,11 @@ namespace Z2XProgrammer.ViewModel
             int sensor2ConfiguredAddress = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_DEFAULT));
 
             // Check if we have received the sensor number 1, if so we start the timer.
-            if ((e.State == true) &&  (e.FeedbackAddress ==  sensor1ConfiguredAddress))
+            if ((e.State == true) && (e.FeedbackAddress == sensor1ConfiguredAddress))
             {
                 MeasurementSectionBusy = true;
                 Sensor1ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_green_24_dark.png" : "ic_fluent_circle_small_green_24_regular.png";
-                
+
                 if (stopwatch.IsRunning == false)
                 {
                     stopwatch.Restart();
@@ -366,7 +366,7 @@ namespace Z2XProgrammer.ViewModel
                     if (stopwatch.ElapsedMilliseconds > 0)
                     {
                         //  We have to convert the speed from m/s to km/h. Therefore we multiply the speed with 3.6.
-                        float measurementSectionLengthCM = (float.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT)))/10;
+                        float measurementSectionLengthCM = (float.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT))) / 10;
                         float measurementSectionScale = float.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT));
                         MeasurementSectionSpeed = measurementSectionLengthCM * measurementSectionScale * 3600 / stopwatch.ElapsedMilliseconds / 100;
                     }
@@ -376,7 +376,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 MeasurementSectionBusy = false;
                 stopwatch.Stop();
-                Sensor2ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";                
+                Sensor2ImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_circle_small_24_dark.png" : "ic_fluent_circle_small_24_regular.png";
             }
 
         }

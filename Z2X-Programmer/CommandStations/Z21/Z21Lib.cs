@@ -46,7 +46,7 @@ namespace Z21Lib
 
         //  The UDP port (default according to the protocol is 21105).
         private const int _udpPort = 21105;
-    
+
         //  The IP address of the command station.
         private IPAddress _ipAddress = default!;
 
@@ -325,7 +325,7 @@ namespace Z21Lib
 
             Sending(bytes);
         }
-        
+
         /// <summary>
         /// Requests the hardware information of the Z21.
         /// </summary>
@@ -338,10 +338,10 @@ namespace Z21Lib
             bytes[1] = 0;
             bytes[2] = 0x1A;
             bytes[3] = 0;
-            
+
             Sending(bytes);
 
-        }   
+        }
 
         /// <summary>
         /// Setting the broadcast flags in the Z21. These flags are set per client (i.e. per IP + port number)
@@ -1195,7 +1195,7 @@ namespace Z21Lib
                     byte feedbackStatus9 = receivedBytes[14];
 
                     for (int i = 5; i <= 14; i++) ParseRMBusData(groupIndex, receivedBytes[i], i - 4);
-                    
+
                     break;
 
                 case 0x88:

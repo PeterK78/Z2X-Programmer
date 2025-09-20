@@ -2018,4 +2018,46 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameSettingsMeasuringSectionScale" xml:space="preserve">
     <value>Scale</value>
   </data>
+  <data name="FrameSettingsZ21FirmwareVersion" xml:space="preserve">
+    <value>Firmware version:</value>
+  </data>
+  <data name="FrameSettingsZ21HardwareType" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="FrameSettingsZ21DeviceSpecification" xml:space="preserve">
+    <value>Device specification</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Old" xml:space="preserve">
+    <value>Black Z21 (hardware variant from 2012)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21New" xml:space="preserve">
+    <value>Black Z21 (hardware variant from 2013)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Small" xml:space="preserve">
+    <value>White z21 starter set variant (from 2013)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21Start" xml:space="preserve">
+    <value>“z21 start” starter set variant (from 2016)</value>
+  </data>
+  <data name="Z21DeviceTypeSingleBooster" xml:space="preserve">
+    <value>10806 “Z21 Single Booster”</value>
+  </data>
+  <data name="Z21DeviceTypeDualBooster" xml:space="preserve">
+    <value>10807 “Z21 Dual Booster”</value>
+  </data>
+  <data name="Z21DeviceTypeZ21XL" xml:space="preserve">
+    <value>10870 “Z21 XL Series” (from 2020)</value>
+  </data>
+  <data name="Z21DeviceTypeXLBooster" xml:space="preserve">
+    <value>10869 “Z21 XL Booster” (from 2021)</value>
+  </data>
+  <data name="Z21DeviceTypeZ21SwitchDecoder" xml:space="preserve">
+    <value>10836 “Z21 Switch Decoder”</value>
+  </data>
+  <data name="Z21DeviceTypeZ21SignalDecoder" xml:space="preserve">
+    <value>10836 “Z21 Signal Decoder”</value>
+  </data>
+  <data name="Z21DeviceTypeUnknown" xml:space="preserve">
+    <value>Unknown device</value>
+  </data>
 </root>
