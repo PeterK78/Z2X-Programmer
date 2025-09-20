@@ -97,7 +97,7 @@ namespace Z2XProgrammer.Model
 
         /// <summary>
         /// The user defined path to the decoder manual.
-        /// </summary
+        /// </summary>
         [XmlElement(ElementName = "DecoderManual", Order = 9)]
         public string UserDefinedDecoderManual { get; set; }
 

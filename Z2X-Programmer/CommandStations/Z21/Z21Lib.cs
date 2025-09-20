@@ -30,14 +30,12 @@ using Z21Lib.Enums;
 using Z21Lib.Events;
 using Z21Lib.Model;
 using Z2XProgrammer.Helper;
-using Microsoft.Maui.Handlers;
 
 namespace Z21Lib
 {
     //  This class contains a client implementation of the Z21 protocol of Roco/Fleischmann.
     public sealed class Client
     {
-
         #region REGION: PRIVATE FIELDS
 
         //  Z21 CentralState states.
@@ -71,20 +69,23 @@ namespace Z21Lib
 
         #region REGION: PUBLIC DELEGATES
 
-        //  Will be called if a CV values has been programmed.
+        // Will be called if a CV values has been programmed.
         public event EventHandler<ProgramEventArgs> OnProgramResultReceived = default!;
 
-        //  Will be called if we receive locomotive info from the Z21.
+        // Will be called if we receive locomotive info from the Z21.
         public event EventHandler<LocoInfoEventArgs> OnLocoInfoReceived = default!;
 
-        //  Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.).
+        // Will be called if the status of the command station has been changed (e.g. track power, programming mode etc.).
         public event EventHandler<StateEventArgs> OnStatusChanged = default!;
 
-        //  Will be called if we receive railcom data.
+        // Will be called if we receive railcom data.
         public event EventHandler<RailComInfoEventArgs> OnRailComInfoReceived = default!;
 
-        //  Will be called if we receive rmbus data.
+        // Will be called if we receive rmbus data.
         public event EventHandler<RmBusInfoEventArgs> OnRmBusInfoReceived = default!;
+
+        // Will be called if we receive the hardware information of the Z21.
+        public event EventHandler<HardwareInformationEventArgs> OnHardwareInfoReceived = default!;
 
         /// <summary>
         /// OnReachabilityChanged is raised when the reachability to the Z21 has changed.    
@@ -285,8 +286,6 @@ namespace Z21Lib
 
         }
 
-
-
         /// <summary>
         /// Logging off the client from the Z21.
         /// 
@@ -326,7 +325,23 @@ namespace Z21Lib
 
             Sending(bytes);
         }
+        
+        /// <summary>
+        /// Requests the hardware information of the Z21.
+        /// </summary>
+        public void GetHardwareInformation()
+        {
+            Logger.PrintDevConsole("Z21Lib:GetHardwareInformation (LAN_GET_HWINFO)");
 
+            byte[] bytes = new byte[4];
+            bytes[0] = 0x04;
+            bytes[1] = 0;
+            bytes[2] = 0x1A;
+            bytes[3] = 0;
+            
+            Sending(bytes);
+
+        }   
 
         /// <summary>
         /// Setting the broadcast flags in the Z21. These flags are set per client (i.e. per IP + port number)
@@ -463,8 +478,6 @@ namespace Z21Lib
             return true;
 
         }
-
-
 
         /// <summary>
         /// This command is used to switch on the track voltage or to end the emergency stop or programming mode.
@@ -1196,6 +1209,20 @@ namespace Z21Lib
                     OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS));
 
                     Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComOption.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString());
+
+                    break;
+
+
+                case 0x1A:
+
+                    //  LAN_GET_HWINFO
+                    uint majorVersion = receivedBytes[9];
+                    uint minorVersion = uint.Parse(receivedBytes[8].ToString("X"));
+                    uint hardwareType = Convert.ToUInt32((receivedBytes[5] * 100 + receivedBytes[4]).ToString(), 16);
+
+                    OnHardwareInfoReceived?.Invoke(this, new HardwareInformationEventArgs(majorVersion, minorVersion, hardwareType));
+
+                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_GET_HWINFO) majorVersion=" + majorVersion + " minorVersion=" + minorVersion + " hardwareType=" + hardwareType);
 
                     break;
 

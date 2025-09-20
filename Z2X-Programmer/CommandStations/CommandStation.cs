@@ -21,13 +21,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Z21Lib.Events;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.Helper;
@@ -40,7 +35,6 @@ namespace Z2XProgrammer.Communication
         public static Z21Lib.Client Z21 = new Z21Lib.Client();
 
         internal static List<ProgrammingModeType> _programmingModes = new List<ProgrammingModeType>();
-
 
         #region REGION: PUBLIC DELEGATES
         
@@ -59,6 +53,8 @@ namespace Z2XProgrammer.Communication
         public static event EventHandler<bool> OnReachabilityChanged = default!;
 
         #endregion
+
+        #region REGION: CONSTRUCTOR
 
         /// <summary>
         /// Constructor
@@ -85,6 +81,10 @@ namespace Z2XProgrammer.Communication
 
         }
 
+        #endregion
+
+        #region REGION: PUBLIC FUNCTIONS 
+
         /// <summary>
         /// Turns the track power on.
         /// </summary>
@@ -92,6 +92,72 @@ namespace Z2XProgrammer.Communication
         {
             CommandStation.Z21.SetTrackPowerOn();
         }
+
+        /// <summary>
+        /// Requests the firmware version of the command station.
+        /// </summary>  
+        public static void RequestFirmwareVersion()
+        {
+            CommandStation.Z21.GetHardwareInformation();
+        }
+       
+
+        /// <summary>
+        /// Returns TRUE if the command station is reachable.
+        /// </summary>  
+        public static bool IsReachable
+        {
+            get
+            {
+                return Z21.IsReachable;
+            }
+        }
+
+        /// <summary>
+        /// Connects to the selected digital command station.
+        /// </summary>
+        /// <param name="cancelToken">A cancelation toke to cancel the connection process.</param>
+        /// <param name="timeOut">A timeout in milliseconds.</param>
+        /// <returns></returns>
+        public static bool Connect(CancellationToken cancelToken, long timeOut)
+        {
+            try
+            {
+                //  We check whether the digital command station is already reachable.
+                //  If so, we return.
+                if (CommandStation.Z21.IsReachable == true) return true;
+
+                // We get the configured IP address from the settings and connect to the configured digital control center.
+                IPAddress address = IPAddress.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
+                CommandStation.Z21.Connect(address);
+
+                //  We are now waiting for the command center to connect.
+                //  The wait is ended prematurely when the timeout has expired or when the cancelation token is set.
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                while ((CommandStation.Z21.IsReachable == false) && (stopwatch.ElapsedMilliseconds < timeOut) && (cancelToken.IsCancellationRequested == false))
+                {
+                    Thread.Sleep(1);
+                    if (CommandStation.Z21.IsReachable == true)
+                    {
+                        RequestFirmwareVersion();
+                        return true;
+                    }
+                }
+
+                //  The digital command center is not reachable.
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("CommandStation.Connect:" + ex.Message);
+                return false;
+            }
+                
+        }
+
+        #endregion
+
+        #region REGION: PRIVATE FUNCTIONS
 
         internal static NMRA.DCCProgrammingModes GetProgrammingModeFromDescription (string modeDescription)
         {
@@ -105,7 +171,7 @@ namespace Z2XProgrammer.Communication
                 return NMRA.DCCProgrammingModes.POMMainTrack;
             }
             return NMRA.DCCProgrammingModes.POMMainTrack;
-        }
+        }   
 
         internal static string GetProgrammingModeDescription (NMRA.DCCProgrammingModes mode)
         {
@@ -144,57 +210,6 @@ namespace Z2XProgrammer.Communication
             return Names;
         }
 
-        /// <summary>
-        /// Returns TRUE if the command station is reachable.
-        /// </summary>  
-        public static bool IsReachable
-        {
-            get
-            {
-                return Z21.IsReachable;
-            }
-        }
-
-
-        /// <summary>
-        /// Connects to the selected digital command station.
-        /// </summary>
-        /// <param name="cancelToken">A cancelation toke to cancel the connection process.</param>
-        /// <param name="timeOut">A timeout in milliseconds.</param>
-        /// <returns></returns>
-        public static bool Connect(CancellationToken cancelToken, long timeOut)
-        {
-            try
-            {
-                //  We check whether the digital command station is already reachable.
-                //  If so, we return.
-                if (CommandStation.Z21.IsReachable == true) return true;
-
-                // We get the configured IP address from the settings and connect to the configured digital control center.
-                IPAddress address = IPAddress.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
-                CommandStation.Z21.Connect(address);
-
-                //  We are now waiting for the command center to connect.
-                //  The wait is ended prematurely when the timeout has expired or when the cancelation token is set.
-                Stopwatch stopwatch = Stopwatch.StartNew();
-                while ((CommandStation.Z21.IsReachable == false) && (stopwatch.ElapsedMilliseconds < timeOut) && (cancelToken.IsCancellationRequested == false))
-                {
-                    Thread.Sleep(1);
-                    if (CommandStation.Z21.IsReachable == true) return true;
-                }
-
-                //  The digital command center is not reachable.
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Logger.PrintDevConsole("CommandStation.Connect:" + ex.Message);
-                return false;
-            }
-                
-        }
-
-        #region REGION: PRIVATE FUNCTIONS
 
         /// <summary>   
         /// The event OnRmBusInfoReceived is raised when the Z21 receives RM bus data.
