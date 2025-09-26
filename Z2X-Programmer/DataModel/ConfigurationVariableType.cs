@@ -32,15 +32,15 @@ namespace Z2XProgrammer.DataModel
     /// <summary>
     /// Contains the definition of single NMRA configuration variable (short configuration variable)
     /// </summary>
-    public class ConfigurationVariableType: INotifyPropertyChanged
+    public class ConfigurationVariableType : INotifyPropertyChanged
     {
         //  Private field variables.
         private bool _Enabled = true;
         private byte _Value = 0;
-        
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)    
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -59,7 +59,7 @@ namespace Z2XProgrammer.DataModel
             get => _Value;
             set
             {
-                if(_Value == value) return;
+                if (_Value == value) return;
 
                 //  Setup the UndoRedo-Information.
                 UndoRedoType undoRedoInfo = new UndoRedoType();
@@ -68,9 +68,11 @@ namespace Z2XProgrammer.DataModel
                 undoRedoInfo.NewValue = value;
 
                 _Value = value;
-                
+                OnPropertyChanged(nameof(Value));
+
                 //  Inform the UndoRedo-Manager that a CV value has been changed.
                 WeakReferenceMessenger.Default.Send(new UndoRedoMessage(undoRedoInfo));
+
             }
         }
 
@@ -81,7 +83,7 @@ namespace Z2XProgrammer.DataModel
         {
             get => _Enabled;
             set
-            {                
+            {
                 _Enabled = value;
                 OnPropertyChanged(nameof(Enabled));
             }
@@ -92,21 +94,19 @@ namespace Z2XProgrammer.DataModel
         /// </summary>
         public string Description { get; set; }
 
-
         /// <summary>
         /// Is TRUE if the configuration variable is supported by the decoder specification.
         /// </summary>
         public bool DeqSecSupported { get; set; }
-
 
         /// <summary>
         /// Constructor of ConfigurationVariable.
         /// </summary>
         public ConfigurationVariableType()
         {
-            Value = 0;  
+            Value = 0;
             Enabled = true;
-            Description= string.Empty;
-        }  
+            Description = string.Empty;
+        }
     }
 }

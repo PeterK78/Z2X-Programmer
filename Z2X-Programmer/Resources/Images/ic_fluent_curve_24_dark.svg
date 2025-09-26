@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="ic_fluent_curve_24_dark.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="33.057242"
+     inkscape:cx="10.527194"
+     inkscape:cy="13.279995"
+     inkscape:window-width="2560"
+     inkscape:window-height="1351"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <ellipse
+     style="fill:none;stroke-width:11.799"
+     id="path1"
+     cx="10.470588"
+     cy="10.203209"
+     rx="10.470588"
+     ry="10.224599" />
+  <path
+     style="fill:none;fill-opacity:0.98191214;stroke:#ffffff;stroke-width:2.239;stroke-dasharray:none;stroke-opacity:1"
+     d="M 18.205556,4.6633579 C 18.308968,18.208455 4.6758012,18.225688 4.6758012,18.225688"
+     id="path2" />
+</svg>

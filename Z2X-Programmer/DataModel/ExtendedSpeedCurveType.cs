@@ -32,8 +32,8 @@ namespace Z2XProgrammer.DataModel
 
         public ExtendedSpeedCurveType()
         {
-             cv = new ConfigurationVariableType[NMRA.NumberOfFunctionKeys];
-             for (int i = 0; i < NMRA.NumberOfFunctionKeys; i++)
+             cv = new ConfigurationVariableType[NMRA.NumberOfExtendedSpeedSteps];
+             for (int i = 0; i < NMRA.NumberOfExtendedSpeedSteps; i++)
              {
                 cv[i] = new ConfigurationVariableType();
              }             

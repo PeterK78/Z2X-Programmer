@@ -7,6 +7,7 @@ using CommunityToolkit.Maui.Core;
 using Z2XProgrammer.Helper;
 using System.Globalization;
 using Z2XProgrammer.DataModel;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace Z2XProgrammer
 {
@@ -18,6 +19,7 @@ namespace Z2XProgrammer
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .ConfigureSyncfusionToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

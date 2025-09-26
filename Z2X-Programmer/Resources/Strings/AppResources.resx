@@ -2060,4 +2060,22 @@ The application is aimed at beginners who want to configure the most important f
   <data name="Z21DeviceTypeUnknown" xml:space="preserve">
     <value>Unknown device</value>
   </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveAxisXLabel" xml:space="preserve">
+    <value>Characteristic curve points</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveAxisYLabel" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="FrameMotorCharacteristicsLinearDefault" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="FrameMotorCharacteristicsCurveDefault" xml:space="preserve">
+    <value>Curve</value>
+  </data>
+  <data name="FrameMotorCharacteristicsIncreaseCurve" xml:space="preserve">
+    <value>Increase</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDecreaseCurve" xml:space="preserve">
+    <value>Decrease</value>
+  </data>
 </root>

@@ -3368,6 +3368,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curve.
+        /// </summary>
+        public static string FrameMotorCharacteristicsCurveDefault {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsCurveDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease.
+        /// </summary>
+        public static string FrameMotorCharacteristicsDecreaseCurve {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsDecreaseCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Impuls width (CV49).
         /// </summary>
         public static string FrameMotorCharacteristicsDHImpulswidth {
@@ -3436,6 +3454,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameMotorCharacteristicsExtendedSpeedCurve {
             get {
                 return ResourceManager.GetString("FrameMotorCharacteristicsExtendedSpeedCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Characteristic curve points.
+        /// </summary>
+        public static string FrameMotorCharacteristicsExtendedSpeedCurveAxisXLabel {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsExtendedSpeedCurveAxisXLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        public static string FrameMotorCharacteristicsExtendedSpeedCurveAxisYLabel {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsExtendedSpeedCurveAxisYLabel", resourceCulture);
             }
         }
         
@@ -3697,6 +3733,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameMotorCharacteristicsFrequency {
             get {
                 return ResourceManager.GetString("FrameMotorCharacteristicsFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase.
+        /// </summary>
+        public static string FrameMotorCharacteristicsIncreaseCurve {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsIncreaseCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linear.
+        /// </summary>
+        public static string FrameMotorCharacteristicsLinearDefault {
+            get {
+                return ResourceManager.GetString("FrameMotorCharacteristicsLinearDefault", resourceCulture);
             }
         }
         

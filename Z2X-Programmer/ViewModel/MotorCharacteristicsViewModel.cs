@@ -22,6 +22,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Converter;
@@ -33,8 +34,6 @@ using static Z2XProgrammer.Helper.ZIMO;
 
 namespace Z2XProgrammer.ViewModel
 {
-
-
     public partial class MotorCharacteristicsViewModel : ObservableObject
     {
 
@@ -168,7 +167,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMaximumPikoSmartDecoderSpeedChanged(byte value)
         {
             DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed = value;
-            MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed,63);
+            MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed, 63);
             CV5Configuration = Subline.Create(new List<uint> { 5 });
         }
 
@@ -189,7 +188,13 @@ namespace Z2XProgrammer.ViewModel
 
         #region RCN225
 
-        // RCN225: Maximum speed in CV5
+        /// <summary>
+        /// RCN225: Contains the CV values of the extended speed curve (CV67 to CV94).
+        /// </summary>	
+        [ObservableProperty]
+        internal ObservableCollection<ConfigurationVariableType>? extendedSpeedCurveValues = new ObservableCollection<ConfigurationVariableType>();
+
+        // RCN225: Maximum speed in CV5.
         [ObservableProperty]
         internal string maximumSpeedValueDescription = "";
 
@@ -200,13 +205,13 @@ namespace Z2XProgrammer.ViewModel
             if (value == false)
             {
                 if (DecoderConfiguration.RCN225.MaximumSpeed == 0) MaximumSpeed = 100;
-                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed, 255);
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
             else
             {
                 MaximumSpeed = 0;
-                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
+                MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed, 255);
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
         }
@@ -216,13 +221,12 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMaximumSpeedChanged(byte value)
         {
             DecoderConfiguration.RCN225.MaximumSpeed = value;
-            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed, 255);
             CV5Configuration = Subline.Create(new List<uint> { 5 });
         }
 
         [ObservableProperty]
         string cV5Configuration = Subline.Create(new List<uint> { 5 });
-
 
         // RCN225: Medium speed in CV6
         [ObservableProperty]
@@ -240,7 +244,6 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         string cV6Configuration = Subline.Create(new List<uint> { 6 });
 
-
         // RCN225: Minimum speed in CV2
         [ObservableProperty]
         internal string minimumSpeedValueDescription = "";
@@ -250,12 +253,11 @@ namespace Z2XProgrammer.ViewModel
         partial void OnMinimumSpeedChanged(byte value)
         {
             DecoderConfiguration.RCN225.MinimumSpeed = value;
-            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed,255);
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed, 255);
             CV2Configuration = Subline.Create(new List<uint> { 2 });
         }
         [ObservableProperty]
         string cV2Configuration = Subline.Create(new List<uint> { 2 });
-
 
         // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
         [ObservableProperty]
@@ -267,210 +269,6 @@ namespace Z2XProgrammer.ViewModel
         }
         [ObservableProperty]
         string cV29Configuration = Subline.Create(new List<uint> { 29 });
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue67;
-        partial void OnExtendedSpeedCurveValue67Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(67, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue68;
-        partial void OnExtendedSpeedCurveValue68Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(68, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue69;
-        partial void OnExtendedSpeedCurveValue69Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(69, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue70;
-        partial void OnExtendedSpeedCurveValue70Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(70, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue71;
-        partial void OnExtendedSpeedCurveValue71Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(71, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue72;
-        partial void OnExtendedSpeedCurveValue72Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(72, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue73;
-        partial void OnExtendedSpeedCurveValue73Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(73, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue74;
-        partial void OnExtendedSpeedCurveValue74Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(74, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue75;
-        partial void OnExtendedSpeedCurveValue75Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(75, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue76;
-        partial void OnExtendedSpeedCurveValue76Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(76, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue77;
-        partial void OnExtendedSpeedCurveValue77Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(77, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue78;
-        partial void OnExtendedSpeedCurveValue78Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(78, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue79;
-        partial void OnExtendedSpeedCurveValue79Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(79, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue80;
-        partial void OnExtendedSpeedCurveValue80Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(80, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue81;
-        partial void OnExtendedSpeedCurveValue81Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(81, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue82;
-        partial void OnExtendedSpeedCurveValue82Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(82, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue83;
-        partial void OnExtendedSpeedCurveValue83Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(83, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue84;
-        partial void OnExtendedSpeedCurveValue84Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(84, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue85;
-        partial void OnExtendedSpeedCurveValue85Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(85, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue86;
-        partial void OnExtendedSpeedCurveValue86Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(86, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue87;
-        partial void OnExtendedSpeedCurveValue87Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(87, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue88;
-        partial void OnExtendedSpeedCurveValue88Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(88, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue89;
-        partial void OnExtendedSpeedCurveValue89Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(89, value);
-        }
-
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue90;
-        partial void OnExtendedSpeedCurveValue90Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(90, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue91;
-        partial void OnExtendedSpeedCurveValue91Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(91, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue92;
-        partial void OnExtendedSpeedCurveValue92Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(92, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue93;
-        partial void OnExtendedSpeedCurveValue93Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(93, value);
-        }
-
-        [ObservableProperty]
-        internal byte extendedSpeedCurveValue94;
-        partial void OnExtendedSpeedCurveValue94Changed(byte value)
-        {
-            SetExtendedSpeedCurveValue(94, value);
-        }
 
         #endregion
 
@@ -714,15 +512,23 @@ namespace Z2XProgrammer.ViewModel
         string cV56Configuration = Subline.Create(new List<uint> { 56 });
 
 
-       
+
 
         #endregion
 
         #endregion
 
         #region REGION: CONSTRUCTOR
+
         public MotorCharacteristicsViewModel()
         {
+            foreach (ConfigurationVariableType item in DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV)
+            {
+                ExtendedSpeedCurveValues!.Add(new ConfigurationVariableType() { Number = item.Number, Value = item.Value });
+            }
+
+            ExtendedSpeedCurveValues!.CollectionChanged += ExtendedSpeedCurveValues_CollectionChanged;
+
             availableMotorControlFrequencyTypes = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableMotorControlFrequencyTypes());
             availableMotorControlPIDMotorTypes = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableMotorControlPIDMotorTypes());
 
@@ -746,9 +552,32 @@ namespace Z2XProgrammer.ViewModel
             });
 
         }
+
         #endregion
 
-        # region REGION: PRIVATE FUNCTIONS
+        #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// This event handler is called if the user changes one of the extended speed curve values.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExtendedSpeedCurveValues_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (ExtendedSpeedCurveValues == null) return;
+
+            ExtendedSpeedCurveType tempSpeedSettings = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues;
+            foreach (ConfigurationVariableType item in ExtendedSpeedCurveValues)
+            {
+                if (item != null)
+                {
+                    ConfigurationVariableType? findCV = Array.Find(tempSpeedSettings.CV, cv => cv.Number == item.Number);
+                    if (findCV != null) findCV.Value = item.Value;
+                }
+            }
+            DecoderConfiguration.RCN225.ExtendedSpeedCurveValues = tempSpeedSettings;
+
+        }
 
         /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
@@ -768,12 +597,12 @@ namespace Z2XProgrammer.ViewModel
             {
                 MaximumSpeedDefaultUsed = false;
             }
-            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed,255);
+            MaximumSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.RCN225.MaximumSpeed, 255);
             CV5Configuration = Subline.Create(new List<uint> { 5 });
 
             // RCN225: Minimum speed in CV2
             MinimumSpeed = DecoderConfiguration.RCN225.MinimumSpeed;
-            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed,255);
+            MinimumSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.RCN225.MinimumSpeed, 255);
             CV2Configuration = Subline.Create(new List<uint> { 2 });
 
             // RCN225: Medium speed in CV6
@@ -784,34 +613,6 @@ namespace Z2XProgrammer.ViewModel
             // RCN225: Speed curve selection (standard or extended) in CV29 (RCN225_SPEEDTABLE_CV29_4)
             ExtendedSpeedCurveEnabled = DecoderConfiguration.RCN225.ExtendedSpeedCurveEnabled;
             CV29Configuration = Subline.Create(new List<uint> { 29 });
-            ExtendedSpeedCurveValue67 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[0].Value;
-            ExtendedSpeedCurveValue68 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[1].Value;
-            ExtendedSpeedCurveValue69 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[2].Value;
-            ExtendedSpeedCurveValue70 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[3].Value;
-            ExtendedSpeedCurveValue71 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[4].Value;
-            ExtendedSpeedCurveValue72 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[5].Value;
-            ExtendedSpeedCurveValue73 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[6].Value;
-            ExtendedSpeedCurveValue74 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[7].Value;
-            ExtendedSpeedCurveValue75 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[8].Value;
-            ExtendedSpeedCurveValue76 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[9].Value;
-            ExtendedSpeedCurveValue77 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[10].Value;
-            ExtendedSpeedCurveValue78 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[11].Value;
-            ExtendedSpeedCurveValue79 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[12].Value;
-            ExtendedSpeedCurveValue80 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[13].Value;
-            ExtendedSpeedCurveValue81 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[14].Value;
-            ExtendedSpeedCurveValue82 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[15].Value;
-            ExtendedSpeedCurveValue83 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[16].Value;
-            ExtendedSpeedCurveValue84 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[17].Value;
-            ExtendedSpeedCurveValue85 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[18].Value;
-            ExtendedSpeedCurveValue86 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[19].Value;
-            ExtendedSpeedCurveValue87 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[20].Value;
-            ExtendedSpeedCurveValue88 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[21].Value;
-            ExtendedSpeedCurveValue89 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[22].Value;
-            ExtendedSpeedCurveValue90 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[23].Value;
-            ExtendedSpeedCurveValue91 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[24].Value;
-            ExtendedSpeedCurveValue92 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[25].Value;
-            ExtendedSpeedCurveValue93 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[26].Value;
-            ExtendedSpeedCurveValue94 = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV[27].Value;
 
             // ZIMO: MX decoder motor control frequency in CV9 (ZIMO_MXMOTORCONTROLFREQUENCY_CV9)
             if (ZIMO_MXMOTORCONTROLFREQUENCY_CV9 == true)
@@ -919,7 +720,7 @@ namespace Z2XProgrammer.ViewModel
             if (PIKOSMARTDECODER_MINIMUMSPEED_CV2 == true)
             {
                 MinimumPikoSmartDecoderSpeed = DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed;
-                MinimumPikoSmartDecoderSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed,63);
+                MinimumPikoSmartDecoderSpeedValueDescription = GetMinimumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MinimumSpeed, 63);
                 CV2Configuration = Subline.Create(new List<uint> { 2 });
             }
 
@@ -927,7 +728,7 @@ namespace Z2XProgrammer.ViewModel
             if (PIKOSMARTDECODER_MAXIMUMSPEED_CV5 == true)
             {
                 MaximumPikoSmartDecoderSpeed = DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed;
-                MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed,63);
+                MaximumPikoSmartDecoderSpeedValueDescription = GetMaximumSpeedLabel(DecoderConfiguration.PikoSmartDecoderV41.MaximumSpeed, 63);
                 CV5Configuration = Subline.Create(new List<uint> { 5 });
             }
 
@@ -1003,9 +804,6 @@ namespace Z2XProgrammer.ViewModel
             return MaximumDoehlerAndHaasSpeed.ToString() + " (" + (int)CVByteValueToPercentage.ToDouble(MaximumDoehlerAndHaasSpeed, 255) + " %)";
         }
 
-
-
-
         private void UpdateImpulsWidthTime(byte value)
         {
             switch (value)
@@ -1018,32 +816,171 @@ namespace Z2XProgrammer.ViewModel
 
         }
 
+        #endregion
+
+        #region REGION: COMMANDS
+
         /// <summary>
-        /// Sets the value of the extended speed curve configurations CVs (CV67 - CV94).
+        /// Sets a linear default curve for the extended speed curve values (CV67 to CV94).
         /// </summary>
-        /// <param name="cvNumber">The number of the configuration variable (67 - 94).</param>
-        /// <param name="value">The value of the CV.</param>
-        private bool SetExtendedSpeedCurveValue(ushort cvNumber, byte value)
+        /// <returns></returns>
+        [RelayCommand]
+        private void SetLinearDefaultCurve()
         {
-            //  Range check 
-            if (cvNumber > 94) return false;
-            if (cvNumber < 67) return false;
 
-            ExtendedSpeedCurveType tempSpeedSettings = DecoderConfiguration.RCN225.ExtendedSpeedCurveValues;
+            ExtendedSpeedCurveValues!.Clear();
+            foreach (ConfigurationVariableType item in DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV)
+            {
+                switch (item.Number)
+                {
+                    case 67: item.Value = 1; break;
+                    case 68: item.Value = 10; break;
+                    case 69: item.Value = 20; break;
+                    case 70: item.Value = 29; break;
+                    case 71: item.Value = 39; break;
+                    case 72: item.Value = 48; break;
+                    case 73: item.Value = 57; break;
+                    case 74: item.Value = 67; break;
+                    case 75: item.Value = 76; break;
+                    case 76: item.Value = 86; break;
+                    case 77: item.Value = 95; break;
+                    case 78: item.Value = 104; break;
+                    case 79: item.Value = 114; break;
+                    case 80: item.Value = 123; break;
+                    case 81: item.Value = 133; break;
+                    case 82: item.Value = 142; break;
+                    case 83: item.Value = 152; break;
+                    case 84: item.Value = 161; break;
+                    case 85: item.Value = 170; break;
+                    case 86: item.Value = 180; break;
+                    case 87: item.Value = 189; break;
+                    case 88: item.Value = 199; break;
+                    case 89: item.Value = 208; break;
+                    case 90: item.Value = 217; break;
+                    case 91: item.Value = 227; break;
+                    case 92: item.Value = 236; break;
+                    case 93: item.Value = 246; break;
+                    case 94: item.Value = 255; break;
+                }
 
-            tempSpeedSettings.CV[cvNumber - 67].Value = value;
+                ConfigurationVariableType newItem = new ConfigurationVariableType();
+                newItem.Number = item.Number;
+                newItem.Value = item.Value;
+                newItem.DeqSecSupported = item.DeqSecSupported;
+                newItem.Description = item.Description;
+                newItem.Enabled = item.Enabled;
 
-            DecoderConfiguration.RCN225.ExtendedSpeedCurveValues = tempSpeedSettings;
+                ExtendedSpeedCurveValues.Add(newItem);
+            }
 
-            return true;
+        }
+
+        /// <summary>
+        /// Decreases the extended speed curve values (CV67 top CV94).
+        /// </summary>
+        [RelayCommand]
+        private void DecreaseExtendedSpeedCurve()
+        {
+            try
+            {
+                ExtendedSpeedCurveValues!.Clear();
+                foreach (ConfigurationVariableType item in DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV)
+                {
+                    if (item.Value > 0) item.Value--;
+
+                    ConfigurationVariableType newItem = new ConfigurationVariableType();
+                    newItem.Number = item.Number;
+                    newItem.Value = item.Value;
+                    newItem.DeqSecSupported = item.DeqSecSupported;
+                    newItem.Description = item.Description;
+                    newItem.Enabled = item.Enabled;
+
+                    ExtendedSpeedCurveValues.Add(newItem);
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Increases the extended speed curve values (CV67 top CV94)
+        /// </summary>
+        [RelayCommand]
+        private void IncreaseExtendedSpeedCurve()
+        {
+            ExtendedSpeedCurveValues!.Clear();
+            foreach (ConfigurationVariableType item in DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV)
+            {
+                if (item.Value <= 254) item.Value++;
+
+                ConfigurationVariableType newItem = new ConfigurationVariableType();
+                newItem.Number = item.Number;
+                newItem.Value = item.Value;
+                newItem.DeqSecSupported = item.DeqSecSupported;
+                newItem.Description = item.Description;
+                newItem.Enabled = item.Enabled;
+
+                ExtendedSpeedCurveValues.Add(newItem);
+            }
+        }
+
+        /// <summary>
+        /// Sets a curve for the extended speed curve values (CV67 to CV94) that is optimized for slow speed operation.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        private void SetCurvedDefaultCurve()
+        {
+            ExtendedSpeedCurveValues!.Clear();
+            foreach (ConfigurationVariableType item in DecoderConfiguration.RCN225.ExtendedSpeedCurveValues.CV)
+            {
+                switch (item.Number)
+                {
+                    case 67: item.Value = 1; break;
+                    case 68: item.Value = 3; break;
+                    case 69: item.Value = 5; break;
+                    case 70: item.Value = 9; break;
+                    case 71: item.Value = 12; break;
+                    case 72: item.Value = 16; break;
+                    case 73: item.Value = 21; break;
+                    case 74: item.Value = 27; break;
+                    case 75: item.Value = 33; break;
+                    case 76: item.Value = 39; break;
+                    case 77: item.Value = 46; break;
+                    case 78: item.Value = 54; break;
+                    case 79: item.Value = 62; break;
+                    case 80: item.Value = 71; break;
+                    case 81: item.Value = 80; break;
+                    case 82: item.Value = 90; break;
+                    case 83: item.Value = 101; break;
+                    case 84: item.Value = 112; break;
+                    case 85: item.Value = 124; break;
+                    case 86: item.Value = 136; break;
+                    case 87: item.Value = 149; break;
+                    case 88: item.Value = 162; break;
+                    case 89: item.Value = 176; break;
+                    case 90: item.Value = 191; break;
+                    case 91: item.Value = 206; break;
+                    case 92: item.Value = 222; break;
+                    case 93: item.Value = 238; break;
+                    case 94: item.Value = 255; break;
+                }
+
+                ConfigurationVariableType newItem = new ConfigurationVariableType();
+                newItem.Number = item.Number;
+                newItem.Value = item.Value;
+                newItem.DeqSecSupported = item.DeqSecSupported;
+                newItem.Description = item.Description;
+                newItem.Enabled = item.Enabled;
+
+                ExtendedSpeedCurveValues.Add(newItem);
+            }
         }
 
         #endregion
 
     }
-
-
-
-
 
 }

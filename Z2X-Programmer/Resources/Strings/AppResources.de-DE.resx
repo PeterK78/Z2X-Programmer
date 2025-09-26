@@ -2061,4 +2061,22 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="Z21DeviceTypeUnknown" xml:space="preserve">
     <value>Unbekanntes Gerät</value>
   </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveAxisXLabel" xml:space="preserve">
+    <value>Kennlinienpunkte</value>
+  </data>
+  <data name="FrameMotorCharacteristicsExtendedSpeedCurveAxisYLabel" xml:space="preserve">
+    <value>Geschwindigkeit</value>
+  </data>
+  <data name="FrameMotorCharacteristicsLinearDefault" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="FrameMotorCharacteristicsCurveDefault" xml:space="preserve">
+    <value>Kurve</value>
+  </data>
+  <data name="FrameMotorCharacteristicsIncreaseCurve" xml:space="preserve">
+    <value>Erhöhen</value>
+  </data>
+  <data name="FrameMotorCharacteristicsDecreaseCurve" xml:space="preserve">
+    <value>Verringern</value>
+  </data>
 </root>
