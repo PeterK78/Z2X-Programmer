@@ -2079,4 +2079,22 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameMotorCharacteristicsDecreaseCurve" xml:space="preserve">
     <value>Verringern</value>
   </data>
+  <data name="FrameDecoderClipboardManufacturerCV8" xml:space="preserve">
+    <value>Hersteller (CV8):</value>
+  </data>
+  <data name="FrameDecoderClipboardVersionCV7" xml:space="preserve">
+    <value>Version (CV7):</value>
+  </data>
+  <data name="FrameDecoderClipboardDecoderType" xml:space="preserve">
+    <value>Decoder Type:</value>
+  </data>
+  <data name="FrameDecoderClipboardFirmwareVersion" xml:space="preserve">
+    <value>Firmware Version:</value>
+  </data>
+  <data name="FrameDecoderClipboardDecoderID" xml:space="preserve">
+    <value>Decoder ID:</value>
+  </data>
+  <data name="FrameDecoderClipboardBootloaderVersion" xml:space="preserve">
+    <value>Bootloader Version:</value>
+  </data>
 </root>

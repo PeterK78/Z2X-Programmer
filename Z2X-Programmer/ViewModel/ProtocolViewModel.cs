@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Z21Lib.Events;
+using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.FileAndFolderManagement;
@@ -188,11 +190,27 @@ namespace Z2XProgrammer.ViewModel
             CV28Configuration = Subline.Create(new List<uint> { 28 });
         }
 
+        // Railcom speed received from the command station
+        [ObservableProperty]
+        bool railComSpeedReceived = false;
+
+        [ObservableProperty]
+        int railComSpeed = 0;
+
+        // Railcom QOS received from the command station
+        [ObservableProperty]
+        bool railComQOSReceived = false;
+
+        [ObservableProperty]
+        int railComQOS = 0;
+
         #endregion
 
         # region REGION: CONSTRUCTOR
         public ProtocolViewModel()
         {
+            CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
+
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
@@ -216,6 +234,20 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         # region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// This event OnRailComInfoReceived is raised when the command station receives railcom data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRailComInfoReceived(object? sender, RailComInfoEventArgs e)
+        {
+            if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+            {
+                RailComSpeed = e.Speed;
+                RailComQOS = e.QOS;
+            }
+        }
 
         /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.

@@ -388,21 +388,33 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
+                string clipboardText = AppResources.FrameDecoderClipboardManufacturerCV8 + " " + Manufacturer + " (" + DecoderConfiguration.ConfigurationVariables[8].Value.ToString() + ")\n";
+
                 // Depending on the manufacturer, we create different character strings. 
                 switch (DecoderConfiguration.ConfigurationVariables[8].Value)
                 {
-                    case 97:    //  Doehler & Haass
-                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version + " " + DoehlerAndHaasDecoderType + " " + DoehlerAndHaasFirmwareVersion);
-                        break;
+                    case NMRA.ManufacturerID_DoehlerAndHaass:   //  Doehler & Haass
+                    case NMRA.ManufacturerID_Trix:              //  Minitrix
+                    case NMRA.ManufacturerID_PIKO:              //  PIKO
+                                clipboardText += AppResources.FrameDecoderClipboardVersionCV7 +  " " + Version + "\n";        
+                                if(DOEHLERANDHAAS_DECODERTYPE_CV261 == true) clipboardText += AppResources.FrameDecoderClipboardDecoderType + " " + DoehlerAndHaasDecoderType + "\n";
+                                if(DOEHLERANDHAAS_FIRMWAREVERSION_CV262x == true) clipboardText += AppResources.FrameDecoderClipboardFirmwareVersion  + " " + DoehlerAndHaasFirmwareVersion + "\n";
+                                if(PIKOSMARTDECODER_DECODERID_CV26X == true) clipboardText += AppResources.FrameDecoderClipboardDecoderID +  " " + PikoDecoderID + "\n";  
+                                break;
 
-                    case 145:   //  ZIMO
-                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + ZimoDecoderType + " " + ZimoSWVersion + " " + ZimoDecoderID + " " + ZimoBootloaderVersion);
-                        break;
+                    case NMRA.ManufacturerID_Zimo:   //  ZIMO
+                                clipboardText += AppResources.FrameDecoderClipboardDecoderType + " " + ZimoDecoderType + "\n";
+                                clipboardText += AppResources.FrameDecoderClipboardFirmwareVersion  + " " + ZimoSWVersion + "\n";
+                                clipboardText += AppResources.FrameDecoderClipboardDecoderID +  " " + ZimoDecoderID + "\n";  
+                                clipboardText += AppResources.FrameDecoderClipboardBootloaderVersion + " " + ZimoBootloaderVersion + "\n";
+                                break;
 
                     default:    //  All other manufacturers
-                        await Clipboard.Default.SetTextAsync(Manufacturer + " " + Version);
-                        break;
+                                clipboardText += AppResources.FrameDecoderClipboardVersionCV7 +  " " + Version + "\n";  
+                                break;  
                 }
+
+                await Clipboard.Default.SetTextAsync(clipboardText);
 
                 //  Inform the user that the information has been copied to the clipboard.
                 await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertDecoderInfoCopySuccessFull, AppResources.OK);

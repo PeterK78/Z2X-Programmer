@@ -248,7 +248,6 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
             CommandStation.OnRmBusInfoReceived += OnRailComInfoReceived;
 
-
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>

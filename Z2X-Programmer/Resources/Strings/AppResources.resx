@@ -2078,4 +2078,22 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameMotorCharacteristicsDecreaseCurve" xml:space="preserve">
     <value>Decrease</value>
   </data>
+  <data name="FrameDecoderClipboardManufacturerCV8" xml:space="preserve">
+    <value>Manufacturer (CV8):</value>
+  </data>
+  <data name="FrameDecoderClipboardVersionCV7" xml:space="preserve">
+    <value>Version (CV7):</value>
+  </data>
+  <data name="FrameDecoderClipboardDecoderType" xml:space="preserve">
+    <value>Decoder type:</value>
+  </data>
+  <data name="FrameDecoderClipboardFirmwareVersion" xml:space="preserve">
+    <value>Firmware version:</value>
+  </data>
+  <data name="FrameDecoderClipboardDecoderID" xml:space="preserve">
+    <value>Decoder id:</value>
+  </data>
+  <data name="FrameDecoderClipboardBootloaderVersion" xml:space="preserve">
+    <value>Bootloader version:</value>
+  </data>
 </root>

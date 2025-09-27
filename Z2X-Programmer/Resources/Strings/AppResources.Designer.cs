@@ -1260,6 +1260,60 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bootloader version:.
+        /// </summary>
+        public static string FrameDecoderClipboardBootloaderVersion {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardBootloaderVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoder id:.
+        /// </summary>
+        public static string FrameDecoderClipboardDecoderID {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardDecoderID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoder type:.
+        /// </summary>
+        public static string FrameDecoderClipboardDecoderType {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardDecoderType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firmware version:.
+        /// </summary>
+        public static string FrameDecoderClipboardFirmwareVersion {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardFirmwareVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer (CV8):.
+        /// </summary>
+        public static string FrameDecoderClipboardManufacturerCV8 {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardManufacturerCV8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version (CV7):.
+        /// </summary>
+        public static string FrameDecoderClipboardVersionCV7 {
+            get {
+                return ResourceManager.GetString("FrameDecoderClipboardVersionCV7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user-specific information such as a short description, any notes or an image here..
         /// </summary>
         public static string FrameDecoderDescriptionDescription {
