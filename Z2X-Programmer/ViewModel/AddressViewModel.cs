@@ -55,6 +55,9 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool activityReadCVOngoing = false;
 
+        [ObservableProperty]
+        bool activityWriteVehicelAddressOngoing = false;
+
         #endregion
 
         #region REGION: DECODER FEATURES
@@ -88,13 +91,17 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: PUBLIC PROPERTIES
 
+        // NMRA DCC ProgrammingMode POM enabled?
+        [ObservableProperty]
+        bool dccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ?  true : false;
+
         //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
         [ObservableProperty]
         ushort vehicleAddress;
         partial void OnVehicleAddressChanged(ushort oldValue, ushort newValue)
         {
             DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
-            VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
+            VehicleAddressCVConfiguration = Subline.Create(new List<uint> { 1, 17, 18 });
             WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
         }
 
@@ -124,7 +131,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 //  Lets check if a valid long vehicle address has already been configured. A valid long adress is in the range between 128 and 10239.
                 ushort longAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
-                if ((longAddress>= NMRA.LongAddressMinimum) && (longAddress <= NMRA.LongAddressMaximum))
+                if ((longAddress >= NMRA.LongAddressMinimum) && (longAddress <= NMRA.LongAddressMaximum))
                 {
                     //  A valid long vehicle address is already available - let's use it.
                     VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
@@ -149,7 +156,7 @@ namespace Z2XProgrammer.ViewModel
                     VehicleAddress = NMRA.StandardShortVehicleAddress;
                 }
             }
-            
+
         }
 
         [ObservableProperty]
@@ -169,7 +176,7 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 //  Just in case we do not have any consist address configured, we set a new default value.
-                if (DecoderConfiguration.RCN225.ConsistAddress == 0) 
+                if (DecoderConfiguration.RCN225.ConsistAddress == 0)
                 {
                     if ((DecoderConfiguration.RCN225Backup.ConsistAddress == 0) || (DecoderConfiguration.RCN225Backup.ConsistAddress > 127))
                     {
@@ -181,7 +188,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
             }
-            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint> { 19, 20 });
         }
 
         [ObservableProperty]
@@ -189,12 +196,12 @@ namespace Z2XProgrammer.ViewModel
         partial void OnConsistAddressChanged(ushort value)
         {
             DecoderConfiguration.RCN225.ConsistAddress = value;
-            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint> { 19, 20 });
         }
 
         [ObservableProperty]
-        string consistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
-    
+        string consistAddressCVConfiguration = Subline.Create(new List<uint> { 19, 20 });
+
         // ZIMO: Secondary address for function decoders CV64 (ZIMO_MXFX_SECONDADDRESS_CV64)
         [ObservableProperty]
         ushort secondaryAddress;
@@ -206,7 +213,7 @@ namespace Z2XProgrammer.ViewModel
         }
         [ObservableProperty]
         string secondaryAddressCVConfiguration = string.Empty;
-       
+
         // ZIMO: Secondary address mode for function decoders CV112 (ZIMO_MXFX_SECONDADDRESS_CV64)
         [ObservableProperty]
         internal ObservableCollection<string> availableDCCAddressModesSecondaryAdr;
@@ -226,7 +233,7 @@ namespace Z2XProgrammer.ViewModel
         internal string selectedDCCAddressModeSecondaryAdrCVValues = string.Empty;
 
 
-        
+
         #endregion
 
         #region REGION: CONSTRUCTOR
@@ -236,11 +243,11 @@ namespace Z2XProgrammer.ViewModel
         public AddressViewModel()
         {
             AvailableDCCAddressModesVehicleAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
-            AvailableDCCAddressModesSecondaryAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());           
+            AvailableDCCAddressModesSecondaryAdr = new ObservableCollection<String>(NMRAEnumConverter.GetAvailableDCCAddressModes());
 
             SelectedDCCAddressModeVehicleAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
             SelectedDCCAddressModeSecondaryAdr = NMRAEnumConverter.GetDCCAddressModeDescription(NMRA.DCCAddressModes.Short);
-           
+
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
 
@@ -262,6 +269,14 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            WeakReferenceMessenger.Default.Register<ProgrammingModeUpdateMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnGetProgrammingMode();
+                });
+            });
+
         }
         #endregion 
 
@@ -279,6 +294,14 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
+        /// The OnGetProgrammingMode handler is called when the ProgrammingModeUpdateMessage message has been received.
+        /// </summary>
+        private void OnGetProgrammingMode()
+        {
+            DccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ?  true : false;
+        }
+
+        /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
         /// OnGetDecoderConfiguration updates the local variables with the new decoder configuration.
         /// </summary>
@@ -290,7 +313,7 @@ namespace Z2XProgrammer.ViewModel
 
             //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
             VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
-            VehicleAddressCVConfiguration = Subline.Create(new List<uint>{1,17,18});
+            VehicleAddressCVConfiguration = Subline.Create(new List<uint> { 1, 17, 18 });
 
             //  RCN225: DCC address mode CV29.5 (RCN225_LONGSHORTADDRESS_CV29_5)
             SelectedDCCAddressModeVehicleAdr = Helper.NMRAEnumConverter.GetDCCAddressModeDescription(DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr);
@@ -306,7 +329,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 ConsistAddressEnabled = true;
             }
-            ConsistAddressCVConfiguration = Subline.Create(new List<uint>{19, 20});
+            ConsistAddressCVConfiguration = Subline.Create(new List<uint> { 19, 20 });
 
             //  ZIMO
 
@@ -336,8 +359,8 @@ namespace Z2XProgrammer.ViewModel
                 LimitMinimumAddress = NMRA.LongAddressMinimum;
                 LimitMaximumAddress = NMRA.LongAddressMaximum;
             }
-    
-            if(DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr == NMRA.DCCAddressModes.Short)
+
+            if (DecoderConfiguration.ZIMO.DCCAddressModeSecondaryAdr == NMRA.DCCAddressModes.Short)
             {
                 LimitZimoSecondAddressMinimum = 1;
                 LimitZimoSecondAddressMaximum = 127;
@@ -347,11 +370,105 @@ namespace Z2XProgrammer.ViewModel
                 LimitZimoSecondAddressMinimum = 128;
                 LimitZimoSecondAddressMaximum = 10239;
             }
-            
+
         }
         #endregion
 
         #region REGION: COMMANDS
+
+        /// <summary>
+        /// Writes the vehicle address in CV1 to the decoder.
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        private async Task WriteVehicleAddress()
+        {
+            try
+            {
+
+                // Defines the configuration variables we have to write to configure the vehicle address.
+                ushort[] configurationVariables = { 1, 17, 18, 29 };
+
+                // Is TRUE if we have written successfully a value to the decoder.
+                bool WriteSuccessFull = false;
+
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
+
+                // Ask the user if he really wanna update the vehicle address.
+                string infoMessage = AppResources.AlertWriteVehicleAddress1 + " " + DecoderConfiguration.RCN225Backup.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress2 + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress3;
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
+                {
+                    infoMessage += "\n\n" + AppResources.AlertWriteVehicleAddressProgrammingMethod + " " + AppResources.DCCProgrammingModePOM + " " + AppResources.AlertWriteVehicleAddressProgrammingMethod1;
+                }
+                else
+                {
+                    infoMessage += "\n\n" + AppResources.AlertWriteVehicleAddressProgrammingMethod + " " + AppResources.DCCProgrammngModeProgramTrack + " " + AppResources.AlertWriteVehicleAddressProgrammingMethod1;
+                }
+                if (await MessageBox.Show(AppResources.AlertInformation, infoMessage, AppResources.YES, AppResources.NO) == false) return;
+
+                // Start the activity indicator.
+                ActivityWriteVehicelAddressOngoing = true;
+
+                //  Check if we have a valid connection to the digital system.
+                if (CommandStation.Connect(cancelToken, 5000) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertDecoderDownloadError, AppResources.OK);
+                    return;
+                }
+
+                //  Turn the track power ON if we are in POM mode.
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
+                {
+                    await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
+                }
+
+                // Write each configuration variable of configurationVariables to the decoder. 
+                foreach (ushort cv in configurationVariables)
+                {
+                    // Reset our "we have written successfully to the decoder flag".
+                    WriteSuccessFull = false;
+
+                    // Write the next configuration variable to the decoder.
+                    await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(cv, DecoderConfiguration.RCN225Backup.LocomotiveAddress, DecoderConfiguration.ConfigurationVariables[cv].Value, DecoderConfiguration.ProgrammingMode, cancelToken));
+
+                    if (WriteSuccessFull == true)
+                    {
+                        // We have written sucessfully a configuration variable - so we need to update our backup for this variables.
+                        DecoderConfiguration.BackupCVs[cv].Value = DecoderConfiguration.ConfigurationVariables[cv].Value;
+                        DecoderConfiguration.BackupCVs[cv].Enabled = DecoderConfiguration.ConfigurationVariables[cv].Enabled;
+                    }
+                    else
+                    {
+                        // Writing a configuration variable has failed. We display a message and exit.
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertWriteVehicleAddressError, AppResources.OK);
+
+                        //  After writing the CV on the programming track, we must switch the track power on.
+                        //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+                        if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+
+                        // Stop the activity indicator.
+                        ActivityWriteVehicelAddressOngoing = false;
+
+                        return;
+                    }
+                }
+
+                // Inform the application that we have set a new decoder configuration.
+                WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+
+                //  After writing the CV on the programming track, we must switch the track power on.
+                //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+
+                // Stop the activity indicator.
+                ActivityWriteVehicelAddressOngoing = false;
+            }
+            catch (Exception)
+            {
+                // Stop the activity indicator.
+                ActivityWriteVehicelAddressOngoing = false;
+            }
+        }
 
         /// <summary>
         /// Reads the vehicle address from the decoder. This command is only available in direct programming mode.
@@ -360,64 +477,64 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         private async Task DetectVehicleAddress()
         {
-        
+
             try
             {
                 ushort[] cVValuesToRead = new ushort[] { 1, 17, 18, 29 };
 
-            //  Check if we are in direct programming mode.
-            if (DecoderConfiguration.ProgrammingMode != NMRA.DCCProgrammingModes.DirectProgrammingTrack)
-            {
-                await MessageBox.Show(AppResources.AlertError,AppResources.FrameAddressVehicleAddressDetectNotProgTrack, AppResources.OK);
-                return;
-            }
-
-            ActivityReadCVOngoing = true;
-
-            CancellationToken cancelToken = new CancellationTokenSource().Token;
-
-            //  Check if we are connected to the command station.
-            if (CommandStation.Connect(cancelToken, 5000) == false)
-            {
-                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
-                ActivityReadCVOngoing = false;
-                return;
-            }
-            
-            await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
-
-            // Read each CV value from the decoder.
-            bool readSuccessFull = false;
-            foreach (ushort cV in cVValuesToRead)
-            {
-                //  Read the CV value from the decoder.
-                readSuccessFull = false;
-                await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
-                if (readSuccessFull == false)
+                //  Check if we are in direct programming mode.
+                if (DecoderConfiguration.ProgrammingMode != NMRA.DCCProgrammingModes.DirectProgrammingTrack)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertAddressNotRead, AppResources.OK);
-                    break;
+                    await MessageBox.Show(AppResources.AlertError, AppResources.FrameAddressVehicleAddressDetectNotProgTrack, AppResources.OK);
+                    return;
                 }
-            }
 
-            await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressRead + " " + DecoderConfiguration.RCN225.LocomotiveAddress , AppResources.OK);
+                ActivityReadCVOngoing = true;
 
-            WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-          
-            //  After reading the CV on the programming track, we must switch the track power on.
-            //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
-            if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+                CancellationToken cancelToken = new CancellationTokenSource().Token;
 
-            ActivityReadCVOngoing = false;
+                //  Check if we are connected to the command station.
+                if (CommandStation.Connect(cancelToken, 5000) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
+                    ActivityReadCVOngoing = false;
+                    return;
+                }
+
+                await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
+
+                // Read each CV value from the decoder.
+                bool readSuccessFull = false;
+                foreach (ushort cV in cVValuesToRead)
+                {
+                    //  Read the CV value from the decoder.
+                    readSuccessFull = false;
+                    await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+                    if (readSuccessFull == false)
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertAddressNotRead, AppResources.OK);
+                        break;
+                    }
+                }
+
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressRead + " " + DecoderConfiguration.RCN225.LocomotiveAddress, AppResources.OK);
+
+                WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
+
+                //  After reading the CV on the programming track, we must switch the track power on.
+                //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
+                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+
+                ActivityReadCVOngoing = false;
 
 
             }
             catch (Exception)
             {
-               ActivityReadCVOngoing = false;
+                ActivityReadCVOngoing = false;
             }
 
-            
+
         }
 
 

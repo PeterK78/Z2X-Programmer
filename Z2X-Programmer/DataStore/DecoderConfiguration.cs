@@ -21,23 +21,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.DataModel;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Runtime.CompilerServices;
-using CommunityToolkit.Mvvm.Messaging;
-using Z2XProgrammer.Messages;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Communication;
-using System.Collections.Immutable;
 using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.DataStore

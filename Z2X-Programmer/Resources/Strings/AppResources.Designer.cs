@@ -493,6 +493,60 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to assign the decoder with vehicle address.
+        /// </summary>
+        public static string AlertWriteVehicleAddress1 {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddress1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the new vehicle address.
+        /// </summary>
+        public static string AlertWriteVehicleAddress2 {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddress2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ?.
+        /// </summary>
+        public static string AlertWriteVehicleAddress3 {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddress3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vehicle address could not be written..
+        /// </summary>
+        public static string AlertWriteVehicleAddressError {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddressError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programming will take place on.
+        /// </summary>
+        public static string AlertWriteVehicleAddressProgrammingMethod {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddressProgrammingMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ..
+        /// </summary>
+        public static string AlertWriteVehicleAddressProgrammingMethod1 {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddressProgrammingMethod1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The format of the IP address is not correct. Please check your IP address..
         /// </summary>
         public static string AlertWrongIPAddressFormat {
@@ -1220,6 +1274,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameAddressVehicleAddressModeTitle {
             get {
                 return ResourceManager.GetString("FrameAddressVehicleAddressModeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write vehicle address.
+        /// </summary>
+        public static string FrameAddressWriteVehicleAddress {
+            get {
+                return ResourceManager.GetString("FrameAddressWriteVehicleAddress", resourceCulture);
             }
         }
         
@@ -5490,6 +5553,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string UserDefinedNotesPlaceholder {
             get {
                 return ResourceManager.GetString("UserDefinedNotesPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write the vehicle address on the decoder.
+        /// </summary>
+        public static string WriteVehicleAddressTooltip {
+            get {
+                return ResourceManager.GetString("WriteVehicleAddressTooltip", resourceCulture);
             }
         }
         

@@ -2096,4 +2096,28 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameDecoderClipboardBootloaderVersion" xml:space="preserve">
     <value>Bootloader version:</value>
   </data>
+  <data name="AlertWriteVehicleAddress1" xml:space="preserve">
+    <value>Do you want to assign the decoder with vehicle address</value>
+  </data>
+  <data name="AlertWriteVehicleAddress2" xml:space="preserve">
+    <value>the new vehicle address</value>
+  </data>
+  <data name="AlertWriteVehicleAddress3" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="FrameAddressWriteVehicleAddress" xml:space="preserve">
+    <value>Write vehicle address</value>
+  </data>
+  <data name="WriteVehicleAddressTooltip" xml:space="preserve">
+    <value>Write the vehicle address on the decoder</value>
+  </data>
+  <data name="AlertWriteVehicleAddressProgrammingMethod" xml:space="preserve">
+    <value>Programming will take place on</value>
+  </data>
+  <data name="AlertWriteVehicleAddressProgrammingMethod1" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="AlertWriteVehicleAddressError" xml:space="preserve">
+    <value>The vehicle address could not be written.</value>
+  </data>
 </root>

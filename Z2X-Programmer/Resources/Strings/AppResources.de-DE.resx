@@ -2097,4 +2097,28 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameDecoderClipboardBootloaderVersion" xml:space="preserve">
     <value>Bootloader Version:</value>
   </data>
+  <data name="AlertWriteVehicleAddress1" xml:space="preserve">
+    <value>Wollen Sie dem Decoder mit der Fahrzeugadresse</value>
+  </data>
+  <data name="AlertWriteVehicleAddress2" xml:space="preserve">
+    <value>die neue Fahrzeugadresse</value>
+  </data>
+  <data name="AlertWriteVehicleAddress3" xml:space="preserve">
+    <value>zuweisen?</value>
+  </data>
+  <data name="FrameAddressWriteVehicleAddress" xml:space="preserve">
+    <value>Fahrzeugadresse schreiben</value>
+  </data>
+  <data name="WriteVehicleAddressTooltip" xml:space="preserve">
+    <value>Schreibt die Fahrzeugadresse auf den Decoder</value>
+  </data>
+  <data name="AlertWriteVehicleAddressProgrammingMethod" xml:space="preserve">
+    <value>Die Programmierung wird am</value>
+  </data>
+  <data name="AlertWriteVehicleAddressProgrammingMethod1" xml:space="preserve">
+    <value>durchgeführt.</value>
+  </data>
+  <data name="AlertWriteVehicleAddressError" xml:space="preserve">
+    <value>Die Fahrzeugadresse konnte nicht geschrieben werden.</value>
+  </data>
 </root>

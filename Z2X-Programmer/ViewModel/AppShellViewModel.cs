@@ -23,7 +23,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Maui.Views;
 using System.Collections.ObjectModel;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -42,7 +41,6 @@ using Z21Lib.Events;
 using Color = Microsoft.Maui.Graphics.Color;
 using Colors = Z2XProgrammer.Helper.Colors;
 using System.ComponentModel;
-using Z2XProgrammer.Pages;
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Core;
 using Microsoft.Maui.Controls.Shapes;
@@ -133,6 +131,7 @@ namespace Z2XProgrammer.ViewModel
             DecoderConfiguration.ProgrammingMode = CommandStation.GetProgrammingModeFromDescription(newValue);
             int mode = (int)DecoderConfiguration.ProgrammingMode;
             Preferences.Default.Set(AppConstants.PREFERENCES_PROGRAMMINGMODE_KEY, mode.ToString());
+            WeakReferenceMessenger.Default.Send(new ProgrammingModeUpdateMessage(true));
         }
 
         #endregion
@@ -754,13 +753,20 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We create a list of configuration values for which the current value is different from the backup value.
                 string ModifiedCVValues = String.Empty;
-                List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
+                List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);               
+
+                //  We do not write the configuration variables CV1, CV17 and CV18. These configuration variables are for configuring the vehicle address.
+                ModifiedConfigVariables.Remove(1);
+                ModifiedConfigVariables.Remove(17);
+                ModifiedConfigVariables.Remove(18);
+
                 if (ModifiedConfigVariables.Count == 0)
                 {
                     //  No modified values were found.
                     await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoModifiedValuesFound, AppResources.OK);
                     return;
                 }
+
 
                 //  Check if we have valid locomotive address.
                 if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
@@ -853,6 +859,12 @@ namespace Z2XProgrammer.ViewModel
                 //  We create a list with configuration variables which can be safely written by the given decoder specification.
                 string ModifiedCVValues = String.Empty;
                 List<int> ListOfWritableConfigVariables = ReadWriteDecoder.GetAllWritableConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
+
+                //  We do not write the configuration variables CV1, CV17 and CV18. These configuration variables are for configuring the vehicle address.
+                ListOfWritableConfigVariables.Remove(1);
+                ListOfWritableConfigVariables.Remove(17);
+                ListOfWritableConfigVariables.Remove(18);
+
                 if (ListOfWritableConfigVariables.Count == 0)
                 {
                     //  Something happed - we did not find any valid CV value.
