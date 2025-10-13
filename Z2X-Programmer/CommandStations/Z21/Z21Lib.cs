@@ -64,7 +64,7 @@ namespace Z21Lib
 
         //  RM bus sensor states.
         private bool[] RMBusSensorStates = new bool[256];
-
+        
         #endregion
 
         #region REGION: PUBLIC DELEGATES
@@ -1202,13 +1202,15 @@ namespace Z21Lib
 
                     // LAN_RAILCOM_DATACHANGED
                     ushort locoAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[4]);
+                    uint receiveCounter = (uint)((receivedBytes[9] << 24) + receivedBytes[8] << 16 + receivedBytes[7] << 8 + receivedBytes[6]);
+                    ushort errorCounter = (ushort)((receivedBytes[11] << 8) + receivedBytes[10]);
                     byte railComOption = receivedBytes[13];
                     byte railComSpeed = receivedBytes[14];
                     byte railComQOS = receivedBytes[15];
+                    
+                    OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS, errorCounter));
 
-                    OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS));
-
-                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComOption.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString());
+                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComOption.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString() + " railComTransmitErrors:" + errorCounter);
 
                     break;
 

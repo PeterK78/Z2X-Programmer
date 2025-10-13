@@ -81,7 +81,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- RCN225: Manufacturer  -->
                             <Label x:Name="FrameGenericDecoderInformationManufacturer" Grid.Row="0" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" >
-                                <Label Text="{Binding Manufacturer}" ToolTipProperties.Text="{Binding ManufacturerID }" VerticalOptions="Center"/>
+                                <Label Text="{Binding Manufacturer}" ToolTipProperties.Text="{Binding ManufacturerID }" VerticalOptions="Center">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding Manufacturer}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV8Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
                             </VerticalStackLayout>
 
@@ -95,21 +101,39 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250) -->
                             <Label x:Name="FrameDecoderZIMOInfoDecoderType" Grid.Row="2" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}" />
                             <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}">
-                                <Label Text="{Binding ZimoDecoderType}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                <Label Text="{Binding ZimoDecoderType}" VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderType}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
                             <!-- ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65) -->
                             <Label x:Name="FrameDecoderZIMOInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,20,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" />
                             <VerticalStackLayout Grid.Row="3" Grid.Column="1" Margin="0,20,0,0" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" VerticalOptions="Center"  HorizontalOptions="End"  >
-                                <Label Text="{Binding ZimoSWVersion}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                <Label Text="{Binding ZimoSWVersion}" VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSWVersion}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV65and7Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
                             <!-- ZIMO: Decoder ID (ZIMO_DECODERID_CV25X) -->
                             <Label x:Name="FrameDecoderZIMOInfoDecoderID" Grid.Row="4" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERID_CV25X}" />
                             <VerticalStackLayout Grid.Row="4" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End"  IsVisible="{Binding ZIMO_DECODERID_CV25X}">
-                                <Label Text="{Binding ZimoDecoderID}"  VerticalOptions="Center"  HorizontalOptions="End" />
+                                <Label Text="{Binding ZimoDecoderID}"  VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderID}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVDecoderIDConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
@@ -120,21 +144,39 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Label Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" IsVisible="{Binding ZimoBootloaderIsFailSafe}" Text="{x:Static strings:AppResources.ZIMOBootloaderIsFailSafe}" VerticalOptions="Center"  HorizontalOptions="Start" TextColor="Green"/>
                             </VerticalStackLayout>
                             <VerticalStackLayout Grid.Row="5" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" >
-                                <Label Text="{Binding ZimoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="End" />
+                                <Label Text="{Binding ZimoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoBootloaderVersion}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVBootloaderVersionConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
                             <!-- ZIMO: Sound project manufacturer information (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X) -->
                             <Label x:Name="FrameDecoderZIMOInfoSoundManufacturer" Grid.Row="6" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}" />
                             <VerticalStackLayout Grid.Row="6" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}">
-                                <Label  Text="{Binding ZimoSoundProjectManufacturer}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                <Label  Text="{Binding ZimoSoundProjectManufacturer}" VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectManufacturer}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV105XConfiguraion}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
                             </VerticalStackLayout>
 
                             <!-- ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) -->
                             <Label x:Name="FrameDecoderZIMOInfoSoundProjectNr" Grid.Row="7" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundProjectNr}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}" />
                             <VerticalStackLayout Grid.Row="7" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}">
-                                <Label  Text="{Binding ZimoSoundProjectNumber}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                <Label  Text="{Binding ZimoSoundProjectNumber}" VerticalOptions="Center"  HorizontalOptions="End">
+                                    <FlyoutBase.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectNumber}"/>
+                                        </MenuFlyout>
+                                    </FlyoutBase.ContextFlyout>
+                                </Label>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV25XConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
@@ -192,7 +234,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <!-- User defined short note -->
                             <Label x:Name="FrameDecoderDescriptionLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDescriptionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <Entry Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Start" Placeholder="{x:Static strings:AppResources.FrameDecoderDescriptionPlaceholder}" Text="{Binding UserDefindedDecoderDescription}"/>
-                            
+
                             <!-- User defined path to the decoder manual -->
                             <Image Margin="0,20,0,0" Grid.Row="2" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_book_24_regular.png, Dark=ic_fluent_book_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
                             <Label x:Name="FrameDecoderManualLabel" Grid.Row="2" Grid.Column="0" Margin="30,20,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderManualLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />

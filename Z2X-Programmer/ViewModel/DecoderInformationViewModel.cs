@@ -381,6 +381,23 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: COMMANDS
 
         /// <summary>
+        /// Copies the given string clip clipBoardText to the clipboard.
+        /// </summary>
+        /// <param name="clipBoardText">Text to be copied to the clipboard.</param>
+        [RelayCommand]
+         async Task CopyTextClipboard (string clipBoardText)
+        {
+            try
+            {
+                await Clipboard.Default.SetTextAsync(clipBoardText);
+            }
+            catch (Exception ex)
+            { 
+                await MessageBox.Show(AppResources.AlertInformation, ex.Message, AppResources.OK);
+            }   
+        }
+
+        /// <summary>
         /// Copies the decoder information to the clipboard.
         /// </summary>            
         [RelayCommand]

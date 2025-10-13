@@ -83,7 +83,7 @@ namespace Z2XProgrammer.ViewModel
         // Vehicle address
         [ObservableProperty]
         ushort vehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
-
+      
         // RailCom Speed
         [ObservableProperty]
         ushort railComSpeed = 0;
@@ -91,6 +91,9 @@ namespace Z2XProgrammer.ViewModel
         // RailCom QOS
         [ObservableProperty]
         ushort railComQOS = 0;
+
+        [ObservableProperty]
+        ImageSource railComQOSIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
 
         //  Speed
         [ObservableProperty]
@@ -246,7 +249,7 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
             CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
-            CommandStation.OnRmBusInfoReceived += OnRailComInfoReceived;
+            CommandStation.OnRmBusInfoReceived += OnRMBusInfoReceived;
 
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
@@ -319,15 +322,37 @@ namespace Z2XProgrammer.ViewModel
         {
             if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
             {
-                RailComSpeed = e.Speed;
-                RailComQOS = e.QOS;
+                if(RailComSpeed != e.Speed) RailComSpeed = e.Speed;
+                if (RailComQOS != e.QOS)
+                {
+                    RailComQOS = e.QOS;
+
+                    ImageSource tempImageIcon;
+                    if ((RailComQOS >= 0) && (RailComQOS <= 19))
+                    {
+                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
+                    }
+                   else if ((RailComQOS >= 20) && (RailComQOS <= 29))
+                    {
+                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_2_24_dark.png" : "ic_fluent_cellular_data_2_24_regular.png";
+                    }
+                    else if ((RailComQOS >= 30) && (RailComQOS <= 39))
+                    {
+                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_data_3_24_regular.png";
+                    }
+                    else
+                    {
+                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_warning_24_regular.png";
+                    }
+                    if (RailComQOSIcon != tempImageIcon) RailComQOSIcon = tempImageIcon;
+                }
             }
         }
 
         /// <summary>
-        /// This event OnRailComInfoReceived is raied when the command station receives RM bus data.
+        /// This event OnRMBusInfoReceived is raised when the command station receives RM bus data.
         /// </summary>
-        private void OnRailComInfoReceived(object? sender, RmBusInfoEventArgs e)
+        private void OnRMBusInfoReceived(object? sender, RmBusInfoEventArgs e)
         {
             // We read the configured sensor addresses from the preferences.
             int sensor1ConfiguredAddress = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY, AppConstants.PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT));

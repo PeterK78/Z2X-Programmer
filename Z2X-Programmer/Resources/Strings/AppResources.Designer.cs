@@ -1377,6 +1377,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string FrameDecoderCopyClipboard {
+            get {
+                return ResourceManager.GetString("FrameDecoderCopyClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user-specific information such as a short description, any notes or an image here..
         /// </summary>
         public static string FrameDecoderDescriptionDescription {

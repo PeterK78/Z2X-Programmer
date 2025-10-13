@@ -2121,4 +2121,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="AlertWriteVehicleAddressError" xml:space="preserve">
     <value>Die Fahrzeugadresse konnte nicht geschrieben werden.</value>
   </data>
+  <data name="FrameDecoderCopyClipboard" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
 </root>

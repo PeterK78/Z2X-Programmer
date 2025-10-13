@@ -104,21 +104,31 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <!-- The currently selected address and the speed step system -->
                     <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="Center" VerticalOptions="Center" >
 
+                        <HorizontalStackLayout>
+                            <!-- Railcom QoS -->
+                            <Image Margin="5,0,0,0" HeightRequest="16" Source="{Binding RailComQOSIcon}" VerticalOptions="Center" ToolTipProperties.Text="{Binding RailComQOS, StringFormat='RailCom QOS'}" ></Image>
+
+                            <!-- Railcom Speed -->
+                            <Image Margin="10,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_top_speed_24_regular.png, Dark=ic_fluent_top_speed_24_dark.png}" VerticalOptions="Center" ToolTipProperties.Text="{Binding RailComQOS, StringFormat='RailCom Speed'}"></Image>
+                            <Label Text="{Binding RailComSpeed}" VerticalOptions="Center" VerticalTextAlignment="Center" MinimumWidthRequest="20"></Label>
+                        </HorizontalStackLayout>
+
                         <Image Margin="2,0,0,0"  HeightRequest="16" WidthRequest="16" Source="{Binding Sensor1ImageSource}" VerticalOptions="Center" HorizontalOptions="Center" ToolTipProperties.Text="{Binding Sensor1TooltipText}"></Image>
                         <Image Margin="2,0,0,0"  HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_timer_24_regular.png, Dark=ic_fluent_timer_24_dark.png}" VerticalOptions="Center" IsVisible="{Binding MeasurementSectionBusy}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding StopMeasurementSectionCommand}" />
                             </Image.GestureRecognizers>
                         </Image>
+
+                        <!-- Measurement section speed -->
                         <Label Text="{Binding MeasurementSectionSpeed, StringFormat='{0:F1} km/h'}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" MinimumWidthRequest="20" IsVisible="{Binding Path=MeasurementSectionBusy,Converter={StaticResource boolInvert}}" ></Label>
                         <Image Margin="0,0,0,0"  HeightRequest="16" WidthRequest="16" Source="{Binding Sensor2ImageSource}" VerticalOptions="Center" HorizontalOptions="Center" ToolTipProperties.Text="{Binding Sensor2TooltipText}"></Image>
 
-                        <Image Margin="10,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_top_speed_24_regular.png, Dark=ic_fluent_top_speed_24_dark.png}" VerticalOptions="Center" ></Image>
-                        <Label Text="{Binding RailComSpeed}" VerticalOptions="Center" VerticalTextAlignment="Center" MinimumWidthRequest="20"></Label>
 
                         <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                         <Label Text="{Binding VehicleAddress}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
 
+                        <!-- DCC address mode -->
                         <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_step_24_regular.png, Dark=ic_fluent_step_24_regular_dark.png}" VerticalOptions="Center" ></Image>
                         <Label IsVisible="{Binding SpeedStep14}" Text="14" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label IsVisible="{Binding SpeedStep28}" Text="28" VerticalOptions="Center"  HorizontalOptions="Start" />

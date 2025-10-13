@@ -31,12 +31,14 @@ namespace Z21Lib.Events
         public ushort LocomotiveAddress { get; set; } = 0;
         public ushort Speed { get; set; } = 0;
         public ushort QOS { get; set; } = 0;    
+        public ushort TransmitErrors { get; set; } = 0;    
 
-        public RailComInfoEventArgs(ushort locomotiveAddress, ushort speed, ushort qos)
+        public RailComInfoEventArgs(ushort locomotiveAddress, ushort speed, ushort qos, ushort transmitErrors)
         {
             LocomotiveAddress = locomotiveAddress;
             Speed = speed;
             QOS = qos;
+            TransmitErrors = transmitErrors;
         }
 
     }
