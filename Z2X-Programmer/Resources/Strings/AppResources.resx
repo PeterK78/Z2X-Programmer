@@ -2123,4 +2123,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameDecoderCopyClipboard" xml:space="preserve">
     <value>Copy</value>
   </data>
+  <data name="DCCSignalQualityAudioFileName" xml:space="preserve">
+    <value>SignalQuality_EN.mp3</value>
+  </data>
 </root>

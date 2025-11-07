@@ -24,7 +24,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Plugin.Maui.Audio;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
@@ -40,6 +42,7 @@ namespace Z2XProgrammer.ViewModel
     {
 
         private Stopwatch stopwatch = new Stopwatch();
+        private IAudioPlayer? myAudioPlayer;
 
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
@@ -250,7 +253,7 @@ namespace Z2XProgrammer.ViewModel
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
             CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
             CommandStation.OnRmBusInfoReceived += OnRMBusInfoReceived;
-
+         
             WeakReferenceMessenger.Default.Register<DecoderConfigurationUpdateMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -271,6 +274,19 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// Plays a "DCC signal quality" audio notification.
+        /// </summary>
+        private async void PlaySignalQualitySound()
+        {
+            try
+            {
+                if(myAudioPlayer == null) myAudioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Resources\\" + AppResources.DCCSignalQualityAudioFileName));
+                if(myAudioPlayer.IsPlaying == false) myAudioPlayer.Play();
+            }
+            catch { }   
+        }
 
         /// <summary>
         /// The OnGetDecoderConfiguration message handler is called when the DecoderConfigurationUpdateMessage message has been received.
@@ -328,21 +344,23 @@ namespace Z2XProgrammer.ViewModel
                     RailComQOS = e.QOS;
 
                     ImageSource tempImageIcon;
-                    if ((RailComQOS >= 0) && (RailComQOS <= 19))
+                    if ((RailComQOS >= 0) && (RailComQOS <= 9))
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
                     }
-                   else if ((RailComQOS >= 20) && (RailComQOS <= 29))
+                   else if ((RailComQOS >= 10) && (RailComQOS <= 19))
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_2_24_dark.png" : "ic_fluent_cellular_data_2_24_regular.png";
                     }
-                    else if ((RailComQOS >= 30) && (RailComQOS <= 39))
+                    else if ((RailComQOS >= 20) && (RailComQOS <= 29))
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_data_3_24_regular.png";
+                        PlaySignalQualitySound();
                     }
                     else
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_warning_24_regular.png";
+                        PlaySignalQualitySound();
                     }
                     if (RailComQOSIcon != tempImageIcon) RailComQOSIcon = tempImageIcon;
                 }

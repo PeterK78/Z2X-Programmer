@@ -819,6 +819,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SignalQuality_EN.mp3.
+        /// </summary>
+        public static string DCCSignalQualityAudioFileName {
+            get {
+                return ResourceManager.GetString("DCCSignalQualityAudioFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 14 speed steps.
         /// </summary>
         public static string DCCSpeedStepMode14 {

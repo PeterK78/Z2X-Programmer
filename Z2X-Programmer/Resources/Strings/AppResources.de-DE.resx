@@ -2124,4 +2124,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameDecoderCopyClipboard" xml:space="preserve">
     <value>Kopieren</value>
   </data>
+  <data name="DCCSignalQualityAudioFileName" xml:space="preserve">
+    <value>SignalQuality_DE.mp3</value>
+  </data>
 </root>
