@@ -238,7 +238,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="e"></param>
         private static void OnZ21RailComInfoReceived(object? sender, RailComInfoEventArgs e)
         {
-            OnRailComInfoReceived.Invoke(sender, e);
+            if (OnRailComInfoReceived != null) OnRailComInfoReceived.Invoke(sender, e);
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="e"></param>
         private static void OnZ21StatusChanged(object? sender, StateEventArgs e)
         {
-            OnStatusChanged.Invoke(sender, e);
+            if(OnStatusChanged != null) OnStatusChanged.Invoke(sender, e);
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="e"></param>
         private static void OnZ21ReachabilityChanged(object? sender, bool e)
         {
-            OnReachabilityChanged.Invoke(sender, e);
+           if(OnReachabilityChanged != null) OnReachabilityChanged.Invoke(sender, e);
         }
 
         #endregion
