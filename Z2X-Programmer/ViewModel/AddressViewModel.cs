@@ -477,7 +477,6 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         private async Task DetectVehicleAddress()
         {
-
             try
             {
                 ushort[] cVValuesToRead = new ushort[] { 1, 17, 18, 29 };
@@ -507,13 +506,17 @@ namespace Z2XProgrammer.ViewModel
                 bool readSuccessFull = false;
                 foreach (ushort cV in cVValuesToRead)
                 {
-                    //  Read the CV value from the decoder.
+                    //  Read the next CV value from the decoder.
                     readSuccessFull = false;
                     await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+
+                    // If reading the CV failed, display an error message, exit programming mode, and terminate the function.
                     if (readSuccessFull == false)
                     {
                         await MessageBox.Show(AppResources.AlertError, AppResources.AlertAddressNotRead, AppResources.OK);
-                        break;
+                        if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+                        ActivityReadCVOngoing = false;
+                        return;
                     }
                 }
 
@@ -526,17 +529,12 @@ namespace Z2XProgrammer.ViewModel
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
 
                 ActivityReadCVOngoing = false;
-
-
             }
             catch (Exception)
             {
                 ActivityReadCVOngoing = false;
             }
-
-
         }
-
 
         #endregion
 
