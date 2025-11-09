@@ -1204,13 +1204,23 @@ namespace Z21Lib
                     ushort locoAddress = (ushort)((receivedBytes[5] << 8) + receivedBytes[4]);
                     uint receiveCounter = (uint)((receivedBytes[9] << 24) + receivedBytes[8] << 16 + receivedBytes[7] << 8 + receivedBytes[6]);
                     ushort errorCounter = (ushort)((receivedBytes[11] << 8) + receivedBytes[10]);
-                    byte railComOption = receivedBytes[13];
-                    byte railComSpeed = receivedBytes[14];
-                    byte railComQOS = receivedBytes[15];
-                    
+
+                    // We grab the supported options of the decoder.
+                    byte railComSupportedOptions = receivedBytes[13];
+
+                    // We report the speed, if the decoder supports it (rcoSpeed1 = 0x01, rcoSpeed2 = 0x02 according to the roco Z21 protocol).
+                    byte railComSpeed = 0; if(((railComSupportedOptions & 0x01) != 0) || ((railComSupportedOptions & 0x02) != 0)) { railComSpeed = receivedBytes[14];}
+
+                    // We report QOS if the decoder supports it (rcoQoS = 0x04 according to the roco Z21 protocol).
+                    byte railComQOS = 0;if ((railComSupportedOptions & 0x04) != 0) railComQOS = receivedBytes[15];
+
+                    // Some decoders occasionally send the value 255 (all bits set) erroneously — for example, the ZIMO MN180
+                    // with firmware version 5.19. These faulty values are filtered out here.
+                    if (railComQOS == 255) railComQOS = 0;
+
                     OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS, errorCounter));
 
-                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComOption.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString() + " railComTransmitErrors:" + errorCounter);
+                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComSupportedOptions.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString() + " railComTransmitErrors:" + errorCounter);
 
                     break;
 
