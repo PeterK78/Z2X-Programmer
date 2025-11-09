@@ -2126,4 +2126,10 @@ The application is aimed at beginners who want to configure the most important f
   <data name="DCCSignalQualityAudioFileName" xml:space="preserve">
     <value>SignalQuality_EN.mp3</value>
   </data>
+  <data name="AlertWriteVehicleAddressWriteProg" xml:space="preserve">
+    <value>Would you like to assign the the decoder on the programming track the vehicle address</value>
+  </data>
+  <data name="AlertWriteVehicleAddressWriteProg2" xml:space="preserve">
+    <value>?</value>
+  </data>
 </root>

@@ -547,6 +547,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to assign the the decoder on the programming track the vehicle address.
+        /// </summary>
+        public static string AlertWriteVehicleAddressWriteProg {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddressWriteProg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ?.
+        /// </summary>
+        public static string AlertWriteVehicleAddressWriteProg2 {
+            get {
+                return ResourceManager.GetString("AlertWriteVehicleAddressWriteProg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The format of the IP address is not correct. Please check your IP address..
         /// </summary>
         public static string AlertWrongIPAddressFormat {

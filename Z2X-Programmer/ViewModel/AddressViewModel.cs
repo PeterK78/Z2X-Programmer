@@ -394,17 +394,25 @@ namespace Z2XProgrammer.ViewModel
 
                 CancellationToken cancelToken = new CancellationTokenSource().Token;
 
-                // Ask the user if he really wanna update the vehicle address.
-                string infoMessage = AppResources.AlertWriteVehicleAddress1 + " " + DecoderConfiguration.RCN225Backup.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress2 + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress3;
+                // Ask the user if he really wanna update the vehicle address. The programming methods differ significantly,
+                // which is why two different user messages are created. 
+                string infoMessage = "";
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
                 {
+                    // User message for programming on the main track.
+                    infoMessage = AppResources.AlertWriteVehicleAddress1 + " " + DecoderConfiguration.RCN225Backup.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress2 + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress3;
                     infoMessage += "\n\n" + AppResources.AlertWriteVehicleAddressProgrammingMethod + " " + AppResources.DCCProgrammingModePOM + " " + AppResources.AlertWriteVehicleAddressProgrammingMethod1;
                 }
                 else
-                {
-                    infoMessage += "\n\n" + AppResources.AlertWriteVehicleAddressProgrammingMethod + " " + AppResources.DCCProgrammngModeProgramTrack + " " + AppResources.AlertWriteVehicleAddressProgrammingMethod1;
+                {   // User message for programming on the programming track.
+                    infoMessage = AppResources.AlertWriteVehicleAddressWriteProg + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddressWriteProg2;
                 }
-                if (await MessageBox.Show(AppResources.AlertInformation, infoMessage, AppResources.YES, AppResources.NO) == false) return;
+
+                if (await MessageBox.Show(AppResources.AlertInformation, infoMessage, AppResources.YES, AppResources.NO) == false)
+                {
+                    VehicleAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
+                    return;
+                }
 
                 // Start the activity indicator.
                 ActivityWriteVehicelAddressOngoing = true;
