@@ -89,14 +89,14 @@ namespace Z2XProgrammer.ViewModel
       
         // RailCom Speed
         [ObservableProperty]
-        ushort railComSpeed = 0;
+        short railComSpeed = 0;
 
         // RailCom QOS
         [ObservableProperty]
-        ushort railComQOS = 0;
+        short railComQOS = -1;
 
         [ObservableProperty]
-        ImageSource railComQOSIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
+        ImageSource railComQOSIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_off_24_dark.png" : "ic_fluent_cellular_off_24_regular.png";
 
         //  Speed
         [ObservableProperty]
@@ -238,10 +238,10 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         bool speedStep128 = false;
 
-
         #endregion
 
         #region REGION: CONSTRUCTOR
+
         /// <summary>
         /// ViewModel constructor
         /// </summary>
@@ -330,25 +330,32 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// This event OnRailComInfoReceived is raised when the command station receives railcom data.
+        /// This event OnRailComInfoReceived is raised when the command station receives RailCom data.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender object.</param>
+        /// <param name="e">The event arguments RailComInfoEventArgs.</param>
         private void OnRailComInfoReceived(object? sender, RailComInfoEventArgs e)
         {
+            //  Did we receive RailCom data for the selected decoder?
             if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
             {
                 if(RailComSpeed != e.Speed) RailComSpeed = e.Speed;
-                if (RailComQOS != e.QOS)
+
+                ImageSource tempImageIcon;
+                if(RailComQOS != e.QOS)
                 {
                     RailComQOS = e.QOS;
 
-                    ImageSource tempImageIcon;
-                    if ((RailComQOS >= 0) && (RailComQOS <= 9))
+                    if (e.QOS == -1)
+                    {
+                        // QOS == -1 means that the decoder does not support QOS messages.
+                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_off_24_dark.png" : "ic_fluent_cellular_off_24_regular.png";
+                    }
+                    else  if ((RailComQOS >= 0) && (RailComQOS <= 9))
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
                     }
-                   else if ((RailComQOS >= 10) && (RailComQOS <= 19))
+                    else if ((RailComQOS >= 10) && (RailComQOS <= 19))
                     {
                         tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_2_24_dark.png" : "ic_fluent_cellular_data_2_24_regular.png";
                     }
@@ -422,7 +429,6 @@ namespace Z2XProgrammer.ViewModel
             }
 
         }
-
 
         /// <summary>
         /// The event OnCommandStationStatusChanged is raised when the command station switch it status.

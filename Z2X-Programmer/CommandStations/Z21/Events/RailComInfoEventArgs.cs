@@ -24,16 +24,27 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 namespace Z21Lib.Events
 {
     /// <summary>
-    /// Event arguments RailComInfoEventArgs LocoInfo event.
+    /// Event arguments RailComInfoEventArgs.
     /// </summary>
     public class RailComInfoEventArgs: EventArgs
     {
         public ushort LocomotiveAddress { get; set; } = 0;
-        public ushort Speed { get; set; } = 0;
-        public ushort QOS { get; set; } = 0;    
+
+        /// <summary>
+        /// The current speed reported by RailCom. -1 means that the decoder does not support
+        /// RailCom speed reporting.
+        /// </summary>
+        public short Speed { get; set; } = 0;
+
+        /// <summary>
+        /// The current signal quality reported by RailCom. -1 means that the decoder does not
+        /// support RailCom signal quality reporting. 0 = Perfect Quality.
+        /// </summary>
+        public short QOS { get; set; } = 0;
+
         public ushort TransmitErrors { get; set; } = 0;    
 
-        public RailComInfoEventArgs(ushort locomotiveAddress, ushort speed, ushort qos, ushort transmitErrors)
+        public RailComInfoEventArgs(ushort locomotiveAddress, short speed, short qos, ushort transmitErrors)
         {
             LocomotiveAddress = locomotiveAddress;
             Speed = speed;
