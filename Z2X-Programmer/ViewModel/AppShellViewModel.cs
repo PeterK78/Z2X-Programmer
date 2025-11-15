@@ -638,7 +638,7 @@ namespace Z2XProgrammer.ViewModel
 
 
             //  Setup the popup window.
-            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder, note);
+            PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageUploadDecoder, note, DecoderConfiguration.ProgrammingMode);
 
             try
             {
@@ -800,7 +800,7 @@ namespace Z2XProgrammer.ViewModel
                 string note = string.Empty;
                 if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note,DecoderConfiguration.ProgrammingMode);
 
                 Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
                 {
@@ -895,7 +895,7 @@ namespace Z2XProgrammer.ViewModel
                 if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
                 ;
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note);
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note,DecoderConfiguration.ProgrammingMode);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 

@@ -24,6 +24,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 -->
 <mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              x:Class="Z2XProgrammer.Popups.PopUpActivityIndicator"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
@@ -31,12 +32,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              CanBeDismissedByTappingOutsideOfPopup="False"
              Padding="0,0,0,0"
              >
+    
     <VerticalStackLayout>
         <Grid MinimumWidthRequest="500" MinimumHeightRequest="150" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -48,24 +51,27 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <!-- The Z2X programmer icon -->
             <Image Grid.Row="0" Grid.Column="0" Source="badgeicon.png" HeightRequest="40" WidthRequest="40" Margin="10,20,10,10" VerticalOptions="Center" HorizontalOptions="Center" ></Image>
+            
+            <!-- The speed icon (rabbit or turtle) -->
+            <Image Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" HeightRequest="24" x:Name="TransferSpeedIcon"></Image>
 
             <!-- The main information (Data is loaded, Data is saved ...) -->
-            <Label Margin="20,20,20,20" Grid.Row="1" Grid.Column="0" x:Name="ProgressDialogMessage" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+            <Label Margin="20,10,20,20" Grid.Row="2" Grid.Column="0" x:Name="ProgressDialogMessage" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
 
             <!-- An important remark -->
-            <Label Margin="20,20,20,20" Grid.Row="2" Grid.Column="0" x:Name="RemarkMessage" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+            <Label Margin="20,20,20,20" Grid.Row="3" Grid.Column="0" x:Name="RemarkMessage" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
 
             <!-- The percentage information -->
-            <Label Grid.Row="3" Grid.Column="0" x:Name="ProgressLabelPercentage" Text="Init" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" FontSize="60" FontAttributes="Bold" ></Label>
+            <Label Grid.Row="4" Grid.Column="0" x:Name="ProgressLabelPercentage" Text="Init" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}" FontSize="60" FontAttributes="Bold" ></Label>
 
             <!-- The currently processed CV -->
-            <Label Grid.Row="4" Margin="0,5,0,5" Grid.Column="0" x:Name="ProgressLabelCV" Text="" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ></Label>
+            <Label Grid.Row="5" Margin="0,5,0,5" Grid.Column="0" x:Name="ProgressLabelCV" Text="" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ></Label>
 
             <!-- The progress bar -->
-            <ProgressBar Grid.Row="5" Grid.Column="0" x:Name="MyProgressBar" Margin="20,0,20,0"></ProgressBar>
+            <ProgressBar Grid.Row="6" Grid.Column="0" x:Name="MyProgressBar" Margin="20,0,20,0"></ProgressBar>
 
             <!-- The cancel button -->
-            <Button Grid.Row="6" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,20" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            <Button Grid.Row="7" Grid.Column="0" WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="20,20,20,10" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
 
         </Grid>
 

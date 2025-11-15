@@ -23,6 +23,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
+using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
 
 namespace Z2XProgrammer.Popups;
@@ -45,10 +46,19 @@ public partial class PopUpActivityIndicator : Popup
     /// <param name="tokenSource">The token to signal that the user has canceled the process.</param>
     /// <param name="processDescription">A string that describes the process. This is displayed in the dialog.</param>
     /// <param name="note">The note that is displayed in the dialog.</param>
-    public PopUpActivityIndicator(CancellationTokenSource tokenSource, string processDescription, string note)
+    internal PopUpActivityIndicator(CancellationTokenSource tokenSource, string processDescription, string note, NMRA.DCCProgrammingModes programMode)
 	{
 		InitializeComponent();
 
+        if( programMode == NMRA.DCCProgrammingModes.POMMainTrack)
+        {
+            TransferSpeedIcon.Source =  Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_animal_rabbit_24_dark.png" : "ic_fluent_animal_rabbit_24_regular.png";   
+        }
+        else
+        {
+            TransferSpeedIcon.Source = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_animal_turtle_24_dark.png" : "ic_fluent_animal_turtle_24_regular.png";
+        }
+        
         ProgressDialogMessage.Text = processDescription;
         ProgressLabelPercentage.Text = "0 %";
         MyProgressBar.Progress = 0;
