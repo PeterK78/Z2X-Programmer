@@ -623,9 +623,15 @@ namespace Z2XProgrammer.ViewModel
         [RelayCommand]
         async Task UploadDecoder()
         {
-            int CurrentlyUploadedCV = 0;
 
             Logger.PrintDevConsole("AppShellViewModel: Enter UploadDecoder)");
+
+            int CurrentlyUploadedCV = 0;
+
+            // The shell is required to open a pop-up. Since we are in a multi-window environment,
+            // we must determine the shell of the first window.
+            Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+            if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of  main window 0 cannot be determined.");
 
             //  Setup the cancellation token.
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
@@ -654,7 +660,7 @@ namespace Z2XProgrammer.ViewModel
                 if (CommandStation.Z21.IsReachable == false)
                 {
                     PopUpConnectCommandStation popupConnectCommandSation = new PopUpConnectCommandStation(cancelTokenSource, AppResources.InfoConnectionToDigitalCommandStation + Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) + ").");
-                    Shell.Current.CurrentPage.ShowPopup(popupConnectCommandSation, new PopupOptions
+                    currentShellOfWindow0.ShowPopup(popupConnectCommandSation, new PopupOptions
                     {
                         Shape = new RoundRectangle
                         {
@@ -671,7 +677,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
 
-                Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
+                currentShellOfWindow0.ShowPopup(pop, new PopupOptions
                 {
                     Shape = new RoundRectangle
                     {
@@ -695,7 +701,13 @@ namespace Z2XProgrammer.ViewModel
                 });
 
                 bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, ProgressCV));
-                await pop.CloseAsync();
+
+                // Workaround:
+                // The .NET MAUI pop-ups currently have problems with multi-window applications. For this reason,
+                // it is important that we bring the main window to the foreground before closing a pop-up. Otherwise the
+                // the current shell can not be found by ClosePopupAsync.
+                App.Current.ActivateWindow(App.Current.Windows[0]);
+                await currentShellOfWindow0.ClosePopupAsync(pop);
 
                 //  Display an error message and return if the upload has failed.
                 if (success == false)
