@@ -37,12 +37,13 @@ using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
-    public partial class ControllerViewModel : ObservableObject
+    public partial class ControllerViewModelEx : ObservableObject
     {
 
         private Stopwatch stopwatch = new Stopwatch();
         private IAudioPlayer? myAudioPlayer;
         private bool enableRailComMessages = false;
+        private bool windowsFeedbacksRegistered = false;
 
         #region REGION: DATASTORE & SETTINGS & SEARCH
 
@@ -245,14 +246,10 @@ namespace Z2XProgrammer.ViewModel
         /// <summary>
         /// ViewModel constructor
         /// </summary>
-        public ControllerViewModel()
+        public ControllerViewModelEx()
         {
             OnGetDecoderConfiguration();
-
-            Window currentWindow = Application.Current.Windows[0];
-            currentWindow.Deactivated += (s, e) => { enableRailComMessages = false; };
-            currentWindow.Activated += (s,e) => { enableRailComMessages = true; };
-
+        
             CommandStation.Z21.OnLocoInfoReceived += OnLocoInfoReceived;
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
             CommandStation.OnRailComInfoReceived += OnRailComInfoReceived;
@@ -275,6 +272,7 @@ namespace Z2XProgrammer.ViewModel
             });
 
         }
+       
         #endregion
 
         #region REGION: PRIVATE FUNCTIONS
@@ -298,7 +296,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         public void OnGetDecoderConfiguration()
         {
-            //  Request the locomotive information for the current locomotive address.
+            ////  Request the locomotive information for the current locomotive address.
             CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
 
             VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
@@ -340,44 +338,71 @@ namespace Z2XProgrammer.ViewModel
         /// <param name="e">The event arguments RailComInfoEventArgs.</param>
         private void OnRailComInfoReceived(object? sender, RailComInfoEventArgs e)
         {
-
-            if (enableRailComMessages == false) return;
-
-            //  Did we receive RailCom data for the selected decoder?
-            if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+            try
             {
-                if(RailComSpeed != e.Speed) RailComSpeed = e.Speed;
 
-                ImageSource tempImageIcon;
-                if(RailComQOS != e.QOS)
+                //  We do not send RailCom messages since the external second window is fully available to the
+                // .NET MAUI app. If we do not wait, we would not be able to register the callbacks Activated,
+                // Deactivated and Loaded.
+                if (Application.Current!.Windows.Count < 2) return;
+
+                // Check if we have already registered the Windows and Page events. This events are necessary
+                // top stop the RailCom updates if the Windows is not visible/available. Otherwise we Windows
+                // is not able to draw images (because the Windows is Null) and will create an error message.
+                if (windowsFeedbacksRegistered == false && Application.Current.Windows.Count == 2)
                 {
-                    RailComQOS = e.QOS;
-
-                    if (e.QOS == -1)
-                    {
-                        // QOS == -1 means that the decoder does not support QOS messages.
-                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_off_24_dark.png" : "ic_fluent_cellular_off_24_regular.png";
-                    }
-                    else  if ((RailComQOS >= 0) && (RailComQOS <= 9))
-                    {
-                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
-                    }
-                    else if ((RailComQOS >= 10) && (RailComQOS <= 19))
-                    {
-                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_2_24_dark.png" : "ic_fluent_cellular_data_2_24_regular.png";
-                    }
-                    else if ((RailComQOS >= 20) && (RailComQOS <= 29))
-                    {
-                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_data_3_24_regular.png";
-                        PlaySignalQualitySound();
-                    }
-                    else
-                    {
-                        tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_warning_24_regular.png";
-                        PlaySignalQualitySound();
-                    }
-                    if (RailComQOSIcon != tempImageIcon) RailComQOSIcon = tempImageIcon;
+                    Window currentWindow = Application.Current.Windows[1];
+                    currentWindow.Deactivated += (s, e) => { enableRailComMessages = false; };
+                    currentWindow.Activated += (s,e) => { enableRailComMessages = true; };
+                    currentWindow.Destroying += (s,e) => {   CommandStation.Z21.OnLocoInfoReceived -= OnLocoInfoReceived;
+                                                             CommandStation.OnStatusChanged -= OnCommandStationStatusChanged;
+                                                             CommandStation.OnRailComInfoReceived -= OnRailComInfoReceived;
+                                                             CommandStation.OnRmBusInfoReceived -= OnRMBusInfoReceived; }; 
+                    windowsFeedbacksRegistered = true;
                 }
+
+                if (enableRailComMessages == false) return;
+
+                //  Did we receive RailCom data for the selected decoder?
+                if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+                {
+                    if (RailComSpeed != e.Speed) RailComSpeed = e.Speed;
+
+                    ImageSource tempImageIcon;
+                    if (RailComQOS != e.QOS)
+                    {
+                        RailComQOS = e.QOS;
+
+                        if (e.QOS == -1)
+                        {
+                            // QOS == -1 means that the decoder does not support QOS messages.
+                            tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_off_24_dark.png" : "ic_fluent_cellular_off_24_regular.png";
+                        }
+                        else if ((RailComQOS >= 0) && (RailComQOS <= 9))
+                        {
+                            tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_1_24_dark.png" : "ic_fluent_cellular_data_1_24_regular.png";
+                        }
+                        else if ((RailComQOS >= 10) && (RailComQOS <= 19))
+                        {
+                            tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_2_24_dark.png" : "ic_fluent_cellular_data_2_24_regular.png";
+                        }
+                        else if ((RailComQOS >= 20) && (RailComQOS <= 29))
+                        {
+                            tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_data_3_24_regular.png";
+                            PlaySignalQualitySound();
+                        }
+                        else
+                        {
+                            tempImageIcon = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_cellular_data_3_24_dark.png" : "ic_fluent_cellular_warning_24_regular.png";
+                            PlaySignalQualitySound();
+                        }
+                        if (RailComQOSIcon != tempImageIcon) RailComQOSIcon = tempImageIcon;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.PrintDevConsole("Z21Lib:ReceivingRawZ21Data: System.Runtime.InteropServices.COMException (" + ex.HResult + ")");
             }
         }      
 
@@ -564,11 +589,11 @@ namespace Z2XProgrammer.ViewModel
                 GUI.ControllerWindowShown = true;
 
                 //  We create and configure a new controller page and a new controller window.
-                ControllerPageEx controllerPageExternal = new ControllerPageEx(new ControllerViewModelEx());
+                ControllerPage controllerPageExternal = new ControllerPage(new ControllerViewModel());
                 GUI.ControllerWindow = new Window(controllerPageExternal);
 
                 // DO NOT SET THE PARENT WINDOW to the currenct Shell window! This is not allowed in .NET MAUI.
-                //GUI.ControllerWindow.Parent = Shell.Current.CurrentPage;
+                // GUI.ControllerWindow.Parent = Shell.Current.CurrentPage;
 
                 GUI.ControllerWindow.Width = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT));
                 GUI.ControllerWindow.Height = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT));

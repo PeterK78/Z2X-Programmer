@@ -235,8 +235,8 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Reads the locomotive list from the train controller software and presents
-        /// it to the user.
+        /// Displays the locomotive list. Depending on the user settings, either the list from the Traincontroller
+        /// software or the list from the file system is displayed.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
@@ -245,6 +245,11 @@ namespace Z2XProgrammer.ViewModel
             try
             {
                 List<LocoListType> locoList = new List<LocoListType>();
+
+                // The shell is required to open a pop-up. Since we are in a multi-window environment,
+                // we must determine the shell of the first window.
+                Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+                if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of main window 0 cannot be determined.");
 
                 //  Check if the Z2X files folder is available.
                 if (LocoList.Z2XFileFolder == "")
@@ -269,7 +274,13 @@ namespace Z2XProgrammer.ViewModel
                 CancellationToken cancelToken = cancelTokenSource.Token;
                 PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList);
 
-                Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
+                // Workaround:
+                // The .NET MAUI pop-ups currently have problems with multi-window applications. For this reason,
+                // it is important that we bring the main window to the foreground before closing a pop-up. Otherwise the
+                // the current shell can not be found by ClosePopupAsync.
+                App.Current.ActivateWindow(App.Current.Windows[0]);
+
+                IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(pop, new PopupOptions
                 {
                     Shape = new RoundRectangle
                     {
@@ -277,6 +288,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                 });
 
+                if (response.Result == true) await Shell.Current.GoToAsync("//AddressPage");
             }
             catch (Exception ex)
             {
@@ -765,7 +777,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We create a list of configuration values for which the current value is different from the backup value.
                 string ModifiedCVValues = String.Empty;
-                List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);               
+                List<int> ModifiedConfigVariables = ReadWriteDecoder.GetModifiedConfigurationVariables(DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode);
 
                 //  We do not write the configuration variables CV1, CV17 and CV18. These configuration variables are for configuring the vehicle address.
                 ModifiedConfigVariables.Remove(1);
@@ -812,7 +824,7 @@ namespace Z2XProgrammer.ViewModel
                 string note = string.Empty;
                 if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note,DecoderConfiguration.ProgrammingMode);
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note, DecoderConfiguration.ProgrammingMode);
 
                 Shell.Current.CurrentPage.ShowPopup(pop, new PopupOptions
                 {
@@ -907,7 +919,7 @@ namespace Z2XProgrammer.ViewModel
                 if (DecoderConfiguration.AllSupportedCVsEnabled() == false) { note = AppResources.AlertSomeCVsAreDisabledUpload; }
                 ;
 
-                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note,DecoderConfiguration.ProgrammingMode);
+                PopUpActivityIndicator pop = new PopUpActivityIndicator(cancelTokenSource, AppResources.PopUpMessageDownloadDecoder, note, DecoderConfiguration.ProgrammingMode);
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
@@ -1190,7 +1202,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
                 }
 
-                Shell.Current.GoToAsync("//AddressPage");
+                //Shell.Current.GoToAsync("//AddressPage");
 
 
             }

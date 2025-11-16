@@ -217,6 +217,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\ControllerPageEx.xaml.cs">
+	    <DependentUpon>ControllerPageEx.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\FunctionConfigurationPage.xaml.cs">
 	    <DependentUpon>FunctionConfigurationPage.xaml</DependentUpon>
 	  </Compile>
@@ -268,6 +271,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\ControllerPageEx.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\FunctionConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

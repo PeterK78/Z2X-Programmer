@@ -80,6 +80,9 @@ namespace Z2XProgrammer
             builder.Services.AddSingleton<ControllerPage>();
             builder.Services.AddSingleton<ControllerViewModel>();
 
+            builder.Services.AddSingleton<ControllerPageEx>();
+            builder.Services.AddSingleton<ControllerViewModelEx>();
+
             builder.Services.AddSingleton<ZIMOFunctionKeysFunctionOutputsPage>();
             builder.Services.AddSingleton<ZIMOFunctionKeysFunctionOutputsViewModel>();
 

@@ -2008,10 +2008,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Mit einer Messstrecke können Sie reale die Geschwindigkeit eines Fahrzeugs messen.</value>
   </data>
   <data name="FrameSettingsMeasuringSectionSensor1Label" xml:space="preserve">
-    <value>Sensor 1 Adresse</value>
+    <value>Sensor 1 - Adresse</value>
   </data>
   <data name="FrameSettingsMeasuringSectionSensor2Label" xml:space="preserve">
-    <value>Sensor 2 Adresse</value>
+    <value>Sensor 2 - Adresse</value>
   </data>
   <data name="FrameSettingsMeasuringSectionLength" xml:space="preserve">
     <value>Länge in mm</value>

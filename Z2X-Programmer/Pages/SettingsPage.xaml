@@ -201,8 +201,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsDisplayDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                     <!-- Application language -->
-                    <Label Grid.Row="1" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageDescription}" VerticalOptions="CenterAndExpand"  HorizontalOptions="Start" />
-                    <Picker Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End" VerticalOptions="CenterAndExpand"></Picker>
+                    <Label Grid.Row="1" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAppLanguageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Picker Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}"  HorizontalOptions="End" MinimumWidthRequest="300" WidthRequest="300" HorizontalTextAlignment="End" VerticalOptions="Center"></Picker>
 
                     <!-- Additional display of CV values -->
                     <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsAdditionalDisplayOfCVValues}"  HorizontalOptions="Start" Margin="0,20,0,0" />
@@ -242,7 +242,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.RowDefinitions>
 
                     <!-- Description -->
-                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light= ic_fluent_timer_24_regular.png, Dark= ic_fluent_timer_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                    <Label Margin="50,0,0,20" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                     <!-- Number sensor 1 -->
                     <Label Grid.Row="1" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionSensor1Label}"  HorizontalOptions="Start" />
@@ -296,19 +297,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <!-- Scale -->
                     <Label Grid.Row="4" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionScale}" HorizontalOptions="Start" />
-                    <Entry Grid.Row="4" Grid.Column="1"  HorizontalTextAlignment="Center"  MinimumWidthRequest="200" Text="{Binding MeasurementSectionScale}" IsReadOnly="False" IsEnabled="True" Margin="0,10,0,0" ClearButtonVisibility="WhileEditing" Keyboard="Numeric">
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior                                     
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="16"
-                                MaximumValue="220"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
 
+                    <HorizontalStackLayout Grid.Row="4" Grid.Column="1"  Margin="0,10,0,0" HorizontalOptions="End" >
+                        <Label  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="1:" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,10,0" />
+                        <Entry  HorizontalTextAlignment="Center" HorizontalOptions="End" MinimumWidthRequest="200" Text="{Binding MeasurementSectionScale}" IsReadOnly="False" IsEnabled="True"  ClearButtonVisibility="WhileEditing" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <toolkit:NumericValidationBehavior                                     
+                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                                    InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                    ValidStyle="{StaticResource Z2XValidEntry}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumValue="16"
+                                    MaximumValue="220"
+                                    MaximumDecimalPlaces="0" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </HorizontalStackLayout>
                 </Grid>
             </Border>
 

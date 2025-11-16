@@ -21,6 +21,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using Z2XProgrammer.DataModel;
@@ -34,16 +35,15 @@ namespace Z2XProgrammer.Popups;
 public partial class PopUpLocoList : Popup
 {
 
-    CancellationTokenSource _cancelTokenSource;
+    Shell? myShell;
+    CancellationTokenSource _cancelTokenSource;    
 
 	public PopUpLocoList(CancellationTokenSource tokenSource, List<LocoListType> locoList)
 	{
 		InitializeComponent();
-
         LocoListCollectionView.ItemsSource = locoList;
-
         _cancelTokenSource = tokenSource;
-     
+        myShell = Application.Current!.Windows[0].Page as Shell;
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public partial class PopUpLocoList : Popup
     /// <param name="e"></param>
     void CancelButton_Clicked(object sender, EventArgs e)
     {
-        this.CloseAsync(new CancellationToken());
+        if (myShell != null) { myShell.ClosePopupAsync(false); }        
     }
 
     
@@ -64,14 +64,21 @@ public partial class PopUpLocoList : Popup
     /// <param name="e"></param>
     private async void OKButton_Clicked(object sender, EventArgs e)
     {
-        if (LocoListCollectionView.SelectedItem != null)
+        try
         {
-            WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem));
-            _ = this.CloseAsync(new CancellationToken());
+            if (LocoListCollectionView.SelectedItem != null)
+            {
+                WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem));                
+                if (myShell != null) await Shell.Current.ClosePopupAsync(true);
+            }
+            else
+            {
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListNoLocoSelected, AppResources.OK);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListNoLocoSelected, AppResources.OK);
+            Logger.PrintDevConsole("PopUpLocoList.OKButton_Clicked: " + ex.Message);
         }
     }   
 }

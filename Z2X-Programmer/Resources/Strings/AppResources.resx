@@ -2006,11 +2006,8 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameSettingsMeasuringSectionDescription" xml:space="preserve">
     <value>With a measuring section, you can measure the actual speed of a vehicle.</value>
   </data>
-  <data name="FrameSettingsMeasuringSectionSensor1Label" xml:space="preserve">
-    <value>Sensor 1 Address</value>
-  </data>
   <data name="FrameSettingsMeasuringSectionSensor2Label" xml:space="preserve">
-    <value>Sensor 2 Address</value>
+    <value>Sensor 2 - Address</value>
   </data>
   <data name="FrameSettingsMeasuringSectionLength" xml:space="preserve">
     <value>Length in mm</value>
@@ -2131,5 +2128,8 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="AlertWriteVehicleAddressWriteProg2" xml:space="preserve">
     <value>?</value>
+  </data>
+  <data name="FrameSettingsMeasuringSectionSensor1Label" xml:space="preserve">
+    <value>Sensor 1 - Address</value>
   </data>
 </root>

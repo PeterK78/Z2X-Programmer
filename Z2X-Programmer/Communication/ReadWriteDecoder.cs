@@ -354,14 +354,14 @@ namespace Z2XProgrammer.Communication
             //
             //  Read the RCN compatible features.
             //
-            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling RCN compatible configuration variables ...");
+            //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling RCN compatible configuration variables ...");
 
             int rcnCount = RCNFeatures.GetLength(0);
-            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of RCN features: " + rcnCount);
+            //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of RCN features: " + rcnCount);
             for (int i = 0; i <= rcnCount - 1; i++)
             {
                 string featureNameRCN = RCNFeatures[i, 0];
-                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameRCN);
+                //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameRCN);
                 if (DeqSpecReader.FeatureSupported(decSpecName, featureNameRCN, ApplicationFolders.DecSpecsFolderPath) == true)
                 {
                     int rcnFeatureCVAmount = RCNFeatures.GetLength(1);
@@ -375,29 +375,29 @@ namespace Z2XProgrammer.Communication
                             if (ConfigVariablesToRead.Contains(nextCV) == false)
                             {
                                 ConfigVariablesToRead.Add(nextCV);
-                                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
+                                //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                             }
                         }
                     }
                 }
                 else
                 {
-                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameRCN);
+                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameRCN);
                 }
             }
 
             //
             //  Do we have a ZIMO decoder? If yes, read the ZIMO specific features
             //
-            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling ZIMO compatible configuration variables ...");
+            // Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling ZIMO compatible configuration variables ...");
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Zimo) || (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
                 int ZIMOcount = ZIMOFeatures.GetLength(0);
-                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of ZIMO features: " + ZIMOcount);
+                //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of ZIMO features: " + ZIMOcount);
                 for (int i = 0; i <= ZIMOcount - 1; i++)
                 {
                     string featureNameZIMO = ZIMOFeatures[i, 0];
-                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameZIMO);
+                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameZIMO);
                     if (DeqSpecReader.FeatureSupported(decSpecName, featureNameZIMO, ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         for (int cvIndex = 1; cvIndex <= ZIMOFeatures.GetLength(1) - 1; cvIndex++)
@@ -409,14 +409,14 @@ namespace Z2XProgrammer.Communication
                                 if (ConfigVariablesToRead.Contains(nextCV) == false)
                                 {
                                     ConfigVariablesToRead.Add(nextCV);
-                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
+                                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                                 }
                             }
                         }
                     }
                     else
                     {
-                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameZIMO);
+                        //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameZIMO);
                     }
                 }
             }
@@ -424,18 +424,18 @@ namespace Z2XProgrammer.Communication
             //
             // Do we have a Doehler & Haas decoder? If yes, read the Doehler & Hass specific features
             //
-            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling Döhler and Haas compatible configuration variables ...");
+            // Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Assembling Döhler and Haas compatible configuration variables ...");
             if ((DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_Trix) ||
             (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_DoehlerAndHaass) ||
             (DecoderConfiguration.ConfigurationVariables[8].Value == 0))
             {
 
                 int DOEHLERHAASCount = DOEHLERHAASFeatures.GetLength(0);
-                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of Doehler & Haas features: " + DOEHLERHAASCount);
+                //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of Doehler & Haas features: " + DOEHLERHAASCount);
                 for (int i = 0; i <= DOEHLERHAASCount - 1; i++)
                 {
                     string featureNameDOEHLERHAAS = DOEHLERHAASFeatures[i, 0];
-                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameDOEHLERHAAS);
+                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNameDOEHLERHAAS);
                     if (DeqSpecReader.FeatureSupported(decSpecName, featureNameDOEHLERHAAS, ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         for (int cvIndex = 1; cvIndex <= DOEHLERHAASFeatures.GetLength(1) - 1; cvIndex++)
@@ -447,14 +447,14 @@ namespace Z2XProgrammer.Communication
                                 if (ConfigVariablesToRead.Contains(nextCV) == false)
                                 {
                                     ConfigVariablesToRead.Add(nextCV);
-                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
+                                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                                 }
                             }
                         }
                     }
                     else
                     {
-                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameDOEHLERHAAS);
+                        //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNameDOEHLERHAAS);
                     }
                 }
             }
@@ -462,15 +462,15 @@ namespace Z2XProgrammer.Communication
             //
             // Do we have a PIKO SmartDecoder V4.1 decoder? If yes, read the PIKO SmartDecoder V4.1 specific features
             //
-            Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: PIKO SmartDecoder V4.1 compatible configuration variables ...");
+            // Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: PIKO SmartDecoder V4.1 compatible configuration variables ...");
             if (DecoderConfiguration.ConfigurationVariables[8].Value == NMRA.ManufacturerID_PIKO)
             {
                 int PIKOSmartDecoderCount = PIKOSmartDecoderV41Features.GetLength(0);
-                Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of PIKO features: " + PIKOSmartDecoderCount);
+                //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Amount of PIKO features: " + PIKOSmartDecoderCount);
                 for (int i = 0; i <= PIKOSmartDecoderCount - 1; i++)
                 {
                     string featureNamePIKOSmartDecoder = PIKOSmartDecoderV41Features[i, 0];
-                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNamePIKOSmartDecoder);
+                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Checking feature: " + featureNamePIKOSmartDecoder);
                     if (DeqSpecReader.FeatureSupported(decSpecName, featureNamePIKOSmartDecoder, ApplicationFolders.DecSpecsFolderPath) == true)
                     {
                         for (int cvIndex = 1; cvIndex <= PIKOSmartDecoderV41Features.GetLength(1) - 1; cvIndex++)
@@ -482,14 +482,14 @@ namespace Z2XProgrammer.Communication
                                 if (ConfigVariablesToRead.Contains(nextCV) == false)
                                 {
                                     ConfigVariablesToRead.Add(nextCV);
-                                    Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
+                                    //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Adding CV: " + nextCV);
                                 }
                             }
                         }
                     }
                     else
                     {
-                        Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNamePIKOSmartDecoder);
+                        //Logger.PrintDevConsole("ReadWriteDecoder:GetAllReadableConfigurationVariables: Feature not supported: " + featureNamePIKOSmartDecoder);
                     }
                 }
             }

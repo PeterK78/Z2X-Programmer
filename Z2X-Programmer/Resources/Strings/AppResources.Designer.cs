@@ -4866,7 +4866,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sensor 1 Address.
+        ///   Looks up a localized string similar to Sensor 1 - Address.
         /// </summary>
         public static string FrameSettingsMeasuringSectionSensor1Label {
             get {
@@ -4875,7 +4875,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sensor 2 Address.
+        ///   Looks up a localized string similar to Sensor 2 - Address.
         /// </summary>
         public static string FrameSettingsMeasuringSectionSensor2Label {
             get {
