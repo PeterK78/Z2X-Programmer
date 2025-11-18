@@ -55,7 +55,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" TextColor="{Binding CommandStationConnectionStateColor}" Margin="20,10,20,0" Text="{Binding CommandStationState}"  ImageSource="{AppThemeBinding Light=ic_fluent_speaker_commandstation_24_regular.png, Dark=ic_fluent_speaker_commandstation_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=ConnectCommandStationCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonCommandStationState}" HorizontalOptions="CenterAndExpand" />
+                <Button Grid.Row="0" Grid.Column="0" TextColor="{Binding CommandStationConnectionStateColor}" Margin="20,10,20,0" Text="{Binding CommandStationState}"  ImageSource="{AppThemeBinding Light=ic_fluent_speaker_commandstation_24_regular.png, Dark=ic_fluent_speaker_commandstation_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=ConnectCommandStationCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonCommandStationState}" HorizontalOptions="Center" />
                 <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ConnectingOngoing}" HorizontalOptions="Center" IsRunning="{Binding ConnectingOngoing}"></ActivityIndicator>
             </Grid>
             
@@ -80,7 +80,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
     <!-- The toolbar -->
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal"  VerticalOptions="EndAndExpand" Margin="{OnPlatform '40,0,0,0', iOS='0,0,0,0', Android='0,0,0,0'}">
+        <StackLayout Orientation="Horizontal"  VerticalOptions="End" Margin="{OnPlatform '40,0,0,0', iOS='0,0,0,0', Android='0,0,0,0'}">
 
             <!--  New project -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_form_new_24_regular.png, Dark=ic_fluent_form_new_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=NewCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuNewFileTooltip}" HorizontalOptions="End">

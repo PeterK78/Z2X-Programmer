@@ -439,6 +439,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to save the changes?.
+        /// </summary>
+        public static string AlertSaveChanges {
+            get {
+                return ResourceManager.GetString("AlertSaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The second address feature is not supported by this decoder..
         /// </summary>
         public static string AlertSecondaryAddressNotSupported {
@@ -752,6 +761,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string CommandStationStateStopMode {
             get {
                 return ResourceManager.GetString("CommandStationStateStopMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Z2X-Programmer Controller.
+        /// </summary>
+        public static string ControllerWindowTitle {
+            get {
+                return ResourceManager.GetString("ControllerWindowTitle", resourceCulture);
             }
         }
         

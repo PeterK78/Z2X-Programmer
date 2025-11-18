@@ -8,6 +8,12 @@ using Z2XProgrammer.Helper;
 using System.Globalization;
 using Z2XProgrammer.DataModel;
 using Syncfusion.Maui.Toolkit.Hosting;
+using Microsoft.Maui.LifecycleEvents;
+using Z2XProgrammer.DataStore;
+using System.Xml.Serialization;
+using Z2XProgrammer.Model;
+using Z2XProgrammer.FileAndFolderManagement;
+using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer
 {
@@ -24,7 +30,72 @@ namespace Z2XProgrammer
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    
+
                 });
+
+            #if WINDOWS
+            
+            //  This code fragment checks if the main window should be closed. If so
+            //  we check if 
+
+            builder.ConfigureLifecycleEvents(lifecycle =>
+                lifecycle.AddWindows(windowsLifecycleBuilder =>
+                {
+                    windowsLifecycleBuilder.OnWindowCreated(window =>
+                    {
+                        var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
+                        var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+                        appWindow.Closing += async (s, e) =>
+                        {
+                            try
+                            {
+                                //  Check if we are closing the external controller window.
+                                if(appWindow.Title == AppResources.ControllerWindowTitle )  
+                                {
+                                    e.Cancel = false;
+                                    return;
+                                }
+
+
+                                // Check if something has changed - indicated by an * at the end of the window title.
+                                if (appWindow.Title.EndsWith("*"))
+                                {
+
+                                    //  We stop the closing of the window.
+                                    e.Cancel = true;
+
+                                    // To create a .NET MAUI messagebox, we need a reference to the page.
+                                    Page currentpage = AppShell.Current.CurrentPage;
+                                    if (await Application.Current!.Windows[0]!.Page!.DisplayAlert("Z2X-Programmer", AppResources.AlertSaveChanges, AppResources.YES, AppResources.NO) == true)
+                                    {
+                                        //  We save the Z2X file before we exit the program.
+                                        if ((DecoderConfiguration.Z2XFilePath != "") && (File.Exists(DecoderConfiguration.Z2XFilePath) == true))
+                                        {
+                                            XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
+                                            if (File.Exists(DecoderConfiguration.Z2XFilePath) == true) File.Delete(DecoderConfiguration.Z2XFilePath);
+                                            using FileStream outputStream = System.IO.File.OpenWrite(DecoderConfiguration.Z2XFilePath);
+                                            using StreamWriter streamWriter = new StreamWriter(outputStream);
+                                            x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
+                                            streamWriter.Flush();
+                                            streamWriter.Close();
+                                        }
+                                    }
+
+                                    App.Current!.Quit();
+                                }
+                            }
+                            catch
+                            {
+                                e.Cancel = false;
+                                App.Current!.Quit();
+                            }
+                        };
+                    });
+                })
+            );
+             #endif
 
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton<AppShellViewModel>();

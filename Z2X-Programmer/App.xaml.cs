@@ -67,25 +67,15 @@ namespace Z2XProgrammer
                 PlaceMainWindow(GUI.MainWindow);
             }
 
-            //  We register a handler that is called when the window is destroyed.
+            //  We register a handler that is called when the window is finally destroyed.
             //  This allows us to save the current position and size of the window before exiting the program,
             //  and so other clean up stuff.
+            //
+            //  Note: The Z2X file is saved in the function MauiApp.CreateMauiApp in MauiProgram.cs.
             GUI.MainWindow.Destroying += (s, e) =>
             {
                 try
                 { 
-                    //  We save the Z2X file before we exit the program.
-                    if ((DecoderConfiguration.Z2XFilePath != "") && (File.Exists(DecoderConfiguration.Z2XFilePath) == true))
-                    {
-                        XmlSerializer x = new XmlSerializer(typeof(Z2XProgrammerFileType));
-                        if (File.Exists(DecoderConfiguration.Z2XFilePath) == true) File.Delete(DecoderConfiguration.Z2XFilePath);
-                        using FileStream outputStream = System.IO.File.OpenWrite(DecoderConfiguration.Z2XFilePath);
-                        using StreamWriter streamWriter = new StreamWriter(outputStream);
-                        x.Serialize(streamWriter, Z2XReaderWriter.CreateZ2XProgrammerFile());
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                    }
-
                     //  Disconnect the digital command station.
                     CommandStation.Disconnect();
 
@@ -104,8 +94,6 @@ namespace Z2XProgrammer
                 {
                     Logger.PrintDevConsole("App.CreateWindow:" + ex.Message);
                 }
-
-
             };
 
             return GUI.MainWindow!;

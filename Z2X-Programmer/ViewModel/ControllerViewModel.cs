@@ -576,7 +576,7 @@ namespace Z2XProgrammer.ViewModel
                 GUI.ControllerWindow.Y = double.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_KEY, AppConstants.PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT));
                 GUI.ControllerWindow.MinimumHeight = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_HEIGHT_DEFAULT);
                 GUI.ControllerWindow.MinimumWidth = double.Parse(AppConstants.PREFERENCES_WINDOW_CONTROLLER_WIDTH_DEFAULT);
-                GUI.ControllerWindow.Title = "Z2X-Programmer Controller";
+                GUI.ControllerWindow.Title = AppResources.ControllerWindowTitle;
 
                 //  Open the new controller window
                 Application.Current?.OpenWindow(GUI.ControllerWindow);
