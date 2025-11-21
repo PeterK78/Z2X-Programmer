@@ -378,14 +378,14 @@ namespace Z2XProgrammer.ViewModel
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
             //  ZIMO: Electric uncoupler configuration in CV115x (ZIMO_ELECTRIC_UNCOUPLER_CV115X)
-            Output1Description = DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description;
-            Output2Description = DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description;
-            Output3Description = DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description;
-            Output4Description = DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description;
-            Output5Description = DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description;
-            Output6Description = DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description;
-            Output7Description = DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description;
-            Output8Description = DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description;
+            Output1Description = DecoderConfiguration.UserDefinedFunctionOutputNames[2].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[2].UserDefinedDescription;
+            Output2Description = DecoderConfiguration.UserDefinedFunctionOutputNames[3].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[3].UserDefinedDescription;
+            Output3Description = DecoderConfiguration.UserDefinedFunctionOutputNames[4].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[4].UserDefinedDescription;
+            Output4Description = DecoderConfiguration.UserDefinedFunctionOutputNames[5].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[5].UserDefinedDescription;
+            Output5Description = DecoderConfiguration.UserDefinedFunctionOutputNames[6].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[6].UserDefinedDescription;
+            Output6Description = DecoderConfiguration.UserDefinedFunctionOutputNames[7].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[7].UserDefinedDescription;
+            Output7Description = DecoderConfiguration.UserDefinedFunctionOutputNames[8].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[8].UserDefinedDescription;
+            Output8Description = DecoderConfiguration.UserDefinedFunctionOutputNames[9].UserDefinedDescription == "" ? "-" : DecoderConfiguration.UserDefinedFunctionOutputNames[9].UserDefinedDescription;
 
             ZIMOFunctionOutput1Enabled = IsFunctionOutputAvailable(1);
             ZIMOFunctionOutput2Enabled = IsFunctionOutputAvailable(2);

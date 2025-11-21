@@ -52,7 +52,7 @@ namespace Z2XProgrammer.Helper
                 {
                     defaultName = useDefaultNames ? i.ToString() : "";
                 }
-                namesList.Add(DecoderConfiguration.UserDefinedFunctionOutputNames[i].Description == "" ? defaultName : DecoderConfiguration.UserDefinedFunctionOutputNames[i].Description);
+                namesList.Add(DecoderConfiguration.UserDefinedFunctionOutputNames[i].UserDefinedDescription == "" ? defaultName : DecoderConfiguration.UserDefinedFunctionOutputNames[i].UserDefinedDescription);
             }
             return namesList;
         }

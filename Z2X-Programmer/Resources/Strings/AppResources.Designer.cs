@@ -2034,6 +2034,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit description ....
+        /// </summary>
+        public static string FrameFunctionKeysEditFunctionOutputDescription {
+            get {
+                return ResourceManager.GetString("FrameFunctionKeysEditFunctionOutputDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can use the following function buttons to influence the motor and driving characteristics..
         /// </summary>
         public static string FrameFunctionKeysEngineAndDrivingCharacteristicsDescription {

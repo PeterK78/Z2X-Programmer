@@ -26,9 +26,13 @@ using System.Runtime.CompilerServices;
 
 namespace Z2XProgrammer.DataModel
 {
+    /// <summary>
+    /// This class describes the properties of a function output.
+    /// </summary>
     public class FunctionOutputType: INotifyPropertyChanged
     {
         //  Private field variables.
+        private string _UserDefinedDescription = string.Empty;
         private string _Description = string.Empty;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -38,15 +42,37 @@ namespace Z2XProgrammer.DataModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string ID { get; set; } = string.Empty; 
+        /// <summary>
+        /// An unique ID to identify the function output.
+        /// </summary>
+        public string ID { get; set; } = string.Empty;
+
+        /// <summary>
+        /// A description of the function output defined by the user.
+        /// </summary>
+        public string UserDefinedDescription
+        {
+            get => _UserDefinedDescription;
+            set
+            {
+                _UserDefinedDescription = value;
+                OnPropertyChanged(nameof(UserDefinedDescription));
+            }
+        }
+
+        /// <summary>
+        /// A description of the function output.
+        /// </summary>
         public string Description
         {
             get => _Description;
             set
             {
                 _Description = value;
-                OnPropertyChanged(nameof(Description));
+                 OnPropertyChanged(nameof(Description));
             }
         }
+
+
     }
 }

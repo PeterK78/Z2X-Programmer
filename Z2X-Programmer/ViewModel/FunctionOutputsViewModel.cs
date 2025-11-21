@@ -37,7 +37,7 @@ namespace Z2XProgrammer.ViewModel
     public partial class FunctionOutputsViewModel: ObservableObject
     {
 
-       internal ObservableCollection<FunctionOutputType>? _functionOutputs= new ObservableCollection<FunctionOutputType>();
+       //internal ObservableCollection<FunctionOutputType>? _functionOutputs= new ObservableCollection<FunctionOutputType>();
 
         #region REGION: DATASTORE & SETTINGS
 
@@ -91,7 +91,7 @@ namespace Z2XProgrammer.ViewModel
         {
             AvailableSUSIPinModes = new ObservableCollection<String>(ZIMOEnumConverter.GetAvailableSUSIPinModes());
 
-            _functionOutputs = FunctionOutputs;
+            //_functionOutputs = FunctionOutputs;
 
             OnGetDecoderConfiguration();
             OnGetDataFromDecoderSpecification();
@@ -146,25 +146,29 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS
+
+        /// <summary>
+        /// Opens a dialog box in which the user can customize the user-specific description of a function output.
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         async Task EditFunctionOutputName()
         {
             try
             {
-                //  Check if a function key has been selected
+                //  Check if any function key has been selected
                 if(SelectedFunctionOutput == null)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.FrameFunctionKeysZIMONoMappingSelected, AppResources.OK);
                     return;
                 }
 
+                // Open a dialog box and let the user configure the user specific description of the function output.
                 if ((Application.Current != null) && (Application.Current.Windows[0].Page != null))
                 {
-                    string Result = await Application.Current.Windows[0].Page!.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.ID, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.Description);
-                    if (Result != null) SelectedFunctionOutput.Description = Result;
-
+                    string Result = await Application.Current.Windows[0].Page!.DisplayPromptAsync( AppResources.FrameFunctionOutputsGetNamingTitle + " " + SelectedFunctionOutput.Description, AppResources.FrameFunctionOutputsGetNamingDescription, AppResources.OK, AppResources.PopupButtonCancel,null,-1,null, SelectedFunctionOutput.UserDefinedDescription);
+                    if (Result != null) SelectedFunctionOutput.UserDefinedDescription = Result;
                     WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
-
                 }
             }
             catch (Exception ex)
@@ -172,8 +176,6 @@ namespace Z2XProgrammer.ViewModel
                 await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
         }
-
-
         #endregion
     }
 }

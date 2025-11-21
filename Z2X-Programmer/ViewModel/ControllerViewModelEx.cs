@@ -284,8 +284,8 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-                if(myAudioPlayer == null) myAudioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Resources\\" + AppResources.DCCSignalQualityAudioFileName));
-                if(myAudioPlayer.IsPlaying == false) myAudioPlayer.Play();
+                if (myAudioPlayer == null) myAudioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Resources\\" + AppResources.DCCSignalQualityAudioFileName));
+                if (myAudioPlayer.IsPlaying == false) myAudioPlayer.Play();
             }
             catch { }   
         }

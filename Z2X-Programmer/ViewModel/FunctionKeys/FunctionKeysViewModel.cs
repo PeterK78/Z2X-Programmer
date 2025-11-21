@@ -1011,20 +1011,20 @@ namespace Z2XProgrammer.ViewModel
             UpdateTheInputMappingList();
 
             // We configure the descriptions of the function outputs. If user-specific names are available, these are used.
-            Output0vDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[0].Description == "" ? "0v" : DecoderConfiguration.UserDefinedFunctionOutputNames[0].Description;
-            Output0rDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[1].Description == "" ? "0r" : DecoderConfiguration.UserDefinedFunctionOutputNames[1].Description;
-            Output1Description = DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description == "" ? "1" : DecoderConfiguration.UserDefinedFunctionOutputNames[2].Description;
-            Output2Description = DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description == "" ? "2" : DecoderConfiguration.UserDefinedFunctionOutputNames[3].Description;
-            Output3Description = DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description == "" ? "3" : DecoderConfiguration.UserDefinedFunctionOutputNames[4].Description;
-            Output4Description = DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description == "" ? "4" : DecoderConfiguration.UserDefinedFunctionOutputNames[5].Description;
-            Output5Description = DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description == "" ? "5" : DecoderConfiguration.UserDefinedFunctionOutputNames[6].Description;
-            Output6Description = DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description == "" ? "6" : DecoderConfiguration.UserDefinedFunctionOutputNames[7].Description;
-            Output7Description = DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description == "" ? "7" : DecoderConfiguration.UserDefinedFunctionOutputNames[8].Description;
-            Output8Description = DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description == "" ? "8" : DecoderConfiguration.UserDefinedFunctionOutputNames[9].Description;
-            Output9Description = DecoderConfiguration.UserDefinedFunctionOutputNames[10].Description == "" ? "9" : DecoderConfiguration.UserDefinedFunctionOutputNames[10].Description;
-            Output10Description = DecoderConfiguration.UserDefinedFunctionOutputNames[11].Description == "" ? "10" : DecoderConfiguration.UserDefinedFunctionOutputNames[11].Description;
-            Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].Description;
-            Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].Description;
+            Output0vDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[0].UserDefinedDescription == "" ? "0v" : DecoderConfiguration.UserDefinedFunctionOutputNames[0].UserDefinedDescription;
+            Output0rDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[1].UserDefinedDescription == "" ? "0r" : DecoderConfiguration.UserDefinedFunctionOutputNames[1].UserDefinedDescription;
+            Output1Description = DecoderConfiguration.UserDefinedFunctionOutputNames[2].UserDefinedDescription == "" ? "1" : DecoderConfiguration.UserDefinedFunctionOutputNames[2].UserDefinedDescription;
+            Output2Description = DecoderConfiguration.UserDefinedFunctionOutputNames[3].UserDefinedDescription == "" ? "2" : DecoderConfiguration.UserDefinedFunctionOutputNames[3].UserDefinedDescription;
+            Output3Description = DecoderConfiguration.UserDefinedFunctionOutputNames[4].UserDefinedDescription == "" ? "3" : DecoderConfiguration.UserDefinedFunctionOutputNames[4].UserDefinedDescription;
+            Output4Description = DecoderConfiguration.UserDefinedFunctionOutputNames[5].UserDefinedDescription == "" ? "4" : DecoderConfiguration.UserDefinedFunctionOutputNames[5].UserDefinedDescription;
+            Output5Description = DecoderConfiguration.UserDefinedFunctionOutputNames[6].UserDefinedDescription == "" ? "5" : DecoderConfiguration.UserDefinedFunctionOutputNames[6].UserDefinedDescription;
+            Output6Description = DecoderConfiguration.UserDefinedFunctionOutputNames[7].UserDefinedDescription == "" ? "6" : DecoderConfiguration.UserDefinedFunctionOutputNames[7].UserDefinedDescription;
+            Output7Description = DecoderConfiguration.UserDefinedFunctionOutputNames[8].UserDefinedDescription == "" ? "7" : DecoderConfiguration.UserDefinedFunctionOutputNames[8].UserDefinedDescription;
+            Output8Description = DecoderConfiguration.UserDefinedFunctionOutputNames[9].UserDefinedDescription == "" ? "8" : DecoderConfiguration.UserDefinedFunctionOutputNames[9].UserDefinedDescription;
+            Output9Description = DecoderConfiguration.UserDefinedFunctionOutputNames[10].UserDefinedDescription == "" ? "9" : DecoderConfiguration.UserDefinedFunctionOutputNames[10].UserDefinedDescription;
+            Output10Description = DecoderConfiguration.UserDefinedFunctionOutputNames[11].UserDefinedDescription == "" ? "10" : DecoderConfiguration.UserDefinedFunctionOutputNames[11].UserDefinedDescription;
+            Output11Description = DecoderConfiguration.UserDefinedFunctionOutputNames[12].UserDefinedDescription == "" ? "11" : DecoderConfiguration.UserDefinedFunctionOutputNames[12].UserDefinedDescription;
+            Output12Description = DecoderConfiguration.UserDefinedFunctionOutputNames[13].UserDefinedDescription == "" ? "12" : DecoderConfiguration.UserDefinedFunctionOutputNames[13].UserDefinedDescription;
 
             GetFunctionOutputMappingDescriptions();
 
@@ -1303,10 +1303,10 @@ namespace Z2XProgrammer.ViewModel
                     PropertyInfo propInfo = type.GetProperty(appResourceStringID)!;
                     string functionDescription = (string)propInfo.GetValue(appResources)!;
 
-                    if(DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].Description != "")
+                    if(DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].UserDefinedDescription != "")
                     {
                         //  If the user has defined a description for the function output, we use it.
-                        functionDescription += ": " + DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].Description;
+                        functionDescription += ": " + DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].UserDefinedDescription;
                     }
 
                     if (functionKey == 0)

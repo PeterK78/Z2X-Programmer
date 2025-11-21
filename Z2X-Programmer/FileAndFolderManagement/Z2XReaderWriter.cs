@@ -138,13 +138,13 @@ namespace Z2XProgrammer.FileAndFolderManagement
             {
                 for (int i = 0; i< myFile.UserDefinedFunctionOutputNames.Count;i++)
                 {
-                    DecoderConfiguration.UserDefinedFunctionOutputNames[i].Description = myFile.UserDefinedFunctionOutputNames[i].Description;
+                    DecoderConfiguration.UserDefinedFunctionOutputNames[i].UserDefinedDescription = myFile.UserDefinedFunctionOutputNames[i].UserDefinedDescription;
                 }   
             }
             else
             {
                 //  We have not found any descriptions for the 14 function outputs. We therefore initialize new empty descriptions.
-                foreach (FunctionOutputType item in DecoderConfiguration.UserDefinedFunctionOutputNames) { item.Description = ""; };
+                foreach (FunctionOutputType item in DecoderConfiguration.UserDefinedFunctionOutputNames) { item.UserDefinedDescription = ""; };
             }
 
             //  Make sure to use the language specific decoder specification name. First we try to find the decoder

@@ -2138,4 +2138,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="ControllerWindowTitle" xml:space="preserve">
     <value>Z2X-Programmer Controller</value>
   </data>
+  <data name="FrameFunctionKeysEditFunctionOutputDescription" xml:space="preserve">
+    <value>Edit description ...</value>
+  </data>
 </root>

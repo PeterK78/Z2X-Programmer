@@ -163,11 +163,11 @@ namespace Z2XProgrammer.DataStore
             }
 
             //  Setup the list of function outputs.
-            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0 (" + AppResources.FunctionOutputFront + ")" });
-            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = "0 (" + AppResources.FunctionOutputRear + ")" });
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { ID = "0front", Description = "0 (" + AppResources.FunctionOutputFront + ")", UserDefinedDescription ="" });
+            UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { ID = "0rear", Description = "0 (" + AppResources.FunctionOutputRear + ")", UserDefinedDescription = "" });
             for (int i = 0; i <= Helper.NMRA.MaxFunctionOutputs - 1; i++)
             {
-                UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { Description = "", ID = (i + 1).ToString() });
+                UserDefinedFunctionOutputNames.Add(new FunctionOutputType() { ID = (i + 1).ToString(), Description = (i + 1).ToString(), UserDefinedDescription ="" });
             }
 
             //  Reset the user defined settings.

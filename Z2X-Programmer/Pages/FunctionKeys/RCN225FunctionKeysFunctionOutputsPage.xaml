@@ -145,20 +145,125 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label Grid.Row="2" Grid.Column="17" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeValue}" VerticalOptions="Center"  HorizontalOptions="Center"/>
 
                         <!--The header of the function mapping: The name of the different function outputs-->
-                        <Label Grid.Row="3" Grid.Column="3" Text="{Binding Output0vDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output0vDescription}" ></Label>
-                        <Label Grid.Row="3" Grid.Column="4" Text="{Binding Output0rDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output0rDescription}"></Label>
-                        <Label Grid.Row="3" Grid.Column="5" Text="{Binding Output1Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output1Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="6" Text="{Binding Output2Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output2Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="7" Text="{Binding Output3Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output3Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="8" Text="{Binding Output4Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output4Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="9" Text="{Binding Output5Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output5Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="10" Text="{Binding Output6Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output6Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="11" Text="{Binding Output7Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output7Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="12" Text="{Binding Output8Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output8Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="13" Text="{Binding Output9Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output9Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="14" Text="{Binding Output10Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output10Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="15" Text="{Binding Output11Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output11Description}"></Label>
-                        <Label Grid.Row="3" Grid.Column="16" Text="{Binding Output12Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="90" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output12Description}"></Label>
+                        <Label Grid.Row="3" Grid.Column="3" Text="0v" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output0vDescription}" >
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="0front" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="4" Text="0r" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output0rDescription}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="0rear" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="5" Text="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output1Description}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="1" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="6" Text="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output2Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="2" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="7" Text="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output3Description}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="3" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="8" Text="4" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output4Description}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="4" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="9" Text="5" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output5Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="5" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="10" Text="6" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output6Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="6" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="11" Text="7" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output7Description}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="7" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="12" Text="8" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output8Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="8" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="13" Text="9" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output9Description}">
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="9" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="14" Text="10" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output10Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="10" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="15" Text="11" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output11Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="11" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column="16" Text="12" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" Rotation="0" LineBreakMode="WordWrap" Margin="0,20,0,20" ToolTipProperties.Text="{Binding Output12Description}">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem CommandParameter="12" IconImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_regular.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Text="{x:Static strings:AppResources.FrameFunctionKeysEditFunctionOutputDescription}" Command="{Binding EditFunctionOutputDescriptionCommand}"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Label>
 
                         <!--Key F0 foward mapping in CV33-->
                         <Label Grid.Row="4" Grid.Column="0" Text="F0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>

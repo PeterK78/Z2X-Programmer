@@ -36,7 +36,7 @@
             <VerticalStackLayout IsVisible="{Binding DataStoreDataValid}">
 
                 <!-- User defined description of the ouputs -->
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingTitle}" VerticalOptions="Center" />
+                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingTitle}" VerticalOptions="Center" />
                 <Border Style="{StaticResource Z2XBorderFrame}">
                     <VerticalStackLayout>
                         <Grid>
@@ -68,17 +68,15 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="datamodel:FunctionOutputType">
                                         <Grid ColumnDefinitions="150,*">
-                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding ID}" HorizontalTextAlignment="Start" Margin="10,0,0,0" Padding="0,0,0,0"/>
-                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding Description}" HorizontalTextAlignment="Start" />
-                                            
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding Description}" HorizontalTextAlignment="Start" Margin="10,0,0,0" Padding="0,0,0,0"/>
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding UserDefinedDescription}" HorizontalTextAlignment="Start" />
                                             <Grid.GestureRecognizers>
                                                 <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:FunctionOutputsViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" Command="{Binding EditFunctionOutputNameCommand}"/>  
                                             </Grid.GestureRecognizers>
-                                            
                                         </Grid>
                                     </DataTemplate>
-
                                 </CollectionView.ItemTemplate>
+                                
                             </CollectionView>
 
                             <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="250" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOOutputNamingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionOutputsViewModel}}, Path=EditFunctionOutputNameCommand}"  ></Button>
@@ -88,7 +86,7 @@
                 </Border>
 
                 <!-- ZIMO: ZIMO SUSI Configuration in CV201 (ZIMO_SUSIPORT1CONFIG_CV201) -->
-                <Label IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSITitle}" VerticalOptions="Center" />
+                <Label IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSITitle}" VerticalOptions="Center" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_SUSIPORT1CONFIG_CV201}">
                     <VerticalStackLayout>
                         <Grid>
@@ -100,9 +98,9 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIDescription}" VerticalOptions="Center" Margin="0,0,0,20" />
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIDescription}" VerticalOptions="Center" Margin="0,0,0,20" />
 
-                            <Label x:Name="FrameProtocolZIMOSUSIPinClockLabel"  Grid.Row="1"  Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="StartAndExpand" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIPinClockLabel}" VerticalOptions="Center" />
+                            <Label x:Name="FrameProtocolZIMOSUSIPinClockLabel"  Grid.Row="1"  Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameProtocolZIMOSUSIPinClockLabel}" VerticalOptions="Center" />
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center"  >
                                 <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableSUSIPinModes}" SelectedItem="{Binding SelectedSUSIInterface1PinMode}" HorizontalOptions="End" WidthRequest="400" HorizontalTextAlignment="End" ></Picker>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV201Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>

@@ -2139,4 +2139,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="ControllerWindowTitle" xml:space="preserve">
     <value>Z2X-Programmer Controller</value>
   </data>
+  <data name="FrameFunctionKeysEditFunctionOutputDescription" xml:space="preserve">
+    <value>Beschreibung ändern ...</value>
+  </data>
 </root>
