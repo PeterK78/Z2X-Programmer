@@ -1,12 +1,49 @@
 ------------------------------------------------------------------
 File:         Readme.txt
-Version:      0.1.2.0-beta.12
-Date:         15.08.2025
+Version:      0.1.2.0-beta.13
+Date:         23.11.2025
 Description:  Z2X-Programmer
 ------------------------------------------------------------------
 
 Below you will find a brief description and version information
 for the software supplied.
+
+------------------------------------------------------------------
+Version 0.1.2.0-beta.13 / 23.11.2025
+------------------------------------------------------------------
+
+Note:
+
+* 13th beta version (Beta Version 13, V0.1.2.0)
+
+New features:
+
+1.  An initial Minitrix decoder specification has been
+    implemented.
+2.  An initial specification for the PIKO SmartDecoder 4.1 has
+    also been added.
+3.  New functionalities have been integrated into the controller
+	(e.g. RailCom speed, RailCom QOS).
+4.  Manual links can now be inserted.
+5.  The ability to measure actual speeds has been enabled by
+    introducing a first measurement track.
+6.  The display of the extended speed curve has been revised.
+7.  Context-sensitive menus for copying decoder information are
+    now available.
+8.  A new method for writing the vehicle address is provided.
+9.  Reading out vehicle addresses is now possible.
+10. If the DCC signal quality is poor, an acoustic signal is
+    emitted.
+11. An icon indicates whether communication with the decoder is
+    slow or fast.
+12. If the project has been changed, a prompt to save changes
+    appears when exiting the Z2X programmer.
+13. User-specific labels for function outputs can now also be
+    adjusted on the function key page.
+
+Bug fixes:
+
+1. Various bug fixes to improve stability and performance.
 
 ------------------------------------------------------------------
 Version 0.1.2.0-beta.12 / 15.08.2025
