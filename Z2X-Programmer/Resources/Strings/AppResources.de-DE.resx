@@ -2142,4 +2142,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameFunctionKeysEditFunctionOutputDescription" xml:space="preserve">
     <value>Beschreibung ändern ...</value>
   </data>
+  <data name="FrameSettingsVerifyPOMWrite" xml:space="preserve">
+    <value>Das Schreiben von Konfigurationsvariablen im POM-Mode verifzieren</value>
+  </data>
 </root>

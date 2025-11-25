@@ -4956,6 +4956,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verify the writing of configuration variables in POM mode.
+        /// </summary>
+        public static string FrameSettingsVerifyPOMWrite {
+            get {
+                return ResourceManager.GetString("FrameSettingsVerifyPOMWrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Device specification.
         /// </summary>
         public static string FrameSettingsZ21DeviceSpecification {

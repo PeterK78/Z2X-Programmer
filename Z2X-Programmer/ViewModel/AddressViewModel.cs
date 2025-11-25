@@ -385,7 +385,6 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
                 // Defines the configuration variables we have to write to configure the vehicle address.
                 ushort[] configurationVariables = { 1, 17, 18, 29 };
 
@@ -437,7 +436,7 @@ namespace Z2XProgrammer.ViewModel
                     WriteSuccessFull = false;
 
                     // Write the next configuration variable to the decoder.
-                    await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(cv, DecoderConfiguration.RCN225Backup.LocomotiveAddress, DecoderConfiguration.ConfigurationVariables[cv].Value, DecoderConfiguration.ProgrammingMode, cancelToken));
+                    await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(cv, DecoderConfiguration.RCN225Backup.LocomotiveAddress, DecoderConfiguration.ConfigurationVariables[cv].Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
 
                     if (WriteSuccessFull == true)
                     {

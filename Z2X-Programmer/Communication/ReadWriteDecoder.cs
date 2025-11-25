@@ -153,7 +153,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
         /// <param name="progressCV">The currently processed CV.</param>
         /// <returns></returns>
-        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV, List<int> configVariablesToWrite)
+        internal static Task<bool>DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV, List<int> configVariablesToWrite, bool verfifyPOM)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -181,7 +181,7 @@ namespace Z2XProgrammer.Communication
                     //  We report the configuration variable that will be written next.
                     progressCV.Report(configVariablesToWrite[i]);
 
-                    if (WriteCV((ushort)configVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value, _mode, cancelToken) == false)
+                    if (WriteCV((ushort)configVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value, _mode, cancelToken,verfifyPOM) == false)
                     {
                         CommandStation.Z21.SetTrackPowerOn();
                         return Task.FromResult(false);
@@ -720,35 +720,50 @@ namespace Z2XProgrammer.Communication
         }
 
         /// <summary>
-        /// Read a CV value
+        /// Writes a configuration variable.
         /// </summary>
-        /// <param name="cv"></param>
-        /// <param name="locomotiveAddress"></param>
+        /// <param name="cvNumber">The number of the configuration variable to write.</param>
+        /// <param name="mode">NMRA.DCCProgrammingModes defines the programming mode.</param>
+        /// <param name="value">The value of the configuration variable to write</param>
+        /// <param name="token">A CancellationToken to cancel the write process.</param>
+        /// <param name="locomotiveAddress">The address of the decoder.</param>
+        /// <param name="verifyPOM">If set to TRUE, data written in POM mode is verified by reading the CV value.</param>
         /// <returns></returns>
-        internal static bool WriteCV(ushort cv, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken token)
+        internal static bool WriteCV(ushort cvNumber, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken token, bool verifyPOM)
         {
             _mode = mode;
 
             //  Do we have a valid locomotive address to read data in POM mode?
             if ((_mode == NMRA.DCCProgrammingModes.POMMainTrack) && (locomotiveAddress <= 0)) return false;
 
-            //  We support CV greater than 0
-            if (cv < 1) return false;
+            //  We only support CV greater than 0.
+            if (cvNumber < 1) return false;
 
-            //  Now we are reading the data from the given cv
+            //  Now we are writing the data to the given configuration variable.
             _waitingForResultReceived = true; _commandSuccessFull = false;
+            bool writeSuccess = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.WriteCVBytePOM(cvNumber, locomotiveAddress, value) : CommandStation.Z21.WriteCVProgramTrack(cvNumber, value);
 
+            //  Waiting for response of the command station.
+            if (writeSuccess == false) return false;
 
-            bool read = (_mode == NMRA.DCCProgrammingModes.POMMainTrack) ? CommandStation.Z21.WriteCVBytePOM(cv, locomotiveAddress, value) : CommandStation.Z21.WriteCVProgramTrack(cv, value);
-
-            //  Waiting for response of the command station
-            if (read == false) return false;
-
-            //  Handling the ACK
+            //  Handling the ACK.
+            //  Note: The Z21 only sends ACK responses in the case that we are programming on the program track. In POM
+            //        mode no ACK is sent by the Z21. 
             if (_mode == NMRA.DCCProgrammingModes.POMMainTrack)
             {
-                //  The Z21 does not provide a ACK for writing bytes in POM mode
+                //  Since we do not receive an ACK in POM mode, we must manually create a short pause.
+                //  This is the only way to ensure that subsequent commands can be executed reliably.
                 Thread.Sleep(200);
+
+                //  If verifyPOM is set to TRUE, we will read the written configuration variable from the decoder.
+                //  This allows us to ensure that the variable was written correctly in POM mode.
+                if(verifyPOM == true)
+                {
+                    bool readSuccess = CommandStation.Z21.ReadCVPOM(cvNumber, locomotiveAddress);
+                    if(readSuccess == false) return false;
+
+                    if (DecoderConfiguration.ConfigurationVariables[cvNumber].Value != value) return false;
+                }
             }
             else
             {
@@ -762,7 +777,6 @@ namespace Z2XProgrammer.Communication
 
             //  Success
             return true;
-
         }
 
         /// <summary>

@@ -346,6 +346,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!-- Do not cancel in the event of a read error -->
@@ -355,6 +356,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
                     </HorizontalStackLayout>
 
+                    <!-- Verify POM writes -->
+                    <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsVerifyPOMWrite}" HorizontalOptions="Start" />
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                        <Label Text="{Binding Path=VerifyPOMWrite,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding VerifyPOMWrite}" HorizontalOptions="End"></Switch>
+                    </HorizontalStackLayout>
+
+                    
                 </Grid>
             </Border>
 

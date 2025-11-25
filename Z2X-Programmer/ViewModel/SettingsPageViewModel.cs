@@ -120,6 +120,16 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal string z21HardwareType = "-";
 
+        /// <summary>
+        /// Set to TRUE to verify programming operations in POM.
+        /// </summary>
+        [ObservableProperty]
+        internal bool verifyPOMWrite = true;
+        partial void OnVerifyPOMWriteChanged(bool value)
+        {
+            Preferences.Default.Set(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, value == true ? "1" : "0");
+        }
+
         [ObservableProperty]
         internal bool automaticDecoderDetection;
         partial void OnAutomaticDecoderDetectionChanged(bool value)
@@ -242,6 +252,8 @@ namespace Z2XProgrammer.ViewModel
             {
                 AutomaticDecoderDetection = false;
             }
+
+            VerifyPOMWrite = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, AppConstants.PREFERENCES_VERIFYPOMWRITE_VALUE)) == 1 ? true : false;
 
             QuitOnReadError = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_QUITONREADERROR_KEY, AppConstants.PREFERENCES_QUITONREADERROR_VALUE)) == 1 ? true : false;
             AdditionalDisplayOfCVValues = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_KEY, AppConstants.PREFERENCES_ADDITIONALDISPLAYOFCVVALUES_VALUE)) == 1 ? true : false;

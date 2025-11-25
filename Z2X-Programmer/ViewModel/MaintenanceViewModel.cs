@@ -161,7 +161,7 @@ namespace Z2XProgrammer.ViewModel
 
                 if (CommandStation.Connect(cancelToken, 5000) == false) return;
 
-                await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.LocomotiveAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.LocomotiveAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken, false));
 
                 //  The decoder reset is only allowed on the progam track.
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
@@ -197,7 +197,7 @@ namespace Z2XProgrammer.ViewModel
 
                 Shell.Current.CurrentPage.ShowPopup(pop);
 
-                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 255, DecoderConfiguration.ProgrammingMode, cancelToken));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 255, DecoderConfiguration.ProgrammingMode, cancelToken, false));
 
                 for (int i = 1; i <= 10; i++)
                 {
@@ -233,7 +233,7 @@ namespace Z2XProgrammer.ViewModel
                 }
 
              
-                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 0, DecoderConfiguration.ProgrammingMode, cancelToken));
+                await Task.Run(() => ReadWriteDecoder.WriteCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, 0, DecoderConfiguration.ProgrammingMode, cancelToken, false));
 
                 await Task.Run(() => ReadWriteDecoder.ReadCV((30), DecoderConfiguration.RCN225.LocomotiveAddress, DecoderConfiguration.ProgrammingMode, cancelToken));
 

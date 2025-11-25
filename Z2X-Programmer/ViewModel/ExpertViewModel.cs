@@ -210,7 +210,6 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
                 CancellationToken cancelToken = new CancellationTokenSource().Token;
 
                 if (CommandStation.Connect(cancelToken, 5000) == false)
@@ -230,7 +229,7 @@ namespace Z2XProgrammer.ViewModel
 
                 bool WriteSuccessFull = false;
 
-                await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken));
+                await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(CvNumber, DecoderConfiguration.RCN225.LocomotiveAddress, Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
 
                 if (WriteSuccessFull == true)
                 {

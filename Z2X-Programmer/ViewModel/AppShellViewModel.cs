@@ -844,7 +844,10 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, false, ProgressCV, ModifiedConfigVariables));
+                 // Check whether programming processes need to be verified via POM.
+                bool verifyPOM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, AppConstants.PREFERENCES_VERIFYPOMWRITE_VALUE)) == 1 ? true : false;
+
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, false, ProgressCV, ModifiedConfigVariables, verifyPOM));
 
                 await pop.CloseAsync();
 
@@ -933,7 +936,10 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true, ProgressCV, ListOfWritableConfigVariables));
+                // Check whether programming processes need to be verified via POM.
+                bool verifyPOM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, AppConstants.PREFERENCES_VERIFYPOMWRITE_VALUE)) == 1 ? true : false;
+
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true, ProgressCV, ListOfWritableConfigVariables, verifyPOM));
 
                 await pop.CloseAsync();
 
