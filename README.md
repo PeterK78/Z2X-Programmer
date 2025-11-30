@@ -46,7 +46,9 @@ Z2X-Programmer is universal and not limited to a specific decoder manufacturer. 
 * ZIMO MX sound decoder
 * ZIMO MX function decoder
 * ZIMO MN decoder
-* Doehler & Haass PD series
+* Doehler & Haass PD series (Experimental)
+* Minitrix (Experimental)
+* PIKO SmartDecoder 4.1 (Experimental)
 * etc.
 
 You can create your own decoder specification file at any time.
