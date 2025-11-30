@@ -725,11 +725,11 @@ namespace Z2XProgrammer.Communication
         /// <param name="cvNumber">The number of the configuration variable to write.</param>
         /// <param name="mode">NMRA.DCCProgrammingModes defines the programming mode.</param>
         /// <param name="value">The value of the configuration variable to write</param>
-        /// <param name="token">A CancellationToken to cancel the write process.</param>
+        /// <param name="cancelToken">A CancellationToken to cancel the write process.</param>
         /// <param name="locomotiveAddress">The address of the decoder.</param>
         /// <param name="verifyPOM">If set to TRUE, data written in POM mode is verified by reading the CV value.</param>
         /// <returns></returns>
-        internal static bool WriteCV(ushort cvNumber, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken token, bool verifyPOM)
+        internal static bool WriteCV(ushort cvNumber, ushort locomotiveAddress, byte value, NMRA.DCCProgrammingModes mode, CancellationToken cancelToken, bool verifyPOM)
         {
             _mode = mode;
 
@@ -759,15 +759,19 @@ namespace Z2XProgrammer.Communication
                 //  This allows us to ensure that the variable was written correctly in POM mode.
                 if(verifyPOM == true)
                 {
+                    _waitingForResultReceived = true; _commandSuccessFull = false;
                     bool readSuccess = CommandStation.Z21.ReadCVPOM(cvNumber, locomotiveAddress);
-                    if(readSuccess == false) return false;
 
-                    if (DecoderConfiguration.ConfigurationVariables[cvNumber].Value != value) return false;
+                    if (WaitForAck(cancelToken) == false) return false;
+                    
+                    //  At this point, DecoderConfiguration.ConfigurationVariables[cvNumber].Value is already filled
+                    //  with the desired data. For this reason, we need to check whether the backup matches the desired data.
+                    if (DecoderConfiguration.BackupCVs[cvNumber].Value != value) return false;
                 }
             }
             else
             {
-                if (WaitForAck(token) == false)
+                if (WaitForAck(cancelToken) == false)
                 {
                     //  After NACK from the Z21 we need to update the Z21 operating mode
                     CommandStation.Z21.GetOperatingMode();
