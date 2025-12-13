@@ -128,7 +128,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-    <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" BaseSize="320,320" ForegroundScale="0.65" Color="#fabb00" />
+    <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" BaseSize="320,320" ForegroundScale="0.65"/>
     <MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" BaseSize="320,320" />
     
     <!-- Splash Screen -->
@@ -147,21 +147,27 @@
 	<ItemGroup>
 	  <AndroidResource Remove="Assets\**" />
 	  <AndroidResource Remove="Controls\**" />
+	  <AndroidResource Remove="DecSpecs\**" />
 	  <AndroidResource Remove="Resources\Raw\**" />
 	  <Compile Remove="Assets\**" />
 	  <Compile Remove="Controls\**" />
+	  <Compile Remove="DecSpecs\**" />
 	  <Compile Remove="Resources\Raw\**" />
 	  <EmbeddedResource Remove="Assets\**" />
 	  <EmbeddedResource Remove="Controls\**" />
+	  <EmbeddedResource Remove="DecSpecs\**" />
 	  <EmbeddedResource Remove="Resources\Raw\**" />
 	  <MauiCss Remove="Assets\**" />
 	  <MauiCss Remove="Controls\**" />
+	  <MauiCss Remove="DecSpecs\**" />
 	  <MauiCss Remove="Resources\Raw\**" />
 	  <MauiXaml Remove="Assets\**" />
 	  <MauiXaml Remove="Controls\**" />
+	  <MauiXaml Remove="DecSpecs\**" />
 	  <MauiXaml Remove="Resources\Raw\**" />
 	  <None Remove="Assets\**" />
 	  <None Remove="Controls\**" />
+	  <None Remove="DecSpecs\**" />
 	  <None Remove="Resources\Raw\**" />
 	</ItemGroup>
 
@@ -364,10 +370,6 @@
 	  <MauiXaml Update="UserControls\Z2XLightEffectsUserControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="DecSpecs\" />
 	</ItemGroup>
 
 	<ItemGroup>

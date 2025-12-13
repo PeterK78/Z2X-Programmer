@@ -46,7 +46,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
     <!-- The flyout header with the command station state and the locomotive image -->
     <Shell.FlyoutHeader>
-        <VerticalStackLayout>
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource TitleBarBackground_Light}, Dark={StaticResource TitleBarBackground_Dark}}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
