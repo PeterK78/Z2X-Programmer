@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-    <TargetFrameworks>net9.0-android35.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-android36.0</TargetFrameworks>
 		<!--<TargetFrameworks>net8.0-maccatalyst;net8.0-android34.0</TargetFrameworks> -->
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
@@ -44,13 +44,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
 	  <Title>Programmer application for modell railroad locomotive decoder</Title>
 	  <Authors>peterk78</Authors>
 	  <Company>peterk78</Company>
 	  <Description>Programmer application for modell railroad locomotive decoder.</Description>
 	  <PackageIcon>appicon.png</PackageIcon>
-	  <DefaultLanguage>en</DefaultLanguage>
+	  <DefaultLanguage>en-US</DefaultLanguage>
 	  <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 	  <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
 	  <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -62,55 +62,55 @@
 	  <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	</PropertyGroup>
 
-        <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android35.0|AnyCPU'">
+        <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android36.0|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
           <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android35.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android36.0|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
 	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
           <NoWarn>MVVMTK0045</NoWarn>		
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
           <NoWarn>MVVMTK0045</NoWarn>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|x86'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.19041.0|x86'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
     	  <Platforms>x86</Platforms>
@@ -118,7 +118,7 @@
           <NoWarn>MVVMTK0045</NoWarn>
         </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|x86'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.19041.0|x86'">
 	  <ApplicationId>com.peterk78.z2xprogrammer</ApplicationId>
 	  <ApplicationTitle>Z2X-Programmer</ApplicationTitle>
     	  <Platforms>x86</Platforms>
@@ -206,14 +206,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="12.3.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="13.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.120" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.11" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.11" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.1" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="4.0.0" />
-		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.7" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.8" />
 	</ItemGroup>
 
 	<ItemGroup>

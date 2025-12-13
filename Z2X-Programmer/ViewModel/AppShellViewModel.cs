@@ -591,7 +591,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  Present the the action sheet to the user.
                 if (Application.Current == null) return;
-                string action = await Application.Current.Windows[0].Page!.DisplayActionSheet(AppResources.ExtendedMenuItemTitle, null, null, menuItems.ToArray());
+                string action = await Application.Current.Windows[0].Page!.DisplayActionSheetAsync(AppResources.ExtendedMenuItemTitle, null, null, menuItems.ToArray());
 
                 //  Execute the selected action.
                 if (action == AppResources.ExtendedMenuItemSaveAs)

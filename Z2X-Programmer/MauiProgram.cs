@@ -68,7 +68,7 @@ namespace Z2XProgrammer
 
                                     // To create a .NET MAUI messagebox, we need a reference to the page.
                                     Page currentpage = AppShell.Current.CurrentPage;
-                                    if (await Application.Current!.Windows[0]!.Page!.DisplayAlert("Z2X-Programmer", AppResources.AlertSaveChanges, AppResources.YES, AppResources.NO) == true)
+                                    if (await Application.Current!.Windows[0]!.Page!.DisplayAlertAsync("Z2X-Programmer", AppResources.AlertSaveChanges, AppResources.YES, AppResources.NO) == true)
                                     {
                                         //  We save the Z2X file before we exit the program.
                                         if ((DecoderConfiguration.Z2XFilePath != "") && (File.Exists(DecoderConfiguration.Z2XFilePath) == true))

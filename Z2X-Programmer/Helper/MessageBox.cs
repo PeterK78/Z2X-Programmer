@@ -47,7 +47,7 @@ namespace Z2XProgrammer.Helper
                 if (Application.Current.Windows[0] == null) return false;
                 if (Application.Current.Windows[0].Page == null) return false;
 
-                return await Application.Current.Windows[0].Page!.DisplayAlert(title, message, accept, cancel,FlowDirection.MatchParent);
+                return await Application.Current.Windows[0].Page!.DisplayAlertAsync(title, message, accept, cancel,FlowDirection.MatchParent);
             }
             catch (Exception ex) 
             {
@@ -74,7 +74,7 @@ namespace Z2XProgrammer.Helper
                 if (Application.Current.Windows[0] == null) return;
                 if (Application.Current.Windows[0].Page == null) return;
 
-                await Application.Current.Windows[0].Page!.DisplayAlert(title, message, cancel);
+                await Application.Current.Windows[0].Page!.DisplayAlertAsync(title, message, cancel);
 
                 return;
             }
