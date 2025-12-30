@@ -223,6 +223,28 @@ namespace Z2XProgrammer.ViewModel
         #region REGION: COMMANDS
 
         /// <summary>
+        /// Opens a popup to identify the used decoder.
+        /// </summary>
+        [RelayCommand]
+        static async Task IdentifyDecoder()
+        {
+            Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+            if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of main window 0 cannot be determined.");
+
+            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = cancelTokenSource.Token;
+            PopUpDecoderIdentify popUpDecoderIdent = new PopUpDecoderIdentify(DecoderConfiguration.RCN225.VehicleAddress);
+            IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(popUpDecoderIdent, new PopupOptions
+            {
+                Shape = new RoundRectangle
+                {
+                    CornerRadius = new CornerRadius(12)
+                }
+            });
+
+        }
+
+        /// <summary>
         /// Closes the controller window.
         /// </summary>
         [RelayCommand]
@@ -662,7 +684,7 @@ namespace Z2XProgrammer.ViewModel
             {
 
                 //  Check the locomotive address
-                if ((DecoderConfiguration.RCN225.LocomotiveAddress == 0) && (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack))
+                if ((DecoderConfiguration.RCN225.VehicleAddress == 0) && (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack))
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                 }
@@ -712,7 +734,7 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, ProgressCV));
+                bool success = await Task.Run(() => ReadWriteDecoder.UploadDecoderData(cancelToken, DecoderConfiguration.RCN225.VehicleAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, ProgressCV));
 
                 // Workaround:
                 // The .NET MAUI pop-ups currently have problems with multi-window applications. For this reason,
@@ -793,7 +815,7 @@ namespace Z2XProgrammer.ViewModel
 
 
                 //  Check if we have valid locomotive address.
-                if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
+                if (DecoderConfiguration.RCN225.VehicleAddress == 0)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
@@ -844,10 +866,10 @@ namespace Z2XProgrammer.ViewModel
                     WeakReferenceMessenger.Default.Send(new ProgressUpdateMessageCV(value));
                 });
 
-                 // Check whether programming processes need to be verified via POM.
+                // Check whether programming processes need to be verified via POM.
                 bool verifyPOM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, AppConstants.PREFERENCES_VERIFYPOMWRITE_VALUE)) == 1 ? true : false;
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, false, ProgressCV, ModifiedConfigVariables, verifyPOM));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.VehicleAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, false, ProgressCV, ModifiedConfigVariables, verifyPOM));
 
                 await pop.CloseAsync();
 
@@ -906,7 +928,7 @@ namespace Z2XProgrammer.ViewModel
                 if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
 
                 //  Check the locomotive address.
-                if (DecoderConfiguration.RCN225.LocomotiveAddress == 0)
+                if (DecoderConfiguration.RCN225.VehicleAddress == 0)
                 {
                     await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocomotiveAddressNotZero, AppResources.OK);
                     return;
@@ -939,7 +961,7 @@ namespace Z2XProgrammer.ViewModel
                 // Check whether programming processes need to be verified via POM.
                 bool verifyPOM = int.Parse(Preferences.Default.Get(AppConstants.PREFERENCES_VERIFYPOMWRITE_KEY, AppConstants.PREFERENCES_VERIFYPOMWRITE_VALUE)) == 1 ? true : false;
 
-                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.LocomotiveAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true, ProgressCV, ListOfWritableConfigVariables, verifyPOM));
+                bool success = await Task.Run(() => ReadWriteDecoder.DownloadDecoderData(cancelToken, DecoderConfiguration.RCN225.VehicleAddress, DecoderSpecification.DeqSpecName, DecoderConfiguration.ProgrammingMode, ProgressPercentage, true, ProgressCV, ListOfWritableConfigVariables, verifyPOM));
 
                 await pop.CloseAsync();
 
@@ -1121,12 +1143,12 @@ namespace Z2XProgrammer.ViewModel
             if (DataStoreDataValid == true)
             {
                 LocomotiveDescription = DecoderConfiguration.UserDefindedDecoderDescription;
-                LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress.ToString();
+                LocomotiveAddress = DecoderConfiguration.RCN225.VehicleAddress.ToString();
             }
             else
             {
                 LocomotiveDescription = AppResources.LocoListTitle;
-                LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress.ToString();
+                LocomotiveAddress = DecoderConfiguration.RCN225.VehicleAddress.ToString();
             }
 
         }

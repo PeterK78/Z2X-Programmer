@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2025
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Z2XProgrammer.Popups.PopUpDecoderIdentify"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             WidthRequest="640"
+             HeightRequest="190"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"             
+             Padding="0,0,0,0"
+             >
+
+    <ScrollView Orientation="Vertical" HorizontalOptions="Center" >
+
+        <VerticalStackLayout>
+
+            <HorizontalStackLayout>
+                <Image Source="{AppThemeBinding Light=ic_fluent_identify_24_regular.png, Dark=ic_fluent_identify_24_dark.png}" Margin="0,10,10,0" VerticalOptions="Center"></Image>
+                <Label Text="{x:Static strings:AppResources.IdentifyDecoderTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="Start" ></Label>
+            </HorizontalStackLayout>
+
+            <!-- Generic decoder information like manufacturer and version -->
+            <Border Style="{StaticResource Z2XBorderFrame}">
+                <VerticalStackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <ActivityIndicator x:Name="ActivityIndicatorDecoderIdentify" HeightRequest="20" WidthRequest="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1" IsRunning="True" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
+
+                        <!-- Manufacturer CV8, CV107 and 108  -->
+                        <Label Grid.Row="0" Grid.Column="0" Margin="0,0,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.IdentifyDecoderManufacturerLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label x:Name="LabelManufacturer"  Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                        
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <HorizontalStackLayout HorizontalOptions="End">
+                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</mct:Popup>

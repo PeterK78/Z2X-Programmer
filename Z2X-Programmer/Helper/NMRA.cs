@@ -21,6 +21,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using Z2XProgrammer.DataModel;
+using Z2XProgrammer.FileAndFolderManagement;
+
 namespace Z2XProgrammer.Helper
 {
     /// <summary>
@@ -79,34 +82,29 @@ namespace Z2XProgrammer.Helper
 
         // The maximum amount of function outputs.
         public const ushort MaxFunctionOutputs = 12;
-        
+
         /// <summary>
-        /// Converts the NMRA manufucaturer ID to a string
+        /// Returns the manufacturer information for the given manufacturerID and extendedManufacturerID.
         /// </summary>
-        /// <param name="value">Manufacturer ID</param>
+        /// <param name="manufacturerID">The NMRA manufacturer ID.</param>
+        /// <param name="extendedManufacturerID">The extended NMRA manufacturer ID.</param>
         /// <returns>The manufacturer name</returns>
-        public static string GetManufacturerName (byte value)
+        public static NMRAManufacturerType? GetManufacturerInfo (ushort manufacturerID, int extendedManufacturerID)
         {
-            switch(value)
-            {
-                case ManufacurerID_Tams:                return "Tams Elektronik GmbH";
-                case ManufacurerID_Uhlenbrock:          return "Uhlenbrock Elektronik GmbH";
-                case  ManufacturerID_DoehlerAndHaass:   return "Doehler & Haass Steuerungssysteme GmbH & Co. KG";
-                case ManufacturerID_Lenz:               return "Lenz Elektronik GmbH";
-                case  ManufacturerID_Viessmann:         return "Viessmann Modellspielwaren GmbH";
-                case  ManufacturerID_Tran:              return "cT Elektronik (Tran)";
-                case  ManufacturerID_Digitrax:          return "Digitrax";
-                case  ManufacturerID_Trix:              return "Trix Modelleisenbahn";
-                case  ManufacturerID_Zimo:              return "ZIMO Elektronik GmbH"; 
-                case  ManufacturerID_ESU:               return "Electronic Solutions Ulm GmbH";
-                case  ManufacturerID_Fleischmann:       return "Gebr. Fleischmann GmbH & Co";
-                case  ManufacturerID_LGB:               return "LGB (Ernst Paul Lehmann Patentwerk)";
-                case  ManufacturerID_Roco:              return "Modelleisenbahn GmbH (Roco)";
-                case  ManufacturerID_PIKO:              return "PIKO";
-                case  ManufacturerID_Brawa:             return "Brawa Modellspielwaren GmbH & Co";
-                    
-                default:                                return  value.ToString() + " = Unknown manufacturer";
-            }
+            //  Load the manufacturer database.
+            List<NMRAManufacturerType> manufacturerDB = ManufacturerDBReaderWriter.LoadManufacturersFromLocalFile(System.IO.Path.Combine(ApplicationFolders.ManufacturerDBFolderPath, AppConstants.MANUFACTURERDBFILENAME));
+
+            //  First try to find the manufacturer by the manufacturerID.
+            List<NMRAManufacturerType> manufacturer = manufacturerDB.Where(m => m.Id == manufacturerID).ToList();
+            if (manufacturer.Count == 1) return manufacturer[0];
+
+            //  If not found, try to find it by the extendedManufacturerID.
+            manufacturer.Clear();
+            manufacturer = manufacturerDB.Where(m => m.ExtendedId == extendedManufacturerID).ToList();
+            if(manufacturer.Count == 1) return manufacturer[0];
+
+            //  If still not found, return null.
+            return null;
         }
 
 

@@ -100,7 +100,7 @@ namespace Z2XProgrammer.ViewModel
         ushort vehicleAddress;
         partial void OnVehicleAddressChanged(ushort oldValue, ushort newValue)
         {
-            DecoderConfiguration.RCN225.LocomotiveAddress = newValue;
+            DecoderConfiguration.RCN225.VehicleAddress = newValue;
             VehicleAddressCVConfiguration = Subline.Create(new List<uint> { 1, 17, 18 });
             WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
         }
@@ -130,11 +130,11 @@ namespace Z2XProgrammer.ViewModel
             if (DecoderConfiguration.RCN225.DCCAddressModeVehicleAdr == NMRA.DCCAddressModes.Extended)
             {
                 //  Lets check if a valid long vehicle address has already been configured. A valid long adress is in the range between 128 and 10239.
-                ushort longAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                ushort longAddress = DecoderConfiguration.RCN225.VehicleAddress;
                 if ((longAddress >= NMRA.LongAddressMinimum) && (longAddress <= NMRA.LongAddressMaximum))
                 {
                     //  A valid long vehicle address is already available - let's use it.
-                    VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                    VehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
                 }
                 else
                 {
@@ -145,10 +145,10 @@ namespace Z2XProgrammer.ViewModel
             else
             {
                 //  Lets check if a valid short vehicle address has already been configured.
-                if ((DecoderConfiguration.RCN225.LocomotiveAddress > NMRA.ShortAddressMinimum) && (DecoderConfiguration.RCN225.LocomotiveAddress < NMRA.ShortAddressMaximum))
+                if ((DecoderConfiguration.RCN225.VehicleAddress > NMRA.ShortAddressMinimum) && (DecoderConfiguration.RCN225.VehicleAddress < NMRA.ShortAddressMaximum))
                 {
                     //  A valid long vehicle address is already available - let's use it.
-                    VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                    VehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
                 }
                 else
                 {
@@ -312,7 +312,7 @@ namespace Z2XProgrammer.ViewModel
             //  RCN225
 
             //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
-            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+            VehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
             VehicleAddressCVConfiguration = Subline.Create(new List<uint> { 1, 17, 18 });
 
             //  RCN225: DCC address mode CV29.5 (RCN225_LONGSHORTADDRESS_CV29_5)
@@ -399,17 +399,17 @@ namespace Z2XProgrammer.ViewModel
                 if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
                 {
                     // User message for programming on the main track.
-                    infoMessage = AppResources.AlertWriteVehicleAddress1 + " " + DecoderConfiguration.RCN225Backup.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress2 + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddress3;
+                    infoMessage = AppResources.AlertWriteVehicleAddress1 + " " + DecoderConfiguration.RCN225Backup.VehicleAddress + " " + AppResources.AlertWriteVehicleAddress2 + " " + DecoderConfiguration.RCN225.VehicleAddress + " " + AppResources.AlertWriteVehicleAddress3;
                     infoMessage += "\n\n" + AppResources.AlertWriteVehicleAddressProgrammingMethod + " " + AppResources.DCCProgrammingModePOM + " " + AppResources.AlertWriteVehicleAddressProgrammingMethod1;
                 }
                 else
                 {   // User message for programming on the programming track.
-                    infoMessage = AppResources.AlertWriteVehicleAddressWriteProg + " " + DecoderConfiguration.RCN225.LocomotiveAddress + " " + AppResources.AlertWriteVehicleAddressWriteProg2;
+                    infoMessage = AppResources.AlertWriteVehicleAddressWriteProg + " " + DecoderConfiguration.RCN225.VehicleAddress + " " + AppResources.AlertWriteVehicleAddressWriteProg2;
                 }
 
                 if (await MessageBox.Show(AppResources.AlertInformation, infoMessage, AppResources.YES, AppResources.NO) == false)
                 {
-                    VehicleAddress = DecoderConfiguration.RCN225Backup.LocomotiveAddress;
+                    VehicleAddress = DecoderConfiguration.RCN225Backup.VehicleAddress;
                     return;
                 }
 
@@ -436,7 +436,7 @@ namespace Z2XProgrammer.ViewModel
                     WriteSuccessFull = false;
 
                     // Write the next configuration variable to the decoder.
-                    await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(cv, DecoderConfiguration.RCN225Backup.LocomotiveAddress, DecoderConfiguration.ConfigurationVariables[cv].Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
+                    await Task.Run(() => WriteSuccessFull = ReadWriteDecoder.WriteCV(cv, DecoderConfiguration.RCN225Backup.VehicleAddress, DecoderConfiguration.ConfigurationVariables[cv].Value, DecoderConfiguration.ProgrammingMode, cancelToken, true));
 
                     if (WriteSuccessFull == true)
                     {
@@ -515,7 +515,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     //  Read the next CV value from the decoder.
                     readSuccessFull = false;
-                    await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+                    await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadSingleCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
 
                     // If reading the CV failed, display an error message, exit programming mode, and terminate the function.
                     if (readSuccessFull == false)
@@ -527,7 +527,7 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
 
-                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressRead + " " + DecoderConfiguration.RCN225.LocomotiveAddress, AppResources.OK);
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressRead + " " + DecoderConfiguration.RCN225.VehicleAddress, AppResources.OK);
 
                 WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
 

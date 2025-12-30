@@ -64,7 +64,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ApplicationVersion}"></Label>
                     <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Homepage"></Label>
                     <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="https://github.com/PeterK78/Z2X-Programmer"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="4" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer" Margin="0,20,0,0"></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="4" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer" Margin="0,20,0,0"></Button>
                 </Grid>
             </Border>
            
@@ -81,13 +81,37 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="20,20,20,20">
-                        <ScrollView  HeightRequest="280" VerticalOptions="FillAndExpand">
+                        <ScrollView  HeightRequest="280" VerticalOptions="Fill">
                             <Label Text="{x:Static strings:AppResources.LicenseText}" FontSize="12" BackgroundColor="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
                         </ScrollView>
                     </Border>
                     <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="1" Grid.Column="1"  Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file" WidthRequest="150"  IsVisible="True" Text="{x:Static strings:AppResources.FrameLicenseButtonLicenseText}" HorizontalOptions="End" VerticalOptions="End"></Button>
                 </Grid>
             </Border>
+
+            <!-- Decoder database information -->
+            <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoDecoderDatabaseTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+            
+            <!-- DecoderDB -->
+            <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="DecoderDB" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Stephan Bauer"></Label>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="DecoderDB License"></Label>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://www.decoderdb.de/" ></Button>
+                </Grid>
+            </Border>
+            
             
             <!-- Frame: Open Source Libraries  -->
             <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameInfoOpenSourceLibsTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
@@ -108,7 +132,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text=".NET MAUI Community Toolkit" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/Maui" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/Maui" ></Button>
                 </Grid>
             </Border>
 
@@ -128,7 +152,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text=".NET MVVM Community Toolkit" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/dotnet" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/CommunityToolkit/dotnet" ></Button>
                 </Grid>
             </Border>
 
@@ -148,7 +172,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="MetroLog.Maui" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Matt Baxter-Reynolds, Claire Novotny, Jean-Marie Alfonsi"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/roubachof/MetroLog" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/roubachof/MetroLog" ></Button>
                 </Grid>
             </Border>
 
@@ -168,7 +192,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Extensions.Logging.Debug" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" ></Button>
                 </Grid>
             </Border>
 
@@ -188,7 +212,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Maui.Controls" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" ></Button>
                 </Grid>
             </Border>
 
@@ -208,7 +232,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.Maui.Controls.Compatibility" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/dotnet/maui" ></Button>
                 </Grid>
             </Border>
 
@@ -228,7 +252,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Microsoft.NET.ILLink.Tasks" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://dot.net" ></Button>
                 </Grid>
             </Border>
 
@@ -248,7 +272,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="Fluent UI System Icons" VerticalOptions="Center"  HorizontalOptions="Start"></Label>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="Microsoft"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="MIT"></Label>
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="EndAndExpand" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/microsoft/fluentui-system-icons" ></Button>
+                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_open_24_dark.png, Dark=ic_fluent_open_24_dark.png}" MinimumWidthRequest="250" Grid.Row="3" Grid.Column="1" Text="{x:Static strings:AppResources.FrameInfoOpenProjectHomepage}" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/microsoft/fluentui-system-icons" ></Button>
                 </Grid>
             </Border>
 

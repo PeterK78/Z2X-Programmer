@@ -120,7 +120,7 @@ namespace Z2XProgrammer.Communication
         static readonly string[,] PIKOSmartDecoderV41Features = new string[3, 29] {
                                   {DeqSpecReader.PIKOSMARTDECODER_DECODERID_CV26X, "261", "262", "263" ,"264","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" },
                                   {DeqSpecReader.PIKOSMARTDECODER41_MINIMALSPEED_CV2,"2", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" } ,
-                                  {DeqSpecReader.PIKOSMARTDECODER_MAXIMUMSPEED_CV5,"5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" } 
+                                  {DeqSpecReader.PIKOSMARTDECODER_MAXIMUMSPEED_CV5,"5", "0", "0" ,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0" }
                               };
 
 
@@ -153,7 +153,7 @@ namespace Z2XProgrammer.Communication
         /// <param name="allConfigVariables">If TRUE all supported configuration variables will be transfered to the decoder. If FALSE only those for which the current value is different from the backup value are used.</param>
         /// <param name="progressCV">The currently processed CV.</param>
         /// <returns></returns>
-        internal static Task<bool>DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV, List<int> configVariablesToWrite, bool verfifyPOM)
+        internal static Task<bool> DownloadDecoderData(CancellationToken cancelToken, ushort vehicleAddress, string decSpecName, NMRA.DCCProgrammingModes mode, IProgress<int> progressPercentage, bool allConfigVariables, IProgress<int> progressCV, List<int> configVariablesToWrite, bool verfifyPOM)
         {
             _mode = mode;
             _decSpecName = decSpecName;
@@ -181,7 +181,7 @@ namespace Z2XProgrammer.Communication
                     //  We report the configuration variable that will be written next.
                     progressCV.Report(configVariablesToWrite[i]);
 
-                    if (WriteCV((ushort)configVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value, _mode, cancelToken,verfifyPOM) == false)
+                    if (WriteCV((ushort)configVariablesToWrite[i], vehicleAddress, DecoderConfiguration.ConfigurationVariables[configVariablesToWrite[i]].Value, _mode, cancelToken, verfifyPOM) == false)
                     {
                         CommandStation.Z21.SetTrackPowerOn();
                         return Task.FromResult(false);
@@ -607,7 +607,7 @@ namespace Z2XProgrammer.Communication
                     progressCV.Report(ConfigVariablesToRead[i]);
 
                     //  Read the next configuration variable from the collected list.
-                    if (ReadCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
+                    if (ReadSingleCV((ushort)ConfigVariablesToRead[i], locomotiveAddress, _mode, cancelToken) == false)
                     {
                         // We now check the user-specific setting to see whether the function must be aborted in the event
                         // of a read error. If yes, the process is canceled. Otherwise, reading continues.
@@ -683,14 +683,14 @@ namespace Z2XProgrammer.Communication
 
             return true;
         }
-
+ 
         /// <summary>
-        /// Read a CV value
+        /// Reads a single configuration variable.
         /// </summary>
-        /// <param name="cv"></param>
-        /// <param name="locomotiveAddress"></param>
+        /// <param name="cv">The number of the configuration variable.</param>
+        /// <param name="locomotiveAddress">The vehicle address.</param>
         /// <returns></returns>
-        internal static bool ReadCV(ushort cv, ushort locomotiveAddress, NMRA.DCCProgrammingModes mode, CancellationToken token)
+        internal static bool ReadSingleCV(ushort cv, ushort locomotiveAddress, NMRA.DCCProgrammingModes mode, CancellationToken token)
         {
             _mode = mode;
 
@@ -757,13 +757,13 @@ namespace Z2XProgrammer.Communication
 
                 //  If verifyPOM is set to TRUE, we will read the written configuration variable from the decoder.
                 //  This allows us to ensure that the variable was written correctly in POM mode.
-                if(verifyPOM == true)
+                if (verifyPOM == true)
                 {
                     _waitingForResultReceived = true; _commandSuccessFull = false;
                     bool readSuccess = CommandStation.Z21.ReadCVPOM(cvNumber, locomotiveAddress);
 
                     if (WaitForAck(cancelToken) == false) return false;
-                    
+
                     //  At this point, DecoderConfiguration.ConfigurationVariables[cvNumber].Value is already filled
                     //  with the desired data. For this reason, we need to check whether the backup matches the desired data.
                     if (DecoderConfiguration.BackupCVs[cvNumber].Value != value) return false;

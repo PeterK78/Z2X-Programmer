@@ -51,7 +51,7 @@ namespace Z2XProgrammer.DataModel
         /// The locomotive address. Depending on the configuration (Long addresses vs. short addresses) in CV1,
         /// or in CV17 and CV18.
         /// </summary>
-        public ushort LocomotiveAddress
+        public ushort VehicleAddress
         {
             get
             {
@@ -536,18 +536,30 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// The name of the manufacturer
+        /// The name of the manufacturer.
         /// </summary>
         public string Manufacturer
         {
             get
             {
-                return NMRA.GetManufacturerName(configurationVariables[8].Value);
+                var info = NMRA.GetManufacturerInfo(ManufacturerID, ExtendedManufacturerID);
+                return info?.Name ?? string.Empty;
             }
         }
 
         /// <summary>
-        /// The ID of the manufacturer
+        /// The extended manufacturer ID from CV107 and CV108.
+        /// </summary>
+        public int ExtendedManufacturerID
+        {
+            get
+            {
+                return (configurationVariables[108].Value << 8) + configurationVariables[107].Value;
+            }
+        }
+
+        /// <summary>
+        /// The ID of the manufacturer in CV8.
         /// </summary>
         public byte ManufacturerID
         {

@@ -109,6 +109,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <OnIdiom Default="" Phone=""></OnIdiom>
                 </Button.Text>
             </Button>
+            
+            <!-- Identifiy decoder -->
+            <Button ImageSource="{AppThemeBinding Light=ic_fluent_identify_24_regular.png, Dark=ic_fluent_identify_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuIdentifyDecoder}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=IdentifyDecoderCommand}" HorizontalOptions="End">
+                <Button.Text>
+                    <OnIdiom Default="" Phone=""></OnIdiom>
+                </Button.Text>
+            </Button>
 
             <!-- Upload decoder data -->
             <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_regular.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuReadDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UploadDecoderCommand}" HorizontalOptions="End">
@@ -139,7 +146,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             -->
             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
                 <Picker.WidthRequest>
-                    <OnIdiom Default="180" Desktop="180" Tablet="180" Phone="170"></OnIdiom>                    
+                    <OnIdiom Default="180" Desktop="180" Tablet="170" Phone="170"></OnIdiom>                    
                 </Picker.WidthRequest>
             </Picker>
 
@@ -151,7 +158,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             -->
             <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
                 <Picker.WidthRequest>
-                    <OnIdiom Default="265" Desktop="270" Tablet="260" Phone="240"></OnIdiom>
+                    <OnIdiom Default="265" Desktop="270" Tablet="220" Phone="240"></OnIdiom>
                 </Picker.WidthRequest>
             </Picker>
 

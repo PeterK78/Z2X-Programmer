@@ -62,7 +62,15 @@ namespace Z2XProgrammer.FileAndFolderManagement
         public static string Z2XFolderPath
         {   
             get => GetZ2XFolderPath();
-        }  
+        }
+
+        /// <summary>
+        /// Contains the standard path to manufacturer database folder.
+        /// </summary>
+        public static string ManufacturerDBFolderPath
+        {
+            get => GetManufacturerDBFolderPath();
+        }
 
         #endregion
 
@@ -128,6 +136,30 @@ namespace Z2XProgrammer.FileAndFolderManagement
         private static string GetDefaultUserSpecificDecSpecsFolderPath()
         {
             return GetDecSpecsFolderPath() + "\\UserSpecific";
+        }
+
+        /// <summary>
+        /// Returns the path to the NMRA manufacturer folder.
+        /// </summary>
+        /// <returns></returns>
+        private static string GetManufacturerDBFolderPath()
+        {
+            try
+            {
+                if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+                {
+                    return FileSystem.Current.AppDataDirectory + "\\ManufacturesDB";
+                }
+                else if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+                    return FileSystem.Current.AppDataDirectory + "/ManufacturesDB";
+                }
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         /// <summary>

@@ -2145,4 +2145,16 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameSettingsVerifyPOMWrite" xml:space="preserve">
     <value>Das Schreiben von Konfigurationsvariablen im POM-Mode verifzieren</value>
   </data>
+  <data name="IdentifyDecoderTitle" xml:space="preserve">
+    <value>Decoder identifizieren</value>
+  </data>
+  <data name="IdentifyDecoderManufacturerLabel" xml:space="preserve">
+    <value>Hersteller</value>
+  </data>
+  <data name="FrameInfoDecoderDatabaseTitle" xml:space="preserve">
+    <value>Decoder-Datenbank</value>
+  </data>
+  <data name="ButtonMainMenuIdentifyDecoder" xml:space="preserve">
+    <value>Decoder identifizieren</value>
+  </data>
 </root>

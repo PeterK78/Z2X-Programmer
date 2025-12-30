@@ -49,7 +49,9 @@ namespace Z2XProgrammer.Helper
 
             //  Setup the folder for the Z2X files.
             SetupZ2XFolder();
-            
+
+            //  Setup the folder for the NMRA manufacturer file.   
+            SetupManufacturerDBFolder();
 
             //  Copy the decoder specification files.
             DeqSpecReader.WriteDeqSpecFile("Generic.decspec", DeqSpecReader.UnknownDecoderSpec);
@@ -62,6 +64,8 @@ namespace Z2XProgrammer.Helper
             DeqSpecReader.WriteDeqSpecFile("Minitrix.decspec", DeqSpecReader.MinitrixDeqSpec);
             DeqSpecReader.WriteDeqSpecFile("PIKOSmartDecoder41.decspec", DeqSpecReader.PikoSmartDecoderSpec);
 
+            //  Copy the Manufacturers.decdb file.
+            ManufacturerDBReaderWriter.WriteManufacturerDB(AppConstants.MANUFACTURERDBFILENAME, ManufacturerDBReaderWriter.DefaultManufacturers);
 
             //  Automatically setup the the GUI language if we did not before ...
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_KEY, AppConstants.PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_VALUE) != "1")
@@ -97,6 +101,23 @@ namespace Z2XProgrammer.Helper
 
             return true;
         }
+
+        /// <summary>
+        /// Creates the folder for the manufacturer database file.
+        /// </summary>
+        /// <returns></returns>
+        private static bool SetupManufacturerDBFolder()
+        {
+            //  We check whether the directory for the Z2X files has already been configured.
+            //  If not, we initialize the Z2X default folder.  
+            if(Preferences.Default.Get(AppConstants.PREFERENCES_MANUFACTUERLIST_KEY, AppConstants.PREFERENCES_MANUFACTUERLIST_VALUE) == AppConstants.PREFERENCES_MANUFACTUERLIST_VALUE)
+            { 
+                Directory.CreateDirectory(ApplicationFolders.ManufacturerDBFolderPath);
+                Preferences.Default.Set(AppConstants.PREFERENCES_MANUFACTUERLIST_KEY, ApplicationFolders.ManufacturerDBFolderPath);
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// Creates the folder for the Z2X files within the AppData folder.

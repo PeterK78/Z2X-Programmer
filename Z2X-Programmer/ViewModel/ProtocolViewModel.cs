@@ -242,7 +242,7 @@ namespace Z2XProgrammer.ViewModel
         /// <param name="e"></param>
         private void OnRailComInfoReceived(object? sender, RailComInfoEventArgs e)
         {
-            if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+            if (e.LocomotiveAddress == DecoderConfiguration.RCN225.VehicleAddress)
             {
                 RailComSpeed = e.Speed;
                 RailComQOS = e.QOS;

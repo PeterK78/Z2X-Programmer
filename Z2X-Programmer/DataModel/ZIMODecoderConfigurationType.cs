@@ -1330,14 +1330,23 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Retusn the sound project manufacturer in CV105 and CV106
+        /// Returns the name and the ID of the sound manufacturer in CV105 and CV106.
         /// </summary>
         public string SoundProjectManufacturer
         {
             get
             {
-                string manufacturerName = NMRA.GetManufacturerName(configurationVariables[105].Value);
-                return manufacturerName + " (" + AppResources.SoundProjectAuthorID + ": " + configurationVariables[106].Value.ToString() + ")";
+                string manufacturerName = string.Empty;
+                NMRAManufacturerType manufacturerInfo = NMRA.GetManufacturerInfo(configurationVariables[105].Value, 0)!;
+                if (manufacturerInfo != null)
+                {
+                    manufacturerName = manufacturerInfo.Name;
+                    return manufacturerName + " (" + AppResources.SoundProjectAuthorID + ": " + configurationVariables[106].Value.ToString() + ")";
+                }
+                else
+                {
+                    return manufacturerName = "";
+                }
             }
         }
 

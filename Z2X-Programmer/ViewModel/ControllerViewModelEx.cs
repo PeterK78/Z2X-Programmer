@@ -86,7 +86,7 @@ namespace Z2XProgrammer.ViewModel
 
         // Vehicle address
         [ObservableProperty]
-        ushort vehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+        ushort vehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
       
         // RailCom Speed
         [ObservableProperty]
@@ -297,9 +297,9 @@ namespace Z2XProgrammer.ViewModel
         public void OnGetDecoderConfiguration()
         {
             ////  Request the locomotive information for the current locomotive address.
-            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
+            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.VehicleAddress);
 
-            VehicleAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+            VehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace Z2XProgrammer.ViewModel
             if (SpeedStep28 == true) realSpeedSteps = 28;
             if (SpeedStep128 == true) realSpeedSteps = 128;
 
-            CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.LocomotiveAddress, speed, realSpeedSteps, direction);
+            CommandStation.Z21.SetLocoDrive(DecoderConfiguration.RCN225.VehicleAddress, speed, realSpeedSteps, direction);
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Z2XProgrammer.ViewModel
                 if (enableRailComMessages == false) return;
 
                 //  Did we receive RailCom data for the selected decoder?
-                if (e.LocomotiveAddress == DecoderConfiguration.RCN225.LocomotiveAddress)
+                if (e.LocomotiveAddress == DecoderConfiguration.RCN225.VehicleAddress)
                 {
                     if (RailComSpeed != e.Speed) RailComSpeed = e.Speed;
 
@@ -469,7 +469,7 @@ namespace Z2XProgrammer.ViewModel
         /// <param name="e"></param>
         private void OnCommandStationStatusChanged(object? sender, StateEventArgs e)
         {
-            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.LocomotiveAddress);
+            CommandStation.Z21.GetLocoInfo(DecoderConfiguration.RCN225.VehicleAddress);
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace Z2XProgrammer.ViewModel
             try
             {
                 //  If the received address is not the address of the current locomotive, we return.
-                if (e.Address != DecoderConfiguration.RCN225.LocomotiveAddress) return;
+                if (e.Address != DecoderConfiguration.RCN225.VehicleAddress) return;
 
                 //  Update the function states.
                 FunctionF0 = e.FunctionStates[0];
@@ -704,7 +704,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     if (fnNumber > 31) throw new ArgumentException("Function number is out of range.");
 
-                    CommandStation.Z21.SetLocoFunction(DecoderConfiguration.RCN225.LocomotiveAddress, Z21Lib.Enums.SwitchType.Toggle, fnNumber);
+                    CommandStation.Z21.SetLocoFunction(DecoderConfiguration.RCN225.VehicleAddress, Z21Lib.Enums.SwitchType.Toggle, fnNumber);
                 }
                 else
                 {

@@ -177,8 +177,8 @@ namespace Z2XProgrammer.DataStore
             UserDefinedDecoderManual = string.Empty;
 
             //  Set the NMRA default addresses.
-            RCN225.LocomotiveAddress = locomotiveAddress;
-            RCN225Backup.LocomotiveAddress = NMRA.StandardShortVehicleAddress;
+            RCN225.VehicleAddress = locomotiveAddress;
+            RCN225Backup.VehicleAddress = NMRA.StandardShortVehicleAddress;
 
             //  The current data in the data store is not valid.
             IsValid = false;

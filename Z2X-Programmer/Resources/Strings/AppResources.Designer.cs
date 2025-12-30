@@ -19,7 +19,7 @@ namespace Z2XProgrammer.Resources.Strings {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppResources {
@@ -608,6 +608,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string ButtonCommandStationState {
             get {
                 return ResourceManager.GetString("ButtonCommandStationState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identify decoders.
+        /// </summary>
+        public static string ButtonMainMenuIdentifyDecoder {
+            get {
+                return ResourceManager.GetString("ButtonMainMenuIdentifyDecoder", resourceCulture);
             }
         }
         
@@ -2959,6 +2968,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameInfoApplicationInformationTitle {
             get {
                 return ResourceManager.GetString("FrameInfoApplicationInformationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoder database.
+        /// </summary>
+        public static string FrameInfoDecoderDatabaseTitle {
+            get {
+                return ResourceManager.GetString("FrameInfoDecoderDatabaseTitle", resourceCulture);
             }
         }
         
@@ -5321,6 +5339,24 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FyoutItemMotorCharacteristicsText {
             get {
                 return ResourceManager.GetString("FyoutItemMotorCharacteristicsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer.
+        /// </summary>
+        public static string IdentifyDecoderManufacturerLabel {
+            get {
+                return ResourceManager.GetString("IdentifyDecoderManufacturerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identify decoders.
+        /// </summary>
+        public static string IdentifyDecoderTitle {
+            get {
+                return ResourceManager.GetString("IdentifyDecoderTitle", resourceCulture);
             }
         }
         

@@ -21,31 +21,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Z2XProgrammer.FileAndFolderManagement;
-using Z2XProgrammer.Helper;
-
 namespace Z2XProgrammer.DataModel
 {
     /// <summary>
-    /// This class contains internal constants
+    /// This class contains internal constants.
     /// </summary>
     internal static class AppConstants
     {
-        /// <summary>
-        /// The programming modes. Direct or POM.       
-        /// </summary>
-        internal const string AppName = "Z2X Programmer";
-        internal const string FileDialogFilter = "z2x files (*.z2x)|*.z2x|All files (*.*)|*.*";
+        internal const string APPNAME = "Z2X Programmer";
 
-        //  The file name of the decoder specification ZIP archive.
-        //  Note: .NET MAUI is critical on using file types. Do not use ZIP - it will break the call OpenAppPackageFileAsync
-        //internal const string DecSpecsZIPArchiveFileName = "decspecs.bin";
+        // File handling.
+        internal const string FILEDIALOGFILTER = "z2x files (*.z2x)|*.z2x|All files (*.*)|*.*";
+        internal const string MANUFACTURERDBFILENAME = "Manufacturers.decdb";
 
+        //  User specific settings.
+        internal const string PREFERENCES_MANUFACTUERLIST_KEY = "MANUFACTURERTLIST_FOLDER";
+        internal const string PREFERENCES_MANUFACTUERLIST_VALUE = "";
         internal const string PREFERENCES_LOCOLIST_FOLDER_KEY = "LOCOLIST_FOLDER";
         internal const string PREFERENCES_LOCOLIST_FOLDER_VALUE = "";
         internal const string PREFERENCES_LOCOLIST_PORTNR_KEY = "LOCOLIST_PORTNR";
@@ -78,7 +69,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_USERSPECIFICDECSPECFOLDER_VALUE = "";
         internal const string PREFERENCES_VERIFYPOMWRITE_KEY = "VERIFYPOMWRITE";
         internal const string PREFERENCES_VERIFYPOMWRITE_VALUE = "1";
-        
 
         //  Size and position of the main window.
         internal const string PREFERENCES_WINDOW_MAIN_WIDTH_KEY = "MAINWINDOWWIDTH";
@@ -100,7 +90,7 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_KEY = "CONTROLLERWINDOWPOSY";
         internal const string PREFERENCES_WINDOW_CONTROLLER_POSY_DEFAULT = "-1";
 
-        // Measurement section
+        // Measurement section.
         internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_KEY = "SENSOR1NR";
         internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR1NR_DEFAULT = "0";
         internal const string PREFERENCES_MEASUREMENTSECTION_SENSOR2NR_KEY = "SENSOR2NR";
@@ -109,8 +99,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERENCES_MEASUREMENTSECTION_LENGTHMM_DEFAULT = "100";
         internal const string PREFERENCES_MEASUREMENTSECTION_SCALE_KEY = "SCALE";
         internal const string PREFERENCES_MEASUREMENTSECTION_SCALE_DEFAULT = "160";
-
-
 
     }
 }

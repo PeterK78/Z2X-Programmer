@@ -44,11 +44,11 @@ namespace Z2XProgrammer.FileAndFolderManagement
             string fileName = "";
             if ((DecoderConfiguration.UserDefindedDecoderDescription != null) && (DecoderConfiguration.UserDefindedDecoderDescription != ""))
             {
-                fileName = DecoderConfiguration.RCN225.LocomotiveAddress.ToString() + " " + DecoderConfiguration.UserDefindedDecoderDescription;
+                fileName = DecoderConfiguration.RCN225.VehicleAddress.ToString() + " " + DecoderConfiguration.UserDefindedDecoderDescription;
             }
             else
             {
-                fileName = "Settings Adr=" + DecoderConfiguration.RCN225.LocomotiveAddress.ToString();
+                fileName = "Settings Adr=" + DecoderConfiguration.RCN225.VehicleAddress.ToString();
             }
 
             if (fileName.Length > 40)
@@ -75,7 +75,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
                 // Setup the Z2X file content object
                 //
                 Z2XProgrammerFileType myZ2XFileContent = new Z2XProgrammerFileType();
-                myZ2XFileContent.LocomotiveAddress = DecoderConfiguration.RCN225.LocomotiveAddress;
+                myZ2XFileContent.LocomotiveAddress = DecoderConfiguration.RCN225.VehicleAddress;
                 myZ2XFileContent.UserDefindedDecoderDescription = DecoderConfiguration.UserDefindedDecoderDescription;
                 myZ2XFileContent.CVs = DecoderConfiguration.ConfigurationVariables.ToList();
                 myZ2XFileContent.DeqSpecName = DecoderSpecification.DeqSpecName;
