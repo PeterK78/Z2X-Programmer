@@ -97,6 +97,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The required configuration variables could not be read..
+        /// </summary>
+        public static string AlertCouldNotIdentify {
+            get {
+                return ResourceManager.GetString("AlertCouldNotIdentify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⚠ The displayed decoder values originate from a Z2X project file. It is possible that these values are no longer up to date. Load the settings from the decoder to obtain reliable current values..
         /// </summary>
         public static string AlertDataInBackupAreNotFromDecoder {
@@ -5469,6 +5478,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decoder address:.
+        /// </summary>
+        public static string IdentifyDecoderVehicleAddressLabel {
+            get {
+                return ResourceManager.GetString("IdentifyDecoderVehicleAddressLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A connection is established with your digital center (IP address:.
         /// </summary>
         public static string InfoConnectionToDigitalCommandStation {
@@ -5661,6 +5679,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string LocoListTitle {
             get {
                 return ResourceManager.GetString("LocoListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string ManufacturerUnknown {
+            get {
+                return ResourceManager.GetString("ManufacturerUnknown", resourceCulture);
             }
         }
         

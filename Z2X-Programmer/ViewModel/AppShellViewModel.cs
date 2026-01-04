@@ -246,7 +246,7 @@ namespace Z2XProgrammer.ViewModel
 
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = cancelTokenSource.Token;
-            PopUpDecoderIdentify popUpDecoderIdent = new PopUpDecoderIdentify(DecoderConfiguration.RCN225.VehicleAddress);
+            PopUpDecoderIdentify popUpDecoderIdent = new PopUpDecoderIdentify(DecoderConfiguration.RCN225.VehicleAddress, DecoderConfiguration.ProgrammingMode);
             IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(popUpDecoderIdent, new PopupOptions
             {
                 Shape = new RoundRectangle

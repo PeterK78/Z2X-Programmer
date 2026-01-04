@@ -2193,4 +2193,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="AlertNoConnectionCentralStationError2" xml:space="preserve">
     <value>hergestellt werden.</value>
   </data>
+  <data name="IdentifyDecoderVehicleAddressLabel" xml:space="preserve">
+    <value>Decoder-Adresse:</value>
+  </data>
+  <data name="AlertCouldNotIdentify" xml:space="preserve">
+    <value>Die benötigten Konfigurationsvariablen konnten nicht gelesen werden.</value>
+  </data>
+  <data name="ManufacturerUnknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
 </root>

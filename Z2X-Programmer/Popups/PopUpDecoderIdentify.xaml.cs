@@ -34,6 +34,7 @@ namespace Z2XProgrammer.Popups;
 public partial class PopUpDecoderIdentify : Popup
 {
 
+    NMRA.DCCProgrammingModes _programmingMode = NMRA.DCCProgrammingModes.DirectProgrammingTrack;
     ushort _vehicleAddress = 0;    
     CancellationToken _cancelToken;
     CancellationTokenSource _cancelTokenSource= new CancellationTokenSource();
@@ -41,7 +42,9 @@ public partial class PopUpDecoderIdentify : Popup
     /// <summary>
     /// Constructor
     /// </summary>  
-	public PopUpDecoderIdentify(ushort vehicleAddress)
+    /// <param name="programmingMode">The currenlty selected programming mode</param>
+    /// <param name="vehicleAddress">The currently selected vehicle address.</param>
+	internal PopUpDecoderIdentify(ushort vehicleAddress, NMRA.DCCProgrammingModes programmingMode)
 	{
         List<ushort> manufacturerCVs = new List<ushort> { 3, 8 };
 		InitializeComponent();
@@ -51,6 +54,9 @@ public partial class PopUpDecoderIdentify : Popup
         
         _cancelToken = _cancelTokenSource.Token;
         _vehicleAddress = vehicleAddress;
+        _programmingMode = programmingMode;
+
+        LabelDecoderAddress.Text = _vehicleAddress.ToString();  
 
         this.Opened += PopUpDecoderIdentify_Opened;        
 
@@ -64,22 +70,42 @@ public partial class PopUpDecoderIdentify : Popup
     /// <exception cref="NotImplementedException"></exception>
     private async void PopUpDecoderIdentify_Opened(object? sender, EventArgs e)
     {
+        
+        // Start the activity indicator.
         ActivityIndicatorDecoderIdentify.IsRunning = true;
         ActivityIndicatorDecoderIdentify.IsVisible = true;
 
         //  In the first step, we read the standard CV 8.
-        await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 8}  , _cancelToken);
+        bool result = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 8}  , _cancelToken);
+
+        //  Check if we are not able to read CV8. In this case, we cannot identify the decoder.
+        if (result == false)
+        {
+            LabelManufacturer.Text = AppResources.ManufacturerUnknown;
+            ActivityIndicatorDecoderIdentify.IsRunning = false;
+            ActivityIndicatorDecoderIdentify.IsVisible = false;
+            return;
+        }
 
         //  In the second step, we check whether we need to read extended IDs. According to RCN-225, we must read extended IDs if
         //  the value 238 = 0xEE is present in CV8. In addition, we will also read the extended IDs if CV8 contains the value 13.
         //  This means that it is a public domain & do-it-yourself decoder.  
         if ((DecoderConfiguration.ConfigurationVariables[8].Value == 13) || (DecoderConfiguration.ConfigurationVariables[8].Value == 238))
         {
-            await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 107,108}  , _cancelToken);
+            result = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 107,108}  , _cancelToken);
         }
-                
-        LabelManufacturer.Text = DecoderConfiguration.RCN225.Manufacturer;
 
+        //  Now, we can identify the manufacturer.
+        if (result == true)
+        {
+            LabelManufacturer.Text = DecoderConfiguration.RCN225.Manufacturer;
+        }
+        else
+        {
+            LabelManufacturer.Text = AppResources.ManufacturerUnknown;
+        }
+
+        //  Finally, we stop the activity indicator.
         ActivityIndicatorDecoderIdentify.IsRunning = false;
         ActivityIndicatorDecoderIdentify.IsVisible = false;
 
@@ -103,24 +129,17 @@ public partial class PopUpDecoderIdentify : Popup
     /// <param name="cancelToken">A token to cancel the operation.</param>
     /// <param name="vehicleAdress">The vehicle address.</param>
     /// <returns></returns>
-    private async Task ReadConfigurationVariables(ushort vehicleAdress, List<ushort> configurationVariables, CancellationToken cancelToken)
+    private async Task<bool> ReadConfigurationVariables(ushort vehicleAdress, List<ushort> configurationVariables, CancellationToken cancelToken)
     {
         try
         {
-            //  Check if we are in direct programming mode.
-            if (DecoderConfiguration.ProgrammingMode != NMRA.DCCProgrammingModes.DirectProgrammingTrack)
-            {
-                await MessageBox.Show(AppResources.AlertError, AppResources.FrameAddressVehicleAddressDetectNotProgTrack, AppResources.OK);
-                return;
-            }
-            
             //  Check if we are connected to the command station.
             if (CommandStation.Connect(cancelToken, 5000) == false)
             {
                 string commandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
                 string commandStationIpAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
                 await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);
-                return;
+                return false;
             }
 
             await Task.Run(() => ReadWriteDecoder.SetTrackPowerON());
@@ -131,25 +150,27 @@ public partial class PopUpDecoderIdentify : Popup
             {
                 //  Read the next CV value from the decoder.
                 readSuccessFull = false;
-                await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadSingleCV(cV, 0, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken));
+                await Task.Run(() => readSuccessFull = ReadWriteDecoder.ReadSingleCV(cV, vehicleAdress, _programmingMode, cancelToken));
 
                 // If reading the CV failed, display an error message, exit programming mode, and terminate the function.
                 if (readSuccessFull == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertAddressNotRead, AppResources.OK);
-                    if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
-                    return;
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertCouldNotIdentify, AppResources.OK);
+                    if (_programmingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+                    return false;
                 }
             }
 
             //  After reading the CV on the programming track, we must switch the track power on.
             //  Switching on the track power ends the programming mode and the locomotive can be controlled again.
-            if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
+            if (_programmingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) CommandStation.SetTrackPowerOn();
 
+            return true;
         }
         catch (Exception)
         {
             await MessageBox.Show(AppResources.AlertError, "Unable to read the configuration variables.", AppResources.OK);
+            return false;
         }
     }
 

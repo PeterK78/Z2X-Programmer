@@ -2192,4 +2192,13 @@ The application is aimed at beginners who want to configure the most important f
   <data name="AlertNoConnectionCentralStationError2" xml:space="preserve">
     <value>could be established.</value>
   </data>
+  <data name="IdentifyDecoderVehicleAddressLabel" xml:space="preserve">
+    <value>Decoder address:</value>
+  </data>
+  <data name="AlertCouldNotIdentify" xml:space="preserve">
+    <value>The required configuration variables could not be read.</value>
+  </data>
+  <data name="ManufacturerUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
 </root>
