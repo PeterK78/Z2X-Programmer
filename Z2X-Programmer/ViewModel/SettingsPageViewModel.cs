@@ -21,22 +21,73 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Maui.Controls.Shapes;
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using Z21Lib.Events;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
+using Z2XProgrammer.Messages;
+using Z2XProgrammer.Popups;
 using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
 {
+    /// <summary>
+    /// Represents the view model for the settings page, providing properties and commands to manage application
+    /// preferences, command stations, language selection, decoder specifications, and related configuration options.
+    /// </summary>
     public partial class SettingsPageViewModel : ObservableObject
     {
         #region REGION: PUBLIC PROPERTIES
+
+        /// <summary>
+        /// Gets or sets the collection of available command stations.
+        /// </summary>
+        [ObservableProperty]
+        internal ObservableCollection<CommandStationType>? commandStations = new ObservableCollection<CommandStationType>();
+
+        /// <summary>
+        /// Gets or sets the currently selected command station.
+        /// </summary>
+        [ObservableProperty]
+        internal CommandStationType selectedCommandStation = new CommandStationType();
+        partial void OnSelectedCommandStationChanged(CommandStationType? oldValue, CommandStationType newValue)
+        {
+            // Check if we have a valid new value, if not return.                
+            if (newValue == null) return;
+
+            // If the IP address has changed, we must disconnect the current connection.
+            if ( oldValue!.IpAddress  != newValue!.IpAddress)
+            { 
+                WeakReferenceMessenger.Default.Send(new CommandStationUpdateMessage(newValue));
+            }   
+
+            //  Save the selected command station IP address and name to the preferences.
+            Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, newValue.IpAddress);
+            Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, newValue.Name);
+        }
+
+        /// <summary>
+        /// The Z21 firmware version.
+        /// </summary>
+        [ObservableProperty]
+        internal string z21FirmwareVersion = "-";
+
+        /// <summary>
+        /// The Z21 hardwware type.
+        /// </summary>
+        [ObservableProperty]
+        internal string z21HardwareType = "-";
 
         [ObservableProperty]
         internal ObservableCollection<string>? availableLocoListSystems;
@@ -99,26 +150,7 @@ namespace Z2XProgrammer.ViewModel
         {
             AppCulture.SetApplicationLanguageByDescription(value);
             Preferences.Default.Set(AppConstants.PREFERENCES_LANGUAGE_KEY, AppCulture.GetLanguageKey(value).ToUpper());
-        }
-
-        [ObservableProperty]
-        internal string z21IPAddress;
-        partial void OnZ21IPAddressChanged(string value)
-        {
-            Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, value);
-        }
-
-        /// <summary>
-        /// The Z21 firmware version.
-        /// </summary>
-        [ObservableProperty]
-        internal string z21FirmwareVersion = "-";
-
-        /// <summary>
-        /// The Z21 hardwware type.
-        /// </summary>
-        [ObservableProperty]
-        internal string z21HardwareType = "-";
+        }       
 
         /// <summary>
         /// Set to TRUE to verify programming operations in POM.
@@ -211,8 +243,18 @@ namespace Z2XProgrammer.ViewModel
             //  Setup the initial content of the different GUI elements.
             //
 
-            //  The IP address of the Z21 command station.
-            Z21IPAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
+            //  The available command stations. 
+            string jsonString = Preferences.Default.Get(AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_KEY, AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_DEFAULT);
+            CommandStations = JsonSerializer.Deserialize<ObservableCollection<CommandStationType>>(jsonString);
+            if((CommandStations != null) && (CommandStations.Count > 0))        
+            { 
+                SelectedCommandStation = CommandStations.First(item => item.IpAddress == Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
+                if(SelectedCommandStation != null)
+                { 
+                    Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, SelectedCommandStation.IpAddress);
+                    Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, SelectedCommandStation.Name);
+                }
+            }
 
             //  The user specific decoder specification folder.  
             UserSpecificDecoderSpecificationFolder = FileAndFolderManagement.ApplicationFolders.UserSpecificDecSpecsFolderPath;
@@ -272,6 +314,193 @@ namespace Z2XProgrammer.ViewModel
         #endregion
 
         #region REGION: COMMANDS   
+
+        /// <summary>
+        /// Deletes the currently selected command station after confirming the action with the user.
+        /// </summary>
+        /// <remarks>The method displays a confirmation dialog before deleting the selected command
+        /// station. The deletion is only performed if the user confirms the action.</remarks>
+        /// <returns>A task that represents the asynchronous delete operation.</returns>
+        [RelayCommand]
+        async Task DeleteCommandStation()
+        {
+            try
+            {
+                //  Check if any command station is available.
+                if (CommandStations!.Count == 0)
+                {
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoCommandStationsAvailable, AppResources.OK);
+                    return;
+                }
+
+                // Ask the user if they want to delete the selected station.
+                if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertDeleteCommandStationConfirmation, AppResources.YES, AppResources.NO) == false)
+                {
+                    return;
+                }
+                CommandStations!.Remove(SelectedCommandStation);
+
+                //  Select the first digital command station (if any station is available).
+                if (CommandStations.Count > 0) SelectedCommandStation = CommandStations[0];
+
+                // Save the all digital command stations to the preferences.
+                Preferences.Default.Set(AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_KEY, JsonSerializer.Serialize(CommandStations));
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
+
+        /// <summary>
+        /// Displays a popup dialog to modify the currently selected command station's details.
+        /// </summary>
+        /// <remarks>This method presents a modal popup for editing the name and IP address of the
+        /// selected command station. The operation is asynchronous and requires the main window to be available. The
+        /// popup uses rounded corners for its appearance.</remarks>
+        /// <returns>A task that represents the asynchronous operation of showing the modification popup. The result indicates
+        /// whether the modification was confirmed or cancelled.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the shell of the main window cannot be determined.</exception>
+        [RelayCommand]
+        async Task ModifyCommandStation()
+        {
+            try
+            {
+                // Get the shell of the main application window.
+                Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+                if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of main window 0 cannot be determined.");
+
+                // Check whether a command station is selected.
+                if (SelectedCommandStation == null)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoCommandStationSelected, AppResources.OK);
+                    return;
+                }
+
+                // Create a copy of the selected item.
+                CommandStationType tempCommandStation = new CommandStationType();
+                tempCommandStation.IpAddress = SelectedCommandStation.IpAddress;
+                tempCommandStation.Name = SelectedCommandStation.Name;
+
+
+                // Display the popup dialog to edit the command station details.
+                PopUpCommandStation popUpCommandStation = new PopUpCommandStation(tempCommandStation);
+                CommunityToolkit.Maui.Core.IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(popUpCommandStation, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
+
+                // If the user confirms the dialog, check the new values, save the new settings and activate the command station.
+                if (response.Result == true)
+                {
+                    if (tempCommandStation.IpAddress != SelectedCommandStation.IpAddress)
+                    {
+                        if (CommandStations!.Any(item => item.IpAddress == tempCommandStation.IpAddress))
+                        {
+                            await MessageBox.Show(AppResources.AlertError, AppResources.AlertMaxCommandStationIPAddressExisting, AppResources.OK);
+                            return;
+                        }
+                    }
+
+                    if (tempCommandStation.Name != SelectedCommandStation.Name)
+                    {
+                        if (CommandStations!.Any(item => item.Name == tempCommandStation.Name))
+                        {
+                            await MessageBox.Show(AppResources.AlertError, AppResources.AlertMaxCommandStationNameExisting, AppResources.OK);
+                            return;
+                        }
+                    }
+
+                    // Update the currently selected command station with the new information.
+                    SelectedCommandStation.Name = tempCommandStation.Name;
+                    SelectedCommandStation.IpAddress = tempCommandStation.IpAddress;
+
+                    // Save the all digital command stations to the preferences.
+                    Preferences.Default.Set(AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_KEY, JsonSerializer.Serialize(CommandStations));
+
+                    // Set the currently selected command station active.
+                    Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, SelectedCommandStation.IpAddress);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Displays a popup dialog to add a new command station and adds it to the collection if confirmed by the user.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the shell of the main application window cannot be determined.</exception>
+        [RelayCommand]
+        async Task AddCommandStation()
+        {
+            try
+            {
+                Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+                if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of main window 0 cannot be determined.");
+
+                // Check whether the maximum number of command stations is already reached.
+                if (CommandStations!.Count >= 5)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertMaxCommandStationsReached, AppResources.OK);
+                    return;
+                }
+
+                // Create an new default command station entry.
+                CommandStationType newCommandStation = new CommandStationType()
+                {
+                    Name = "Name",
+                    IpAddress = "192.168.0.111"
+                };
+
+                // Display the popup dialog to edit the command station details.
+                PopUpCommandStation popUpCommandStation = new PopUpCommandStation(newCommandStation);
+                CommunityToolkit.Maui.Core.IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(popUpCommandStation, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
+
+                // If the user confirmed the dialog, add the new command station to the collection.
+                if (response.Result == true)
+                {
+                    if (CommandStations.Any(item => item.IpAddress == newCommandStation.IpAddress))
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertMaxCommandStationIPAddressExisting, AppResources.OK);
+                        return;
+                    }
+
+                    if (CommandStations.Any(item => item.Name == newCommandStation.Name))
+                    {
+                        await MessageBox.Show(AppResources.AlertError, AppResources.AlertMaxCommandStationNameExisting, AppResources.OK);
+                        return;
+                    }
+
+                    CommandStations!.Add(newCommandStation);
+
+                    // Save the all digital command stations to the preferences.
+                    Preferences.Default.Set(AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_KEY, JsonSerializer.Serialize(CommandStations));
+
+                    //  Select the newly created command station.
+                    SelectedCommandStation = CommandStations.First(item => item.IpAddress == newCommandStation.IpAddress);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
+            }
+        }
 
         /// <summary>
         /// Opens an folder picker dialog so that the user can select the user specific decoder specification folder.
@@ -405,8 +634,6 @@ namespace Z2XProgrammer.ViewModel
             }
         }
 
-
-
         /// <summary>
         /// This command establishes a connection to your digital command staiton.
         /// This allows the configured IP address to be checked for correctness.
@@ -431,13 +658,14 @@ namespace Z2XProgrammer.ViewModel
                 //  We hide the ActivityIndicator.
                 ActivityConnectingOngoing = false;
 
+                //  Show the result to the user.    
                 if (ConnectSuccessFull == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);
                 }
                 else
                 {
-                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertNoConnectionCentralStationOK, AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertConnectionCommandStationOK1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertConnectionCommandStationOK2 , AppResources.OK);
                 }
 
             }

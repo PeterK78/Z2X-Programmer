@@ -154,11 +154,11 @@
   <data name="AlertNewFile" xml:space="preserve">
     <value>Wollen Sie mit einer neuen Konfiguration beginnen? Die aktuelle Konfiguration wird gelöscht.</value>
   </data>
-  <data name="AlertNoConnectionCentralStationError" xml:space="preserve">
-    <value>Es konnten keine Verbindung zu Ihrer Digitalzentrale hergestellt werden.</value>
+  <data name="AlertNoConnectionCentralStationError1" xml:space="preserve">
+    <value>Es konnten keine Verbindung zu Ihrer Digitalzentrale</value>
   </data>
-  <data name="AlertNoConnectionCentralStationOK" xml:space="preserve">
-    <value>Die Verbindung zu Ihrer Digitalzentrale wurde erfolgreich hergestellt.</value>
+  <data name="AlertConnectionCommandStationOK1" xml:space="preserve">
+    <value>Die Verbindung zu Ihrer Digitalzentrale</value>
   </data>
   <data name="AlertNoFeatureSupported" xml:space="preserve">
     <value>Dieser Decoder unterstützt keine Funktionen auf dieser Registerkarte.</value>
@@ -2156,5 +2156,41 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="ButtonMainMenuIdentifyDecoder" xml:space="preserve">
     <value>Decoder identifizieren</value>
+  </data>
+  <data name="FrameSettingsButtonAddCommandStationLabel" xml:space="preserve">
+    <value>Hinzufügen ...</value>
+  </data>
+  <data name="FrameSettingsButtonEditCommandStationLabel" xml:space="preserve">
+    <value>Ändern ...</value>
+  </data>
+  <data name="AlertDeleteCommandStationConfirmation" xml:space="preserve">
+    <value>Möchten Sie die markierten Digitalzentrale löschen?</value>
+  </data>
+  <data name="FrameSettingsButtonDeleteCommandStationLabel" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="FrameSettingsCommandStationDescription" xml:space="preserve">
+    <value>Konfigurieren Sie bis zu 5 Z21 kompatible Digitalzentralen.</value>
+  </data>
+  <data name="AlertMaxCommandStationsReached" xml:space="preserve">
+    <value>Es können maximal 5 Digitalzentralen hinzugefügt werden.</value>
+  </data>
+  <data name="AlertNoCommandStationSelected" xml:space="preserve">
+    <value>Bitte wählen Sie zuerst eine Digitalzentrale aus.</value>
+  </data>
+  <data name="AlertMaxCommandStationIPAddressExisting" xml:space="preserve">
+    <value>Die gewählte IP-Adresse ist bereits vergeben.</value>
+  </data>
+  <data name="AlertMaxCommandStationNameExisting" xml:space="preserve">
+    <value>Der Name existiert bereits.</value>
+  </data>
+  <data name="AlertNoCommandStationsAvailable" xml:space="preserve">
+    <value>Keine Digitalzentrale vorhanden.</value>
+  </data>
+  <data name="AlertConnectionCommandStationOK2" xml:space="preserve">
+    <value>wurde erfolgreich hergestellt.</value>
+  </data>
+  <data name="AlertNoConnectionCentralStationError2" xml:space="preserve">
+    <value>hergestellt werden.</value>
   </data>
 </root>

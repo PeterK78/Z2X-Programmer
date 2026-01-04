@@ -99,6 +99,9 @@ namespace Z2XProgrammer.ViewModel
         string commandStationState;
 
         [ObservableProperty]
+        string commandStationName = string.Empty;
+
+        [ObservableProperty]
         internal ImageSource locomotiveImageSource;
 
         [ObservableProperty]
@@ -174,7 +177,8 @@ namespace Z2XProgrammer.ViewModel
             LocomotiveImageSource = Application.Current!.RequestedTheme == AppTheme.Dark ? "ic_fluent_locomotive_list_64_dark.png" : "ic_fluent_locomotive_list_64_regular.png";
             LocomotiveDescription = AppResources.LocoListTitle;
             LocomotiveAddress = "-";
-            commandStationState = AppResources.CommandStationStateNotConnected;
+            CommandStationState = AppResources.CommandStationStateNotConnected;
+            CommandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
 
             CommandStation.OnStatusChanged += OnCommandStationStatusChanged;
             CommandStation.OnReachabilityChanged += OnCommandStationReachabilityChanged;
@@ -211,6 +215,15 @@ namespace Z2XProgrammer.ViewModel
                     OnSomethingChangedMessage();
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<CommandStationUpdateMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnCommandStationChanged(m.Value);   
+                });
+            });
+
 
             //  Setup the UndoRedo manager. 
             UndoRedoManager.Reset();
@@ -1160,6 +1173,18 @@ namespace Z2XProgrammer.ViewModel
         internal void OnSomethingChangedMessage()
         {
             ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);
+        }
+
+        /// <summary>
+        /// Handles changes to the command station.
+        /// </summary>
+        /// <param name="commandStation">The new command station type to apply.</param>
+        internal void OnCommandStationChanged(CommandStationType commandStation)
+        {
+            CommandStation.Disconnect();
+            CommandStationName = commandStation.Name;
+            _commandStationStatusBlinking = false;
+            _commandStationOperationMode = Z21Lib.Enums.TrackPower.Unknown;
         }
 
         /// <summary>

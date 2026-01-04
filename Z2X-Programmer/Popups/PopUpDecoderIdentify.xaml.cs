@@ -24,6 +24,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 using Z2XProgrammer.Communication;
+using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Resources.Strings;
@@ -116,7 +117,9 @@ public partial class PopUpDecoderIdentify : Popup
             //  Check if we are connected to the command station.
             if (CommandStation.Connect(cancelToken, 5000) == false)
             {
-                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
+                string commandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
+                string commandStationIpAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);
                 return;
             }
 

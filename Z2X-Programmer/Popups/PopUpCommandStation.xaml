@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2025
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             x:Class="Z2XProgrammer.Popups.PopUpCommandStation"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             Padding="0,0,0,0"
+             >
+
+    <VerticalStackLayout>
+
+        <HorizontalStackLayout>
+            <Image Source="{AppThemeBinding Light=ic_fluent_commandstation_24_regular.png, Dark=ic_fluent_commandstation_24_dark.png}" Margin="0,10,10,0" VerticalOptions="Center"></Image>
+            <Label Text="{x:Static strings:AppResources.FameSettingsZ21Title}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="Start" ></Label>
+        </HorizontalStackLayout>
+
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- The name of the command station -->
+            <Label Grid.Row="0" Grid.Column="0" Text="Name" VerticalOptions="Center" Margin="0,10,0,0"></Label>
+            <Entry x:Name="NameEntry" Grid.Row="0" Grid.Column="1"  Margin="10,10,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End"/>
+
+            <!-- The IP address of the command station -->
+            <Label Grid.Row="1" Grid.Column="0" Text="IP Adresse" VerticalOptions="Center" Margin="0,10,0,0"></Label>
+            <Entry x:Name="IPAddressEntry" Grid.Row="1" Grid.Column="1" Margin="10,10,0,0"  WidthRequest="300" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" Placeholder="{x:Static strings:AppResources.FrameSettingsZ21IPAddressPlaceholder}">
+                <Entry.Behaviors>
+                    <toolkit:TextValidationBehavior 
+                        BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                        InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                        ValidStyle="{StaticResource Z2XValidEntry}"
+                        Flags="ValidateOnValueChanged"
+                        MinimumLength="5"
+                        MaximumLength="15" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <!-- The buttons at the bottom -->
+            <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" >
+
+                <!-- The OK button -->
+                <Button WidthRequest="150"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,20,0,10" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.OK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+
+                <!-- The cancel button -->
+                <Button  WidthRequest="150"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,20,0,10" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+
+            </HorizontalStackLayout>
+
+        </Grid>
+
+    </VerticalStackLayout>
+</mct:Popup>

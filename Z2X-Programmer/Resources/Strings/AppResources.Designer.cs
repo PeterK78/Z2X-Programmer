@@ -79,6 +79,24 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The connection to your digital command station.
+        /// </summary>
+        public static string AlertConnectionCommandStationOK1 {
+            get {
+                return ResourceManager.GetString("AlertConnectionCommandStationOK1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to has been successfully established..
+        /// </summary>
+        public static string AlertConnectionCommandStationOK2 {
+            get {
+                return ResourceManager.GetString("AlertConnectionCommandStationOK2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⚠ The displayed decoder values originate from a Z2X project file. It is possible that these values are no longer up to date. Load the settings from the decoder to obtain reliable current values..
         /// </summary>
         public static string AlertDataInBackupAreNotFromDecoder {
@@ -178,6 +196,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string AlertDecSpecNotFound {
             get {
                 return ResourceManager.GetString("AlertDecSpecNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete the selected digital control center?.
+        /// </summary>
+        public static string AlertDeleteCommandStationConfirmation {
+            get {
+                return ResourceManager.GetString("AlertDeleteCommandStationConfirmation", resourceCulture);
             }
         }
         
@@ -313,6 +340,33 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected IP address is already in use..
+        /// </summary>
+        public static string AlertMaxCommandStationIPAddressExisting {
+            get {
+                return ResourceManager.GetString("AlertMaxCommandStationIPAddressExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name already exists..
+        /// </summary>
+        public static string AlertMaxCommandStationNameExisting {
+            get {
+                return ResourceManager.GetString("AlertMaxCommandStationNameExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A maximum of 5 digital command stations can be added..
+        /// </summary>
+        public static string AlertMaxCommandStationsReached {
+            get {
+                return ResourceManager.GetString("AlertMaxCommandStationsReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to start with a new configuration? The current configuration will be deleted..
         /// </summary>
         public static string AlertNewFile {
@@ -322,20 +376,38 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No connection to your digital command station could be established..
+        ///   Looks up a localized string similar to No digital command station available..
         /// </summary>
-        public static string AlertNoConnectionCentralStationError {
+        public static string AlertNoCommandStationsAvailable {
             get {
-                return ResourceManager.GetString("AlertNoConnectionCentralStationError", resourceCulture);
+                return ResourceManager.GetString("AlertNoCommandStationsAvailable", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The connection to your digital command station has been successfully established..
+        ///   Looks up a localized string similar to Please select a digital command station first..
         /// </summary>
-        public static string AlertNoConnectionCentralStationOK {
+        public static string AlertNoCommandStationSelected {
             get {
-                return ResourceManager.GetString("AlertNoConnectionCentralStationOK", resourceCulture);
+                return ResourceManager.GetString("AlertNoCommandStationSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No connection to your digital command station.
+        /// </summary>
+        public static string AlertNoConnectionCentralStationError1 {
+            get {
+                return ResourceManager.GetString("AlertNoConnectionCentralStationError1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to could be established..
+        /// </summary>
+        public static string AlertNoConnectionCentralStationError2 {
+            get {
+                return ResourceManager.GetString("AlertNoConnectionCentralStationError2", resourceCulture);
             }
         }
         
@@ -4747,6 +4819,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add ....
+        /// </summary>
+        public static string FrameSettingsButtonAddCommandStationLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsButtonAddCommandStationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check.
         /// </summary>
         public static string FrameSettingsButtonCheckDeqSpecLabel {
@@ -4774,11 +4855,38 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string FrameSettingsButtonDeleteCommandStationLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsButtonDeleteCommandStationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit ....
+        /// </summary>
+        public static string FrameSettingsButtonEditCommandStationLabel {
+            get {
+                return ResourceManager.GetString("FrameSettingsButtonEditCommandStationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string FrameSettingsClose {
             get {
                 return ResourceManager.GetString("FrameSettingsClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure up to 5 Z21-compatible digital command stations..
+        /// </summary>
+        public static string FrameSettingsCommandStationDescription {
+            get {
+                return ResourceManager.GetString("FrameSettingsCommandStationDescription", resourceCulture);
             }
         }
         

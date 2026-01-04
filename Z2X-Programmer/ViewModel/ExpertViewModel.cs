@@ -352,7 +352,9 @@ namespace Z2XProgrammer.ViewModel
 
                 if (CommandStation.Connect(cancelToken, 5000) == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError, AppResources.OK);
+                    string commandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
+                    string commandStationIpAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);          
                     return;
                 }
 

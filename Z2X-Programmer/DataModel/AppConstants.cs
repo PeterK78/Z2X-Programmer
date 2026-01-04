@@ -35,6 +35,12 @@ namespace Z2XProgrammer.DataModel
         internal const string MANUFACTURERDBFILENAME = "Manufacturers.decdb";
 
         //  User specific settings.
+        internal const string PREFERENCES_ALLCOMMANDSTATIONS_KEY = "ALL_COMMAND_STATIONS_KEY";                                                                      //  The list of all configured command stations.
+        internal const string PREFERENCES_ALLCOMMANDSTATIONS_DEFAULT = "[{\"Id\":0,\"DigitalSystem\":0,\"Name\":\"Standard\",\"IpAddress\":\"192.168.0.111\"}]";    //  The default value for the list of all configured command stations.
+        internal const string PREFERENCES_COMMANDSTATIONIP_KEY = "COMMAND_STATION_IP_KEY";                                                                          //  The IP address of the currently selected digital command station.
+        internal const string PREFERENCES_COMMANDSTATIONIP_DEFAULT = "192.168.0.111";                                                                               //  The default IP address of the currently selected digital command station.
+        internal const string PREFERENCES_COMMANDSTATIONNAME_KEY = "COMMAND_STATION_NAME_KEY";                                                                      //  The name of the currently selected digital command station.
+        internal const string PREFERENCES_COMMANDSTATIONNAME_DEFAULT = "Standard";                                                                                  //  The default name of the currently selected digital command station.
         internal const string PREFERENCES_MANUFACTUERLIST_KEY = "MANUFACTURERTLIST_FOLDER";
         internal const string PREFERENCES_MANUFACTUERLIST_VALUE = "";
         internal const string PREFERENCES_LOCOLIST_FOLDER_KEY = "LOCOLIST_FOLDER";
@@ -47,8 +53,6 @@ namespace Z2XProgrammer.DataModel
         internal const string PREFERNECES_LOCOLIST_SYSTEM_VALUE = "";
         internal const string PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_KEY = "LANGUAGE_AUTOCONFIGURE_DONE";
         internal const string PREFERENCES_LANGUAGE_AUTOCONFIGURE_DONE_VALUE = "0";
-        internal const string PREFERENCES_COMMANDSTATIONIP_KEY = "COMMAND_STATION_IP_KEY";
-        internal const string PREFERENCES_COMMANDSTATIONIP_DEFAULT = "192.168.0.111";
         internal const string PREFERENCES_PROGRAMMINGMODE_KEY = "PROGRAMMINGMODE";
         internal const string PREFERENCES_PROGRAMMINGMODE_DEFAULT = "0";
         internal const string PREFERENCES_AUTODECODER_DETECT_KEY = "AUTODECODERDETECT";
