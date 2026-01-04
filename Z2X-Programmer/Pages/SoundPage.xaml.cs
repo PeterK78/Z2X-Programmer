@@ -1,7 +1,7 @@
 /*
 
 Z2X-Programmer
-Copyright (C) 2025
+Copyright (C) 2024 - 2026
 PeterK78
 
 This program is free software: you can redistribute it and/or modify
