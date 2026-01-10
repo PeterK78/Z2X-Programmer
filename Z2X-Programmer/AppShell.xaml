@@ -22,7 +22,7 @@ along with this program. If not, see:
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
 -->
-    
+
 <Shell  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:local="clr-namespace:Z2XProgrammer"
@@ -43,7 +43,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         Shell.ForegroundColor ="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
         Title="{Binding ApplicationTitle}"
         >
-    
+
     <!-- The flyout header with the command station state and the locomotive image -->
     <Shell.FlyoutHeader>
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource TitleBarBackground_Light}, Dark={StaticResource TitleBarBackground_Dark}}">
@@ -58,7 +58,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Button Grid.Row="0" Grid.Column="0" TextColor="{Binding CommandStationConnectionStateColor}" Margin="20,10,20,0" Text="{Binding CommandStationState}"  ImageSource="{AppThemeBinding Light=ic_fluent_commandstation_24_regular.png, Dark=ic_fluent_commandstation_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=ConnectCommandStationCommand}" ToolTipProperties.Text="{Binding CommandStationName}" HorizontalOptions="Center" />
                 <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ConnectingOngoing}" HorizontalOptions="Center" IsRunning="{Binding ConnectingOngoing}"></ActivityIndicator>
             </Grid>
-            
+
             <Grid Margin="0,30,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -69,107 +69,108 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <ImageButton Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLocoListButtonStyle}" HorizontalOptions="Center" Source="{Binding LocomotiveImageSource}" HeightRequest="80" MinimumWidthRequest="80" Aspect="AspectFit" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=GetLocomotiveListCommand}"></ImageButton>
                 <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ActivityReadWriteCVOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
             </Grid>
-            
+
             <Label Margin="0,2,0,0" HorizontalOptions="Center" Text="{Binding LocomotiveDescription}" Style="{StaticResource Z2XProgrammerLabelLocoInfoStyle}"></Label>
-            <HorizontalStackLayout Margin="0,0,0,20" HorizontalOptions="Center" HeightRequest="20" >                
+            <HorizontalStackLayout Margin="0,0,0,20" HorizontalOptions="Center" HeightRequest="20" >
                 <Image Margin="2,0,0,0" IsVisible="{Binding DataStoreDataValid}" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
                 <Label IsVisible="{Binding DataStoreDataValid}" Margin="2,0,0,0" Text="{Binding LocomotiveAddress}" FontSize="10" VerticalOptions="Center" ></Label>
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
-    
+
     <!-- The toolbar -->
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal"  VerticalOptions="End" Margin="{OnPlatform '40,0,0,0', iOS='0,0,0,0', Android='0,0,0,0'}">
+        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <StackLayout Orientation="Horizontal"  VerticalOptions="End" Margin="{OnPlatform '40,0,0,0', iOS='0,0,0,0', Android='0,0,0,0'}">
+                <!--  New project -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_form_new_24_regular.png, Dark=ic_fluent_form_new_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=NewCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuNewFileTooltip}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!--  New project -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_form_new_24_regular.png, Dark=ic_fluent_form_new_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=NewCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuNewFileTooltip}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
+                <!-- Open Z2X-project -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_folder_open_24_regular.png, Dark=ic_fluent_folder_open_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenZ2XFileCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuOpenFileTooltip}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!-- Open Z2X-project -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_folder_open_24_regular.png, Dark=ic_fluent_folder_open_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenZ2XFileCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuOpenFileTooltip}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>                    
-                </Button.Text>
-            </Button>
+                <!-- Undo last step  -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_undo_24_regular.png, Dark=ic_fluent_arrow_undo_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UndoCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuUndo}" HorizontalOptions="End" IsEnabled="{Binding UndoAvailable}">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!-- Undo last step  -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_undo_24_regular.png, Dark=ic_fluent_arrow_undo_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UndoCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuUndo}" HorizontalOptions="End" IsEnabled="{Binding UndoAvailable}">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
-      
-            <!-- Save Z2X-project -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_save_24_regular.png, Dark=ic_fluent_save_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuSaveFileText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=SaveZ2XFileCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
-            
-            <!-- Identifiy decoder -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_identify_24_regular.png, Dark=ic_fluent_identify_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuIdentifyDecoder}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=IdentifyDecoderCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
+                <!-- Save Z2X-project -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_save_24_regular.png, Dark=ic_fluent_save_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuSaveFileText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=SaveZ2XFileCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!-- Upload decoder data -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_regular.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuReadDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UploadDecoderCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
+                <!-- Identifiy decoder -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_identify_24_regular.png, Dark=ic_fluent_identify_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuIdentifyDecoder}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=IdentifyDecoderCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!-- Download decoder data -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_regular.png , Dark=ic_fluent_arrow_download_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDecoderCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
+                <!-- Upload decoder data -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_regular.png, Dark=ic_fluent_arrow_upload_24_dark.png}" Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuReadDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=UploadDecoderCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-            <!-- Download decoder data (only differences) -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_diff_24_regular.png , Dark=ic_fluent_arrow_download_diff_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDiffDecoderCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
-            
-            
-            <!-- Programming mode selection (Programming track, Main track)
+                <!-- Download decoder data -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_regular.png , Dark=ic_fluent_arrow_download_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDecoderCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
+
+                <!-- Download decoder data (only differences) -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_diff_24_regular.png , Dark=ic_fluent_arrow_download_diff_24_dark.png}" IsVisible="{Binding DataStoreDataValid}"   Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=DownloadDiffDecoderCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
+
+
+                <!-- Programming mode selection (Programming track, Main track)
             
                  Note:
                  Desktop: The minimum width must not be less than the value 180. Otherwise the German text “Programmiergleis” will be cut off.
             -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
-                <Picker.WidthRequest>
-                    <OnIdiom Default="180" Desktop="180" Tablet="170" Phone="170"></OnIdiom>                    
-                </Picker.WidthRequest>
-            </Picker>
+                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12"  ItemsSource="{Binding AvailableProgrammingModes}" SelectedItem="{Binding SelectedProgrammingMode}">
+                    <Picker.WidthRequest>
+                        <OnIdiom Default="180" Desktop="180" Tablet="170" Phone="170"></OnIdiom>
+                    </Picker.WidthRequest>
+                </Picker>
 
-            <!-- Decoder specification selection
+                <!-- Decoder specification selection
             
                  Note:   
                  Desktop: The minimum width must not be less than the value 270. Otherwise the German text “RCN 225 Standard decoder” will be cut off.
             
             -->
-            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
-                <Picker.WidthRequest>
-                    <OnIdiom Default="265" Desktop="270" Tablet="220" Phone="240"></OnIdiom>
-                </Picker.WidthRequest>
-            </Picker>
+                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" FontSize="12" ItemsSource="{Binding AvailableDecSpecs}" SelectedItem="{Binding SelectedDecSpeq}"  ToolTipProperties.Text="{Binding SelectedDecSpecNotes}" >
+                    <Picker.WidthRequest>
+                        <OnIdiom Default="265" Desktop="270" Tablet="220" Phone="240"></OnIdiom>
+                    </Picker.WidthRequest>
+                </Picker>
 
-            <!-- Extended menu items dropdown -->
-            <Button ImageSource="{AppThemeBinding Light=ic_fluent_more_horizontal_24_regular.png , Dark=ic_fluent_more_horizontal_24_dark.png}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenExtendedMenuItemPopupCommand}" HorizontalOptions="End">
-                <Button.Text>
-                    <OnIdiom Default="" Phone=""></OnIdiom>
-                </Button.Text>
-            </Button>
+                <!-- Extended menu items dropdown -->
+                <Button ImageSource="{AppThemeBinding Light=ic_fluent_more_horizontal_24_regular.png , Dark=ic_fluent_more_horizontal_24_dark.png}"  Style="{StaticResource Z2XProgrammerToolBarButtonStyle}" ToolTipProperties.Text="{x:Static strings:AppResources.ButtonMainMenuWriteDecoderDiffText}"  CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AppShellViewModel}}, Path=OpenExtendedMenuItemPopupCommand}" HorizontalOptions="End">
+                    <Button.Text>
+                        <OnIdiom Default="" Phone=""></OnIdiom>
+                    </Button.Text>
+                </Button>
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </Shell.TitleView>
 
 
@@ -207,7 +208,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <ShellContent ContentTemplate="{DataTemplate pages:FunctionOutputsPage}" Route="FunctionOutputsPage" />
         </Tab>
     </FlyoutItem>
-    
+
     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemFunctionConfigurationTitle}" Icon="{AppThemeBinding Light=ic_fluent_arrow_up_square_settings_24_regular.png, Dark=ic_fluent_arrow_up_square_settings_24_dark.png}" >
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:FunctionConfigurationPage}" Route="FunctionConfigurationPage" />
@@ -237,10 +238,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <ShellContent ContentTemplate="{DataTemplate pages:SoundPage}"  Route="SoundPage"/>
         </Tab>
     </FlyoutItem>
-    
-     <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemControllerText}" Icon="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" >
+
+    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemControllerText}" Icon="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" >
         <Tab>
-             <ShellContent ContentTemplate="{DataTemplate pages:ControllerPage}" Route="ControllerPage" />
+            <ShellContent ContentTemplate="{DataTemplate pages:ControllerPage}" Route="ControllerPage" />
         </Tab>
     </FlyoutItem>
 
