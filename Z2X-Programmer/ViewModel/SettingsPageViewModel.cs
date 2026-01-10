@@ -63,14 +63,20 @@ namespace Z2XProgrammer.ViewModel
         internal CommandStationType selectedCommandStation = new CommandStationType();
         partial void OnSelectedCommandStationChanged(CommandStationType? oldValue, CommandStationType newValue)
         {
-            // Check if we have a valid new value, if not return.                
+            // Check if we have a valid new selected command station, if not return.                
             if (newValue == null) return;
 
-            // If the IP address has changed, we must disconnect the current connection.
-            if ( oldValue!.IpAddress  != newValue!.IpAddress)
-            { 
+            //  We check if the selected command station has changed. If so we send a message to inform other components.
+            if (oldValue == null)
+            {
+                //  No command station had been selected so far, but now we have received a new one → inform other components.
                 WeakReferenceMessenger.Default.Send(new CommandStationUpdateMessage(newValue));
-            }   
+            }
+            else if (oldValue!.IpAddress != newValue!.IpAddress)
+            {
+                //  The newly selected command station differs from the previously selected one → inform other components. 
+                WeakReferenceMessenger.Default.Send(new CommandStationUpdateMessage(newValue));
+            }
 
             //  Save the selected command station IP address and name to the preferences.
             Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, newValue.IpAddress);
@@ -150,7 +156,7 @@ namespace Z2XProgrammer.ViewModel
         {
             AppCulture.SetApplicationLanguageByDescription(value);
             Preferences.Default.Set(AppConstants.PREFERENCES_LANGUAGE_KEY, AppCulture.GetLanguageKey(value).ToUpper());
-        }       
+        }
 
         /// <summary>
         /// Set to TRUE to verify programming operations in POM.
@@ -246,11 +252,11 @@ namespace Z2XProgrammer.ViewModel
             //  The available command stations. 
             string jsonString = Preferences.Default.Get(AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_KEY, AppConstants.PREFERENCES_ALLCOMMANDSTATIONS_DEFAULT);
             CommandStations = JsonSerializer.Deserialize<ObservableCollection<CommandStationType>>(jsonString);
-            if((CommandStations != null) && (CommandStations.Count > 0))        
-            { 
+            if ((CommandStations != null) && (CommandStations.Count > 0))
+            {
                 SelectedCommandStation = CommandStations.FirstOrDefault(item => item.IpAddress == Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT), null);
-                if(SelectedCommandStation != null)
-                { 
+                if (SelectedCommandStation != null)
+                {
                     Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, SelectedCommandStation.IpAddress);
                     Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, SelectedCommandStation.Name);
                 }
@@ -661,11 +667,11 @@ namespace Z2XProgrammer.ViewModel
                 //  Show the result to the user.    
                 if (ConnectSuccessFull == false)
                 {
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2, AppResources.OK);
                 }
                 else
                 {
-                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertConnectionCommandStationOK1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertConnectionCommandStationOK2 , AppResources.OK);
+                    await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertConnectionCommandStationOK1 + " " + SelectedCommandStation.Name + " (" + SelectedCommandStation.IpAddress + ") " + AppResources.AlertConnectionCommandStationOK2, AppResources.OK);
                 }
 
             }
