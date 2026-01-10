@@ -48,7 +48,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     <Shell.FlyoutHeader>
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource TitleBarBackground_Light}, Dark={StaticResource TitleBarBackground_Dark}}">
 
-            <Grid>
+            <Grid Margin="{OnPlatform Android='0,80,0,0', iOS='0,0,0,0', MacCatalyst='0,0,0,0', WinUI='0,0,0,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
