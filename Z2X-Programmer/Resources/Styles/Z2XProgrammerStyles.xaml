@@ -7,101 +7,133 @@
     <!-- Images -->
     <x:String x:Key="ButtonTitleViewSaveFileLight">ic_fluent_mail_24_regular.svg</x:String>
     <x:String x:Key="ButtonTitleViewSaveFileDark">ic_fluent_save_24_dark.svg</x:String>
-    
+
     <!-- Styles -->
+    <Style x:Key="Z2XProgrammerContentPageStyle" TargetType="ContentPage">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <!-- Portrait -->
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Padding" Value="20,10,0,80" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <!-- Landscape -->
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Padding" Value="40,40,5,20" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+
+
+    </Style>
+
+
     <Style x:Key="Z2XProgrammerSwitchStyle"  TargetType="Switch">
         <Setter Property="OnColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
-        <VisualStateGroup x:Name="CommonStates">
-            <VisualState x:Name="On">
-                <VisualState.Setters>
-                    <Setter Property="ThumbColor" Value="White" />
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState x:Name="Off">
-                <VisualState.Setters>
-                    <Setter Property="ThumbColor" Value="DarkSlateGray" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-                </VisualStateGroupList>
-    </Setter>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="On">
+                        <VisualState.Setters>
+                            <Setter Property="ThumbColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Off">
+                        <VisualState.Setters>
+                            <Setter Property="ThumbColor" Value="DarkSlateGray" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
 
-    </Style>   
-    
-     <!-- The Z2XProgrammerControllerButtonStyle style is used for the buttons of the controller.-->
-     <Style x:Key="Z2XProgrammerControllerButtonStyle"  TargetType="Button">
-     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"></Setter>
-     <Setter Property="BorderWidth" Value="0"></Setter>
-     <Setter Property="BorderColor" Value="DarkGray"></Setter>         
-     <Setter Property="Margin" Value="0,1,0,1"></Setter>
-     <Setter Property="VisualStateManager.VisualStateGroups">
-         <VisualStateGroupList>
-             <VisualStateGroup x:Name="CommonStates">
-                 <VisualState x:Name="Normal">
-                     <VisualState.Setters>
-                         <Setter Property="Scale" Value="1.0" />
-                         <Setter Property="BorderWidth" Value="0"></Setter>
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="Disabled">
-                     <VisualState.Setters>
-                         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray200}}" />
-                         <Setter Property="BorderWidth" Value="0"></Setter>
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="PointerOver">
-                     <VisualState.Setters>
-                          <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
-                         <Setter Property="BorderWidth" Value="2"></Setter>
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="Pressed">
-                     <VisualState.Setters>
-                         <Setter Property="Scale" Value="0.95" />
-                         <Setter Property="BorderWidth" Value="2"></Setter>
-                     </VisualState.Setters>
-                 </VisualState>
-             </VisualStateGroup>
-         </VisualStateGroupList>
-     </Setter>
-     </Style>
-    
+    </Style>
+
+    <!-- The Z2XProgrammerControllerButtonStyle style is used for the buttons of the controller.-->
+    <Style x:Key="Z2XProgrammerControllerButtonStyle"  TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"></Setter>
+        <Setter Property="BorderWidth" Value="0"></Setter>
+        <Setter Property="BorderColor" Value="DarkGray"></Setter>
+        <Setter Property="Margin" Value="0,1,0,1"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="1.0" />
+                            <Setter Property="BorderWidth" Value="0"></Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray200}}" />
+                            <Setter Property="BorderWidth" Value="0"></Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+                            <Setter Property="BorderWidth" Value="2"></Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.95" />
+                            <Setter Property="BorderWidth" Value="2"></Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!-- The Z2XProgrammerStandardButtonStyle style is used for standard buttons in the application.-->
     <Style x:Key="Z2XProgrammerStandardButtonStyle"  TargetType="Button">
-    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"></Setter>
-    <Setter Property="BorderWidth" Value="0"></Setter>
-    <Setter Property="Margin" Value="0,1,0,1"></Setter>
-    <Setter Property="VisualStateManager.VisualStateGroups">
-        <VisualStateGroupList>
-            <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal">
-                    <VisualState.Setters>
-                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-                        <Setter Property="Scale" Value="1.0" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Disabled">
-                    <VisualState.Setters>
-                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray200}}" />
-                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="PointerOver">
-                    <VisualState.Setters>
-                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Pressed">
-                    <VisualState.Setters>
-                        <Setter Property="Scale" Value="0.95" />
-                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateGroupList>
-    </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"></Setter>
+        <Setter Property="BorderWidth" Value="0"></Setter>
+        <Setter Property="Margin" Value="0,1,0,1"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                            <Setter Property="Scale" Value="1.0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray200}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.95" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 
     <!-- The Z2XBorderClickableFrame style represents the style of a clickable frame from .NET MAUI 8 and before.
@@ -112,47 +144,73 @@
         <Setter Property="StrokeThickness" Value="0.5"></Setter>
         <Setter Property="Padding" Value="20,20,20,20"></Setter>
         <Setter Property="Stroke" Value="#ACACAC"></Setter>
-         <Setter Property="VisualStateManager.VisualStateGroups">
-         <VisualStateGroupList>
-             <VisualStateGroup x:Name="CommonStates">
-                 <VisualState x:Name="Normal">
-                     <VisualState.Setters>
-                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
-                         <Setter Property="Scale" Value="1.0" />
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="Disabled">
-                     <VisualState.Setters>
-                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="PointerOver">
-                     <VisualState.Setters>
-                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundPointerOverColor_Light}, Dark={StaticResource FrameBackgroundPointerOverColor_Dark}}" />
-                     </VisualState.Setters>
-                 </VisualState>
-                 <VisualState x:Name="Pressed">
-                     <VisualState.Setters>
-                         <Setter Property="Scale" Value="0.95" />
-                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
-                     </VisualState.Setters>
-                 </VisualState>
-             </VisualStateGroup>
-         </VisualStateGroupList>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}" />
+                            <Setter Property="Scale" Value="1.0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundPointerOverColor_Light}, Dark={StaticResource FrameBackgroundPointerOverColor_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.95" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
         </Setter>
     </Style>
-    
-    
+
+
     <!-- The Z2XBorderFrame style represents the style of a frame from .NET MAUI 8 and before.
          This Border style is used to visually group controls that have a dependency on each other.-->
     <Style x:Key="Z2XBorderFrame" TargetType="Border">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                                     <!-- Portrait -->
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Padding" Value="10,10,10,10" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <!-- Landscape -->
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Padding" Value="20,20,20,20" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
         <Setter Property="StrokeShape" Value="RoundRectangle 8"></Setter>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
         <Setter Property="StrokeThickness" Value="0.5"></Setter>
-        <Setter Property="Padding" Value="20,20,20,20"></Setter>
         <Setter Property="Stroke" Value="#ACACAC"></Setter>
+        <Setter Property="Padding" Value="20,20,20,20" />
     </Style>
-    
+
     <!-- The Z2XProgrammerLabelAdditionalCVValuesStyle  style is used to display the additional
          current CV values.-->
     <Style x:Key="Z2XProgrammerLabelAdditionalCVValuesStyle" TargetType="Label">
@@ -173,7 +231,7 @@
         <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray100}}" />
     </Style>
-    
+
     <Style x:Key="Z2XInvalidEntry" TargetType="Entry">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="BackgroundColor" Value="#ed1a33" />
@@ -232,7 +290,7 @@
         <Setter Property="Margin" Value="0,25,0,15"></Setter>
     </Style>
 
-    
+
     <Style x:Key="Z2XProgrammerLabelStandardStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelStandardColor_Light}, Dark={StaticResource LabelStandardColor_Dark}}"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
@@ -245,40 +303,40 @@
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="Margin" Value="0,5,0,10"></Setter>
     </Style>
-    
+
     <Style x:Key="Z2XProgrammerLabelHeading1ClickableStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"></Setter>
         <Setter Property="FontSize" Value="25"></Setter>
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="Margin" Value="0,5,0,10"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
-        <VisualStateGroupList>
-            <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="PointerOver">
-                    <VisualState.Setters>
-                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading1Color_Light}, Dark={StaticResource LabelHeading1Color_Dark}}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Normal">
-                    <VisualState.Setters>
-                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Selected">
-                <VisualState.Setters>
-                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
-                </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Focused">
-                    <VisualState.Setters>
-                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateGroupList>
-    </Setter>
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading1Color_Light}, Dark={StaticResource LabelHeading1Color_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
-    
+
     <Style x:Key="Z2XProgrammerLabelHeading2Style" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading2Color_Light}, Dark={StaticResource LabelHeading2Color_Dark}}"></Setter>
         <Setter Property="FontSize" Value="17"></Setter>
@@ -368,7 +426,7 @@
         </Setter>
     </Style>
 
-    
+
 
 
 </ResourceDictionary>
