@@ -254,11 +254,14 @@ namespace Z2XProgrammer.ViewModel
             CommandStations = JsonSerializer.Deserialize<ObservableCollection<CommandStationType>>(jsonString);
             if ((CommandStations != null) && (CommandStations.Count > 0))
             {
-                SelectedCommandStation = CommandStations.FirstOrDefault(item => item.IpAddress == Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT), null);
-                if (SelectedCommandStation != null)
-                {
-                    Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, SelectedCommandStation.IpAddress);
-                    Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, SelectedCommandStation.Name);
+                if(CommandStations.Any(item => item.IpAddress == Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT) == true))
+                { 
+                    SelectedCommandStation = CommandStations.First(item => item.IpAddress == Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT));
+                    if (SelectedCommandStation != null)
+                    {
+                        Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, SelectedCommandStation.IpAddress);
+                        Preferences.Default.Set(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, SelectedCommandStation.Name);
+                    }
                 }
             }
 
