@@ -357,7 +357,7 @@
         <Setter Property="Margin" Value="5,1,5,1"></Setter>
     </Style>
 
-    <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
+        <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
         <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -365,7 +365,7 @@
                     <VisualState x:Name="Normal">
                         <VisualState.Setters>
                             <Setter Property="Scale" Value="1.0" />
-                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Disabled">
@@ -374,8 +374,8 @@
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="PointerOver">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ButtonBackground_Light}, Dark={StaticResource ButtonBackground_Dark}}" />
+                        <VisualState.Setters>                            
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Pressed">
