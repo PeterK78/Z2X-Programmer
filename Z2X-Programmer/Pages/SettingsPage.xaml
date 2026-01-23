@@ -33,7 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:SettingsPageViewModel"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              Shell.PresentationMode="ModalAnimated"
              x:Name="ThisPage"
              Title="{x:Static strings:AppResources.ButtonMainMenuSettingsText}">
@@ -58,8 +58,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <VerticalStackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -70,67 +71,155 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
+                        <!-- The icon -->
+                        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_commandstation_24_regular.png, Dark=ic_fluent_commandstation_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
 
                         <!-- Description -->
-                        <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_commandstation_24_regular.png, Dark=ic_fluent_commandstation_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label Margin="50,0,0,20" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsCommandStationDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label Margin="0,0,0,20" Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsCommandStationDescription}" VerticalOptions="Start"  HorizontalOptions="Start" LineBreakMode="WordWrap" />
 
-                        <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding CommandStations}" SelectedItem="{Binding SelectedCommandStation}" SelectionMode="Single">
+                        <!-- The list with configured command station -->
+                        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="5,5,5,5" >
+                            <CollectionView ItemsSource="{Binding CommandStations}" SelectedItem="{Binding SelectedCommandStation}" SelectionMode="Single">
 
-                            <CollectionView.Header>
-                                <Grid ColumnDefinitions="*,*">
-                                    <Label Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="Name"/>
-                                    <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="IP Adresse"/>
-                                </Grid>
-                            </CollectionView.Header>
-
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="datamodel:CommandStationType">
+                                <CollectionView.Header>
                                     <Grid ColumnDefinitions="*,*">
-                                        <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Name}" Margin="10,0,0,0"  />
-                                        <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding IpAddress}" Margin="0,0,0,0" />
-
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:SettingsPageViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ModifyCommandStationCommand}"/>
-                                        </Grid.GestureRecognizers>
-
+                                        <Label Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="Name"/>
+                                        <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="IP Adresse"/>
                                     </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
+                                </CollectionView.Header>
 
-                        </CollectionView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="datamodel:CommandStationType">
+                                        <Grid ColumnDefinitions="*,*">
 
+                                            <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Name}" Margin="10,0,0,0"  />
+                                            <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding IpAddress}" Margin="0,0,0,0" />
+
+                                            <!-- .NET MAUI has the following bug on Android: If a TapGestureRecognizer is added, the standard Collection View selection no longer works.
+                                             See the bug report here: https://github.com/dotnet/maui/issues/26182
+                                             For this reason, we are currently unable to use GestureRecognizers (otherwise, no command station can be selected on Android).
+                                        -->
+                                            <!--<Grid.GestureRecognizers >
+                                            <OnPlatform x:TypeArguments="GestureRecognizer">
+                                                <On Platform="Windows">
+                                                    <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:SettingsPageViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ModifyCommandStationCommand}"/>
+                                                </On>
+                                            </OnPlatform>
+                                        </Grid.GestureRecognizers>-->
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+                        </Border>
                         <!-- 3 buttons under the collectionview to modify the command station entries -->
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
+                        <FlexLayout Direction="Row" JustifyContent="End" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center">
+
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="1300"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
 
                             <!-- Add command station button -->
-                            <Button Text="{x:Static strings:AppResources.FrameSettingsButtonAddCommandStationLabel}" WidthRequest="180" ImageSource="{AppThemeBinding Light=ic_fluent_commandstation_add_24_dark.png, Dark=ic_fluent_commandstation_add_24_regular.png}"  Margin="0,20,10,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=AddCommandStationCommand}" HorizontalOptions="End" ></Button>
+                            <Button Margin="5,5,0,0" WidthRequest="200" Text="{x:Static strings:AppResources.FrameSettingsButtonAddCommandStationLabel}" ImageSource="{AppThemeBinding Light=ic_fluent_commandstation_add_24_dark.png, Dark=ic_fluent_commandstation_add_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=AddCommandStationCommand}" HorizontalOptions="End" LineBreakMode="WordWrap" ></Button>
 
                             <!-- Modify command station button -->
-                            <Button Text="{x:Static strings:AppResources.FrameSettingsButtonEditCommandStationLabel}" WidthRequest="180" Margin="0,20,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_commandstation_edit_24_dark.png, Dark= ic_fluent_commandstation_edit_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ModifyCommandStationCommand}" HorizontalOptions="End" ></Button>
+                            <Button Margin="5,5,0,0" WidthRequest="200" Text="{x:Static strings:AppResources.FrameSettingsButtonEditCommandStationLabel}" ImageSource="{AppThemeBinding Light=ic_fluent_commandstation_edit_24_dark.png, Dark= ic_fluent_commandstation_edit_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ModifyCommandStationCommand}" HorizontalOptions="End" LineBreakMode="WordWrap" ></Button>
 
                             <!-- Delete command station button -->
-                            <Button Text="{x:Static strings:AppResources.FrameSettingsButtonDeleteCommandStationLabel}" WidthRequest="180" Margin="0,20,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=DeleteCommandStationCommand}" HorizontalOptions="End" ></Button>
+                            <Button Margin="5,5,0,0" WidthRequest="200" Text="{x:Static strings:AppResources.FrameSettingsButtonDeleteCommandStationLabel}" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=DeleteCommandStationCommand}" HorizontalOptions="End" LineBreakMode="WordWrap"></Button>
 
                             <!-- Connection test button -->
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_network_check_24_dark.png, Dark=ic_fluent_network_check_24_regular.png}"  WidthRequest="230" Margin="0,20,0,0"  Text="{x:Static strings:AppResources.FrameSettingsButtonConnectLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ConnectCommand}" HorizontalOptions="End" ></Button>
+                            <Button Margin="5,5,0,0" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_network_check_24_dark.png, Dark=ic_fluent_network_check_24_regular.png}"   Text="{x:Static strings:AppResources.FrameSettingsButtonConnectLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ConnectCommand}" HorizontalOptions="End" LineBreakMode="WordWrap" ></Button>
 
-                        </HorizontalStackLayout>
+                        </FlexLayout>
 
-                        <HorizontalStackLayout Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" Margin="0,20,0,0">
+                        <!-- Command station firmware information -->
+                        <HorizontalStackLayout Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="2" Margin="0,20,0,0">
                             <Image HeightRequest="16" WidthRequest="16" Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" Margin="0,0,5,0" ></Image>
                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsZ21DeviceSpecification}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         </HorizontalStackLayout>
-                        <HorizontalStackLayout Margin="0,10,0,0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-                            <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsZ21FirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Label Margin="5,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Z21FirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Label Margin="15,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsZ21HardwareType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <Label Margin="5,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Z21HardwareType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        </HorizontalStackLayout>
+
+                        <FlexLayout Direction="Row" Margin="0,10,0,0" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="1300"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            
+                            <Label Margin="0,0,2,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsZ21FirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Margin="0,0,5,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Z21FirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Margin="0,0,2,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsZ21HardwareType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Z21HardwareType}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+                        </FlexLayout>
 
                         <!-- Activity Indicator -->
-                        <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" IsVisible="{Binding ActivityConnectingOngoing}" IsRunning="{Binding ActivityConnectingOngoing}"></ActivityIndicator>
-
+                        <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" IsVisible="{Binding ActivityConnectingOngoing}" IsRunning="{Binding ActivityConnectingOngoing}"></ActivityIndicator>
 
                     </Grid>
                 </VerticalStackLayout>

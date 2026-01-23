@@ -66,7 +66,7 @@
 							<AdaptiveTrigger MinWindowWidth="0"/>
 						</VisualState.StateTriggers>
 						<VisualState.Setters>
-							<Setter Property="Direction" Value="AdaptiveTrigger" />
+							<Setter Property="Direction" Value="Column" />
 						</VisualState.Setters>
 					</VisualState>
 
