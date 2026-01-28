@@ -31,7 +31,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              x:DataType="viewmodel:DecoderInformationViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              Title="{x:Static strings:AppResources.FlyoutItemDecoderInformationText}">
 
     <ContentPage.Resources>
@@ -63,143 +63,576 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <!-- RCN225: Manufacturer  -->
-                            <Label x:Name="FrameGenericDecoderInformationManufacturer" Grid.Row="0" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" >
-                                <Label Text="{Binding Manufacturer}" ToolTipProperties.Text="{Binding ManufacturerID }" VerticalOptions="Center">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding Manufacturer}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV8Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameGenericDecoderInformationManufacturer" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout HorizontalOptions="Start" >
+                                    <Label Text="{Binding Manufacturer}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" ToolTipProperties.Text="{Binding ManufacturerID }" VerticalOptions="Center">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding Manufacturer}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV8Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
 
                             <!-- RCN225: Software version  -->
-                            <Label x:Name="FrameGenericDecoderInformationVersionNumber" Grid.Row="1" Grid.Column="0" Margin="0,20,30,0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationVersionNumber}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End"    >
-                                <Label Text="{Binding Version}" VerticalOptions="Center" HorizontalOptions="End" />
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV7Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameGenericDecoderInformationVersionNumber" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameGenericDecoderInformationVersionNumber}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout HorizontalOptions="Start">
+                                    <Label Text="{Binding Version}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="End" />
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV7Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
 
                             <!-- ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250) -->
-                            <Label x:Name="FrameDecoderZIMOInfoDecoderType" Grid.Row="2" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}" />
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}">
-                                <Label Text="{Binding ZimoDecoderType}" VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderType}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameDecoderZIMOInfoDecoderType" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}" />
+                                <VerticalStackLayout HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERTYPE_CV250}">
+                                    <Label Text="{Binding ZimoDecoderType}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderType}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65) -->
-                            <Label x:Name="FrameDecoderZIMOInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,20,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" />
-                            <VerticalStackLayout Grid.Row="3" Grid.Column="1" Margin="0,20,0,0" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" VerticalOptions="Center"  HorizontalOptions="End"  >
-                                <Label Text="{Binding ZimoSWVersion}" VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSWVersion}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV65and7Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameDecoderZIMOInfoSWVersion"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" />
+                                <VerticalStackLayout IsVisible="{Binding ZIMO_SUBVERSIONNR_CV65}" VerticalOptions="Center"  HorizontalOptions="Start"  >
+                                    <Label Text="{Binding ZimoSWVersion}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSWVersion}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV65and7Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- ZIMO: Decoder ID (ZIMO_DECODERID_CV25X) -->
-                            <Label x:Name="FrameDecoderZIMOInfoDecoderID" Grid.Row="4" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERID_CV25X}" />
-                            <VerticalStackLayout Grid.Row="4" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End"  IsVisible="{Binding ZIMO_DECODERID_CV25X}">
-                                <Label Text="{Binding ZimoDecoderID}"  VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderID}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVDecoderIDConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="4" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Label x:Name="FrameDecoderZIMOInfoDecoderID" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_DECODERID_CV25X}" />
+                                <VerticalStackLayout VerticalOptions="Center"  HorizontalOptions="Start"  IsVisible="{Binding ZIMO_DECODERID_CV25X}">
+                                    <Label Text="{Binding ZimoDecoderID}"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoDecoderID}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVDecoderIDConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X) -->
-                            <VerticalStackLayout Grid.Row="5" Grid.Column="0" Margin="0,20,0,0" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" HorizontalOptions="Start" >
-                                <Label x:Name="FrameDecoderZIMOInfoBootloaderVersion" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                                <Label Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" IsVisible="{Binding Path=ZimoBootloaderIsFailSafe,Converter={StaticResource boolInvert}}" Text="{x:Static strings:AppResources.ZIMOBootloaderNotFailSafe}"  VerticalOptions="Center"  HorizontalOptions="Start" TextColor="Red" />
-                                <Label Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" IsVisible="{Binding ZimoBootloaderIsFailSafe}" Text="{x:Static strings:AppResources.ZIMOBootloaderIsFailSafe}" VerticalOptions="Center"  HorizontalOptions="Start" TextColor="Green"/>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Row="5" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" >
-                                <Label Text="{Binding ZimoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoBootloaderVersion}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVBootloaderVersionConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="5" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <VerticalStackLayout  IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" HorizontalOptions="Start" >
+                                    <Label x:Name="FrameDecoderZIMOInfoBootloaderVersion" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoBootloaderVersion}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                                    <Label Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" IsVisible="{Binding Path=ZimoBootloaderIsFailSafe,Converter={StaticResource boolInvert}}" Text="{x:Static strings:AppResources.ZIMOBootloaderNotFailSafe}"  VerticalOptions="Center"  HorizontalOptions="Start" TextColor="Red" />
+                                    <Label Margin="0,10,0,0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" IsVisible="{Binding ZimoBootloaderIsFailSafe}" Text="{x:Static strings:AppResources.ZIMOBootloaderIsFailSafe}" VerticalOptions="Center"  HorizontalOptions="Start" TextColor="Green"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout  VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_BOOTLOADER_VERSION_24X}" >
+                                    <Label Text="{Binding ZimoBootloaderVersion}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoBootloaderVersion}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CVBootloaderVersionConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- ZIMO: Sound project manufacturer information (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X) -->
-                            <Label x:Name="FrameDecoderZIMOInfoSoundManufacturer" Grid.Row="6" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}" />
-                            <VerticalStackLayout Grid.Row="6" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}">
-                                <Label  Text="{Binding ZimoSoundProjectManufacturer}" VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectManufacturer}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV105XConfiguraion}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="6" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameDecoderZIMOInfoSoundManufacturer"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundManufacturer}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}" />
+                                <VerticalStackLayout VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTMANUFACTURER_CV105X}">
+                                    <Label Text="{Binding ZimoSoundProjectManufacturer}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="Start">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectManufacturer}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV105XConfiguraion}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) -->
-                            <Label x:Name="FrameDecoderZIMOInfoSoundProjectNr" Grid.Row="7" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundProjectNr}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}" />
-                            <VerticalStackLayout Grid.Row="7" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}">
-                                <Label  Text="{Binding ZimoSoundProjectNumber}" VerticalOptions="Center"  HorizontalOptions="End">
-                                    <FlyoutBase.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectNumber}"/>
-                                        </MenuFlyout>
-                                    </FlyoutBase.ContextFlyout>
-                                </Label>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV25XConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="7" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                
+                                <Label x:Name="FrameDecoderZIMOInfoSoundProjectNr"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderZIMOInfoSoundProjectNr}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}" />
+                                <VerticalStackLayout VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_SOUNDPROJECTVERSIONINFO_CV25X}">
+                                    <Label  Text="{Binding ZimoSoundProjectNumber}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End">
+                                        <FlyoutBase.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem IconImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_regular.png, Dark=ic_fluent_clipboard_paste_24_dark.png}" Text="{x:Static strings:AppResources.FrameDecoderCopyClipboard}" Command="{Binding CopyTextClipboardCommand}" CommandParameter="{Binding ZimoSoundProjectNumber}"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.ContextFlyout>
+                                    </Label>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV25XConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261) -->
-                            <Label x:Name="FrameDecoderDoehlerAndHaasInfoDecoderType" Grid.Row="2" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaasInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}" />
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}">
-                                <Label Text="{Binding DoehlerAndHaasDecoderType}" VerticalOptions="Center"  HorizontalOptions="End"  />
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV261Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameDecoderDoehlerAndHaasInfoDecoderType"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaasInfoDecoderType}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}" />
+                                <VerticalStackLayout  VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_DECODERTYPE_CV261}">
+                                    <Label Text="{Binding DoehlerAndHaasDecoderType}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV261Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x) -->
-                            <Label x:Name="FrameDecoderDoehlerAndHaassInfoSWVersion" Grid.Row="3" Grid.Column="0" Margin="0,20,30,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaassInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" />
-                            <VerticalStackLayout  Grid.Row="3" Grid.Column="1" Margin="0,20,0,0" VerticalOptions="Center"  HorizontalOptions="End" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" >
-                                <Label Text="{Binding DoehlerAndHaasFirmwareVersion}" VerticalOptions="Center"  HorizontalOptions="End" />
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV262To264Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                
+                                <Label x:Name="FrameDecoderDoehlerAndHaassInfoSWVersion"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderDoehlerAndHaassInfoSWVersion}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" />
+                                <VerticalStackLayout  VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAAS_FIRMWAREVERSION_CV262x}" >
+                                    <Label Text="{Binding DoehlerAndHaasFirmwareVersion}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End" />
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV262To264Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                                
+                            </FlexLayout>
 
                             <!-- PIKO SmartDecoder V4.1: Decoder ID (PIKOSMARTDECODER_DECODERID_CV26X)-->
-                            <Label x:Name="FrameDecoderPIKOSmartDecoderV41InfoDecoderID" Grid.Row="2" Grid.Column="0" Margin="0,20,30,0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPIKOSmartDecoderV41InfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}" />
-                            <VerticalStackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" HorizontalOptions="End" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}">
-                                <Label Text="{Binding PikoDecoderID}" VerticalOptions="Center"  HorizontalOptions="End"  />
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                
+                                <Label x:Name="FrameDecoderPIKOSmartDecoderV41InfoDecoderID"    Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDecoderPIKOSmartDecoderV41InfoDecoderID}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}" />
+                                <VerticalStackLayout  HorizontalOptions="Start" IsVisible="{Binding PIKOSMARTDECODER_DECODERID_CV26X}">
+                                    <Label Text="{Binding PikoDecoderID}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center"  HorizontalOptions="End"  />
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV250Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="End" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
 
                             <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="8" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static strings:AppResources.FrameDecoderZIMOCopyClipboard}" HorizontalOptions="End" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=CopyClipboardCommand}" MinimumWidthRequest="200" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_dark.png, Dark=ic_fluent_clipboard_paste_24_regular.png}"></Button>
 

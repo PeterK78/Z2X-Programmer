@@ -354,8 +354,7 @@
 
     <Style x:Key="Z2XProgrammerPickerStyle" TargetType="Picker">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PickerBackgroundColor_Light}, Dark={StaticResource PickerBackgroundColor_Dark}}"></Setter>
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PickerTextColor_Light}, Dark={StaticResource PickerTextColor_Dark}}"></Setter>
-        <Setter Property="Margin" Value="5,1,5,1"></Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PickerTextColor_Light}, Dark={StaticResource PickerTextColor_Dark}}"></Setter>        
     </Style>
 
     <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
