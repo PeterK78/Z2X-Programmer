@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-    
+
 <!--
 
 Z2X-Programmer
@@ -21,18 +21,19 @@ along with this program. If not, see:
 
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
--->  
-    
+-->
+
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              x:Class="Z2XProgrammer.Pages.LicensePage"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              Title="{x:Static strings:AppResources.FrameLicenseTitle}">
-        
+
     <ScrollView x:Name="PageScrollView" Orientation="Vertical">
-        
-        <VerticalStackLayout Margin="20,20,20,20">
+
+        <VerticalStackLayout Margin="0,0,10,0">
 
             <!-- The title text and the Z2X-Programmer icon -->
             <HorizontalStackLayout>
@@ -47,23 +48,30 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label x:Name="LicenseLabel" Text="{x:Static strings:AppResources.LicenseText}" FontSize="12" FontFamily="monospace" ></Label>
                 </ScrollView>
             </Border>
-            
-            <!-- The checkbox to accept the license -->
-            <HorizontalStackLayout HorizontalOptions="End">
-                <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseCheckbox}" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox x:Name="CheckboxAccept" CheckedChanged="OnCheckboxCheckedChanged" HorizontalOptions="End" VerticalOptions="Center"/>
+
+            <!-- The "Open license ..." button and the checkbox to accept the license -->
+            <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="0,5,0,0" x:Name="LicenseButton" WidthRequest="150"  IsVisible="True" Clicked="LicenseButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonLicenseText}" HorizontalOptions="End" VerticalOptions="End"></Button>
+                <HorizontalStackLayout HorizontalOptions="End">
+                    <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameLicenseCheckbox}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                    <CheckBox x:Name="CheckboxAccept" CheckedChanged="OnCheckboxCheckedChanged" HorizontalOptions="End" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </FlexLayout>
+
+            <!-- A separator line -->
+            <BoxView Color="LightGray" Margin="0,10,0,5" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
+
+            <!-- The 2 buttons at the bottom (OK, Not OK)) -->
+            <HorizontalStackLayout HorizontalOptions="End" Margin="0,10,0,20">
+               
+                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0" x:Name="OKButton" WidthRequest="150"  IsVisible="False" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonOK}" HorizontalOptions="End" VerticalOptions="End"></Button>
+                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0" x:Name="NOButton" WidthRequest="150" Clicked="NOButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonQuit}" HorizontalOptions="End" VerticalOptions="End"></Button>
+                
             </HorizontalStackLayout>
-            
-            <!-- The 3 buttons at the bottom (OK, Not OK and Show me the license) -->
-            <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,0">
-                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0" x:Name="OKButton" WidthRequest="150"  IsVisible="False" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0" x:Name="LicenseButton" WidthRequest="150"  IsVisible="True" Clicked="LicenseButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonLicenseText}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-                <Button  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="20,0,0,0" x:Name="NOButton" WidthRequest="150" Clicked="NOButton_Clicked" Text="{x:Static strings:AppResources.FrameLicenseButtonQuit}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-            </HorizontalStackLayout>
-            
+
         </VerticalStackLayout>
-        
+
     </ScrollView>
-    
+
 </ContentPage>
 

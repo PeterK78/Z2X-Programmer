@@ -30,8 +30,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              CanBeDismissedByTappingOutsideOfPopup="True"
-             WidthRequest="640"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"             
+             MaximumWidthRequest="640"
+             MaximumHeightRequest="460"
              Padding="0,0,0,0"
              >
 
@@ -46,44 +47,84 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <Border Style="{StaticResource Z2XBorderFrame}">
 
-                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="600">
-                    <CollectionView.Header>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="60" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderZ2XAvailable}" Grid.Column="0"/>
-                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderName}" Grid.Column="1"/>
-                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderAdress}"  Grid.Column="2"/>
-                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.LocoListColumnHeaderImage}"  Grid.Column="3"/>
-                        </Grid>
-                    </CollectionView.Header>
+                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="290">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="datamodel:LocoListType">
-                            <Grid>
+                            <Grid Margin="0,0,0,20">
 
                                 <Grid.Resources>
                                     <converter:InverseBooleanConverter x:Key="boolInvert" />
                                 </Grid.Resources>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120" />
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                                <!-- The Z2X file is missing (or not) icon -->
-                                <Image Grid.Column="0" HeightRequest="24" IsVisible="{Binding Z2XFileAvailable}" Source="{AppThemeBinding Light=ic_fluent_document_checkmark_24_regular.png, Dark=ic_fluent_document_checkmark_24_dark.png}" ToolTipProperties.Text="{Binding FilePath}"></Image>
-                                <Image Grid.Column="0"  HeightRequest="24" IsVisible="{Binding Path=Z2XFileAvailable,Converter={StaticResource boolInvert}}" Source="{AppThemeBinding Light=ic_fluent_document_dismiss_24_regular.png, Dark=ic_fluent_document_dismiss_24_dark.png}" ToolTipProperties.Text="{Binding FilePath}" ></Image>
+                                <FlexLayout Direction="Row" >
 
-                                <Label Grid.Column="1" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding UserDefindedDecoderDescription}"/>
-                                <Label Grid.Column="2" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}"/>
-                                <Image Grid.Column="3" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center"  Source="{Binding UserDefindedImage}" Margin="5,5,5,5" ></Image>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup>
+
+                                            <!-- Portrait -->
+                                            <VisualState x:Name="Portrait">
+                                                <VisualState.StateTriggers>
+                                                    <OrientationStateTrigger Orientation="Portrait" />
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="Direction" Value="Column" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <!-- LandscapeVertical -->
+                                            <VisualState x:Name="LandscapeVertical">
+                                                <VisualState.StateTriggers>
+                                                    <AdaptiveTrigger MinWindowWidth="0"/>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="Direction" Value="Column" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <!-- LandscapeHorizontal -->
+                                            <VisualState x:Name="LandscapeHorizontal">
+                                                <VisualState.StateTriggers>
+                                                    <AdaptiveTrigger MinWindowWidth="950"/>
+                                                    <OrientationStateTrigger Orientation="Landscape" />
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="Direction" Value="Row" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <!-- The picture of the locomotive -->
+                                    <Image WidthRequest="200" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center"  Source="{Binding UserDefindedImage}" Margin="20,5,20,5" ></Image>
+
+                                    <VerticalStackLayout VerticalOptions="Center" >
+
+                                        <!-- The name of the locomotive (user description) -->
+                                        <Label HorizontalOptions="Start" VerticalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{Binding UserDefindedDecoderDescription}"/>
+
+                                        <HorizontalStackLayout Margin="0,5,0,5" HorizontalOptions="Start" >
+
+                                            <!-- The vehicle address -->
+                                            <Image HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="20" IsVisible="{Binding Z2XFileAvailable}"  Source="{AppThemeBinding Light=ic_fluent_vehicle_address_24_regular.png, Dark=ic_fluent_vehicle_address_24_dark.png}"></Image>
+                                            <Label HorizontalOptions="Start" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding LocomotiveAddress}" Margin="0,0,15,0"/>
+
+                                            <!-- The Z2X file is missing (or not) icon -->
+                                            <Image HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="20" IsVisible="{Binding Z2XFileAvailable}" Source="{AppThemeBinding Light=ic_fluent_document_checkmark_24_regular.png, Dark=ic_fluent_document_checkmark_24_dark.png}" ToolTipProperties.Text="{Binding FilePath}"></Image>
+                                            <Image HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="20" IsVisible="{Binding Path=Z2XFileAvailable,Converter={StaticResource boolInvert}}" Source="{AppThemeBinding Light=ic_fluent_document_dismiss_24_regular.png, Dark=ic_fluent_document_dismiss_24_dark.png}" ToolTipProperties.Text="{Binding FilePath}" ></Image>
+
+                                        </HorizontalStackLayout>
+
+                                    </VerticalStackLayout>
+
+                                </FlexLayout>
 
                             </Grid>
                         </DataTemplate>
@@ -92,8 +133,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </Border>
 
             <HorizontalStackLayout HorizontalOptions="End">
-                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-                <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                <Button MinimumWidthRequest="120" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                <Button MinimumWidthRequest="125" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="5,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>
