@@ -68,7 +68,7 @@
     
     <!-- Frame colors -->
     <Color x:Key="FrameBackgroundColor_Light">#fafcfd</Color>
-    <Color x:Key="FrameBackgroundColor_Dark">#202020</Color>
+    <Color x:Key="FrameBackgroundColor_Dark">#373737</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Light">#f3f3f3</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Dark">#636363</Color>
     
