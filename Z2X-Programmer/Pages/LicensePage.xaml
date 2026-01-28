@@ -33,7 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <ScrollView x:Name="PageScrollView" Orientation="Vertical">
 
-        <VerticalStackLayout Margin="0,0,10,0">
+        <VerticalStackLayout Margin="0,10,10,0">
 
             <!-- The title text and the Z2X-Programmer icon -->
             <HorizontalStackLayout>

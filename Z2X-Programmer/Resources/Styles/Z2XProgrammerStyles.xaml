@@ -40,7 +40,7 @@
 
     </Style>
 
-
+    <!-- The Z2XProgrammerSwitchStyle style is used for switches -->
     <Style x:Key="Z2XProgrammerSwitchStyle"  TargetType="Switch">
         <Setter Property="OnColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -48,18 +48,19 @@
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="On">
                         <VisualState.Setters>
-                            <Setter Property="ThumbColor" Value="White" />
+                            <Setter Property="ThumbColor" Value="{OnPlatform White, Android={StaticResource Primary}}" />
+                            <Setter Property="OnColor" Value="{OnPlatform {StaticResource Primary}, Android={StaticResource SwitchBackgroundOn}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Off">
                         <VisualState.Setters>
                             <Setter Property="ThumbColor" Value="DarkSlateGray" />
+                            <Setter Property="OffColor" Value="{OnPlatform {StaticResource FlyOutBackgroundColor_Light}, Android={StaticResource SwitchBackgroundOff}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
-
     </Style>
 
     <!-- The Z2XProgrammerControllerButtonStyle style is used for the buttons of the controller.-->
@@ -181,7 +182,7 @@
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup>
-                                     <!-- Portrait -->
+                    <!-- Portrait -->
                     <VisualState x:Name="Portrait">
                         <VisualState.StateTriggers>
                             <OrientationStateTrigger Orientation="Portrait" />
@@ -357,7 +358,7 @@
         <Setter Property="Margin" Value="5,1,5,1"></Setter>
     </Style>
 
-        <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
+    <Style x:Key="Z2XProgrammerLocoListButtonStyle"  TargetType="ImageButton">
         <Setter Property="CornerRadius" Value="5"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -374,7 +375,7 @@
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="PointerOver">
-                        <VisualState.Setters>                            
+                        <VisualState.Setters>
                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FlyOutBackgroundColor_Light}, Dark={StaticResource FlyOutBackgroundColor_Dark}}" />
                         </VisualState.Setters>
                     </VisualState>

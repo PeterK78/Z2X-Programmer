@@ -44,6 +44,10 @@
     <Color x:Key="TableHeaderHighlight_Light">#f9f9f9</Color>
     <Color x:Key="TableHeaderHighlight_Dark">#636363</Color>
 
+    <!-- Switch colors -->
+    <Color x:Key="SwitchBackgroundOff">#afb0b1</Color>
+    <Color x:Key="SwitchBackgroundOn">#afb0b1</Color>
+    
 
     <!-- Entry colors -->
     <Color x:Key="EntryBackground_Light">White</Color>
