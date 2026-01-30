@@ -192,17 +192,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_LONGSHORTADDRESS_CV29_5}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Label Margin="0,10,0,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameAddressModeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                    <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_convert_range_24_regular.png, Dark=ic_fluent_note_edit_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                    <Label Margin="0,0,0,20" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameAddressModeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
-                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0" >
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0" >
 
                         <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
                         <VisualStateManager.VisualStateGroups>
@@ -259,8 +261,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_CONSISTADDRESS_CV19X}">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -269,11 +272,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Margin="0,10,100,20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        
+                        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_square_dovetail_joint_24_regular.png, Dark=ic_fluent_square_dovetail_joint_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                        <Label Margin="0,0,0,20"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                         <!-- RCN225: Enable and disable the usage of the consist address CV19 and CV20 (RCN225_CONSISTADDRESS_CV19X) -->
-                        <Label x:Name="FrameLocomotiveAddressUseConsistAddressLabel"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressUseConsistAddressLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                        <Label x:Name="FrameLocomotiveAddressUseConsistAddressLabel"  Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressUseConsistAddressLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
                             <HorizontalStackLayout >
                                 <Label Text="{Binding Path=ConsistAddressEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ConsistAddressEnabled}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
@@ -282,9 +287,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VerticalStackLayout>
 
                         <!-- RCN225: The consist address in CV19 and CV20 (RCN225_CONSISTADDRESS_CV19) -->
-                        <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="0" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled}">
-                            <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
+                        <Label x:Name="FrameLocomotiveAddressConsistAdrLabel" Grid.Row="2" Grid.Column="1" IsVisible="{Binding ConsistAddressEnabled }" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameLocomotiveAddressConsistAdrLabel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,20,0,0" />
+                        <VerticalStackLayout Grid.Row="2" Grid.Column="2" IsVisible="{Binding ConsistAddressEnabled}" HorizontalOptions="End">
+                            <Entry Keyboard="Numeric" HorizontalTextAlignment="Center" Text="{Binding ConsistAddress}" MinimumWidthRequest="150" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0">
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior 
                                             BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
