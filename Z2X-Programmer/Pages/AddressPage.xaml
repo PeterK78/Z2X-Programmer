@@ -326,10 +326,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <!-- ZIMO: The secondary address in CV64, CV67 and CV68 (ZIMO_MXFX_SECONDADDRESS_CV64)-->
                         <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressLabel}" VerticalOptions="Center" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
-                            <Entry  MinimumWidthRequest="150" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
-                                <Entry.Behaviors>
-                                    <toolkit:NumericValidationBehavior 
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
+                            <VerticalStackLayout >
+                                <Entry MinimumWidthRequest="150" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="End" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameSecondaryAddressPlaceholder}" Text="{Binding SecondaryAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing">
+                                    <Entry.Behaviors>
+                                        <toolkit:NumericValidationBehavior 
                                         BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                         InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                         ValidStyle="{StaticResource Z2XValidEntry}"
@@ -337,11 +338,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                         MinimumValue="{Binding LimitZimoSecondAddressMinimum}"
                                         MaximumValue="{Binding LimitZimoSecondAddressMaximum}"
                                         MaximumDecimalPlaces="0" />
-                                </Entry.Behaviors>
-                            </Entry>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SecondaryAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
-
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SecondaryAddressCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                            <Button Margin="5,0,0,0" ImageSource="{AppThemeBinding Light=ic_fluent_locomotive_list_24_dark.png , Dark=ic_fluent_locomotive_list_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=GetSecondaryAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameAddressSecondAddressButtonToolTip}"></Button>
+                        </HorizontalStackLayout>
                         <!-- ZIMO: The secondary address mode in CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
                         <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 

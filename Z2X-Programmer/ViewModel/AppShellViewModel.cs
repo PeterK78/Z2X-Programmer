@@ -199,8 +199,8 @@ namespace Z2XProgrammer.ViewModel
                     OnGetDataFromDecoderSpecification(m.Value);
                 });
             });
-
-            WeakReferenceMessenger.Default.Register<LocoSelectedMessage>(this, (r, m) =>
+            
+            WeakReferenceMessenger.Default.Register<LocoSelectedMessage, string>(this, new LocoSelectedMessage(new LocoListType()).MsgLoadLoco, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
@@ -307,7 +307,7 @@ namespace Z2XProgrammer.ViewModel
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
-                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSourceFileSystem(LocoList.ActiveSystem));
+                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSourceFileSystem(LocoList.ActiveSystem),true);
 
                 // Workaround:
                 // The .NET MAUI pop-ups currently have problems with multi-window applications. For this reason,

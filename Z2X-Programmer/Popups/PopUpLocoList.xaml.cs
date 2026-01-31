@@ -44,6 +44,7 @@ public partial class PopUpLocoList : Popup
 
     Shell? myShell;
     CancellationTokenSource _cancelTokenSource;    
+    bool _loadLoco;
 
     /// <summary>
     /// Initializes a new instance of the PopUpLocoList class with the specified cancellation token source, locomotive
@@ -52,14 +53,14 @@ public partial class PopUpLocoList : Popup
     /// <param name="tokenSource">A CancellationTokenSource used to signal cancellation requests for operations associated with this instance.
     /// Cannot be null.</param>
     /// <param name="locoList">A list of LocoListType objects to display in the locomotive list view. Cannot be null.</param>
-    /// indicator.</param>
-    public PopUpLocoList(CancellationTokenSource tokenSource, List<LocoListType> locoList, bool dataSourceIsFileSystem)
+    public PopUpLocoList(CancellationTokenSource tokenSource, List<LocoListType> locoList, bool dataSourceIsFileSystem, bool loadLoco)
 	{
 		InitializeComponent();
         LocoListCollectionView.ItemsSource = locoList;
         _cancelTokenSource = tokenSource;
         myShell = Application.Current!.Windows[0].Page as Shell;
         LocoListDataSourceImage.IsVisible = !dataSourceIsFileSystem;
+        _loadLoco = loadLoco;
     }
 
     /// <summary>
@@ -83,7 +84,8 @@ public partial class PopUpLocoList : Popup
         {
             if (LocoListCollectionView.SelectedItem != null)
             {
-                WeakReferenceMessenger.Default.Send(new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem));                
+                LocoSelectedMessage locoSelectedMessage = new LocoSelectedMessage((LocoListType)LocoListCollectionView.SelectedItem);
+                WeakReferenceMessenger.Default.Send(locoSelectedMessage,_loadLoco == true ? locoSelectedMessage.MsgLoadLoco : locoSelectedMessage.MsgGetVehicleAddress);                
                 if (myShell != null) await Shell.Current.ClosePopupAsync(true);
             }
             else

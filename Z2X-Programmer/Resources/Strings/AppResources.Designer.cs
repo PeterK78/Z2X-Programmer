@@ -1332,6 +1332,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opens the locomotive list.
+        /// </summary>
+        public static string FrameAddressSecondAddressButtonToolTip {
+            get {
+                return ResourceManager.GetString("FrameAddressSecondAddressButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use the second address to link the function decoder to the functions of a traction unit. This means that the lights, for example, can be activated at the touch of a button..
         /// </summary>
         public static string FrameAddressSecondAddressDescription {

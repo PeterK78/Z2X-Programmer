@@ -21,11 +21,6 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging.Messages;
 using Z2XProgrammer.DataModel;
 
@@ -33,6 +28,9 @@ namespace Z2XProgrammer.Messages
 {
     public class LocoSelectedMessage : ValueChangedMessage<LocoListType>
     {
+        public string MsgLoadLoco = "LocoListLoadLoco";
+        public string MsgGetVehicleAddress = "LocoListGetVehicleAddress";
+
         public LocoSelectedMessage(LocoListType value) : base(value)
         {
         }

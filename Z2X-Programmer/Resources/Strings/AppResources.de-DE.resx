@@ -2208,4 +2208,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="LocoListDataSourceTooltip" xml:space="preserve">
     <value>Die Daten in der Lokomotiven-Liste stammen aus Ihrer Traincontroller-Software.</value>
   </data>
+  <data name="FrameAddressSecondAddressButtonToolTip" xml:space="preserve">
+    <value>Öffnet die Lokomotiven-Liste</value>
+  </data>
 </root>

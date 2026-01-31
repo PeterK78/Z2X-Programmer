@@ -21,15 +21,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 */
 
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Maui.Controls.Shapes;
 using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 using Z2XProgrammer.Communication;
 using Z2XProgrammer.DataModel;
 using Z2XProgrammer.DataStore;
+using Z2XProgrammer.FileAndFolderManagement;
 using Z2XProgrammer.Helper;
 using Z2XProgrammer.Messages;
+using Z2XProgrammer.Model;
+using Z2XProgrammer.Popups;
 using Z2XProgrammer.Resources.Strings;
 
 namespace Z2XProgrammer.ViewModel
@@ -86,7 +94,7 @@ namespace Z2XProgrammer.ViewModel
 
         // NMRA DCC ProgrammingMode POM enabled?
         [ObservableProperty]
-        bool dccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ?  true : false;
+        bool dccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ? true : false;
 
         //  RCN225: Vehicle address CV1, CV17 and CV18 (RCN225_BASEADDRESS_CV1) 
         [ObservableProperty]
@@ -270,10 +278,36 @@ namespace Z2XProgrammer.ViewModel
                 });
             });
 
+            WeakReferenceMessenger.Default.Register<LocoSelectedMessage, string>(this, new LocoSelectedMessage(new LocoListType()).MsgGetVehicleAddress, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    OnLocoSelectedMessage(m.Value);
+                });
+            });
+
         }
         #endregion 
 
         #region REGION: PRIVATE FUNCTIONS
+
+        /// <summary>
+        /// The OnLocoSelectedMessage message handler is called when the LocoSelectedMessage
+        /// message has been received. This message is typically sent by the PopUp PopUpLocoList
+        /// when the OK button is pressed.
+        /// </summary>
+        /// <param name="locomotive">Contains the data of the selected locomotive.</param>
+        internal void OnLocoSelectedMessage(LocoListType locomotive)
+        {
+            try
+            {
+                SecondaryAddress = locomotive.LocomotiveAddress;
+            }
+            catch (Exception)
+            {
+                //  Ignore errors.
+            }   
+        }
 
         /// <summary>
         /// The OnGetDataFromDecoderSpecification message handler is called when the DecoderSpecificationUpdatedMessage message has been received.
@@ -291,7 +325,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>
         private void OnGetProgrammingMode()
         {
-            DccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ?  true : false;
+            DccNMRAProgramTrackEnabled = (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack) ? true : false;
         }
 
         /// <summary>
@@ -369,6 +403,54 @@ namespace Z2XProgrammer.ViewModel
 
         #region REGION: COMMANDS
 
+        [RelayCommand]
+        private async Task GetSecondaryAddress()
+        {
+            try
+            {
+                List<LocoListType> locoList = new List<LocoListType>();
+
+                // The shell is required to open a pop-up. Since we are in a multi-window environment,
+                // we must determine the shell of the first window.
+                Shell? currentShellOfWindow0 = App.Current!.Windows[0].Page as Shell;
+                if (currentShellOfWindow0 == null) throw new InvalidOperationException("The shell of main window 0 cannot be determined.");
+
+                //  Check if the Z2X files folder is available.
+                if (LocoList.Z2XFileFolder == "")
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderEmpty, AppResources.OK);
+                    return;
+                }
+
+                if (Directory.Exists(LocoList.Z2XFileFolder) == false)
+                {
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListZ2XFolderNotExist + LocoList.Z2XFileFolder, AppResources.OK);
+                    return;
+                }
+
+                UndoRedoManager.Enabled = false;
+                locoList = await Task.Run(() => LocoList.GetLocomotiveList());
+                UndoRedoManager.Enabled = true;
+
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken cancelToken = cancelTokenSource.Token;
+                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSourceFileSystem(LocoList.ActiveSystem), false);
+
+                IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(pop, new PopupOptions
+                {
+                    Shape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(12)
+                    }
+                });
+
+            }
+            catch (Exception ex)
+            {
+                await MessageBox.Show(AppResources.AlertError, AppResources.AlertLocoListNotReachable + ex.Message, AppResources.OK);
+            }
+        }
+
         /// <summary>
         /// Writes the vehicle address in CV1 to the decoder.
         /// </summary>
@@ -414,7 +496,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     string commandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
                     string commandStationIpAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);          
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2, AppResources.OK);
                     return;
                 }
 
@@ -499,7 +581,7 @@ namespace Z2XProgrammer.ViewModel
                 {
                     string commandStationName = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONNAME_KEY, AppConstants.PREFERENCES_COMMANDSTATIONNAME_DEFAULT);
                     string commandStationIpAddress = Preferences.Default.Get(AppConstants.PREFERENCES_COMMANDSTATIONIP_KEY, AppConstants.PREFERENCES_COMMANDSTATIONIP_DEFAULT);
-                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2,AppResources.OK);          
+                    await MessageBox.Show(AppResources.AlertError, AppResources.AlertNoConnectionCentralStationError1 + " " + commandStationName + " (" + commandStationIpAddress + ") " + AppResources.AlertNoConnectionCentralStationError2, AppResources.OK);
                     ActivityReadCVOngoing = false;
                     return;
                 }
