@@ -242,10 +242,10 @@ Folgender Fehler ist aufgetreten:
     <value>Halt bei höherer Spannung auf rechtem Gleis</value>
   </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
-    <value>Kurze Adressen verwenden (1 - 127)</value>
+    <value>Kurze Adressen (1 - 127)</value>
   </data>
   <data name="DCCAddressModeLong" xml:space="preserve">
-    <value>Lange Adressen verwenden (128 - 10239)</value>
+    <value>Lange Adressen (128 - 10239)</value>
   </data>
   <data name="DCCProgrammingModePOM" xml:space="preserve">
     <value>Hauptgleis</value>
@@ -2201,5 +2201,8 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   </data>
   <data name="ManufacturerUnknown" xml:space="preserve">
     <value>Unbekannt</value>
+  </data>
+  <data name="FrameDecoderSpecificationDescription" xml:space="preserve">
+    <value>Hier finden Sie die aktuelle Decoderspezifikation.</value>
   </data>
 </root>

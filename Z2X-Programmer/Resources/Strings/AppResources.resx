@@ -241,10 +241,10 @@ The following error has occurred:</value>
     <value>Stop at higher voltage on right-hand track</value>
   </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
-    <value>Short locomotive addresses (1 - 127)</value>
+    <value>Short addresses (1 - 127)</value>
   </data>
   <data name="DCCAddressModeLong" xml:space="preserve">
-    <value>Long locomotive addresses (128 - 10239)</value>
+    <value>Long addresses (128 - 10239)</value>
   </data>
   <data name="DCCProgrammingModePOM" xml:space="preserve">
     <value>Main track</value>
@@ -2200,5 +2200,8 @@ The application is aimed at beginners who want to configure the most important f
   </data>
   <data name="ManufacturerUnknown" xml:space="preserve">
     <value>Unknown</value>
+  </data>
+  <data name="FrameDecoderSpecificationDescription" xml:space="preserve">
+    <value>Hier finden Sie die wichtigsten Spezifikationsdaten, wie beispielsweise den Typ und Hersteller Ihres Decoders.</value>
   </data>
 </root>

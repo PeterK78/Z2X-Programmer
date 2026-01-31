@@ -909,7 +909,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Long locomotive addresses (128 - 10239).
+        ///   Looks up a localized string similar to Long addresses (128 - 10239).
         /// </summary>
         public static string DCCAddressModeLong {
             get {
@@ -918,7 +918,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short locomotive addresses (1 - 127).
+        ///   Looks up a localized string similar to Short addresses (1 - 127).
         /// </summary>
         public static string DCCAddressModeShort {
             get {
@@ -1643,6 +1643,15 @@ namespace Z2XProgrammer.Resources.Strings {
         public static string FrameDecoderSearchHandbook {
             get {
                 return ResourceManager.GetString("FrameDecoderSearchHandbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hier finden Sie die wichtigsten Spezifikationsdaten, wie beispielsweise den Typ und Hersteller Ihres Decoders..
+        /// </summary>
+        public static string FrameDecoderSpecificationDescription {
+            get {
+                return ResourceManager.GetString("FrameDecoderSpecificationDescription", resourceCulture);
             }
         }
         

@@ -63,6 +63,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -75,10 +76,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
+                            
+                            <!-- The icon of the widget in row 0, column 0 -->
+                            <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_contact_card_24_regular.png, Dark=ic_fluent_contact_card_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+
+	                        <!-- The description of the widget in row 0, column 1 -->
+                            <Label Margin="0,0,0,20"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameDecoderSpecificationDescription}" VerticalOptions="Start"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
 
                             <!-- RCN225: Manufacturer  -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
 
@@ -129,7 +137,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- RCN225: Software version  -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -175,7 +183,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Decoder type (ZIMO_DECODERTYPE_CV250) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -228,7 +236,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Software version (ZIMO_SUBVERSIONNR_CV65) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="4" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -281,7 +289,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Decoder ID (ZIMO_DECODERID_CV25X) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="4" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="5" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -333,7 +341,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Bootloader version (ZIMO_BOOTLOADER_VERSION_24X) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="5" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="6" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -390,7 +398,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Sound project manufacturer information (ZIMO_SOUNDPROJECTMANUFACTURER_CV105X) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="6" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="7" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -443,7 +451,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- ZIMO: Sound project version information (ZIMO_SOUNDPROJECTVERSIONINFO_CV25X) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="7" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="8" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -496,7 +504,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- Doehler & Haass: Decoder type (DOEHLERANDHAAS_DECODERTYPE_CV261) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -543,7 +551,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- Doehler & Haass: Decoder firmware version (DOEHLERANDHAAS_FIRMWAREVERSION_CV262x) -->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="4" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
 
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
@@ -590,7 +598,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </FlexLayout>
 
                             <!-- PIKO SmartDecoder V4.1: Decoder ID (PIKOSMARTDECODER_DECODERID_CV26X)-->
-                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" HorizontalOptions="End">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="1" Margin="0,10,0,0" HorizontalOptions="End">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
 
@@ -634,7 +642,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 </VerticalStackLayout>
                             </FlexLayout>
 
-                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="8" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static strings:AppResources.FrameDecoderZIMOCopyClipboard}" HorizontalOptions="End" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=CopyClipboardCommand}" MinimumWidthRequest="200" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_dark.png, Dark=ic_fluent_clipboard_paste_24_regular.png}"></Button>
+                            <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Grid.Row="9" Grid.Column="1" Margin="0,30,0,0" Text="{x:Static strings:AppResources.FrameDecoderZIMOCopyClipboard}" HorizontalOptions="End" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DecoderInformationViewModel}}, Path=CopyClipboardCommand}" MinimumWidthRequest="200" WidthRequest="200" ImageSource="{AppThemeBinding Light=ic_fluent_clipboard_paste_24_dark.png, Dark=ic_fluent_clipboard_paste_24_regular.png}"></Button>
 
                         </Grid>
                     </VerticalStackLayout>
@@ -663,7 +671,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_note_edit_24_regular.png, Dark=ic_fluent_note_edit_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                            <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_note_edit_24_regular.png, Dark=ic_fluent_note_edit_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
                             <Label Margin="0,0,0,20"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameDecoderDescriptionDescription}" VerticalOptions="Start"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
 
                             <!-- User defined short note -->
