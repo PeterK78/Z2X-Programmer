@@ -132,10 +132,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 </CollectionView>
             </Border>
 
-            <HorizontalStackLayout HorizontalOptions="End">
-                <Button MinimumWidthRequest="120" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-                <Button MinimumWidthRequest="125" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="5,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-            </HorizontalStackLayout>
+            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="End" Margin="0,10,0,0">
+                <Image x:Name="LocoListDataSourceImage"  HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="20" IsVisible="{Binding Z2XFileAvailable}"  Source="{AppThemeBinding Light=ic_fluent_database_link_24_regular.png, Dark=ic_fluent_database_link_24_dark.png}" ToolTipProperties.Text="{x:Static strings:AppResources.LocoListDataSourceTooltip}" ></Image>
+                <HorizontalStackLayout HorizontalOptions="End">
+                    <Button MinimumWidthRequest="120" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,0,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.LocolistButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                    <Button MinimumWidthRequest="125" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="5,0,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.PopupButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+                </HorizontalStackLayout>
+            </FlexLayout>
 
         </VerticalStackLayout>
     </ScrollView>

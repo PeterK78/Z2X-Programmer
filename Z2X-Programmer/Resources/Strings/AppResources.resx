@@ -2204,4 +2204,7 @@ The application is aimed at beginners who want to configure the most important f
   <data name="FrameDecoderSpecificationDescription" xml:space="preserve">
     <value>Hier finden Sie die wichtigsten Spezifikationsdaten, wie beispielsweise den Typ und Hersteller Ihres Decoders.</value>
   </data>
+  <data name="LocoListDataSourceTooltip" xml:space="preserve">
+    <value>The data in the locomotive list comes from your Traincontroller software.</value>
+  </data>
 </root>

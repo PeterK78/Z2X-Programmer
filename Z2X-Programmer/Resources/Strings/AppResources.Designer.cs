@@ -5683,6 +5683,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The data in the locomotive list comes from your Traincontroller software..
+        /// </summary>
+        public static string LocoListDataSourceTooltip {
+            get {
+                return ResourceManager.GetString("LocoListDataSourceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locomotive list.
         /// </summary>
         public static string LocoListTitle {

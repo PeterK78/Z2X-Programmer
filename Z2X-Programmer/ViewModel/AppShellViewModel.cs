@@ -307,7 +307,7 @@ namespace Z2XProgrammer.ViewModel
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
-                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList);
+                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSourceFileSystem(LocoList.ActiveSystem));
 
                 // Workaround:
                 // The .NET MAUI pop-ups currently have problems with multi-window applications. For this reason,

@@ -2205,4 +2205,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameDecoderSpecificationDescription" xml:space="preserve">
     <value>Hier finden Sie die aktuelle Decoderspezifikation.</value>
   </data>
+  <data name="LocoListDataSourceTooltip" xml:space="preserve">
+    <value>Die Daten in der Lokomotiven-Liste stammen aus Ihrer Traincontroller-Software.</value>
+  </data>
 </root>

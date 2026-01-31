@@ -105,14 +105,26 @@ namespace Z2XProgrammer.Helper
         /// <summary>
         /// Returns TRUE if the description describes the Rocrail train controller software.
         /// </summary>
-        /// <param name="trainControllerSoftware">The train controller system description.</param>
+        /// <param name="selectedLocoListDataSource">The train controller system description.</param>
         /// <returns></returns>
-        public static bool IsRocrail(string trainControllerSoftware)
+        public static bool IsSourceRocRail(string selectedLocoListDataSource)
         {
-            if (trainControllerSoftware == AppResources.FrameSettingsAppLocoListRocrail) return true;
+            if (selectedLocoListDataSource == AppResources.FrameSettingsAppLocoListRocrail) return true;
             return false;
         }
-        
+
+        /// <summary>
+        /// Determines whether the specified data source represents the system's file-based source.
+        /// </summary>
+        /// <param name="selectedLocoListDataSource">The data source identifier to evaluate. Cannot be null.</param>
+        /// <returns>true if the specified data source is the system's file-based source; otherwise, false.</returns>
+        public static bool IsSourceFileSystem(string selectedLocoListDataSource)
+        {
+            if (selectedLocoListDataSource == GetSystemNotAvailable()) return true;
+            return false; ;
+        }
+
+
         public static string GetSystemNotAvailable()
         {
             return AppResources.FrameSettingsAppLocoListNoTrainControllerNotAvailable;
@@ -131,7 +143,7 @@ namespace Z2XProgrammer.Helper
         public async static Task<List<LocoListType>> GetLocomotiveList()
         {
             List<LocoListType> locomotiveList = new List<LocoListType>();
-            if (IsRocrail(ActiveSystem) == true)
+            if (IsSourceRocRail(ActiveSystem) == true)
             {
                 locomotiveList =  await Task.Run(() => GetLocomotiveListRocrail());
             }

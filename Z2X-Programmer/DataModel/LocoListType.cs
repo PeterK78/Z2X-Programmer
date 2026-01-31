@@ -22,6 +22,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 namespace Z2XProgrammer.DataModel
 {
+    /// <summary>
+    /// Represents a locomotive entry with associated address, decoder description, image, and Z2X file information.
+    /// This class is used to manage the data in the locomotive lists.
+    /// </summary>
     public class LocoListType
     {
 

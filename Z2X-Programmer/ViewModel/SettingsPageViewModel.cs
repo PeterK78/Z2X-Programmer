@@ -106,7 +106,7 @@ namespace Z2XProgrammer.ViewModel
         partial void OnSelectedLocoListSystemChanged(string value)
         {
             Preferences.Default.Set(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, value);
-            LocoListSystemRocrailSelected = LocoList.IsRocrail(value);
+            LocoListSystemRocrailSelected = LocoList.IsSourceRocRail(value);
         }
 
         [ObservableProperty]
