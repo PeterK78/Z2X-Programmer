@@ -175,13 +175,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VisualStateManager.VisualStateGroups>
 
                         <!-- Button read vehicle address -->
-                        <Grid Margin="5,0,0,0" HorizontalOptions="Start">
+                        <Grid Margin="5,5,0,0" HorizontalOptions="Start">
                             <Button IsEnabled="{Binding DccNMRAProgramTrackEnabled}"  ImageSource="{AppThemeBinding Light=ic_fluent_slide_search_24_dark.png , Dark=ic_fluent_slide_search_24_regular.png}" MinimumWidthRequest="150" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressDetect}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=DetectVehicleAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ReadVehicleAddressTooltip}" ></Button>
                             <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ActivityReadCVOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityReadCVOngoing}"></ActivityIndicator>
                         </Grid>
 
                         <!-- Button write vehicle address -->
-                        <Grid Margin="5,0,0,0" HorizontalOptions="Start">
+                        <Grid Margin="5,5,0,0" HorizontalOptions="Start">
                             <Button ImageSource="{AppThemeBinding Light=ic_fluent_vehicleaddress_download_24_dark.png , Dark=ic_fluent_vehicleaddress_download_24_regular.png}"  MinimumWidthRequest="150" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressWriteVehicleAddress}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=WriteVehicleAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.WriteVehicleAddressTooltip}" ></Button>
                             <ActivityIndicator Grid.Row="0" Grid.Column="1" IsVisible="{Binding ActivityWriteVehicelAddressOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityWriteVehicelAddressOngoing}"></ActivityIndicator>
                         </Grid>

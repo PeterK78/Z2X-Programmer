@@ -61,7 +61,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <AdaptiveTrigger MinWindowWidth="800" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Property="FlyoutBehavior" Value="Locked" />
+                        <Setter Property="FlyoutBehavior" Value="{OnIdiom  Flyout, Tablet=Locked, Desktop=Locked}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
