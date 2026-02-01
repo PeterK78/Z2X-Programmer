@@ -8,75 +8,73 @@
 
     <!-- Note: The dark blue of the Windows 11 standard colors is used as the primary color (dark and regular). -->        
     <Color x:Key="Primary">#0063b1</Color>
-    <Color x:Key="PrimaryDark">#40bdff</Color>
+    <Color x:Key="PrimaryDark">#67d4ff</Color>
     <Color x:Key="PrimaryDarkText">White</Color>
     
     <Color x:Key="Secondary">#1875c5</Color>
-    <Color x:Key="SecondaryDark">#3cade8</Color>
+    <Color x:Key="SecondaryDark">#67d4ff</Color>
     <Color x:Key="SecondaryDarkText">White</Color>
     <Color x:Key="Tertiary">#012460</Color>
 
     <!-- The background color of the app -->
     <Color x:Key="AppBackground_Light">#f9f9f9</Color>
-    <Color x:Key="AppBackground_Dark">#2b2b2b</Color>
+    <Color x:Key="AppBackground_Dark">#19172c</Color>
 
     <!-- The background color of the fly out -->
     <Color x:Key="FlyOutBackgroundColor_Light">#f3f3f3</Color>
-    <Color x:Key="FlyOutBackgroundColor_Dark">#202020</Color>
+    <Color x:Key="FlyOutBackgroundColor_Dark">#19172c</Color>
    
     <!-- The background color of the title bar -->
     <Color x:Key="TitleBarBackground_Light">#f9f9f9</Color>
-    <Color x:Key="TitleBarBackground_Dark">#2b2b2b</Color>
+    <Color x:Key="TitleBarBackground_Dark">#19172c</Color>
     
     <!-- Button colors -->    
     <Color x:Key="ButtonBackground_Light">#f9f9f9</Color>
     <Color x:Key="ButtonBackground_Light_Disabled">#f3f3f3</Color>
-    <Color x:Key="ButtonBackground_Dark">#2b2b2b</Color>
-    <Color x:Key="ButtonBackground_Dark_Disabled">#636363</Color>
+    <Color x:Key="ButtonBackground_Dark">#19172c</Color>
+    <Color x:Key="ButtonBackground_Dark_Disabled">#080711</Color>
     <Color x:Key="ButtonText_Light">Black</Color>
     <Color x:Key="ButtonText_Dark">White</Color>
     <Color x:Key="ButtonHighlight_Light">#f3f3f3</Color>
-    <Color x:Key="ButtonHighlight_Dark">#202020</Color>
+    <Color x:Key="ButtonHighlight_Dark">#2c2848</Color>
     
     <!-- Table colors -->
     <Color x:Key="TableHeaderNormal_Light">#f3f3f3</Color>
-    <Color x:Key="TableHeaderNormal_Dark">#808080</Color>
+    <Color x:Key="TableHeaderNormal_Dark">#404040</Color>
     <Color x:Key="TableHeaderHighlight_Light">#f9f9f9</Color>
     <Color x:Key="TableHeaderHighlight_Dark">#636363</Color>
+    <Color x:Key="TableHeaderText_Light">Black</Color>
+    <Color x:Key="TableHeaderText_Dark">White</Color>
 
     <!-- Switch colors -->
     <Color x:Key="SwitchBackgroundOff">#afb0b1</Color>
     <Color x:Key="SwitchBackgroundOn">#afb0b1</Color>
-    
 
     <!-- Entry colors -->
     <Color x:Key="EntryBackground_Light">White</Color>
-    <Color x:Key="EntryBackground_Dark">#2b2b2b</Color>
+    <Color x:Key="EntryBackground_Dark">#19172c</Color>
 
     <!-- The font color of Heading 1 -->
-    <Color x:Key="LabelHeadingColor_Light">Black</Color>
-    <Color x:Key="LabelHeadingColor_Dark">White</Color>
+    <Color x:Key="LabelHeadingColor1_Light">Black</Color>
+    <Color x:Key="LabelHeadingColor1_Dark">White</Color>
 
     <!-- The font color of Heading 2 -->
     <Color x:Key="LabelHeading2Color_Light">Black</Color>
     <Color x:Key="LabelHeading2Color_Dark">White</Color>
 
-    <!-- The font color of Heading 3 -->
+    <!-- The font color of Heading 1 -->
     <Color x:Key="LabelHeading1Color_Light">Black</Color>
     <Color x:Key="LabelHeading1Color_Dark">White</Color>
-
     
-    <!-- Frame colors -->
+    <!-- The colors of a frame (border) -->
     <Color x:Key="FrameBackgroundColor_Light">#fafcfd</Color>
-    <Color x:Key="FrameBackgroundColor_Dark">#373737</Color>
+    <Color x:Key="FrameBackgroundColor_Dark">#2c2848</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Light">#f3f3f3</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Dark">#636363</Color>
-    
-    
 
     <!-- The background color of a picker -->
     <Color x:Key="PickerBackgroundColor_Light">#fefefe</Color>
-    <Color x:Key="PickerBackgroundColor_Dark">#404040</Color>
+    <Color x:Key="PickerBackgroundColor_Dark">#15132b</Color>
 
     <!-- The text color of a picker -->
     <Color x:Key="PickerTextColor_Light">Black</Color>
@@ -84,12 +82,7 @@
     
     <!-- -The text color of a standard label -->
     <Color x:Key="LabelStandardColor_Light">Black   </Color>
-    <Color x:Key="LabelStandardColor_Dark">White</Color>
-
-    <!--<Color x:Key="LabelStandardColor_Light">#767375</Color>
-    <Color x:Key="LabelStandardColor_Dark">#767375</Color>-->
-
-
+    <Color x:Key="LabelStandardColor_Dark">#bab4d9</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

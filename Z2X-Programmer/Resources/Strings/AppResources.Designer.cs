@@ -1377,7 +1377,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read vehicle address.
+        ///   Looks up a localized string similar to Readout.
         /// </summary>
         public static string FrameAddressVehicleAddressDetect {
             get {
@@ -1422,7 +1422,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write vehicle address.
+        ///   Looks up a localized string similar to Writing.
         /// </summary>
         public static string FrameAddressWriteVehicleAddress {
             get {
@@ -5782,7 +5782,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reads out the vehicle address of a decoder on the programming track..
+        ///   Looks up a localized string similar to Reads out the vehicle address of a decoder on the programming track.
         /// </summary>
         public static string ReadVehicleAddressTooltip {
             get {

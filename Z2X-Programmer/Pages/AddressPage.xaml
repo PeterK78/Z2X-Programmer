@@ -114,8 +114,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Label x:Name="FrameAddressVehicleAddressLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
-                        <VerticalStackLayout>
+                        <Label Margin="0,5,0,0" x:Name="FrameAddressVehicleAddressLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressLabel}" VerticalOptions="Center" />
+                        <VerticalStackLayout Margin="0,5,0,0">
                             <Entry  MinimumWidthRequest="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center" Placeholder="{x:Static strings:AppResources.FrameLocomotiveAddressPlaceholder}" Text="{Binding VehicleAddress}" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" >
                                 <Entry.Behaviors>
                                     <toolkit:NumericValidationBehavior                                     
@@ -134,7 +134,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </FlexLayout>
 
                     <!-- Row tested for Landscape-->
-                    <FlexLayout Direction="Row" JustifyContent="End" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,20,0,0" HorizontalOptions="End">
+                    <FlexLayout Direction="Row" JustifyContent="End" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,20,0,0" HorizontalOptions="End">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
 
@@ -145,6 +145,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="Direction" Value="Column" />
+                                        <Setter Property="HorizontalOptions" Value="End" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -155,31 +156,33 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="Direction" Value="Column" />
+                                        <Setter Property="HorizontalOptions" Value="End" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <!-- LandscapeHorizontal -->
                                 <VisualState x:Name="LandscapeHorizontal">
                                     <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="1100"/>
+                                        <AdaptiveTrigger MinWindowWidth="500"/>
                                         <OrientationStateTrigger Orientation="Landscape" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="Direction" Value="Row" />
+                                        <Setter Property="HorizontalOptions" Value="Start" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
                         <!-- Button read vehicle address -->
-                        <Grid Margin="5,0,0,0">
-                            <Button IsEnabled="{Binding DccNMRAProgramTrackEnabled}"  ImageSource="{AppThemeBinding Light=ic_fluent_slide_search_24_dark.png , Dark=ic_fluent_slide_search_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressDetect}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=DetectVehicleAddressCommand}" WidthRequest="300" ToolTipProperties.Text="{x:Static strings:AppResources.ReadVehicleAddressTooltip}" ></Button>
+                        <Grid Margin="5,0,0,0" HorizontalOptions="Start">
+                            <Button IsEnabled="{Binding DccNMRAProgramTrackEnabled}"  ImageSource="{AppThemeBinding Light=ic_fluent_slide_search_24_dark.png , Dark=ic_fluent_slide_search_24_regular.png}" MinimumWidthRequest="150" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressDetect}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=DetectVehicleAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.ReadVehicleAddressTooltip}" ></Button>
                             <ActivityIndicator Grid.Row="0" Grid.Column="0" IsVisible="{Binding ActivityReadCVOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityReadCVOngoing}"></ActivityIndicator>
                         </Grid>
 
                         <!-- Button write vehicle address -->
-                        <Grid Margin="5,0,0,0">
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_vehicleaddress_download_24_dark.png , Dark=ic_fluent_vehicleaddress_download_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressWriteVehicleAddress}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=WriteVehicleAddressCommand}" WidthRequest="300" ToolTipProperties.Text="{x:Static strings:AppResources.WriteVehicleAddressTooltip}" ></Button>
+                        <Grid Margin="5,0,0,0" HorizontalOptions="Start">
+                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_vehicleaddress_download_24_dark.png , Dark=ic_fluent_vehicleaddress_download_24_regular.png}"  MinimumWidthRequest="150" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameAddressWriteVehicleAddress}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=WriteVehicleAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.WriteVehicleAddressTooltip}" ></Button>
                             <ActivityIndicator Grid.Row="0" Grid.Column="1" IsVisible="{Binding ActivityWriteVehicelAddressOngoing}" HorizontalOptions="Center" IsRunning="{Binding ActivityWriteVehicelAddressOngoing}"></ActivityIndicator>
                         </Grid>
 
@@ -244,9 +247,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VisualStateManager.VisualStateGroups>
 
 
-                        <Label x:Name="FrameAddressVehicleAddressModeLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout HorizontalOptions="Start">
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="Start" MinimumWidthRequest="350" VerticalOptions="Center" HorizontalTextAlignment="End" ></Picker>
+                        <Label Margin="0,5,0,0" x:Name="FrameAddressVehicleAddressModeLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout HorizontalOptions="Start" Margin="0,5,0,0">
+                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="Start" MinimumWidthRequest="350" VerticalOptions="Center"></Picker>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
                     </FlexLayout>

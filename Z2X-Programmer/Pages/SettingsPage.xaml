@@ -82,9 +82,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <CollectionView ItemsSource="{Binding CommandStations}" SelectedItem="{Binding SelectedCommandStation}" SelectionMode="Single">
 
                                 <CollectionView.Header>
-                                    <Grid ColumnDefinitions="*,*">
-                                        <Label Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="Name"/>
-                                        <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="IP Adresse"/>
+                                    <Grid ColumnDefinitions="*,*" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}">
+                                        <Label Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource Z2XProgrammerLabelTableHeaderStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="Name"/>
+                                        <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelTableHeaderStyle}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="IP Adresse"/>
                                     </Grid>
                                 </CollectionView.Header>
 

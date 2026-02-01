@@ -1948,7 +1948,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Hinten</value>
   </data>
   <data name="FrameAddressVehicleAddressDetect" xml:space="preserve">
-    <value>Fahrzeugadresse auslesen</value>
+    <value>Auslesen</value>
   </data>
   <data name="FrameAddressVehicleAddressDetectNotProgTrack" xml:space="preserve">
     <value>Das Auslesen der Fahrzeugadresse funktioniert nur am Programmiergleis.</value>
@@ -1957,7 +1957,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Die Fahrzeugadresse konnte nicht ausgelesen werden.</value>
   </data>
   <data name="ReadVehicleAddressTooltip" xml:space="preserve">
-    <value>Liest die Fahrzeugadresse eines Decoders am Programmiergleis aus.</value>
+    <value>Liest die Fahrzeugadresse eines Decoders am Programmiergleis aus</value>
   </data>
   <data name="FrameDecoderZIMOInfoSoundManufacturer" xml:space="preserve">
     <value>Hersteller des Soundprojekts (CV105, CV106)</value>
@@ -2104,7 +2104,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>zuweisen?</value>
   </data>
   <data name="FrameAddressWriteVehicleAddress" xml:space="preserve">
-    <value>Fahrzeugadresse schreiben</value>
+    <value>Schreiben</value>
   </data>
   <data name="WriteVehicleAddressTooltip" xml:space="preserve">
     <value>Schreibt die Fahrzeugadresse auf den Decoder</value>

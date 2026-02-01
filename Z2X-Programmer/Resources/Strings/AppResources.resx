@@ -1947,7 +1947,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Rear</value>
   </data>
   <data name="FrameAddressVehicleAddressDetect" xml:space="preserve">
-    <value>Read vehicle address</value>
+    <value>Readout</value>
   </data>
   <data name="FrameAddressVehicleAddressDetectNotProgTrack" xml:space="preserve">
     <value>Reading out the vehicle address only works on the programming track.</value>
@@ -1956,7 +1956,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>The vehicle address could not be read out.</value>
   </data>
   <data name="ReadVehicleAddressTooltip" xml:space="preserve">
-    <value>Reads out the vehicle address of a decoder on the programming track.</value>
+    <value>Reads out the vehicle address of a decoder on the programming track</value>
   </data>
   <data name="FrameDecoderZIMOInfoSoundManufacturer" xml:space="preserve">
     <value>Sound project manufacturer (CV105, CV106)</value>
@@ -2103,7 +2103,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>?</value>
   </data>
   <data name="FrameAddressWriteVehicleAddress" xml:space="preserve">
-    <value>Write vehicle address</value>
+    <value>Writing</value>
   </data>
   <data name="WriteVehicleAddressTooltip" xml:space="preserve">
     <value>Write the vehicle address on the decoder</value>
