@@ -106,7 +106,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ⚠ The displayed decoder values originate from a Z2X project file. It is possible that these values are no longer up to date. Load the settings from the decoder to obtain reliable current values..
+        ///   Looks up a localized string similar to ⚠ The displayed decoder values originate from a Z2X project file..
         /// </summary>
         public static string AlertDataInBackupAreNotFromDecoder {
             get {
@@ -1035,7 +1035,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current decoder value.
+        ///   Looks up a localized string similar to Current.
         /// </summary>
         public static string DownloadDataColumnHeaderCVDecoderValue {
             get {
@@ -1044,7 +1044,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV number.
+        ///   Looks up a localized string similar to CV.
         /// </summary>
         public static string DownloadDataColumnHeaderCVNumber {
             get {
@@ -1053,7 +1053,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New value after download.
+        ///   Looks up a localized string similar to New.
         /// </summary>
         public static string DownloadDataColumnHeaderCVZ2XValue {
             get {

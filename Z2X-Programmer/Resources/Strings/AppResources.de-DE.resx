@@ -1507,13 +1507,13 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Schreiben</value>
   </data>
   <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
-    <value>CV Nummer</value>
+    <value>CV</value>
   </data>
   <data name="DownloadDataColumnHeaderCVZ2XValue" xml:space="preserve">
-    <value>Neuer Wert nach Download</value>
+    <value>Neu</value>
   </data>
   <data name="DownloadDataColumnHeaderCVDecoderValue" xml:space="preserve">
-    <value>Aktueller Wert im Decoder</value>
+    <value>Aktuell</value>
   </data>
   <data name="DownloadDataButtonOK" xml:space="preserve">
     <value>OK</value>
@@ -1528,7 +1528,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Bei ZIMO Decoder kann der DCC-Betriebsmodus nicht deaktiviert werden.</value>
   </data>
   <data name="AlertDataInBackupAreNotFromDecoder" xml:space="preserve">
-    <value>⚠ Die angezeigten Decoderwerte stammen aus einer Z2X-Projektdatei. Es ist somit möglich, dass diese Werte nicht mehr auf dem neuesten Stand sind. Laden Sie die Einstellungen aus dem Decoder, um zuverlässige aktuelle Werte zu erhalten.</value>
+    <value>⚠ Die angezeigten Decoderwerte stammen aus einer Z2X-Projektdatei. </value>
   </data>
   <data name="FrameGettingStartedTitle" xml:space="preserve">
     <value>Erste Schritte</value>

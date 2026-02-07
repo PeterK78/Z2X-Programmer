@@ -35,60 +35,73 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
     <VerticalStackLayout HorizontalOptions="Center">
 
-        <!-- Title and icon of the popup dialog -->
-        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,10">
-            <Image x:Name="TitelIcon" Margin="0,0,10,0" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" ></Image>
-            <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" LineBreakMode="WordWrap" ></Label>
-        </HorizontalStackLayout>
-
-        <!-- Description of the popup -->
-        <Label x:Name="DecriptionTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" Margin="0,0,0,20" ></Label>
-
-        <!-- A note if the data from the backup was not read directly from the decoder. -->
-        <Label x:Name="NoteTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" LineBreakMode="WordWrap" HorizontalOptions="Start" Margin="0,0,0,20"></Label>
-
         <!-- The collection view with the configuration variables -->
-        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,0,0,0">
-            <CollectionView x:Name="ConfigurationVariablesCollectionView" SelectionMode="Single" MaximumHeightRequest="300" MinimumWidthRequest="200" WidthRequest="600" HorizontalScrollBarVisibility="Default">
-                <CollectionView.Header>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120" />
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVNumber}" Grid.Column="0"/>
-                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVDecoderValue}"  Grid.Column="1"/>
-                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text=""  Grid.Column="2"/>
-                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVZ2XValue}"  Grid.Column="3"/>
-                    </Grid>
-                </CollectionView.Header>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="datamodel:ConfigurationVariableDownloadInfo">
+            <!-- Title and icon of the popup dialog -->
+            <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,10" Grid.Column="0" Grid.Row="0">
+                <Image x:Name="TitelIcon" Margin="0,0,10,0" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" ></Image>
+                <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" LineBreakMode="WordWrap" ></Label>
+            </HorizontalStackLayout>
+
+            <!-- Description of the popup -->
+            <Label x:Name="DecriptionTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" Margin="0,0,0,20" Grid.Column="0" Grid.Row="1" ></Label>
+
+            <!-- A note if the data from the backup was not read directly from the decoder. -->
+            <Label x:Name="NoteTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" LineBreakMode="WordWrap" HorizontalOptions="Start" Margin="0,0,0,20" Grid.Column="0" Grid.Row="2"></Label>
+
+            <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,0,0,0" Grid.Column="0" Grid.Row="3">
+                <CollectionView x:Name="ConfigurationVariablesCollectionView" SelectionMode="Single" MinimumHeightRequest="200" MinimumWidthRequest="200" MaximumHeightRequest="250" HorizontalScrollBarVisibility="Default">
+                    <CollectionView.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}"/>
-                            <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueDecoder}"/>
-                            <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="→"/>
-                            <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueZ2X}"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVNumber}" Grid.Column="0"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVDecoderValue}"  Grid.Column="1"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text=""  Grid.Column="2"/>
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.DownloadDataColumnHeaderCVZ2XValue}"  Grid.Column="3"/>
                         </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Border>
+                    </CollectionView.Header>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="datamodel:ConfigurationVariableDownloadInfo">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Number}"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueDecoder}"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="→"/>
+                                <Label HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ValueZ2X}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
 
         <!-- The buttons at the bottom of the page -->
-        <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,0">
+        <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,0" Grid.Column="0" Grid.Row="4">
             <Button MinimumWidthRequest="110" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-            <Button MinimumWidthRequest="120"   Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            <Button MinimumWidthRequest="120" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
         </HorizontalStackLayout>
-
+            
+        </Grid>
     </VerticalStackLayout>
 </mct:Popup>

@@ -936,7 +936,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  We show the user which variables are changed. We then ask whether they want to download these values
                 //  - if so, we start the download. Otherwise we return.
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo, AppResources.DownloadDataTitle, "ic_fluent_arrow_download_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ListOfWritableConfigVariables, AppResources.DownloadAllSettingsYesNo, AppResources.DownloadDataTitle, Application.Current.RequestedTheme ==  AppTheme.Dark ? "ic_fluent_arrow_download_24_dark.png" : "ic_fluent_arrow_download_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
                 IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData);
                 if ((popUpResult != null) && (popUpResult.Result != "OK")) return;
 
