@@ -30,25 +30,26 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
            xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
            xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
            Padding="0,0,0,0"
-           BackgroundColor="White">
+           MaximumWidthRequest="640"
+           BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}">
 
     <VerticalStackLayout HorizontalOptions="Center">
 
         <!-- Title and icon of the popup dialog -->
-        <HorizontalStackLayout HorizontalOptions="Start" Margin="0,0,0,10">
-            <Image x:Name="TitelIcon" Margin="0,0,10,0" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" VerticalOptions="Center" ></Image>
-            <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" VerticalOptions="Center" ></Label>
+        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,10">
+            <Image x:Name="TitelIcon" Margin="0,0,10,0" HeightRequest="20" Source="{AppThemeBinding Light=ic_fluent_card_ui_24_regular.png, Dark=ic_fluent_card_ui_24_dark.png}" ></Image>
+            <Label x:Name="TitelTextLabel" Text="{x:Static strings:AppResources.DownloadDataTitle}" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" LineBreakMode="WordWrap" ></Label>
         </HorizontalStackLayout>
 
         <!-- Description of the popup -->
         <Label x:Name="DecriptionTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" Margin="0,0,0,20" ></Label>
 
         <!-- A note if the data from the backup was not read directly from the decoder. -->
-        <Label x:Name="NoteTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" LineBreakMode="WordWrap" HorizontalOptions="Start" MaximumWidthRequest="600" Margin="0,0,0,20"></Label>
+        <Label x:Name="NoteTextLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" LineBreakMode="WordWrap" HorizontalOptions="Start" Margin="0,0,0,20"></Label>
 
         <!-- The collection view with the configuration variables -->
-        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,0,20,0">
-            <CollectionView x:Name="ConfigurationVariablesCollectionView" SelectionMode="Single" HeightRequest="300" WidthRequest="600">
+        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,0,0,0">
+            <CollectionView x:Name="ConfigurationVariablesCollectionView" SelectionMode="Single" MaximumHeightRequest="300" MinimumWidthRequest="200" WidthRequest="600" HorizontalScrollBarVisibility="Default">
                 <CollectionView.Header>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -84,9 +85,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </Border>
 
         <!-- The buttons at the bottom of the page -->
-        <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,20,0">
-            <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
-            <Button WidthRequest="200"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+        <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,0">
+            <Button MinimumWidthRequest="110" Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="0,10,0,0" x:Name="OKButton" Clicked="OKButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonOK}" HorizontalOptions="Center" VerticalOptions="End"></Button>
+            <Button MinimumWidthRequest="120"   Style="{StaticResource Z2XProgrammerStandardButtonStyle}"  Margin="10,10,0,0" x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="{x:Static strings:AppResources.DownloadDataButtonCancel}" HorizontalOptions="Center" VerticalOptions="End"></Button>
         </HorizontalStackLayout>
 
     </VerticalStackLayout>

@@ -1062,7 +1062,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Writing settings to the decoder.
+        ///   Looks up a localized string similar to Writing.
         /// </summary>
         public static string DownloadDataTitle {
             get {

@@ -1504,7 +1504,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
 ⚠ Änderungen werden nach einem Neustart übernommen.</value>
   </data>
   <data name="DownloadDataTitle" xml:space="preserve">
-    <value>Einstellungen auf den Decoder schreiben</value>
+    <value>Schreiben</value>
   </data>
   <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
     <value>CV Nummer</value>

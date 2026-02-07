@@ -49,13 +49,13 @@
                     <VisualState x:Name="On">
                         <VisualState.Setters>
                             <Setter Property="ThumbColor" Value="{OnPlatform White, Android={StaticResource Primary}}" />
-                            <Setter Property="OnColor" Value="{OnPlatform {StaticResource Primary}, Android={StaticResource SwitchBackgroundOn}}" />
+                            <Setter Property="OnColor" Value="{OnPlatform {StaticResource Primary}, Android={StaticResource SwitchBackgroundOnAndroid}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Off">
                         <VisualState.Setters>
                             <Setter Property="ThumbColor" Value="DarkSlateGray" />
-                            <Setter Property="OffColor" Value="{OnPlatform {StaticResource FlyOutBackgroundColor_Light}, Android={StaticResource SwitchBackgroundOff}}" />
+                            <Setter Property="OffColor" Value="{OnPlatform {StaticResource FlyOutBackgroundColor_Light}, Android={StaticResource SwitchBackgroundOffAndroid}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

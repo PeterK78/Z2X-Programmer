@@ -347,6 +347,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </VerticalStackLayout>
                             <Button Margin="5,0,0,0" ImageSource="{AppThemeBinding Light=ic_fluent_locomotive_list_24_dark.png , Dark=ic_fluent_locomotive_list_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddressViewModel}}, Path=GetSecondaryAddressCommand}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameAddressSecondAddressButtonToolTip}"></Button>
                         </HorizontalStackLayout>
+                        
                         <!-- ZIMO: The secondary address mode in CV112 (ZIMO_MXFX_SECONDADDRESS_CV64) -->
                         <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
@@ -390,7 +391,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" Text="{x:Static strings:AppResources.FrameAddressSecondAddressModeLabel}" VerticalOptions="Center"/>
 
                             <VerticalStackLayout>
-                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesSecondaryAdr}" SelectedItem="{Binding SelectedDCCAddressModeSecondaryAdr}" HorizontalOptions="End" WidthRequest="350" HorizontalTextAlignment="End"  VerticalOptions="End"></Picker>
+                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesSecondaryAdr}" SelectedItem="{Binding SelectedDCCAddressModeSecondaryAdr}" HorizontalOptions="End" WidthRequest="280" HorizontalTextAlignment="End" VerticalOptions="End"></Picker>
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeSecondaryAdrCVValues}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 

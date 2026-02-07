@@ -47,8 +47,8 @@
     <Color x:Key="TableHeaderText_Dark">White</Color>
 
     <!-- Switch colors -->
-    <Color x:Key="SwitchBackgroundOff">#afb0b1</Color>
-    <Color x:Key="SwitchBackgroundOn">#afb0b1</Color>
+    <Color x:Key="SwitchBackgroundOffAndroid">#afb0b1</Color>
+    <Color x:Key="SwitchBackgroundOnAndroid">White</Color>
 
     <!-- Entry colors -->
     <Color x:Key="EntryBackground_Light">White</Color>

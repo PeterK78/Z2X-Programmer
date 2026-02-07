@@ -840,7 +840,7 @@ namespace Z2XProgrammer.ViewModel
                 //IPopupResult<bool> pipResult = await Shell.Current.CurrentPage.ShowPopupAsync<bool>(x); 
 
 
-                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo, AppResources.DownloadDataTitle, "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
+                PopUpDownloadData popupDownloadData = new PopUpDownloadData(ModifiedConfigVariables, AppResources.DownloadNewSettingsYesNo, AppResources.DownloadDataTitle, Application.Current.RequestedTheme ==  AppTheme.Dark ?  "ic_fluent_arrow_download_diff_24_dark.png" : "ic_fluent_arrow_download_diff_24_regular.png", DataStore.DecoderConfiguration.BackupDataFromDecoderIsValid);
                 IPopupResult<string> popUpResult = await Shell.Current.CurrentPage.ShowPopupAsync<string>(popupDownloadData, new PopupOptions
                 {
                     Shape = new RoundRectangle

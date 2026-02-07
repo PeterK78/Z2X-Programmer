@@ -1503,7 +1503,7 @@ The application is aimed at beginners who want to configure the most important f
 ⚠ Changes are applied after a restart.</value>
   </data>
   <data name="DownloadDataTitle" xml:space="preserve">
-    <value>Writing settings to the decoder</value>
+    <value>Writing</value>
   </data>
   <data name="DownloadDataColumnHeaderCVNumber" xml:space="preserve">
     <value>CV number</value>

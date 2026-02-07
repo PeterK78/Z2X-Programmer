@@ -2,7 +2,11 @@
 
 ## Responsive design pattern
 
-### Simple number widget
+### Simple widget
+A simple widget contains of a label and a switch.
+
+
+### Complex widget
 
 ```
 <!-- We use a label with the style Z2XProgrammerLabelHeading2Style as the heading -->
@@ -22,7 +26,7 @@
 	<Grid.ColumnDefinitions>
 		<ColumnDefinition Width="40"></ColumnDefinition>
 		<ColumnDefinition Width="*"></ColumnDefinition>
-		<ColumnDefinition Width="*"></ColumnDefinition>
+		<ColumnDefinition Width="Auto"></ColumnDefinition>
 	</Grid.ColumnDefinitions>
 
 	<!-- Our grid consists of two rows:
