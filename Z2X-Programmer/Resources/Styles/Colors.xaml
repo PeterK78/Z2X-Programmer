@@ -71,6 +71,8 @@
     <Color x:Key="FrameBackgroundColor_Dark">#2c2848</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Light">#f3f3f3</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Dark">#636363</Color>
+    <Color x:Key="FrameStrokeColor_Light">#e5e5e5</Color>
+    <Color x:Key="FrameStrokeColor_Dark">#2c2848</Color>
 
     <!-- The background color of a picker -->
     <Color x:Key="PickerBackgroundColor_Light">#fefefe</Color>

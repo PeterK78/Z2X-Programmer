@@ -208,7 +208,7 @@
         <Setter Property="StrokeShape" Value="RoundRectangle 8"></Setter>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
         <Setter Property="StrokeThickness" Value="0.5"></Setter>
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"></Setter>
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource FrameStrokeColor_Light}, Dark={StaticResource FrameStrokeColor_Dark}}"></Setter>
         <Setter Property="Padding" Value="20,20,20,20" />
     </Style>
 
