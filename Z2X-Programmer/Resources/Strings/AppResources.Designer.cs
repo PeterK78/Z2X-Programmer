@@ -882,7 +882,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stop at higher voltage on left-hand track.
+        ///   Looks up a localized string similar to Higher voltage on the left track.
         /// </summary>
         public static string DCCABCBreakModeLeftTrack {
             get {
@@ -900,7 +900,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stop at higher voltage on right-hand track.
+        ///   Looks up a localized string similar to Higher voltage on the right track.
         /// </summary>
         public static string DCCABCBreakModeRightTrack {
             get {

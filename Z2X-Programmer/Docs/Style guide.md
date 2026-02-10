@@ -3,7 +3,40 @@
 ## Responsive design pattern
 
 ### Simple widget
-A simple widget contains of a label and a switch.
+A simple widget contains of a label and a narrow input element (switch, textbox etc.).
+
+```
+<Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_DIRECTION_CV29_0}">
+    <Grid>
+        <Grid.ColumnDefinitions>                            
+            <ColumnDefinition Width="40"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_direction_24_regular.png, Dark=ic_fluent_direction_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+        <Label  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDirectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+
+        <!-- RCN225: Normal drive direction in CV29.0 (RCN225_DIRECTION_CV29_0) -->
+        <Label x:Name="FrameDriveCharacteristicsDirectionLabel" IsVisible="{Binding RCN225_DIRECTION_CV29_0}" Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameDriveCharacteristicsDirectionLabel}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+        <VerticalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End" IsVisible="{Binding RCN225_DIRECTION_CV29_0}">
+            <HorizontalStackLayout>
+                <Label Text="{Binding Path=DirectionReversal,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                <VerticalStackLayout>
+                    <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding DirectionReversal}" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV29Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+        </VerticalStackLayout>
+
+    </Grid>
+</Border>
+```
 
 
 ### Complex widget

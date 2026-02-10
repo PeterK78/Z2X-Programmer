@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="ic_fluent_direction_24_regular.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="47.208333"
+     inkscape:cx="12"
+     inkscape:cy="12"
+     inkscape:window-width="2560"
+     inkscape:window-height="1351"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="m 20.999999,17.25 c 0,0.4142 -0.3358,0.75 -0.75,0.75 H 5.5606587 l 0.71967,0.7197 c 0.29289,0.2929 0.29289,0.7677 0,1.0606 -0.29289,0.2929 -0.76777,0.2929 -1.06066,0 l -1.9999999,-2 c -0.29289,-0.2929 -0.29289,-0.7677 0,-1.0606 l 1.9999999,-2 c 0.29289,-0.2929 0.76777,-0.2929 1.0606601,0 0.29289,0.2929 0.29289,0.7677 0,1.0606 L 5.5606587,16.5 H 20.249999 c 0.4142,0 0.75,0.3358 0.75,0.75 z"
+     fill="#212121"
+     id="path1"
+     sodipodi:nodetypes="sscssccccsccss" />
+  <path
+     d="m 3.0000122,8.2036378 c 0,0.4142 0.33579,0.75 0.75,0.75 H 18.439313 l -0.7196,0.7197 c -0.2929,0.2929 -0.2929,0.7677002 0,1.0606002 0.2929,0.2929 0.7677,0.2929 1.0606,0 l 2,-2.0000002 c 0.2929,-0.2929 0.2929,-0.7677 0,-1.0606 l -2,-2 c -0.2929,-0.2929 -0.7677,-0.2929 -1.0606,0 -0.2929,0.2929 -0.2929,0.7677 0,1.0606 l 0.7196,0.7197 H 3.7500122 c -0.41421,0 -0.75,0.3358 -0.75,0.75 z"
+     fill="#212121"
+     id="path1-8"
+     sodipodi:nodetypes="ssccssssssccss" />
+</svg>

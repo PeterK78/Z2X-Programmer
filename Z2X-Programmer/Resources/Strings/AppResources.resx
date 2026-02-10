@@ -232,13 +232,13 @@ The following error has occurred:</value>
     <value>STOP</value>
   </data>
   <data name="DCCABCBreakModeLeftTrack" xml:space="preserve">
-    <value>Stop at higher voltage on left-hand track</value>
+    <value>Higher voltage on the left track</value>
   </data>
   <data name="DCCABCBreakModeOff" xml:space="preserve">
     <value>Switched off</value>
   </data>
   <data name="DCCABCBreakModeRightTrack" xml:space="preserve">
-    <value>Stop at higher voltage on right-hand track</value>
+    <value>Higher voltage on the right track</value>
   </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
     <value>Short addresses (1 - 127)</value>

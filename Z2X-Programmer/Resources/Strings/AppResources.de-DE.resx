@@ -233,13 +233,13 @@ Folgender Fehler ist aufgetreten:
     <value>STOP</value>
   </data>
   <data name="DCCABCBreakModeLeftTrack" xml:space="preserve">
-    <value>Halt bei höherer Spannung auf linkem Gleis</value>
+    <value>Höhere Spannung linkes Gleis</value>
   </data>
   <data name="DCCABCBreakModeOff" xml:space="preserve">
     <value>Ausgeschaltet</value>
   </data>
   <data name="DCCABCBreakModeRightTrack" xml:space="preserve">
-    <value>Halt bei höherer Spannung auf rechtem Gleis</value>
+    <value>Höhere Spannung rechtes Gleis</value>
   </data>
   <data name="DCCAddressModeShort" xml:space="preserve">
     <value>Kurze Adressen (1 - 127)</value>

@@ -129,7 +129,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Label FontAutoScalingEnabled="False" Text="{Binding VehicleAddress}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
 
                         <!-- DCC address mode -->
-                        <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_step_24_regular.png, Dark=ic_fluent_step_24_regular_dark.png}" VerticalOptions="Center" ></Image>
+                        <Image Margin="5,0,0,0" HeightRequest="16" Source="{AppThemeBinding Light=ic_fluent_step_24_regular.png, Dark=ic_fluent_timer_24_dark.png}" VerticalOptions="Center" ></Image>
                         <Label FontAutoScalingEnabled="False" IsVisible="{Binding SpeedStep14}" Text="14" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label FontAutoScalingEnabled="False" IsVisible="{Binding SpeedStep28}" Text="28" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <Label FontAutoScalingEnabled="False" IsVisible="{Binding SpeedStep128}" Text="128" VerticalOptions="Center"  HorizontalOptions="Start" />
