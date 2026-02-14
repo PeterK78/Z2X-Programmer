@@ -34,7 +34,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:Class="Z2XProgrammer.Pages.MotorCharacteristicsPage"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              Title="{x:Static strings:AppResources.FyoutItemMotorCharacteristicsText}">
 
     <ContentPage.Resources>
@@ -66,6 +66,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding RCN225_SPEEDTABLE_CV29_4}">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -73,9 +74,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Label x:Name="FrameMotorCharacteristicsCharacteristicCurveTypeLabel" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="0"  HorizontalOptions="End">
+
+                        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_data_line_24_regular.png, Dark=ic_fluent_data_line_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label x:Name="FrameMotorCharacteristicsCharacteristicCurveTypeLabel" Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCharacteristicCurveTypeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="2"  HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ExtendedSpeedCurveEnabled}" VerticalOptions="Center" HorizontalOptions="End" ></Switch>
@@ -89,23 +92,64 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding Path=ExtendedSpeedCurveEnabled,Converter={StaticResource boolInvert}}">
                     <VerticalStackLayout>
+
                         <!-- RCN225: Minimum speed in CV2 -->
                         <Grid IsVisible="{Binding RCN225_MINIMALSPEED_CV2}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <HorizontalStackLayout >
-                                    <Slider Value="{Binding MinimumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                                </HorizontalStackLayout>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="0" Grid.Column="0"  HorizontalOptions="End">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout HorizontalOptions="Start" >
+                                    <VerticalStackLayout>
+                                        <Slider Value="{Binding MinimumSpeed}" WidthRequest="200" Maximum="255" Minimum="1" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                        <Label  Text="{Binding MinimumSpeedValueDescription}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                                    </VerticalStackLayout>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+
+                            </FlexLayout>
                         </Grid>
 
                         <!-- PIKO SMARTDECODER: Minimum speed in CV2 (the upper limit is 63, not 255) -->
@@ -117,30 +161,111 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label x:Name="FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <HorizontalStackLayout >
-                                    <Slider Value="{Binding MinimumPikoSmartDecoderSpeed}" WidthRequest="300" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Text="{Binding MinimumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                                </HorizontalStackLayout>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                                <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIKOBasicCurveMinimumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout>
+                                    <VerticalStackLayout HorizontalOptions="Start" >
+                                        <Slider Value="{Binding MinimumPikoSmartDecoderSpeed}" WidthRequest="200" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
+                                        <Label  Text="{Binding MinimumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="End" ></Label>
+                                    </VerticalStackLayout>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
                         </Grid>
 
                         <!-- RCN225: Medium speed in CV6 -->
                         <Grid Margin="0,20,0,0" IsVisible="{Binding RCN225_MEDIUMSPEED_CV6}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMediumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <HorizontalStackLayout>
-                                    <Slider Value="{Binding MediumSpeed}" WidthRequest="300" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                                </HorizontalStackLayout>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV6Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="0" Grid.Column="0"  HorizontalOptions="End">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+
+                                <Label x:Name="FrameMotorCharacteristicsBasicCurveMediumSpeedTitle" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMediumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout HorizontalOptions="Start">
+                                    <VerticalStackLayout>
+                                        <Slider Value="{Binding MediumSpeed}" WidthRequest="200" Maximum="255" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
+                                        <Label  Text="{Binding MediumSpeedValueDescription}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                                    </VerticalStackLayout>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV6Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+
+                            </FlexLayout>
                         </Grid>
 
                         <!-- RCN225: Maximum speed CV5. The usage of CV5 can be enabled and disabled by setting CV5 to 0 or 1. See RCN-225 for more details -->
@@ -155,7 +280,8 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label x:Name="FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedTitle}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,10" />
+
                             <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
                                 <HorizontalStackLayout >
@@ -165,12 +291,52 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
-                            <Label Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" >
-                                <Slider Value="{Binding MaximumSpeed}" WidthRequest="300" Minimum="0"  Maximum="255"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
-                            </HorizontalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+
+                                <Label IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout IsVisible="{Binding Path=MaximumSpeedDefaultUsed,Converter={StaticResource boolInvert}}" HorizontalOptions="Start" >
+                                    <Slider Value="{Binding MaximumSpeed}" WidthRequest="200" Minimum="0"  Maximum="255"  VerticalOptions="Center" HorizontalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MaximumSpeedValueDescription}" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
+                                </VerticalStackLayout>
+
+                            </FlexLayout>
                         </Grid>
 
                         <!-- PIKO SMARTDECODER: Maximum speed in CV5 (the upper limit is 63, not 255) PIKOSMARTDECODER_MAXIMUMSPEED_CV5 -->
@@ -183,14 +349,53 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                                <HorizontalStackLayout >
-                                    <Slider Value="{Binding MaximumPikoSmartDecoderSpeed}" WidthRequest="300" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Text="{Binding MaximumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                                </HorizontalStackLayout>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                                <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout >
+                                    <VerticalStackLayout HorizontalOptions="Start">
+                                        <Slider Value="{Binding MaximumPikoSmartDecoderSpeed}" WidthRequest="200" Maximum="63" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
+                                        <Label  Text="{Binding MaximumPikoSmartDecoderSpeedValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="Center" HorizontalTextAlignment="End" ></Label>
+                                    </VerticalStackLayout>
+                                    <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV2Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
                         </Grid>
 
                         <!-- DOEHLER AND HAAS: Maximum speed in CV5 (DOEHLERANDHAASS_MAXIMALSPEED_CV5)-->
@@ -205,7 +410,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel" Grid.Row="0" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedTitel}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,10" />
                             <Label Grid.Row="1" Grid.Column="0"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedDefaultEnabled}" VerticalOptions="Center"  HorizontalOptions="Start" />
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1"  HorizontalOptions="End">
                                 <HorizontalStackLayout >
@@ -215,12 +420,51 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV5Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
-                            <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel" Grid.Row="2" Grid.Column="0"  IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" >
-                                <Slider Value="{Binding MaximumDoehlerAndHaasSpeed}" WidthRequest="300" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label  Text="{Binding MaximumSpeedDoehlerAndHaasValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
-                            </HorizontalStackLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
+                                <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+
+                                        <!-- Portrait -->
+                                        <VisualState x:Name="Portrait">
+                                            <VisualState.StateTriggers>
+                                                <OrientationStateTrigger Orientation="Portrait" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeVertical -->
+                                        <VisualState x:Name="LandscapeVertical">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0"/>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Column" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <!-- LandscapeHorizontal -->
+                                        <VisualState x:Name="LandscapeHorizontal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="950"/>
+                                                <OrientationStateTrigger Orientation="Landscape" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Direction" Value="Row" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Label x:Name="FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel"  IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDoehlerHaasMaxSpeedLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                <VerticalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MaximumSpeedDoehlerAndHaasDefaultUsed,Converter={StaticResource boolInvert}}" >
+                                    <Slider Value="{Binding MaximumDoehlerAndHaasSpeed}" WidthRequest="200" Minimum="0"  Maximum="127"  VerticalOptions="Center" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsBasicCurveMaximumSliderTooltip}" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label  Text="{Binding MaximumSpeedDoehlerAndHaasValueDescription}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="Center" HorizontalTextAlignment="End"></Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
                         </Grid>
 
 
@@ -231,7 +475,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsExtendedSpeedCurve}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ExtendedSpeedCurveEnabled}" IsEnabled="{Binding RCN225_EXTENDEDSPEEDCURVEVALUES_CV67X}">
                     <chart:SfCartesianChart>
-                        
+
                         <chart:SfCartesianChart.InteractiveBehavior>
                             <helper:ChartInteractionExt />
                         </chart:SfCartesianChart.InteractiveBehavior>
@@ -278,13 +522,13 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </chart:SplineSeries.SelectionBehavior>
 
                         </chart:SplineSeries>
-                        
-                    </chart:SfCartesianChart>                                       
+
+                    </chart:SfCartesianChart>
                 </Border>
                 <HorizontalStackLayout HorizontalOptions="End" Margin="0,10,0,0" IsVisible="{Binding ExtendedSpeedCurveEnabled}">
-                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_triangle_down_24_dark.png , Dark=ic_fluent_triangle_down_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDecreaseCurve}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=DecreaseExtendedSpeedCurveCommand}" WidthRequest="150"></Button> 
-                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_triangle_24_dark.png , Dark=ic_fluent_triangle_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsIncreaseCurve}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=IncreaseExtendedSpeedCurveCommand}" WidthRequest="150"></Button> 
-                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_curve_24_dark.png , Dark=ic_fluent_curve_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCurveDefault}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=SetCurvedDefaultCurveCommand}" WidthRequest="150"></Button> 
+                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_triangle_down_24_dark.png , Dark=ic_fluent_triangle_down_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDecreaseCurve}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=DecreaseExtendedSpeedCurveCommand}" WidthRequest="150"></Button>
+                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_triangle_24_dark.png , Dark=ic_fluent_triangle_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsIncreaseCurve}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=IncreaseExtendedSpeedCurveCommand}" WidthRequest="150"></Button>
+                    <Button HorizontalOptions="End"  Margin="0,0,10,0" ImageSource="{AppThemeBinding Light=ic_fluent_curve_24_dark.png , Dark=ic_fluent_curve_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsCurveDefault}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=SetCurvedDefaultCurveCommand}" WidthRequest="150"></Button>
                     <Button HorizontalOptions="End"  ImageSource="{AppThemeBinding Light=ic_fluent_line_24_dark.png , Dark=ic_fluent_line_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsLinearDefault}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MotorCharacteristicsViewModel}}, Path=SetLinearDefaultCurveCommand}" WidthRequest="150"></Button>
                 </HorizontalStackLayout>
 
@@ -292,29 +536,72 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MXMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                     <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+
+                        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_flash_flow_24_regular.png, Dark=ic_fluent_flash_flow_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,10"/>
+
+                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoMode" Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoMode}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
                             <Label Text="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                             <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding MotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
                         </HorizontalStackLayout>
 
-                        <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                            <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="300" Maximum="255" Minimum="0" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label   Text="{Binding MotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" MinimumWidthRequest="100" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                        </HorizontalStackLayout>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"   Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout IsVisible="{Binding Path=MotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}" HorizontalOptions="Start">
+                                <Slider  Value="{Binding MotorControlReferenceValue}" WidthRequest="200" Maximum="255" Minimum="0" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label   Text="{Binding MotorControlReferenceVoltage}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
                     </Grid>
 
                 </Border>
@@ -323,20 +610,22 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageTitle}" VerticalOptions="Center"  HorizontalOptions="Start" />
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_MSMOTORCONTROLREFERENCEVOLTAGE_CV57}">
                     <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-
-                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS"  Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                        <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_flash_flow_24_regular.png, Dark=ic_fluent_flash_flow_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageDescription}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,10"/>
+                        <Label x:Name="FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS"  Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltageAutoModeZimoMS}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
                             <HorizontalStackLayout>
                                 <Label Text="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                 <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ZIMOMSMotorControlReferenceVoltageAutomaticMode}" HorizontalOptions="End" ></Switch>
@@ -344,12 +633,51 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV57Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
 
-                        <Label IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}"  Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}">
-                            <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="300" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" Maximum="155" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                            <Label  Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalOptions="End" HorizontalTextAlignment="End" ></Label>
-                        </HorizontalStackLayout>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsReferenceVoltage}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout IsVisible="{Binding Path=ZIMOMSMotorControlReferenceVoltageAutomaticMode,Converter={StaticResource boolInvert}}" HorizontalOptions="Start">
+                                <Slider Value="{Binding ZIMOMSmotorControlReferenceValue}" WidthRequest="200" Minimum="{Binding LimitMinimumZIMOMSmotorControlReferenceVoltage}" HorizontalOptions="Center" Maximum="155" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                <Label  Text="{Binding ZIMOMSmotorControlReferenceVoltage}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
                     </Grid>
                 </Border>
 
@@ -359,20 +687,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <VerticalStackLayout>
                         <Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <!-- Description -->
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                            <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_sound_wave_circle_sparkle_24_regular.png, Dark=ic_fluent_sound_wave_circle_sparkle_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDescription}" VerticalOptions="Center" HorizontalOptions="Start" />
 
                             <!-- Use default motor control frequency -->
-                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
+                            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyDefault}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="End">
                                 <HorizontalStackLayout>
                                     <Label Text="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
                                     <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding UseDefaultMotorControlFrequency}" VerticalOptions="Center" HorizontalOptions="End"></Switch>
@@ -380,47 +711,169 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV9Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                             </VerticalStackLayout>
 
+                            <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Selection: High- or low frequency -->
+                                    <Label x:Name="FrameMotorCharacteristicsMotorControlFreqType" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
+                                    <Picker Grid.Row="0" Grid.Column="1" Margin="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlFrequencyTypes}" SelectedItem="{Binding SelectedMotorControlFrequqencyType}" HorizontalOptions="End" WidthRequest="200" VerticalOptions="End"></Picker>
+
+                                    <!-- EMK Rate -->
+                                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+
+                                                <!-- Portrait -->
+                                                <VisualState x:Name="Portrait">
+                                                    <VisualState.StateTriggers>
+                                                        <OrientationStateTrigger Orientation="Portrait" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeVertical -->
+                                                <VisualState x:Name="LandscapeVertical">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeHorizontal -->
+                                                <VisualState x:Name="LandscapeHorizontal">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                                        <OrientationStateTrigger Orientation="Landscape" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Row" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Label  IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKRate}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                        <VerticalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding IsHighFrequencySelected}" HorizontalOptions="Start">
+                                            <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="200" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
+                                            <Label  Margin ="10,0,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" VerticalOptions="Center" Text="{Binding EMKRate}" HorizontalTextAlignment="End" HorizontalOptions="Center" ></Label>
+                                        </VerticalStackLayout>
+
+                                    </FlexLayout>
+
+
+                                    <!-- Low frequency -->
+                                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+
+                                                <!-- Portrait -->
+                                                <VisualState x:Name="Portrait">
+                                                    <VisualState.StateTriggers>
+                                                        <OrientationStateTrigger Orientation="Portrait" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeVertical -->
+                                                <VisualState x:Name="LandscapeVertical">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeHorizontal -->
+                                                <VisualState x:Name="LandscapeHorizontal">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                                        <OrientationStateTrigger Orientation="Landscape" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Row" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsFrequency}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                        <VerticalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}" HorizontalOptions="Start" >
+                                            <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255" WidthRequest="200" Style="{StaticResource Z2XSlider}"></Slider>
+                                            <Label  Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding LowFrequency}" HorizontalTextAlignment="End"  HorizontalOptions="Center" ></Label>
+                                        </VerticalStackLayout>
+                                    </FlexLayout>
+
+                                    <!-- EMK Gap -->
+                                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+
+                                                <!-- Portrait -->
+                                                <VisualState x:Name="Portrait">
+                                                    <VisualState.StateTriggers>
+                                                        <OrientationStateTrigger Orientation="Portrait" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeVertical -->
+                                                <VisualState x:Name="LandscapeVertical">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Column" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <!-- LandscapeHorizontal -->
+                                                <VisualState x:Name="LandscapeHorizontal">
+                                                    <VisualState.StateTriggers>
+                                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                                        <OrientationStateTrigger Orientation="Landscape" />
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Direction" Value="Row" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Label IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKGap}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                                        <VerticalStackLayout IsVisible="{Binding IsHighFrequencySelected}" VerticalOptions="Center" HorizontalOptions="Start">
+                                            <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="1" Maximum="9"   WidthRequest="200" Style="{StaticResource Z2XSlider}"></Slider>
+                                            <Label  ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}" Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding EMKGap}"  HorizontalTextAlignment="End" HorizontalOptions="Center"></Label>
+                                        </VerticalStackLayout>
+                                    </FlexLayout>
+
+                                </Grid>
+                            </Border>
+
                         </Grid>
-                        <Border Style="{StaticResource Z2XBorderFrame}" Margin="0,20,0,0" IsVisible="{Binding Path=UseDefaultMotorControlFrequency,Converter={StaticResource boolInvert}}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <!-- Selection: High- or low frequency -->
-                                <Label x:Name="FrameMotorCharacteristicsMotorControlFreqType" Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFreqType}" VerticalOptions="Center"  HorizontalOptions="Start" Margin="0,0,0,20" />
-                                <Picker Grid.Row="0" Grid.Column="1" Margin="0,10,0,20" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlFrequencyTypes}" SelectedItem="{Binding SelectedMotorControlFrequqencyType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End"></Picker>
-
-                                <!-- EMK Rate -->
-                                <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKRate}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                                <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding IsHighFrequencySelected}">
-                                    <Slider  Value="{Binding EMKRate}" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" Minimum="0" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Margin ="10,0,0,0" ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKRateTooltip}" VerticalOptions="Center" Text="{Binding EMKRate}" MinimumWidthRequest="100" HorizontalTextAlignment="End" ></Label>
-                                </HorizontalStackLayout>
-
-                                <!-- Low frequency -->
-                                <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsFrequency}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                                <HorizontalStackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center" IsVisible="{Binding Path=IsHighFrequencySelected,Converter={StaticResource boolInvert}}"  >
-                                    <Slider VerticalOptions="Center"  Value="{Binding LowFrequency}" Minimum="176" Maximum="255"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding LowFrequency}" HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Label>
-                                </HorizontalStackLayout>
-
-                                <!-- EMK Gap -->
-                                <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsHighFrequencySelected}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsEMKGap}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                                <HorizontalStackLayout Grid.Row="2"  Grid.Column="1" IsVisible="{Binding IsHighFrequencySelected}" VerticalOptions="Center" >
-                                    <Slider ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}"  Value="{Binding EMKGap}" Minimum="1" Maximum="9"   WidthRequest="300" Style="{StaticResource Z2XSlider}"></Slider>
-                                    <Label  ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyEMKGapTooltip}" Margin ="10,0,0,0" VerticalOptions="Center" Text="{Binding EMKGap}" MinimumWidthRequest="100" HorizontalTextAlignment="End"></Label>
-                                </HorizontalStackLayout>
-
-
-                            </Grid>
-                        </Border>
                     </VerticalStackLayout>
                 </Border>
 
@@ -444,30 +897,109 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <!-- ZIMO: MX decoder motor control PID settings CV56 - Motor type selection -->
                         <Label  Grid.Row="1" Grid.Column="0" Margin ="0,0,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDMotorType}" VerticalOptions="Center"  HorizontalOptions="Start" />
                         <VerticalStackLayout Grid.Row="1"  Grid.Column="1" Margin ="0,10,0,20">
-                            <Picker   ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="350" VerticalOptions="End" ></Picker>
+                            <Picker   ToolTipProperties.Text="{x:Static strings:AppResources.FrameMotorCharacteristicsMotorControlFrequencyTypesTooltip}" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableMotorControlPIDMotorTypes}" SelectedItem="{Binding SelectedMotorControlPIDMotorType}" HorizontalOptions="End" WidthRequest="200" VerticalOptions="End" ></Picker>
                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                         </VerticalStackLayout>
 
                         <!-- ZIMO: MX decoder motor control PID settings CV56 - Proportional value -->
-                        <Label Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDPValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1">
-                            <HorizontalStackLayout >
-                                <Slider  Value="{Binding MotorControlPIDProportionalValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDPValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout HorizontalOptions="Start">
+                                <VerticalStackLayout >
+                                    <Slider  Value="{Binding MotorControlPIDProportionalValue}" WidthRequest="200" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label   Text="{Binding MotorControlPIDProportionalValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center"  ></Label>
+                                </VerticalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
 
                         <!-- ZIMO: MX decoder motor control PID settings CV56 - Integral value -->
-                        <Label Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDIValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Row="3" Grid.Column="1">
-                            <HorizontalStackLayout >
-                                <Slider  Value="{Binding MotorControlPIDIntegralValue}" WidthRequest="300" Maximum="9" Minimum="1" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
-                                <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" MinimumWidthRequest="100" ></Label>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalOptions="End">
 
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Label  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsPIDIValueLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout HorizontalOptions="Start">
+                                <VerticalStackLayout >
+                                    <Slider  Value="{Binding MotorControlPIDIntegralValue}" WidthRequest="200" Maximum="9" Minimum="1" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Z2XSlider}"></Slider>
+                                    <Label   Text="{Binding MotorControlPIDIntegralValue}" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="Center"></Label>
+                                </VerticalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV56Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
                     </Grid>
 
                 </Border>
@@ -483,15 +1015,55 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End">
 
-                        <Label x:Name="FrameMotorCharacteristicsDHImpulswidth" Grid.Column="0" Grid.Row="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
-                            <HorizontalStackLayout HorizontalOptions="End">
-                                <Slider WidthRequest="300" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
-                                <Label Text="{Binding ImpulsWidthTime}" MinimumWidthRequest="50" VerticalOptions="Center" Margin="10,0,0,0" HorizontalTextAlignment="End" HorizontalOptions="End" ></Label>
-                            </HorizontalStackLayout>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+
+                            <Label x:Name="FrameMotorCharacteristicsDHImpulswidth" Grid.Column="0" Grid.Row="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameMotorCharacteristicsDHImpulswidth}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="End">
+                                <VerticalStackLayout HorizontalOptions="Start">
+                                    <Slider WidthRequest="200" Maximum="3" Minimum="0" Value="{Binding ImpulsWidthValue}" VerticalOptions="Center" Style="{StaticResource Z2XSlider}" ></Slider>
+                                    <Label Text="{Binding ImpulsWidthTime}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="Center" ></Label>
+                                </VerticalStackLayout>
+                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV49Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
                     </Grid>
                 </Border>
 
