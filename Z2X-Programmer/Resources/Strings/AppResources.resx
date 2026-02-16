@@ -466,16 +466,16 @@ The following error has occurred:</value>
     <value>Read and write a CV</value>
   </data>
   <data name="FrameFunctionKeysCurveSquealLabel" xml:space="preserve">
-    <value>Function key for switching the curve squeal on and off (CV308)</value>
+    <value>Switching the curve squeal on and off (CV308)</value>
   </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
-    <value>Function key for deactivating the braking and acceleration time (CV156)</value>
+    <value>Deactivating the braking and acceleration time (CV156)</value>
   </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc" xml:space="preserve">
     <value>Deactivating the braking and acceleration time</value>
   </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
-    <value>Function button for deactivating the braking and acceleration time (CV133)</value>
+    <value>Deactivating the braking and acceleration time (CV133)</value>
   </data>
   <data name="FrameFunctionKeysMappingBackward" xml:space="preserve">
     <value>Backward</value>

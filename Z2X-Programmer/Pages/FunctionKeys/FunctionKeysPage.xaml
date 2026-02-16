@@ -34,7 +34,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:DataType="viewmodel:FunctionKeysViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionKeysTitle}">
 
@@ -61,17 +61,17 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoInformationAvailable}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
-            
+
             <!-- The selected decoder does not support any of the settings provided on this page  -->
             <HorizontalStackLayout IsVisible="{Binding Path=AnyFunctionOnThisPageSupported,Converter={StaticResource boolInvert}}" Margin="0,20,0,20" >
                 <Image Source="{AppThemeBinding Light=ic_fluent_info_24_regular.png, Dark=ic_fluent_info_24_dark.png}" WidthRequest="24" Margin="0,0,20,0" ></Image>
                 <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.AlertNoFeatureSupported}" VerticalOptions="Center"  HorizontalOptions="Start" />
             </HorizontalStackLayout>
-            
+
 
             <!-- Page sheet content -->
             <VerticalStackLayout>
-                
+
                 <VerticalStackLayout.IsVisible>
                     <MultiBinding Converter="{StaticResource AllTrueConverter}">
                         <Binding Path="DataStoreDataValid" />
@@ -84,6 +84,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderFrame}">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -94,41 +95,41 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <!-- The description -->
                         <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_keyboard_24_regular.png, Dark=ic_fluent_keyboard_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label Margin="50,0,0,20"  Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameFunctionKeysSummaryDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                        <Label Margin="0,0,0,20"  Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameFunctionKeysSummaryDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
 
                         <!-- An overview table with the current configuration -->
-                        <CollectionView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding FunctionKeys, Mode=OneWay}" HeightRequest="300" Margin="0,5,0,0" SelectionMode="None">
+                        <CollectionView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FunctionKeys, Mode=OneWay}" HeightRequest="300" Margin="0,5,0,0" SelectionMode="None" >
 
                             <CollectionView.Header>
-                                <Grid ColumnDefinitions="90,25, 90,*">
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysHeaderTitleController}" Grid.Column="0"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="" Grid.Column="1"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysHeaderTitleDecoder}" Grid.Column="2"/>
+                                <Grid ColumnDefinitions="30,25,30,*">
+                                    <Image HeightRequest="20" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
+                                    <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text=""/>
+                                    <Image HeightRequest="20" Grid.Column="2" Source="{AppThemeBinding Light=ic_fluent_decoder_24_regular.png, Dark=ic_fluent_decoder_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
                                     <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysHeaderTitleFunctions}" Grid.Column="3"/>
                                 </Grid>
                             </CollectionView.Header>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="datamodel:FunctionKeyType">
-                                    <Grid ColumnDefinitions="90,25,90,*">
-                                        <Label Grid.Column="0" Margin="0,10,0,10" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start">
+                                    <Grid ColumnDefinitions="30,25,30,*">
+                                        <Label Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Start">
                                             <Label.Text>
                                                 <MultiBinding Converter="{StaticResource ZIMOInputMappingConverterEx}">
-                                                <Binding Path="ZIMOInputMapping.ExternalFunctionKeyNumber" />
-                                                <Binding Path="ZIMOInputMapping.InternalFunctionKeyNumber" />
+                                                    <Binding Path="ZIMOInputMapping.ExternalFunctionKeyNumber" />
+                                                    <Binding Path="ZIMOInputMapping.InternalFunctionKeyNumber" />
                                                 </MultiBinding>
                                             </Label.Text>
                                         </Label>
-                                        <Label Grid.Column="1" Margin="0,20,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="➔"/>
-                                        <Label Grid.Column="2" Margin="0,20,0,20" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding ZIMOInputMapping.InternalFunctionKeyDescription}"/>
-                                        <usercontrols:Z2XFunctionKeyFunctionViewer Grid.Column="3" FunctionSource="{Binding FunctionDescriptions}" ></usercontrols:Z2XFunctionKeyFunctionViewer>
+                                        <Label Grid.Column="1" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="➔"/>
+                                        <Label Grid.Column="2" Margin="0,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="{Binding ZIMOInputMapping.InternalFunctionKeyDescription}"/>
+                                        <usercontrols:Z2XFunctionKeyFunctionViewer Margin="0,0,0,0" Grid.Column="3" FunctionSource="{Binding FunctionDescriptions}" VerticalOptions="Center"></usercontrols:Z2XFunctionKeyFunctionViewer>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
 
                         </CollectionView>
-                        
-                        <Button Grid.Row="2" Grid.Column="0" HorizontalOptions="End" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_clockwise_24_dark.png, Dark=ic_fluent_arrow_clockwise_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=UpdateFunctionKeysOverviewCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysRefreshOverview}" ></Button>
+
+                        <Button Grid.Row="2" Grid.Column="1" HorizontalOptions="End" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_clockwise_24_dark.png, Dark=ic_fluent_arrow_clockwise_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=UpdateFunctionKeysOverviewCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysRefreshOverview}" ></Button>
 
                     </Grid>
                 </Border>
@@ -138,6 +139,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_INPUTMAPPING_CV4XX}">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -148,29 +150,30 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <!-- The description -->
                         <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_arrow_routing_24_regular.png, Dark=ic_fluent_arrow_routing_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label x:Name="FrameFunctionKeysZIMOInputMappingDescription" Margin="50,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label x:Name="FrameFunctionKeysZIMOInputMappingDescription" Grid.Row="0" Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
-                        <CollectionView IsVisible="{Binding AdditionalDisplayOfCVValues}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionKeys}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                        <CollectionView IsVisible="{Binding AdditionalDisplayOfCVValues}" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding FunctionKeys}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
                             <CollectionView.Header>
                                 <Grid ColumnDefinitions="*,*,*,*">
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleController}" Grid.Column="0"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="1"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" Grid.Column="2"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleValue}" Grid.Column="3"/>
+                                    <Image Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
+                                    <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}"/>
+                                    <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" />
+                                    <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleValue}" />
                                 </Grid>
                             </CollectionView.Header>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="datamodel:FunctionKeyType">
                                     <Grid ColumnDefinitions="*,*,*,*">
+
                                         <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Path=ZIMOInputMapping.ExternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}" HorizontalTextAlignment="Start" />
                                         <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding ZIMOInputMapping.InternalFunctionKeyDescription}"/>
                                         <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ZIMOInputMapping.CVNumber}" HorizontalTextAlignment="Center" />
                                         <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Center" Text="{Binding ZIMOInputMapping.CVValue}"/>
 
-                                        <Grid.GestureRecognizers>
+                                        <!--<Grid.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:FunctionKeysViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}"/>
-                                        </Grid.GestureRecognizers>
+                                        </Grid.GestureRecognizers>-->
 
                                     </Grid>
                                 </DataTemplate>
@@ -178,23 +181,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <CollectionView IsVisible="{Binding Path=AdditionalDisplayOfCVValues,Converter={StaticResource boolInvert}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionKeys}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
+                        <CollectionView IsVisible="{Binding Path=AdditionalDisplayOfCVValues,Converter={StaticResource boolInvert}}" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FunctionKeys}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
                             <CollectionView.Header>
                                 <Grid ColumnDefinitions="*,*">
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleController}" Grid.Column="0"/>
-                                    <Label Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}" Grid.Column="1"/>
+                                    <Image HeightRequest="20" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
+                                    <Image HeightRequest="20" Grid.Column="1" Source="{AppThemeBinding Light=ic_fluent_decoder_24_regular.png, Dark=ic_fluent_decoder_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
                                 </Grid>
                             </CollectionView.Header>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="datamodel:FunctionKeyType">
                                     <Grid ColumnDefinitions="*,*">
-                                        <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Path=ZIMOInputMapping.ExternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}" HorizontalTextAlignment="Start" />
+                                        <Label Margin="20,0,0,0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Path=ZIMOInputMapping.ExternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}" HorizontalTextAlignment="Start" />
                                         <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding ZIMOInputMapping.InternalFunctionKeyDescription}"/>
 
-                                        <Grid.GestureRecognizers>
+                                        <!--<Grid.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:FunctionKeysViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}"/>
-                                        </Grid.GestureRecognizers>
+                                        </Grid.GestureRecognizers>-->
 
                                     </Grid>
                                 </DataTemplate>
@@ -202,11 +205,49 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <HorizontalStackLayout Grid.Row="2" Grid.Column="0" HorizontalOptions="End" Margin="0,20,0,0">
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetInputMappingCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" ></Button>
-                            <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" Margin="20,0,0,0"  WidthRequest="250" HorizontalOptions="End"></Button>
-                        </HorizontalStackLayout>
+                        <FlexLayout Direction="Row" JustifyContent="End" Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Margin="0,20,0,0">
 
+                            <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+
+                                    <!-- Portrait -->
+                                    <VisualState x:Name="Portrait">
+                                        <VisualState.StateTriggers>
+                                            <OrientationStateTrigger Orientation="Portrait" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeVertical -->
+                                    <VisualState x:Name="LandscapeVertical">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Column" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <!-- LandscapeHorizontal -->
+                                    <VisualState x:Name="LandscapeHorizontal">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="950"/>
+                                            <OrientationStateTrigger Orientation="Landscape" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Direction" Value="Row" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Button Margin="5,5,0,0" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_delete_24_dark.png, Dark=ic_fluent_delete_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=ResetInputMappingCommand}"  Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDeleteConfig}" HorizontalOptions="End" ></Button>
+                            <Button Margin="5,5,0,0" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionKeysViewModel}}, Path=EditInputMappingCommand}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingEdit}" HorizontalOptions="End"></Button>
+
+                        </FlexLayout>
                     </Grid>
 
                 </Border>
@@ -216,6 +257,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding DriveAndMotorCharacteristicsKeysSupported}">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -224,182 +266,172 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        
+
                         <!-- The description -->
                         <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_transmission_engine_24_regular.png, Dark=ic_fluent_transmission_engine_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label x:Name="FrameFunctionKeysEngineAndDrivingCharacteristicsDescription" Margin="50,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysEngineAndDrivingCharacteristicsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <Label x:Name="FrameFunctionKeysEngineAndDrivingCharacteristicsDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysEngineAndDrivingCharacteristicsDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                         <!-- ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)  -->
-                        <Label Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" Margin="0,10,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}" />
-                        <VerticalStackLayout Margin="0,10,0,20" Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}">
-                            <Picker  VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV156Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CVText="{Binding CV156Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeLabel}" ItemsSource="{Binding AvailableFunctionKeys}" IsVisible="{Binding ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156}" SelectedIndex="{Binding ZIMOFuncKeysAccDecDisableFuncKeyNumber, Mode=TwoWay}"></usercontrols:Z2XBasicPickerWidget>
 
                         <!-- Döhler & Haass: ABV key in CV133 (DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133) -->
-                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" />
-                        <VerticalStackLayout Grid.Row="1" Grid.Column="1"  Margin="0,10,0,20" HorizontalOptions="End" VerticalOptions="Center" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV133Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CVText="{Binding CV133Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysDeactivateAccDecTimeLabel}" ItemsSource="{Binding AvailableFunctionKeys}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYDEACTIVATEACCDECTIME_CV133}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysAccDecDisableFuncKeyNumber, Mode=TwoWay}"></usercontrols:Z2XBasicPickerWidget>
 
                         <!-- ZIMO: SHUNTING key in CV155 (ZIMO_FUNCKEY_SHUNTINGKEY_CV155) -->
-                        <Label Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap" Margin="0,10,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_SHUNTINGKEY_CV155}"/>
-                        <VerticalStackLayout Margin="0,10,0,20" Grid.Row="2" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" IsVisible="{Binding ZIMO_FUNCKEY_SHUNTINGKEY_CV155}" >
-                            <Picker  VerticalOptions="Center" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysShuntingKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV155Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" CVText="{Binding CV155Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysShuntingLabel}" ItemsSource="{Binding AvailableFunctionKeys}" IsVisible="{Binding ZIMO_FUNCKEY_SHUNTINGKEY_CV155}" SelectedIndex="{Binding ZIMOFuncKeysShuntingKeyNumber, Mode=TwoWay}"></usercontrols:Z2XBasicPickerWidget>
 
                         <!-- Döhler & Haass: Shunting key in CV133 (DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132)  -->
-                        <Label Grid.Row="2" Grid.Column="0" Margin="0,10,0,20" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" />
-                        <VerticalStackLayout Grid.Row="2" Grid.Column="1"  Margin="0,10,0,20" HorizontalOptions="End" VerticalOptions="Center" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}">
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV132Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
+                        <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" CVText="{Binding CV132Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysShuntingKeyLabel}" ItemsSource="{Binding AvailableFunctionKeys}" IsVisible="{Binding DOEHLERANDHAASS_FUNCKEYSHUNTING_CV132}" IsEnabled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}" SelectedIndex="{Binding DoehlerAndHaassFuncKeysShuntingFuncKeyNumber, Mode=TwoWay}"></usercontrols:Z2XBasicPickerWidget>
 
                     </Grid>
                 </Border>
 
                 <!-- ZIMO: Light suppression on the driver's cab side in CV107, CV108, CV109 and CV110 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X) -->
                 <Label Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X}"/>
-                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        
-                        <!-- The description -->
-                        <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_lightbulb_onoff_24_regular.png, Dark=ic_fluent_lightbulb_onoff_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label Margin="50,0,0,20" x:Name="FrameFunctionKeysLightSuppressionDriverCabDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                <ScrollView HorizontalScrollBarVisibility="Default" Orientation="Horizontal">
+                    <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X}" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                        <BoxView  Grid.Row="1" Grid.Column="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Row="1" Grid.Column="2"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Row="1" Grid.Column="3"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Row="1" Grid.Column="4" Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Row="1" Grid.Column="5" Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Row="1" Grid.Column="6" Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>
+                            <!-- The description -->
+                            <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_lightbulb_onoff_24_regular.png, Dark=ic_fluent_lightbulb_onoff_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label Margin="50,0,0,20" x:Name="FrameFunctionKeysLightSuppressionDriverCabDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
 
-                        <Label  Grid.Row="1" Grid.Column="1" Text="Taste" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="2" Text="Ausgang 1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="3" Text="Ausgang 2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="4" Text="Ausgang 3" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="5" Text="Ausgang 4" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="6" Text="Wert" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <BoxView  Grid.Row="1" Grid.Column="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Row="1" Grid.Column="2"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Row="1" Grid.Column="3"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Row="1" Grid.Column="4" Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Row="1" Grid.Column="5" Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Row="1" Grid.Column="6" Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>
 
-                        <!-- Driver's cab side 1 CV107 (forward) -->
-                        <Label x:Name="FrameFunctionKeysLightSuppressionDriverCabCab1Label" Margin="0,0,20,0" Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabCab1Label}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Picker Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Label Grid.Row="2" Grid.Column="2" Text="FA0v" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                        <Picker Grid.Row="2" Grid.Column="3" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output}"  HorizontalTextAlignment="End"  MinimumWidthRequest="100" ></Picker>
-                        <Picker Grid.Row="2" Grid.Column="4" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output3}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Picker Grid.Row="2" Grid.Column="5" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output4}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Label Grid.Row="2" Grid.Column="6" Text="{Binding CV107And109Configuration}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <Label  Grid.Row="1" Grid.Column="1" Text="Taste" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="2" Text="Ausgang 1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="3" Text="Ausgang 2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="4" Text="Ausgang 3" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="5" Text="Ausgang 4" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="6" Text="Wert" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   VerticalOptions="Center"  HorizontalOptions="Center"/>
 
-                        <!-- Driver's cab side 2 CV108 (backward) -->
-                        <Label x:Name="FrameFunctionKeysLightSuppressionDriverCabCab2Label" Margin="0,0,20,0" Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabCab2Label}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <Picker Grid.Row="3" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2}"  HorizontalTextAlignment="End" MinimumWidthRequest="100"></Picker>
-                        <Label Grid.Row="3" Grid.Column="2" Text="FA0v" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                        <Picker Grid.Row="3" Grid.Column="3" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Picker Grid.Row="3" Grid.Column="4" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output3}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Picker Grid.Row="3" Grid.Column="5" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output4}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
-                        <Label Grid.Row="3" Grid.Column="6" Text="{Binding CV108And110Configuration}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <!-- Driver's cab side 1 CV107 (forward) -->
+                            <Label x:Name="FrameFunctionKeysLightSuppressionDriverCabCab1Label" Margin="0,0,20,0" Grid.Row="2" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabCab1Label}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Picker Grid.Row="2" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Label Grid.Row="2" Grid.Column="2" Text="FA0v" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                            <Picker Grid.Row="2" Grid.Column="3" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output}"  HorizontalTextAlignment="End"  MinimumWidthRequest="100" ></Picker>
+                            <Picker Grid.Row="2" Grid.Column="4" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output3}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Picker Grid.Row="2" Grid.Column="5" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide1Output4}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Label Grid.Row="2" Grid.Column="6" Text="{Binding CV107And109Configuration}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
 
-                    </Grid>
+                            <!-- Driver's cab side 2 CV108 (backward) -->
+                            <Label x:Name="FrameFunctionKeysLightSuppressionDriverCabCab2Label" Margin="0,0,20,0" Grid.Row="3" Grid.Column="0"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysLightSuppressionDriverCabCab2Label}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                            <Picker Grid.Row="3" Grid.Column="1" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2}"  HorizontalTextAlignment="End" MinimumWidthRequest="100"></Picker>
+                            <Label Grid.Row="3" Grid.Column="2" Text="FA0v" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                            <Picker Grid.Row="3" Grid.Column="3" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Picker Grid.Row="3" Grid.Column="4" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output3}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Picker Grid.Row="3" Grid.Column="5" Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionOutputsLightSuppress}" SelectedIndex="{Binding ZIMOFuncKeyLightSuppresionCabSide2Output4}"  HorizontalTextAlignment="End" MinimumWidthRequest="100" ></Picker>
+                            <Label Grid.Row="3" Grid.Column="6" Text="{Binding CV108And110Configuration}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
 
-                </Border>
+                        </Grid>
+
+                    </Border>
+                </ScrollView>
 
                 <!-- ZIMO: Function keys for high beam and dimming in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X) -->
                 <Label x:Name="FrameFunctionKeysHighBeamDimmingTitle" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}" />
-                <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                <ScrollView HorizontalScrollBarVisibility="Default" Orientation="Horizontal">
 
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
+                    <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
 
-                        <!-- The description -->
-                        <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_low_beam_24_regular.png, Dark=ic_fluent_low_beam_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                        <Label Margin="50,0,0,20" x:Name="FrameFunctionKeysHighBeamDimmingDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                        
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                        <BoxView  Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
-                        <BoxView  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
-                        <BoxView  Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="14"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
-                        <BoxView  Grid.Column="17" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1" Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
+                            <!-- The description -->
+                            <Image Margin="0,0,0,20" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_low_beam_24_regular.png, Dark=ic_fluent_low_beam_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label Margin="50,0,0,20" x:Name="FrameFunctionKeysHighBeamDimmingDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
 
-                        <Label  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeaderFunctionkey}"  VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <Label  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeyHighDippedBeamInvertedLabel}" VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeaderCV}"  VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label  Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="14" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeOutput}" VerticalOptions="Center"  HorizontalOptions="Center"/>
-                        <Label Grid.Row="1" Grid.Column="17" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeValue}" VerticalOptions="Center"  HorizontalOptions="Center"/>
 
-                        <!-- The header of the function mapping: The name of the different function outputs -->
-                        <Label Grid.Row="2" Grid.Column="3" Text="{Binding Output0vDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <Label Grid.Row="2" Grid.Column="4" Text="{Binding Output0rDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        <Label Grid.Row="2" Grid.Column="5" Text="{Binding Output1Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <Label Grid.Row="2" Grid.Column="6" Text="{Binding Output2Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <Label Grid.Row="2" Grid.Column="7" Text="{Binding Output3Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        <Label Grid.Row="2" Grid.Column="8" Text="{Binding Output4Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        <Label Grid.Row="2" Grid.Column="9" Text="{Binding Output5Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <BoxView  Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
+                            <BoxView  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
+                            <BoxView  Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="14"  Color="{AppThemeBinding Light={StaticResource TableHeaderHighlight_Light}, Dark={StaticResource TableHeaderHighlight_Dark}}" />
+                            <BoxView  Grid.Column="17" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1" Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" />
 
-                        <!-- Key F6 -->
-                        <Label Grid.Row="3" Grid.Column="0" Text="F6" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding CV119ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <Label  Grid.Row="3" Grid.Column="2" Text="119" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <CheckBox Grid.Row="3" Grid.Column="3" IsChecked="{Binding CV119ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="4" IsChecked="{Binding CV119ValueBit1}" VerticalOptions="Center"  HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding CV119ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="6" IsChecked="{Binding CV119ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="7" IsChecked="{Binding CV119ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="8" IsChecked="{Binding CV119ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox Grid.Row="3" Grid.Column="9" IsChecked="{Binding CV119ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <Label   Grid.Row="3" Grid.Column="10" Text="{Binding CV119Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <Label  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"   Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeaderFunctionkey}"  VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <Label  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeyHighDippedBeamInvertedLabel}" VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeaderCV}"  VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label  Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="14" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeOutput}" VerticalOptions="Center"  HorizontalOptions="Center"/>
+                            <Label Grid.Row="1" Grid.Column="17" Grid.RowSpan="2" Grid.ColumnSpan="1" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Margin="5,2,5,2"  Text="{x:Static strings:AppResources.FrameFunctionKeysMappingHeadeValue}" VerticalOptions="Center"  HorizontalOptions="Center"/>
 
-                        <!-- Key F7 -->
-                        <Label Grid.Row="4" Grid.Column="0" Text="F7" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding CV120ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <Label  Grid.Row="4" Grid.Column="2" Text="120" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                        <CheckBox  Grid.Row="4" Grid.Column="3" IsChecked="{Binding CV120ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="4" IsChecked="{Binding CV120ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="5" IsChecked="{Binding CV120ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="6" IsChecked="{Binding CV120ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="7" IsChecked="{Binding CV120ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="8" IsChecked="{Binding CV120ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <CheckBox  Grid.Row="4" Grid.Column="9" IsChecked="{Binding CV120ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
-                        <Label  Grid.Row="4" Grid.Column="10" Text="{Binding CV120Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
-                    </Grid>
-                </Border>
+                            <!-- The header of the function mapping: The name of the different function outputs -->
+                            <Label Grid.Row="2" Grid.Column="3" Text="{Binding Output0vDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <Label Grid.Row="2" Grid.Column="4" Text="{Binding Output0rDescription}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="5" Text="{Binding Output1Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <Label Grid.Row="2" Grid.Column="6" Text="{Binding Output2Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <Label Grid.Row="2" Grid.Column="7" Text="{Binding Output3Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="8" Text="{Binding Output4Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="9" Text="{Binding Output5Description}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
 
+                            <!-- Key F6 -->
+                            <Label Grid.Row="3" Grid.Column="0" Text="F6" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding CV119ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <Label  Grid.Row="3" Grid.Column="2" Text="119" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <CheckBox Grid.Row="3" Grid.Column="3" IsChecked="{Binding CV119ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="4" IsChecked="{Binding CV119ValueBit1}" VerticalOptions="Center"  HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding CV119ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="6" IsChecked="{Binding CV119ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="7" IsChecked="{Binding CV119ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="8" IsChecked="{Binding CV119ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox Grid.Row="3" Grid.Column="9" IsChecked="{Binding CV119ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <Label   Grid.Row="3" Grid.Column="10" Text="{Binding CV119Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+
+                            <!-- Key F7 -->
+                            <Label Grid.Row="4" Grid.Column="0" Text="F7" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding CV120ValueBit7}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <Label  Grid.Row="4" Grid.Column="2" Text="120" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                            <CheckBox  Grid.Row="4" Grid.Column="3" IsChecked="{Binding CV120ValueBit0}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="4" IsChecked="{Binding CV120ValueBit1}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="5" IsChecked="{Binding CV120ValueBit2}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="6" IsChecked="{Binding CV120ValueBit3}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="7" IsChecked="{Binding CV120ValueBit4}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="8" IsChecked="{Binding CV120ValueBit5}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <CheckBox  Grid.Row="4" Grid.Column="9" IsChecked="{Binding CV120ValueBit6}" VerticalOptions="Center" HorizontalOptions="Center"></CheckBox>
+                            <Label  Grid.Row="4" Grid.Column="10" Text="{Binding CV120Value}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" ></Label>
+                        </Grid>
+                    </Border>
+                </ScrollView>
+                
+                
                 <!-- Section: Sound -->
                 <VerticalStackLayout IsVisible="{Binding SoundFunctionKeysSupported}">
 
@@ -453,7 +485,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            
+
                             <!-- The description -->
                             <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_speaker_2_24_regular.png, Dark=ic_fluent_speaker_2_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
                             <Label Margin="50,0,0,0" x:Name="FrameFunctionKeysSoundVolumeControlDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
@@ -508,10 +540,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <!-- The title and description -->
                         <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Margin="10,0,0,0" >
-                            <Label x:Name="FrameFunctionKeysMappingTitle"  IsVisible="{Binding RCN225_FUNCTIONOUTPUTMAPPING_CV3346}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                            <Label x:Name="FrameFunctionKeysMappingTitleDoehlerAndHaass" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleDoehlerAndHaass}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                            <Label x:Name="FrameFunctionKeysMappingTitleZIMO" IsVisible="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleZIMO}" VerticalOptions="Center"  HorizontalOptions="Start"/>
-                            <Label Style="{StaticResource Z2XProgrammerLabelSublineStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                            <Label x:Name="FrameFunctionKeysMappingTitle"  IsVisible="{Binding RCN225_FUNCTIONOUTPUTMAPPING_CV3346}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                            <Label x:Name="FrameFunctionKeysMappingTitleDoehlerAndHaass" IsVisible="{Binding DOEHLERANDHAASS_FUNCTIONOUTPUTMAPPING_EXT_CV137}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleDoehlerAndHaass}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                            <Label x:Name="FrameFunctionKeysMappingTitleZIMO" IsVisible="{Binding ZIMO_FUNCTIONOUTPUTMAPPING_EXT_CV61}"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingTitleZIMO}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                            <Label Style="{StaticResource Z2XProgrammerLabelSublineStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysMappingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
                         </VerticalStackLayout>
 
                         <!-- The right arrow icon -->

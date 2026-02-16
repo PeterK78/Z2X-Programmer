@@ -26,6 +26,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             xmlns:usercontrols="clr-namespace:Z2XProgrammer.UserControls"
              x:Class="Z2XProgrammer.Pages.AddressPage"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
@@ -203,56 +204,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-
                     <Image Margin="0,5,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_convert_range_24_regular.png, Dark=ic_fluent_note_edit_24_dark.png}" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="24"></Image>
                     <Label Margin="0,0,0,20" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameAddressModeDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
-
-                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0" >
-
-                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup>
-
-                                <!-- Portrait -->
-                                <VisualState x:Name="Portrait">
-                                    <VisualState.StateTriggers>
-                                        <OrientationStateTrigger Orientation="Portrait" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Property="Direction" Value="Column" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <!-- LandscapeVertical -->
-                                <VisualState x:Name="LandscapeVertical">
-                                    <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="0"/>
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Property="Direction" Value="Column" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <!-- LandscapeHorizontal -->
-                                <VisualState x:Name="LandscapeHorizontal">
-                                    <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="950"/>
-                                        <OrientationStateTrigger Orientation="Landscape" />
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Property="Direction" Value="Row" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-
-
-                        <Label Margin="0,5,0,0" x:Name="FrameAddressVehicleAddressModeLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                        <VerticalStackLayout HorizontalOptions="Start" Margin="0,5,0,0">
-                            <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr}" HorizontalOptions="Start" MinimumWidthRequest="350" VerticalOptions="Center"></Picker>
-                            <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                        </VerticalStackLayout>
-                    </FlexLayout>
+                    <usercontrols:Z2XBasicPickerWidget x:Name="FrameAddressVehicleAddressModeLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" CVText="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration, Mode=TwoWay}" ItemsSource="{Binding AvailableDCCAddressModesVehicleAdr, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameAddressVehicleAddressModeLabel}" SelectedItem="{Binding SelectedDCCAddressModeVehicleAdr, Mode=TwoWay}" ></usercontrols:Z2XBasicPickerWidget>
                 </Grid>
             </Border>
 

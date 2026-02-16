@@ -22,26 +22,23 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using Microsoft.Maui.Controls;
 
 namespace Z2XProgrammer.Converter
 {
     internal static class Base64StringToImage
     {
-        
         internal static ImageSource ConvertBase64String2ImageSource(string base64ImageString)
         {
-            if ((base64ImageString == null) || (base64ImageString == ""))
+            if (string.IsNullOrWhiteSpace(base64ImageString))
             {
                 return null!;
             }
 
-            var imageByteSize = Convert.FromBase64String(base64ImageString);
-            MemoryStream memoryStream = new(imageByteSize);
-            return ImageSource.FromStream(() => memoryStream);
+            // Create a byte[] once and return a factory that creates a new MemoryStream for each access.
+            byte[] imageBytes = Convert.FromBase64String(base64ImageString);
+            return ImageSource.FromStream(() => new MemoryStream(imageBytes));
         }
     }
 }

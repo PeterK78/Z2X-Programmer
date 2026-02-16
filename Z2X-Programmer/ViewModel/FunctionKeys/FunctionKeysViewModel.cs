@@ -403,7 +403,7 @@ namespace Z2XProgrammer.ViewModel
 
         // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
         [ObservableProperty]
-        internal ObservableCollection<string> availableFunctionKeys;
+        internal ObservableCollection<string> availableFunctionKeys = new ObservableCollection<string>();
 
         [ObservableProperty]
         int zIMOFuncKeysAccDecDisableFuncKeyNumber;

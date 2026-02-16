@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
+             xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
+             x:Class="Z2XProgrammer.UserControls.Z2XBasicPickerWidget"
+             >
+
+    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="End">
+
+        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+
+                <!-- Portrait -->
+                <VisualState x:Name="Portrait">
+                    <VisualState.StateTriggers>
+                        <OrientationStateTrigger Orientation="Portrait" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Property="Direction" Value="Column" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- LandscapeVertical -->
+                <VisualState x:Name="LandscapeVertical">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Property="Direction" Value="Column" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!-- LandscapeHorizontal -->
+                <VisualState x:Name="LandscapeHorizontal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200"/>
+                        <OrientationStateTrigger Orientation="Landscape" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Property="Direction" Value="Row" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Label x:Name="MyDescriptionLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
+        <VerticalStackLayout HorizontalOptions="Start" >
+            <Picker x:Name="MyPicker" SelectedIndexChanged="MyPicker_SelectedIndexChanged" Style="{StaticResource Z2XProgrammerPickerStyle}" HorizontalTextAlignment="Center" MinimumWidthRequest="300" WidthRequest="300"  HorizontalOptions="End" VerticalOptions="Center"/>
+            <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="End" HorizontalTextAlignment="Center" MinimumWidthRequest="300" WidthRequest="300"></Label>
+        </VerticalStackLayout>
+    </FlexLayout>
+
+</ContentView>

@@ -467,16 +467,16 @@ Folgender Fehler ist aufgetreten:
     <value>CV lesen und schreiben</value>
   </data>
   <data name="FrameFunctionKeysCurveSquealLabel" xml:space="preserve">
-    <value>Funktionstaste zum Ein- und Ausschalten des Kurvenquietschens (CV308)</value>
+    <value>Ein- und Ausschalten des Kurvenquietschens (CV308)</value>
   </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeLabel" xml:space="preserve">
-    <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV156)</value>
+    <value>Deaktivieren der Brems- und Beschleunigungszeit (CV156)</value>
   </data>
   <data name="FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc" xml:space="preserve">
     <value>Deaktivieren der Brems- und Beschleunigungszeit</value>
   </data>
   <data name="FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel" xml:space="preserve">
-    <value>Funktionstaste zum Deaktivieren der Brems- und Beschleunigungszeit (CV133)</value>
+    <value>Deaktivieren der Brems- und Beschleunigungszeit (CV133)</value>
   </data>
   <data name="FrameFunctionKeysMappingBackward" xml:space="preserve">
     <value>Rückwärts</value>

@@ -273,6 +273,9 @@
 	  <Compile Update="UserControls\Z2XFunctionKeyFunctionViewer.xaml.cs">
 	    <DependentUpon>Z2XFunctionKeyFunctionViewer.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="UserControls\Z2XBasicPickerWidget.xaml.cs">
+	    <DependentUpon>Z2XBasicPickerWidget.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -377,6 +380,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UserControls\Z2XFunctionKeyFunctionViewer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UserControls\Z2XBasicPickerWidget.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UserControls\Z2XLightEffectsUserControl.xaml">

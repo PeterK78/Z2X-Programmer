@@ -8,7 +8,7 @@
              x:Class="Z2XProgrammer.UserControls.Z2XFunctionKeyFunctionViewer"
              >
 
-    <CollectionView x:Name="MainCollectionView" ItemsLayout="HorizontalList">
+    <CollectionView x:Name="MainCollectionView" ItemsLayout="HorizontalList" VerticalOptions="Center">
         <CollectionView.ItemTemplate >
             <DataTemplate x:DataType="{x:Type sys:String}">
                 <Border Stroke="White" StrokeThickness="1" StrokeShape="RoundRectangle 2,2,2,2" Background="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HorizontalOptions="Center" HeightRequest="25">

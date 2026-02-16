@@ -2088,7 +2088,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function key for switching the curve squeal on and off (CV308).
+        ///   Looks up a localized string similar to Switching the curve squeal on and off (CV308).
         /// </summary>
         public static string FrameFunctionKeysCurveSquealLabel {
             get {
@@ -2106,7 +2106,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function key for deactivating the braking and acceleration time (CV156).
+        ///   Looks up a localized string similar to Deactivating the braking and acceleration time (CV156).
         /// </summary>
         public static string FrameFunctionKeysDeactivateAccDecTimeLabel {
             get {
@@ -2133,7 +2133,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function button for deactivating the braking and acceleration time (CV133).
+        ///   Looks up a localized string similar to Deactivating the braking and acceleration time (CV133).
         /// </summary>
         public static string FrameFunctionKeysDoehlerAndHaassDeactivateAccDecTimeLabel {
             get {
