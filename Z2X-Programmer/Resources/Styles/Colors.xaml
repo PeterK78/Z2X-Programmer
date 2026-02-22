@@ -48,7 +48,7 @@
 
     <!-- Switch colors -->
     <Color x:Key="SwitchBackgroundOffAndroid">#afb0b1</Color>
-    <Color x:Key="SwitchBackgroundOnAndroid">White</Color>
+    <Color x:Key="SwitchBackgroundOnAndroid">#E1E1E1</Color>
 
     <!-- Entry colors -->
     <Color x:Key="EntryBackground_Light">White</Color>

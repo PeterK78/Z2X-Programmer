@@ -8,7 +8,7 @@
              x:DataType="viewmodel:FunctionOutputsViewModel"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+            Style="{StaticResource Z2XProgrammerContentPageStyle}"
              x:Name="ThisPage"
              Title="{x:Static strings:AppResources.FlyoutItemFunctionOutputsTitle}">
 
@@ -19,7 +19,7 @@
     <ScrollView x:Name="PageScrollView" Orientation="Vertical" Padding="0,0,20,0">
 
         <VerticalStackLayout>
-            
+
             <!-- Page Title -->
             <HorizontalStackLayout>
                 <Image Source="{AppThemeBinding Light=ic_fluent_developer_board_24_regular.png, Dark=ic_fluent_developer_board_24_dark.png}" Margin="0,0,10,0" ></Image>
@@ -50,14 +50,14 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            
+
                             <!-- The description -->
                             <Image Margin="0,0,0,30" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_developer_board_edit_name_24_regular.png, Dark=ic_fluent_developer_board_edit_name_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
                             <Label Margin="50,0,0,30"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingDescription}" VerticalOptions="Center"  HorizontalOptions="Start" LineBreakMode="WordWrap"/>
-                            
+
                             <!--<BoxView Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"  Color="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"/>-->
-                            
-                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionOutputs}" SelectedItem="{Binding SelectedFunctionOutput}" HeightRequest="300" Margin="0,0,0,0" SelectionMode="Single" >                                
+
+                            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding FunctionOutputs}" SelectedItem="{Binding SelectedFunctionOutput}" HeightRequest="300" Margin="0,0,0,0" SelectionMode="Single" >
                                 <CollectionView.Header>
                                     <Grid ColumnDefinitions="150,*">
                                         <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" VerticalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionOutputsNamingHeaderTitleID}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" HorizontalTextAlignment="Start" Grid.Column="0"/>
@@ -70,13 +70,13 @@
                                         <Grid ColumnDefinitions="150,*">
                                             <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding Description}" HorizontalTextAlignment="Start" Margin="10,0,0,0" Padding="0,0,0,0"/>
                                             <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  Text="{Binding UserDefinedDescription}" HorizontalTextAlignment="Start" />
-                                            <Grid.GestureRecognizers>
+                                            <!--<Grid.GestureRecognizers>
                                                 <TapGestureRecognizer NumberOfTapsRequired="2" x:DataType="viewmodel:FunctionOutputsViewModel" BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}" Command="{Binding EditFunctionOutputNameCommand}"/>  
-                                            </Grid.GestureRecognizers>
+                                            </Grid.GestureRecognizers>-->
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
-                                
+
                             </CollectionView>
 
                             <Button ImageSource="{AppThemeBinding Light=ic_fluent_slide_text_edit_24_dark.png, Dark=ic_fluent_slide_text_edit_24_regular.png}" Margin="0,20,0,0" Grid.Row="3" Grid.Column="0" WidthRequest="250" HorizontalOptions="End" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOOutputNamingEdit}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:FunctionOutputsViewModel}}, Path=EditFunctionOutputNameCommand}"  ></Button>
@@ -115,6 +115,6 @@
         </VerticalStackLayout>
 
     </ScrollView>
-    
-   
+
+
 </ContentPage>

@@ -30,7 +30,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              x:Class="Z2XProgrammer.Pages.InfoPage"
              x:DataType="viewmodel:InfoPageViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"                          
              Shell.PresentationMode="ModalAnimated"
              Title="{x:Static strings:AppResources.FlyoutItemInfoText}">
 

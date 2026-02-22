@@ -31,6 +31,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             xmlns:usercontrols="clr-namespace:Z2XProgrammer.UserControls"
              x:DataType="viewmodel:DoehlerAndHaassFunctionKeysFunctionOutputsViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -86,20 +87,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                        
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1"   HorizontalOptions="End">
-                             <HorizontalStackLayout >
-                                 <Label Text="{Binding Path=DoehlerAndHaassExtendedFunctionMappingEnabled,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                 <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center"  IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled}"></Switch>
-                             </HorizontalStackLayout>
-                             <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV137Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <usercontrols:Z2XBasicSwitchWidget Grid.Row="0" Grid.Column="0" IsToggled="{Binding DoehlerAndHaassExtendedFunctionMappingEnabled, Mode=TwoWay}" CVText="{Binding CV137Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionsKeysDoehlerAndHaassMappingType}" IsVisible="True" IsEnabled="True"></usercontrols:Z2XBasicSwitchWidget>
                         </Grid>
                     </Border>
                     

@@ -31,7 +31,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              x:DataType="viewmodel:SoundViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
-             Padding="40,40,5,20"
+             Style="{StaticResource Z2XProgrammerContentPageStyle}"
              Title="{x:Static strings:AppResources.FlyoutItemSoundText}">
 
     <ContentPage.Resources>

@@ -350,9 +350,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                 <!-- ZIMO: Function keys for high beam and dimming in CV119 and CV120 (ZIMO_FUNCKEY_HIGHBEAMDIMMING_CV119X) -->
                 <Label x:Name="FrameFunctionKeysHighBeamDimmingTitle" Style="{StaticResource Z2XProgrammerLabelHeading2Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysHighBeamDimmingTitle}" VerticalOptions="Center"  HorizontalOptions="Start" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}" />
-                <ScrollView HorizontalScrollBarVisibility="Default" Orientation="Horizontal">
+                <ScrollView HorizontalScrollBarVisibility="Default" Orientation="Horizontal" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
 
-                    <Border Style="{StaticResource Z2XBorderFrame}" IsVisible="{Binding ZIMO_FUNCKEY_HIGHBEAMDIPPEDBEAM_CV119X}">
+                    <Border Style="{StaticResource Z2XBorderFrame}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -440,6 +440,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Border Style="{StaticResource Z2XBorderFrame}">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
@@ -450,22 +451,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
 
                             <!-- The description -->
-                            <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_sound_onoff_24_regular.png, Dark=ic_fluent_sound_onoff_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                            <Label Margin="50,0,0,0" x:Name="FrameFunctionKeysSoundControlDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_sound_onoff_24_regular.png, Dark=ic_fluent_sound_onoff_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label x:Name="FrameFunctionKeysSoundControlDescription" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
 
                             <!-- ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310) -->
-                            <Label Margin="0,20,0,20" x:Name="FrameFunctionKeysSoundVolumeOnOffLabel" Grid.Row="1" Grid.Column="0"  LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeOnOffLabel}" VerticalOptions="Center"  HorizontalOptions="Start"  IsVisible="{Binding ZIMO_FUNCKEY_SOUNDALLOFF_CV310}"  />
-                            <VerticalStackLayout Margin="0,20,0,20" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center"  IsVisible="{Binding ZIMO_FUNCKEY_SOUNDALLOFF_CV310}" >
-                                <Picker   Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundOnOff}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV310Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <usercontrols:Z2XBasicPickerWidget x:Name="FrameFunctionKeysSoundVolumeOnOffLabel" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundOnOff}" CVText="{Binding CV310Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeOnOffLabel}" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDALLOFF_CV310}" IsEnabled="True"></usercontrols:Z2XBasicPickerWidget>
 
                             <!-- ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308) -->
-                            <Label  Margin="0,0,0,20" x:Name="FrameFunctionKeysCurveSquealLabel" IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}"  Grid.Row="2" Grid.Column="0"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysCurveSquealLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Margin="0,0,0,20"  Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
-                                <Picker IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}"   Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysCurveSqueal}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV308Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <usercontrols:Z2XBasicPickerWidget x:Name="FrameFunctionKeysCurveSquealLabel" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysCurveSqueal}" CVText="{Binding CV308Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysCurveSquealLabel}" IsVisible="{Binding ZIMO_FUNCKEY_CURVESQUEAL_CV308}" IsEnabled="True"></usercontrols:Z2XBasicPickerWidget>
 
                         </Grid>
                     </Border>
@@ -475,6 +468,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Border Style="{StaticResource Z2XBorderFrame}">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
@@ -487,35 +481,19 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                             </Grid.RowDefinitions>
 
                             <!-- The description -->
-                            <Image Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_speaker_2_24_regular.png, Dark=ic_fluent_speaker_2_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
-                            <Label Margin="50,0,0,0" x:Name="FrameFunctionKeysSoundVolumeControlDescription" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="18" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_speaker_2_24_regular.png, Dark=ic_fluent_speaker_2_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>
+                            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" x:Name="FrameFunctionKeysSoundVolumeControlDescription"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeControlDescription}" VerticalOptions="Center"  HorizontalOptions="Start"/>
 
                             <!-- ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396) -->
-                            <Label  Margin="0,20,0,20" x:Name="FrameFunctionKeysSoundVolumeQuieterLabel" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" Grid.Row="1" Grid.Column="0" LineBreakMode="WordWrap" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeQuieterLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Margin="0,20,0,20" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
-                                <Picker Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeQuieter}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV396Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0" x:Name="FrameFunctionKeysSoundVolumeQuieterLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeQuieter}" CVText="{Binding CV396Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeQuieterLabel}" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396}" IsEnabled="True"></usercontrols:Z2XBasicPickerWidget>
 
                             <!-- ZIMO: Sound louder in CV397 (ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397) -->
-                            <Label  Margin="0,0,0,20" x:Name="FrameFunctionKeysSoundVolumeLouderLabel" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" Grid.Row="2" Grid.Column="0" LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeLouderLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Margin="0,0,0,20" Grid.Row="2" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center"  IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" >
-                                <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeLouder}" WidthRequest="300" HorizontalTextAlignment="End" ></Picker>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV397Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
+                            <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0"  x:Name="FrameFunctionKeysSoundVolumeLouderLabel" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysSoundVolumeLouder}" CVText="{Binding CV397Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysSoundVolumeLouderLabel}" IsVisible="{Binding ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397}" IsEnabled="True"></usercontrols:Z2XBasicPickerWidget>
 
                             <!-- ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313) -->
-                            <Label Margin="0,0,0,0" x:Name="FrameFunctionKeysSoundMuteLabel" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  Grid.Row="3" Grid.Column="0"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <VerticalStackLayout Margin="0,0,0,0" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}" Grid.Row="3" Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center">
-                                <Picker  Style="{StaticResource Z2XProgrammerPickerStyle}" ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysMute}" WidthRequest="300" HorizontalTextAlignment="End"></Picker>
-                                <Label IsVisible="{Binding AdditionalDisplayOfCVValues}" Text="{Binding CV313Configuration}" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
-                            </VerticalStackLayout>
-
-                            <Label Grid.Row="4" Grid.Column="0"  IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}"  LineBreakMode="WordWrap"  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteInvertLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                            <HorizontalStackLayout Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}">
-                                <Label Text="{Binding Path=ZIMOFuncKeysMuteInverted,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                                <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding ZIMOFuncKeysMuteInverted}" HorizontalOptions="End"></Switch>
-                            </HorizontalStackLayout>
+                            <usercontrols:Z2XBasicPickerWidget Margin="0,10,0,0"  x:Name="FrameFunctionKeysSoundMuteLabel" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding AvailableFunctionKeys}" SelectedIndex="{Binding ZIMOFuncKeysMute}" CVText="{Binding CV313Configuration}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteLabel}" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}" IsEnabled="True"></usercontrols:Z2XBasicPickerWidget>
+                            
+                            <usercontrols:Z2XBasicSwitchWidget Margin="0,10,0,0" x:Name="FrameFunctionKeysSoundMuteInvertLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"  IsToggled="{Binding ZIMOFuncKeysMuteInverted}" CVVisible="False" DescriptionText="{x:Static strings:AppResources.FrameFunctionKeysSoundMuteInvertLabel}" IsVisible="{Binding ZIMO_FUNCKEY_MUTE_CV313}" IsEnabled="True"></usercontrols:Z2XBasicSwitchWidget>
 
                         </Grid>
                     </Border>
