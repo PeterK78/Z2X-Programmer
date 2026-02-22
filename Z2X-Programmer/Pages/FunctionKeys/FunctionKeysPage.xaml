@@ -527,9 +527,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                 <Border Style="{StaticResource Z2XBorderClickableFrame}" IsVisible="{Binding FunctionOuputMappingSupported}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -547,7 +547,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </VerticalStackLayout>
 
                         <!-- The right arrow icon -->
-                        <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="0,0,10,0" HeightRequest="24" WidthRequest="24" ></Image>
+                        <Image Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Source="{AppThemeBinding Light=ic_fluent_chevron_right_24_regular.png, Dark=ic_fluent_chevron_right_24_dark.png}" Margin="10,0,0,0" HeightRequest="24" WidthRequest="24" ></Image>
 
                     </Grid>
 
