@@ -2052,7 +2052,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use up to 2 function outputs as decouplers. If a function output cannot be configured ⛔, this output is already assigned to another function or effect..
+        ///   Looks up a localized string similar to Use up to 2 function outputs as decouplers. If a function output cannot be configured (⛔), this output is already assigned to another function or effect..
         /// </summary>
         public static string FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription {
             get {

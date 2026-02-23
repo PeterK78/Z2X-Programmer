@@ -1837,7 +1837,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>Automatisches Entkuppeln</value>
   </data>
   <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription" xml:space="preserve">
-    <value>Verwenden Sie bis zu 2 Funktionsausgänge als Entkuppler. Falls ein Funktionsausgang nicht konfiguriert werden kann ⛔, so ist dieser Ausgang bereits mit einer weiteren Funktion oder Effekt belegt.</value>
+    <value>Verwenden Sie bis zu 2 Funktionsausgänge als Entkuppler. Falls ein Funktionsausgang nicht konfiguriert werden kann (⛔), so ist dieser Ausgang bereits mit einer weiteren Funktion oder Effekt belegt.</value>
   </data>
   <data name="FrameFunctionConfigurationUncouplerForwardLabel" xml:space="preserve">
     <value>Zuordnung der Funktionsausgänge</value>

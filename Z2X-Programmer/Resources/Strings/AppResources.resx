@@ -1836,7 +1836,7 @@ The application is aimed at beginners who want to configure the most important f
     <value>Automatic uncoupling</value>
   </data>
   <data name="FrameFunctionConfigurationUncouplerFunctionOutputSelectionDescription" xml:space="preserve">
-    <value>Use up to 2 function outputs as decouplers. If a function output cannot be configured ⛔, this output is already assigned to another function or effect.</value>
+    <value>Use up to 2 function outputs as decouplers. If a function output cannot be configured (⛔), this output is already assigned to another function or effect.</value>
   </data>
   <data name="FrameFunctionConfigurationUncouplerForwardLabel" xml:space="preserve">
     <value>Assignment of the function outputs</value>
