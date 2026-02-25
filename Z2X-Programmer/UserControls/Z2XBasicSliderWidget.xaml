@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
-             x:Class="Z2XProgrammer.UserControls.Z2XBasicSwitchWidget"
+             x:Class="Z2XProgrammer.UserControls.Z2XBasicSliderWidget"
              >
 
     <FlexLayout Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="End">
@@ -47,10 +47,10 @@
 
         <Label x:Name="MyDescriptionLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
         <VerticalStackLayout HorizontalOptions="Start">
-            <HorizontalStackLayout>
-                <Label  x:Name="MySwitchLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                <Switch x:Name="MySwitch" Toggled="MySwitch_Toggled" Style="{StaticResource Z2XProgrammerSwitchStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start">
+                <Slider x:Name="MySlider" ValueChanged="MySlider_ValueChanged" WidthRequest="200" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
+                <Label  x:Name="MySliderLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+            </VerticalStackLayout>
             <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
         </VerticalStackLayout>
         

@@ -270,6 +270,9 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResources.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="UserControls\Z2XBasicSliderWidget.xaml.cs">
+	    <DependentUpon>Z2XBasicSliderWidget.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="UserControls\Z2XBasicSwitchWidget.xaml.cs">
 	    <DependentUpon>Z2XBasicSwitchWidget.xaml</DependentUpon>
 	  </Compile>
@@ -380,6 +383,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Z2XProgrammerStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UserControls\Z2XBasicSliderWidget.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UserControls\Z2XBasicSwitchWidget.xaml">
