@@ -54,7 +54,7 @@
                     </VisualState>
                     <VisualState x:Name="Off">
                         <VisualState.Setters>
-                            <Setter Property="ThumbColor" Value="DarkSlateGray" />
+                            <Setter Property="ThumbColor" Value="#4b5b81" />
                             <Setter Property="OffColor" Value="{OnPlatform {StaticResource FlyOutBackgroundColor_Light}, Android={StaticResource SwitchBackgroundOffAndroid}}" />
                         </VisualState.Setters>
                     </VisualState>
@@ -339,14 +339,14 @@
 
     <Style x:Key="Z2XProgrammerLabelHeading2Style" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeading2Color_Light}, Dark={StaticResource LabelHeading2Color_Dark}}"></Setter>
-        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="Margin" Value="0,25,0,15"></Setter>
     </Style>
 
     <Style x:Key="Z2XProgrammerLabelHeading3Style" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelHeadingColor1_Light}, Dark={StaticResource LabelHeadingColor1_Dark}}"></Setter>
-        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="Margin" Value="0,1,0,1"></Setter>
     </Style>

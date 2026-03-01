@@ -233,7 +233,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemSoundText}" Icon="{AppThemeBinding Light=ic_fluent_speaker_2_24_regular.png, Dark=ic_fluent_speaker_2_24_dark.png}" >
+    <FlyoutItem Title="{x:Static strings:AppResources.FlyoutItemSoundText}" Icon="{AppThemeBinding Light=ic_fluent_sound_wave_circle_24_regular.png, Dark=ic_fluent_sound_wave_circle_24_dark.png}" >
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:SoundPage}"  Route="SoundPage"/>
         </Tab>

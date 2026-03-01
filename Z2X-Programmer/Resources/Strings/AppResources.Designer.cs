@@ -5208,7 +5208,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum volume for a volume change using the volume up button (CV395).
+        ///   Looks up a localized string similar to Maximum volume when changing using the volume up button (CV395).
         /// </summary>
         public static string FrameSoundMaxVolumeFuncKeysLabel {
             get {
@@ -5217,7 +5217,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value 64 corresponds to 100 % volume. Be careful if you use higher values..
+        ///   Looks up a localized string similar to Be careful if you use higher values..
         /// </summary>
         public static string FrameSoundMaxVolumeFuncKeysTooltip {
             get {
@@ -5352,7 +5352,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value 64 corresponds to 100 % volume. Be careful if you use higher values..
+        ///   Looks up a localized string similar to Be careful if you use higher values..
         /// </summary>
         public static string FrameSoundVolumeTooltip {
             get {

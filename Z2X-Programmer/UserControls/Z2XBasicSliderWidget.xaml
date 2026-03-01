@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+
+Z2X-Programmer
+Copyright (C) 2024 - 2026
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+    
+-->   
+    
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
@@ -45,15 +69,28 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Label x:Name="MyDescriptionLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
+        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+            <Label x:Name="MyTitleLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
+            <Label x:Name="MyDecriptionLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
         <VerticalStackLayout HorizontalOptions="Start">
             <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start">
                 <Slider x:Name="MySlider" ValueChanged="MySlider_ValueChanged" WidthRequest="200" Style="{StaticResource Z2XSlider}" HorizontalOptions="Center"></Slider>
-                <Label  x:Name="MySliderLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
+                <Border x:Name="MyHeatIndicator" Style="{StaticResource Z2XBorderFrame}" WidthRequest="200" HeightRequest="4" HorizontalOptions="Center">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="Green" Offset="0.0" />
+                            <GradientStop Color="Yellow" Offset="0.2" />
+                            <GradientStop Color="Orange" Offset="0.3" />
+                            <GradientStop Color="Red" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Label  x:Name="MySliderLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             </VerticalStackLayout>
             <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
         </VerticalStackLayout>
-        
+
     </FlexLayout>
 
 </ContentView>

@@ -30,6 +30,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             xmlns:usercontrols="clr-namespace:Z2XProgrammer.UserControls"
              x:DataType="viewmodel:ExpertViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -68,75 +69,158 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" IsVisible="{Binding ActivityReadWriteCVOngoing}" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
 
-                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Entry Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" WidthRequest="200" MinimumWidthRequest="200" Text="{Binding CvNumber}" HorizontalOptions="End" HorizontalTextAlignment="Center" VerticalOptions="Center" Keyboard="Numeric"  >
-                        <Entry.Behaviors>
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVLabel" Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding CvNumber}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" CVText="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" >
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
                             <toolkit:NumericValidationBehavior
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                 ValidStyle="{StaticResource Z2XValidEntry}"
                                 Flags="ValidateOnValueChanged"
                                 MinimumValue="1"
                                 MaximumValue="1024"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
+                                MaximumDecimalPlaces="0"
+                                >
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
 
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVValue}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <Entry Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" MinimumWidthRequest="200" WidthRequest="200" Text="{Binding Value}" HorizontalOptions="End" HorizontalTextAlignment="Center" IsPassword="{Binding Path=DataValid,Converter={StaticResource boolInvert}}" VerticalOptions="Center" Keyboard="Numeric" >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior 
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVValue" Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding Value}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVValue}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" CVText="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" >
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                            <toolkit:NumericValidationBehavior
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                 ValidStyle="{StaticResource Z2XValidEntry}"
                                 Flags="ValidateOnValueChanged"
                                 MinimumValue="0"
                                 MaximumValue="255"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
+                                MaximumDecimalPlaces="0"
+                                >
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
 
-                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVBits}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End">
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit7}"></CheckBox>
-                            <Label Text="Bit 7"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit6}"></CheckBox>
-                            <Label Text="Bit 6"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit5}"></CheckBox>
-                            <Label Text="Bit 5"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit4}"></CheckBox>
-                            <Label Text="Bit 4"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit3}"></CheckBox>
-                            <Label Text="Bit 3"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit2}"></CheckBox>
-                            <Label Text="Bit 2"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit1}"></CheckBox>
-                            <Label Text="Bit 1"></Label>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <CheckBox IsChecked="{Binding Bit0}" ></CheckBox>
-                            <Label Text="Bit 0"></Label>
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Margin="0,10,0,0">
 
-                    <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
-                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_dark.png , Dark=ic_fluent_arrow_download_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
-                        <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_dark.png, Dark=ic_fluent_arrow_upload_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Margin="10,0,0,0" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
-                    </HorizontalStackLayout>
+                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+
+                                <!-- Portrait -->
+                                <VisualState x:Name="Portrait">
+                                    <VisualState.StateTriggers>
+                                        <OrientationStateTrigger Orientation="Portrait" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeVertical -->
+                                <VisualState x:Name="LandscapeVertical">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeHorizontal -->
+                                <VisualState x:Name="LandscapeHorizontal">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                        <OrientationStateTrigger Orientation="Landscape" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Row" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Label Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVBits}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                        <HorizontalStackLayout HorizontalOptions="End">
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit7}"></CheckBox>
+                                <Label Text="Bit 7"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit6}"></CheckBox>
+                                <Label Text="Bit 6"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit5}"></CheckBox>
+                                <Label Text="Bit 5"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit4}"></CheckBox>
+                                <Label Text="Bit 4"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit3}"></CheckBox>
+                                <Label Text="Bit 3"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit2}"></CheckBox>
+                                <Label Text="Bit 2"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit1}"></CheckBox>
+                                <Label Text="Bit 1"></Label>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <CheckBox IsChecked="{Binding Bit0}" ></CheckBox>
+                                <Label Text="Bit 0"></Label>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                    </FlexLayout>
+
+                    <FlexLayout Direction="Row"  Margin="0,40,0,0" JustifyContent="End" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End">
+
+                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+
+                                <!-- Portrait -->
+                                <VisualState x:Name="Portrait">
+                                    <VisualState.StateTriggers>
+                                        <OrientationStateTrigger Orientation="Portrait" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeVertical -->
+                                <VisualState x:Name="LandscapeVertical">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeHorizontal -->
+                                <VisualState x:Name="LandscapeHorizontal">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                        <OrientationStateTrigger Orientation="Landscape" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Row" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Button Margin="10,5,0,0" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_download_24_dark.png , Dark=ic_fluent_arrow_download_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonWriteCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=WriteCVCommand}" WidthRequest="200" ></Button>
+                        <Button Margin="10,5,0,0" ImageSource="{AppThemeBinding Light=ic_fluent_arrow_upload_24_dark.png, Dark=ic_fluent_arrow_upload_24_regular.png}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteButtonReadCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=ReadCVCommand}" WidthRequest="200" ></Button>
+                        
+                    </FlexLayout>
+                    
                 </Grid>
+
+
             </Border>
 
 
@@ -204,10 +288,51 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     </Border>
 
-                    <HorizontalStackLayout Margin="0,40,0,0"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
-                        <Button Margin="0,0,20,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableAllCVs}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableAllCVsCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_select_all_on_24_dark.png, Dark=ic_fluent_select_all_on_24_regular.png}"></Button>
-                        <Button Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_toggle_multiple_24_dark.png, Dark=ic_fluent_toggle_multiple_24_regular.png}"></Button>
-                    </HorizontalStackLayout>
+                    
+                    
+                    <FlexLayout Direction="Row"  Margin="0,40,0,0" JustifyContent="End" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  HorizontalOptions="End">
+
+                        <!-- We use the following configuration of the VisualStateManager to switch between a horizontal and vertical layout -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+
+                                <!-- Portrait -->
+                                <VisualState x:Name="Portrait">
+                                    <VisualState.StateTriggers>
+                                        <OrientationStateTrigger Orientation="Portrait" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeVertical -->
+                                <VisualState x:Name="LandscapeVertical">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="0"/>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Column" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <!-- LandscapeHorizontal -->
+                                <VisualState x:Name="LandscapeHorizontal">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="950"/>
+                                        <OrientationStateTrigger Orientation="Landscape" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Direction" Value="Row" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    
+                        <Button Margin="10,5,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableAllCVs}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableAllCVsCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_select_all_on_24_dark.png, Dark=ic_fluent_select_all_on_24_regular.png}"></Button>
+                        <Button Margin="10,5,0,0" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" Text="{x:Static strings:AppResources.FrameExpertSettingsEnableDisableCV}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExpertViewModel}}, Path=EnableDisableCVCommand}" WidthRequest="250" ImageSource="{AppThemeBinding Light=ic_fluent_toggle_multiple_24_dark.png, Dark=ic_fluent_toggle_multiple_24_regular.png}"></Button>
+                        
+                    </FlexLayout>
 
                 </VerticalStackLayout>
             </Border>

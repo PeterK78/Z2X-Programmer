@@ -55,15 +55,15 @@
     <Color x:Key="EntryBackground_Dark">#19172c</Color>
 
     <!-- The font color of Heading 1 -->
-    <Color x:Key="LabelHeadingColor1_Light">Black</Color>
+    <Color x:Key="LabelHeadingColor1_Light">#0c1e41</Color>
     <Color x:Key="LabelHeadingColor1_Dark">White</Color>
 
     <!-- The font color of Heading 2 -->
-    <Color x:Key="LabelHeading2Color_Light">Black</Color>
+    <Color x:Key="LabelHeading2Color_Light">#0c1e41</Color>
     <Color x:Key="LabelHeading2Color_Dark">White</Color>
 
     <!-- The font color of Heading 1 -->
-    <Color x:Key="LabelHeading1Color_Light">Black</Color>
+    <Color x:Key="LabelHeading1Color_Light">#0c1e41</Color>
     <Color x:Key="LabelHeading1Color_Dark">White</Color>
     
     <!-- The colors of a frame (border) -->
@@ -83,7 +83,7 @@
     <Color x:Key="PickerTextColor_Dark">White</Color>
     
     <!-- -The text color of a standard label -->
-    <Color x:Key="LabelStandardColor_Light">Black   </Color>
+    <Color x:Key="LabelStandardColor_Light">#2e3f63  </Color>
     <Color x:Key="LabelStandardColor_Dark">#bab4d9</Color>
 
     <Color x:Key="White">White</Color>

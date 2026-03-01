@@ -1056,10 +1056,10 @@ Frequency type = Low frequency</value>
     <value>Duration of noise reduction during deceleration (CV285)</value>
   </data>
   <data name="FrameSoundMaxVolumeFuncKeysLabel" xml:space="preserve">
-    <value>Maximum volume for a volume change using the volume up button (CV395)</value>
+    <value>Maximum volume when changing using the volume up button (CV395)</value>
   </data>
   <data name="FrameSoundMaxVolumeFuncKeysTooltip" xml:space="preserve">
-    <value>The value 64 corresponds to 100 % volume. Be careful if you use higher values.</value>
+    <value>Be careful if you use higher values.</value>
   </data>
   <data name="FrameSoundOverallVolumeTitle" xml:space="preserve">
     <value>Total volume (CV266)</value>
@@ -1104,7 +1104,7 @@ Frequency type = Low frequency</value>
     <value>General volume settings</value>
   </data>
   <data name="FrameSoundVolumeTooltip" xml:space="preserve">
-    <value>The value 64 corresponds to 100 % volume. Be careful if you use higher values.</value>
+    <value>Be careful if you use higher values.</value>
   </data>
   <data name="FrameSpeedStepsSystemDescription" xml:space="preserve">
     <value>The speed step system determines the maximum number of possible speed steps. The higher the maximum number of speed steps, the more sensitively a locomotive can be controlled.</value>

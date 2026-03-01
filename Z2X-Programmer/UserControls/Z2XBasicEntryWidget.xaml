@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
+    
 <!--
 
 Z2X-Programmer
@@ -21,13 +21,13 @@ along with this program. If not, see:
 
 https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
     
--->               
+-->           
     
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
-             x:Class="Z2XProgrammer.UserControls.Z2XBasicSwitchWidget"
+             x:Class="Z2XProgrammer.UserControls.Z2XBasicEntryWidget"
              >
 
     <FlexLayout Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="End">
@@ -69,15 +69,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Label x:Name="MyDescriptionLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
-        <VerticalStackLayout HorizontalOptions="Start">
-            <HorizontalStackLayout>
-                <Label  x:Name="MySwitchLabel" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                <Switch x:Name="MySwitch" Toggled="MySwitch_Toggled" Style="{StaticResource Z2XProgrammerSwitchStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-            <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+        <Label x:Name="MyTitleLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
+        <VerticalStackLayout HorizontalOptions="Start" >
+            <Entry x:Name="MyEntry" IsReadOnly="True" HorizontalTextAlignment="End" WidthRequest="300" VerticalOptions="Center"  HorizontalOptions="End"/>
+            <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="End" HorizontalTextAlignment="Center" MinimumWidthRequest="300" WidthRequest="300"></Label>
         </VerticalStackLayout>
-        
     </FlexLayout>
 
 </ContentView>

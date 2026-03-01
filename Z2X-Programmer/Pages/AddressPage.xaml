@@ -164,7 +164,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <!-- LandscapeHorizontal -->
                                 <VisualState x:Name="LandscapeHorizontal">
                                     <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="500"/>
+                                        <AdaptiveTrigger MinWindowWidth="1000"/>
                                         <OrientationStateTrigger Orientation="Landscape" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>

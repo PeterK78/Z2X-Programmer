@@ -1,16 +1,31 @@
-using System;
+/*
+
+Z2X-Programmer
+Copyright (C) 2024 - 2026
+PeterK78
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see:
+
+https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
+
+*/
+
 using System.Collections;
 using System.Collections.ObjectModel;
 
 namespace Z2XProgrammer.UserControls;
 
-/// <summary>
-/// Represents a simple widget with a picker control that allows users to select an item from a list, with optional description
-/// and value labels.
-/// </summary>
-/// <remarks>This control provides bindable properties for the item source, description text, value label text,
-/// and visibility. It also exposes properties for tracking the selected item and index, enabling integration with data
-/// binding scenarios in XAML-based applications.</remarks>
 public partial class Z2XBasicPickerWidget : ContentView
 {
     // Handling the source of the picker       

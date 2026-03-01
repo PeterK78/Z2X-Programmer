@@ -1057,10 +1057,10 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Dauer der Geräuschreduktion bei Verzögerung (CV285)</value>
   </data>
   <data name="FrameSoundMaxVolumeFuncKeysLabel" xml:space="preserve">
-    <value>Maximale Lautstärke bei einer Lautstärkenveränderung mit Hilfe der Lauter-Taste (CV395)</value>
+    <value>Maximale Lautstärke bei einer Änderung per Lauter-Taste (CV395)</value>
   </data>
   <data name="FrameSoundMaxVolumeFuncKeysTooltip" xml:space="preserve">
-    <value>Der Wert 64 entspricht 100 % Lautstärke. Seien Sie vorsichtig, wenn Sie höhere Werte verwenden.</value>
+    <value>Seien Sie vorsichtig, wenn Sie höhere Werte verwenden.</value>
   </data>
   <data name="FrameSoundOverallVolumeTitle" xml:space="preserve">
     <value>Gesamt-Lautstärke (CV266)</value>
@@ -1105,7 +1105,7 @@ Frequenztyp = Niedrigfrequenz</value>
     <value>Allgemeine Lautstärkeeinstellungen</value>
   </data>
   <data name="FrameSoundVolumeTooltip" xml:space="preserve">
-    <value>Der Wert 64 entspricht 100 % Lautstärke. Seien Sie vorsichtig, wenn Sie höhere Werte verwenden.</value>
+    <value>Seien Sie vorsichtig, wenn Sie höhere Werte verwenden.</value>
   </data>
   <data name="FrameSpeedStepsSystemDescription" xml:space="preserve">
     <value>Das Fahrstufensystem bestimmt die maximale Anzahl der möglichen Fahrstufen. Je höher die maximale Anzahl der Fahrstufen ist, desto feinfühliger kann eine Lokomotive gesteuert werden.</value>
