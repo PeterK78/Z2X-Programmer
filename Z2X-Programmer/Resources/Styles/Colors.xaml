@@ -17,7 +17,10 @@
     <Color x:Key="Tertiary">#012460</Color>
 
     <!-- The background color of the app -->
-    <Color x:Key="AppBackground_Light">#f9f9f9</Color>
+    <OnPlatform x:Key="AppBackground_Light" x:TypeArguments="Color">
+        <On Platform="Android" Value="#f5f6ff" />
+        <On Platform="Default" Value="#f9f9f9" />
+    </OnPlatform>
     <Color x:Key="AppBackground_Dark">#19172c</Color>
 
     <!-- The background color of the fly out -->
@@ -25,17 +28,30 @@
     <Color x:Key="FlyOutBackgroundColor_Dark">#19172c</Color>
    
     <!-- The background color of the title bar -->
-    <Color x:Key="TitleBarBackground_Light">#f9f9f9</Color>
+    <OnPlatform x:Key="TitleBarBackground_Light" x:TypeArguments="Color">
+      <On Platform="Android" Value="#dbe2f0" />
+      <On Platform="Default" Value="#f9f9f9" />
+    </OnPlatform>
     <Color x:Key="TitleBarBackground_Dark">#19172c</Color>
     
     <!-- Button colors -->    
-    <Color x:Key="ButtonBackground_Light">#f9f9f9</Color>
+    <OnPlatform x:Key="ButtonBackground_Light" x:TypeArguments="Color">
+        <On Platform="Android" Value="#dbe2f0" />
+        <On Platform="Default" Value="#f9f9f9" />
+    </OnPlatform>
+    
     <Color x:Key="ButtonBackground_Light_Disabled">#f3f3f3</Color>
     <Color x:Key="ButtonBackground_Dark">#19172c</Color>
     <Color x:Key="ButtonBackground_Dark_Disabled">#080711</Color>
     <Color x:Key="ButtonText_Light">Black</Color>
     <Color x:Key="ButtonText_Dark">White</Color>
-    <Color x:Key="ButtonHighlight_Light">#f3f3f3</Color>
+    
+    <OnPlatform x:Key="ButtonHighlight_Light" x:TypeArguments="Color">
+        <On Platform="Android" Value="#dbe2f0" />
+        <On Platform="Default" Value="#f3f3f3" />
+    </OnPlatform>
+    
+    
     <Color x:Key="ButtonHighlight_Dark">#2c2848</Color>
     
     <!-- Table colors -->
@@ -67,7 +83,10 @@
     <Color x:Key="LabelHeading1Color_Dark">White</Color>
     
     <!-- The colors of a frame (border) -->
-    <Color x:Key="FrameBackgroundColor_Light">#fafcfd</Color>
+    <OnPlatform x:Key="FrameBackgroundColor_Light" x:TypeArguments="Color">
+        <On Platform="Android" Value="#dbe2f0" />
+        <On Platform="Default" Value="#fafcfd" />
+    </OnPlatform>   
     <Color x:Key="FrameBackgroundColor_Dark">#2c2848</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Light">#f3f3f3</Color>
     <Color x:Key="FrameBackgroundPointerOverColor_Dark">#636363</Color>
