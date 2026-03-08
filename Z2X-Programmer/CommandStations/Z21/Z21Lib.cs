@@ -1220,7 +1220,7 @@ namespace Z21Lib
 
                     OnRailComInfoReceived?.Invoke(this, new RailComInfoEventArgs(locoAddress, railComSpeed, railComQOS, errorCounter));
 
-                    Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComSupportedOptions.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString() + " railComTransmitErrors:" + errorCounter);
+                    //Logger.PrintDevConsole("Z21Lib:EvaluateZ21Response (LAN_RAILCOM_DATACHANGED) locoAddress:" + locoAddress + " railComOption=" + railComSupportedOptions.ToString() + " railComSpeed=" + railComSpeed.ToString() + " railComQOS=" + railComQOS.ToString() + " railComTransmitErrors:" + errorCounter);
 
                     break;
 

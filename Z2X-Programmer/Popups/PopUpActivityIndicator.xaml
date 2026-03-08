@@ -30,7 +30,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              CanBeDismissedByTappingOutsideOfPopup="False"
-             Padding="0,0,0,0"
+             Padding="20,20,20,20"
              >
     
     <VerticalStackLayout>

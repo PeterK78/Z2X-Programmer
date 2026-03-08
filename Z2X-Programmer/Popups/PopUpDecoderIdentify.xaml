@@ -31,9 +31,9 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              CanBeDismissedByTappingOutsideOfPopup="False"
              MaximumWidthRequest="640"
-             HeightRequest="250"
+             HeightRequest="270"
              BackgroundColor="{AppThemeBinding Light={StaticResource FrameBackgroundColor_Light}, Dark={StaticResource FrameBackgroundColor_Dark}}"       
-             Padding="0,0,0,0"
+             Padding="20,20,20,20"
              >
 
     <ScrollView Orientation="Vertical" HorizontalOptions="Center" >

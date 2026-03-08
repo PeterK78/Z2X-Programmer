@@ -154,11 +154,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                         <CollectionView IsVisible="{Binding AdditionalDisplayOfCVValues}" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding FunctionKeys}" SelectedItem="{Binding SelectedInputMapping}" HeightRequest="300" Margin="0,20,0,0" SelectionMode="Single">
                             <CollectionView.Header>
-                                <Grid ColumnDefinitions="*,*,*,*">
-                                    <Image Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}"></Image>
-                                    <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}"/>
-                                    <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" />
-                                    <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleValue}" />
+                                <Grid ColumnDefinitions="*,*,*,*" BackgroundColor="{AppThemeBinding Light={StaticResource TableHeaderNormal_Light}, Dark={StaticResource TableHeaderNormal_Dark}}">
+                                    <Image Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_xbox_controller_24_regular.png, Dark=ic_fluent_xbox_controller_24_dark.png}" HeightRequest="20" ></Image>
+                                    <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleDecoder}"/>
+                                    <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleCV}" />
+                                    <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{x:Static strings:AppResources.FrameFunctionKeysZIMOInputMappingHeaderTitleValue}" />
                                 </Grid>
                             </CollectionView.Header>
 
@@ -166,7 +166,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                                 <DataTemplate x:DataType="datamodel:FunctionKeyType">
                                     <Grid ColumnDefinitions="*,*,*,*">
 
-                                        <Label Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Path=ZIMOInputMapping.ExternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}" HorizontalTextAlignment="Start" />
+                                        <Label Grid.Column="0"  Margin="20,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding Path=ZIMOInputMapping.ExternalFunctionKeyNumber,Converter={StaticResource ZIMOInputMappingConverter}}" HorizontalTextAlignment="Start" />
                                         <Label Grid.Column="1" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Start" Text="{Binding ZIMOInputMapping.InternalFunctionKeyDescription}"/>
                                         <Label Grid.Column="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{Binding ZIMOInputMapping.CVNumber}" HorizontalTextAlignment="Center" />
                                         <Label Grid.Column="3" Style="{StaticResource Z2XProgrammerLabelStandardStyle}"  HorizontalTextAlignment="Center" Text="{Binding ZIMOInputMapping.CVValue}"/>

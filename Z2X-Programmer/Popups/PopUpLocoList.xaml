@@ -33,7 +33,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"             
              MaximumWidthRequest="640"
              MaximumHeightRequest="460"
-             Padding="0,0,0,0"
+             Padding="20,20,20,20"
              >
 
     <ScrollView Orientation="Vertical" HorizontalOptions="Center" >
@@ -47,7 +47,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
             <Border Style="{StaticResource Z2XBorderFrame}">
 
-                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="290">
+                <CollectionView x:Name="LocoListCollectionView" SelectionMode="Single" HeightRequest="250">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="datamodel:LocoListType">

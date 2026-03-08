@@ -29,12 +29,12 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:strings="clr-namespace:Z2XProgrammer.Resources.Strings"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
              CanBeDismissedByTappingOutsideOfPopup="True"
-             Padding="0,0,0,0"
+             Padding="20,20,20,20"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
              >
 
     <Border>
-    <VerticalStackLayout  Padding="10,0,10,10">
+    <VerticalStackLayout  Padding="20,0,10,10">
 
             <Grid MinimumWidthRequest="500" MinimumHeightRequest="150" BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"  >
                 
