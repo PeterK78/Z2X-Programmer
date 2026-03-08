@@ -275,5 +275,15 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <ShellContent ContentTemplate="{DataTemplate pages:InfoPage}" />
         </Tab>
     </FlyoutItem>
+    
+    <!--    Note:
+            On Android 16 on a Pixel 10, the last FlyoutItem is not visible in the flyout menu. As a workaround, the last FlyoutItem is duplicated and set
+            to IsVisible=false on all platforms except Android. This way, the last FlyoutItem will be visible on Android, but not on other platforms. 
+    -->
+    <FlyoutItem Title="" IsEnabled="False" IsVisible="{OnPlatform Android=true, iOS=false, MacCatalyst=false, WinUI=false}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:InfoPage}" />
+        </Tab>
+    </FlyoutItem>
 
 </Shell>
