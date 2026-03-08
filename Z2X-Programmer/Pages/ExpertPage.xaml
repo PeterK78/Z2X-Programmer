@@ -69,7 +69,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
                     <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" IsVisible="{Binding ActivityReadWriteCVOngoing}" IsRunning="{Binding ActivityReadWriteCVOngoing}"></ActivityIndicator>
 
-                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVLabel" Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding CvNumber}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" CVText="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" >
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVLabel" Margin="0,10,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding CvNumber}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVLabel}" CVVisible="False" CVText="" >
                         <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
                             <toolkit:NumericValidationBehavior
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
@@ -83,7 +83,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
                     </usercontrols:Z2XBasicEntryWidget>
 
-                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVValue" Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding Value}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVValue}" CVVisible="{Binding AdditionalDisplayOfCVValues, Mode=TwoWay}" CVText="{Binding SelectedDCCAddressModeVehicleAddrCVConfiguration}" >
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameExpertSettingsCVReadWriteCVValue" Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding Value}" TitleText="{x:Static strings:AppResources.FrameExpertSettingsCVReadWriteCVValue}" CVVisible="False" CVText="" >
                         <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
                             <toolkit:NumericValidationBehavior
                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
