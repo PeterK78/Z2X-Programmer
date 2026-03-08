@@ -71,7 +71,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
         <Label x:Name="MyTitleLabel" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="WordWrap" />
         <VerticalStackLayout HorizontalOptions="Start" >
-            <Entry x:Name="MyEntry" IsReadOnly="True" HorizontalTextAlignment="End" WidthRequest="300" VerticalOptions="Center"  HorizontalOptions="End"/>
+            <Entry x:Name="MyEntry" IsReadOnly="True" HorizontalTextAlignment="End" WidthRequest="300" VerticalOptions="Center"  HorizontalOptions="End" ClearButtonVisibility="WhileEditing"/>
             <Label x:Name="MyCVLabel" Style="{StaticResource Z2XProgrammerLabelAdditionalCVValuesStyle}" IsVisible="False" HorizontalOptions="End" HorizontalTextAlignment="Center" MinimumWidthRequest="300" WidthRequest="300"></Label>
         </VerticalStackLayout>
     </FlexLayout>

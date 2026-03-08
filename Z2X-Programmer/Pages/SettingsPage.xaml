@@ -30,6 +30,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
              xmlns:viewmodel="clr-namespace:Z2XProgrammer.ViewModel"
              xmlns:converter="clr-namespace:Z2XProgrammer.Converter"
              xmlns:datamodel="clr-namespace:Z2XProgrammer.DataModel"
+             xmlns:usercontrols="clr-namespace:Z2XProgrammer.UserControls"
              x:DataType="viewmodel:SettingsPageViewModel"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              BackgroundColor="{AppThemeBinding Light={StaticResource AppBackground_Light}, Dark={StaticResource AppBackground_Dark}}"
@@ -597,6 +598,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Border Style="{StaticResource Z2XBorderFrame}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -613,73 +615,60 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     <Label Margin="50,0,0,20" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionDescription}" VerticalOptions="Center"  HorizontalOptions="Start" />
 
                     <!-- Number sensor 1 -->
-                    <Label Grid.Row="1" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionSensor1Label}"  HorizontalOptions="Start" />
-                    <Entry Grid.Row="1" Grid.Column="1"  HorizontalTextAlignment="Center"  MinimumWidthRequest="200" Text="{Binding MeasurementSectionSensor1Number}" IsReadOnly="False" IsEnabled="True" Margin="0,10,0,0" ClearButtonVisibility="WhileEditing" Keyboard="Numeric"   >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior                                     
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="0"
-                                MaximumValue="128"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
-
-                    <!-- Number sensor 2 -->
-                    <Label Grid.Row="2" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionSensor2Label}"  HorizontalOptions="Start" />
-                    <Entry Grid.Row="2" Grid.Column="1"  HorizontalTextAlignment="Center"  MinimumWidthRequest="200" Text="{Binding MeasurementSectionSensor2Number}" IsReadOnly="False" IsEnabled="True" Margin="0,10,0,0" ClearButtonVisibility="WhileEditing" Keyboard="Numeric" >
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior                                     
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="0"
-                                MaximumValue="128"
-                                MaximumDecimalPlaces="0" />
-                        </Entry.Behaviors>
-                    </Entry>
-
-                    <!-- Length mm -->
-                    <Label Grid.Row="3" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionLength}"  HorizontalOptions="Start" />
-
-                    <HorizontalStackLayout Grid.Row="3" Grid.Column="1">
-                        <Entry   HorizontalTextAlignment="Center"  MinimumWidthRequest="200" Text="{Binding MeasurementSectionLengthInMM}" IsReadOnly="False" IsEnabled="True" Margin="0,10,0,0" ClearButtonVisibility="WhileEditing" Keyboard="Numeric"  >
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior                                     
-                                BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
-                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
-                                ValidStyle="{StaticResource Z2XValidEntry}"
-                                Flags="ValidateOnValueChanged"
-                                MinimumValue="0"
-                                MaximumValue="5000"
-                                MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Label Margin="10,0,0,0" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="mm"  HorizontalOptions="End" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-
-
-                    <!-- Scale -->
-                    <Label Grid.Row="4" Grid.Column="0"  Margin="0,10,0,0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsMeasuringSectionScale}" HorizontalOptions="Start" />
-
-                    <HorizontalStackLayout Grid.Row="4" Grid.Column="1"  Margin="0,10,0,0" HorizontalOptions="End" >
-                        <Label  Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="1:" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,10,0" />
-                        <Entry  HorizontalTextAlignment="Center" HorizontalOptions="End" MinimumWidthRequest="200" Text="{Binding MeasurementSectionScale}" IsReadOnly="False" IsEnabled="True"  ClearButtonVisibility="WhileEditing" Keyboard="Numeric">
-                            <Entry.Behaviors>
-                                <toolkit:NumericValidationBehavior                                     
-                                    BindingContext="{Binding BindingContext, Source={x:Reference ThisPage}, x:DataType=ContentPage}"
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameSettingsMeasuringSectionSensor1Label" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding MeasurementSectionSensor1Number}" TitleText="{x:Static strings:AppResources.FrameSettingsMeasuringSectionSensor1Label}" CVVisible="False" CVText="" Keyboard="Numeric" IsEnabled="True">
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                            <toolkit:NumericValidationBehavior
                                     InvalidStyle="{StaticResource Z2XInvalidEntry}"
                                     ValidStyle="{StaticResource Z2XValidEntry}"
                                     Flags="ValidateOnValueChanged"
-                                    MinimumValue="16"
-                                    MaximumValue="220"
-                                    MaximumDecimalPlaces="0" />
-                            </Entry.Behaviors>
-                        </Entry>
-                    </HorizontalStackLayout>
+                                    MinimumValue="0"
+                                    MaximumValue="128"
+                                    MaximumDecimalPlaces="0">
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
+
+                    <!-- Number sensor 2 -->
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameSettingsMeasuringSectionSensor2Label" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding MeasurementSectionSensor2Number}" TitleText="{x:Static strings:AppResources.FrameSettingsMeasuringSectionSensor2Label}" CVVisible="False" CVText="" Keyboard="Numeric" IsEnabled="True">
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                            <toolkit:NumericValidationBehavior
+                                InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                ValidStyle="{StaticResource Z2XValidEntry}"
+                                Flags="ValidateOnValueChanged"
+                                MinimumValue="0"
+                                MaximumValue="128"
+                                MaximumDecimalPlaces="0">
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
+
+                    <!-- Length mm -->
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameSettingsMeasuringSectionLength" Margin="0,10,0,0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="False" Text="{Binding MeasurementSectionLengthInMM}" TitleText="{x:Static strings:AppResources.FrameSettingsMeasuringSectionLength}" CVVisible="False" CVText="" Keyboard="Numeric" IsEnabled="True">
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                            <toolkit:NumericValidationBehavior
+                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                 ValidStyle="{StaticResource Z2XValidEntry}"
+                                 Flags="ValidateOnValueChanged"
+                                 MinimumValue="0"
+                                 MaximumValue="5000"
+                                 MaximumDecimalPlaces="0">
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
+
+                    <!-- Scale -->
+                    <usercontrols:Z2XBasicEntryWidget x:Name="FrameSettingsMeasuringSectionScale" Margin="0,10,0,0" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="False"  Text="{Binding MeasurementSectionScale}" TitleText="{x:Static strings:AppResources.FrameSettingsMeasuringSectionScale}" CVVisible="False" CVText="" Keyboard="Numeric" IsEnabled="True">
+                        <usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                            <toolkit:NumericValidationBehavior
+                                 InvalidStyle="{StaticResource Z2XInvalidEntry}"
+                                 ValidStyle="{StaticResource Z2XValidEntry}"
+                                 Flags="ValidateOnValueChanged"
+                                 MinimumValue="0"
+                                 MaximumValue="5000"
+                                 MaximumDecimalPlaces="0">
+                            </toolkit:NumericValidationBehavior>
+                        </usercontrols:Z2XBasicEntryWidget.EntryBehaviors>
+                    </usercontrols:Z2XBasicEntryWidget>
                 </Grid>
             </Border>
 
@@ -688,17 +677,14 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
             <Border Style="{StaticResource Z2XBorderFrame}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsLoggingEnableDisable}" VerticalOptions="Center"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
-                        <Label Text="{Binding Path=EnableLogging,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch  Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding EnableLogging}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
+                   <Image Grid.Row="0" Grid.Column="0" Source="{AppThemeBinding Light=ic_fluent_clipboard_text_ltr_24_regular.png, Dark=ic_fluent_clipboard_text_ltr_24_dark.png}" HorizontalOptions="Start" HeightRequest="24"></Image>              
+                    <usercontrols:Z2XBasicSwitchWidget x:Name="FrameSettingsLoggingEnableDisable" Grid.Row="0" Grid.Column="1" CVText="" IsToggled="{Binding EnableLogging}" CVVisible="False" DescriptionText="{x:Static strings:AppResources.FrameSettingsLoggingEnableDisable}" IsVisible="True" IsEnabled="True"></usercontrols:Z2XBasicSwitchWidget>
                 </Grid>
             </Border>
 
@@ -716,19 +702,10 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                     </Grid.RowDefinitions>
 
                     <!-- Do not cancel in the event of a read error -->
-                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsQuitOnReadError}"  HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End">
-                        <Label Text="{Binding Path=QuitOnReadError,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding QuitOnReadError}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
+                    <usercontrols:Z2XBasicSwitchWidget x:Name="FrameSettingsQuitOnReadError" Grid.Row="0" Grid.Column="0" CVText="" IsToggled="{Binding QuitOnReadError}"  CVVisible="False" DescriptionText="{x:Static strings:AppResources.FrameSettingsQuitOnReadError}" IsVisible="True" IsEnabled="True"></usercontrols:Z2XBasicSwitchWidget>
 
                     <!-- Verify POM writes -->
-                    <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelHeading3Style}" Text="{x:Static strings:AppResources.FrameSettingsVerifyPOMWrite}" HorizontalOptions="Start" />
-                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End">
-                        <Label Text="{Binding Path=VerifyPOMWrite,Converter={StaticResource switchStateConverter}}" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" ></Label>
-                        <Switch Style="{StaticResource Z2XProgrammerSwitchStyle}" IsToggled="{Binding VerifyPOMWrite}" HorizontalOptions="End"></Switch>
-                    </HorizontalStackLayout>
-
+                    <usercontrols:Z2XBasicSwitchWidget x:Name="FrameSettingsVerifyPOMWrite" Grid.Row="1" Grid.Column="0" CVText="" IsToggled="{Binding VerifyPOMWrite}"  CVVisible="False" DescriptionText="{x:Static strings:AppResources.FrameSettingsVerifyPOMWrite}" IsVisible="True" IsEnabled="True"></usercontrols:Z2XBasicSwitchWidget>
 
                 </Grid>
             </Border>
@@ -742,10 +719,11 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsResetLabel}"  HorizontalOptions="Start" />
-                    <Button ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_regular.png}" Grid.Row="2" Grid.Column="1" WidthRequest="250"  VerticalOptions="Center"  Text="{x:Static strings:AppResources.FrameSettingsResetButtonLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ResetZ2XProgrammerCommand}" HorizontalOptions="End" ></Button>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Z2XProgrammerLabelStandardStyle}" Text="{x:Static strings:AppResources.FrameSettingsResetLabel}"  HorizontalOptions="Start" />
+                    <Button Margin="0,20,0,0"  ImageSource="{AppThemeBinding Light=ic_fluent_arrow_reset_24_dark.png, Dark=ic_fluent_arrow_reset_24_regular.png}" Grid.Row="1" Grid.Column="1" WidthRequest="200"  VerticalOptions="Center"  Text="{x:Static strings:AppResources.FrameSettingsResetButtonLabel}" Style="{StaticResource Z2XProgrammerStandardButtonStyle}" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsPageViewModel}}, Path=ResetZ2XProgrammerCommand}" HorizontalOptions="End" ></Button>
                 </Grid>
             </Border>
 

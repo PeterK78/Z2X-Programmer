@@ -45,6 +45,19 @@ public partial class Z2XBasicEntryWidget : ContentView
         set => SetValue(TextProperty, value);
     }
 
+    // Handling the keyboard property of the entry
+    public static readonly BindableProperty KeyboardProperty =
+    BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(Z2XBasicEntryWidget), Keyboard.Default, propertyChanged: (bindable, oldvalue, newvalue) =>
+    {
+        var control = (Z2XBasicEntryWidget)bindable;
+        control.MyEntry.Keyboard = (Keyboard)newvalue!;
+    });
+    public Keyboard Keyboard
+    {
+        get => (Keyboard)GetValue(KeyboardProperty)!;
+        set => SetValue(KeyboardProperty, value);
+    }
+
     // Handling the text of the CV value label
     public static readonly BindableProperty CVTextProperty =
     BindableProperty.Create(nameof(CVText), typeof(string), typeof(Z2XBasicEntryWidget), propertyChanged: (bindable, oldvalue, newvalue) =>

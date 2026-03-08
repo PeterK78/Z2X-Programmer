@@ -84,7 +84,7 @@
     
     <!-- The colors of a frame (border) -->
     <OnPlatform x:Key="FrameBackgroundColor_Light" x:TypeArguments="Color">
-        <On Platform="Android" Value="#dbe2f0" />
+        <On Platform="Android" Value="#fafcfd" />
         <On Platform="Default" Value="#fafcfd" />
     </OnPlatform>   
     <Color x:Key="FrameBackgroundColor_Dark">#2c2848</Color>
