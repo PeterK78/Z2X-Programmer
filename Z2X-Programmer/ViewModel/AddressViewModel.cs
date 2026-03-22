@@ -428,9 +428,7 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
-                UndoRedoManager.Enabled = false;
                 locoList = await Task.Run(() => LocoList.GetLocomotiveList());
-                UndoRedoManager.Enabled = true;
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;

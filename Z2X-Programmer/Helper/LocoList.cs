@@ -142,6 +142,11 @@ namespace Z2XProgrammer.Helper
         /// <returns></returns>
         public async static Task<List<LocoListType>> GetLocomotiveList()
         {
+            //  Note:
+            //  We disable the undo/redo manager while we grab the locomotive list, because otherwise we might get into troubles with the undo/redo
+            //  information if we change the locomotive list while the user is doing an undo/redo action.
+            UndoRedoManager.Enabled = false;
+
             List<LocoListType> locomotiveList = new List<LocoListType>();
             if (IsSourceRocRail(ActiveSystem) == true)
             {
@@ -151,6 +156,9 @@ namespace Z2XProgrammer.Helper
             {
                 return await Task.Run(() => GetLocomotiveFileSystem());
             }
+
+            UndoRedoManager.Enabled = true;
+
             return locomotiveList;  
         }
 
