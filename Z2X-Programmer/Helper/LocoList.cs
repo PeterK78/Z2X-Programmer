@@ -201,12 +201,11 @@ namespace Z2XProgrammer.Helper
 
 
         /// <summary>
-        /// Returns the locomotive list from Z2X files.
+        /// Returns the locomotive list based on the Z2X files stored in the file system.
         /// </summary>
         /// <returns></returns>
-        private  static Task<List<LocoListType>> GetLocomotiveFileSystem()
+        private static Task<List<LocoListType>> GetLocomotiveFileSystem()
         {
-
             List<LocoListType> locomotiveList = new List<LocoListType>();
 
             //  Loop through all files in the Z2X file folder.
@@ -221,7 +220,6 @@ namespace Z2XProgrammer.Helper
 
                     try
                     {
-
                         // Call the Deserialize method and cast to the object type.
                         myFile = (Z2XProgrammerFileType)mySerializer.Deserialize(fs)!;
 
@@ -233,7 +231,6 @@ namespace Z2XProgrammer.Helper
                         entry.Z2XFileAvailable = true;
 
                         locomotiveList.Add(entry);
-
                     }
                     catch (InvalidOperationException)
                     {

@@ -85,9 +85,11 @@ namespace Z2XProgrammer.Helper
         }
 
         /// <summary>
-        /// Returns the window title text.
+        /// Creates the window title from the currently open Z2X project.
+        /// <param name="z2xFilePath">The path to the current Z2X file. If the string is empty the name of the application will be used.</param>
+        /// <param name="unsavedChanges">TRUE will add a star at the end of the title.</param>
         /// </summary>
-        public static string GetWindowTitle(string z2xFilePath, bool unsavedChanges)
+        public static string CreateWindowTitle(string z2xFilePath, bool unsavedChanges)
         {
             if ((z2xFilePath == null) || (z2xFilePath == "")) return "Z2X-Programmer";
                

@@ -77,7 +77,7 @@ namespace Z2XProgrammer.ViewModel
         bool undoAvailable = false;
         partial void OnUndoAvailableChanged(bool value)
         {
-            ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), UndoAvailable);
+            ApplicationTitle = GUI.CreateWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), UndoAvailable);
         }
 
         [ObservableProperty]
@@ -361,7 +361,7 @@ namespace Z2XProgrammer.ViewModel
                 WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(true));
 
                 //  We set the application title to the name of the Z2X file.
-                ApplicationTitle = GUI.GetWindowTitle("", false);
+                ApplicationTitle = GUI.CreateWindowTitle("", false);
 
                 UndoRedoManager.Reset();
 
@@ -499,7 +499,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = result.FullPath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                        ApplicationTitle = GUI.CreateWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         WeakReferenceMessenger.Default.Send(new DecoderConfigurationUpdateMessage(true));
                         WeakReferenceMessenger.Default.Send(new DecoderSpecificationUpdatedMessage(false));
@@ -552,7 +552,7 @@ namespace Z2XProgrammer.ViewModel
                     streamWriter.Close();
 
                     //  We set the application title to the name of the Z2X file - and remove the asterisk.
-                    ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                    ApplicationTitle = GUI.CreateWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                 }
 
@@ -592,7 +592,7 @@ namespace Z2XProgrammer.ViewModel
                         DecoderConfiguration.Z2XFilePath = fileSaveResult.FilePath;
 
                         //  We set the application title to the name of the Z2X file.
-                        ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
+                        ApplicationTitle = GUI.CreateWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), false);
 
                         return;
                     }
@@ -1172,7 +1172,7 @@ namespace Z2XProgrammer.ViewModel
         /// </summary>        
         internal void OnSomethingChangedMessage()
         {
-            ApplicationTitle = GUI.GetWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);
+            ApplicationTitle = GUI.CreateWindowTitle(System.IO.Path.GetFileNameWithoutExtension(DecoderConfiguration.Z2XFilePath), true);
         }
 
         /// <summary>
@@ -1193,12 +1193,12 @@ namespace Z2XProgrammer.ViewModel
         /// when the OK button is pressed.
         /// </summary>
         /// <param name="locomotive">Contains the data of the selected locomotive.</param>
-        internal void OnLocoSelectedMessage(LocoListType locomotive)
+        internal async void OnLocoSelectedMessage(LocoListType locomotive)
         {
             try
             {
-                // We check if we have received a valid Z2X file path. If not, we try to find a matching Z2X file in
-                // the Z2X file directory.
+                // In the first step, we check if we have received a valid Z2X file path in locomotive.FilePath.
+                // If not, we try to find a matching Z2X file in the Z2X file directory.
                 if (File.Exists(locomotive.FilePath) == false)
                 {
                     //  Check if we have a matching Z2X file. We search the Z2X file directory.
@@ -1224,9 +1224,21 @@ namespace Z2XProgrammer.ViewModel
                     }
                 }
 
-                //  If we have found a Z2X file, we load it. Otherwise we create a new Z2X project.
+                //  We will now open the Z2X file if we found it in the first step.
+                //  If no Z2X file was found, we will create a new Z2X project.
                 if (File.Exists(locomotive.FilePath))
                 {
+                    //  Before we are opening a new Z2X project, we check if have unsafed modifications.
+                    //  If so, we save the Z2X project.
+                    if (ApplicationTitle.EndsWith("*") == true)
+                    {
+                        if (await MessageBox.Show(AppResources.AlertAttention, AppResources.AlertSaveChanges, AppResources.YES, AppResources.NO) == true)
+                        {
+                            await SaveZ2XFile();
+                        }
+                    }
+
+                    //  We open the Z2X file and read the data.
                     using (Stream fs = File.OpenRead(locomotive.FilePath))
                     {
                         Z2XReaderWriter.ReadFile(fs);
