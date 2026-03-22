@@ -2430,7 +2430,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 0 - Back.
+        ///   Looks up a localized string similar to 🔌 FO0 - Back.
         /// </summary>
         public static string FrameFunctionKeysOutput0rDesc {
             get {
@@ -2439,7 +2439,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 0 - Front.
+        ///   Looks up a localized string similar to 🔌 FO0 - Front.
         /// </summary>
         public static string FrameFunctionKeysOutput0vDesc {
             get {
@@ -2448,7 +2448,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 10.
+        ///   Looks up a localized string similar to 🔌 FO10.
         /// </summary>
         public static string FrameFunctionKeysOutput10Desc {
             get {
@@ -2457,7 +2457,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 11.
+        ///   Looks up a localized string similar to 🔌 FO11.
         /// </summary>
         public static string FrameFunctionKeysOutput11Desc {
             get {
@@ -2466,7 +2466,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 12.
+        ///   Looks up a localized string similar to 🔌 FO12.
         /// </summary>
         public static string FrameFunctionKeysOutput12Desc {
             get {
@@ -2475,7 +2475,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 1.
+        ///   Looks up a localized string similar to 🔌 FO1.
         /// </summary>
         public static string FrameFunctionKeysOutput1Desc {
             get {
@@ -2484,7 +2484,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 2.
+        ///   Looks up a localized string similar to 🔌 FO2.
         /// </summary>
         public static string FrameFunctionKeysOutput2Desc {
             get {
@@ -2493,7 +2493,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 3.
+        ///   Looks up a localized string similar to 🔌 FO3.
         /// </summary>
         public static string FrameFunctionKeysOutput3Desc {
             get {
@@ -2502,7 +2502,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 4.
+        ///   Looks up a localized string similar to 🔌 FO4.
         /// </summary>
         public static string FrameFunctionKeysOutput4Desc {
             get {
@@ -2511,7 +2511,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 5.
+        ///   Looks up a localized string similar to 🔌 FO5.
         /// </summary>
         public static string FrameFunctionKeysOutput5Desc {
             get {
@@ -2520,7 +2520,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 6.
+        ///   Looks up a localized string similar to 🔌 FO6.
         /// </summary>
         public static string FrameFunctionKeysOutput6Desc {
             get {
@@ -2529,7 +2529,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 7.
+        ///   Looks up a localized string similar to 🔌 FO7.
         /// </summary>
         public static string FrameFunctionKeysOutput7Desc {
             get {
@@ -2538,7 +2538,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 8.
+        ///   Looks up a localized string similar to 🔌 FO8.
         /// </summary>
         public static string FrameFunctionKeysOutput8Desc {
             get {
@@ -2547,7 +2547,7 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 🔌 Function output 9.
+        ///   Looks up a localized string similar to 🔌 FO9.
         /// </summary>
         public static string FrameFunctionKeysOutput9Desc {
             get {

@@ -214,11 +214,11 @@ namespace Z2XProgrammer.ViewModel
         {
             if ((value > 0) && (value != 128))
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(true,true,6, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(true, true, 6, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
             }
             else
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(false,true,-1, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(false, true, 6, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
             }
         }
 
@@ -293,11 +293,11 @@ namespace Z2XProgrammer.ViewModel
         {
             if ((value > 0) && (value != 128))
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(true,true,7, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(true, true, 7, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
             }
             else
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(false,true,-1, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(false, true, 7, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
             }
         }
 
@@ -395,7 +395,7 @@ namespace Z2XProgrammer.ViewModel
                 DataStore.DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed = (byte)tempValue;
             }
             CV155Configuration = Subline.Create(new List<uint> { 155 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysShuntingKeyNumber != 0,true, ZIMOFuncKeysShuntingKeyNumber, AppResources.FrameFunctionKeysShuntingKeyDesc);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysShuntingKeyNumber != 0, true, ZIMOFuncKeysShuntingKeyNumber, AppResources.FrameFunctionKeysShuntingKeyDesc);
         }
 
         [ObservableProperty]
@@ -418,7 +418,7 @@ namespace Z2XProgrammer.ViewModel
                 DataStore.DecoderConfiguration.ZIMO.FuncKeysAccDecDisableFuncKeyNumber = (byte)value;
             }
             CV156Configuration = Subline.Create(new List<uint> { 156 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(value != 0,true, value, AppResources.FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(value != 0, true, value, AppResources.FrameFunctionKeysDeactivateAccDecTimeFuncKeyDesc);
         }
 
         [ObservableProperty]
@@ -514,7 +514,7 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrMute = (byte)ZIMOFuncKeysMute;
             }
             CV313Configuration = Subline.Create(new List<uint> { 313 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysMute != 0,true, ZIMOFuncKeysMute, AppResources.FrameFunctionKeysSoundMuteDesc);        
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysMute != 0, true, ZIMOFuncKeysMute, AppResources.FrameFunctionKeysSoundMuteDesc);
         }
 
         // ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310)
@@ -532,7 +532,7 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff = (byte)value;
                 CV310Configuration = Subline.Create(new List<uint> { 310 });
             }
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundOnOff != 0,true, ZIMOFuncKeysSoundOnOff, AppResources.FrameFunctionKeysSoundOnOff);        
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundOnOff != 0, true, ZIMOFuncKeysSoundOnOff, AppResources.FrameFunctionKeysSoundOnOff);
         }
         [ObservableProperty]
         string cV310Configuration = Subline.Create([310]);
@@ -553,7 +553,7 @@ namespace Z2XProgrammer.ViewModel
 
             }
             CV397Configuration = Subline.Create(new List<uint> { 397 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeLouder != 0,true, ZIMOFuncKeysSoundVolumeLouder, AppResources.FrameFunctionKeysSoundLouderDesc);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeLouder != 0, true, ZIMOFuncKeysSoundVolumeLouder, AppResources.FrameFunctionKeysSoundLouderDesc);
         }
 
         [ObservableProperty]
@@ -574,7 +574,7 @@ namespace Z2XProgrammer.ViewModel
 
             }
             CV396Configuration = Subline.Create(new List<uint> { 396 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(zIMOFuncKeysSoundVolumeQuieter != 0,true, zIMOFuncKeysSoundVolumeQuieter, AppResources.FrameFunctionKeysSoundQuieterDesc);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(zIMOFuncKeysSoundVolumeQuieter != 0, true, zIMOFuncKeysSoundVolumeQuieter, AppResources.FrameFunctionKeysSoundQuieterDesc);
         }
 
         [ObservableProperty]
@@ -609,8 +609,8 @@ namespace Z2XProgrammer.ViewModel
                 DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward = currentSetting;
 
             }
-             CV107And109Configuration = Subline.Create([107, 109]);
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeyLightSuppresionCabSide1 !=0, true, ZIMOFuncKeyLightSuppresionCabSide1, AppResources.FrameFunctionKeysLightSuppressionDriverCabCab1Desc);
+            CV107And109Configuration = Subline.Create([107, 109]);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeyLightSuppresionCabSide1 != 0, true, ZIMOFuncKeyLightSuppresionCabSide1, AppResources.FrameFunctionKeysLightSuppressionDriverCabCab1Desc);
         }
 
         [ObservableProperty]
@@ -718,7 +718,7 @@ namespace Z2XProgrammer.ViewModel
 
             }
             CV108And110Configuration = Subline.Create([108, 110]);
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeyLightSuppresionCabSide2 != 0,true, ZIMOFuncKeyLightSuppresionCabSide2, AppResources.FrameFunctionKeysLightSuppressionDriverCabCab2Desc);
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeyLightSuppresionCabSide2 != 0, true, ZIMOFuncKeyLightSuppresionCabSide2, AppResources.FrameFunctionKeysLightSuppressionDriverCabCab2Desc);
         }
 
         [ObservableProperty]
@@ -743,7 +743,7 @@ namespace Z2XProgrammer.ViewModel
                 //  We write the new value to the configuration.
                 DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab2Forward = currentSetting;
             }
-            CV108And110Configuration = Subline.Create(new List<uint> { 108, 110 });           
+            CV108And110Configuration = Subline.Create(new List<uint> { 108, 110 });
         }
 
         [ObservableProperty]
@@ -815,7 +815,7 @@ namespace Z2XProgrammer.ViewModel
 
             }
             CV308Configuration = Subline.Create(new List<uint> { 308 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysCurveSqueal != 0,true, ZIMOFuncKeysCurveSqueal, AppResources.FrameFunctionKeysSoundCurveSquealOnOff);        
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysCurveSqueal != 0, true, ZIMOFuncKeysCurveSqueal, AppResources.FrameFunctionKeysSoundCurveSquealOnOff);
         }
         [ObservableProperty]
         string cV308Configuration = Subline.Create([308]);
@@ -834,7 +834,7 @@ namespace Z2XProgrammer.ViewModel
 
             Shell.Current.Navigated += (sender, e) =>
             {
-                if(e.Current.Location.ToString() == "//FunctionKeysPage")
+                if (e.Current.Location.ToString() == "//FunctionKeysPage")
                 {
                     UpdateFunctionKeysOverview();
                 }
@@ -923,7 +923,7 @@ namespace Z2XProgrammer.ViewModel
             {
                 await MessageBox.Show(AppResources.AlertError, ex.Message, AppResources.OK);
             }
-        }   
+        }
 
         /// <summary>
         /// // Opens a pop-up window so that the user can configure the input mapping of the function keys.
@@ -952,7 +952,7 @@ namespace Z2XProgrammer.ViewModel
 
                 //  Update the configuration variables.
                 WriteZIMOInputMappingListToDecoderConfiguration();
-                
+
 
             }
             catch (Exception ex)
@@ -1007,6 +1007,8 @@ namespace Z2XProgrammer.ViewModel
         {
             DataStoreDataValid = DecoderConfiguration.IsValid;
 
+            DecoderConfiguration.ClearFunctionKeyFunctionDescriptions();
+
             //  We setup the function keys overview
             UpdateTheInputMappingList();
 
@@ -1035,16 +1037,16 @@ namespace Z2XProgrammer.ViewModel
             CV119ValueBit2 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 2);
             CV119ValueBit3 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 3);
             CV119ValueBit4 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 4);
-            CV119ValueBit5 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 5); 
+            CV119ValueBit5 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 5);
             CV119ValueBit6 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 6);
             CV119ValueBit7 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF6HighDippedBeam, 7);
             if (CV119Value > 0)
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(true,true, 6, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(true, true, 6, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
             }
             else
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(false,true, -1, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(false, true, -1, AppResources.FrameFunctionKeysHighBeamDimmingF6FuncKeyDesc);
             }
 
             CV120Value = DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam;
@@ -1052,17 +1054,17 @@ namespace Z2XProgrammer.ViewModel
             CV120ValueBit1 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 1);
             CV120ValueBit2 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 2);
             CV120ValueBit3 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 3);
-            CV120ValueBit4  = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 4);
-            CV120ValueBit5  = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 5);
-            CV120ValueBit6  = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 6);
-            CV120ValueBit7  = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 7);
+            CV120ValueBit4 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 4);
+            CV120ValueBit5 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 5);
+            CV120ValueBit6 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 6);
+            CV120ValueBit7 = Bit.IsSet(DecoderConfiguration.RCN225.FunctionKeyF7HighDippedBeam, 7);
             if (CV120Value > 0)
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(true,true, 7, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(true, true, 7, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
             }
             else
             {
-                DecoderConfiguration.SetFunctionKeyFunctionDescription(false,true,-1, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(false, true, -1, AppResources.FrameFunctionKeysHighBeamDimmingF7FuncKeyDesc);
             }
 
             // ZIMO: ABV key in CV156 (ZIMO_FUNCKEYDEACTIVATEACCDECTIME_CV156)
@@ -1073,27 +1075,56 @@ namespace Z2XProgrammer.ViewModel
             //  ZIMO: Shunting function key in CV155 (ZIMO_FUNCKEY_SHUNTINGKEY_CV155)
             byte currentShuntinKeyNumber = DecoderConfiguration.ZIMO.ShuntingKeyAndShuntingSpeed;
             ZIMOFuncKeysShuntingKeyNumber = currentShuntinKeyNumber & 0x1F;
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysShuntingKeyNumber != 0,true, ZIMOFuncKeysShuntingKeyNumber, AppResources.FrameFunctionKeysShuntingKeyDesc);        
+            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysShuntingKeyNumber != 0, true, ZIMOFuncKeysShuntingKeyNumber, AppResources.FrameFunctionKeysShuntingKeyDesc);
 
             // ZIMO: Sound louder in CV397 (ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397)
-            ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
-            CV397Configuration = Subline.Create(new List<uint> { 397 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeLouder != 0,true, ZIMOFuncKeysSoundVolumeLouder, AppResources.FrameFunctionKeysSoundLouderDesc);        
+            if (DecoderSpecification.ZIMO_FUNCKEY_SOUNDVOLUMELOUDER_CV397 == true)
+            {
+                ZIMOFuncKeysSoundVolumeLouder = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeLouder;
+                CV397Configuration = Subline.Create(new List<uint> { 397 });
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeLouder != 0, true, ZIMOFuncKeysSoundVolumeLouder, AppResources.FrameFunctionKeysSoundLouderDesc);
+            }
 
-            // ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396
-            ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
-            CV396Configuration = Subline.Create(new List<uint> { 396 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeQuieter != 0,true, ZIMOFuncKeysSoundVolumeQuieter, AppResources.FrameFunctionKeysSoundQuieterDesc);
+            // ZIMO: Sound quieter in CV396 (ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396)
+            if (DecoderSpecification.ZIMO_FUNCKEY_SOUNDVOLUMEQUIETER_CV396 == true)
+            {
+                ZIMOFuncKeysSoundVolumeQuieter = DecoderConfiguration.ZIMO.FuncKeyNrSoundVolumeQuieter;
+                CV396Configuration = Subline.Create(new List<uint> { 396 });
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundVolumeQuieter != 0, true, ZIMOFuncKeysSoundVolumeQuieter, AppResources.FrameFunctionKeysSoundQuieterDesc);
+            }
 
             // ZIMO: Sound on and off CV310 (ZIMO_FUNCKEY_SOUNDALLOFF_CV310)
-            ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
-            CV310Configuration = Subline.Create(new List<uint> { 310 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundOnOff != 0,true, ZIMOFuncKeysSoundOnOff, AppResources.FrameFunctionKeysSoundOnOff);        
+            if (DecoderSpecification.ZIMO_FUNCKEY_SOUNDALLOFF_CV310 == true)
+            {
+                ZIMOFuncKeysSoundOnOff = DecoderConfiguration.ZIMO.FuncKeyNrSoundOnOff;
+                CV310Configuration = Subline.Create(new List<uint> { 310 });
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysSoundOnOff != 0, true, ZIMOFuncKeysSoundOnOff, AppResources.FrameFunctionKeysSoundOnOff);
+            }
 
             // ZIMO: Curve squeal in CV308 (ZIMO_FUNCKEY_CURVESQUEAL_CV308)
-            ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
-            CV308Configuration = Subline.Create(new List<uint> { 308 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysCurveSqueal != 0,true, ZIMOFuncKeysCurveSqueal, AppResources.FrameFunctionKeysSoundCurveSquealOnOff);        
+            if(DecoderSpecification.ZIMO_FUNCKEY_CURVESQUEAL_CV308 == true)
+            { 
+                ZIMOFuncKeysCurveSqueal = DecoderConfiguration.ZIMO.FuncKeyNrCurveSqueal;
+                CV308Configuration = Subline.Create(new List<uint> { 308 });
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysCurveSqueal != 0, true, ZIMOFuncKeysCurveSqueal, AppResources.FrameFunctionKeysSoundCurveSquealOnOff);
+            }
+
+            //  ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313)
+            if (DecoderSpecification.ZIMO_FUNCKEY_MUTE_CV313 == true)
+            {
+                if (DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
+                {
+                    ZIMOFuncKeysMuteInverted = true;
+                    ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
+                }
+                else
+                {
+                    ZIMOFuncKeysMuteInverted = false;
+                    ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
+                }
+                CV313Configuration = Subline.Create(new List<uint> { 313 });
+                DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysMute != 0, true, ZIMOFuncKeysMute, AppResources.FrameFunctionKeysSoundMuteDesc);
+            }
 
             // ZIMO: Light suppression on the driver's cab side 1 (forward) in CV107 (ZIMO_FUNCKEY_LIGHTSUPPRESIONDRIVERSCABSIDE_CV107X)
             byte currentLightSuppressKeyCab1Forward = DecoderConfiguration.ZIMO.FuncKeyNrSuppressLightDriverCab1Forward;
@@ -1125,20 +1156,7 @@ namespace Z2XProgrammer.ViewModel
             tempFunctionOutput2 = DecoderConfiguration.ZIMO.AddOutputsSuppressedLightDriverCab2Forward;
             ZIMOFuncKeyLightSuppresionCabSide2Output4 = (tempFunctionOutput2 &= 0xF8) >> 3;
 
-            //  ZIMO: Sound mute in CV313 (ZIMO_FUNCKEY_MUTE_CV313)
-            if (DecoderConfiguration.ZIMO.FuncKeyNrMute > 100)
-            {
-                ZIMOFuncKeysMuteInverted = true;
-                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute - 100;
-            }
-            else
-            {
-                ZIMOFuncKeysMuteInverted = false;
-                ZIMOFuncKeysMute = DecoderConfiguration.ZIMO.FuncKeyNrMute;
-            }
-            CV313Configuration = Subline.Create(new List<uint> { 313 });
-            DecoderConfiguration.SetFunctionKeyFunctionDescription(ZIMOFuncKeysMute != 0,true, ZIMOFuncKeysMute, AppResources.FrameFunctionKeysSoundMuteDesc);        
-
+           
             // Döhler & Haass: Function key mapping type in CV137 (DOEHLERANDHAASS_FUNCTIONKEYMAPPINGTYPE_CV137)
             DoehlerAndHaassExtendedFunctionMappingEnabled = DecoderConfiguration.DoehlerHaas.ExtendedFunctionKeyMappingEnabled;
 
@@ -1210,128 +1228,234 @@ namespace Z2XProgrammer.ViewModel
         }
 
         /// <summary>
-        /// Grabs the function descriptions for the function outputs from the decoder configuration.    
+        /// Set the function description for the function output mapping of each function key to the corresponding description.
+        /// If the user has defined a user-specific name for the function output, this is added to the description.
+        /// For function key F0 (forward and backward) we also add the direction to the description.
         /// </summary>
         private void GetFunctionOutputMappingDescriptions()
         {
-            // We loop trough all function 12 keys (function mapping currently supports F0 (forward and backward) to F12).
-            for (int functionKey = 0; functionKey <= 13; functionKey++)
+            //  The function key index is the internally used index for the function keys.
+            //  It starts with 0 for F0 forward, 1 for F0 backward, 2 for F1 etc. up to 13 for F12.
+            int functionKeyIndex = 0;
+
+            //  The function key number is the number of the function key as it is used by the user.
+            //  It starts with 0 for F0, 1 for F1 etc. up to 12 for F12.
+            int functionKeyNumber = 0;
+
+            //  The function output index is the index for the function outputs.
+            //  It starts with 0 for output 0v, 1 for output 0r, 2 for output 1 etc. up to 13 for output 12.
+            int functionOutputIndex = 0;
+
+            //  The function output number is the number of the function output as it is used by the user.
+            //  It starts with 0 for output 0, 1 for output 1 etc. up to 12 for output 12. Output 0v and 0r are combined to output 0 for the user.
+            int functionOutputNumber = 0;
+
+            //  Is TRUE if the current function output is activated in the configuration, otherwise FALSE. 
+            bool functionOutputActivated = false;
+
+            //  We need to store the configuration of function key F0 forward and backward separately, because for function key F0 we have to check the
+            //  configuration of both function key F0 forward and backward to check if a function output mapping is activated or not.
+            byte functionKeyConfigurationIndex0 = 0;
+            byte functionKeyConfigurationIndex1 = 0;
+
+            // We loop trough all function keys. For each function key we check if it is assigned to any function output.
+            // If yes, we set the description of the function output mapping for this function key to the corresponding description. If the user has defined a user-specific name for the function output, this is added to the description.
+            // For function key F0 (forward and backward) we also add the direction to the description.
+            for (functionKeyIndex = 0; functionKeyIndex <= 13; functionKeyIndex++)
             {
-                // For each function key we loop trough all function outputs.
-                for (int functionOutputNumber = 0; functionOutputNumber < 8; functionOutputNumber++)
+                //  We get the configuration of the selected function key.                    
+                byte functionKeyConfiguration = GetFunctionKeyMapping(functionKeyIndex);
+
+                if (functionKeyIndex == 0) functionKeyConfigurationIndex0 = functionKeyConfiguration;
+                if (functionKeyIndex == 1) functionKeyConfigurationIndex1 = functionKeyConfiguration;
+
+                // For each function key index we loop trough all function outputs.
+                for (functionOutputIndex = 0; functionOutputIndex < 8; functionOutputIndex++)
                 {
-                    //In the first step, we get the configuration of the selected function key.
-                    Type decoderConfigType = DecoderConfiguration.RCN225.GetType();
-                    string cvPropertyNameOfFunctionKey = string.Empty;
-                    if (functionKey == 0)
+                    // We check if the function output is activated for the current function key in the configuration.
+                    functionOutputActivated = Bit.IsSet(functionKeyConfiguration, functionOutputIndex);
+
+                    //  We get the ID of the resource string for the standard name of the function output.
+                    string appResourceStringID = string.Empty;
+                    if (DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping == true)
                     {
-                        cvPropertyNameOfFunctionKey = "FunctionMappingF0Forward";
-                    }
-                    else if (functionKey == 1)
-                    {
-                        cvPropertyNameOfFunctionKey = "FunctionMappingF0Backward";
+                        appResourceStringID = GetRessourceStringIDZIMOExtendedMapping(functionOutputIndex);
                     }
                     else
                     {
-                        cvPropertyNameOfFunctionKey = "FunctionMappingF" + (functionKey - 1).ToString();
+                        appResourceStringID = GetRessourceStringIDRCN225StandardMapping(functionKeyIndex, functionOutputIndex);
                     }
-                    byte functionKeyConfiguration = (byte) decoderConfigType.GetProperty(cvPropertyNameOfFunctionKey)!.GetValue(DecoderConfiguration.RCN225)!;
 
-                    // In the second step, we get the description of the current function output number.   
-                    Z2XProgrammer.Resources.Strings.AppResources appResources = new Z2XProgrammer.Resources.Strings.AppResources(); 
-                    Type type = appResources.GetType();
-                    string appResourceStringID = string.Empty;
+                    //  We get the standard name of the function output from the resource file
+                    string standardFunctionOutputDescription = Z2XProgrammer.Resources.Strings.AppResources.ResourceManager.GetString(appResourceStringID, Z2XProgrammer.Resources.Strings.AppResources.Culture) ?? string.Empty;
 
-                    // Depending on the mapping method (RCN225, ZIMO etc., we have to consider the left shift of the outputs.
-                    if(DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping == true)
+                    //  We need to calculate the left shift of the outputs
+                    int rcn225FunctionOutputShift = GetRCN225FunctionOutputShift(functionKeyIndex);
+
+                    //  We get the user-specific name of the function output from the decoder configuration.
+                    string userDefinedFunctionOutputDescription = DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputIndex + rcn225FunctionOutputShift].UserDefinedDescription;
+
+                    //  Create a logging message if the function output mapping is activated for the current function key.
+                    //if (functionOutputActivated == true) Logger.PrintDevConsole("FunctionKeysViewModel:GetFunctionOutputMappingDescriptions functionKeyIndex:" + functionKeyIndex + ",functionOutputIndex:" + functionOutputIndex + ",shift:" + rcn225FunctionOutputShift + ",ressourceID:" + appResourceStringID + ",standard name:" + standardFunctionOutputDescription + ", user specific name:" + userDefinedFunctionOutputDescription + " activated.");
+
+                    //  Create the function key number from the function key index.                   
+                    if ((functionKeyIndex == 0) || (functionKeyIndex == 1))
                     {
-                        //  ZIMO extended function key mapping.
+                        functionKeyNumber = 0;
+                    }
+                    else
+                    {
+                        functionKeyNumber = functionKeyIndex - 1;
+                    }
 
-                        if (functionOutputNumber == 0) 
+                    // Create the function output number from the function output index.
+                    if ((functionOutputIndex == 0) || (functionOutputIndex == 1))
+                    {
+                        functionOutputNumber = 0;
+                    }
+                    else
+                    {
+                        functionOutputNumber = functionOutputIndex - 1;
+                    }
+
+                    //  The function key 0 is special. It combines the outputs 0v and 0r. Due to this fact we have to combine the configuration of output 0v and 0r for function key 0 to check if the function output mapping is activated or not.
+                    //  For all other function keys we only have to check the configuration of the corresponding output.
+                    if (functionKeyNumber == 0)
+                    {
+                        if ((Bit.IsSet(functionKeyConfigurationIndex0, functionOutputIndex) == false) && (Bit.IsSet(functionKeyConfigurationIndex1, functionOutputIndex) == false))
                         {
-                            appResourceStringID = "FrameFunctionKeysOutput0vDesc"; // Special case for 0v
-                        }
-                        else if (functionOutputNumber == 1) 
-                        {
-                            appResourceStringID = "FrameFunctionKeysOutput0rDesc"; // Special case for 0r
+                            functionOutputActivated = false;
                         }
                         else
                         {
-                            appResourceStringID = "FrameFunctionKeysOutput" + (functionOutputNumber -1).ToString() + "Desc";
+                            functionOutputActivated = true;
                         }
                     }
-                    else
-                    {
-                        // RCN225 function key mapping.
-                        if ((functionKey >= 0) && (functionKey <= 3)) 
-                        {
-                            if (functionOutputNumber == 0) 
-                            {
-                                appResourceStringID = "FrameFunctionKeysOutput0vDesc"; // Special case for 0v
-                            }
-                            else if (functionOutputNumber == 1) 
-                            {
-                                appResourceStringID = "FrameFunctionKeysOutput0rDesc"; // Special case for 0r
-                            }
-                            else
-                            {
-                                appResourceStringID = "FrameFunctionKeysOutput" + (functionOutputNumber-1).ToString() + "Desc";
-                            }
-                        }
-                        else if((functionKey >= 4) && (functionKey <= 7))
-                        {
-                            appResourceStringID = "FrameFunctionKeysOutput" + (functionOutputNumber + 2).ToString() + "Desc";
-                        }
-                        else if((functionKey >= 8) && (functionKey <= 13))
-                        {
-                            appResourceStringID = "FrameFunctionKeysOutput" + (functionOutputNumber + 5).ToString() + "Desc";
-                        }
-                    }
+            
+                    //  Create the description text.
+                    string functionOutputDescription = standardFunctionOutputDescription;
+                    if(userDefinedFunctionOutputDescription != "")  functionOutputDescription += ": " + userDefinedFunctionOutputDescription;                      
 
-
-                    int functionKeyNumber = 0;
-                    if ((functionKey == 0)  || (functionKey == 1)) // Special case for 0v and 0r
-                    {
-                        functionKeyNumber = 0;
-                    }   
-                    else
-                    {
-                        functionKeyNumber = functionKey - 1; // Adjust for 0v and 0r
-                    }
-                    
-                    // We set the function key function description.
-                    PropertyInfo propInfo = type.GetProperty(appResourceStringID)!;
-                    string functionDescription = (string)propInfo.GetValue(appResources)!;
-
-                    if(DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].UserDefinedDescription != "")
-                    {
-                        //  If the user has defined a description for the function output, we use it.
-                        functionDescription += ": " + DecoderConfiguration.UserDefinedFunctionOutputNames[functionOutputNumber].UserDefinedDescription;
-                    }
-
-                    if (functionKey == 0)
-                    {
-                        functionDescription += " " + AppResources.FrameFunctionKeysDescriptionDirectionForward;
-                    }
-                    else if (functionKey == 1)
-                    {
-                        functionDescription += " " + AppResources.FrameFunctionKeysDescriptionDirectionBackward;
-                    }
-                   
-
-                    if (Bit.IsSet(functionKeyConfiguration, functionOutputNumber) == true)
-                    {
-                        // We set the function key function description to the current function output number and description.      
-                        DecoderConfiguration.SetFunctionKeyFunctionDescription(true,false, functionKeyNumber, functionDescription); 
-                    }
-                    else
-                    {
-                        // We set the function key function description to empty string.
-                        DecoderConfiguration.SetFunctionKeyFunctionDescription(false, false, functionKeyNumber, functionDescription);
-                    }
+                    //  Configure the function key description.
+                    DecoderConfiguration.SetFunctionKeyFunctionDescription(functionOutputActivated, false, functionKeyNumber, functionOutputDescription);
 
                 }
             }
+        }
+
+        /// <summary>
+        /// Retrieves the function key mapping value for the specified function key index from the decoder
+        /// configuration.
+        /// </summary>
+        /// <remarks>The mapping is determined by reading the corresponding property from the decoder
+        /// configuration based on the provided index. Ensure that the index corresponds to a valid function key to
+        /// avoid unexpected results.</remarks>
+        /// <param name="functionKeyIndex">The index of the function key for which to obtain the mapping. Valid values are 0 for F0 forward, 1 for F0
+        /// backward, and 2 or greater for F1, F2, etc.</param>
+        /// <returns>A byte representing the mapping configuration for the specified function key.</returns>
+        private byte GetFunctionKeyMapping(int functionKeyIndex)
+        {
+            //  The function mapping configuration is stored in various properties of the decoder configuration (e. g. FunctionMappingF0Forward,
+            //  FunctionMappingF1 etc.). Depending on the function key index, we have to read the value of the corresponding property to get the
+            //  function mapping configuration for the selected function key.
+
+            //  We check if the provided function key index is within the valid range (0 to 13). If not, we throw an exception to indicate that
+            //  the index is out of range.
+            if (functionKeyIndex < 0 || functionKeyIndex > 13)
+            {
+                throw new ArgumentOutOfRangeException(nameof(functionKeyIndex), "Function key index must be between 0 and 13.");
+            }
+
+            //  Create the name of the CV property for the function key mapping depending on the function key index.
+            //  For function key F0 we have to consider the forward and backward direction.
+            string propertyName = string.Empty;
+            if (functionKeyIndex == 0)
+            {
+                propertyName = "FunctionMappingF0Forward";
+            }
+            else if (functionKeyIndex == 1)
+            {
+                propertyName = "FunctionMappingF0Backward";
+            }
+            else
+            {
+                propertyName = "FunctionMappingF" + (functionKeyIndex - 1).ToString();
+            }
+
+            return (byte)DecoderConfiguration.RCN225.GetType().GetProperty(propertyName)!.GetValue(DecoderConfiguration.RCN225)!;
+
+        }
+
+        /// <summary>
+        /// Returns the ID of the resource string for the standard name of the function output for a function key.
+        /// This function respects the ZIMO extended mapping.
+        /// </summary>
+        /// <param name="functionOutputIndex">The function output index.</param>
+        /// <returns></returns>
+        private string GetRessourceStringIDZIMOExtendedMapping(int functionOutputIndex)
+        {
+            if (functionOutputIndex == 0)
+            {
+                return "FrameFunctionKeysOutput0vDesc";
+            }
+            else if (functionOutputIndex == 1)
+            {
+                return "FrameFunctionKeysOutput0rDesc";
+            }
+            else
+            {
+                return "FrameFunctionKeysOutput" + (functionOutputIndex - 1).ToString() + "Desc";
+            }
+        }
+
+        /// <summary>
+        /// Returns the ID of the resource string for the standard name of the function output for a function key.
+        /// This function respects the RCN225 output shift.
+        /// </summary>
+        /// <param name="functionKeyIndex">The function key index.</param>
+        /// <param name="functionOutputIndex">The function output index.</param>
+        /// <returns></returns>
+        private string GetRessourceStringIDRCN225StandardMapping(int functionKeyIndex, int functionOutputIndex)
+        {
+            if ((functionKeyIndex >= 0) && (functionKeyIndex <= 3))
+            {
+                if (functionOutputIndex == 0)
+                {
+                    return "FrameFunctionKeysOutput0vDesc";
+                }
+                else if (functionOutputIndex == 1)
+                {
+                    return "FrameFunctionKeysOutput0rDesc";
+                }
+                else
+                {
+                    return "FrameFunctionKeysOutput" + (functionOutputIndex - 1).ToString() + "Desc";
+                }
+            }
+            else if ((functionKeyIndex >= 4) && (functionKeyIndex <= 7))
+            {
+                return "FrameFunctionKeysOutput" + (functionOutputIndex + 2).ToString() + "Desc";
+            }
+            else if ((functionKeyIndex >= 8) && (functionKeyIndex <= 13))
+            {
+                return "FrameFunctionKeysOutput" + (functionOutputIndex + 5).ToString() + "Desc";
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Returns the left shift of the function output for the RCN225 standard function key mapping depending on the function key index.
+        /// </summary>
+        /// <param name="functionKeyIndex">The function key index.</param>
+        /// <returns></returns>
+        private int GetRCN225FunctionOutputShift (int functionKeyIndex)
+        {
+            //  If the extended function key mapping is activated, there is no left shift of the function outputs for any function key.
+            if (DecoderConfiguration.ZIMO.ExtendedFunctionKeyMapping == true) return 0;
+            
+            if ((functionKeyIndex >= 4) && (functionKeyIndex <=7)) return 3;
+            if ((functionKeyIndex >= 8) && (functionKeyIndex <= 13)) return 6;
+            return 0;
         }
 
         #endregion

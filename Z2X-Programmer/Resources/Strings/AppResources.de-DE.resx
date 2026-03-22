@@ -1891,46 +1891,46 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
     <value>💡 Abblendtaste 2</value>
   </data>
   <data name="FrameFunctionKeysOutput1Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 1</value>
+    <value>🔌 FA1</value>
   </data>
   <data name="FrameFunctionKeysOutput2Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 2</value>
+    <value>🔌 FA2</value>
   </data>
   <data name="FrameFunctionKeysOutput3Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 3</value>
+    <value>🔌 FA3</value>
   </data>
   <data name="FrameFunctionKeysOutput4Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 4</value>
+    <value>🔌 FA4</value>
   </data>
   <data name="FrameFunctionKeysOutput5Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 5</value>
+    <value>🔌 FA5</value>
   </data>
   <data name="FrameFunctionKeysOutput6Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 6</value>
+    <value>🔌 FA6</value>
   </data>
   <data name="FrameFunctionKeysOutput7Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 7</value>
+    <value>🔌 FA7</value>
   </data>
   <data name="FrameFunctionKeysOutput8Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 8</value>
+    <value>🔌 FA8</value>
   </data>
   <data name="FrameFunctionKeysOutput9Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 9</value>
+    <value>🔌 FA9</value>
   </data>
   <data name="FrameFunctionKeysOutput10Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 10</value>
+    <value>🔌 FA10</value>
   </data>
   <data name="FrameFunctionKeysOutput11Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 11</value>
+    <value>🔌 FA11</value>
   </data>
   <data name="FrameFunctionKeysOutput12Desc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 12</value>
+    <value>🔌 FA12</value>
   </data>
   <data name="FrameFunctionKeysOutput0vDesc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 0 - Vorne</value>
+    <value>🔌 FA0 - Vorne</value>
   </data>
   <data name="FrameFunctionKeysOutput0rDesc" xml:space="preserve">
-    <value>🔌 Funktionsausgang 0 - Hinten</value>
+    <value>🔌FA0 - Hinten</value>
   </data>
   <data name="FrameFunctionKeysRefreshOverview" xml:space="preserve">
     <value>Aktualisieren</value>

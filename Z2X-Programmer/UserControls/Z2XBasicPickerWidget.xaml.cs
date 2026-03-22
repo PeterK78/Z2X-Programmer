@@ -120,10 +120,10 @@ public partial class Z2XBasicPickerWidget : ContentView
     private void MyPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;
-        int selectedIndex = picker.SelectedIndex;
-        if (selectedIndex != -1)
+        SelectedIndex = picker.SelectedIndex;
+        if (SelectedIndex != -1)
         {
-            SelectedItem = (string)picker.ItemsSource[selectedIndex]!;
+            SelectedItem = (string)picker.ItemsSource[SelectedIndex]!;
         }
     }
 

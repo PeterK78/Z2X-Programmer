@@ -1890,46 +1890,46 @@ The application is aimed at beginners who want to configure the most important f
     <value>💡 Dipped beam function key 2</value>
   </data>
   <data name="FrameFunctionKeysOutput1Desc" xml:space="preserve">
-    <value>🔌 Function output 1</value>
+    <value>🔌 FO1</value>
   </data>
   <data name="FrameFunctionKeysOutput2Desc" xml:space="preserve">
-    <value>🔌 Function output 2</value>
+    <value>🔌 FO2</value>
   </data>
   <data name="FrameFunctionKeysOutput3Desc" xml:space="preserve">
-    <value>🔌 Function output 3</value>
+    <value>🔌 FO3</value>
   </data>
   <data name="FrameFunctionKeysOutput4Desc" xml:space="preserve">
-    <value>🔌 Function output 4</value>
+    <value>🔌 FO4</value>
   </data>
   <data name="FrameFunctionKeysOutput5Desc" xml:space="preserve">
-    <value>🔌 Function output 5</value>
+    <value>🔌 FO5</value>
   </data>
   <data name="FrameFunctionKeysOutput6Desc" xml:space="preserve">
-    <value>🔌 Function output 6</value>
+    <value>🔌 FO6</value>
   </data>
   <data name="FrameFunctionKeysOutput7Desc" xml:space="preserve">
-    <value>🔌 Function output 7</value>
+    <value>🔌 FO7</value>
   </data>
   <data name="FrameFunctionKeysOutput8Desc" xml:space="preserve">
-    <value>🔌 Function output 8</value>
+    <value>🔌 FO8</value>
   </data>
   <data name="FrameFunctionKeysOutput9Desc" xml:space="preserve">
-    <value>🔌 Function output 9</value>
+    <value>🔌 FO9</value>
   </data>
   <data name="FrameFunctionKeysOutput10Desc" xml:space="preserve">
-    <value>🔌 Function output 10</value>
+    <value>🔌 FO10</value>
   </data>
   <data name="FrameFunctionKeysOutput11Desc" xml:space="preserve">
-    <value>🔌 Function output 11</value>
+    <value>🔌 FO11</value>
   </data>
   <data name="FrameFunctionKeysOutput12Desc" xml:space="preserve">
-    <value>🔌 Function output 12</value>
+    <value>🔌 FO12</value>
   </data>
   <data name="FrameFunctionKeysOutput0vDesc" xml:space="preserve">
-    <value>🔌 Function output 0 - Front</value>
+    <value>🔌 FO0 - Front</value>
   </data>
   <data name="FrameFunctionKeysOutput0rDesc" xml:space="preserve">
-    <value>🔌 Function output 0 - Back</value>
+    <value>🔌 FO0 - Back</value>
   </data>
   <data name="FrameFunctionKeysRefreshOverview" xml:space="preserve">
     <value>Refresh</value>

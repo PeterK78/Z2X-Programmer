@@ -203,7 +203,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Contains the function mapping for the key F0 (forward) in CV33
+        /// Contains the function mapping for the key F0 (forward) in CV33.
         /// </summary>
         public byte FunctionMappingF0Forward
         {
@@ -218,7 +218,7 @@ namespace Z2XProgrammer.DataModel
         }
 
         /// <summary>
-        /// Contains the function mapping for the key F0 (backward) in CV34
+        /// Contains the function mapping for the key F0 (backward) in CV34.
         /// </summary>
         public byte FunctionMappingF0Backward
         {

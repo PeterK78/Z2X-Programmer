@@ -287,11 +287,34 @@ namespace Z2XProgrammer.DataStore
             }
         }
 
+        public static void ClearFunctionKeyFunctionDescriptions()
+        {
+            foreach (FunctionKeyType item in FunctionKeys) item.FunctionDescriptions.Clear();
+        }
+
+        public static void RenameFunctionKeyFunctionDescription(int functionKeyIndex, string oldFunctionName, string newFunctionName)
+        {
+            if(FunctionKeys[functionKeyIndex].FunctionDescriptions.Contains(oldFunctionName) == true)
+            {
+                FunctionKeys[functionKeyIndex].FunctionDescriptions.Remove(oldFunctionName);
+                FunctionKeys[functionKeyIndex].FunctionDescriptions.Add(newFunctionName);
+            }   
+        }
+
+
         /// <summary>
         /// Updates the function key function descriptions for the given function key number.
         /// </summary>
         public static void SetFunctionKeyFunctionDescription(bool enable,bool atomic,  int functionKeyNumber, string functionName)
         {
+            if(functionKeyNumber < 0 || functionKeyNumber >= FunctionKeys.Count)
+            {
+                Logger.LogCritical("DecoderConfiguration.SetFunctionKeyFunctionDescription called with invalid functionKeyNumber=" + functionKeyNumber.ToString());
+                return;
+            }
+
+            Logger.PrintDevConsole("DecoderConfiguration.SetFunctionKeyFunctionDescription called with enable=" + enable.ToString() + ", atomic=" + atomic.ToString() + ", functionKeyNumber=" + functionKeyNumber.ToString() + ", functionName=" + functionName);
+
             if (enable)
             {
                 for (int i = 0; i < FunctionKeys.Count; i++)
@@ -303,8 +326,8 @@ namespace Z2XProgrammer.DataStore
                             if (FunctionKeys[i].FunctionDescriptions.Contains(functionName))
                             {
                                 FunctionKeys[i].FunctionDescriptions.Remove(functionName);
-                            }    
-                        }   
+                            }
+                        }
                     }
                     else
                     {
