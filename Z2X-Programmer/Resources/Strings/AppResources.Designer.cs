@@ -972,6 +972,15 @@ namespace Z2XProgrammer.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decoder Configuration Address.
+        /// </summary>
+        public static string DefaultFileName {
+            get {
+                return ResourceManager.GetString("DefaultFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The CV set was successfully read out..
         /// </summary>
         public static string DisplayAlertCVSetUsedSuccessfully {

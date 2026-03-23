@@ -2211,4 +2211,7 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="FrameAddressSecondAddressButtonToolTip" xml:space="preserve">
     <value>Öffnet die Lokomotiven-Liste</value>
   </data>
+  <data name="DefaultFileName" xml:space="preserve">
+    <value>Decoder-Konfiguration Adresse</value>
+  </data>
 </root>

@@ -36,7 +36,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
     internal static class Z2XReaderWriter
     {
         /// <summary>
-        /// Returns the default Z2X file name
+        /// Returns the default Z2X file name.
         /// </summary>
         /// <returns></returns>
         public static string GetZ2XStandardFileName()
@@ -48,7 +48,7 @@ namespace Z2XProgrammer.FileAndFolderManagement
             }
             else
             {
-                fileName = "Settings Adr=" + DecoderConfiguration.RCN225.VehicleAddress.ToString();
+                fileName = AppResources.DefaultFileName + " " + DecoderConfiguration.RCN225.VehicleAddress.ToString();
             }
 
             if (fileName.Length > 40)
