@@ -46,7 +46,6 @@ public partial class PopUpDecoderIdentify : Popup
     /// <param name="vehicleAddress">The currently selected vehicle address.</param>
 	internal PopUpDecoderIdentify(ushort vehicleAddress, NMRA.DCCProgrammingModes programmingMode)
 	{
-        List<ushort> manufacturerCVs = new List<ushort> { 3, 8 };
 		InitializeComponent();
         
         ActivityIndicatorDecoderIdentify.IsRunning = false;
@@ -70,16 +69,27 @@ public partial class PopUpDecoderIdentify : Popup
     /// <exception cref="NotImplementedException"></exception>
     private async void PopUpDecoderIdentify_Opened(object? sender, EventArgs e)
     {
-        
+
         // Start the activity indicator.
         ActivityIndicatorDecoderIdentify.IsRunning = true;
         ActivityIndicatorDecoderIdentify.IsVisible = true;
 
+        //  If we are in programming mode "Programming Track" we read also the vehicle address.
+        if (_programmingMode == NMRA.DCCProgrammingModes.DirectProgrammingTrack)
+        {
+            bool resultReadCV1 = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{1}  , _cancelToken);
+            if(resultReadCV1 == true)
+            {
+                _vehicleAddress = DecoderConfiguration.RCN225.VehicleAddress;
+                LabelDecoderAddress.Text = _vehicleAddress.ToString();  
+            }
+        }
+
         //  In the first step, we read the standard CV 8.
-        bool result = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 8}  , _cancelToken);
+        bool resultReadCV8 = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 8}  , _cancelToken);
 
         //  Check if we are not able to read CV8. In this case, we cannot identify the decoder.
-        if (result == false)
+        if (resultReadCV8 == false)
         {
             LabelManufacturer.Text = AppResources.ManufacturerUnknown;
             ActivityIndicatorDecoderIdentify.IsRunning = false;
@@ -92,11 +102,11 @@ public partial class PopUpDecoderIdentify : Popup
         //  This means that it is a public domain & do-it-yourself decoder.  
         if ((DecoderConfiguration.ConfigurationVariables[8].Value == 13) || (DecoderConfiguration.ConfigurationVariables[8].Value == 238))
         {
-            result = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 107,108}  , _cancelToken);
+            resultReadCV8 = await ReadConfigurationVariables(_vehicleAddress,new List<ushort>{ 107,108}  , _cancelToken);
         }
 
         //  Now, we can identify the manufacturer.
-        if (result == true)
+        if (resultReadCV8 == true)
         {
             LabelManufacturer.Text = DecoderConfiguration.RCN225.Manufacturer;
         }
