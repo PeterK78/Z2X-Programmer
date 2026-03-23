@@ -544,6 +544,10 @@ namespace Z2XProgrammer.ViewModel
 
                 // Stop the activity indicator.
                 ActivityWriteVehicelAddressOngoing = false;
+
+                // Success message.
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.AlertVehicleAddressWritten1 + " " + DecoderConfiguration.RCN225Backup.VehicleAddress + " " + AppResources.AlertVehicleAddressWritten2, AppResources.OK);
+
             }
             catch (Exception)
             {

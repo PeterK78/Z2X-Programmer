@@ -2214,4 +2214,10 @@ Die Anwendung richtet sich an Einsteiger, die die wichtigsten Funktionen ihrer D
   <data name="DefaultFileName" xml:space="preserve">
     <value>Decoder-Konfiguration Adresse</value>
   </data>
+  <data name="AlertVehicleAddressWritten1" xml:space="preserve">
+    <value>Die Fahrzeugadresse</value>
+  </data>
+  <data name="AlertVehicleAddressWritten2" xml:space="preserve">
+    <value>wurde erfolgreich geschrieben.</value>
+  </data>
 </root>
