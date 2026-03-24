@@ -143,7 +143,6 @@ namespace Z2XProgrammer.ViewModel
         {
             try
             {
-
                 CancellationToken cancelToken = new CancellationTokenSource().Token;
 
                 //  The decoder reset is only allowed on the progam track.
@@ -159,16 +158,15 @@ namespace Z2XProgrammer.ViewModel
                     return;
                 }
 
+                //  Connect to the command station.
                 if (CommandStation.Connect(cancelToken, 5000) == false) return;
 
+                //  Write value 8 to CV8 to reset the decoder.
                 await Task.Run(() => ReadWriteDecoder.WriteCV((8), DecoderConfiguration.RCN225.VehicleAddress, 8, NMRA.DCCProgrammingModes.DirectProgrammingTrack, cancelToken, false));
 
-                //  The decoder reset is only allowed on the progam track.
-                if (DecoderConfiguration.ProgrammingMode == NMRA.DCCProgrammingModes.POMMainTrack)
-                {
-                    await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetResetPerformed, AppResources.YES, AppResources.NO);
-                    return;
-                }
+                // Inform the user that the decoder reset has been performed.
+                await MessageBox.Show(AppResources.AlertInformation, AppResources.FrameSecurityDecoderResetResetPerformed, AppResources.OK);
+
             }
             catch (Exception ex)
             {
