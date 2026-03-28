@@ -432,7 +432,7 @@ namespace Z2XProgrammer.ViewModel
 
                 CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                 CancellationToken cancelToken = cancelTokenSource.Token;
-                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSourceFileSystem(LocoList.ActiveSystem), false);
+                PopUpLocoList pop = new PopUpLocoList(cancelTokenSource, locoList, LocoList.IsSystemFileSystem(LocoList.ActiveSystem), false);
 
                 IPopupResult<bool> response = (IPopupResult<bool>)await currentShellOfWindow0.ShowPopupAsync(pop, new PopupOptions
                 {

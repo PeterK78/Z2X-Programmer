@@ -121,5 +121,14 @@ namespace Z2XProgrammer.Helper
             return AppConstants.PREFERENCES_LANGUAGE_KEY_ENGLISH;
         }
 
+        /// <summary>
+        /// Returns the identifier of the current application language.
+        /// </summary>
+        /// <returns>Possible values for Z2X-Programmer: en-US, de-DE</returns>
+        public static string GetApplicationLanguage()
+        {
+            return CultureInfo.CurrentUICulture.Name;
+        }
+
     }
 }

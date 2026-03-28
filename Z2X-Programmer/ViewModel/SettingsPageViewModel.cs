@@ -101,12 +101,18 @@ namespace Z2XProgrammer.ViewModel
         [ObservableProperty]
         internal bool activityConnectingOngoing = false;
 
+        /// <summary>
+        /// The selected system for gathering the loco list.
+        /// </summary>
         [ObservableProperty]
         internal string selectedLocoListSystem;
         partial void OnSelectedLocoListSystemChanged(string value)
         {
-            Preferences.Default.Set(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, value);
-            LocoListSystemRocrailSelected = LocoList.IsSourceRocRail(value);
+            //  We store the name of the selected loco list system always in english language
+            LocoList.ConvertLocoListSystem2English(value);
+
+            Preferences.Default.Set(AppConstants.PREFERENCES_LOCOLIST_SYSTEM_KEY, value);
+            LocoListSystemRocrailSelected = LocoList.IsSystemRocRail(value);
         }
 
         [ObservableProperty]
@@ -277,13 +283,16 @@ namespace Z2XProgrammer.ViewModel
             AvailableLanguages = new ObservableCollection<string>(AppCulture.GetAvailableLanguagesDescriptions());
             SelectedLanguage = AppCulture.GetLanguageDescription(Preferences.Default.Get(AppConstants.PREFERENCES_LANGUAGE_KEY, AppConstants.PREFERENCES_LANGUAGE_KEY_DEFAULT));
             AvailableLocoListSystems = new ObservableCollection<string>(LocoList.GetAvailableSystems());
-            if (Preferences.Default.Get(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERNECES_LOCOLIST_SYSTEM_VALUE) == "")
+            if (Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERENCES_LOCOLIST_SYSTEM_VALUE) == "")
             {
-                SelectedLocoListSystem = LocoList.GetSystemNotAvailable();
+                // This is the first boot option. During the first boot the PREFERENCES_LOCOLIST_SYSTEM_VALUE is "".
+                SelectedLocoListSystem = LocoList.GetSystemNameNotAvailable("");
             }
             else
             {
-                SelectedLocoListSystem = Preferences.Default.Get(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERNECES_LOCOLIST_SYSTEM_VALUE);
+                // We have found a setting entry. So we need to convert the setting to the current application language, because this
+                // setting is always stored in english language.                
+                SelectedLocoListSystem = LocoList.ConvertLocoListSystem2AppLanguage(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERENCES_LOCOLIST_SYSTEM_VALUE));
             }
 
             if (Preferences.Default.Get(AppConstants.PREFERENCES_LOGGING_KEY, AppConstants.PREFERENCES_LOGGING_DEFAULT) == "1")

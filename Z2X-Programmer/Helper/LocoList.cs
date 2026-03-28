@@ -23,6 +23,7 @@ https://github.com/PeterK78/Z2X-Programmer?tab=GPL-3.0-1-ov-file.
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -41,15 +42,22 @@ namespace Z2XProgrammer.Helper
     {
         #region REGION: PUBLIC PROPERTIES
 
+        /// <summary>
+        /// Returns the active loco list system name.         
+        /// </summary>
+        /// <returns>The name of the active loco list system in the current application language.</returns>
         public static string ActiveSystem
         {
             get
             {
-                return Preferences.Default.Get(AppConstants.PREFERNECES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERNECES_LOCOLIST_SYSTEM_VALUE);
+                return ConvertLocoListSystem2AppLanguage(Preferences.Default.Get(AppConstants.PREFERENCES_LOCOLIST_SYSTEM_KEY, AppConstants.PREFERENCES_LOCOLIST_SYSTEM_VALUE));
             }
         }
 
-        //  Returns the port address of the configured train controller software.
+        /// <summary>
+        /// Returns the port address of the configured train controller software.
+        /// </summary>
+        /// <returns>Port number of the loco list system.</returns>
         public static int PortNumber
         { 
             get
@@ -67,6 +75,10 @@ namespace Z2XProgrammer.Helper
             }
         }
 
+        /// <summary>
+        /// Returns the IP address of the loco list system.
+        /// </summary>
+        /// <returns>IP address of the loco list system</returns>
         public static IPAddress IPAddress
         {
             get
@@ -91,15 +103,15 @@ namespace Z2XProgrammer.Helper
         #region REGION: PUBLIC FUNCTIONS
 
         /// <summary>
-        /// Returns a list with descriptions of available languages.
+        /// Returns a list with currently available loco list systems.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of available loco list systems in the current application language.</returns>
         public static List<string> GetAvailableSystems()
         {
-            List<string> languages = new List<string>();
-            languages.Add(GetSystemNotAvailable());
-            languages.Add(GetSystemRocrailDescription());
-            return languages;
+            List<string> locoListSystems = new List<string>();
+            locoListSystems.Add(GetSystemNameNotAvailable(""));
+            locoListSystems.Add(GetSystemNameRocrail(""));
+            return locoListSystems;
         }
 
         /// <summary>
@@ -107,7 +119,7 @@ namespace Z2XProgrammer.Helper
         /// </summary>
         /// <param name="selectedLocoListDataSource">The train controller system description.</param>
         /// <returns></returns>
-        public static bool IsSourceRocRail(string selectedLocoListDataSource)
+        public static bool IsSystemRocRail(string selectedLocoListDataSource)
         {
             if (selectedLocoListDataSource == AppResources.FrameSettingsAppLocoListRocrail) return true;
             return false;
@@ -118,21 +130,64 @@ namespace Z2XProgrammer.Helper
         /// </summary>
         /// <param name="selectedLocoListDataSource">The data source identifier to evaluate. Cannot be null.</param>
         /// <returns>true if the specified data source is the system's file-based source; otherwise, false.</returns>
-        public static bool IsSourceFileSystem(string selectedLocoListDataSource)
+        public static bool IsSystemFileSystem(string selectedLocoListDataSource)
         {
-            if (selectedLocoListDataSource == GetSystemNotAvailable()) return true;
-            return false; ;
+            if (selectedLocoListDataSource == GetSystemNameNotAvailable("")) return true;
+            return false;
         }
 
-
-        public static string GetSystemNotAvailable()
+        /// <summary>
+        ///  Returns the description of a not available loco list system.
+        /// </summary>
+        /// <param name="culture">If emtpy, the current application language is used. Set to de-DE, or en-EN to get a specific language.</param>
+        /// <returns></returns>
+        public static string GetSystemNameNotAvailable(string culture)
         {
-            return AppResources.FrameSettingsAppLocoListNoTrainControllerNotAvailable;
+            if(culture == "") return AppResources.FrameSettingsAppLocoListNoTrainControllerNotAvailable;
+            CultureInfo cultureInfo = new CultureInfo(culture);
+            string? systemName = AppResources.ResourceManager.GetString("FrameSettingsAppLocoListNoTrainControllerNotAvailable", cultureInfo);
+            if (systemName != null) return systemName;
+            return "";
         }
 
-        public static string GetSystemRocrailDescription()
+        /// <summary>
+        /// Returns the description of the loco list system "Rocrail".
+        /// </summary>
+        /// <returns>Returns the product name Rocrail.</returns>
+        public static string GetSystemNameRocrail(string culture)
         {
-            return AppResources.FrameSettingsAppLocoListRocrail;
+            if(culture == "") return AppResources.FrameSettingsAppLocoListRocrail;
+            CultureInfo cultureInfo = new CultureInfo(culture);
+            string? systemName =  AppResources.ResourceManager.GetString("FrameSettingsAppLocoListRocrail", cultureInfo);
+            if (systemName != null) return systemName;
+            return "";
+        }
+
+        /// <summary>
+        /// Converts the loco list system name to english.
+        /// </summary>
+        /// <param name="selectedLocoListSystem">The name of the locolist system.</param>
+        /// <returns></returns>
+        public static string ConvertLocoListSystem2English(string selectedLocoListSystem)
+        {
+            if (selectedLocoListSystem == GetSystemNameNotAvailable("de-DE")) return GetSystemNameNotAvailable("en-US");
+            return selectedLocoListSystem;
+        }
+
+        /// <summary>
+        /// Converts the loco list system name to the app language.
+        /// </summary>
+        /// <param name="locoListSystem">The name of the locolist system.</param>
+        /// <returns></returns>
+        public static string ConvertLocoListSystem2AppLanguage(string locoListSystem)
+        {            
+            if (locoListSystem == GetSystemNameNotAvailable("en-US")) return GetSystemNameNotAvailable("");
+            if (locoListSystem == GetSystemNameNotAvailable("de-DE")) return GetSystemNameNotAvailable("");
+               
+            if(locoListSystem == GetSystemNameRocrail("en-US")) return GetSystemNameRocrail("");
+            if(locoListSystem == GetSystemNameRocrail("de-DE")) return GetSystemNameRocrail("");
+
+            return locoListSystem;
         }
 
         /// <summary>
@@ -148,7 +203,7 @@ namespace Z2XProgrammer.Helper
             UndoRedoManager.Enabled = false;
 
             List<LocoListType> locomotiveList = new List<LocoListType>();
-            if (IsSourceRocRail(ActiveSystem) == true)
+            if (IsSystemRocRail(ActiveSystem) == true)
             {
                 locomotiveList =  await Task.Run(() => GetLocomotiveListRocrail());
             }
@@ -164,9 +219,7 @@ namespace Z2XProgrammer.Helper
 
         #endregion
 
-        #region REGION: PRIVATE FUNCTIONS
-
-        
+        #region REGION: PRIVATE FUNCTIONS        
 
         /// <summary>
         /// Returns the locomotive list from the train controller software Rocrail.
@@ -187,7 +240,6 @@ namespace Z2XProgrammer.Helper
                 {
                     using (Stream fs = File.OpenRead(fileName))
                     {   
-
                         Z2XProgrammerFileType myFile = new Z2XProgrammerFileType();
 
                         var mySerializer = new XmlSerializer(typeof(Z2XProgrammerFileType));
@@ -206,7 +258,6 @@ namespace Z2XProgrammer.Helper
             }
             return locomotiveList;
         }
-
 
         /// <summary>
         /// Returns the locomotive list based on the Z2X files stored in the file system.
@@ -250,8 +301,6 @@ namespace Z2XProgrammer.Helper
             return Task.FromResult(locomotiveList);
          
         }
-
         #endregion
-
     }
 }
